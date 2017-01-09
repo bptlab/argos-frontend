@@ -7,17 +7,18 @@
     -moz-box-shadow: 10px 10px 22px -5px rgba(168,168,168,0.65);
     box-shadow: 10px 10px 22px -5px rgba(168,168,168,0.65);
     margin: 1vh;
+    min-width: 20vw;
 }
 
-.ProductCard_success {
+.ProductCard_RUNNING {
     background: $COLOR-success !important;
 }
 
-.ProductCard_warning {
+.ProductCard_WARNING {
     background: $COLOR-warning !important;
 }
 
-.ProductCard_error {
+.ProductCard_ERROR {
     background: $COLOR-error !important;
 }
 
@@ -34,7 +35,7 @@
 }
 
 .ProductCardInformationLine:before {
-    font-family: 'Glyphter', Arial, sans-serif;
+    font-family: 'Ionicons', Arial, sans-serif;
     margin-right: 1.5vh;
 }
 
