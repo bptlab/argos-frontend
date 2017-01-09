@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'Glyphter';
+    src: url('../assets/fonts/icons/Glyphter.eot');
+    src: url('../assets/fonts/icons/Glyphter.eot?#iefix') format('embedded-opentype'),
+    url('../assets/fonts/icons/Glyphter.woff') format('woff'),
+    url('../assets/fonts/icons/Glyphter.ttf') format('truetype'),
+    url('../assets/fonts/icons/Glyphter.svg#Glyphter') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.ProductCard {
+    height: min-content;
+    color: white;
+    -webkit-box-shadow: 10px 10px 22px -5px rgba(168,168,168,0.65);
+    -moz-box-shadow: 10px 10px 22px -5px rgba(168,168,168,0.65);
+    box-shadow: 10px 10px 22px -5px rgba(168,168,168,0.65);
+    margin: 1vh;
+}
+
+.ProductStatus_success {
+    background: #7CB342 !important;
+}
+
+.ProductStatus_warning {
+    background: #FFB300 !important;
+}
+
+.ProductStatus_error {
+    background: #F4511E !important;
+}
+
+.ProductCardInformationLine {
+    list-style-type: none;
+    font-style: normal;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-right: 1vh;
+    line-height: 3vh;
+    }
+
+.ProductCardInformationLine:before {
+    font-family: 'Glyphter', Arial, sans-serif;
+    margin-right: 1.5vh;
+}
+
+.icon-check:before{content:'\0041';}
+.icon-info-with-circle:before{content:'\0044';}
+.icon-warning:before{content:'\0046';}
+
+.PCIL_errorQuantity:before{content:'\0042';}
+.PCIL_serialNumber:before{content:'\0043';}
+.PCIL_date:before{content:'\0045';}
+.PCIL_quantity:before{content:'\0021';}
