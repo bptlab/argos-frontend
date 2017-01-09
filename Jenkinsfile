@@ -4,10 +4,8 @@ node {
 	}
 
 	stage('Build') {
-	    withNodeJsEnv('NodeJS') {
-		    sh """npm install"""
-		    sh """CI=true npm test"""
-		    sh """CI=true npm run build"""
-		}
+        sh """npm install"""
+        sh """CI=true npm test"""
+        sh """CI=true npm run build"""
 	}
 }
