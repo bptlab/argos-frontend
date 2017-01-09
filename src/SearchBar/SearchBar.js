@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './SearchBar.css';
+import './SearchBar.scss';
 import {FormGroup, Input} from 'reactstrap';
 
 class SearchBar extends Component {

@@ -1,0 +1,22 @@
+$COLOR-success: #7CB342;
+$COLOR-success-light: #689F38;
+$COLOR-warning: #FFB300;
+$COLOR-warning-light: #FFA000;
+$COLOR-error: #F4511E;
+$COLOR-error-light: #E64A19;
+
+$ICON-errorQuantity: '\0042';
+$ICON-serialNumber: '\0043';
+$ICON-date: '\0045';
+$ICON-quantity: '\0021';
+
+@font-face {
+  font-family: 'Glyphter';
+  src: url('../assets/fonts/icons/Glyphter.eot');
+  src: url('../assets/fonts/icons/Glyphter.eot?#iefix') format('embedded-opentype'),
+  url('../assets/fonts/icons/Glyphter.woff') format('woff'),
+  url('../assets/fonts/icons/Glyphter.ttf') format('truetype'),
+  url('../assets/fonts/icons/Glyphter.svg#Glyphter') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
