@@ -1,4 +1,7 @@
 node {
+    def nodeHome = tool name: 'NodeJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+    env.PATH = "${nodeHome}/bin:${env.PATH}"
+
 	stage('Checkout') {
 		checkout scm
 	}
