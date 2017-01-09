@@ -1,0 +1,47 @@
+/* ###################### PRODUCT CARD ###################### */
+.ProductCard {
+    height: min-content;
+    color: white;
+    -webkit-box-shadow: 10px 10px 22px -5px rgba(168,168,168,0.65);
+    -moz-box-shadow: 10px 10px 22px -5px rgba(168,168,168,0.65);
+    box-shadow: 10px 10px 22px -5px rgba(168,168,168,0.65);
+    margin: 1vh;
+}
+
+.ProductCard_success {
+    background: $COLOR-success !important;
+}
+
+.ProductCard_warning {
+    background: $COLOR-warning !important;
+}
+
+.ProductCard_error {
+    background: $COLOR-error !important;
+}
+
+/* ############ PRODUCT CARD INFORMATION LINE ############ */
+
+.ProductCardInformationLine {
+    list-style-type: none;
+    font-style: normal;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-right: 1vh;
+    line-height: 3vh;
+}
+
+.ProductCardInformationLine:before {
+    font-family: 'Glyphter', Arial, sans-serif;
+    margin-right: 1.5vh;
+}
+
+.PCIL_errorQuantity:before{content: $ICON-errorQuantity;}
+.PCIL_serialNumber:before{content:$ICON-serialNumber;}
+.PCIL_date:before{content:$ICON-date;}
+.PCIL_quantity:before{content: $ICON-quantity;}
+
+.icon-check:before{content:'\0041';}
+.icon-info-with-circle:before{content:'\0044';}
+.icon-warning:before{content:'\0046';}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Legend.css';
+import './Legend.scss';
 
 class Legend extends Component {
     render() {

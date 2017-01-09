@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './PieChart.css';
+import './PieChart.scss';
 
 class PieChart extends Component {
     render() {

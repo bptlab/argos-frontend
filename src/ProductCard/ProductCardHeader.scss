@@ -7,13 +7,13 @@
 }
 
 .ProductCardTitle_success {
-    background: #689F38 !important;
+    background: $COLOR-success-light !important;
 }
 
 .ProductCardTitle_warning {
-    background: #FFA000 !important;
+    background: $COLOR-warning-light !important;
 }
 
 .ProductCardTitle_error {
-    background: #E64A19 !important;
+    background: $COLOR-error-light !important;
 }

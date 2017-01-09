@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {Card} from 'reactstrap';
-import './ProductCard.css';
+import './ProductCard.scss';
 import ProductCardHeader from './ProductCardHeader.js';
 
 class ProductCard extends Component {
     render() {
         return (
-            <Card className={ `ProductCard ProductStatus_${this.props.category}` }>
+            <Card className={ `ProductCard ProductCard_${this.props.category}` }>
                 <ProductCardHeader category={this.props.category}> Testbrand1 Lgamax Plus GB172-24, EG-E</ProductCardHeader>
                     <ul>
                         <ProductCardInformationLine category="serialNumber">7716 0104 16</ProductCardInformationLine>
