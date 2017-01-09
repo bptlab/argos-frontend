@@ -18,6 +18,7 @@ class App extends Component {
     render() {
         return (
             <div>
+                <SearchBar/>
                 <Grid>
                     <ProductCard category="warning"/>
                     <ProductCard category="error"/>
