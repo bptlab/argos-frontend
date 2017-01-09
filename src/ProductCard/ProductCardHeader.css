@@ -1,22 +1,26 @@
 @font-face {
-  font-family: 'Glyphter';
-  src: url("../assets/fonts/icons/Glyphter.eot");
-  src: url("../assets/fonts/icons/Glyphter.eot?#iefix") format("embedded-opentype"), url("../assets/fonts/icons/Glyphter.woff") format("woff"), url("../assets/fonts/icons/Glyphter.ttf") format("truetype"), url("../assets/fonts/icons/Glyphter.svg#Glyphter") format("svg");
+  font-family: "Ionicons";
+  src: url("../assets/fonts/icons/ionicons.eot?v=2.0.0");
+  src: url("../assets/fonts/icons/ionicons.eot?v=2.0.0#iefix") format("embedded-opentype"), url("../assets/fonts/icons/ionicons.ttf?v=2.0.0") format("truetype"), url("../assets/fonts/icons/ionicons.woff?v=2.0.0") format("woff"), url("../assets/fonts/icons/ionicons.svg?v=2.0.0#Ionicons") format("svg");
   font-weight: normal;
   font-style: normal; }
+
+html, body, p, div, h1, h2, h3, h4, h5 {
+  margin: 0;
+  padding: 0; }
 
 .ProductCardTitle {
   width: 100%;
   text-align: center;
-  padding: 0.5vw 2vw;
+  padding: 0.6vw 0 0.5vw 0;
   border-bottom: 1px solid white;
   font-size: 1.6vh; }
 
-.ProductCardTitle_success {
+.ProductCardTitle_RUNNING {
   background: #689F38 !important; }
 
-.ProductCardTitle_warning {
+.ProductCardTitle_WARNING {
   background: #FFA000 !important; }
 
-.ProductCardTitle_error {
+.ProductCardTitle_ERROR {
   background: #E64A19 !important; }

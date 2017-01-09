@@ -1,0 +1,13 @@
+.searchArea {
+  width: 100%;
+  margin: 3vh 0; }
+  .searchArea input {
+    min-width: 75%;
+    display: block;
+    margin: 0 auto;
+    height: 3vh;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    font-size: 2.5vh;
+    color: grey;
+    background: url("../assets/img/search.png") no-repeat right; }

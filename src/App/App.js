@@ -1,29 +1,33 @@
 import React, {Component} from 'react';
-import ProductCard from '../ProductCard/ProductCard.js';
-import Grid from '../Grid/ProductCardGrid.js';
+import ProductCardGrid from '../ProductCardGrid/ProductCardGrid.js';
 import SearchBar from '../SearchBar/SearchBar.js'
-import './App.scss';
-import './bootstrap.css'
+import './App.css';
+import './bootstrap.scss'
 
 class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            searchText: ''
+        };
+        this.handleUserInput = this.handleUserInput.bind(this)
+    }
+
+    handleUserInput(searchText) {
+        this.setState({searchText: searchText});
+    }
+
     componentDidMount() {
-        let xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "http://localhost:8080/unicorn/webapi/REST/EventQuery/REST", false);
-        xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send();
-        let response = JSON.parse(xhttp.responseText);
-        console.log(response)
     }
 
     render() {
+        let listOfPorducts = JSON.parse('[{"numberOfDevices":254,"numberOfEvents":2001,"productionStart":"Feb 1, 2016 12:00:00 AM","state":"RUNNING","name":"example family","id":47, "metaData": {"label":"product label 001", "brand":"Testbrand1", "orderNumber":1234, "statusDescription":"everything is broken!"}}, {"numberOfDevices":1337,"numberOfEvents":9001,"productionStart":"Feb 1, 4099 12:00:00 AM","state":"ERROR","name":"example family","id":42, "metaData": {"label":"product label 001", "brand":"Testbrand1", "orderNumber":1234, "statusDescription":"everything is broken!"}}]');
+        console.log(listOfPorducts);
         return (
             <div>
-                <SearchBar/>
-                <Grid>
-                    <ProductCard category="warning"/>
-                    <ProductCard category="error"/>
-                    <ProductCard category="success"/>
-                </Grid>
+                <SearchBar searchText={this.state.searchText} onUserSearchInput={this.handleUserInput} />
+                <ProductCardGrid searchText={this.state.searchText} products={listOfPorducts} />
             </div>);
     }
 }
