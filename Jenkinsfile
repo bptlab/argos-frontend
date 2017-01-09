@@ -7,8 +7,6 @@ node {
 	}
 
 	stage('Build') {
-	    sh """node -v"""
-	    sh """npm -v"""
         sh """npm install"""
         sh """CI=true npm test"""
         sh """CI=true npm run build"""
