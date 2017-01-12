@@ -11,7 +11,7 @@ node {
       def scannerHome = tool 'SonarScanners';
       withSonarQubeEnv('SonarQube BP16') {
         sh "${scannerHome}/bin/sonar-scanner"
-        echo $BRANCH_NAME
+        echo env.BRANCH_NAME
       }
     }
 
