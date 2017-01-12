@@ -10,7 +10,7 @@ node {
       // requires SonarQube Scanner 2.8+
       def scannerHome = tool 'SonarScanners';
       withSonarQubeEnv('SonarQube BP16') {
-        sh "${scannerHome}/bin/sonar-scanner -Dsonar.branch=env.BRANCH_NAME"
+        sh "${scannerHome}/bin/sonar-scanner -Dsonar.branch=${env.BRANCH_NAME}"
       }
     }
 
