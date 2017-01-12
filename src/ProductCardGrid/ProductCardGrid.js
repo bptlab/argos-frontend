@@ -8,10 +8,13 @@ class ProductCardGrid extends Component {
         if (!this.props.searchText) {
             return true;
         }
-        else if (product.metaData.brand.indexOf(this.props.searchText) > -1) {
-            return true;
-        }
-        return (product.metaData.label.indexOf(this.props.searchText) > -1);
+        let searchFields = [product.metaData.brand, product.metaData.label, product.metaData.orderNumber,
+            product.productionStart];
+        for(let index in searchFields)
+           if(searchFields[index].toString().indexOf(this.props.searchText) > -1) {
+               return true;
+           }
+        return false;
     }
 
     render() {
@@ -19,7 +22,9 @@ class ProductCardGrid extends Component {
             <div className="ProductCardGrid">
                 {this.props.products.map((product) =>  {
                     if(this.searchMatches(product)) {
-                        return (<ProductCard key={product.id} product={product}/>)
+                        return (<ProductCard key={product.id} product={product}/>);
+                    } else {
+                        return false;
                     }
                 })}
             </div>
