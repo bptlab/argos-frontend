@@ -1,5 +1,5 @@
 # Argos frontend
-
+![Quality Gate developer branch](https://bpt-lab.org/sonarqube/api/badges/gate?key=de.hpi.bpt:argos-frontend:developer "Developer Branch")
 Argos acts as webbased Frontend-Dashboard to display relevant information for the Early-Warning-Process of Bosch TT.
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
