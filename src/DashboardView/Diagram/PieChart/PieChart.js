@@ -3,7 +3,7 @@ import './PieChart.css';
 import Chart from "chart.js"
 import ReactDOM from 'react-dom'
 
-let stateColor = {
+const stateColor = {
     ERROR: "#F4511E",
     WARNING: "#FFB300",
     RUNNING: "#7CB342",
@@ -12,9 +12,9 @@ let stateColor = {
 class PieChart extends Component {
 
     getData() {
-        let chartData = [];
-        let that = this;
-        let chartValueSum = this.props.chartData.reduce((pv, cv) => pv+cv, 0);
+        const chartData = [];
+        const that = this; //make this in context of anonyme function. available
+        const chartValueSum = this.props.chartData.reduce((pv, cv) => pv+cv, 0);
         this.props.chartData.forEach(function (item, index) {
             chartData.push(that.props.chartData[index]/chartValueSum);
         });
@@ -22,7 +22,7 @@ class PieChart extends Component {
     }
 
     getColors() {
-        let backgroundColors = [];
+        const backgroundColors = [];
         this.props.chartLabels.forEach(function (item) {
             backgroundColors.push(stateColor[item]);
         });
@@ -30,9 +30,9 @@ class PieChart extends Component {
     }
 
     componentDidMount() {
-        let charWrapper = ReactDOM.findDOMNode(this);
-        let chartContext = charWrapper.getContext("2d");
-        let chart = new Chart(chartContext, {
+        const charWrapper = ReactDOM.findDOMNode(this);
+        const chartContext = charWrapper.getContext("2d");
+        const chart = new Chart(chartContext, {
             type: 'doughnut',
             options: {
                 responsive: true,
@@ -56,7 +56,7 @@ class PieChart extends Component {
     }
 
     render() {
-        let chartHeight = (window.innerHeight / 3);
+        const chartHeight = (window.innerHeight / 3);
         return (
             <canvas id="pieChart" height={chartHeight} width={chartHeight} />
         );

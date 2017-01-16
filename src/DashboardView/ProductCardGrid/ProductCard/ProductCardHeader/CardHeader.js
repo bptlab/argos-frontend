@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {CardTitle} from 'reactstrap';
-import './ProductCardHeader.css';
+import './CardHeader.css';
 
 class CardHeader extends Component {
     render() {

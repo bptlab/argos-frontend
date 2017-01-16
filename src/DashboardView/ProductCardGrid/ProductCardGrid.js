@@ -8,9 +8,9 @@ class ProductCardGrid extends Component {
         if (!this.props.searchText) {
             return true;
         }
-        let searchFields = [product.metaData.brand, product.metaData.label, product.metaData.orderNumber,
+        const searchFields = [product.metaData.brand, product.metaData.label, product.metaData.orderNumber,
             product.productionStart];
-        for(let index in searchFields) {
+        for(const index in searchFields) {
             if (searchFields[index].toString().indexOf(this.props.searchText) > -1) {
                 return true;
             }

@@ -12,7 +12,7 @@ class Diagram extends Component {
 
 
     fetchChartData() {
-        for(let index in this.props.products) {
+        for(const index in this.props.products) {
             if(this.chartLabels.indexOf(this.props.products[index].state) > -1) {
                 this.chartData[this.chartLabels.indexOf(this.props.products[index].state)] += 1;
             } else {

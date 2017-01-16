@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Card} from 'reactstrap';
 import './ProductCard.css';
-import ProductCardHeader from './ProductCardHeader/ProductCardHeader.js';
+import ProductCardHeader from './ProductCardHeader/CardHeader.js';
 
 class ProductCard extends Component {
     render() {
