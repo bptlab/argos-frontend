@@ -13,4 +13,8 @@
     color: grey;
     background: url("../../assets/img/search.png") no-repeat right ;
   }
+  
+  input:focus, input:active {
+    outline: none !important;
+  }
 }
