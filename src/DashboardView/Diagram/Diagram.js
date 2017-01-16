@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Diagram.css';
-import PieChart from '../PieChart/PieChart.js'
+import PieChart from './PieChart/PieChart.js'
 
 class Diagram extends Component {
 

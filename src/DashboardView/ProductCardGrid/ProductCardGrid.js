@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ProductCardGrid.css';
-import ProductCard from '../ProductCard/ProductCard.js';
+import ProductCard from './ProductCard/ProductCard.js';
 
 class ProductCardGrid extends Component {
 
