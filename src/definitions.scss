@@ -1,0 +1,19 @@
+$COLOR-success: #7CB342;
+$COLOR-success-light: #689F38;
+$COLOR-warning: #FFB300;
+$COLOR-warning-light: #FFA000;
+$COLOR-error: #F4511E;
+$COLOR-error-light: #E64A19;
+
+$ICON-errorQuantity: '\f3e5';
+$ICON-serialNumber: '\f44c';
+$ICON-date: '\f3f3';
+$ICON-quantity: '\f44f';
+
+@font-face { font-family: "Ionicons";
+  src: url("../assets/fonts/icons/ionicons.eot?v=2.0.0");
+  src: url("../assets/fonts/icons/ionicons.eot?v=2.0.0#iefix")
+  format("embedded-opentype"), url("../assets/fonts/icons/ionicons.ttf?v=2.0.0")
+  format("truetype"), url("../assets/fonts/icons/ionicons.woff?v=2.0.0")
+  format("woff"), url("../assets/fonts/icons/ionicons.svg?v=2.0.0#Ionicons")
+  format("svg"); font-weight: normal; font-style: normal; }

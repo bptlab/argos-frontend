@@ -10,10 +10,11 @@ class ProductCardGrid extends Component {
         }
         let searchFields = [product.metaData.brand, product.metaData.label, product.metaData.orderNumber,
             product.productionStart];
-        for(let index in searchFields)
-           if(searchFields[index].toString().indexOf(this.props.searchText) > -1) {
-               return true;
-           }
+        for(let index in searchFields) {
+            if (searchFields[index].toString().indexOf(this.props.searchText) > -1) {
+                return true;
+            }
+        }
         return false;
     }
 
