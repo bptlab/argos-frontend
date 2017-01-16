@@ -3,43 +3,46 @@ import './PieChart.css';
 import Chart from "chart.js"
 import ReactDOM from 'react-dom'
 
+let stateColor = {
+    ERROR: "#F4511E",
+    WARNING: "#FFB300",
+    RUNNING: "#7CB342",
+};
 
 class PieChart extends Component {
+
+    getData() {
+        let chartData = [];
+        let that = this;
+        let chartValueSum = this.props.chartData.reduce((pv, cv) => pv+cv, 0);
+        this.props.chartData.forEach(function (item, index) {
+            chartData.push(that.props.chartData[index]/chartValueSum);
+        });
+        return chartData;
+    }
+
+    getColors() {
+        let backgroundColors = [];
+        this.props.chartLabels.forEach(function (item) {
+            backgroundColors.push(stateColor[item]);
+        });
+        return backgroundColors;
+    }
 
     componentDidMount() {
         let charWrapper = ReactDOM.findDOMNode(this);
         let chartContext = charWrapper.getContext("2d");
-        let chartData = [];
-        let chartLabel = [];
-        let chartValueSum = this.props.chartData.reduce((pv, cv) => pv+cv, 0);
-        console.log(chartValueSum);
-        let that = this;
-        this.props.chartLabels.forEach(function (item, index) {
-            chartData.push(that.props.chartData[index]/chartValueSum);
-            chartLabel.push(item);
-        });
-
-
         let chart = new Chart(chartContext, {
             type: 'doughnut',
             options: {
                 responsive: true,
             },
             data: {
-                labels: chartLabel,
+                labels: this.props.chartLabels,
                 datasets: [
                     {
-                        data: chartData,
-                        backgroundColor: [
-                            "#7CB342",
-                            "#FFB300",
-                            "#F4511E"
-                        ],
-                        hoverBackgroundColor: [
-                            "#689F38",
-                            "#FFA000",
-                            "#E64A19"
-                        ]
+                        data: this.getData(),
+                        backgroundColor: this.getColors()
                     }]
             }
         });
