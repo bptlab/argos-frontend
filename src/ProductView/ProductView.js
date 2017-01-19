@@ -7,13 +7,34 @@ import Tabbar from './Tabbar/Tabbar.js';
 import EventList from './EventList/EventList.js';
 
 class ProductView extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { filter: [{id: 'filter-0', value: ''}]};
+        this.appendFilter = this.appendFilter.bind(this);
+        this.changeFilterValue = this.changeFilterValue.bind(this);
+    }
+
+    appendFilter() {
+        var newFilter = {id: `filter-${this.state.filter.length}`, value: ''};
+        this.setState({ filter: this.state.filter.concat([newFilter]) });
+    }
+
+    changeFilterValue(id, value) {
+        if(id === (this.state.filter.length - 1)) {
+            this.appendFilter();
+        }
+        var newState = this.state;
+        newState.filter[id].value = value;
+        this.setState( newState );
+    }
+
     render() {
         const product = JSON.parse('{"numberOfDevices":83,"numberOfEvents":2001,"productionStart":"Feb 1, 2016 12:00:00 AM","state":"RUNNING","name":"example family","id":483, "metaData": {"label":"product label 002", "brand":"Testbrand2", "orderNumber":1234, "statusDescription":"everything is broken!"}}');
         return (
             <div>
                 <Header product={product}/>
                 <DetailArea product={product}/>
-                <Filterbar/>
+                <Filterbar filter={this.state.filter} add={this.appendFilter} changeFilterValue={this.changeFilterValue}/>
                 <Tabbar/>
                 <EventList/>
             </div>
