@@ -5,7 +5,7 @@ const API_PRODUCT_SINGLE = "/api/productFamily/{0}/product/{1}";
 
 if (!String.prototype.format) {
     String.prototype.format = function() {
-        let args = arguments;
+        const args = arguments;
         return this.replace(/{(\d+)}/g, function(match, number) {
             return typeof args[number] != 'undefined'
                 ? args[number]
