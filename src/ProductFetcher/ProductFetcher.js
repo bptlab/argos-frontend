@@ -15,7 +15,7 @@ if (!String.prototype.format) {
     };
 }
 
-class ProductFetcher{
+class ProductFetcher {
     
     constructor(remoteAddress, remotePort, requestMethod = "POST") {
         this.remoteAddress = remoteAddress;
