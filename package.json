@@ -9,8 +9,12 @@
     "react-scripts": "0.8.4"
   },
   "dependencies": {
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "chart.js": "^2.4.0",
+    "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.4.2",
+    "react-addons-transition-group": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "reactstrap": "^4.0.0-alpha.8"
   },
   "scripts": {
     "start": "concurrently \"npm run react\" \"gulp\"",

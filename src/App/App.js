@@ -1,21 +1,16 @@
-import React, { Component } from 'react';
-import logo from '../logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import './bootstrap.scss'
+import DashboardView from '../DashboardView/DashboardView.js';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+
+    render() {
+        const listOfPorducts = JSON.parse('[{"numberOfDevices":254,"numberOfEvents":2001,"productionStart":"Feb 1, 2016 12:00:00 AM","state":"WARNING","name":"example family","id":47, "metaData": {"label":"product label 002", "brand":"Testbrand1", "orderNumber":1234, "statusDescription":"everything is broken!"}},' +
+            ' {"numberOfDevices":83,"numberOfEvents":2001,"productionStart":"Feb 1, 2016 12:00:00 AM","state":"RUNNING","name":"example family","id":483, "metaData": {"label":"product label 002", "brand":"Testbrand2", "orderNumber":1234, "statusDescription":"everything is broken!"}},' +
+            ' {"numberOfDevices":1337,"numberOfEvents":9001,"productionStart":"Feb 1, 4099 12:00:00 AM","state":"ERROR","name":"example family","id":42, "metaData": {"label":"product label 001", "brand":"Testbrand1", "orderNumber":1234, "statusDescription":"everything is broken!"}}]');
+        return (<DashboardView products={listOfPorducts} />);
+    }
 }
 
 export default App;

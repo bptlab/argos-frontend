@@ -18,4 +18,7 @@ npm-debug.log
 #IDEA
 .idea/
 *.iml
+
+#Development
 dev-resources/
+*.css
