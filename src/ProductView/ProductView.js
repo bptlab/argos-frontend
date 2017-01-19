@@ -12,7 +12,7 @@ class ProductView extends Component {
         return (
             <div>
                 <Header product={product}/>
-                <DetailArea/>
+                <DetailArea product={product}/>
                 <Filterbar/>
                 <Tabbar/>
                 <EventList/>
