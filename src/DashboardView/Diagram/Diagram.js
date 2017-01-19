@@ -13,7 +13,7 @@ class Diagram extends Component {
 
     fetchChartData() {
         for(let i = 0; i < this.props.products.length; i++) {
-            let productState = this.props.products[i].state;
+            const productState = this.props.products[i].state;
             if(this.chartLabels.indexOf(productState) > -1) {
                 this.chartData[this.chartLabels.indexOf(productState)] += 1;
             } else {
