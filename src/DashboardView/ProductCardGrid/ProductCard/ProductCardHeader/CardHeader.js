@@ -5,7 +5,9 @@ import './CardHeader.css';
 class CardHeader extends Component {
     render() {
         return (
-            <CardTitle className={ `ProductCardTitle ProductCardTitle_${this.props.category}` }>{this.props.children}</CardTitle>
+            <CardTitle className={ `ProductCardTitle ProductCardTitle_${this.props.category}` }>
+                {this.props.children}
+            </CardTitle>
         );
     }
 }

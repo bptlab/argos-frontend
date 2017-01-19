@@ -12,12 +12,13 @@ class Diagram extends Component {
 
 
     fetchChartData() {
-        for(const index in this.props.products) {
-            if(this.chartLabels.indexOf(this.props.products[index].state) > -1) {
-                this.chartData[this.chartLabels.indexOf(this.props.products[index].state)] += 1;
+        for(let i = 0; i < this.props.products.length; i++) {
+            let productState = this.props.products[i].state;
+            if(this.chartLabels.indexOf(productState) > -1) {
+                this.chartData[this.chartLabels.indexOf(productState)] += 1;
             } else {
-                this.chartLabels.push(this.props.products[index].state);
-                this.chartData[this.chartLabels.indexOf(this.props.products[index].state)] = 1;
+                this.chartLabels.push(productState);
+                this.chartData[this.chartLabels.indexOf(productState)] = 1;
             }
         }
     }
