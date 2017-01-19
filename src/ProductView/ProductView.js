@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './DetailView.css';
+import './ProductView.css';
 
-class DetailView extends Component {
+class ProductView extends Component {
     render() {
         return (<div></div>
         );
     }
 }
 
-export default DetailView;
+export default ProductView;
