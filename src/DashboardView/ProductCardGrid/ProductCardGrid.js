@@ -39,4 +39,4 @@ class ProductCardGrid extends Component {
     }
 }
 
-export default ProductCardGrid;
+export default ProductCardGrid

@@ -61,3 +61,4 @@ class ProductFetcher{
         return JSON.parse(this.client.responseText)
     }
 }
+export default ProductFetcher;
