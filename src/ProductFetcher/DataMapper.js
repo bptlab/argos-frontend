@@ -1,6 +1,6 @@
 class DataMapper {
     
-    static mapProductFamiles(apiProductFamilyCollection) {
+    static mapProductFamilies(apiProductFamilyCollection) {
         const collectionOfProductFamilies = [];
         for(let i = 0; i < apiProductFamilyCollection.length; i++) {
             const api_productFamily = apiProductFamilyCollection[i];
@@ -26,8 +26,8 @@ class DataMapper {
                 "numberOfEvents":   api_product.metaData.numberOfEvents,
                 "productionStart":  api_product.metaData.orderNumber,
                 "orderNumber":      api_product.orderNumber,
-                "state":            api_product.metaData.state,           //TODO: To be discussed
-                "stateDescription": api_product.metaData.stateDescription //TODO: To be discussed
+                "state":            api_product.metaData.state,           
+                "stateDescription": api_product.metaData.stateDescription 
             };
             collectionOfProducts.push(product);
         }
@@ -56,13 +56,13 @@ class DataMapper {
             const eventTypeAttribute = {
                 "name":     api_eventTypeAttribute.name,
                 "type":     api_eventTypeAttribute.type
-            }
+            };
             collectionOfEventTypeAttributes.push(eventTypeAttribute);
         }
         return collectionOfEventTypeAttributes;
     }
     
-    static mapEvent(apiEvents) {
+    static mapEvents(apiEvents) {
         return apiEvents; //No mapping possible, due to its dynamic construction;
         //Attributes defined in is corresponding eventType
     }
