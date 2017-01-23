@@ -1,6 +1,5 @@
-class XMLHttpRequestMock extends XMLHttpRequest{
+class RESTInterface {
     constructor() {
-        super();
         this.client = new XMLHttpRequest();
     }
     
@@ -12,4 +11,9 @@ class XMLHttpRequestMock extends XMLHttpRequest{
         this.client.setRequestHeader("Content-type", "application/json");
         this.client.send();
     }
+    
+    getResponse() {
+        return this.client.responseText;
+    }
 }
+export default RESTInterface;

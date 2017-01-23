@@ -8,13 +8,11 @@ class ProductCard extends Component {
         return (
             <Card className={ `ProductCard ProductCard_${this.props.product.state}` }>
                 <ProductCardHeader category={this.props.product.state}>
-                    {this.props.product.metaData.brand}
-                    &nbsp;
-                    {this.props.product.metaData.label}
+                    {this.props.product.name}
                 </ProductCardHeader>
                 <ul>
                     <ProductCardInformationLine category="serialNumber">
-                        {this.props.product.metaData.orderNumber}
+                        {this.props.product.orderNumber}
                     </ProductCardInformationLine>
                     <ProductCardInformationLine category="quantity">
                         {this.props.product.numberOfDevices}

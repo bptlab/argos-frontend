@@ -24,8 +24,8 @@ class DataMapper {
                 "name":             api_product.metaData.name,
                 "numberOfDevices":  api_product.metaData.numberOfDevices,
                 "numberOfEvents":   api_product.metaData.numberOfEvents,
-                "productionStart":  api_product.metaData.orderNumber,
-                "orderNumber":      api_product.orderNumber,
+                "productionStart":  api_product.metaData.productionStart,
+                "orderNumber":      api_product.metaData.orderNumber,
                 "state":            api_product.metaData.state,           
                 "stateDescription": api_product.metaData.stateDescription 
             };
@@ -67,3 +67,4 @@ class DataMapper {
         //Attributes defined in is corresponding eventType
     }
 }
+export default DataMapper;
