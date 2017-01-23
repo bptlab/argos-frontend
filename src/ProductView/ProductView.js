@@ -4,7 +4,7 @@ import Header from './Header/Header.js';
 import DetailArea from './DetailArea/DetailArea.js';
 import Filterbar from './Filterbar/Filterbar.js';
 import Tabbar from './Tabbar/Tabbar.js';
-import EventList from './EventList/EventList.js';
+import EventTable from './EventTable/EventTable.js';
 
 class ProductView extends Component {
     constructor(props) {
@@ -37,7 +37,7 @@ class ProductView extends Component {
                 <DetailArea product={product}/>
                 <Filterbar filter={this.state.filter} add={this.appendFilter} changeFilterValue={this.changeFilterValue}/>
                 <Tabbar eventTypes={eventTypes}/>
-                <EventList eventTypes={eventTypes}/>
+                <EventTable eventTypes={eventTypes}/>
             </div>
         );
     }

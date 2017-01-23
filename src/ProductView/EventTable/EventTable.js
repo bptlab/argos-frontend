@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import './EventList.css';
+import './EventTable.css';
+import './EventTableRow/EventTableRow.js';
 
 class EventList extends Component {
     render() {
-        return (<div></div>
+        return (
+            <div>
+
+            </div>
         );
     }
 }
