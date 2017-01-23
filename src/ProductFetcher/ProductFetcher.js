@@ -1,13 +1,15 @@
-const API_PRODUCTFAMILY_ALL = "/api/productFamily/";
-const API_PRODUCTFAMILY_SINGLE = "/api/productFamily/{0}/";
-const API_PRODUCT_ALL = "/api/productFamily/{0}/";
-const API_PRODUCT_SINGLE = "/api/productFamily/{0}/product/{1}";
+import DataMapper from './DataMapper';
+import RESTInterface from './RESTInterface';
+
+export const API_PRODUCTFAMILY_ALL = "/api/productfamilies/";
+export const API_EVENTYPES_OF_PRODUCT = "/api/products/{0}/eventtypes";
+export const API_EVENTS_OF_PRODUCTS = "/api/products/{0}/events/{1}/{2}/{3}/";
 
 if (!String.prototype.format) {
     String.prototype.format = function() {
         const args = arguments;
         return this.replace(/{(\d+)}/g, function(match, number) {
-            return typeof args[number] != 'undefined'
+            return typeof args[number] !== 'undefined'
                 ? args[number]
                 : match
                 ;
@@ -21,9 +23,10 @@ class ProductFetcher {
         this.remoteAddress = remoteAddress;
         this.remotePort = remotePort;
         this.requestMethod = requestMethod;
-        this.client = new XMLHttpRequest();
+        this.dataMapper = DataMapper;
+        this.client = new RESTInterface();
     }
-    
+
     getRemoteAddress() {
         return self.remoteAddress;
     }
@@ -31,34 +34,37 @@ class ProductFetcher {
     getRemotePort() {
         return self.remotePort;
     }
-
-    sendRequest() {
-        this.client.setRequestHeader("Content-type", "application/json");
-        this.client.send();
+    
+    setClient(client) {
+        this.client = client;
     }
     
-    receiveSingleProductFamily(familyId) {
-        this.client.open(this.requestMethod, String.format(API_PRODUCTFAMILY_SINGLE, familyId), false);
-        this.sendRequest();
-        return JSON.parse(this.client.responseText)
+    receiveProductFamilies() {
+        this.client.open(this.requestMethod, API_PRODUCTFAMILY_ALL, false);
+        this.client.sendRequest();
+        return this.dataMapper.mapProductFamilies(JSON.parse(this.client.getResponse()));
+    }
+    
+    receiveAllProducts() {
+        const productFamilies = this.receiveProductFamilies();
+        const allProducts = [];
+        for(let i = 0; i < productFamilies.length; i++) {
+           allProducts.push.apply(allProducts,productFamilies[i]["products"]);
+        }
+        return allProducts;
     }
 
-    receiveAllProductFamilies() {
-        this.client.open(this.requestMethod, String.format(API_PRODUCTFAMILY_ALL), false);
-        this.sendRequest();
-        return JSON.parse(this.client.responseText)
+    receiveAllEventTypesOf(productId) {
+        this.client.open(this.requestMethod, API_EVENTYPES_OF_PRODUCT.format(productId), false);
+        this.client.sendRequest();
+        return this.mapEventTypes(JSON.parse(this.client.getResponse()));
     }
-
-    receiveSingleProduct(familyId, productId) {
-        this.client.open(this.requestMethod, String.format(API_PRODUCT_ALL, familyId, productId), false);
-        this.sendRequest();
-        return JSON.parse(this.client.responseText)
-    }
-
-    receiveAllProducts(familyId) {
-        this.client.open(this.requestMethod, String.format(API_PRODUCT_SINGLE, familyId), false);
-        this.sendRequest();
-        return JSON.parse(this.client.responseText)
+    
+    receiveAllEventsOf(productId, eventTypeId, indexFrom, indexTo) {
+        const APIRoute = API_EVENTS_OF_PRODUCTS.format(productId, eventTypeId, indexFrom, indexTo);
+        this.client.open(this.requestMethod, APIRoute, false);
+        this.client.sendRequest();
+        return this.dataMapper.mapEvents(this.parse(this.client.getResponse()));
     }
 }
 export default ProductFetcher;
