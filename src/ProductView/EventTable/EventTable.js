@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import './EventTable.css';
-import './EventTableRow/EventTableRow.js';
+import EventTableHeader from './EventTableHeader/EventTableHeader.js';
+import EventTableRow from './EventTableRow/EventTableRow.js';
 
-class EventList extends Component {
+class EventTable extends Component {
     render() {
         return (
-            <div>
-
-            </div>
+            <table className="table">
+                <EventTableHeader eventTypeAttributes={this.props.eventTable.header}/>
+                <tbody>
+                    {this.props.eventTable.events.map((event, index) =>
+                        <EventTableRow key={index} id={index} event={event} eventTypeAttributes={this.props.eventTable.header}/>
+                    )}
+                </tbody>
+            </table>
         );
     }
 }
 
-export default EventList;
+export default EventTable;

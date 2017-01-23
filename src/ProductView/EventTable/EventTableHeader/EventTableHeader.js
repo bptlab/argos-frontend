@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
-import './EventListHeader.css';
+import './EventTableHeader.css';
 
-class EventListHeader extends Component {
+class EventTableHeader extends Component {
     render() {
-        return (<div></div>
+        return (
+            <thead className="thead-inverse">
+                <tr>
+                    <th>#</th>
+                    {this.props.eventTypeAttributes.map((eventTypeAttribute, index) =>
+                        <th key={index}>{eventTypeAttribute.name}</th>
+                    )}
+                </tr>
+            </thead>
         );
     }
 }
 
-export default EventListHeader;
+export default EventTableHeader;

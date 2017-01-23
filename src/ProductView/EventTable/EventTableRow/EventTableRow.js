@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
-import './Event.css';
+import './EventTableRow.css';
 
-class EventListItem extends Component {
+class EventTableRow extends Component {
     render() {
-        return (<div></div>
+        return (
+            <tr>
+                <th scope="row">{this.props.id}</th>
+                {this.props.eventTypeAttributes.map((eventTypeAttribute, index) =>
+                    <td key={index}>
+                        {this.props.event[eventTypeAttribute.name]}
+                    </td>
+                )}
+            </tr>
         );
     }
 }
 
-export default EventListItem;
+export default EventTableRow;
