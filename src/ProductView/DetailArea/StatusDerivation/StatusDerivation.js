@@ -7,11 +7,10 @@ class StatusDerivation extends Component {
             <div>
                 <h2>Mögliche Fehlerursachen</h2>
                 <ol>
-                    <li><h3>...</h3></li>
-                    <li><h3>...</h3></li>
-                    <li><h3>...</h3></li>
+                    <li><h4>...</h4></li>
+                    <li><h4>...</h4></li>
+                    <li><h4>...</h4></li>
                 </ol>
-
             </div>
         );
     }
