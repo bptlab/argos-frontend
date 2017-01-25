@@ -14,7 +14,7 @@ class Filterbar extends Component {
 
     render() {
         return (
-            <div>
+            <div className="filterbar container">
                 <div className="form-group row">
                     {this.props.filter.map((filter, index) => <Filter key={filter.id} id={index} value={filter.value} changeFilterValue={this.props.changeFilterValue}/>)}
                 </div>
