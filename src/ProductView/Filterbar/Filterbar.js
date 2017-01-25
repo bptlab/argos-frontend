@@ -14,8 +14,8 @@ class Filterbar extends Component {
 
     render() {
         return (
-            <div className="searchArea">
-                <div className="form-group">
+            <div>
+                <div className="form-group row">
                     {this.props.filter.map((filter, index) => <Filter key={filter.id} id={index} value={filter.value} changeFilterValue={this.props.changeFilterValue}/>)}
                 </div>
                 <button onClick={ () => this.appendFilter() }>
