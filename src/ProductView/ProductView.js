@@ -45,7 +45,7 @@ class ProductView extends Component {
         const product = JSON.parse('{"numberOfDevices":83,"numberOfEvents":2001,"productionStart":"Feb 1, 2016 12:00:00 AM","state":"RUNNING","name":"example family","id":483, "metaData": {"label":"product label 002", "brand":"Testbrand2", "orderNumber":1234, "statusDescription":"everything is broken!"}}');
         const eventTypes = JSON.parse('[{"id":14,"name":"FirstEventType","numberOfEvents":3,"attributes":[{"name":"Name","type":"string"},{"name":"ErrorCode","type":"string"}]}, {"id":20,"name":"SecondEventType","numberOfEvents":1,"attributes":[{"name":"Name","type":"string"},{"name":"ErrorCode","type":"string"},{"name":"possible fix","type":"string"}]}]');
         return (
-            <div className="container-fluid">
+            <div>
                 <Header product={product}/>
                 <DetailArea product={product}/>
                 <Filterbar filter={this.state.filter} add={this.appendFilter} changeFilterValue={this.changeFilterValue}/>

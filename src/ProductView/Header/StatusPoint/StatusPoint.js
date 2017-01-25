@@ -5,7 +5,8 @@ class StatusPoint extends Component {
     render() {
         return (
             <div className="status-point">
-                <svg width="40" height="40" viewBox="0 0 40 40">
+                <svg width="40" height="40" viewBox="0 0 42 42">
+                    <circle cx="21" cy="21" r="21" fill="rgba(0, 0, 0, 0.1)" />
                     <circle cx="20" cy="20" r="20" fill="#FFAA00" />
                 </svg>
             </div>
