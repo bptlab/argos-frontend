@@ -4,9 +4,11 @@ import './StatusPoint.css';
 class StatusPoint extends Component {
     render() {
         return (
-            <svg height="100" width="100">
-                <circle cx="50" cy="50" r="40" fill="#111111" />
-            </svg>
+            <div className="status-point">
+                <svg width="auto" height="40" viewBox="0 0 40 40">
+                    <circle cx="20" cy="20" r="20" fill="#FFAA00" />
+                </svg>
+            </div>
         );
     }
 }
