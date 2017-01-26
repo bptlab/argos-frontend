@@ -15,7 +15,7 @@ if (!String.prototype.format) {
 
 class ProductFetcher {
 
-    static getAPIRouteForAllProductFamilies() {
+    static getAPIRouteForProductFamilies() {
         return "/api/productfamilies/";
     }
 
@@ -49,7 +49,7 @@ class ProductFetcher {
     }
     
     receiveProductFamilies() {
-        const APIRoute = this.getAPIRouteForAllProductFamilies();
+        const APIRoute = this.getAPIRouteForProductFamilies();
         this.client.open(this.requestMethod, APIRoute, false);
         this.client.sendRequest();
         return this.dataMapper.mapProductFamilies(JSON.parse(this.client.getResponse()));
@@ -57,11 +57,11 @@ class ProductFetcher {
     
     receiveProducts() {
         const productFamilies = this.receiveProductFamilies();
-        const allProducts = [];
+        const products = [];
         for(let i = 0; i < productFamilies.length; i++) {
-           allProducts.push.apply(allProducts,productFamilies[i]["products"]);
+            products.push.apply(products,productFamilies[i]["products"]);
         }
-        return allProducts;
+        return products;
     }
 
     receiveEventTypesOf(productId) {
