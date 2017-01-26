@@ -14,13 +14,13 @@
     "react-addons-css-transition-group": "^15.4.2",
     "react-addons-transition-group": "^15.4.2",
     "react-dom": "^15.4.2",
-    "reactstrap": "^4.0.0-alpha.8",
-    "react-router": "^3.0.1"
+    "react-router": "^3.0.1",
+    "reactstrap": "^4.0.0-alpha.8"
   },
   "scripts": {
     "start": "concurrently \"npm run react\" \"gulp\"",
     "react": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "concurrently \"gulp sass\" \"react-scripts build\"",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

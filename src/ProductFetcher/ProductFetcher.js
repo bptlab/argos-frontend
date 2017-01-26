@@ -1,13 +1,11 @@
-const API_PRODUCTFAMILY_ALL = "/api/productFamily/";
-const API_PRODUCTFAMILY_SINGLE = "/api/productFamily/{0}/";
-const API_PRODUCT_ALL = "/api/productFamily/{0}/";
-const API_PRODUCT_SINGLE = "/api/productFamily/{0}/product/{1}";
+import DataMapper from './DataMapper';
+import RESTInterface from './RESTInterface';
 
 if (!String.prototype.format) {
     String.prototype.format = function() {
         const args = arguments;
         return this.replace(/{(\d+)}/g, function(match, number) {
-            return typeof args[number] != 'undefined'
+            return typeof args[number] !== 'undefined'
                 ? args[number]
                 : match
                 ;
@@ -15,50 +13,69 @@ if (!String.prototype.format) {
     };
 }
 
-class ProductFetcher{
+class ProductFetcher {
+
+    static getAPIRouteForProductFamilies() {
+        return "/api/productfamilies/";
+    }
+
+    static getAPIRouteForEventTypesOfProduct() {
+        return "/api/products/{0}/eventtypes";
+    }
+
+    static getAPIRouteForEveentsOfProduct() {
+        return "/api/products/{0}/events/{1}/{2}/{3}/";
+    }
     
     constructor(remoteAddress, remotePort, requestMethod = "POST") {
         this.remoteAddress = remoteAddress;
         this.remotePort = remotePort;
         this.requestMethod = requestMethod;
-        this.client = new XMLHttpRequest();
+        this.dataMapper = DataMapper;
+        this.client = new RESTInterface();
     }
-    
+
     getRemoteAddress() {
         return self.remoteAddress;
     }
-    
+
     getRemotePort() {
         return self.remotePort;
     }
 
-    sendRequest() {
-        this.client.setRequestHeader("Content-type", "application/json");
-        this.client.send();
+
+    setClient(client) {
+        this.client = client;
     }
     
-    receiveSingleProductFamily(familyId) {
-        this.client.open(this.requestMethod, String.format(API_PRODUCTFAMILY_SINGLE, familyId), false);
-        this.sendRequest();
-        return JSON.parse(this.client.responseText)
+    receiveProductFamilies() {
+        const APIRoute = this.getAPIRouteForProductFamilies();
+        this.client.open(this.requestMethod, APIRoute, false);
+        this.client.sendRequest();
+        return this.dataMapper.mapProductFamilies(JSON.parse(this.client.getResponse()));
+    }
+    
+    receiveProducts() {
+        const productFamilies = this.receiveProductFamilies();
+        const products = [];
+        for(let i = 0; i < productFamilies.length; i++) {
+            products.push.apply(products,productFamilies[i]["products"]);
+        }
+        return products;
     }
 
-    receiveAllProductFamilies() {
-        this.client.open(this.requestMethod, String.format(API_PRODUCTFAMILY_ALL), false);
-        this.sendRequest();
-        return JSON.parse(this.client.responseText)
+    receiveEventTypesOf(productId) {
+        const APIRoute = this.getAPIRouteForEventTypesOfProduct().format(productId);
+        this.client.open(this.requestMethod, APIRoute, false);
+        this.client.sendRequest();
+        return this.mapEventTypes(JSON.parse(this.client.getResponse()));
     }
-
-    receiveSingleProduct(familyId, productId) {
-        this.client.open(this.requestMethod, String.format(API_PRODUCT_ALL, familyId, productId), false);
-        this.sendRequest();
-        return JSON.parse(this.client.responseText)
-    }
-
-    receiveAllProducts(familyId) {
-        this.client.open(this.requestMethod, String.format(API_PRODUCT_SINGLE, familyId), false);
-        this.sendRequest();
-        return JSON.parse(this.client.responseText)
+    
+    receiveEventsOf(productId, eventTypeId, indexFrom, indexTo) {
+        const APIRoute = this.getAPIRouteForEveentsOfProduct().format(productId, eventTypeId, indexFrom, indexTo);
+        this.client.open(this.requestMethod, APIRoute, false);
+        this.client.sendRequest();
+        return this.dataMapper.mapEvents(this.parse(this.client.getResponse()));
     }
 }
 export default ProductFetcher;
