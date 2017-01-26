@@ -1,65 +1,65 @@
 class DataMapper {
     
     static mapProductFamilies(apiProductFamilyCollection) {
-        const collectionOfProductFamilies = [];
+        const productFamilies = [];
         for(let i = 0; i < apiProductFamilyCollection.length; i++) {
-            const api_productFamily = apiProductFamilyCollection[i];
+            const apiProductFamily = apiProductFamilyCollection[i];
             const productFamily = {
-                "id":       api_productFamily.id,
-                "name":     api_productFamily.metaData.name,
-                "brand":    api_productFamily.metaData.brand,
-                "products": this.mapProducts(api_productFamily.products)
+                "id":       apiProductFamily.id,
+                "name":     apiProductFamily.metaData.name,
+                "brand":    apiProductFamily.metaData.brand,
+                "products": this.mapProducts(apiProductFamily.products)
             };
-            collectionOfProductFamilies.push(productFamily);
+            productFamilies.push(productFamily);
         }
-        return collectionOfProductFamilies;
+        return productFamilies;
     }
     
     static mapProducts(apiProductCollection) {
-        const collectionOfProducts = [];
+        const products = [];
         for(let i = 0; i < apiProductCollection.length; i++) {
-            const api_product = apiProductCollection[i];
+            const apiProduct = apiProductCollection[i]; 
             const product = {
-                "id":               api_product.id,
-                "name":             api_product.metaData.name,
-                "numberOfDevices":  api_product.metaData.numberOfDevices,
-                "numberOfEvents":   api_product.metaData.numberOfEvents,
-                "productionStart":  api_product.metaData.productionStart,
-                "orderNumber":      api_product.metaData.orderNumber,
-                "state":            api_product.metaData.state,           
-                "stateDescription": api_product.metaData.stateDescription 
+                "id":               apiProduct.id,
+                "name":             apiProduct.metaData.name,
+                "numberOfDevices":  apiProduct.metaData.numberOfDevices,
+                "numberOfEvents":   apiProduct.metaData.numberOfEvents,
+                "productionStart":  apiProduct.metaData.productionStart,
+                "orderNumber":      apiProduct.metaData.orderNumber,
+                "state":            apiProduct.metaData.state,           
+                "stateDescription": apiProduct.metaData.stateDescription 
             };
-            collectionOfProducts.push(product);
+            products.push(product);
         }
-        return collectionOfProducts;
+        return products;
     }
     
     static mapEventTypes(apiEventTypeCollection) {
-        const collectionOfEventTypes = [];
+        const eventTypes = [];
         for(let i = 0; i < apiEventTypeCollection.length; i++) {
-            const api_eventType = apiEventTypeCollection[i];
+            const apiEventType = apiEventTypeCollection[i];
             const eventType = {
-                "id":               api_eventType.id,
-                "name":             api_eventType.metaData.name,
-                "numberOfevents":   api_eventType.metaData.numberOfEvents,
-                "attributes":       this.mapEventTypeAttributes(api_eventType.attributes)
+                "id":               apiEventType.id,
+                "name":             apiEventType.metaData.name,
+                "numberOfevents":   apiEventType.metaData.numberOfEvents,
+                "attributes":       this.mapEventTypeAttributes(apiEventType.attributes)
             };
-            collectionOfEventTypes.push(eventType);
+            eventTypes.push(eventType);
         }
-        return collectionOfEventTypes;
+        return eventTypes;
     }
     
     static mapEventTypeAttributes(apiEventTypeAttributes) {
-        const collectionOfEventTypeAttributes = [];
+        const eventTypeAttributes = [];
         for(let i = 0; i < apiEventTypeAttributes.length; i++) {
-            const api_eventTypeAttribute = apiEventTypeAttributes[i];
+            const apiEventTypeAttribute = apiEventTypeAttributes[i];
             const eventTypeAttribute = {
-                "name":     api_eventTypeAttribute.name,
-                "type":     api_eventTypeAttribute.type
+                "name":     apiEventTypeAttribute.name,
+                "type":     apiEventTypeAttribute.type
             };
-            collectionOfEventTypeAttributes.push(eventTypeAttribute);
+            eventTypeAttributes.push(eventTypeAttribute);
         }
-        return collectionOfEventTypeAttributes;
+        return eventTypeAttributes;
     }
     
     static mapEvents(apiEvents) {
