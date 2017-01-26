@@ -2,7 +2,7 @@ import ProductFetcher  from './ProductFetcher';
 
 class RESTInterfaceMock {
     
-    open(requestMethod, api, async) {
+    open(requestMethod, api) {
         this.api = api;
     }
 
