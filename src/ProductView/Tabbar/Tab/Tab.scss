@@ -1,0 +1,6 @@
+@import "../../../definitions.scss";
+.tab {
+	.nav-link.active {
+		border-color: $grey;
+	}
+}

@@ -1,0 +1,7 @@
+@import "../../../definitions.scss";
+.event-table-header {
+	background-color: $grey;
+	th, td {
+		border-top: 0px;
+	}
+}
