@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'font-awesome/css/font-awesome.css'
-import $ from "jquery";
+import './App.css';
+import $ from 'jquery';
 window.jQuery = window.$ = $;
 import tether from 'tether';
 global.Tether = tether;
