@@ -9,8 +9,8 @@ class Header extends Component {
                 <div className="container">
                     <div className="row d-flex align-items-center">
                         <div className="col-1 d-flex justify-content-around">
-                            <a className="btn btn-secondary border-0" href="/" role="button">
-                                <i className="fa fa-home" aria-hidden="true"></i>
+                            <a href="/">
+                                <i className="home-button fa fa-home" aria-hidden="true"></i>
                             </a>
                         </div>
                         <div className="col-10 d-flex justify-content-around">
