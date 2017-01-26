@@ -13,7 +13,7 @@ class Tab extends Component {
 
     render() {
         return (
-            <li className="nav-item">
+            <li className="tab nav-item">
                 <a className="nav-link" data-toggle="tab" href={'#' + this.props.eventType.name} role="tab" onClick={this.loadEventsfor}>
                     {this.props.eventType.name}
                 </a>

@@ -5,11 +5,13 @@ import Tab from './Tab/Tab.js';
 class Tabbar extends Component {
     render() {
         return (
-            <ul className="nav nav-tabs" role="tablist">
-                {this.props.eventTypes.map((eventType, index) =>
-                    <Tab key={index} eventType={eventType} loadEventsfor={this.props.loadEventsfor}/>
-                )}
-            </ul>
+            <div className="tabbar container">
+                <ul className="nav nav-tabs border-0" role="tablist">
+                    {this.props.eventTypes.map((eventType, index) =>
+                        <Tab key={index} eventType={eventType} loadEventsfor={this.props.loadEventsfor}/>
+                    )}
+                </ul>
+            </div>
         );
     }
 }
