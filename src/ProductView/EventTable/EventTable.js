@@ -19,7 +19,9 @@ class EventTable extends Component {
         if (!this.props.filter[0].value) {
             return true;
         }
+        console.log(event);
         for(let i = 0; i < this.props.eventTable.header.length; i++) {
+            console.log(this.props.eventTable.header[i].name);
             if (event[this.props.eventTable.header[i].name].toString().toLowerCase().indexOf(filter.value.toLowerCase()) > -1) {
                 return true;
             }
@@ -29,7 +31,7 @@ class EventTable extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container event-table-container">
                 <table className="table">
                     <EventTableHeader eventTypeAttributes={this.props.eventTable.header}/>
                     <tbody>

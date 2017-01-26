@@ -177,51 +177,49 @@ class RESTInterfaceMock {
             productName:                "Testbrand1 Testproduct plus GB172-14,  EG-E",
             codingPlugId:               1117,
             codingPlugBusId:            154,
+            codingPlugSoftwareVersion:  1.13,
             errorId:                    "6A-227",
             errorFailureTreeId:         39534450,
             errorDescription:           "Temperatur am Vorlauffühler ist größer als 95°C",
             causeId:                    18205831,
             causeDescription:           "Sicherheitsventil an der Gasarmatur öffnet nicht",
-            replacementPartid:          87181070870,
+            replacementPartId:          87181070870,
             replacementPartName:        "Elektrodensatz"
         },
-            {
-                dateOfServiceIntervention:  "2016-01-01",
-                dateOfInstallation:         "2016-02-01",
-                factoryId:                  8290,
-                dateOfProduction:           305,
-                counter:                    12447,
-                softwareVersion:            4.09,
-                feedbackOfInstaller:        "Sicherheitstemperaturbegrenzer am Wärmeblock oder der Abgassicherheitstemperaturbegrenzer hat mehrmals angesprochen.",
-                objectId:                   32830295,
-                locationOfDeviceId:         32835144,
-                productFamilyId:            0,
-                orderNumber:                7716010417,
-                productName:                "Testbrand1 Testproduct plus GB172-14,  EG-E",
-                codingPlugId:               1117,
-                codingPlugBusId:            154,
-                errorId:                    "6A-227",
-                errorFailureTreeId:         39534450,
-                errorDescription:           "Temperatur am Vorlauffühler ist größer als 95°C",
-                causeId:                    18205831,
-                causeDescription:           "Sicherheitsventil an der Gasarmatur öffnet nicht",
-                replacementPartid:          87181070870,
-                replacementPartName:        "Elektrodensatz"
-            }];
+        {
+            dateOfServiceIntervention:  "2016-01-01",
+            dateOfInstallation:         "2016-02-01",
+            factoryId:                  8290,
+            dateOfProduction:           305,
+            counter:                    12447,
+            softwareVersion:            4.09,
+            feedbackOfInstaller:        "Sicherheitstemperaturbegrenzer am Wärmeblock oder der Abgassicherheitstemperaturbegrenzer hat mehrmals angesprochen.",
+            objectId:                   32830295,
+            locationOfDeviceId:         32835144,
+            productFamilyId:            0,
+            orderNumber:                7716010417,
+            productName:                "Testbrand1 Testproduct plus GB172-14,  EG-E",
+            codingPlugId:               1117,
+            codingPlugBusId:            154,
+            codingPlugSoftwareVersion:  1.14,
+            errorId:                    "6A-227",
+            errorFailureTreeId:         39534450,
+            errorDescription:           "Temperatur am Vorlauffühler ist größer als 95°C",
+            causeId:                    18205831,
+            causeDescription:           "Sicherheitsventil an der Gasarmatur öffnet nicht",
+            replacementPartId:          87181070870,
+            replacementPartName:        "Elektrodensatz"
+        }];
     }
 
     getResponse() {
-        switch(this.api) {
-            case ProductFetcher.getAPIRouteForProductFamilies(): {
+        if(ProductFetcher.getAPIRouteForProductFamilies() == this.api) {
                 return JSON.stringify(RESTInterfaceMock.getProductFamily());
-            }
-            case ProductFetcher.getAPIRouteForEventTypesOfProduct(): {
+        } else if(this.api.indexOf("eventtypes") > -1) {
                 return JSON.stringify(RESTInterfaceMock.getEventTypes());
-            }
-            case ProductFetcher.getAPIRouteForEveentsOfProduct(): {
+        } else if(this.api.indexOf("events") > -1) {
                 return (JSON.stringify(RESTInterfaceMock.getEvents()));
-            }
-            default:
+        } else {
                 return (JSON.stringify(""));
         }
     }

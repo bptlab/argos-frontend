@@ -22,7 +22,7 @@ class DashboardView extends Component {
     
     render() {
         return (
-            <div className="AppWrapper">
+            <div className="AppWrapper container">
                 <Diagram products={this.props.products}/>
                 <SearchBar searchText={this.state.searchText} onUserSearchInput={this.handleUserInput}/>
                 <ProductCardGrid searchText={this.state.searchText} products={this.props.products}/>

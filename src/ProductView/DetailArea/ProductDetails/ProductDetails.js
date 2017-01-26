@@ -10,7 +10,7 @@ class ProductDetails extends Component {
                 </div>
                 <div className="row">
                     <h4 className="col-6">Marke</h4>
-                    <h5 className="col">{this.props.product.metaData.brand}</h5>
+                    <h5 className="col">{this.props.product.name}</h5>
                 </div>
                 <div className="row">
                     <h4 className="col-6">Produktfamilie</h4>

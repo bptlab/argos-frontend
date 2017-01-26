@@ -63,19 +63,26 @@ class ProductFetcher {
         }
         return products;
     }
+    
+    receiveProduct(prodId) {
+        const products = this.receiveProducts();
+        return products.find((product) => {
+            return product.id === prodId}
+        )
+    }
 
     receiveEventTypesOf(productId) {
         const APIRoute = ProductFetcher.getAPIRouteForEventTypesOfProduct().format(productId);
         this.client.open(this.requestMethod, APIRoute, false);
         this.client.sendRequest();
-        return this.mapEventTypes(JSON.parse(this.client.getResponse()));
+        return this.dataMapper.mapEventTypes(JSON.parse(this.client.getResponse()));
     }
     
     receiveEventsOf(productId, eventTypeId, indexFrom, indexTo) {
         const APIRoute = ProductFetcher.getAPIRouteForEveentsOfProduct().format(productId, eventTypeId, indexFrom, indexTo);
         this.client.open(this.requestMethod, APIRoute, false);
         this.client.sendRequest();
-        return this.dataMapper.mapEvents(this.parse(this.client.getResponse()));
+        return this.dataMapper.mapEvents(JSON.parse(this.client.getResponse()));
     }
 }
 export default ProductFetcher;

@@ -17,7 +17,7 @@ ReactDOM.render(
     (<Router history={hashHistory}>
         <Route path="/" component={App}>
             <IndexRoute component={() => (<DashboardView products={dataSource.receiveProducts()} />)} />
-            <Route path="/product/:productID" component={ProductView}/>
+            <Route path="/product/:productID"  component={(routeObject) => (<ProductView dataSource={dataSource} params={routeObject.params} />)}/>
         </Route>
     </Router>),
   document.getElementById('root')

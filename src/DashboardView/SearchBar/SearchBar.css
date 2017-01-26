@@ -12,4 +12,5 @@
     color: grey;
     background: url("../../assets/img/search.png") no-repeat right; }
   .searchArea input:focus, .searchArea input:active {
-    outline: none !important; }
+    outline: none !important;
+    border-color: lightgrey; }

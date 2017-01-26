@@ -17,6 +17,10 @@
     min-width: 20vw;
 }
 
+a .ProductCard:hover {
+    text-decoration: none;
+}
+
 .ProductCard_RUNNING {
     background: $COLOR-success !important;
 }

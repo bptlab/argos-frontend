@@ -16,6 +16,9 @@
   margin: 1vh;
   min-width: 20vw; }
 
+a .ProductCard:hover {
+  text-decoration: none; }
+
 .ProductCard_RUNNING {
   background: #7CB342 !important; }
 

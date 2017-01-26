@@ -10,11 +10,11 @@ class Header extends Component {
                     <div className="row d-flex align-items-center">
                         <div className="col-1 d-flex justify-content-around">
                             <a href="/">
-                                <i className="home-button fa fa-home" aria-hidden="true"></i>
+                                <i className="home-button fa fa-home" aria-hidden="true" />
                             </a>
                         </div>
                         <div className="col-10 d-flex justify-content-around">
-                            <h1>{this.props.product.metaData.label}</h1>
+                            <h1>{this.props.product.name}</h1>
                         </div>
                         <div className="col-1 d-flex justify-content-around">
                             <StatusPoint product={this.props.product}/>
