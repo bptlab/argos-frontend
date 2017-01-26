@@ -10,9 +10,8 @@ class ProductCardGrid extends Component {
         }
         //SEARCH-CONFIG: Edit this to define relevant fields for overview search
         const searchFields = [
-            product.metaData.brand, 
-            product.metaData.label, 
-            product.metaData.orderNumber,
+            product.name,
+            product.orderNumber,
             product.productionStart
         ];
         

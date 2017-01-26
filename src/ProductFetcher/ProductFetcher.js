@@ -49,7 +49,7 @@ class ProductFetcher {
     }
     
     receiveProductFamilies() {
-        const APIRoute = this.getAPIRouteForProductFamilies();
+        const APIRoute = ProductFetcher.getAPIRouteForProductFamilies();
         this.client.open(this.requestMethod, APIRoute, false);
         this.client.sendRequest();
         return this.dataMapper.mapProductFamilies(JSON.parse(this.client.getResponse()));
@@ -65,14 +65,14 @@ class ProductFetcher {
     }
 
     receiveEventTypesOf(productId) {
-        const APIRoute = this.getAPIRouteForEventTypesOfProduct().format(productId);
+        const APIRoute = ProductFetcher.getAPIRouteForEventTypesOfProduct().format(productId);
         this.client.open(this.requestMethod, APIRoute, false);
         this.client.sendRequest();
         return this.mapEventTypes(JSON.parse(this.client.getResponse()));
     }
     
     receiveEventsOf(productId, eventTypeId, indexFrom, indexTo) {
-        const APIRoute = this.getAPIRouteForEveentsOfProduct().format(productId, eventTypeId, indexFrom, indexTo);
+        const APIRoute = ProductFetcher.getAPIRouteForEveentsOfProduct().format(productId, eventTypeId, indexFrom, indexTo);
         this.client.open(this.requestMethod, APIRoute, false);
         this.client.sendRequest();
         return this.dataMapper.mapEvents(this.parse(this.client.getResponse()));

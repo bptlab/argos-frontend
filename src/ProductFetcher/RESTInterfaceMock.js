@@ -213,13 +213,13 @@ class RESTInterfaceMock {
     getResponse() {
         switch(this.api) {
             case ProductFetcher.getAPIRouteForProductFamilies(): {
-                return JSON.stringify(this.getProductFamily());
+                return JSON.stringify(RESTInterfaceMock.getProductFamily());
             }
             case ProductFetcher.getAPIRouteForEventTypesOfProduct(): {
-                return JSON.stringify(this.getEventTypes());
+                return JSON.stringify(RESTInterfaceMock.getEventTypes());
             }
             case ProductFetcher.getAPIRouteForEveentsOfProduct(): {
-                return (JSON.stringify(this.getEvents()));
+                return (JSON.stringify(RESTInterfaceMock.getEvents()));
             }
             default:
                 return (JSON.stringify(""));
