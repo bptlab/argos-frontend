@@ -7,14 +7,20 @@ class EventTable extends Component {
 
 
     searchMatches(event) {
+        for(let i = 0; i < this.props.filter.length; i++) {
+            if (!this.testFilter(event, this.props.filter[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    testFilter(event, filter) {
         if (!this.props.filter[0].value) {
             return true;
         }
-        //SEARCH-CONFIG: Edit this to define relevant fields for overview search
-        const searchFields = this.props.eventTable.header;
-
-        for(const index in searchFields) {
-            if (searchFields[index].toString().indexOf(this.props.filter[0].value) > -1) {
+        for(let i = 0; i < this.props.eventTable.header.length; i++) {
+            if (event[this.props.eventTable.header[i].name].toString().toLowerCase().indexOf(filter.value.toLowerCase()) > -1) {
                 return true;
             }
         }
