@@ -1,156 +1,161 @@
-import * as API from './ProductFetcher';
+import ProductFetcher  from './ProductFetcher';
 
 class RESTInterfaceMock {
     
     open(requestMethod, api, async) {
         this.api = api;
-        console.log("Mock request to "+api+" using request method "+requestMethod+" and async "+async);
     }
 
     sendRequest() {
-        console.log("Send a mock request");
     }
 
     getResponse() {
         switch(this.api) {
-            case API.API_PRODUCTFAMILY_ALL: {
+            case ProductFetcher.getAPIRouteForAllProductFamilies(): {
                 const response = [{
                     id: 0,
-                    metaData: {
-                        name: "Testproduct plus GB172",
-                        brand: "Testbrand1"
-                    },
+                    name: "Testproduct plus GB172",
+                    brand: "Testbrand1",
                     products: [{
                         id: 0,
-                        metaData: {
-                            name: "Testbrand1 Testproduct plus GB172-14, EG-E",
-                            numberOfDevices: 189,
-                            numberOfEvents: 84,
-                            productionStart: "2016-05-07",
-                            orderNumber: "7716010416",
-                            state: "RUNNING",
-                            stateDescription: "No errors or warnings detected"
-                        }
+                        name: "Testbrand1 Testproduct plus GB172-14, EG-E",
+                        numberOfDevices: 189,
+                        numberOfEvents: 84,
+                        productionStart: "2016-05-07",
+                        orderNumber: "7716010416",
+                        state: "RUNNING",
+                        stateDescription: "No errors or warnings detected"
                     },{
                         id: 1,
-                        metaData: {
-                            name: "Testbrand1 Testproduct plus GB172-20, EG-E",
-                            numberOfDevices: 621,
-                            numberOfEvents: 741,
-                            productionStart: "2016-04-06",
-                            orderNumber: "7716010417",
-                            state: "RUNNING",
-                            stateDescription: "No errors or warnings detected"
-                        }
+                        name: "Testbrand1 Testproduct plus GB172-20, EG-E",
+                        numberOfDevices: 621,
+                        numberOfEvents: 741,
+                        productionStart: "2016-04-06",
+                        orderNumber: "7716010417",
+                        state: "RUNNING",
+                        stateDescription: "No errors or warnings detected"
                     },{
                         id: 2,
-                        metaData: {
-                            name: "Testbrand1 Testproduct plus GB172-24, EG-E",
-                            numberOfDevices: 746,
-                            numberOfEvents: 62,
-                            productionStart: "2016-01-01",
-                            orderNumber: "7716010416",
-                            state: "WARNING",
-                            stateDescription: "Check warnings!"
-                        }
+                        name: "Testbrand1 Testproduct plus GB172-24, EG-E",
+                        numberOfDevices: 746,
+                        numberOfEvents: 62,
+                        productionStart: "2016-01-01",
+                        orderNumber: "7716010416",
+                        state: "WARNING",
                     },{
                         id: 3,
-                        metaData: {
-                            name: "Testbrand1 Testproduct plus GB172-24K, G25",
-                            numberOfDevices: 345,
-                            numberOfEvents: 31,
-                            productionStart: "2016-03-02",
-                            orderNumber: "7716010418",
-                            state: "RUNNING",
-                            stateDescription: "No errors or warnings detected"
-                        }
+                        name: "Testbrand1 Testproduct plus GB172-24K, G25",
+                        numberOfDevices: 345,
+                        numberOfEvents: 31,
+                        productionStart: "2016-03-02",
+                        orderNumber: "7716010418",
+                        state: "RUNNING",
+                        stateDescription: "No errors or warnings detected"
                     },{
                         id: 4,
-                        metaData: {
-                            name: "Testbrand1 Testproduct plus GB172-24, G25",
-                            numberOfDevices: 84,
-                            numberOfEvents: 54,
-                            productionStart: "2016-06-07",
-                            orderNumber: "7716010612",
-                            state: "ERROR",
-                            stateDescription: "Error detected! Intervention required!"
-                        }
+                        name: "Testbrand1 Testproduct plus GB172-24, G25",
+                        numberOfDevices: 84,
+                        numberOfEvents: 54,
+                        productionStart: "2016-06-07",
+                        orderNumber: "7716010612",
+                        state: "ERROR",
+                        stateDescription: "Error detected! Intervention required!"
                     }]
                 }];
                 return (JSON.stringify(response));
             }
-            case API.API_EVENTYPES_OF_PRODUCT: {
+            case ProductFetcher.getAPIRouteForEventTypesOfProduct(): {
                 const response = [{
                     id:     0,
-                    metaData: {
-                        name:           "FeedbackData",
-                        numberOfEvents: 8493,
-                    },
+                    name:           "FeedbackData",
+                    numberOfEvents: 8493,
                     attributes: [
                         {
+                            id:     0,
                             name:   "dateOfServiceIntervention",
                             type:   "Date"
                         },{
+                            id:     1,
                             name:   "dateOfInstallation",
                             type:   "Date"
                         },{
+                            id:     2,
                             name:   "factoryId",
                             type:   "Integer"
                         },{
+                            id:     3,
                             name:   "dateOfProduction",
                             type:   "Integer"
                         },{
+                            id:     4,
                             name:   "counter",
                             type:   "Integer"
                         },{
+                            id:     5,
                             name:   "softwareVersion",
                             type:   "Float"
                         },{
+                            id:     6,
                             name:   "feedbackOfInstaller",
                             type:   "String"
                         },{
+                            id:     7,
                             name:   "objectId",
                             type:   "Integer"
                         },{
+                            id:     8,
                             name:   "locationOfDeviceId",
                             type:   "Integer"
                         },{
+                            id:     9,
                             name:   "productFamilyId",
                             type:   "String"
                         },{
+                            id:     10,
                             name:   "orderNumber",
                             type:   "Integer"
                         },{
+                            id:     11,
                             name:   "productName",
                             type:   "String"
                         },{
+                            id:     12,
                             name:   "codingPlugId",
                             type:   "Integer"
                         },{
+                            id:     13,
                             name:   "codingPlugBusId",
                             type:   "Integer"
                         },{
+                            id:     14,
                             name:   "codingPlugSoftwareVersion",
                             type:   "Float"
                         },{
+                            id:     15,
                             name:   "errorId",
                             type:   "String"
                         }, {
+                            id:     16,
                             name:   "errorFailureTreeId",
                             type:   "Integer"
                         },{
+                            id:     17,
                             name:   "errorDescription",
                             type:   "String"
                         },{
+                            id:     18,
                             name:   "causeId",
                             type:   "Integer"
                         },{
+                            id:     19,
                             name:   "causeDescription",
                             type:   "String"
                         },{
+                            id:     20,
                             name:   "replacementPartId",
                             type:   "Integer"
                         },{
+                            id:     21,
                             name:   "replacementPartName",
                             type:   "String"
                         }
@@ -158,7 +163,7 @@ class RESTInterfaceMock {
                 }];
                 return (JSON.stringify(response));
             }
-            case API.API_EVENTS_OF_PRODUCTS: {
+            case ProductFetcher.getAPIRouteForEveentsOfProduct(): {
                 const response = [{
                     dateOfServiceIntervention:  "2016-01-01",
                     dateOfInstallation:         "2016-02-01",
