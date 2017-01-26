@@ -213,7 +213,7 @@ class RESTInterfaceMock {
     }
 
     getResponse() {
-        if(ProductFetcher.getAPIRouteForProductFamilies() == this.api) {
+        if(ProductFetcher.getAPIRouteForProductFamilies() === this.api) {
                 return JSON.stringify(RESTInterfaceMock.getProductFamily());
         } else if(this.api.indexOf("eventtypes") > -1) {
                 return JSON.stringify(RESTInterfaceMock.getEventTypes());
