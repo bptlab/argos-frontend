@@ -1,10 +1,6 @@
 import DataMapper from './DataMapper';
 import RESTInterface from './RESTInterface';
 
-export const API_PRODUCTFAMILY_ALL = "/api/productfamilies/";
-export const API_EVENTYPES_OF_PRODUCT = "/api/products/{0}/eventtypes";
-export const API_EVENTS_OF_PRODUCTS = "/api/products/{0}/events/{1}/{2}/{3}/";
-
 if (!String.prototype.format) {
     String.prototype.format = function() {
         const args = arguments;
@@ -18,6 +14,18 @@ if (!String.prototype.format) {
 }
 
 class ProductFetcher {
+
+    static getAPIRouteForAllProductFamilies() {
+        return "/api/productfamilies/";
+    }
+
+    static getAPIRouteForEventTypesOfProduct() {
+        return "/api/products/{0}/eventtypes";
+    }
+
+    static getAPIRouteForEveentsOfProduct() {
+        return "/api/products/{0}/events/{1}/{2}/{3}/";
+    }
     
     constructor(remoteAddress, remotePort, requestMethod = "POST") {
         this.remoteAddress = remoteAddress;
@@ -30,17 +38,19 @@ class ProductFetcher {
     getRemoteAddress() {
         return self.remoteAddress;
     }
-    
+
     getRemotePort() {
         return self.remotePort;
     }
-    
+
+
     setClient(client) {
         this.client = client;
     }
     
     receiveProductFamilies() {
-        this.client.open(this.requestMethod, API_PRODUCTFAMILY_ALL, false);
+        const APIRoute = this.getAPIRouteForAllProductFamilies();
+        this.client.open(this.requestMethod, APIRoute, false);
         this.client.sendRequest();
         return this.dataMapper.mapProductFamilies(JSON.parse(this.client.getResponse()));
     }
@@ -55,13 +65,14 @@ class ProductFetcher {
     }
 
     receiveAllEventTypesOf(productId) {
-        this.client.open(this.requestMethod, API_EVENTYPES_OF_PRODUCT.format(productId), false);
+        const APIRoute = this.getAPIRouteForEventTypesOfProduct().format(productId);
+        this.client.open(this.requestMethod, APIRoute, false);
         this.client.sendRequest();
         return this.mapEventTypes(JSON.parse(this.client.getResponse()));
     }
     
     receiveAllEventsOf(productId, eventTypeId, indexFrom, indexTo) {
-        const APIRoute = API_EVENTS_OF_PRODUCTS.format(productId, eventTypeId, indexFrom, indexTo);
+        const APIRoute = this.getAPIRouteForEveentsOfProduct().format(productId, eventTypeId, indexFrom, indexTo);
         this.client.open(this.requestMethod, APIRoute, false);
         this.client.sendRequest();
         return this.dataMapper.mapEvents(this.parse(this.client.getResponse()));
