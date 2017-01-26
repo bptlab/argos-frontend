@@ -9,28 +9,24 @@ import EventTable from './EventTable/EventTable.js';
 class ProductView extends Component {
     constructor(props) {
         super(props);
-        this.state = { filter: [{id: 'filter-0', value: ''}], eventTable: {header: [], events: []}};
-        this.appendFilter = this.appendFilter.bind(this);
+        this.state = { filter: [{id: 'filter-0', value: ''}], lastFilterId: 0, eventTable: {header: [], events: []}};
         this.changeFilterValue = this.changeFilterValue.bind(this);
         this.loadEventsfor = this.loadEventsfor.bind(this);
     }
 
-    appendFilter() {
-        var newFilter = {id: `filter-${this.state.filter.length}`, value: ''};
-        this.setState({ filter: this.state.filter.concat([newFilter]) });
-    }
-
-    changeFilterValue(id, value) {
-        if(id === (this.state.filter.length - 1)) {
-            this.appendFilter();
+    changeFilterValue(currentFilterId, value) {
+        var changedState = { filter: this.state.filter };
+        if(currentFilterId === this.state.lastFilterId) {
+            var newFilterId = this.state.lastFilterId + 1;
+            var newFilter = {id: `filter-${newFilterId}`, value: ''};
+            changedState = { filter: this.state.filter.concat([newFilter]), lastFilterId: newFilterId };
         }
-        var newState = this.state;
-        newState.filter[id].value = value;
-        this.setState( newState );
+        changedState.filter[currentFilterId].value = value;
+        this.setState( changedState );
     }
 
     loadEventsfor(eventType) {
-        var events = [];
+        var events;
         if(eventType.id === 14) {
             events = JSON.parse('[{"Name":"Test1", "ErrorCode":"200"}, {"Name":"Test15", "ErrorCode":"404"}, {"Name":"Test12", "ErrorCode":"201"}]');
         }
@@ -50,7 +46,7 @@ class ProductView extends Component {
                 <DetailArea product={product}/>
                 <Filterbar filter={this.state.filter} add={this.appendFilter} changeFilterValue={this.changeFilterValue}/>
                 <Tabbar eventTypes={eventTypes} loadEventsfor={this.loadEventsfor}/>
-                <EventTable eventTable={this.state.eventTable}/>
+                <EventTable eventTable={this.state.eventTable} filter={this.state.filter}/>
             </div>
         );
     }

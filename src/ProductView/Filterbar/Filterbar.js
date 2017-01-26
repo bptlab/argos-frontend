@@ -17,11 +17,6 @@ class Filterbar extends Component {
             <div className="filterbar container">
                 <div className="form-group row">
                     {this.props.filter.map((filter, index) => <Filter key={filter.id} id={index} value={filter.value} changeFilterValue={this.props.changeFilterValue}/>)}
-                    <div className="col-1 d-flex align-items-center">
-                        <button className="btn btn-secondary" onClick={ () => this.appendFilter() }>
-                            <i className="fa fa-plus" aria-hidden="true"/>
-                        </button>
-                    </div>
                 </div>
             </div>
         );
