@@ -31,3 +31,18 @@ h3 {
 h4 {
   font-size: 1.7vh;
 }
+
+.input-group {
+  #search-addon {
+    background-color: transparent;
+    color: $COLOR-dark-background;
+    border-color: $COLOR-dark-background;
+    border-style: none none solid none;
+    border-radius: 0;
+  }
+  input, input:focus {
+    border-color: $COLOR-dark-background;
+    border-style: none none solid none;
+    border-radius: 0;
+  }
+}
