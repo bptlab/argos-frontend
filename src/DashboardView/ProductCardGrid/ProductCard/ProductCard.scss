@@ -14,7 +14,7 @@
     -moz-box-shadow: 10px 10px 22px -5px rgba(168,168,168,0.65);
     box-shadow: 10px 10px 22px -5px rgba(168,168,168,0.65);
     margin: 1vh;
-    min-width: 20vw;
+    min-width: 19vw;
 }
 
 a .ProductCard:hover {
@@ -23,6 +23,7 @@ a .ProductCard:hover {
 
 .ProductCard_RUNNING {
     background: $COLOR-success !important;
+    
 }
 
 .ProductCard_WARNING {

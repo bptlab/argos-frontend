@@ -1,8 +1,10 @@
 @import "../definitions.scss";
+@import url('https://fonts.googleapis.com/css?family=Lato');
 
 html, body, p, div, h1, h2, h3, h4, h5 {
   margin: 0;
   padding: 0;
+  font-family: 'Lato', Arial, "Helvetica", sans-serif;
 }
 
 .AppWrapper {
@@ -12,4 +14,20 @@ html, body, p, div, h1, h2, h3, h4, h5 {
 a, p, h1, h2, h3, h4, h5, span, a:hover {
   color: $black;
   text-decoration: none;
+}
+
+h1 {
+  font-size: 2.5vh;
+}
+
+h2 {
+  font-size: 2.2vh;
+}
+
+h3 {
+  font-size: 1.9vh;
+}
+
+h4 {
+  font-size: 1.7vh;
 }

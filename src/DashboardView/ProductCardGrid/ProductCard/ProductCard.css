@@ -14,19 +14,19 @@
   -moz-box-shadow: 10px 10px 22px -5px rgba(168, 168, 168, 0.65);
   box-shadow: 10px 10px 22px -5px rgba(168, 168, 168, 0.65);
   margin: 1vh;
-  min-width: 20vw; }
+  min-width: 19vw; }
 
 a .ProductCard:hover {
   text-decoration: none; }
 
 .ProductCard_RUNNING {
-  background: #7CB342 !important; }
+  background: #9FAB61 !important; }
 
 .ProductCard_WARNING {
-  background: #FFB300 !important; }
+  background: #EF9D6E !important; }
 
 .ProductCard_ERROR {
-  background: #F4511E !important; }
+  background: #D33F49 !important; }
 
 /* ############ PRODUCT CARD INFORMATION LINE ############ */
 .ProductCardInformationLine {

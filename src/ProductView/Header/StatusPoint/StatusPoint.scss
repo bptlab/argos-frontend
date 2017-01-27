@@ -1,0 +1,13 @@
+@import "../../../definitions.scss";
+
+.error svg circle {
+  fill: $COLOR-error;
+}
+
+.warning svg circle {
+  fill: $COLOR-warning;
+}
+
+.running svg circle {
+  fill: $COLOR-success;
+}

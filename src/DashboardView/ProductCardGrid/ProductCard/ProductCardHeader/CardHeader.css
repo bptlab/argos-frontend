@@ -7,10 +7,10 @@
   color: white; }
 
 .ProductCardTitle_RUNNING {
-  background: #689F38 !important; }
+  background: #B1BE6C !important; }
 
 .ProductCardTitle_WARNING {
-  background: #FFA000 !important; }
+  background: #F0A57B !important; }
 
 .ProductCardTitle_ERROR {
-  background: #E64A19 !important; }
+  background: #DF737A !important; }

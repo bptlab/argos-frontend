@@ -1,7 +1,9 @@
 @import "../../../definitions.scss";
 .event-table-header {
-	background-color: $grey;
+	background-color: $COLOR-dark-background;
 	th, td {
 		border-top: 0px;
+		color: $COLOR-font-light;
+		font-weight:normal;
 	}
 }

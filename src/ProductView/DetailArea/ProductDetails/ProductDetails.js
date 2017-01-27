@@ -9,16 +9,16 @@ class ProductDetails extends Component {
                     <h2 className="col area-title">Produkt Details</h2>
                 </div>
                 <div className="row">
-                    <h4 className="col-6">Marke</h4>
-                    <h5 className="col">{this.props.product.name}</h5>
+                    <p className="col-4">Marke:</p>
+                    <p className="col">{this.props.product.name}</p>
                 </div>
                 <div className="row">
-                    <h4 className="col-6">Produktfamilie</h4>
-                    <h5 className="col">{this.props.product.name}</h5>
+                    <p className="col-4">Produktfamilie:</p>
+                    <p className="col">{this.props.product.name}</p>
                 </div>
                 <div className="row">
-                    <h4 className="col-6">Seriennummer</h4>
-                    <h5 className="col">{this.props.product.id}</h5>
+                    <p className="col-4">Seriennummer:</p>
+                    <p className="col">{this.props.product.id}</p>
                 </div>
             </div>
         );

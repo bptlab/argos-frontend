@@ -4,9 +4,9 @@ import Chart from "chart.js"
 import ReactDOM from 'react-dom'
 
 const stateColor = {
-    ERROR: "#F4511E",
-    WARNING: "#FFB300",
-    RUNNING: "#7CB342",
+    ERROR: "#D33F49",
+    WARNING: "#EF9D6E",
+    RUNNING: "#9FAB61",
 };
 
 class PieChart extends Component {
