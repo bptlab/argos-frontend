@@ -1,4 +1,13 @@
+@import "../../../definitions.scss";
+
 .filter {
 	padding-top: 5px;
 	padding-bottom: 5px;
+	#search-addon {
+		background-color: $COLOR-dark-background;
+		color: $COLOR-font-light;
+	}
+	input {
+		border-color: $COLOR-dark-background;
+	}
 }
