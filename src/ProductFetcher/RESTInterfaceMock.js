@@ -66,7 +66,7 @@ class RESTInterfaceMock {
         return [{
             id:     0,
             name:           "FeedbackData",
-            numberOfEvents: 8493,
+            numberOfEvents: 8493, 
             attributes: [
                 {
                     id:     0,

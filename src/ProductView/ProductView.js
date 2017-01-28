@@ -9,7 +9,7 @@ import EventTable from './EventTable/EventTable.js';
 class ProductView extends Component {
     constructor(props) {
         super(props);
-        const prodId = parseInt(this.props.params.productID);
+        const prodId = parseInt(this.props.params.productID, 10);
         this.state = { filter: [{id: 'filter-0', value: ''}],
             lastFilterId: 0,
             product: this.props.dataSource.receiveProduct(prodId),
@@ -35,7 +35,7 @@ class ProductView extends Component {
     }
 
     loadEventsFor(eventType) {
-        const events = this.props.dataSource.receiveEventsOf(this.state.product.id, eventType);
+        const events = this.props.dataSource.receiveEventsOf(this.state.product.id, eventType.id);
         const eventTable = { header: eventType.attributes, events: events };
         this.setState({ eventTable: eventTable });
     }

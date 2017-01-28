@@ -16,18 +16,22 @@ if (!String.prototype.format) {
 class ProductFetcher {
 
     static getAPIRouteForProductFamilies() {
-        return "/api/productfamilies/";
+        return "api/productfamilies";
     }
 
     static getAPIRouteForEventTypesOfProduct() {
-        return "/api/products/{0}/eventtypes";
+        return "api/products/{0}/eventtypes";
     }
 
     static getAPIRouteForEveentsOfProduct() {
-        return "/api/products/{0}/events/{1}/{2}/{3}/";
+        return "api/products/{0}/events/{1}/{2}/{3}";
     }
     
-    constructor(remoteAddress, remotePort, requestMethod = "POST") {
+    static getServerRequestURI() {
+        return "{0}:{1}/{2}";
+    }
+    
+    constructor(remoteAddress, remotePort, requestMethod = "GET") {
         this.remoteAddress = remoteAddress;
         this.remotePort = remotePort;
         this.requestMethod = requestMethod;
@@ -42,17 +46,27 @@ class ProductFetcher {
     getRemotePort() {
         return self.remotePort;
     }
-
-
+    
     setClient(client) {
         this.client = client;
     }
     
+    parseJSON() {
+        try {
+            console.log(this.client.client.responseText);
+            return JSON.parse(this.client.getResponse())
+        } catch (error) {
+            document.getElementById('root').innerHTML = "ERROR!";
+            return [];
+        }
+    }
+    
     receiveProductFamilies() {
         const APIRoute = ProductFetcher.getAPIRouteForProductFamilies();
-        this.client.open(this.requestMethod, APIRoute, false);
+        const URI = ProductFetcher.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
+        this.client.open(this.requestMethod, URI, false);
         this.client.sendRequest();
-        return this.dataMapper.mapProductFamilies(JSON.parse(this.client.getResponse()));
+        return this.dataMapper.mapProductFamilies(this.parseJSON());
     }
     
     receiveProducts() {
@@ -73,16 +87,18 @@ class ProductFetcher {
 
     receiveEventTypesOf(productId) {
         const APIRoute = ProductFetcher.getAPIRouteForEventTypesOfProduct().format(productId);
-        this.client.open(this.requestMethod, APIRoute, false);
+        const URI = ProductFetcher.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
+        this.client.open(this.requestMethod, URI, false);
         this.client.sendRequest();
-        return this.dataMapper.mapEventTypes(JSON.parse(this.client.getResponse()));
+        return this.dataMapper.mapEventTypes(this.parseJSON());
     }
     
-    receiveEventsOf(productId, eventTypeId, indexFrom, indexTo) {
+    receiveEventsOf(productId, eventTypeId, indexFrom=0, indexTo=9999999) {
         const APIRoute = ProductFetcher.getAPIRouteForEveentsOfProduct().format(productId, eventTypeId, indexFrom, indexTo);
-        this.client.open(this.requestMethod, APIRoute, false);
+        const URI = ProductFetcher.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
+        this.client.open(this.requestMethod, URI, false);
         this.client.sendRequest();
-        return this.dataMapper.mapEvents(JSON.parse(this.client.getResponse()));
+        return this.dataMapper.mapEvents(this.parseJSON());
     }
 }
 export default ProductFetcher;
