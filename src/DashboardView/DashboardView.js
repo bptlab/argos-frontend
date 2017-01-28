@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Header from './Header/Header.js';
 import Diagram from './Diagram/Diagram.js';
 import SearchBar from './SearchBar/SearchBar.js';
 import ProductCardGrid from './ProductCardGrid/ProductCardGrid.js';
@@ -23,6 +24,7 @@ class DashboardView extends Component {
     render() {
         return (
             <div className="AppWrapper">
+                <Header/>
                 <Diagram products={this.props.products}/>
                 <SearchBar searchText={this.state.searchText} onUserSearchInput={this.handleUserInput}/>
                 <ProductCardGrid searchText={this.state.searchText} products={this.props.products}/>
