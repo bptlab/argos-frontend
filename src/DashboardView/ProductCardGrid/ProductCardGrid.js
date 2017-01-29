@@ -25,7 +25,7 @@ class ProductCardGrid extends Component {
 
     render() {
         return (
-            <div className="ProductCardGrid">
+            <div className="ProductCardGrid container">
                 {this.props.products.map((product) =>  {
                     if(this.searchMatches(product)) {
                         return (<ProductCard key={product.id} product={product}/>);

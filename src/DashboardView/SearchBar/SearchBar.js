@@ -15,7 +15,7 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <div className="searchArea">
+            <div className="searchArea container">
                 <FormGroup>
                     <Input placeholder="Search ..."
                            value={this.props.searchText}
