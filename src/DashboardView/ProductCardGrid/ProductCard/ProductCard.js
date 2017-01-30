@@ -6,7 +6,7 @@ import ProductCardHeader from './ProductCardHeader/CardHeader.js';
 class ProductCard extends Component {
     render() {
         return (
-            <div className="col-3">
+            <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                 <a href={ `/#/product/${this.props.product.id}`} title={ `Details for ${this.props.product.name}`}>
                     <Card className={ `ProductCard ProductCard_${this.props.product.state}` }>
                         <ProductCardHeader category={this.props.product.state}>
