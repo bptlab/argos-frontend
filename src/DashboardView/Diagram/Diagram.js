@@ -26,7 +26,7 @@ class Diagram extends Component {
     render() {
         this.fetchChartData();
         return (
-            <div className="DiagramWrapper">
+            <div className="DiagramWrapper container">
                 <div className="innerDiagramWrapper">
                     <PieChart chartData={this.chartData} chartLabels={this.chartLabels} />
                 </div>

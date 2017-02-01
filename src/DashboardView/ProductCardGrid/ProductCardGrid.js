@@ -26,13 +26,15 @@ class ProductCardGrid extends Component {
     render() {
         return (
             <div className="ProductCardGrid container">
-                {this.props.products.map((product) =>  {
-                    if(this.searchMatches(product)) {
-                        return (<ProductCard key={product.id} product={product}/>);
-                    } else {
-                        return false;
-                    }
-                })}
+                <div className="row">
+                    {this.props.products.map((product) =>  {
+                        if(this.searchMatches(product)) {
+                            return (<ProductCard key={product.id} product={product}/>);
+                        } else {
+                            return false;
+                        }
+                    })}
+                </div>
             </div>
         );
     }
