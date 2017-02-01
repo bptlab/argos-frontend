@@ -6,27 +6,22 @@ import EventTableRow from './EventTableRow/EventTableRow.js';
 class EventTable extends Component {
 
 
-    searchMatches(event) {
-        for(let i = 0; i < this.props.filter.length; i++) {
-            if (!this.testFilter(event, this.props.filter[i])) {
-                return false;
-            }
-        }
-        return true;
+    testFilter(event) {
+        // every is equivalent to logical and over an array
+        return this.props.filter.every((filter) => {
+            return this.testFilterArguments(event, filter);
+        });
     }
 
-    testFilter(event, filter) {
-        if (!this.props.filter[0].value) {
+    testFilterArguments(event, currentFilter) {
+        if (!currentFilter.value) {
             return true;
         }
-        console.log(event);
-        for(let i = 0; i < this.props.eventTable.header.length; i++) {
-            console.log(this.props.eventTable.header[i].name);
-            if (event[this.props.eventTable.header[i].name].toString().toLowerCase().indexOf(filter.value.toLowerCase()) > -1) {
-                return true;
-            }
-        }
-        return false;
+        // double negation to construct an logical or
+        return !this.props.eventTable.header.every((attribute) => {
+            return !(event[attribute.name].toLowerCase()
+                .indexOf(currentFilter.value.toLowerCase()) > -1);
+        });
     }
 
     render() {
@@ -36,8 +31,11 @@ class EventTable extends Component {
                     <EventTableHeader eventTypeAttributes={this.props.eventTable.header}/>
                     <tbody>
                     {this.props.eventTable.events.map((event, index) => {
-                        if(this.searchMatches(event)) {
-                            return (<EventTableRow key={index} id={index} event={event} eventTypeAttributes={this.props.eventTable.header}/>);
+                        if(this.testFilter(event)) {
+                            return (
+                                <EventTableRow key={index} id={index} event={event}
+                                               eventTypeAttributes={this.props.eventTable.header}/>
+                            );
                         } else {
                             return false;
                         }
