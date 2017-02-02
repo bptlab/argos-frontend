@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import './SearchBar.css';
 
 class SearchBar extends Component {
-
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChangeSearchInput = this.handleChangeSearchInput.bind(this);
     }
 
-    handleChange(event) {
-        this.props.onUserSearchInput(event.target.value);
+    handleChangeSearchInput(event) {
+        this.props.onChangeSearchInput(event.target.value);
     }
 
     render() {
@@ -18,14 +17,18 @@ class SearchBar extends Component {
                 <div className="searchArea">
                     <div className="input-group">
                     <span className="input-group-addon" id="search-addon">
-                        <i className="fa fa-search" aria-hidden="true"/>
+                        <i className="fa fa-search"/>
                     </span>
-                        <input type="text" className="form-control" placeholder="Search..." aria-describedby="search-addon" value={this.props.searchText} onChange={this.handleChange}/>
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Search..."
+                            value={this.props.searchText}
+                            onChange={this.handleChangeSearchInput}/>
                     </div>
                 </div>
             </div>
         );
     }
 }
-
 export default SearchBar;

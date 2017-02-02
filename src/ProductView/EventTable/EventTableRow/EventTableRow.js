@@ -15,5 +15,4 @@ class EventTableRow extends Component {
         );
     }
 }
-
 export default EventTableRow;

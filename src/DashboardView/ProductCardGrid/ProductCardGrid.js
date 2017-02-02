@@ -3,7 +3,6 @@ import './ProductCardGrid.css';
 import ProductCard from './ProductCard/ProductCard.js';
 
 class ProductCardGrid extends Component {
-
     searchMatches(product) {
         if (!this.props.searchText) {
             return true;
@@ -14,22 +13,23 @@ class ProductCardGrid extends Component {
             product.orderNumber,
             product.productionStart
         ];
-        
-        for(const index in searchFields) {
-            if (searchFields[index].toString().indexOf(this.props.searchText) > -1) {
-                return true;
-            }
-        }
-        return false;
+
+        return !searchFields.every((searchField) => {
+            return !(searchField.toString().toLowerCase().indexOf(this.props.searchText) > -1);
+        });
     }
 
     render() {
         return (
-            <div className="ProductCardGrid container">
+            <div className="container">
                 <div className="row">
                     {this.props.products.map((product) =>  {
                         if(this.searchMatches(product)) {
-                            return (<ProductCard key={product.id} product={product}/>);
+                            return (
+                                <ProductCard
+                                    key={product.id}
+                                    product={product}/>
+                            );
                         } else {
                             return false;
                         }

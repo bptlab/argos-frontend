@@ -15,5 +15,4 @@ class EventTableHeader extends Component {
         );
     }
 }
-
 export default EventTableHeader;
