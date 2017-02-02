@@ -4,6 +4,7 @@ import './Tab.css';
 class Tab extends Component {
     constructor(props) {
         super(props);
+        //Function binding
         this.loadEventsFor = this.loadEventsFor.bind(this);
     }
 
