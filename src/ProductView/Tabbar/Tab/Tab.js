@@ -4,17 +4,19 @@ import './Tab.css';
 class Tab extends Component {
     constructor(props) {
         super(props);
-        this.loadEventsfor = this.loadEventsfor.bind(this);
+        this.loadEventsFor = this.loadEventsFor.bind(this);
     }
 
-    loadEventsfor() {
-        this.props.loadEventsfor(this.props.eventType);
+    loadEventsFor() {
+        this.props.loadEventsFor(this.props.eventType);
     }
 
     render() {
         return (
             <li className="tab nav-item">
-                <a className="nav-link" data-toggle="tab" href={'#' + this.props.eventType.name} role="tab" onClick={this.loadEventsfor}>
+                <a className="nav-link" data-toggle="tab"
+                   href={'#' + this.props.eventType.name}
+                   role="tab" onClick={this.loadEventsFor}>
                     {this.props.eventType.name}
                 </a>
             </li>

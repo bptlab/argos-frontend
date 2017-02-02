@@ -9,7 +9,7 @@ class Tabbar extends Component {
                 <ul className="nav nav-tabs border-0" role="tablist">
                     {this.props.eventTypes.map((eventType, index) =>
                         <Tab key={index} eventType={eventType} 
-                             loadEventsfor={this.props.loadEventsfor} 
+                             loadEventsFor={this.props.loadEventsFor}
                              product={this.props.product}/>
                     )}
                 </ul>

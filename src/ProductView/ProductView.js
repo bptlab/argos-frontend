@@ -47,7 +47,7 @@ class ProductView extends Component {
                 <Header product={this.state.product}/>
                 <DetailArea product={this.state.product}/>
                 <Filterbar changeFilterValue={this.changeFilterValue} filter={this.state.filter}/>
-                <Tabbar eventTypes={this.state.eventTypes} loadEventsfor={this.loadEventsFor} product={this.state.product}/>
+                <Tabbar eventTypes={this.state.eventTypes} loadEventsFor={this.loadEventsFor} product={this.state.product}/>
                 <EventTable eventTable={this.state.eventTable} filter={this.state.filter}/>
             </div>
         );
