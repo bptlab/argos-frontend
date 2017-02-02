@@ -1,4 +1,4 @@
-import ProductFetcher  from './ProductFetcher';
+import ProductFetcher from './ProductFetcher.js';
 
 class RESTInterfaceMock {
     
@@ -213,7 +213,7 @@ class RESTInterfaceMock {
     }
 
     getResponse() {
-        if(ProductFetcher.getAPIRouteForProductFamilies() === this.api) {
+        if(this.api.indexOf("productfamilies") > -1) {
                 return JSON.stringify(RESTInterfaceMock.getProductFamily());
         } else if(this.api.indexOf("eventtypes") > -1) {
                 return JSON.stringify(RESTInterfaceMock.getEventTypes());

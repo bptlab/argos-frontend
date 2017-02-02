@@ -1,5 +1,5 @@
-import DataMapper from './DataMapper';
-import RESTInterface from './RESTInterface';
+import DataMapper from './DataMapper.js';
+import RESTInterface from './RESTInterface.js';
 
 if (!String.prototype.format) {
     String.prototype.format = function() {

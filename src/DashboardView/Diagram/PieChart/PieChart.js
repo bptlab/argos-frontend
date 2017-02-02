@@ -36,6 +36,9 @@ class PieChart extends Component {
             type: 'doughnut',
             options: {
                 responsive: true,
+                legend: {
+                    
+                }
             },
             data: {
                 labels: this.props.chartLabels,
@@ -56,9 +59,8 @@ class PieChart extends Component {
     }
 
     render() {
-        const chartHeight = (window.innerHeight / 3);
         return (
-            <canvas id="pieChart" height={chartHeight} width={chartHeight} />
+            <canvas id="pieChart"/>
         );
     }
 }

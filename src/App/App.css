@@ -8,7 +8,7 @@ html, body, p, div, h1, h2, h3, h4, h5 {
   height: 100%; }
 
 a, p, h1, h2, h3, h4, h5, span, a:hover {
-  color: #212121;
+  color: black;
   text-decoration: none; }
 
 h1 {
@@ -22,3 +22,15 @@ h3 {
 
 h4 {
   font-size: 1.7vh; }
+
+.input-group #search-addon {
+  background-color: transparent;
+  color: #004E64;
+  border-color: #004E64;
+  border-style: none none solid none;
+  border-radius: 0; }
+
+.input-group input, .input-group input:focus {
+  border-color: #004E64;
+  border-style: none none solid none;
+  border-radius: 0; }
