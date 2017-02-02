@@ -1,0 +1,17 @@
+@import "../../../definitions.scss";
+
+.error svg .status-point {
+  fill: $COLOR-error;
+}
+
+.warning svg .status-point {
+  fill: $COLOR-warning;
+}
+
+.running svg .status-point {
+  fill: $COLOR-success;
+}
+
+.status-point-shadow {
+  fill: rgba(0, 0, 0, 0.1);
+}
