@@ -3,20 +3,14 @@ import './Filterbar.css';
 import Filter from './Filter/Filter.js'
 
 class Filterbar extends Component {
-    constructor(props) {
-        super(props);
-        this.appendFilter = this.appendFilter.bind(this);
-    }
-
-    appendFilter() {
-        this.props.add();
-    }
-
     render() {
         return (
             <div className="filterbar container">
                 <div className="form-group row">
-                    {this.props.filter.map((filter, index) => <Filter key={filter.id} id={index} value={filter.value} changeFilterValue={this.props.changeFilterValue}/>)}
+                    {this.props.filter.map((filter, index) =>
+                        <Filter key={filter.id} id={index} value={filter.value}
+                                changeFilterValue={this.props.changeFilterValue}/>
+                    )}
                 </div>
             </div>
         );

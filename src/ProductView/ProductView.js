@@ -10,7 +10,8 @@ class ProductView extends Component {
     constructor(props) {
         super(props);
         const prodId = parseInt(this.props.params.productID, 10);
-        this.state = { filter: [{id: 'filter-0', value: ''}],
+        this.state = {
+            filter: [{id: 'filter-0', value: ''}],
             lastFilterId: 0,
             product: this.props.dataSource.receiveProduct(prodId),
             eventTypes: this.props.dataSource.receiveEventTypesOf(prodId),
@@ -45,7 +46,7 @@ class ProductView extends Component {
             <div>
                 <Header product={this.state.product}/>
                 <DetailArea product={this.state.product}/>
-                <Filterbar filter={this.state.filter} add={this.appendFilter} changeFilterValue={this.changeFilterValue}/>
+                <Filterbar changeFilterValue={this.changeFilterValue} filter={this.state.filter}/>
                 <Tabbar eventTypes={this.state.eventTypes} loadEventsfor={this.loadEventsFor} product={this.state.product}/>
                 <EventTable eventTable={this.state.eventTable} filter={this.state.filter}/>
             </div>

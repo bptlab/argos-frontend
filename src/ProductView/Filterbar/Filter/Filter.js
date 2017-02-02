@@ -17,7 +17,9 @@ class Filter extends Component {
                 <span className="input-group-addon" id="search-addon">
                     <i className="fa fa-search" aria-hidden="true"/>
                 </span>
-                <input type="text" className="form-control" placeholder="Search..." aria-describedby="search-addon" value={this.props.filterText} onChange={this.changeFilterValue}/>
+                <input type="text" className="form-control"
+                       placeholder="Search..." aria-describedby="search-addon"
+                       value={this.props.filterText} onChange={this.changeFilterValue}/>
             </div>
         );
     }
