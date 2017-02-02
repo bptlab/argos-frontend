@@ -19,8 +19,8 @@ class EventTable extends Component {
         }
         // double negation to construct an logical or
         return !this.props.eventTable.header.every((attribute) => {
-            return !(event[attribute.name].toLowerCase()
-                .indexOf(currentFilter.value.toLowerCase()) > -1);
+            return !(event[attribute.name].toString().toLowerCase()
+                .indexOf(currentFilter.value.toString().toLowerCase()) > -1);
         });
     }
 
