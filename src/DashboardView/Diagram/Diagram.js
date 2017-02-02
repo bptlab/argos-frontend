@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import './Diagram.css';
 import PieChart from './PieChart/PieChart.js'
+import './Diagram.css';
 
 class Diagram extends Component {
-
     constructor() {
         super();
         this.chartData = [];
         this.chartLabels = [];
     }
-
 
     fetchChartData() {
         for(let i = 0; i < this.props.products.length; i++) {
@@ -26,13 +24,16 @@ class Diagram extends Component {
     render() {
         this.fetchChartData();
         return (
-            <div className="DiagramWrapper container">
-                <div className="innerDiagramWrapper">
-                    <PieChart chartData={this.chartData} chartLabels={this.chartLabels} />
+            <div className="container">
+                <div className="DiagramWrapper">
+                    <div className="innerDiagramWrapper">
+                        <PieChart
+                            chartData={this.chartData}
+                            chartLabels={this.chartLabels}/>
+                    </div>
                 </div>
             </div>
         );
     }
 }
-
 export default Diagram;

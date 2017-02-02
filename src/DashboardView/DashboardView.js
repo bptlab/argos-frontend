@@ -3,32 +3,35 @@ import Header from './Header/Header.js';
 import Diagram from './Diagram/Diagram.js';
 import SearchBar from './SearchBar/SearchBar.js';
 import ProductCardGrid from './ProductCardGrid/ProductCardGrid.js';
+import './DashboardView.css'
 
 class DashboardView extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
             searchText: ''
         };
-        this.handleUserInput = this.handleUserInput.bind(this)
+        // function binding
+        this.handleSearchInput = this.handleSearchInput.bind(this)
     }
 
-    handleUserInput(searchText) {
+    handleSearchInput(searchText) {
         this.setState({searchText: searchText});
-    }
-
-    componentDidMount() {
     }
     
     render() {
         return (
-            <div className="AppWrapper">
+            <div className="DashboardView">
                 <Header/>
                 <Diagram products={this.props.products}/>
-                <SearchBar searchText={this.state.searchText} onUserSearchInput={this.handleUserInput}/>
-                <ProductCardGrid searchText={this.state.searchText} products={this.props.products}/>
-            </div>);
+                <SearchBar
+                    onChangeSearchInput={this.handleSearchInput}
+                    searchText={this.state.searchText}/>
+                <ProductCardGrid
+                    products={this.props.products}
+                    searchText={this.state.searchText}/>
+            </div>
+        );
     } 
 } 
 export default DashboardView;

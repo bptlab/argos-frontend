@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './PieChart.css';
-import Chart from "chart.js"
 import ReactDOM from 'react-dom'
+import Chart from "chart.js"
+import './PieChart.css';
 
 const stateColor = {
     ERROR: "#D33F49",
@@ -10,13 +10,12 @@ const stateColor = {
 };
 
 class PieChart extends Component {
-
     getData() {
         const chartData = [];
         const that = this; //make this in context of anonyme function. available
-        const chartValueSum = this.props.chartData.reduce((pv, cv) => pv+cv, 0);
+        const chartValueSum = this.props.chartData.reduce((pv, cv) => pv + cv, 0);
         this.props.chartData.forEach(function (item, index) {
-            chartData.push(that.props.chartData[index]/chartValueSum);
+            chartData.push(that.props.chartData[index] / chartValueSum);
         });
         return chartData;
     }
@@ -35,18 +34,14 @@ class PieChart extends Component {
         const chart = new Chart(chartContext, {
             type: 'doughnut',
             options: {
-                responsive: true,
-                legend: {
-                    
-                }
+                responsive: true
             },
             data: {
                 labels: this.props.chartLabels,
-                datasets: [
-                    {
-                        data: this.getData(),
-                        backgroundColor: this.getColors()
-                    }]
+                datasets: [{
+                    data: this.getData(),
+                    backgroundColor: this.getColors()
+                }]
             }
         });
         this.state = {
