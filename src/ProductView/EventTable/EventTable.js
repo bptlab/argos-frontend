@@ -4,8 +4,7 @@ import EventTableHeader from './EventTableHeader/EventTableHeader.js';
 import EventTableRow from './EventTableRow/EventTableRow.js';
 
 class EventTable extends Component {
-
-
+    
     testFilter(currentEvent) {
         // every is equivalent to logical and over an array
         return this.props.filter.every((filter) => {
@@ -34,7 +33,9 @@ class EventTable extends Component {
                     {this.props.eventTable.events.map((event, index) => {
                         if(this.testFilter(event)) {
                             return (
-                                <EventTableRow key={index} id={index} event={event}
+                                <EventTableRow key={index} 
+                                               id={index} 
+                                               event={event}
                                                eventTypeAttributes={this.props.eventTable.header}/>
                             );
                         } else {
@@ -46,6 +47,4 @@ class EventTable extends Component {
             </div>
         );
     }
-}
-
-export default EventTable;
+} export default EventTable;

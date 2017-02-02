@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import './Filterbar.css';
+import './FilterBar.css';
 import Filter from './Filter/Filter.js'
 
-class Filterbar extends Component {
+class FilterBar extends Component {
     render() {
         return (
-            <div className="filterbar container">
+            <div className="filter-bar container">
                 <div className="form-group row">
                     {this.props.filter.map((filter, index) =>
                         <Filter key={filter.id} id={index} value={filter.value}
-                                changeFilterValue={this.props.changeFilterValue}/>
+                                onChangeFilterInput={this.props.onChangeFilterInput}/>
                     )}
                 </div>
             </div>
@@ -17,4 +17,4 @@ class Filterbar extends Component {
     }
 }
 
-export default Filterbar;
+export default FilterBar;

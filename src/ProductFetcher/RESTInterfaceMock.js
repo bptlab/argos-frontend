@@ -1,5 +1,3 @@
-import ProductFetcher from './ProductFetcher.js';
-
 class RESTInterfaceMock {
     
     open(requestMethod, api) {
