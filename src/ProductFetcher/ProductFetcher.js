@@ -53,7 +53,6 @@ class ProductFetcher {
     
     parseJSON() {
         try {
-            console.log(this.client.client.responseText);
             return JSON.parse(this.client.getResponse())
         } catch (error) {
             document.getElementById('root').innerHTML = "ERROR!";
