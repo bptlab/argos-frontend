@@ -1,6 +1,6 @@
 import DataMapper from './DataMapper.js';
 import RESTInterface from './RESTInterface.js';
-
+/*eslint-disable */
 if (!String.prototype.format) {
     String.prototype.format = function() {
         const args = arguments;
@@ -12,7 +12,7 @@ if (!String.prototype.format) {
         });
     };
 }
-
+/*eslint-enable */
 class ProductFetcher {
 
     static getAPIRouteForProductFamilies() {
