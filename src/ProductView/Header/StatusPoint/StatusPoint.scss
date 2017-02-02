@@ -1,13 +1,17 @@
 @import "../../../definitions.scss";
 
-.error svg circle {
+.error svg .status-point {
   fill: $COLOR-error;
 }
 
-.warning svg circle {
+.warning svg .status-point {
   fill: $COLOR-warning;
 }
 
-.running svg circle {
+.running svg .status-point {
   fill: $COLOR-success;
+}
+
+.status-point-shadow {
+  fill: rgba(0, 0, 0, 0.1);
 }
