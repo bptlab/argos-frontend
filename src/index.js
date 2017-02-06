@@ -12,11 +12,11 @@ const API_SERVER_URL = "http://172.16.20.158";
 const API_SERVER_PORT = 8989;
 
 const dataSource = new ProductFetcher(API_SERVER_URL, API_SERVER_PORT);
-dataSource.setClient(new RESTInterfaceMock());
+//dataSource.setClient(new RESTInterfaceMock());
 ReactDOM.render(
     (<Router history={hashHistory}>
         <Route path="/" component={App}>
-            <IndexRoute component={() => (<DashboardView products={dataSource.receiveProducts()} />)} />
+            <IndexRoute component={() => (<DashboardView dataSource={dataSource} />)} />
             <Route path="/product/:productID"
                    component={(routeObject) => (
                        <ProductView dataSource={dataSource} params={routeObject.params} />

@@ -3,18 +3,15 @@ class RESTInterfaceMock {
     open(requestMethod, api) {
         this.api = api;
     }
-
-    sendRequest() {
-    }
     
     static getProductFamily() {
         return [{
             id: 0,
-            name: "Logamax plus GB172",
-            brand: "Buderus",
+            name: "Testproduct plus GB172",
+            brand: "Testbrand1",
             products: [{
                 id: 0,
-                name: "Buderus Logamax plus GB172-14, EG-E",
+                name: "Testbrand1 Testproduct plus GB172-14, EG-E",
                 numberOfDevices: 189,
                 numberOfEvents: 84,
                 productionStart: "2016-05-07",
@@ -23,7 +20,7 @@ class RESTInterfaceMock {
                 stateDescription: "No errors or warnings detected"
             },{
                 id: 1,
-                name: "Buderus Logamax plus GB172-20, EG-E",
+                name: "Testbrand1 Testproduct plus GB172-20, EG-E",
                 numberOfDevices: 621,
                 numberOfEvents: 741,
                 productionStart: "2016-04-06",
@@ -32,7 +29,7 @@ class RESTInterfaceMock {
                 stateDescription: "No errors or warnings detected"
             },{
                 id: 2,
-                name: "Buderus Logamax plus GB172-24, EG-E",
+                name: "Testbrand1 Testproduct plus GB172-24, EG-E",
                 numberOfDevices: 746,
                 numberOfEvents: 62,
                 productionStart: "2016-01-01",
@@ -40,7 +37,7 @@ class RESTInterfaceMock {
                 state: "WARNING",
             },{
                 id: 3,
-                name: "Buderus Logamax plus GB172-24K, G25",
+                name: "Testbrand1 Testproduct plus GB172-24K, G25",
                 numberOfDevices: 345,
                 numberOfEvents: 31,
                 productionStart: "2016-03-02",
@@ -49,7 +46,7 @@ class RESTInterfaceMock {
                 stateDescription: "No errors or warnings detected"
             },{
                 id: 4,
-                name: "Buderus Logamax plus GB172-24, G25",
+                name: "Testbrand1 Testproduct plus GB172-24, G25",
                 numberOfDevices: 84,
                 numberOfEvents: 54,
                 productionStart: "2016-06-07",
@@ -172,7 +169,7 @@ class RESTInterfaceMock {
             locationOfDeviceId:         32835144,
             productFamilyId:            0,
             orderNumber:                7716010417,
-            productName:                "Buderus Logamax plus GB172-14,  EG-E",
+            productName:                "Testbrand1 Testproduct plus GB172-14,  EG-E",
             codingPlugId:               1117,
             codingPlugBusId:            154,
             codingPlugSoftwareVersion:  1.13,
@@ -196,7 +193,7 @@ class RESTInterfaceMock {
             locationOfDeviceId:         32835144,
             productFamilyId:            0,
             orderNumber:                7716010417,
-            productName:                "Buderus Logamax plus GB172-14,  EG-E",
+            productName:                "Testbrand1 Testproduct plus GB172-14,  EG-E",
             codingPlugId:               1117,
             codingPlugBusId:            154,
             codingPlugSoftwareVersion:  1.14,
@@ -208,6 +205,18 @@ class RESTInterfaceMock {
             replacementPartId:          87181070870,
             replacementPartName:        "Elektrodensatz"
         }];
+    }
+
+    sendRequest(successCallback, errorCallback, clientDataContainer) {
+        if(this.api.indexOf("productfamilies") > -1) {
+            successCallback(JSON.stringify(RESTInterfaceMock.getProductFamily()), clientDataContainer);
+        } else if(this.api.indexOf("eventtypes") > -1) {
+            successCallback(JSON.stringify(RESTInterfaceMock.getEventTypes()), clientDataContainer);
+        } else if(this.api.indexOf("events") > -1) {
+            successCallback(JSON.stringify(RESTInterfaceMock.getEvents()), clientDataContainer);
+        } else {
+            successCallback(JSON.stringify(""), clientDataContainer);
+        }
     }
 
     getResponse() {

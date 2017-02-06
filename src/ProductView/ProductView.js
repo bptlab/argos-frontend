@@ -5,16 +5,18 @@ import DetailArea from './DetailArea/DetailArea.js';
 import FilterBar from './Filterbar/FilterBar.js';
 import TabBar from './Tabbar/TabBar.js';
 import EventTable from './EventTable/EventTable.js';
+import Loader from './../Loader/Loader.js';
 
 class ProductView extends Component {
     constructor(props) {
         super(props);
-        const prodId = parseInt(this.props.params.productID, 10);
+        this.prodId = parseInt(this.props.params.productID, 10);
         this.state = {
             filter: [{id: 'filter-0', value: ''}],
             lastFilterId: 0,
-            product: this.props.dataSource.receiveProduct(prodId),
-            eventTypes: this.props.dataSource.receiveEventTypesOf(prodId),
+            product: null,
+            eventTypes: null,
+            error: null,
             eventTable: {
                 header: [],
                 events: []
@@ -23,6 +25,40 @@ class ProductView extends Component {
         //Function binding
         this.onChangeFilterInput = this.onChangeFilterInput.bind(this);
         this.loadEventsFor = this.loadEventsFor.bind(this);
+        this.handleProductData = this.handleProductData.bind(this);
+        this.handleEventData = this.handleEventData.bind(this);
+        this.handleError = this.handleError.bind(this);
+        this.handleEventTypeData = this.handleEventTypeData.bind(this);
+    }
+    componentDidMount() {
+        this.props.dataSource.fetchProduct(this.prodId, this.handleProductData, this.handleError);
+    }
+
+    handleEventData(events) {
+        const eventTable = {
+            header: this.activeEventType.attributes,
+            events: events
+        };
+        this.setState({ eventTable: eventTable });
+    }
+
+    handleEventTypeData(eventTypes) {
+        this.setState({
+            eventTypes: eventTypes
+        });
+    }
+
+    handleProductData(products) {
+        this.setState({
+            product: products
+        });
+        this.props.dataSource.fetchEventTypesOf(this.prodId, this.handleEventTypeData, this.handleError)
+    }
+
+    handleError(errorCode) {
+        this.setState({
+            error: errorCode
+        });
     }
 
     onChangeFilterInput(currentFilterId, value) {
@@ -41,30 +77,42 @@ class ProductView extends Component {
     }
 
     loadEventsFor(eventType) {
-        const events = this.props.dataSource.receiveEventsOf(this.state.product.id, eventType.id);
-        const eventTable = { 
-            header: eventType.attributes, 
-            events: events 
-        };
-        this.setState({ eventTable: eventTable });
+        this.activeEventType = eventType;
+        this.props.dataSource.fetchEventsOf(
+            this.state.product.id, 
+            eventType.id, 
+            this.handleEventData,
+            this.handleError
+        );
     }
 
     render() {
-        return (
-            <div>
-                <Header product={this.state.product}/>
-                <DetailArea product={this.state.product}/>
-                <FilterBar 
-                    onChangeFilter={this.onChangeFilterInput} 
-                    filter={this.state.filter}/>
-                <TabBar 
-                    eventTypes={this.state.eventTypes} 
-                    loadEventsFor={this.loadEventsFor} 
-                    product={this.state.product}/>
-                <EventTable 
-                    eventTable={this.state.eventTable} 
-                    filter={this.state.filter}/>
-            </div>
-        );
+        let component = (<Loader/>);
+        if(this.state.error) {
+            component = (
+                <div className="critical-error">
+                    <i className="fa fa-exclamation-triangle warning-sign"/>
+                    <p>{this.state.error}</p>
+                </div>
+            );
+        } else if(this.state.product && this.state.eventTypes) {
+            component = (
+                <div>
+                    <Header product={this.state.product}/>
+                    <DetailArea product={this.state.product}/>
+                    <FilterBar
+                        onChangeFilter={this.onChangeFilterInput}
+                        filter={this.state.filter}/>
+                    <TabBar
+                        eventTypes={this.state.eventTypes}
+                        loadEventsFor={this.loadEventsFor}
+                        product={this.state.product}/>
+                    <EventTable
+                        eventTable={this.state.eventTable}
+                        filter={this.state.filter}/>
+                </div>
+            );
+        }
+        return (<div>{component}</div>);
     }
 } export default ProductView;
