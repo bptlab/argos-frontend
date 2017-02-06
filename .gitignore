@@ -8,6 +8,7 @@ coverage
 
 # production
 build
+*.css
 
 # misc
 .DS_Store
@@ -17,3 +18,7 @@ npm-debug.log
 #IDEA
 .idea/
 *.iml
+
+#Development
+dev-resources/
+*.css

@@ -1,0 +1,61 @@
+@import '../../../definitions.scss';
+@font-face { font-family: "Ionicons";
+    src: url("../../../assets/fonts/icons/ionicons.eot?v=2.0.0");
+    src: url("../../../assets/fonts/icons/ionicons.eot?v=2.0.0#iefix")
+    format("embedded-opentype"), url("../../../assets/fonts/icons/ionicons.ttf?v=2.0.0")
+    format("truetype"), url("../../../assets/fonts/icons/ionicons.woff?v=2.0.0")
+    format("woff"), url("../../../assets/fonts/icons/ionicons.svg?v=2.0.0#Ionicons")
+    format("svg"); font-weight: normal; font-style: normal; }
+/* ###################### PRODUCT CARD ###################### */
+.ProductCard {
+    height: min-content;
+    color: white;
+    -webkit-box-shadow: 10px 10px 22px -5px rgba(168,168,168,0.65);
+    -moz-box-shadow: 10px 10px 22px -5px rgba(168,168,168,0.65);
+    box-shadow: 10px 10px 22px -5px rgba(168,168,168,0.65);
+    margin-bottom: 30px;
+    //min-width: 19vw;
+}
+
+a .ProductCard:hover {
+    text-decoration: none;
+}
+
+.ProductCard_RUNNING {
+    background: $COLOR-success !important;
+    
+}
+
+.ProductCard_WARNING {
+    background: $COLOR-warning !important;
+}
+
+.ProductCard_ERROR {
+    background: $COLOR-error !important;
+}
+
+/* ############ PRODUCT CARD INFORMATION LINE ############ */
+
+.ProductCardInformationLine {
+    list-style-type: none;
+    font-style: normal;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-right: 1vh;
+    line-height: 3vh;
+}
+
+.ProductCardInformationLine:before {
+    font-family: 'Ionicons', Arial, sans-serif;
+    margin-right: 1.5vh;
+}
+
+.PCIL_errorQuantity:before{content: $ICON-errorQuantity;}
+.PCIL_serialNumber:before{content:$ICON-serialNumber;}
+.PCIL_date:before{content:$ICON-date;}
+.PCIL_quantity:before{content: $ICON-quantity;}
+
+.icon-check:before{content:'\0041';}
+.icon-info-with-circle:before{content:'\0044';}
+.icon-warning:before{content:'\0046';}

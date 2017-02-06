@@ -3,15 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "concurrently": "^3.1.0",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
     "react-scripts": "0.8.4"
   },
   "dependencies": {
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "bootstrap": "^4.0.0-alpha.6",
+    "chart.js": "^2.4.0",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.1.1",
+    "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.4.2",
+    "react-addons-transition-group": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-router": "^3.0.1",
+    "tether": "^1.4.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "concurrently \"npm run react\" \"gulp\"",
+    "react": "react-scripts start",
+    "build": "concurrently \"gulp sass\" \"react-scripts build\"",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

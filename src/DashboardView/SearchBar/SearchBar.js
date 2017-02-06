@@ -1,0 +1,34 @@
+import React, { Component } from 'react';
+import './SearchBar.css';
+
+class SearchBar extends Component {
+    constructor(props) {
+        super(props);
+        this.handleChangeSearchInput = this.handleChangeSearchInput.bind(this);
+    }
+
+    handleChangeSearchInput(event) {
+        this.props.onChangeSearchInput(event.target.value);
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <div className="searchArea">
+                    <div className="input-group">
+                    <span className="input-group-addon" id="search-addon">
+                        <i className="fa fa-search"/>
+                    </span>
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Search..."
+                            value={this.props.searchText}
+                            onChange={this.handleChangeSearchInput}/>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+export default SearchBar;
