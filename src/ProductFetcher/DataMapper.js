@@ -8,7 +8,7 @@ class DataMapper {
                 "id":       apiProductFamily.id,
                 "name":     apiProductFamily.name,
                 "brand":    apiProductFamily.brand,
-                "products": this.mapProducts(apiProductFamily.products)
+                "products": DataMapper.mapProducts(apiProductFamily.products)
             };
             productFamilies.push(productFamily);
         }
@@ -42,7 +42,7 @@ class DataMapper {
                 "id":               apiEventType.id,
                 "name":             apiEventType.name,
                 "numberOfevents":   apiEventType.numberOfEvents,
-                "attributes":       this.mapEventTypeAttributes(apiEventType.attributes)
+                "attributes":       DataMapper.mapEventTypeAttributes(apiEventType.attributes)
             };
             eventTypes.push(eventType);
         }
