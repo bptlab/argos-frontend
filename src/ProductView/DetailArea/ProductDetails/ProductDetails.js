@@ -10,7 +10,7 @@ class ProductDetails extends Component {
                 </div>
                 <div className="row">
                     <p className="col-4">Marke:</p>
-                    <p className="col">Buderus</p>
+                    <p className="col">Testbrand1</p>
                 </div>
                 <div className="row">
                     <p className="col-4">Produktfamilie:</p>

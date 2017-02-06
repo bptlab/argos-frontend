@@ -8,7 +8,7 @@ import './index.css';
 import ProductFetcher from './ProductFetcher/ProductFetcher.js';
 import RESTInterfaceMock from './ProductFetcher/RESTInterfaceMock';
 
-const API_SERVER_URL = "http://172.16.20.158";
+const API_SERVER_URL = "localhost";
 const API_SERVER_PORT = 8989;
 
 const dataSource = new ProductFetcher(API_SERVER_URL, API_SERVER_PORT);
