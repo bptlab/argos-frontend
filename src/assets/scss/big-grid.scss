@@ -1,0 +1,45 @@
+/*!
+ * Bootstrap Big Grid v0.2.0
+ * Copyright 2013 BenWhitehead
+ * Licensed under http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+
+@import "../../../node_modules/bootstrap/scss/mixins";
+@import "../../../node_modules/bootstrap/scss/variables";
+
+$grid-gutter-widths: (
+		xs: $grid-gutter-width-base, // 30px
+		sm: $grid-gutter-width-base, // 30px
+		md: $grid-gutter-width-base, // 30px
+		lg: $grid-gutter-width-base, // 30px
+		xl: $grid-gutter-width-base, // 30px
+		uhd: $grid-gutter-width-base  // 30px
+);
+
+$grid-breakpoints: (
+	// Extra small screen / phone
+		xs: 0,
+	// Small screen / phone
+		sm: 576px,
+	// Medium screen / tablet
+		md: 768px,
+	// Large screen / desktop
+		lg: 992px,
+	// Extra large screen / wide desktop
+		xl: 1200px,
+	// Ultra high definition screen / uhd desktop
+		uhd: 3000px
+
+);
+
+$container-max-widths: (
+		sm: 540px,
+		md: 720px,
+		lg: 960px,
+		xl: 1140px,
+		uhd: 2940px
+);
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+@import "../../../node_modules/bootstrap/scss/bootstrap-grid";
