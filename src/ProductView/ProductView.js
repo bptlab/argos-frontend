@@ -34,7 +34,7 @@ class ProductView extends Component {
                 lastFilterId: newFilterId 
             });
         } else {
-            const updatedFilters = this.props.filter;
+            const updatedFilters = this.state.filter;
             updatedFilters[currentFilterId].value = value;
             this.setState({filter: updatedFilters});
         }
@@ -54,8 +54,8 @@ class ProductView extends Component {
             <div>
                 <Header product={this.state.product}/>
                 <DetailArea product={this.state.product}/>
-                <FilterBar 
-                    onChangeFilter={this.onChangeFilterInput} 
+                <FilterBar
+                    onChangeFilterInput={this.onChangeFilterInput}
                     filter={this.state.filter}/>
                 <TabBar 
                     eventTypes={this.state.eventTypes} 
