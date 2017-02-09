@@ -11,11 +11,15 @@ class ProductCardGrid extends Component {
         const searchFields = [
             product.name,
             product.orderNumber,
-            product.productionStart
+            product.numberOfDevices,
+            product.productionStart,
+            product.numberOfEvents
         ];
 
-        return !searchFields.every((searchField) => {
-            return !(searchField.toString().toLowerCase().indexOf(this.props.searchText) > -1);
+        return searchFields.some((searchField) => {
+            const productAttribute = searchField.toString().toLowerCase();
+            const searchQuery = this.props.searchText.toString().toLowerCase();
+            return (productAttribute.indexOf(searchQuery) > -1);
         });
     }
 

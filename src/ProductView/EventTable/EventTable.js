@@ -16,11 +16,10 @@ class EventTable extends Component {
         if (!currentFilter.value) {
             return true;
         }
-        // double negation to construct an logical or
-        return !this.props.eventTable.header.every((eventPropertyKey) => {
+        return this.props.eventTable.header.some((eventPropertyKey) => {
             const eventPropertyValue = currentEvent[eventPropertyKey.name].toString().toLowerCase();
             const searchQuery = currentFilter.value.toString().toLowerCase();
-            return !(eventPropertyValue.indexOf(searchQuery) > -1);
+            return (eventPropertyValue.indexOf(searchQuery) > -1);
         });
     }
 

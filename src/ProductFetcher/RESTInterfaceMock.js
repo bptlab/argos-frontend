@@ -10,50 +10,50 @@ class RESTInterfaceMock {
     static getProductFamily() {
         return [{
             id: 0,
-            name: "Testproduct plus GB172",
-            brand: "Testbrand1",
+            name: "Testproductfamily",
+            brand: "Testbrand",
             products: [{
                 id: 0,
-                name: "Testbrand1 Testproduct plus GB172-14, EG-E",
-                numberOfDevices: 189,
+                name: "Testproduct 5000 14E-17B",
+                numberOfDevices: 52189,
                 numberOfEvents: 84,
                 productionStart: "2016-05-07",
-                orderNumber: "7716010416",
+                orderNumber: "9830510416",
                 state: "RUNNING",
                 stateDescription: "No errors or warnings detected"
             },{
                 id: 1,
-                name: "Testbrand1 Testproduct plus GB172-20, EG-E",
-                numberOfDevices: 621,
+                name: "Testproduct 5010 116-1EB",
+                numberOfDevices: 90621,
                 numberOfEvents: 741,
                 productionStart: "2016-04-06",
-                orderNumber: "7716010417",
+                orderNumber: "7716013254",
                 state: "RUNNING",
                 stateDescription: "No errors or warnings detected"
             },{
                 id: 2,
-                name: "Testbrand1 Testproduct plus GB172-24, EG-E",
+                name: "Testproduct 3010 226-1XC",
                 numberOfDevices: 746,
-                numberOfEvents: 62,
+                numberOfEvents: 362,
                 productionStart: "2016-01-01",
-                orderNumber: "7716010416",
+                orderNumber: "7710473416",
                 state: "WARNING",
             },{
                 id: 3,
-                name: "Testbrand1 Testproduct plus GB172-24K, G25",
+                name: "Testproduct 20X US6-1XB",
                 numberOfDevices: 345,
-                numberOfEvents: 31,
+                numberOfEvents: 23,
                 productionStart: "2016-03-02",
-                orderNumber: "7716010418",
+                orderNumber: "0139210418",
                 state: "RUNNING",
                 stateDescription: "No errors or warnings detected"
             },{
                 id: 4,
-                name: "Testbrand1 Testproduct plus GB172-24, G25",
-                numberOfDevices: 84,
-                numberOfEvents: 54,
+                name: "Testproduct 30X 1W1-PSB",
+                numberOfDevices: 201,
+                numberOfEvents: 553,
                 productionStart: "2016-06-07",
-                orderNumber: "7716010612",
+                orderNumber: "7711294712",
                 state: "ERROR",
                 stateDescription: "Error detected! Intervention required!"
             }]
@@ -63,96 +63,32 @@ class RESTInterfaceMock {
     static getEventTypes() {
         return [{
             id:     0,
-            name:           "FeedbackData",
+            name:           "Error Events",
             numberOfEvents: 8493, 
             attributes: [
                 {
                     id:     0,
-                    name:   "dateOfServiceIntervention",
-                    type:   "Date"
-                },{
-                    id:     1,
-                    name:   "dateOfInstallation",
-                    type:   "Date"
-                },{
-                    id:     2,
-                    name:   "factoryId",
+                    name:   "ErrorCode",
                     type:   "Integer"
                 },{
+                    id:     1,
+                    name:   "ErrorDescription",
+                    type:   "String"
+                },{
+                    id:     2,
+                    name:   "PossibleFix",
+                    type:   "String"
+                },{
                     id:     3,
-                    name:   "dateOfProduction",
+                    name:   "DeviceID",
                     type:   "Integer"
                 },{
                     id:     4,
-                    name:   "counter",
-                    type:   "Integer"
+                    name:   "DeviceLocation",
+                    type:   "String"
                 },{
                     id:     5,
-                    name:   "softwareVersion",
-                    type:   "Float"
-                },{
-                    id:     6,
-                    name:   "feedbackOfInstaller",
-                    type:   "String"
-                },{
-                    id:     7,
-                    name:   "objectId",
-                    type:   "Integer"
-                },{
-                    id:     8,
-                    name:   "locationOfDeviceId",
-                    type:   "Integer"
-                },{
-                    id:     9,
-                    name:   "productFamilyId",
-                    type:   "String"
-                },{
-                    id:     10,
-                    name:   "orderNumber",
-                    type:   "Integer"
-                },{
-                    id:     11,
-                    name:   "productName",
-                    type:   "String"
-                },{
-                    id:     12,
-                    name:   "codingPlugId",
-                    type:   "Integer"
-                },{
-                    id:     13,
-                    name:   "codingPlugBusId",
-                    type:   "Integer"
-                },{
-                    id:     14,
-                    name:   "codingPlugSoftwareVersion",
-                    type:   "Float"
-                },{
-                    id:     15,
-                    name:   "errorId",
-                    type:   "String"
-                }, {
-                    id:     16,
-                    name:   "errorFailureTreeId",
-                    type:   "Integer"
-                },{
-                    id:     17,
-                    name:   "errorDescription",
-                    type:   "String"
-                },{
-                    id:     18,
-                    name:   "causeId",
-                    type:   "Integer"
-                },{
-                    id:     19,
-                    name:   "causeDescription",
-                    type:   "String"
-                },{
-                    id:     20,
-                    name:   "replacementPartId",
-                    type:   "Integer"
-                },{
-                    id:     21,
-                    name:   "replacementPartName",
+                    name:   "SoftwareVersion",
                     type:   "String"
                 }
             ]
@@ -161,52 +97,47 @@ class RESTInterfaceMock {
     
     static getEvents() {
         return [{
-            dateOfServiceIntervention:  "2016-01-01",
-            dateOfInstallation:         "2016-02-01",
-            factoryId:                  8290,
-            dateOfProduction:           305,
-            counter:                    12447,
-            softwareVersion:            4.09,
-            feedbackOfInstaller:        "Sicherheitstemperaturbegrenzer am Wärmeblock oder der Abgassicherheitstemperaturbegrenzer hat mehrmals angesprochen.",
-            objectId:                   32830295,
-            locationOfDeviceId:         32835144,
-            productFamilyId:            0,
-            orderNumber:                7716010417,
-            productName:                "Testbrand1 Testproduct plus GB172-14,  EG-E",
-            codingPlugId:               1117,
-            codingPlugBusId:            154,
-            codingPlugSoftwareVersion:  1.13,
-            errorId:                    "6A-227",
-            errorFailureTreeId:         39534450,
-            errorDescription:           "Temperatur am Vorlauffühler ist größer als 95°C",
-            causeId:                    18205831,
-            causeDescription:           "Sicherheitsventil an der Gasarmatur öffnet nicht",
-            replacementPartId:          87181070870,
-            replacementPartName:        "Elektrodensatz"
-        },
-        {
-            dateOfServiceIntervention:  "2016-01-01",
-            dateOfInstallation:         "2016-02-01",
-            factoryId:                  8290,
-            dateOfProduction:           305,
-            counter:                    12447,
-            softwareVersion:            4.09,
-            feedbackOfInstaller:        "Sicherheitstemperaturbegrenzer am Wärmeblock oder der Abgassicherheitstemperaturbegrenzer hat mehrmals angesprochen.",
-            objectId:                   32830295,
-            locationOfDeviceId:         32835144,
-            productFamilyId:            0,
-            orderNumber:                7716010417,
-            productName:                "Testbrand1 Testproduct plus GB172-14,  EG-E",
-            codingPlugId:               1117,
-            codingPlugBusId:            154,
-            codingPlugSoftwareVersion:  1.14,
-            errorId:                    "6A-227",
-            errorFailureTreeId:         39534450,
-            errorDescription:           "Temperatur am Vorlauffühler ist größer als 95°C",
-            causeId:                    18205831,
-            causeDescription:           "Sicherheitsventil an der Gasarmatur öffnet nicht",
-            replacementPartId:          87181070870,
-            replacementPartName:        "Elektrodensatz"
+            ErrorCode:                  235,
+            ErrorDescription:           "Critical Error 235",
+            PossibleFix:                "Fix it.",
+            DeviceID:                   12352,
+            DeviceLocation:             "Hamburg",
+            SoftwareVersion:            "12.0.9"
+        },{
+            ErrorCode:                  900,
+            ErrorDescription:           "Critical Error 900",
+            PossibleFix:                "Fix it.",
+            DeviceID:                   93812,
+            DeviceLocation:             "Stuttgart",
+            SoftwareVersion:            "13.0.1"
+        },{
+            ErrorCode:                  283,
+            ErrorDescription:           "Critical Error 283",
+            PossibleFix:                "Fix it.",
+            DeviceID:                   234182,
+            DeviceLocation:             "Berlin",
+            SoftwareVersion:            "13.2.0"
+        },{
+            ErrorCode:                  353,
+            ErrorDescription:           "Critical Error 353",
+            PossibleFix:                "Fix it.",
+            DeviceID:                   190347,
+            DeviceLocation:             "Berlin",
+            SoftwareVersion:            "14.4.3"
+        },{
+            ErrorCode:                  500,
+            ErrorDescription:           "Critical Error 500",
+            PossibleFix:                "Fix it.",
+            DeviceID:                   89128,
+            DeviceLocation:             "Berlin",
+            SoftwareVersion:            "13.0.5"
+        },{
+            ErrorCode:                  404,
+            ErrorDescription:           "Product not found.",
+            PossibleFix:                "Search for it.",
+            DeviceID:                   666,
+            DeviceLocation:             "Not known.",
+            SoftwareVersion:            "0.0.4.alpha"
         }];
     }
 
