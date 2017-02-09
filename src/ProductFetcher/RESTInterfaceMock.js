@@ -3,9 +3,6 @@ class RESTInterfaceMock {
     open(requestMethod, api) {
         this.api = api;
     }
-
-    sendRequest() {
-    }
     
     static getProductFamily() {
         return [{
@@ -139,6 +136,18 @@ class RESTInterfaceMock {
             DeviceLocation:             "Not known.",
             SoftwareVersion:            "0.0.4.alpha"
         }];
+    }
+
+    sendRequest(successCallback, errorCallback, clientDataContainer) {
+        if(this.api.indexOf("productfamilies") > -1) {
+            successCallback(JSON.stringify(RESTInterfaceMock.getProductFamily()), clientDataContainer);
+        } else if(this.api.indexOf("eventtypes") > -1) {
+            successCallback(JSON.stringify(RESTInterfaceMock.getEventTypes()), clientDataContainer);
+        } else if(this.api.indexOf("events") > -1) {
+            successCallback(JSON.stringify(RESTInterfaceMock.getEvents()), clientDataContainer);
+        } else {
+            successCallback(JSON.stringify(""), clientDataContainer);
+        }
     }
 
     getResponse() {

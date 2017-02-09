@@ -46,3 +46,21 @@ h4 {
     border-radius: 0;
   }
 }
+
+.critical-error {
+  width: 50vw;
+  display: block;
+  margin: 20% auto 0 auto;
+  text-align: center;
+  border: 0.5vh solid $COLOR-error;
+  padding:1vw;
+  background: $COLOR-error-light;
+  .warning-sign {
+    font-size: 10vw !important;
+    margin-bottom: 1vw;
+  }
+  p,.warning-sign {
+    color: $COLOR-font-light;
+    font-size: 2vw;
+  }
+}

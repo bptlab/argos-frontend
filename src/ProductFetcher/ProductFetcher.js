@@ -37,6 +37,9 @@ class ProductFetcher {
         this.requestMethod = requestMethod;
         this.dataMapper = DataMapper;
         this.client = new RESTInterface();
+        //function binding
+        this.receiveResults = this.receiveResults.bind(this);
+        this.receiveError = this.receiveError.bind(this);
     }
 
     getRemoteAddress() {
@@ -51,53 +54,76 @@ class ProductFetcher {
         this.client = client;
     }
     
-    parseJSON() {
+    parseJSON(results) {
         try {
-            return JSON.parse(this.client.getResponse())
+            return JSON.parse(results)
         } catch (error) {
             document.getElementById('root').innerHTML = "ERROR!";
             return [];
         }
     }
     
-    receiveProductFamilies() {
+    receiveResults(results, clientDataContainer) {
+        const data = clientDataContainer.dataMappingFunction(this.parseJSON(results));
+        clientDataContainer.clientSuccessCallback(data);
+    }
+    
+    receiveError(errorCode, clientDataContainer) {
+        clientDataContainer.clientErrorCallback(errorCode);
+    }
+    
+    fetchProductFamilies(successCallback, errorCallback) {
         const APIRoute = ProductFetcher.getAPIRouteForProductFamilies();
         const URI = ProductFetcher.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
-        this.client.open(this.requestMethod, URI, false);
-        this.client.sendRequest();
-        return this.dataMapper.mapProductFamilies(this.parseJSON());
+        this.client.open(this.requestMethod, URI, true);
+        const callbackContainer = {
+            "dataMappingFunction":    this.dataMapper.mapProductFamilies,
+            "clientSuccessCallback":  successCallback,
+            "clientErrorCallback":    errorCallback
+        };
+        this.client.sendRequest(this.receiveResults, this.receiveError, callbackContainer);
     }
     
-    receiveProducts() {
-        const productFamilies = this.receiveProductFamilies();
-        const products = [];
-        for(let i = 0; i < productFamilies.length; i++) {
-            products.push.apply(products,productFamilies[i]["products"]);
-        }
-        return products;
+    fetchProducts(successCallback, errorCallback) {
+        this.fetchProductFamilies(function(productFamilies) {
+            const products = [];
+            for(let i = 0; i < productFamilies.length; i++) {
+                products.push.apply(products,productFamilies[i]["products"]);
+            }
+            successCallback(products);
+        }, errorCallback);
     }
     
-    receiveProduct(prodId) {
-        const products = this.receiveProducts();
-        return products.find((product) => {
-            return product.id === prodId}
-        )
+    fetchProduct(prodId, successCallback, errorCallback) {
+        this.fetchProducts(function(products) {
+            successCallback(products.find((product) => {
+                return product.id === prodId}
+            ))
+        }, errorCallback);
     }
 
-    receiveEventTypesOf(productId) {
+    fetchEventTypesOf(productId, successCallback, errorCallback) {
         const APIRoute = ProductFetcher.getAPIRouteForEventTypesOfProduct().format(productId);
         const URI = ProductFetcher.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
-        this.client.open(this.requestMethod, URI, false);
-        this.client.sendRequest();
-        return this.dataMapper.mapEventTypes(this.parseJSON());
+        this.client.open(this.requestMethod, URI, true);
+        const callbackContainer = {
+            "dataMappingFunction":    this.dataMapper.mapEventTypes,
+            "clientSuccessCallback":  successCallback,
+            "clientErrorCallback":    errorCallback
+        };
+        this.client.sendRequest(this.receiveResults, this.receiveError, callbackContainer);
     }
     
-    receiveEventsOf(productId, eventTypeId, indexFrom=0, indexTo=9999999) {
+    fetchEventsOf(productId, eventTypeId, successCallback, errorCallback, indexFrom=0, indexTo=9999999) {
         const APIRoute = ProductFetcher.getAPIRouteForEveentsOfProduct().format(productId, eventTypeId, indexFrom, indexTo);
         const URI = ProductFetcher.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
-        this.client.open(this.requestMethod, URI, false);
-        this.client.sendRequest();
-        return this.dataMapper.mapEvents(this.parseJSON());
+        this.client.open(this.requestMethod, URI, true);
+        const callbackContainer = {
+            "dataMappingFunction":    this.dataMapper.mapEvents,
+            "clientSuccessCallback":  successCallback,
+            "clientErrorCallback":    errorCallback
+        };
+        this.client.sendRequest(this.receiveResults, this.receiveError, callbackContainer);
     }
 }
 export default ProductFetcher;
