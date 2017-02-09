@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './FilterBar.css';
 import Filter from './Filter/Filter.js'
 
 class FilterBar extends Component {

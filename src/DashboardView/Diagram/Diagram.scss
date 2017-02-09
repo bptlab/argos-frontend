@@ -1,11 +1,5 @@
-.DiagramWrapper {
-  height: 33%;
-  display: flex;
-  width: 100%;
-  padding-top: 40px;
-  justify-content: space-around;
-}
+@import "PieChart/PieChart";
 
-.innerDiagramWrapper {
-  height: 300px;
+.diagram {
+	margin-bottom: $element-margin-bottom;
 }

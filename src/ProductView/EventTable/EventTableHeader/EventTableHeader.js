@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './EventTableHeader.css';
 
 class EventTableHeader extends Component {
     

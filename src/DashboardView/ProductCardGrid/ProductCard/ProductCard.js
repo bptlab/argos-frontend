@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import './ProductCard.css';
-import ProductCardHeader from './ProductCardHeader/CardHeader.js';
+import ProductCardHeader from './ProductCardHeader/ProductCardHeader.js';
 
 class ProductCard extends Component {
     render() {

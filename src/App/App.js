@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import '../assets/scss/big-grid.css'
+import '../assets/scss/big-grid.scss'
 import 'font-awesome/css/font-awesome.css'
-import './App.css';
 import $ from 'jquery';
 window.jQuery = window.$ = $;
 import tether from 'tether';

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './Header.css';
 import Boiler from '../../assets/icons/boiler.svg'
 
 class Header extends Component {
@@ -8,13 +7,13 @@ class Header extends Component {
             <header>
                 <div className="container">
                     <div className="row d-flex align-items-center">
-                        <div className="col-1 d-flex justify-content-around">
+                        <div className="hidden-xs-down col-sm-1 d-flex justify-content-around">
                             <a href="/">
                                 <img className="product-icon" src={Boiler} alt="Overview page"/>
                             </a>
                         </div>
-                        <div className="col-10 d-flex justify-content-around">
-                            <h1>Early Warning Dashboard</h1>
+                        <div className="col-xs-12 col-sm-10 d-flex justify-content-around">
+                            <h1 className="dashboard-title">Early Warning Dashboard</h1>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './Header.css';
 import StatusPoint from './StatusPoint/StatusPoint.js';
 
 class Header extends Component {

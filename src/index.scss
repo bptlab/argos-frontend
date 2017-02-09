@@ -1,3 +1,8 @@
+@import "App/App";
+@import "DashboardView/DashboardView";
+@import "Loader/Loader";
+@import "ProductView/ProductView";
+
 body {
     margin: 0;
     padding: 0;
@@ -5,8 +10,12 @@ body {
     font-size: 1.6vh;
     height: 100%;
     width: 100%;
-}
 
-#root {
-    height: 100%;
+    #root {
+        height: 100%;
+    }
+
+    h1, p, a, a:hover {
+        color: $COLOR-font-light !important;
+    }
 }

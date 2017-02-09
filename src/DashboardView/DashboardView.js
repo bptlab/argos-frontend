@@ -4,7 +4,6 @@ import Diagram from './Diagram/Diagram.js';
 import SearchBar from './SearchBar/SearchBar.js';
 import ProductCardGrid from './ProductCardGrid/ProductCardGrid.js';
 import Loader from '../Loader/Loader.js';
-import './DashboardView.css'
 
 class DashboardView extends Component {
     constructor(props) {
@@ -64,7 +63,7 @@ class DashboardView extends Component {
             );
         }
         return(
-            <div className="DashboardView">
+            <div className="dashboard-view">
                 {component}
             </div>
         );
