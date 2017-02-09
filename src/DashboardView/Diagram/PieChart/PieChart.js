@@ -10,27 +10,26 @@ const stateColor = {
 };
 
 class PieChart extends Component {
-    getData() {
-        const chartData = [];
-        const that = this; //make this in context of anonyme function. available
-        const chartValueSum = this.props.chartData.reduce((pv, cv) => pv + cv, 0);
-        this.props.chartData.forEach(function (item, index) {
-            chartData.push(that.props.chartData[index] / chartValueSum);
+    getDisplayDataOf(chartData) {
+        const displayData = [];
+        const chartValueSum = chartData.reduce((pv, cv) => pv + cv, 0);
+        chartData.forEach(function (item, index) {
+            displayData.push(chartData[index] / chartValueSum);
         });
-        return chartData;
+        return displayData;
     }
 
-    getColors() {
+    getColors(chartLabels) {
         const backgroundColors = [];
-        this.props.chartLabels.forEach(function (item) {
+        chartLabels.forEach(function (item) {
             backgroundColors.push(stateColor[item]);
         });
         return backgroundColors;
     }
 
-    componentDidMount() {
-        const charWrapper = ReactDOM.findDOMNode(this);
-        const chartContext = charWrapper.getContext("2d");
+    componentDidUpdate() {
+        const charWrapper = this.refs.canvas;
+        const chartContext = charWrapper.getContext('2d');
         const chart = new Chart(chartContext, {
             type: 'doughnut',
             options: {
@@ -39,8 +38,8 @@ class PieChart extends Component {
             data: {
                 labels: this.props.chartLabels,
                 datasets: [{
-                    data: this.getData(),
-                    backgroundColor: this.getColors()
+                    data: this.getDisplayDataOf(this.props.chartData),
+                    backgroundColor: this.getColors(this.props.chartLabels)
                 }]
             }
         });
@@ -55,7 +54,7 @@ class PieChart extends Component {
 
     render() {
         return (
-            <canvas id="pieChart"/>
+            <canvas ref="canvas" id="pieChart"/>
         );
     }
 }

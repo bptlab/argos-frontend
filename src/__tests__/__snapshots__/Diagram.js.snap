@@ -1,0 +1,18 @@
+exports[`test Correct drawing of Diagram 1`] = `
+<div
+  className="container">
+  <div
+    className="DiagramWrapper">
+    <div
+      className="innerDiagramWrapper">
+      <canvas
+        id="pieChart" />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`test Correct drawing of PieChart 1`] = `
+<canvas
+  id="pieChart" />
+`;

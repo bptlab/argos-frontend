@@ -9,9 +9,9 @@ class Diagram extends Component {
         this.chartLabels = [];
     }
 
-    fetchChartData() {
-        for(let i = 0; i < this.props.products.length; i++) {
-            const productState = this.props.products[i].state;
+    fetchChartData(products) {
+        for(let i = 0; i < products.length; i++) {
+            const productState = products[i].state;
             if(this.chartLabels.indexOf(productState) > -1) {
                 this.chartData[this.chartLabels.indexOf(productState)] += 1;
             } else {
@@ -22,7 +22,7 @@ class Diagram extends Component {
     }
 
     render() {
-        this.fetchChartData();
+        this.fetchChartData(this.props.products);
         return (
             <div className="container">
                 <div className="DiagramWrapper">

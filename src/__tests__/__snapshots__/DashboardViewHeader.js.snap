@@ -1,0 +1,26 @@
+exports[`test Render DashboardView Header 1`] = `
+<header>
+  <div
+    className="container">
+    <div
+      className="row d-flex align-items-center">
+      <div
+        className="col-1 d-flex justify-content-around">
+        <a
+          href="/">
+          <img
+            alt="Overview page"
+            className="product-icon"
+            src="boiler.svg" />
+        </a>
+      </div>
+      <div
+        className="col-10 d-flex justify-content-around">
+        <h1>
+          Early Warning Dashboard
+        </h1>
+      </div>
+    </div>
+  </div>
+</header>
+`;
