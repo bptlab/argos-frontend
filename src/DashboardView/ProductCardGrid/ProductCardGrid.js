@@ -3,8 +3,8 @@ import './ProductCardGrid.css';
 import ProductCard from './ProductCard/ProductCard.js';
 
 class ProductCardGrid extends Component {
-    searchMatches(product) {
-        if (!this.props.searchText) {
+    searchMatches(product, searchText) {
+        if (!searchText) {
             return true;
         }
         //SEARCH-CONFIG: Edit this to define relevant fields for overview search
@@ -18,7 +18,7 @@ class ProductCardGrid extends Component {
 
         return searchFields.some((searchField) => {
             const productAttribute = searchField.toString().toLowerCase();
-            const searchQuery = this.props.searchText.toString().toLowerCase();
+            const searchQuery = searchText.toString().toLowerCase();
             return (productAttribute.indexOf(searchQuery) > -1);
         });
     }
@@ -28,7 +28,7 @@ class ProductCardGrid extends Component {
             <div className="container">
                 <div className="row">
                     {this.props.products.map((product) =>  {
-                        if(this.searchMatches(product)) {
+                        if(this.searchMatches(product, this.props.searchText)) {
                             return (
                                 <ProductCard
                                     key={product.id}

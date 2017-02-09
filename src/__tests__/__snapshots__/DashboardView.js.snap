@@ -1,0 +1,131 @@
+exports[`test Correct drawing of DashboardView 1`] = `
+<div
+  className="DashboardView">
+  <header>
+    <div
+      className="container">
+      <div
+        className="row d-flex align-items-center">
+        <div
+          className="col-1 d-flex justify-content-around">
+          <a
+            href="/">
+            <img
+              alt="Overview page"
+              className="product-icon"
+              src="boiler.svg" />
+          </a>
+        </div>
+        <div
+          className="col-10 d-flex justify-content-around">
+          <h1>
+            Early Warning Dashboard
+          </h1>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div
+    className="container">
+    <div
+      className="DiagramWrapper">
+      <div
+        className="innerDiagramWrapper">
+        <canvas
+          id="pieChart" />
+      </div>
+    </div>
+  </div>
+  <div
+    className="container">
+    <div
+      className="searchArea">
+      <div
+        className="input-group">
+        <span
+          className="input-group-addon"
+          id="search-addon">
+          <i
+            className="fa fa-search" />
+        </span>
+        <input
+          className="form-control"
+          onChange={[Function]}
+          placeholder="Search..."
+          type="text"
+          value="" />
+      </div>
+    </div>
+  </div>
+  <div
+    className="container">
+    <div
+      className="row">
+      <div
+        className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <a
+          href="/#/product/0"
+          title="Details for Testproduct 5000 14E-17B">
+          <div
+            className="card ProductCard ProductCard_RUNNING">
+            <h4
+              className="card-title ProductCardTitle ProductCardTitle_RUNNING">
+              Testproduct 5000 14E-17B
+            </h4>
+            <ul>
+              <li
+                className="ProductCardInformationLine PCIL_serialNumber">
+                9830510416
+              </li>
+              <li
+                className="ProductCardInformationLine PCIL_quantity">
+                52189
+              </li>
+              <li
+                className="ProductCardInformationLine PCIL_date">
+                2016-05-07
+              </li>
+              <li
+                className="ProductCardInformationLine PCIL_errorQuantity">
+                84
+              </li>
+            </ul>
+          </div>
+        </a>
+      </div>
+      <div
+        className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <a
+          href="/#/product/1"
+          title="Details for Testproduct 5100 12E-15B">
+          <div
+            className="card ProductCard ProductCard_WARNING">
+            <h4
+              className="card-title ProductCardTitle ProductCardTitle_WARNING">
+              Testproduct 5100 12E-15B
+            </h4>
+            <ul>
+              <li
+                className="ProductCardInformationLine PCIL_serialNumber">
+                7840516417
+              </li>
+              <li
+                className="ProductCardInformationLine PCIL_quantity">
+                3215
+              </li>
+              <li
+                className="ProductCardInformationLine PCIL_date">
+                2016-03-01
+              </li>
+              <li
+                className="ProductCardInformationLine PCIL_errorQuantity">
+                54
+              </li>
+            </ul>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
