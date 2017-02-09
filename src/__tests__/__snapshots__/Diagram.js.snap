@@ -11,8 +11,3 @@ exports[`test Correct drawing of Diagram 1`] = `
   </div>
 </div>
 `;
-
-exports[`test Correct drawing of PieChart 1`] = `
-<canvas
-  id="pieChart" />
-`;
