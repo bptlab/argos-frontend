@@ -70,7 +70,7 @@ class ProductView extends Component {
                 lastFilterId: newFilterId 
             });
         } else {
-            const updatedFilters = this.props.filter;
+            const updatedFilters = this.state.filter;
             updatedFilters[currentFilterId].value = value;
             this.setState({filter: updatedFilters});
         }
