@@ -1,6 +1,8 @@
 @import "Filter/Filter";
 
 .filter-bar {
-	padding-top: 20px;
-	padding-bottom: 20px;
+	margin-bottom: $element-margin-bottom;
+	@include media-breakpoint-up(uhd) {
+		margin-bottom: $uhd-element-margin-bottom;
+	}
 }

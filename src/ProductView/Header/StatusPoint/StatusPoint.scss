@@ -13,3 +13,11 @@
 .status-point-shadow {
   fill: rgba(0, 0, 0, 0.1);
 }
+.status-point {
+  width: 40px;
+  height: 40px;
+  @include media-breakpoint-up(uhd) {
+    width: 100px;
+    height: 100px;
+  }
+}

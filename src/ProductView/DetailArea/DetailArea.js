@@ -7,10 +7,10 @@ class DetailArea extends Component {
         return (
             <div className="detail-area container">
                 <div className="row detail-row">
-                    <div className="col-xs-12 col-sm-6">
+                    <div className="detail-area-block col-xs-12 col-sm-6">
                         <ProductDetails product={this.props.product}/>
                     </div>
-                    <div className="col-xs-12 col-sm-6">
+                    <div className="detail-area-block col-xs-12 col-sm-6">
                         <StatusDerivation product={this.props.product}/>
                     </div>
                 </div>

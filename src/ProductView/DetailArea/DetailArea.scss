@@ -1,11 +1,17 @@
 @import "ProductDetails/ProductDetails";
 @import "StatusDerivation/StatusDerivation";
 
-.detail-area{
-	padding-top: 40px;
-	padding-bottom: 20px;
-
+.detail-area {
+	.detail-area-block {
+		margin-bottom: $element-margin-bottom;
+		@include media-breakpoint-up(uhd) {
+			margin-bottom: $uhd-element-margin-bottom;
+		}
+	}
 	.area-title {
 		margin-bottom: 20px;
+		@include media-breakpoint-down(xs) {
+			margin-bottom: 10px;
+		}
 	}
 }
