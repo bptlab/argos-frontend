@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductCardHeader from '../DashboardView/ProductCardGrid/ProductCard/ProductCardHeader/CardHeader.js';
+import ProductCardHeader from '../DashboardView/ProductCardGrid/ProductCard/ProductCardHeader/ProductCardHeader.js';
 import renderer from 'react-test-renderer';
 
 test('Render DashboardView Header', () => {
