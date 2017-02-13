@@ -12,7 +12,7 @@ const API_SERVER_URL = "localhost";
 const API_SERVER_PORT = 8989;
 
 const dataSource = new ProductFetcher(API_SERVER_URL, API_SERVER_PORT);
-//dataSource.setClient(new RESTInterfaceMock());
+dataSource.setClient(new RESTInterfaceMock());
 ReactDOM.render(
     (<Router history={hashHistory}>
         <Route path="/" component={App}>
