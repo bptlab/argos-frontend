@@ -25,7 +25,7 @@ class PieChart extends Component {
         return backgroundColors;
     }
 
-    componentDidUpdate() {
+    componentDidMount() {
         const charWrapper = this.refs.canvas;
         const chartContext = charWrapper.getContext('2d');
         const chart = new Chart(chartContext, {
