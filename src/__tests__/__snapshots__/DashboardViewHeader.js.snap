@@ -5,7 +5,7 @@ exports[`test Render DashboardView Header 1`] = `
     <div
       className="row d-flex align-items-center">
       <div
-        className="col-1 d-flex justify-content-around">
+        className="hidden-xs-down col-sm-1 d-flex justify-content-around">
         <a
           href="/">
           <img
@@ -15,8 +15,9 @@ exports[`test Render DashboardView Header 1`] = `
         </a>
       </div>
       <div
-        className="col-10 d-flex justify-content-around">
-        <h1>
+        className="col-xs-12 col-sm-10 d-flex justify-content-around">
+        <h1
+          className="dashboard-title">
           Early Warning Dashboard
         </h1>
       </div>

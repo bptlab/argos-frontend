@@ -8,8 +8,9 @@ test("Correct drawing of DashboardView", () => {
     const component = renderer.create(
         <DashboardView
             ref={(child) => {instance = child}}
-            products={TestData.PRODUCTS}/>
+            dataSource={{fetchProducts: function() {return true;}}}/>
     );
+    instance.handleProductData(TestData.PRODUCTS);
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 });
