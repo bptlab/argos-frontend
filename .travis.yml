@@ -1,7 +1,15 @@
 language: node_js
 node_js: "6"
+
+addons:
+  sonarqube:
+    token:
+      secure: "jOmsf4xy90NplrwsBdSPav5aVnZBj0mzzn6oM0/Cc2qM1H3l8mUcd+mwpTMdvNpTnucXX8UqJdvotLRDaZpwb3D2OclfzJk+y0mUh9N/Cve7J/sEfFWD8lizQ8juD40yMDHwvVVkoULlJSbe/pAY4kjQ8J3Ew7Y1HpBpKW/dttNkRj7688jxor5raLCDrBey7ZA7Qn1D47lSBQa0ox2tPwUv57PVqowhIDf8llA4xuTQ52iOzLKi3H8kSNSEhSLrNO91w2FW4lhNSYr+Em676udVMSo/b+NCEZv8/1ziP2JCXKuNx3wRvx5Nv1pyE9EyLUfL8zYZ6PSz2N/TNKQ5rCnIWJ0s9V6xmanU9eX/FUzmWWtqbFidvHT2iAM+LJagVtcypLrXlqA4n6Hp4NZ8Q8nwShgBCvmqWniM8Q6KhOvGTecIUoy6RYL54xFq/qWKuTWUW6iiGKmm3iTDwqOTs29kpVm/XW9Utk5MS6a7VGHTObi9MaluJh8VFhvBtIMfThQSJt9FN0+7C9xkC/4lucN9bp0xBhtSU0rWMzuWy/s5/NHjgtLne68CEH6vKJQ0HjNzXVMP5ezA/XfoYHli4sIp69GaHy9g8DRg2ZoeS+YGXZP0tYMfVTl66sxT92ucf33l3AACXKKzEtQBDfgIrPAUa9o33pxWd6AorIMdh8s="
+
 install:
   - npm install
+
 script:
+  - sonar-scanner
   - npm test
   - npm build
