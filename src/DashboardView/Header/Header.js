@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Boiler from '../../assets/icons/boiler.svg'
+import Boiler from '../../assets/icons/boiler.svg';
 
 class Header extends Component {
     render() {

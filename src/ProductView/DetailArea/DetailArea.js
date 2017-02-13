@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ProductDetails from './ProductDetails/ProductDetails.js'
-import StatusDerivation from './StatusDerivation/StatusDerivation.js'
+import ProductDetails from './ProductDetails/ProductDetails.js';
+import StatusDerivation from './StatusDerivation/StatusDerivation.js';
 
 class DetailArea extends Component {
     render() {

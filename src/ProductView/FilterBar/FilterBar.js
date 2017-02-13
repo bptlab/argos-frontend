@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Filter from './Filter/Filter.js'
+import Filter from './Filter/Filter.js';
 
 class FilterBar extends Component {
     render() {

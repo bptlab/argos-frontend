@@ -1,18 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory, IndexRoute } from 'react-router'
+import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import App from './App/App';
 import ProductView from './ProductView/ProductView.js';
 import DashboardView from './DashboardView/DashboardView.js';
 import ProductFetcher from './ProductFetcher/ProductFetcher.js';
 import RESTInterfaceMock from './ProductFetcher/RESTInterfaceMock.js';
-import $ from 'jquery';
-window.jQuery = window.$ = $;
-import tether from 'tether';
-global.Tether = tether;
-require('bootstrap');
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'font-awesome/css/font-awesome.css'
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.css';
 import './index.scss';
 
 const API_SERVER_URL = "localhost";

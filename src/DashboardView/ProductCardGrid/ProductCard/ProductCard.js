@@ -38,6 +38,6 @@ class ProductCardInformationLine extends Component {
             <li className={ `ProductCardInformationLine PCIL_${this.props.category}` }>
                 {this.props.children}
             </li>
-        )
+        );
     }
 }

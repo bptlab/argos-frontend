@@ -51,7 +51,7 @@ class ProductView extends Component {
         this.setState({
             product: products
         });
-        this.props.dataSource.fetchEventTypesOf(this.prodId, this.handleEventTypeData, this.handleError)
+        this.props.dataSource.fetchEventTypesOf(this.prodId, this.handleEventTypeData, this.handleError);
     }
 
     handleError(errorCode) {

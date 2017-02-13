@@ -5,4 +5,4 @@ class Loader extends Component {
             <div className="loader"></div>
         );
     }
-} export default Loader
+} export default Loader;
