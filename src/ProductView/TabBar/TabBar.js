@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './TabBar.css';
 import Tab from './Tab/Tab.js';
 
 class TabBar extends Component {

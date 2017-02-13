@@ -56,7 +56,7 @@ class ProductFetcher {
     
     parseJSON(results) {
         try {
-            return JSON.parse(results)
+            return JSON.parse(results);
         } catch (error) {
             document.getElementById('root').innerHTML = "ERROR!";
             return [];
@@ -97,8 +97,8 @@ class ProductFetcher {
     fetchProduct(prodId, successCallback, errorCallback) {
         this.fetchProducts(function(products) {
             successCallback(products.find((product) => {
-                return product.id === prodId}
-            ))
+                return product.id === prodId;}
+            ));
         }, errorCallback);
     }
 

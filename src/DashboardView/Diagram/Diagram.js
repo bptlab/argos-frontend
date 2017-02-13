@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import PieChart from './PieChart/PieChart.js'
-import './Diagram.css';
+import PieChart from './PieChart/PieChart.js';
 
 class Diagram extends Component {
     constructor() {
@@ -25,11 +24,13 @@ class Diagram extends Component {
         this.fetchChartData(this.props.products);
         return (
             <div className="container">
-                <div className="DiagramWrapper">
-                    <div className="innerDiagramWrapper">
-                        <PieChart
-                            chartData={this.chartData}
-                            chartLabels={this.chartLabels}/>
+                <div className="diagram">
+                    <div className="row">
+                        <div className="col-xs-12 offset-sm-3 col-sm-6 offset-lg-4 col-lg-4 offset-uhd-5 col-uhd-2">
+                            <PieChart
+                                chartData={this.chartData}
+                                chartLabels={this.chartLabels}/>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,16 +1,13 @@
-@import "../../definitions.scss";
+@import "StatusPoint/StatusPoint";
+
 header {
 	h1, p, a, a:hover {
 		color: $COLOR-font-light !important;
 	}
-	background-color: $COLOR-dark-background;
-	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-	> * {
-		padding: 10px 0px;
-	}
 	.home-button {
 		font-size: 30px;
+		@include media-breakpoint-up(uhd) {
+			font-size: 90px;
+		}
 	}
 }

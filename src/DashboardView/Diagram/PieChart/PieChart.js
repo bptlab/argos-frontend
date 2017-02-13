@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Chart from "chart.js"
-import './PieChart.css';
+import Chart from "chart.js";
 
 const stateColor = {
     ERROR: "#D33F49",

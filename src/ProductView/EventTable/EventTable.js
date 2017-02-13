@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './EventTable.css';
 import EventTableHeader from './EventTableHeader/EventTableHeader.js';
 import EventTableRow from './EventTableRow/EventTableRow.js';
 

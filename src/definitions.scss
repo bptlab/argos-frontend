@@ -1,3 +1,12 @@
+@font-face { font-family: "Ionicons";
+	src: url("./assets/fonts/icons/ionicons.eot");
+	src: url("./assets/fonts/icons/ionicons.eot#iefix") format("embedded-opentype"),
+	url("./assets/fonts/icons/ionicons.ttf")	format("truetype"),
+	url("./assets/fonts/icons/ionicons.woff") format("woff"),
+	url("./assets/fonts/icons/ionicons.svg#Ionicons") format("svg");
+	font-weight: normal; font-style: normal;
+}
+
 $COLOR-success: #9FAB61;
 $COLOR-success-light: #B1BE6C;
 $COLOR-warning: #EF9D6E;
@@ -11,3 +20,15 @@ $ICON-errorQuantity: '\f3e5';
 $ICON-serialNumber: '\f44c';
 $ICON-date: '\f3f3';
 $ICON-quantity: '\f44f';
+
+
+$element-margin-bottom: 30px;
+$uhd-element-margin-bottom: 100px;
+
+$highlight-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+
+@mixin dropdown-shadow($shadow) {
+	-webkit-box-shadow: $shadow;
+	-moz-box-shadow: $shadow;
+	box-shadow: $shadow;
+}

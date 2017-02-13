@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './EventTableRow.css';
 
 class EventTableRow extends Component {
     render() {

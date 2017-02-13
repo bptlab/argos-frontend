@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import './ProductView.css';
 import Header from './Header/Header.js';
 import DetailArea from './DetailArea/DetailArea.js';
-import FilterBar from './Filterbar/FilterBar.js';
-import TabBar from './Tabbar/TabBar.js';
+import FilterBar from './FilterBar/FilterBar.js';
+import TabBar from './TabBar/TabBar.js';
 import EventTable from './EventTable/EventTable.js';
 import Loader from './../Loader/Loader.js';
 
@@ -52,7 +51,7 @@ class ProductView extends Component {
         this.setState({
             product: products
         });
-        this.props.dataSource.fetchEventTypesOf(this.prodId, this.handleEventTypeData, this.handleError)
+        this.props.dataSource.fetchEventTypesOf(this.prodId, this.handleEventTypeData, this.handleError);
     }
 
     handleError(errorCode) {
