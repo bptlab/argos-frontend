@@ -21,7 +21,10 @@ $ICON-serialNumber: '\f44c';
 $ICON-date: '\f3f3';
 $ICON-quantity: '\f44f';
 
+
 $element-margin-bottom: 30px;
+$uhd-element-margin-bottom: 100px;
+
 $highlight-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 
 @mixin dropdown-shadow($shadow) {

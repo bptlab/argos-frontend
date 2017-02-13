@@ -1,3 +1,8 @@
+
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/variables";
+@import "assets/scss/big-grid";
+@import "~bootstrap/scss/bootstrap-grid";
 @import "App/App";
 @import "DashboardView/DashboardView";
 @import "Loader/Loader";
@@ -15,7 +20,45 @@ body {
         height: 100%;
     }
 
+    /* Typography */
+
     h1, p, a, a:hover {
-        color: $COLOR-font-light !important;
+        color: $COLOR-dark-background;
+    }
+
+    header {
+        margin-bottom: $element-margin-bottom;
+        @include media-breakpoint-up(uhd) {
+            margin-bottom: $uhd-element-margin-bottom;
+        }
+        background-color: $COLOR-dark-background;
+        @include dropdown-shadow($highlight-shadow);
+
+        .dashboard-title {
+            margin: 10px 0px;
+            @include media-breakpoint-up(uhd) {
+                margin: 20px 0px;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(xs) {
+        h4 {
+            font-size: 15px;
+        }
+    }
+
+    @include media-breakpoint-up(uhd) {
+        h1 {
+            font-size: 80px;
+        }
+        h4 {
+            font-size: 35px;
+        }
+        .input-group {
+            i, input {
+                font-size: 35px;
+            }
+        }
     }
 }
