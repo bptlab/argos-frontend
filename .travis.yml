@@ -13,6 +13,6 @@ install:
   - npm install
 
 script:
-  - sonar-scanner
+  - sonar-scanner -X
   - npm test
   - npm build
