@@ -38,6 +38,9 @@ a .ProductCard:hover {
     -moz-osx-font-smoothing: grayscale;
     padding-right: 1vh;
     line-height: 3vh;
+    @include media-breakpoint-down(xs) {
+        font-size: 12px;
+    }
 }
 
 .ProductCardInformationLine:before {

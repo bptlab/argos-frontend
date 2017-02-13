@@ -15,9 +15,9 @@ class SearchBar extends Component {
             <div className="container">
                 <div className="searchArea">
                     <div className="input-group">
-                    <span className="input-group-addon" id="search-addon">
-                        <i className="fa fa-search"/>
-                    </span>
+                        <span className="input-group-addon" id="search-addon">
+                            <i className="fa fa-search"/>
+                        </span>
                         <input
                             type="text"
                             className="form-control"

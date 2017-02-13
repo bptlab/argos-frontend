@@ -1,13 +1,8 @@
 header {
-	margin-bottom: $element-margin-bottom;
-	background-color: $COLOR-dark-background;
-	@include dropdown-shadow($highlight-shadow);
-
 	.product-icon {
 		height: 50px;
-	}
-
-	.dashboard-title {
-		margin: 10px 0px;
+		@include media-breakpoint-up(uhd) {
+			height: 120px;
+		}
 	}
 }
