@@ -11,6 +11,9 @@ install:
   - npm install
 
 script:
-  - sonar-scanner
+  - sonar-scanner -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.branch=$TRAVIS_BRANCH -Dsonar.sources=src/
   - npm test
   - npm build
+
+notifications:
+  email: false
