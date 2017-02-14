@@ -14,3 +14,10 @@ test("Correct drawing of DashboardView", () => {
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 });
+
+test("Add a state to exclude from view", () => {
+    instance.handleExcludeStateInput("RUNNING");
+    expect(instance.state.excludedStates[0]).toEqual("RUNNING");
+    instance.handleExcludeStateInput("RUNNING");
+    expect(instance.state.excludedStates.length).toEqual(0);
+});

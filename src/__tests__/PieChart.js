@@ -11,7 +11,8 @@ test("Correct drawing of PieChart", () => {
         <PieChart
             ref={(child) => {instance = child}}
             chartData={chartLabels}
-            chartLabels={chartData}/>
+            chartLabels={chartData}
+            onStateExcludeInput={() => {/* do nothing in case of test */}}/>
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
