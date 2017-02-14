@@ -28,20 +28,36 @@ class PieChart extends Component {
     componentDidMount() {
         const charWrapper = this.refs.canvas;
         if(charWrapper) {
+            const that = this;
             const chartContext = charWrapper.getContext('2d');
             const chart = new Chart(chartContext, {
                 type: 'doughnut',
-                options: {
-                    responsive: true
-                },
                 data: {
                     labels: this.props.chartLabels,
                     datasets: [{
                         data: this.getDisplayDataOf(this.props.chartData),
                         backgroundColor: this.getColors(this.props.chartLabels)
                     }]
+                },
+                options: {
+                    responsive: true,
+                    legend: {
+                        onClick: function (event, legendItem) {
+                            //call funtion to remove cards with corresponding state from grid
+                            that.props.onStateExcludeInput(legendItem.text);
+                            //hide clicked legendCategory
+                            const index = legendItem.index;
+                            const lChart = this.chart;
+                            let i, ilen, meta;
+                            for (i = 0, ilen = (lChart.data.datasets || []).length; i < ilen; ++i) {
+                                meta = lChart.getDatasetMeta(i);
+                                meta.data[index].hidden = !meta.data[index].hidden;
+                            }
+                            lChart.update();
+                        }
+                    }
                 }
-            });
+            });            
             this.state = {
                 chart: chart
             };
