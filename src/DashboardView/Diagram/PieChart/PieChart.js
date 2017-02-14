@@ -27,23 +27,25 @@ class PieChart extends Component {
 
     componentDidMount() {
         const charWrapper = this.refs.canvas;
-        const chartContext = charWrapper.getContext('2d');
-        const chart = new Chart(chartContext, {
-            type: 'doughnut',
-            options: {
-                responsive: true
-            },
-            data: {
-                labels: this.props.chartLabels,
-                datasets: [{
-                    data: this.getDisplayDataOf(this.props.chartData),
-                    backgroundColor: this.getColors(this.props.chartLabels)
-                }]
-            }
-        });
-        this.state = {
-            chart: chart
-        };
+        if(charWrapper) {
+            const chartContext = charWrapper.getContext('2d');
+            const chart = new Chart(chartContext, {
+                type: 'doughnut',
+                options: {
+                    responsive: true
+                },
+                data: {
+                    labels: this.props.chartLabels,
+                    datasets: [{
+                        data: this.getDisplayDataOf(this.props.chartData),
+                        backgroundColor: this.getColors(this.props.chartLabels)
+                    }]
+                }
+            });
+            this.state = {
+                chart: chart
+            };
+        }
     }
 
     componentWillUnmount() {
