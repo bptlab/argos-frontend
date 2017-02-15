@@ -48,9 +48,9 @@ class PieChart extends Component {
                             //hide clicked legendCategory
                             const index = legendItem.index;
                             const lChart = this.chart;
-                            let i, ilen, meta;
-                            for (i = 0, ilen = (lChart.data.datasets || []).length; i < ilen; ++i) {
-                                meta = lChart.getDatasetMeta(i);
+                            const dataSetLength = (lChart.data.datasets || []).length;
+                            for (let i = 0; i < dataSetLength; ++i) {
+                                const meta = lChart.getDatasetMeta(i);
                                 meta.data[index].hidden = !meta.data[index].hidden;
                             }
                             lChart.update();
