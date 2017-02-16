@@ -4,13 +4,13 @@ import renderer from 'react-test-renderer';
 let instance;
 
 test('Handling ProductView Filter input', () => {
-    let callback = jest.fn();
+    let callbackMock = jest.fn();
     renderer.create(
         <Filter ref={(child) => {instance = child}}
                 id='0' value=''
-                onChangeFilterInput={callback}/>
+                onChangeFilterInput={callbackMock}/>
     );
-    let event = {target: {value: ''}};
+    let event = {target: {}};
     instance.handleFilterInput(event);
-    expect(callback).toBeCalled();
+    expect(callbackMock).toBeCalled();
 });
