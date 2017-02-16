@@ -28,3 +28,9 @@ test("Add a state to exclude from view", () => {
     instance.handleExcludeStateInput("RUNNING");
     expect(instance.state.excludedStates.length).toEqual(0);
 });
+test("Error handling", () => {
+    const errorCode = "An test-error occured";
+    instance.handleError(errorCode);
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+});
