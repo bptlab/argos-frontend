@@ -221,3 +221,16 @@ exports[`test Rendering of ProductView 1`] = `
   </div>
 </div>
 `;
+
+exports[`test Rendering of ProductView 2`] = `
+<div>
+  <div
+    className="critical-error">
+    <i
+      className="fa fa-exclamation-triangle warning-sign" />
+    <p>
+      404
+    </p>
+  </div>
+</div>
+`;
