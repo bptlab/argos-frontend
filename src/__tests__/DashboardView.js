@@ -15,6 +15,13 @@ test("Correct drawing of DashboardView", () => {
     expect(tree).toMatchSnapshot();
 });
 
+test("Error handling", () => {
+    const errorCode = "An test-error occured";
+    instance.handleError(errorCode);
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+});
+
 test("Add a state to exclude from view", () => {
     instance.handleExcludeStateInput("RUNNING");
     expect(instance.state.excludedStates[0]).toEqual("RUNNING");
