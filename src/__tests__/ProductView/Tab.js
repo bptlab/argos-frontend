@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 let instance;
 
 test('Clicking ProductView Tab', () => {
-    let callbackMock = jest.fn();
+    const callbackMock = jest.fn();
     renderer.create(
         <Tab ref={(child) => {instance = child}}
              eventType={{}}

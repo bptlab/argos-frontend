@@ -18,7 +18,6 @@ test("Rendering of ProductView", () => {
     instance.handleEventTypeData(TestEventTypes.EVENTTYPES);
     instance.loadEventsFor(TestEventTypes.EVENTTYPES[0]);
     instance.handleEventData(TestEvents.EVENTS);
-
     expect(mockCallback).toHaveBeenCalledTimes(3);
 
     let tree = component.toJSON();
@@ -38,9 +37,11 @@ test('Changing filter input', () => {
             params={{productId: 0}}/>
     );
     expect(instance.state.filter).toHaveLength(1);
+
     instance.onChangeFilterInput(0, 'Query');
     expect(instance.state.filter).toHaveLength(2);
     expect(instance.state.filter[0].value).toMatch('Query');
+
     instance.onChangeFilterInput(0, 'NextQuery');
     expect(instance.state.filter[0].value).toMatch('NextQuery');
 });

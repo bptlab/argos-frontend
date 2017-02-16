@@ -5,12 +5,12 @@ import TestEventTable from './../testData/eventTable.js';
 let instance;
 
 test("Rendering of EventTable", () => {
-    let mockFilter = {id: 'mock-filter', value: '200'};
+    const mockFilter = {id: 'mock-filter', value: '200'};
     const component = renderer.create(
         <EventTable ref={(child) => {instance = child}}
                     eventTable={TestEventTable.EVENTTABLE}
                     filter={[mockFilter]}/>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 });
