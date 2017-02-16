@@ -61,16 +61,18 @@ class ProductView extends Component {
     }
 
     onChangeFilterInput(currentFilterId, value) {
+        const updatedFilters = this.state.filter;
+        updatedFilters[currentFilterId].value = value;
+
         if(currentFilterId === this.state.lastFilterId) {
             const newFilterId = this.state.lastFilterId + 1;
             const newFilter = {id: `filter-${newFilterId}`, value: ''};
             this.setState({ 
-                filter: this.state.filter.concat([newFilter]), 
-                lastFilterId: newFilterId 
+                filter: updatedFilters.concat([newFilter]),
+                lastFilterId: newFilterId
             });
-        } else {
-            const updatedFilters = this.state.filter;
-            updatedFilters[currentFilterId].value = value;
+        }
+        else {
             this.setState({filter: updatedFilters});
         }
     }
