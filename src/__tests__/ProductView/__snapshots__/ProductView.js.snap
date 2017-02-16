@@ -1,4 +1,4 @@
-exports[`test Correct drawing of ProductView 1`] = `
+exports[`test Rendering of ProductView 1`] = `
 <div>
   <div>
     <header>

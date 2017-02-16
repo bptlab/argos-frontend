@@ -6,7 +6,7 @@ import TestEventTypes from './../testData/eventTypes.js'
 import TestEvents from './../testData/events.js'
 let instance;
 
-test("Correct drawing of ProductView", () => {
+test("Rendering of ProductView", () => {
     const component = renderer.create(
         <ProductView
             ref={(child) => {instance = child}}
