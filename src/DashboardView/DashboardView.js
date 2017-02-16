@@ -23,7 +23,7 @@ class DashboardView extends Component {
     
     handleExcludeStateInput(state) {
         const stateIndex = this.state.excludedStates.indexOf(state);
-        if(stateIndex == -1) {
+        if(stateIndex === -1) {
             this.setState({
                 excludedStates: this.state.excludedStates.concat([state])
             });

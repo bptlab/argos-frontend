@@ -28,7 +28,7 @@ class ProductCardGrid extends Component {
                 <div className="row">
                     {this.props.products.map((product) =>  {
                         if(this.searchMatches(product, this.props.searchText) &&
-                        this.props.excludedStates.indexOf(product.state) == -1) {
+                        this.props.excludedStates.indexOf(product.state) === -1) {
                             return (
                                 <ProductCard
                                     key={product.id}
