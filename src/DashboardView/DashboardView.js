@@ -11,12 +11,29 @@ class DashboardView extends Component {
         this.state = {
             searchText: '',
             products:   null,
-            error:      null
+            error:      null,
+            excludedStates: []
         };
         // function binding
         this.handleSearchInput = this.handleSearchInput.bind(this);
         this.handleProductData = this.handleProductData.bind(this);
         this.handleError = this.handleError.bind(this);
+        this.handleExcludeStateInput = this.handleExcludeStateInput.bind(this);
+    }
+    
+    handleExcludeStateInput(state) {
+        const stateIndex = this.state.excludedStates.indexOf(state);
+        if(stateIndex == -1) {
+            this.setState({
+                excludedStates: this.state.excludedStates.concat([state])
+            });
+        } else {
+            const newStates = this.state.excludedStates;
+            newStates.splice(stateIndex,1);
+            this.setState({
+                excludedStates: newStates
+            });
+        }
     }
 
     handleSearchInput(searchText) {
@@ -52,13 +69,16 @@ class DashboardView extends Component {
             component = (
                 <div>
                     <Header/>
-                    <Diagram products={this.state.products}/>
+                    <Diagram 
+                        products={this.state.products}
+                        onStateExcludeInput={this.handleExcludeStateInput} />
                     <SearchBar
                         onChangeSearchInput={this.handleSearchInput}
                         searchText={this.state.searchText}/>
                     <ProductCardGrid
                         products={this.state.products}
-                        searchText={this.state.searchText}/>
+                        searchText={this.state.searchText}
+                        excludedStates={this.state.excludedStates} />
                 </div>
             );
         }

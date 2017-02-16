@@ -8,10 +8,21 @@ test("Correct drawing of ProductCardGrid", () => {
     const component = renderer.create(
         <ProductCardGrid
             ref={(child) => {instance = child}}
-            products={TestData.PRODUCTS}/>
+            products={TestData.PRODUCTS}
+            excludedStates={[]}/>
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
+});
+
+test("Correct drawing of ProductCardGrid in case of excluded state", () => {
+    const component2 = renderer.create(
+        <ProductCardGrid
+            products={TestData.PRODUCTS}
+            excludedStates={["WARNING"]}/>
+    );
+    const tree2 = component2.toJSON();
+    expect(tree2).toMatchSnapshot();
 });
 
 test("Correct search of products", () => {

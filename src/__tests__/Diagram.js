@@ -8,7 +8,8 @@ test("Correct drawing of Diagram", () => {
     const component = renderer.create(
         <Diagram 
             ref={(child) => {instance = child}}
-            products={TestData.PRODUCTS}/>
+            products={TestData.PRODUCTS}
+            onStateExcludeInput={() => {/* do nothing in case of test */}}/>
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();

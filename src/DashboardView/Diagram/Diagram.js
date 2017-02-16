@@ -29,7 +29,8 @@ class Diagram extends Component {
                         <div className="col-xs-12 offset-sm-3 col-sm-6 offset-lg-4 col-lg-4 offset-uhd-5 col-uhd-2">
                             <PieChart
                                 chartData={this.chartData}
-                                chartLabels={this.chartLabels}/>
+                                chartLabels={this.chartLabels}
+                                onStateExcludeInput={this.props.onStateExcludeInput}/>
                         </div>
                     </div>
                 </div>
