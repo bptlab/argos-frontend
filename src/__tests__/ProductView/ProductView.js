@@ -7,7 +7,7 @@ import TestEvents from './../testData/events.js'
 let instance;
 
 test("Rendering of ProductView", () => {
-    let mockCallback = jest.fn();
+    const mockCallback = jest.fn();
     const component = renderer.create(
         <ProductView
             ref={(child) => {instance = child}}
@@ -29,7 +29,7 @@ test("Rendering of ProductView", () => {
 });
 
 test('Changing filter input', () => {
-    let mockCallback = jest.fn();
+    const mockCallback = jest.fn();
     renderer.create(
         <ProductView
             ref={(child) => {instance = child}}
