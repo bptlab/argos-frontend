@@ -20,6 +20,7 @@ class SearchBar extends Component {
                         </span>
                         <input
                             type="text"
+                            ref="searchInput"
                             className="form-control"
                             placeholder="Search..."
                             value={this.props.searchText}
