@@ -42,7 +42,7 @@ test("Success handling", () => {
     instance.onSuccess(successMockCallback, errorMockCallback, {});
     expect(errorMockCallback).toHaveBeenCalledTimes(1);
 
-    instance.client.readyStatus = 0;
+    instance.client.readyState = 0;
     instance.onSuccess(successMockCallback, errorMockCallback, {});
     expect(errorMockCallback).toHaveBeenCalledTimes(2);
 });
