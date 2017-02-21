@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class CardHeader extends Component {
+class ProductCardHeader extends Component {
     render() {
         return (
             <h4 className={ `card-title ProductCardTitle ProductCardTitle_${this.props.category}` }>
@@ -10,4 +10,4 @@ class CardHeader extends Component {
     }
 }
 
-export default CardHeader;
+export default ProductCardHeader;

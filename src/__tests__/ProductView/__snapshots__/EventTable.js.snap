@@ -1,0 +1,35 @@
+exports[`test Rendering of EventTable 1`] = `
+<div
+  className="container event-table-container">
+  <table
+    className="table">
+    <thead
+      className="event-table-header thead">
+      <tr>
+        <th>
+          #
+        </th>
+        <th>
+          ErrorCode
+        </th>
+        <th>
+          ErrorDescription
+        </th>
+        <th>
+          PossibleFix
+        </th>
+        <th>
+          DeviceID
+        </th>
+        <th>
+          DeviceLocation
+        </th>
+        <th>
+          SoftwareVersion
+        </th>
+      </tr>
+    </thead>
+    <tbody />
+  </table>
+</div>
+`;

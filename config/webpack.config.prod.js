@@ -112,18 +112,18 @@ module.exports = {
       // "url" loader works just like "file" loader but it also embeds
       // assets smaller than specified size as data URLs to avoid requests.
       {
-        exclude: [
-          /\.html$/,
-          /\.(js|jsx)$/,
-          /\.css$/,
-          /\.json$/,
-          /\.svg$/
-        ],
-        loader: 'url',
-        query: {
-          limit: 10000,
-          name: 'static/media/[name].[hash:8].[ext]'
-        }
+          exclude: [
+              /\.html$/,
+              /\.(js|jsx)$/,
+              /\.(css|scss)$/,
+              /\.json$/,
+              /\.svg$/
+          ],
+          loader: 'url',
+          query: {
+              limit: 10000,
+              name: 'static/media/[name].[hash:8].[ext]'
+          }
       },
       // Process JS with Babel.
       {
@@ -131,6 +131,11 @@ module.exports = {
         include: paths.appSrc,
         loader: 'babel',
         
+      },
+      {
+          test: /\.scss$/,
+          include: paths.appSrc,
+          loaders: ["style", "css", "sass"]
       },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
