@@ -7,18 +7,24 @@ import TestEvents from './../testData/events.js'
 let instance;
 
 test("Rendering of ProductView", () => {
-    const mockCallback = jest.fn();
+    const fetchProductMockCallback = jest.fn();
+    const fetchEventTypesOfMockCallback = jest.fn();
+    const fetchEventsOfMockCallback = jest.fn();
     const component = renderer.create(
         <ProductView
             ref={(child) => {instance = child}}
-            dataSource={{fetchProduct: mockCallback, fetchEventTypesOf: mockCallback, fetchEventsOf: mockCallback}}
+            dataSource={{fetchProduct: fetchProductMockCallback,
+                fetchEventTypesOf: fetchEventTypesOfMockCallback,
+                fetchEventsOf: fetchEventsOfMockCallback}}
             params={{productId: 0}}/>
     );
     instance.handleProductData(TestProduct.PRODUCT);
     instance.handleEventTypeData(TestEventTypes.EVENTTYPES);
     instance.loadEventsFor(TestEventTypes.EVENTTYPES[0]);
     instance.handleEventData(TestEvents.EVENTS);
-    expect(mockCallback).toHaveBeenCalledTimes(3);
+    expect(fetchProductMockCallback).toBeCalled();
+    expect(fetchEventTypesOfMockCallback).toBeCalled();
+    expect(fetchEventsOfMockCallback).toBeCalled();
 
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
@@ -33,7 +39,9 @@ test('Changing filter input', () => {
     renderer.create(
         <ProductView
             ref={(child) => {instance = child}}
-            dataSource={{fetchProduct: mockCallback, fetchEventTypesOf: mockCallback, fetchEventsOf: mockCallback}}
+            dataSource={{fetchProduct: mockCallback,
+                fetchEventTypesOf: mockCallback,
+                fetchEventsOf: mockCallback}}
             params={{productId: 0}}/>
     );
     expect(instance.state.filter).toHaveLength(1);
