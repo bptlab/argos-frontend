@@ -36,11 +36,11 @@ test("Success handling", () => {
     const successMockCallback = jest.fn();
     const errorMockCallback = jest.fn();
     instance.onSuccess(successMockCallback, errorMockCallback, {});
-    expect(successMockCallback).toHaveBeenCalledTimes(1);
+    expect(successMockCallback).toBeCalled();
     
     instance.client.status = 0;
     instance.onSuccess(successMockCallback, errorMockCallback, {});
-    expect(errorMockCallback).toHaveBeenCalledTimes(1);
+    expect(errorMockCallback).toBeCalled();
 
     instance.client.readyState = 0;
     instance.onSuccess(successMockCallback, errorMockCallback, {});
@@ -50,5 +50,5 @@ test("Success handling", () => {
 test("Error handling", () => {
     const errorMockCallback = jest.fn();
     instance.onError(errorMockCallback, {});
-    expect(errorMockCallback).toHaveBeenCalledTimes(1);
+    expect(errorMockCallback).toBeCalled();
 });
