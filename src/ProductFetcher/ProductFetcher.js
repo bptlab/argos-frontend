@@ -45,18 +45,19 @@ class ProductFetcher {
     setClient(client) {
         this.client = client;
     }
-    
-    parseJSON(results) {
+
+    parseJSON(results, errorCallback) {
         try {
             return JSON.parse(results);
         } catch (error) {
-            document.getElementById('root').innerHTML = "ERROR!";
+            errorCallback(error);
             return [];
         }
     }
     
     receiveResults(results, clientDataContainer) {
-        const data = clientDataContainer.dataMappingFunction(this.parseJSON(results));
+        const errorCallback =   clientDataContainer.clientErrorCallback;
+        const data = clientDataContainer.dataMappingFunction(this.parseJSON(results), errorCallback);
         clientDataContainer.clientSuccessCallback(data);
     }
     

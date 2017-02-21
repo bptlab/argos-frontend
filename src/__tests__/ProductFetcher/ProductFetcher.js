@@ -57,3 +57,10 @@ test('Error handling', () => {
     instance.receiveError(404, callbackContainer);
     expect(errorMockCallback).toBeCalledWith(404);
 });
+
+test('Error handling while parsing JSON', () => {
+    const brokenJSON = "[}";
+    const errorMockCallback = jest.fn();
+    instance.parseJSON(brokenJSON, errorMockCallback)
+    expect(errorMockCallback).toBeCalled();
+});
