@@ -149,3 +149,17 @@ exports[`test Error handling 1`] = `
   </div>
 </div>
 `;
+
+exports[`test Search in Searchbar 1`] = `
+<div
+  className="dashboard-view">
+  <div
+    className="critical-error">
+    <i
+      className="fa fa-exclamation-triangle warning-sign" />
+    <p>
+      An test-error occured
+    </p>
+  </div>
+</div>
+`;

@@ -1,0 +1,23 @@
+exports[`test Correct drawing of SearchBar 1`] = `
+<div
+  className="container">
+  <div
+    className="searchArea">
+    <div
+      className="input-group">
+      <span
+        className="input-group-addon"
+        id="search-addon">
+        <i
+          className="fa fa-search" />
+      </span>
+      <input
+        className="form-control"
+        onChange={[Function]}
+        placeholder="Search..."
+        type="text"
+        value="" />
+    </div>
+  </div>
+</div>
+`;

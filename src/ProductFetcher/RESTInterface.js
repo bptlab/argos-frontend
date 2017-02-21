@@ -29,9 +29,5 @@ class RESTInterface {
     onError(errorCallback, clientDataContainer) {
         errorCallback("A critical connection error occurred! "+this.client.statusText, clientDataContainer);
     }
-    
-    getResponse() {
-        return this.client.responseText;
-    }
 }
 export default RESTInterface;

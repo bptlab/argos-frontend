@@ -28,3 +28,9 @@ test("Add a state to exclude from view", () => {
     instance.handleExcludeStateInput("RUNNING");
     expect(instance.state.excludedStates.length).toEqual(0);
 });
+
+test("Search in Searchbar", () => {
+    instance.handleSearchInput("ProductDescription with Error");
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+});
