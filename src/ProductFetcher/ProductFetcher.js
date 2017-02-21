@@ -41,14 +41,6 @@ class ProductFetcher {
         this.receiveResults = this.receiveResults.bind(this);
         this.receiveError = this.receiveError.bind(this);
     }
-
-    getRemoteAddress() {
-        return self.remoteAddress;
-    }
-
-    getRemotePort() {
-        return self.remotePort;
-    }
     
     setClient(client) {
         this.client = client;
