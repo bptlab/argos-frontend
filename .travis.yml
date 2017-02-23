@@ -2,6 +2,12 @@ dist: trusty
 language: node_js
 node_js: '6'
 
+addons:
+  sonarqube:
+    branches:
+      - .*
+    github_token: $GITHUB_ACCESS_TOKEN
+
 install:
   - npm install
 
