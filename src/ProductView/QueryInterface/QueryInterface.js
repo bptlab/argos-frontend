@@ -30,6 +30,8 @@ class QueryInterface extends Component {
             eventQuery: '',
             validationResult: ''
         };
+        this.handleChangeAttributeName = this.handleChangeAttributeName.bind(this);
+        this.handleChangeAttributeType = this.handleChangeAttributeType.bind(this);
         this.handleChangeQuery = this.handleChangeQuery.bind(this);
         this.handleSaveQuery = this.handleSaveQuery.bind(this);
     }
@@ -38,14 +40,32 @@ class QueryInterface extends Component {
         this.setState({ query: this.props.defaultQuery });
     }
 
-    handleChangeQuery(event) {
-        this.validateQuery(event.target.value);
+    handleChangeAttributeName(id, name) {
+        let attributes = this.state.eventTypeAttributes;
+        for (let i = 0; i < this.state.eventTypeAttributes.length; i++) {
+            if (attributes[i].id === id && attributes[i].editable === true) {
+                attributes[i].name = name;
+                this.setState({ eventTypeAttributes: attributes });
+            }
+        }
+    }
 
+    handleChangeAttributeType(id, type) {
+        let attributes = this.state.eventTypeAttributes;
+        for (let i = 0; i < this.state.eventTypeAttributes.length; i++) {
+            if (attributes[i].id === id && attributes[i].editable === true) {
+                attributes[i].type = type;
+                this.setState({ eventTypeAttributes: attributes });
+            }
+        }
     }
 
     handleSaveQuery() {
         this.validateEventType();
         this.validateQuery(this.state.query);
+    handleChangeQuery(event) {
+        this.setState({ query: event.target.value });
+    }
 
     }
 
