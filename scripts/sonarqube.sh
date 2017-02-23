@@ -3,7 +3,7 @@
 echo "Sonarqube analysis triggered"
 echo $TRAVIS_PULL_REQUEST
 
-if ["$TRAVIS_PULL_REQUEST" == "false"] then
+if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     echo "normal commit"
     sonar-scanner \
               -Dsonar.host.url=$SONAR_HOST_URL \
