@@ -2,6 +2,7 @@
 
 echo "Sonarqube analysis triggered"
 echo $TRAVIS_PULL_REQUEST
+echo $SONARQUBE_SKIPPED
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     echo "normal commit"
@@ -21,5 +22,6 @@ else
                   -Dsonar.host.url=$SONAR_HOST_URL \
                   -Dsonar.login=$SONAR_AUTH_TOKEN \
                   -Dsonar.branch=$TRAVIS_BRANCH
+    echo $SONARQUBE_SKIPPED
 
 fi
