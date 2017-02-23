@@ -6,7 +6,12 @@ let instance;
 
 beforeAll(() => {
     instance = new ProductFetcher("address", 1234, "GET");
-    instance.setClient(new RESTInterfaceMock)
+    instance.setClient(new RESTInterfaceMock);
+    jest.mock('WebSocket', () => {
+        const RealModule = require.requireActual('WebSocket');
+        const MyModule = {};
+        return MyModule;
+    });
 });
 
 test('Fetch ProductFamilies', () => {

@@ -13,9 +13,15 @@ test("Rendering of ProductView", () => {
     const component = renderer.create(
         <ProductView
             ref={(child) => {instance = child}}
-            dataSource={{fetchProduct: fetchProductMockCallback,
+            dataSource={{
+                fetchProduct: fetchProductMockCallback,
                 fetchEventTypesOf: fetchEventTypesOfMockCallback,
-                fetchEventsOf: fetchEventsOfMockCallback}}
+                fetchEventsOf: fetchEventsOfMockCallback,
+                notificationService: {
+                    subscribe: jest.fn(),
+                    unsubscribe: jest.fn()
+                }}
+            }
             params={{productId: 0}}/>
     );
     instance.handleProductData(TestProduct.PRODUCT);
@@ -39,9 +45,15 @@ test('Changing filter input', () => {
     renderer.create(
         <ProductView
             ref={(child) => {instance = child}}
-            dataSource={{fetchProduct: mockCallback,
+            dataSource={{
+                fetchProduct: mockCallback,
                 fetchEventTypesOf: mockCallback,
-                fetchEventsOf: mockCallback}}
+                fetchEventsOf: mockCallback,
+                notificationService: {
+                    subscribe: jest.fn(),
+                    unsubscribe: jest.fn()
+                }}
+            }
             params={{productId: 0}}/>
     );
     expect(instance.state.filter).toHaveLength(1);
