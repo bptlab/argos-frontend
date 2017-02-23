@@ -28,6 +28,9 @@ class ProductView extends Component {
         this.handleEventData = this.handleEventData.bind(this);
         this.handleError = this.handleError.bind(this);
         this.handleEventTypeData = this.handleEventTypeData.bind(this);
+        this.fetchProducts = this.fetchProducts.bind(this);
+        this.fetchEventTypes = this.fetchEventTypes.bind(this);
+        this.loadEventsFor = this.loadEventsFor.bind(this);
     }
 
     handleEventData(events) {
