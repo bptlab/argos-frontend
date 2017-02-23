@@ -40,27 +40,32 @@ class NotificationService {
             }
         }.bind(affectedEntity));
         affectedSubscribers.forEach(function(subscriber) {
-            subscriber.notificationCallback();
+            if(subscriber.functionArgument) {
+                subscriber.notificationCallback(subscriber.functionArgument);
+            } else {
+                subscriber.notificationCallback();
+            }
         });
     }
 
-    subscribe(entityType, notificationCallback) {
-        const listElement = NotificationService.buildNotificationElement(entityType, notificationCallback);
+    subscribe(entityType, notificationCallback, args=null) {
+        const listElement = NotificationService.buildNotificationElement(entityType, notificationCallback, args);
         this.notificationList.push(listElement);
     }
 
-    unsubscribe(entityType, notificationCallback) {
-        const listElement = NotificationService.buildNotificationElement(entityType, notificationCallback);
+    unsubscribe(entityType, notificationCallback, args=null) {
+        const listElement = NotificationService.buildNotificationElement(entityType, notificationCallback, args);
         const outdatedIndex = this.notificationList.indexOf(listElement);
         if(outdatedIndex > -1) {
             this.notificationList.slice(outdatedIndex, 1);
         }
     }
     
-    static buildNotificationElement(entityType, notificationCallback) {
+    static buildNotificationElement(entityType, notificationCallback, args) {
         return ({
             entityOfInterest: entityType,
-            notificationCallback: notificationCallback
+            notificationCallback: notificationCallback,
+            functionArgument: args
         });
     }
 } export default NotificationService;
