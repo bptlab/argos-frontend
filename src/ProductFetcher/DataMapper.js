@@ -22,7 +22,8 @@ class DataMapper {
             const product = {
                 "id":               apiProduct.id,
                 "name":             apiProduct.name,
-                "family":           apiProductFamily,
+                "family":           apiProductFamily.name,
+                "brand":            apiProductFamily.brand,
                 "numberOfDevices":  apiProduct.numberOfDevices,
                 "numberOfEvents":   apiProduct.numberOfEvents,
                 "productionStart":  apiProduct.productionStart,
