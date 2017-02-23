@@ -26,6 +26,10 @@ class ProductFetcher {
     static getAPIRouteForEveentsOfProduct() {
         return "api/products/{0}/events/{1}/{2}/{3}";
     }
+
+    static getAPIRouteForCreateEventtype() {
+        return "api/eventtypes/create";
+    }
     
     static getServerRequestURI() {
         return "{0}:{1}/{2}";
@@ -117,6 +121,21 @@ class ProductFetcher {
             "clientErrorCallback":    errorCallback
         };
         this.client.sendRequest(this.receiveResults, this.receiveError, callbackContainer);
+    }
+
+    createEventtype(eventQuery, eventType, successCallback, errorCallback) {
+        const APIRoute = ProductFetcher.getAPIRouteForCreateEventtype();
+        const URI = ProductFetcher.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
+        this.client.open(this.requestMethod, URI, true);
+        const data = {
+            "eventQuery":   eventQuery,
+            "eventType":    eventType
+        };
+        const callbackContainer = {
+            "clientSuccessCallback":  successCallback,
+            "clientErrorCallback":    errorCallback
+        };
+        this.client.sendRequest(this.receiveResults, this.receiveError, callbackContainer, data);
     }
 }
 export default ProductFetcher;

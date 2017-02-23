@@ -7,11 +7,11 @@ class RESTInterface {
         this.client.open(requestMethod, api, async);
     }
 
-    sendRequest(successCallback, errorCallback, clientDataContainer) {
+    sendRequest(successCallback, errorCallback, clientDataContainer, data = null) {
         this.client.onload = this.onSuccess.bind(this, successCallback, errorCallback, clientDataContainer);
         this.client.onerror = this.onError.bind(this, errorCallback, clientDataContainer);
         this.client.setRequestHeader("Content-type", "application/json");
-        this.client.send();
+        this.client.send(data);
     }
     
     onSuccess(successCallback, errorCallback, clientDataContainer) {
