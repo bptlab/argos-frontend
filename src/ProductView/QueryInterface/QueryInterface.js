@@ -89,20 +89,12 @@ class QueryInterface extends Component {
     validateEventType() {
     }
 
-    validateQuery(query) {
-        if (query.match(/INSERT INTO (\w*)\[\s?timestamp:\s?Date,\s?productId:\s?Integer,\s?productFamilyId:\s?String\s?(?:,\s?(\w*):\s?(\w*)){0,}\s?\]/i)) {
-            let myRegexp = /INSERT INTO (\w*)\[\s?timestamp:\s?Date,\s?productId:\s?Integer,\s?productFamilyId:\s?String\s?(?:,\s?(\w*):\s?(\w*)){0,}\s?\]/i;
-            let match = myRegexp.exec(query);
-            console.log(match[1]);
-            console.log(match.length);
-            for (let i = 2; i < match.length; i=i+2) {
-                console.log(match[i]);
-                console.log(match[i+1]);
-            }
-            this.setState({ match: 'true', query: query });
-        }
-        else {
-            this.setState({ match: 'false', query: query });
+    validateQuery() {
+        let insertInto = /\s+INSERT\s+INTO\s+(\w*)/i;
+        let match = insertInto.exec(this.state.eventQuery);
+        console.log(match[1]);
+        if (match[1] != this.state.eventTypeName) {
+            throw '"' + match[1] + '" has to match the EventType name.';
         }
     }
 
