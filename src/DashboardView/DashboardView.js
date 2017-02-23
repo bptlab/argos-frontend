@@ -41,6 +41,15 @@ class DashboardView extends Component {
     }
     
     componentDidMount() {
+        this.fetchData();
+        this.props.dataSource.notificationService.subscribe("Product", this.fetchData.bind(this));
+    }
+
+    componentWillUnmount() {
+        this.props.dataSource.notificationService.unsubscribe("Product", this.fetchData.bind(this));
+    }
+    
+    fetchData() {
         this.props.dataSource.fetchProducts(this.handleProductData, this.handleError);
     }
 
