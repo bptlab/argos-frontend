@@ -12,6 +12,8 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 
 else
     echo "pull request"
+    SONARQUBE_SKIPPED=false
+    echo $SONARQUBE_SKIPPED
     sonar-scanner -Dsonar.analysis.mode=preview \
                   -Dsonar.github.pullRequest=$TRAVIS_PULL_REQUEST \
                   -Dsonar.github.repository=$TRAVIS_REPO_SLUG \
