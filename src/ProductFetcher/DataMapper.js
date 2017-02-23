@@ -8,20 +8,21 @@ class DataMapper {
                 "id":       apiProductFamily.id,
                 "name":     apiProductFamily.name,
                 "brand":    apiProductFamily.brand,
-                "products": DataMapper.mapProducts(apiProductFamily.products)
+                "products": DataMapper.mapProducts(apiProductFamily.products, apiProductFamily)
             };
             productFamilies.push(productFamily);
         }
         return productFamilies;
     }
     
-    static mapProducts(apiProductCollection) {
+    static mapProducts(apiProductCollection, apiProductFamily) {
         const products = [];
         for(let i = 0; i < apiProductCollection.length; i++) {
             const apiProduct = apiProductCollection[i]; 
             const product = {
                 "id":               apiProduct.id,
                 "name":             apiProduct.name,
+                "family":           apiProductFamily,
                 "numberOfDevices":  apiProduct.numberOfDevices,
                 "numberOfEvents":   apiProduct.numberOfEvents,
                 "productionStart":  apiProduct.productionStart,
