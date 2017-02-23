@@ -101,6 +101,7 @@ exports[`test Rendering of ProductView 1`] = `
                         id="example-text-input"
                         onChange={[Function]}
                         placeholder="Attribute name"
+                        readOnly={true}
                         type="text"
                         value="timestamp" />
                     </div>
@@ -110,6 +111,7 @@ exports[`test Rendering of ProductView 1`] = `
                         className="form-control"
                         id="exampleSelect1"
                         onChange={[Function]}
+                        readOnly={true}
                         value="Date">
                         <option>
                           String
@@ -135,6 +137,7 @@ exports[`test Rendering of ProductView 1`] = `
                         id="example-text-input"
                         onChange={[Function]}
                         placeholder="Attribute name"
+                        readOnly={true}
                         type="text"
                         value="productId" />
                     </div>
@@ -144,6 +147,7 @@ exports[`test Rendering of ProductView 1`] = `
                         className="form-control"
                         id="exampleSelect1"
                         onChange={[Function]}
+                        readOnly={true}
                         value="Integer">
                         <option>
                           String
@@ -169,6 +173,7 @@ exports[`test Rendering of ProductView 1`] = `
                         id="example-text-input"
                         onChange={[Function]}
                         placeholder="Attribute name"
+                        readOnly={true}
                         type="text"
                         value="productFamilyId" />
                     </div>
@@ -178,6 +183,7 @@ exports[`test Rendering of ProductView 1`] = `
                         className="form-control"
                         id="exampleSelect1"
                         onChange={[Function]}
+                        readOnly={true}
                         value="String">
                         <option>
                           String

@@ -21,10 +21,11 @@ class QueryInterfaceHeaderAttribute extends Component {
                 <div className="col-6">
                     <input className="form-control" type="text" placeholder="Attribute name" id="example-text-input"
                            value={this.props.eventTypeAttribute.name}
-                           onChange={this.onChangeAttributeName}/>
+                           onChange={this.onChangeAttributeName}
+                           readOnly={this.props.eventTypeAttribute.readonly}/>
                 </div>
                 <div className="col-6">
-                    <select className="form-control" id="exampleSelect1" value={this.props.eventTypeAttribute.type} onChange={this.onChangeAttributeType}>
+                    <select className="form-control" id="exampleSelect1" value={this.props.eventTypeAttribute.type} onChange={this.onChangeAttributeType} readOnly={this.props.eventTypeAttribute.readonly}>
                         <option>String</option>
                         <option>Boolean</option>
                         <option>Integer</option>

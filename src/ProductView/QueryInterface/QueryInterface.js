@@ -12,19 +12,19 @@ class QueryInterface extends Component {
                     "id": 0,
                     "name": "timestamp",
                     "type": "Date",
-                    "editable": false
+                    "readonly": true
                 },
                 {
                     "id": 1,
                     "name": "productId",
                     "type": "Integer",
-                    "editable": false
+                    "readonly": true
                 },
                 {
                     "id": 2,
                     "name": "productFamilyId",
                     "type": "String",
-                    "editable": false
+                    "readonly": true
                 }
             ],
             eventQuery: '',
@@ -43,7 +43,7 @@ class QueryInterface extends Component {
     handleChangeAttributeName(id, name) {
         const attributes = this.state.eventTypeAttributes;
         for (let i = 0; i < this.state.eventTypeAttributes.length; i++) {
-            if (attributes[i].id === id && attributes[i].editable === true) {
+            if (attributes[i].id === id && attributes[i].readonly === false) {
                 attributes[i].name = name;
                 this.setState({ eventTypeAttributes: attributes });
             }
@@ -53,7 +53,7 @@ class QueryInterface extends Component {
     handleChangeAttributeType(id, type) {
         const attributes = this.state.eventTypeAttributes;
         for (let i = 0; i < this.state.eventTypeAttributes.length; i++) {
-            if (attributes[i].id === id && attributes[i].editable === true) {
+            if (attributes[i].id === id && attributes[i].readonly === false) {
                 attributes[i].type = type;
                 this.setState({ eventTypeAttributes: attributes });
             }
