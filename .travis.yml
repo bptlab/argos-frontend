@@ -6,6 +6,7 @@ addons:
   sonarqube:
     branches:
       - .*
+    token: $SONAR_AUTH_TOKEN
     github_token: $GITHUB_ACCESS_TOKEN
 
 install:
