@@ -35,9 +35,9 @@ body {
         @include dropdown-shadow($highlight-shadow);
 
         .dashboard-title {
-            margin: 10px 0px;
+            margin: 10px 0;
             @include media-breakpoint-up(uhd) {
-                margin: 20px 0px;
+                margin: 20px 0;
             }
         }
     }
