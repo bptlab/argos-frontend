@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import QueryInterfaceHeader from './QueryInterfaceHeader/QueryInterfaceHeader.js';
 
-class EventTable extends Component {
+class QueryInterface extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            query: ''
+            query: '',
+            match: ''
         };
         this.handleChangeQuery = this.handleChangeQuery.bind(this);
     }
@@ -14,7 +16,25 @@ class EventTable extends Component {
     }
 
     handleChangeQuery(event) {
-        this.setState({ query: event.target.value });
+        this.validateQuery(event.target.value);
+
+    }
+
+    validateQuery(query) {
+        if (query.match(/INSERT INTO (\w*)\[\s?timestamp:\s?Date,\s?productId:\s?Integer,\s?productFamilyId:\s?String\s?(?:,\s?(\w*):\s?(\w*)){0,}\s?\]/i)) {
+            let myRegexp = /INSERT INTO (\w*)\[\s?timestamp:\s?Date,\s?productId:\s?Integer,\s?productFamilyId:\s?String\s?(?:,\s?(\w*):\s?(\w*)){0,}\s?\]/i;
+            let match = myRegexp.exec(query);
+            console.log(match[1]);
+            console.log(match.length);
+            for (let i = 2; i < match.length; i=i+2) {
+                console.log(match[i]);
+                console.log(match[i+1]);
+            }
+            this.setState({ match: 'true', query: query });
+        }
+        else {
+            this.setState({ match: 'false', query: query });
+        }
     }
 
     render() {
@@ -33,10 +53,12 @@ class EventTable extends Component {
                                 </button>
                             </div>
                             <div className="modal-body">
+                                <QueryInterfaceHeader/>
                                 <div className="form-group">
-                                    <label htmlFor="recipient-name" className="form-control-label">Event Query</label>
+                                    <label htmlFor="event-query" className="form-control-label">Event Query</label>
                                     <textarea type="text" className="form-control" id="event-query" rows="8" value={this.state.query} onChange={this.handleChangeQuery}/>
                                 </div>
+                                <p>{this.state.match}</p>
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-primary">Save</button>
@@ -47,4 +69,4 @@ class EventTable extends Component {
             </div>
         );
     }
-} export default EventTable;
+} export default QueryInterface;
