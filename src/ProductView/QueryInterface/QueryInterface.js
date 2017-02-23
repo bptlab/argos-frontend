@@ -7,9 +7,28 @@ class QueryInterface extends Component {
         super(props);
         this.state = {
             eventTypeName: '',
-            eventTypeAttributes: {},
-            query: '',
-            match: ''
+            eventTypeAttributes: [
+                {
+                    "id": 0,
+                    "name": "timestamp",
+                    "type": "Date",
+                    "editable": false
+                },
+                {
+                    "id": 1,
+                    "name": "productId",
+                    "type": "Integer",
+                    "editable": false
+                },
+                {
+                    "id": 2,
+                    "name": "productFamilyId",
+                    "type": "String",
+                    "editable": false
+                }
+            ],
+            eventQuery: '',
+            validationResult: ''
         };
         this.handleChangeQuery = this.handleChangeQuery.bind(this);
         this.handleSaveQuery = this.handleSaveQuery.bind(this);
