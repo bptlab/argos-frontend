@@ -1,4 +1,4 @@
-/usr/bin/env sh
+#!/bin/bash
 
 echo "Sonarqube analysis triggered"
 echo $TRAVIS_PULL_REQUEST
