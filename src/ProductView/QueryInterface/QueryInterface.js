@@ -92,7 +92,6 @@ class QueryInterface extends Component {
     validateQuery() {
         let insertInto = /\s+INSERT\s+INTO\s+(\w*)/i;
         let match = insertInto.exec(this.state.eventQuery);
-        console.log(match[1]);
         if (match[1] != this.state.eventTypeName) {
             throw '"' + match[1] + '" has to match the EventType name.';
         }
@@ -102,12 +101,16 @@ class QueryInterface extends Component {
         return (
             <div className="query-interface">
                 <Modal title="Create new query" onSave={this.handleSaveQuery}>
-                    <QueryInterfaceHeader/>
+                    <QueryInterfaceHeader eventTypeAttributes={this.state.eventTypeAttributes}
+                                          onChangeAttributeName={this.handleChangeAttributeName}
+                                          onChangeAttributeType={this.handleChangeAttributeType} />
                     <div className="form-group">
                         <label htmlFor="event-query" className="form-control-label">Event Query</label>
-                        <textarea type="text" className="form-control" id="event-query" rows="8" value={this.state.query} onChange={this.handleChangeQuery}/>
+                        <textarea type="text" className="form-control" id="event-query" rows="8"
+                                  value={this.state.query}
+                                  onChange={this.handleChangeQuery}/>
                     </div>
-                    <p>{this.state.errors}</p>
+                    <p>{this.state.validationResult}</p>
                 </Modal>
             </div>
         );
