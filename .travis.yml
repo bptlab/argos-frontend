@@ -5,6 +5,7 @@ node_js: '6'
 cache:
   directories:
     - node_modules
+    - /home/travis/.sonar/cache
 
 addons:
   sonarqube:
