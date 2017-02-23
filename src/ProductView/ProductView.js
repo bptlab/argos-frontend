@@ -29,9 +29,6 @@ class ProductView extends Component {
         this.handleError = this.handleError.bind(this);
         this.handleEventTypeData = this.handleEventTypeData.bind(this);
     }
-    componentDidMount() {
-        this.props.dataSource.fetchProduct(this.prodId, this.handleProductData, this.handleError);
-    }
 
     handleEventData(events) {
         const eventTable = {
@@ -45,6 +42,19 @@ class ProductView extends Component {
         this.setState({
             eventTypes: eventTypes
         });
+    }
+
+    componentDidMount() {
+        this.fetchData();
+        this.props.dataSource.notificationService.subscribe("Product", this.fetchData);
+    }
+
+    componentWillUnmount() {
+        this.props.dataSource.notificationService.unsubscribe("Product", this.fetchData);
+    }
+
+    fetchData() {
+        this.props.dataSource.fetchProduct(this.prodId, this.handleProductData, this.handleError);
     }
 
     handleProductData(products) {
