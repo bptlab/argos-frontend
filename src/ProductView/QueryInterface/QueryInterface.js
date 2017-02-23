@@ -41,7 +41,7 @@ class QueryInterface extends Component {
     }
 
     handleChangeAttributeName(id, name) {
-        let attributes = this.state.eventTypeAttributes;
+        const attributes = this.state.eventTypeAttributes;
         for (let i = 0; i < this.state.eventTypeAttributes.length; i++) {
             if (attributes[i].id === id && attributes[i].editable === true) {
                 attributes[i].name = name;
@@ -51,7 +51,7 @@ class QueryInterface extends Component {
     }
 
     handleChangeAttributeType(id, type) {
-        let attributes = this.state.eventTypeAttributes;
+        const attributes = this.state.eventTypeAttributes;
         for (let i = 0; i < this.state.eventTypeAttributes.length; i++) {
             if (attributes[i].id === id && attributes[i].editable === true) {
                 attributes[i].type = type;
@@ -72,13 +72,13 @@ class QueryInterface extends Component {
         catch (e) {
             return this.setState({ validationResult: e });
         }
-        let attributes = {};
+        const attributes = {};
         for (let i = 0; i < this.state.eventTypeAttributes.length; i++) {
-            if (!this.state.eventTypeAttributes[i].name == ''){
+            if (!this.state.eventTypeAttributes[i].name === ''){
                 attributes[this.state.eventTypeAttributes[i].name] = this.state.eventTypeAttributes[i].type;
             }
         }
-        let eventType = {
+        const eventType = {
             'name': this.state.eventTypeName,
             'timestamp': 'timestamp',
             'attributes': attributes
@@ -90,9 +90,9 @@ class QueryInterface extends Component {
     }
 
     validateQuery() {
-        let insertInto = /\s+INSERT\s+INTO\s+(\w*)/i;
-        let match = insertInto.exec(this.state.eventQuery);
-        if (match[1] != this.state.eventTypeName) {
+        const insertInto = /\s+INSERT\s+INTO\s+(\w*)/i;
+        const match = insertInto.exec(this.state.eventQuery);
+        if (match[1] !== this.state.eventTypeName) {
             throw '"' + match[1] + '" has to match the EventType name.';
         }
     }

@@ -8,7 +8,7 @@ class QueryInterfaceHeader extends Component {
                 <div className="form-group">
                     <input className="form-control" type="text" placeholder="Name" id="query-name"/>
                 </div>
-                {this.props.eventTypeAttributes.map((eventTypeAttribute, index) =>
+                {this.props.eventTypeAttributes.map((eventTypeAttribute) =>
                     <QueryInterfaceHeaderAttribute key={eventTypeAttribute.id}
                                                    eventTypeAttribute={eventTypeAttribute}
                                                    onChangeAttributeName={this.props.onChangeAttributeName}
