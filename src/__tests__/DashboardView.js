@@ -5,10 +5,18 @@ import TestData from './testData/products.js'
 let instance, component;
 
 test("Correct drawing of DashboardView", () => {
+    const fetchProducts = jest.fn();
+    const notificationService = {
+            subscribe: jest.fn(),
+            unsubscribe: jest.fn()
+    };
     component = renderer.create(
         <DashboardView
             ref={(child) => {instance = child}}
-            dataSource={{fetchProducts: function() {return true;}}}/>
+            dataSource={{
+                notificationService: notificationService,
+                fetchProducts: fetchProducts
+            }}/>
     );
     instance.handleProductData(TestData.PRODUCTS);
     const tree = component.toJSON();
