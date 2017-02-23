@@ -1,14 +1,17 @@
 /usr/bin/env sh
 
+echo "Sonarqube analysis triggered"
+echo $TRAVIS_PULL_REQUEST
+
 if ["$TRAVIS_PULL_REQUEST" == "false"] then
-    echo "Sonarqube analysis triggered for normal commit"
+    echo "normal commit"
     sonar-scanner \
               -Dsonar.host.url=$SONAR_HOST_URL \
               -Dsonar.login=$SONARQUBE_AUTH_TOKEN \
               -Dsonar.branch=$TRAVIS_BRANCH
 
 else
-    echo "Sonarqube analysis triggered for pull request"
+    echo "pull request"
     sonar-scanner -Dsonar.analysis.mode=preview \
                   -Dsonar.github.pullRequest=$TRAVIS_PULL_REQUEST \
                   -Dsonar.github.repository=$TRAVIS_REPO_SLUG \
