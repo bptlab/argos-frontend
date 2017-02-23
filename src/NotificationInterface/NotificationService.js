@@ -1,7 +1,12 @@
 class NotificationService {
-
+    
     constructor(remoteDomain, remotePort, API, notificationCallback) {
-        this.connection = new WebSocket("ws://"+remoteDomain+":"+remotePort+"/"+API);
+        if('WebSocket' in window) {
+            this.connection = new WebSocket("ws://"+remoteDomain+":"+remotePort+"/"+API);
+        } else {
+            const WebSocketClient = require('websocket').client;
+            this.connection = new WebSocketClient();
+        }
         this.notificationCallback = notificationCallback;
         this.connection.onopen = this.onOpenConnection.bind(this);
         this.connection.onclose = this.onCloseConnection.bind(this);
