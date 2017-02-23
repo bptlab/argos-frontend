@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import QueryInterfaceHeaderAttribute from './QueryInterfaceHeaderAttribute/QueryInterfaceHeaderAttribute.js'
+import QueryInterfaceHeaderAttribute from './QueryInterfaceHeaderAttribute/QueryInterfaceHeaderAttribute.js';
 
 class QueryInterfaceHeader extends Component {
     render() {
@@ -9,7 +9,8 @@ class QueryInterfaceHeader extends Component {
                     <input className="form-control" type="text" placeholder="Name" id="query-name"/>
                 </div>
                 {this.props.eventTypeAttributes.map((eventTypeAttribute, index) =>
-                    <QueryInterfaceHeaderAttribute eventTypeAttribute={eventTypeAttribute}
+                    <QueryInterfaceHeaderAttribute key={eventTypeAttribute.id}
+                                                   eventTypeAttribute={eventTypeAttribute}
                                                    onChangeAttributeName={this.props.onChangeAttributeName}
                                                    onChangeAttributeType={this.props.onChangeAttributeType}/>
                 )}
