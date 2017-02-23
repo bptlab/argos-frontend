@@ -2,11 +2,6 @@ dist: trusty
 language: node_js
 node_js: '6'
 
-addons:
-  sonarqube:
-    branches:
-      - .*
-
 install:
   - npm install
 
