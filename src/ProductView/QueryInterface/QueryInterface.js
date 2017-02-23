@@ -60,13 +60,30 @@ class QueryInterface extends Component {
         }
     }
 
-    handleSaveQuery() {
-        this.validateEventType();
-        this.validateQuery(this.state.query);
     handleChangeQuery(event) {
         this.setState({ query: event.target.value });
     }
 
+    handleSaveQuery() {
+        try {
+            this.validateEventType();
+            this.validateQuery();
+        }
+        catch (e) {
+            return this.setState({ validationResult: e });
+        }
+        let attributes = {};
+        for (let i = 0; i < this.state.eventTypeAttributes.length; i++) {
+            if (!this.state.eventTypeAttributes[i].name == ''){
+                attributes[this.state.eventTypeAttributes[i].name] = this.state.eventTypeAttributes[i].type;
+            }
+        }
+        let eventType = {
+            'name': this.state.eventTypeName,
+            'timestamp': 'timestamp',
+            'attributes': attributes
+        };
+        this.props.dataSource.createEventtype(this.state.eventQuery, eventType, this.handleEventTypeData, this.handleError);
     }
 
     validateEventType() {
