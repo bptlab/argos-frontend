@@ -12,17 +12,11 @@ class Tab extends Component {
     }
 
     componentDidMount() {
-        const callbackWithArgument = function() {
-            this.loadEventsFor(this.props.eventType);
-        }.bind(this);
-        this.props.notificationService.subscribe("Event", callbackWithArgument);
+        this.props.notificationService.subscribe("Event", this.loadEventsFor);
     }
 
     componentWillUnmount() {
-        const callbackWithArgument = function() {
-            this.loadEventsFor(this.props.eventType);
-        }.bind(this);
-        this.props.notificationService.unsubscribe("Event", callbackWithArgument);
+        this.props.notificationService.unsubscribe("Event", this.loadEventsFor);
     }
 
     render() {
