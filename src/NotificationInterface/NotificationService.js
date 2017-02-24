@@ -1,36 +1,35 @@
 class NotificationService {
     
     constructor(remoteDomain, remotePort, API, notificationCallback) {
+        this.notificationSubscribors = [];
+        this.notificationEndpoint = notificationCallback;
         if('WebSocket' in window) {
-            this.connection = new WebSocket("ws://"+remoteDomain+":"+remotePort+"/"+API);
+            this.connection = new WebSocket("ws://" + remoteDomain + ":" + remotePort + "/" + API);
+            this.connection.onopen = this.onOpenConnection.bind(this);
+            this.connection.onclose = this.onCloseConnection.bind(this);
+            this.connection.onerror = this.onError.bind(this);
+            this.connection.onmessage = this.processNewMessage.bind(this);
         } else {
-            const WebSocketClient = require('websocket').client;
-            this.connection = new WebSocketClient();
+            this.onError("WebSocket is not supported in this Browser / Environment");
         }
-        this.notificationCallback = notificationCallback;
-        this.connection.onopen = this.onOpenConnection.bind(this);
-        this.connection.onclose = this.onCloseConnection.bind(this);
-        this.connection.onerror = this.onError.bind(this);
-        this.connection.onmessage = this.processNewMessage.bind(this);
-        this.notificationList = [];
     }
 
     onOpenConnection() {
-        this.notificationCallback({
+        this.notificationEndpoint({
             type: "info",
             message: "Successfully connected to Push-Notification-Service"
         });
     }
     
     onCloseConnection() {
-        this.notificationCallback({
+        this.notificationEndpoint({
             type: "danger",
             message: "Connection to Push-Notification-Service lost / not possible"
         });
     }
     
     onError(error) {
-        this.notificationCallback({
+        this.notificationEndpoint({
             type: "danger",
             message: "Error on Push-Notification-Service: "+error
         });
@@ -39,7 +38,7 @@ class NotificationService {
     processNewMessage(event) {
         const message = JSON.parse(event.data);
         const affectedEntity = message[0].entityType;
-        const affectedSubscribers = this.notificationList.filter(function(subscriber) {
+        const affectedSubscribers = this.notificationSubscribors.filter(function(subscriber) {
             if(subscriber.entityOfInterest === affectedEntity) {
                 return subscriber;
             }
@@ -55,14 +54,14 @@ class NotificationService {
 
     subscribe(entityType, notificationCallback, args=null) {
         const listElement = NotificationService.buildNotificationElement(entityType, notificationCallback, args);
-        this.notificationList.push(listElement);
+        this.notificationSubscribors.push(listElement);
     }
 
     unsubscribe(entityType, notificationCallback, args=null) {
         const listElement = NotificationService.buildNotificationElement(entityType, notificationCallback, args);
-        const outdatedIndex = this.notificationList.indexOf(listElement);
+        const outdatedIndex = this.notificationSubscribors.indexOf(listElement);
         if(outdatedIndex > -1) {
-            this.notificationList.slice(outdatedIndex, 1);
+            this.notificationSubscribors.slice(outdatedIndex, 1);
         }
     }
     

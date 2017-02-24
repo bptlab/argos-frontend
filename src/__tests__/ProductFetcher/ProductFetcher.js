@@ -5,13 +5,9 @@ import RESTInterfaceMock from '../../ProductFetcher/RESTInterfaceMock.js'
 let instance;
 
 beforeAll(() => {
-    instance = new ProductFetcher("address", 1234, "GET");
+    const notificationCallback = jest.fn();
+    instance = new ProductFetcher("address", 1234, notificationCallback, "GET");
     instance.setClient(new RESTInterfaceMock);
-    jest.mock('WebSocket', () => {
-        const RealModule = require.requireActual('WebSocket');
-        const MyModule = {};
-        return MyModule;
-    });
 });
 
 test('Fetch ProductFamilies', () => {
