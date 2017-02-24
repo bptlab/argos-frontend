@@ -4,12 +4,16 @@ import renderer from 'react-test-renderer';
 import TestProduct from './../testData/product.js'
 import TestEventTypes from './../testData/eventTypes.js'
 import TestEvents from './../testData/events.js'
-let instance;
+let instance, notificationService;
 
 test("Rendering of ProductView", () => {
     const fetchProductMockCallback = jest.fn();
     const fetchEventTypesOfMockCallback = jest.fn();
     const fetchEventsOfMockCallback = jest.fn();
+    notificationService = {
+        subscribe: jest.fn(),
+        unsubscribe: jest.fn()
+    };
     const component = renderer.create(
         <ProductView
             ref={(child) => {instance = child}}
@@ -17,11 +21,8 @@ test("Rendering of ProductView", () => {
                 fetchProduct: fetchProductMockCallback,
                 fetchEventTypesOf: fetchEventTypesOfMockCallback,
                 fetchEventsOf: fetchEventsOfMockCallback,
-                notificationService: {
-                    subscribe: jest.fn(),
-                    unsubscribe: jest.fn()
-                }}
-            }
+                notificationService: notificationService
+            }}
             params={{productId: 0}}/>
     );
     instance.handleProductData(TestProduct.PRODUCT);
@@ -31,6 +32,7 @@ test("Rendering of ProductView", () => {
     expect(fetchProductMockCallback).toBeCalled();
     expect(fetchEventTypesOfMockCallback).toBeCalled();
     expect(fetchEventsOfMockCallback).toBeCalled();
+    expect(notificationService.subscribe).toHaveBeenCalledTimes(3);
 
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
@@ -41,21 +43,6 @@ test("Rendering of ProductView", () => {
 });
 
 test('Changing filter input', () => {
-    const mockCallback = jest.fn();
-    renderer.create(
-        <ProductView
-            ref={(child) => {instance = child}}
-            dataSource={{
-                fetchProduct: mockCallback,
-                fetchEventTypesOf: mockCallback,
-                fetchEventsOf: mockCallback,
-                notificationService: {
-                    subscribe: jest.fn(),
-                    unsubscribe: jest.fn()
-                }}
-            }
-            params={{productId: 0}}/>
-    );
     expect(instance.state.filter).toHaveLength(1);
 
     instance.onChangeFilterInput(0, 'Query');
@@ -64,4 +51,9 @@ test('Changing filter input', () => {
 
     instance.onChangeFilterInput(0, 'NextQuery');
     expect(instance.state.filter[0].value).toMatch('NextQuery');
+});
+
+test('Unmounting component', () => {
+    instance.componentWillUnmount();
+    expect(notificationService.unsubscribe).toHaveBeenCalledTimes(2);
 });
