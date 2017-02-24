@@ -49,12 +49,12 @@ class NotificationService {
     }
 
     subscribe(entityType, notificationCallback) {
-        const listElement = NotificationService.buildNotificationElement(entityType, notificationCallback, args);
+        const listElement = NotificationService.buildNotificationElement(entityType, notificationCallback);
         this.notificationSubscribors.push(listElement);
     }
 
     unsubscribe(entityType, notificationCallback) {
-        const listElement = NotificationService.buildNotificationElement(entityType, notificationCallback, args);
+        const listElement = NotificationService.buildNotificationElement(entityType, notificationCallback);
         const outdatedIndex = this.notificationSubscribors.indexOf(listElement);
         if(outdatedIndex > -1) {
             this.notificationSubscribors.slice(outdatedIndex, 1);
