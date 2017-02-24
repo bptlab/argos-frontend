@@ -11,6 +11,20 @@ class Tab extends Component {
         this.props.loadEventsFor(this.props.eventType);
     }
 
+    componentDidMount() {
+        const callbackWithArgument = function() {
+            this.loadEventsFor(this.props.eventType);
+        }.bind(this);
+        this.props.notificationService.subscribe("Event", callbackWithArgument);
+    }
+
+    componentWillUnmount() {
+        const callbackWithArgument = function() {
+            this.loadEventsFor(this.props.eventType);
+        }.bind(this);
+        this.props.notificationService.unsubscribe("Event", callbackWithArgument);
+    }
+
     render() {
         return (
             <li className="tab nav-item">

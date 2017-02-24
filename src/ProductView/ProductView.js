@@ -97,7 +97,6 @@ class ProductView extends Component {
     }
 
     loadEventsFor(eventType) {
-        this.props.dataSource.notificationService.subscribe("Event", this.loadEventsFor, eventType);
         this.activeEventType = eventType;
         this.props.dataSource.fetchEventsOf(
             this.state.product.id, 
@@ -127,7 +126,8 @@ class ProductView extends Component {
                     <TabBar
                         eventTypes={this.state.eventTypes}
                         loadEventsFor={this.loadEventsFor}
-                        product={this.state.product}/>
+                        product={this.state.product}
+                        notificationService={this.props.dataSource.notificationService} />
                     <EventTable
                         eventTable={this.state.eventTable}
                         filter={this.state.filter}/>

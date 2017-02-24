@@ -44,20 +44,16 @@ class NotificationService {
             }
         }.bind(affectedEntity));
         affectedSubscribers.forEach(function(subscriber) {
-            if(subscriber.functionArgument) {
-                subscriber.notificationCallback(subscriber.functionArgument);
-            } else {
-                subscriber.notificationCallback();
-            }
+            subscriber.notificationCallback();
         });
     }
 
-    subscribe(entityType, notificationCallback, args=null) {
+    subscribe(entityType, notificationCallback) {
         const listElement = NotificationService.buildNotificationElement(entityType, notificationCallback, args);
         this.notificationSubscribors.push(listElement);
     }
 
-    unsubscribe(entityType, notificationCallback, args=null) {
+    unsubscribe(entityType, notificationCallback) {
         const listElement = NotificationService.buildNotificationElement(entityType, notificationCallback, args);
         const outdatedIndex = this.notificationSubscribors.indexOf(listElement);
         if(outdatedIndex > -1) {
@@ -65,11 +61,10 @@ class NotificationService {
         }
     }
     
-    static buildNotificationElement(entityType, notificationCallback, args) {
+    static buildNotificationElement(entityType, notificationCallback) {
         return ({
             entityOfInterest: entityType,
-            notificationCallback: notificationCallback,
-            functionArgument: args
+            notificationCallback: notificationCallback
         });
     }
 } export default NotificationService;
