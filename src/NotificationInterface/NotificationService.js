@@ -4,14 +4,18 @@ class NotificationService {
         this.notificationSubscribors = [];
         this.notificationEndpoint = notificationCallback;
         if('WebSocket' in window) {
-            this.connection = new WebSocket("ws://" + remoteDomain + ":" + remotePort + "/" + API);
-            this.connection.onopen = this.onOpenConnection.bind(this);
-            this.connection.onclose = this.onCloseConnection.bind(this);
-            this.connection.onerror = this.onError.bind(this);
-            this.connection.onmessage = this.processNewMessage.bind(this);
+            this.establishConnection(remoteDomain, remotePort, API);
         } else {
             this.onError("WebSocket is not supported in this Browser / Environment");
         }
+    }
+    
+    establishConnection(remoteDomain, remotePort, API) {
+        this.connection = new WebSocket("ws://" + remoteDomain + ":" + remotePort + "/" + API);
+        this.connection.onopen = this.onOpenConnection.bind(this);
+        this.connection.onclose = this.onCloseConnection.bind(this);
+        this.connection.onerror = this.onError.bind(this);
+        this.connection.onmessage = this.processNewMessage.bind(this);
     }
 
     onOpenConnection() {
@@ -54,10 +58,12 @@ class NotificationService {
     }
 
     unsubscribe(entityType, notificationCallback) {
-        const listElement = NotificationService.buildNotificationElement(entityType, notificationCallback);
-        const outdatedIndex = this.notificationSubscribors.indexOf(listElement);
+        const searchElement = this.notificationSubscribors.find((element) => {
+            return element.entityOfInterest === entityType && element.notificationCallback === notificationCallback;
+        });
+        const outdatedIndex = this.notificationSubscribors.indexOf(searchElement);
         if(outdatedIndex > -1) {
-            this.notificationSubscribors.slice(outdatedIndex, 1);
+            this.notificationSubscribors.splice(outdatedIndex, 1);
         }
     }
     
