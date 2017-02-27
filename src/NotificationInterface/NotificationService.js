@@ -1,10 +1,10 @@
 class NotificationService {
     
     constructor(remoteDomain, remotePort, API, notificationCallback) {
-        this.notificationSubscribors = [];
         this.notificationSubscribers = [];
         this.notificationEndpoint = notificationCallback;
         if('WebSocket' in window) {
+            /* istanbul ignore next */
             this.establishConnection(remoteDomain, remotePort, API);
         } else {
             this.onError("WebSocket is not supported in this Browser / Environment");
@@ -12,10 +12,17 @@ class NotificationService {
     }
     
     establishConnection(remoteDomain, remotePort, API) {
-        this.connection = new WebSocket("ws://" + remoteDomain + ":" + remotePort + "/" + API);
+        /* istanbul ignore next */
+        const protocol = argosConfig.webSocketProtocol+"://";
+        /* istanbul ignore next */
+        this.connection = new WebSocket(protocol + remoteDomain + ":" + remotePort + "/" + API);
+        /* istanbul ignore next */
         this.connection.onopen = this.onOpenConnection.bind(this);
+        /* istanbul ignore next */
         this.connection.onclose = this.onCloseConnection.bind(this);
+        /* istanbul ignore next */
         this.connection.onerror = this.onError.bind(this);
+        /* istanbul ignore next */
         this.connection.onmessage = this.processNewMessage.bind(this);
     }
 
@@ -43,7 +50,7 @@ class NotificationService {
     processNewMessage(event) {
         const message = JSON.parse(event.data);
         const affectedEntity = message[0].entityType;
-        const affectedSubscribers = this.notificationSubscribors.filter(function(subscriber) {
+        const affectedSubscribers = this.notificationSubscribers.filter(function(subscriber) {
             if(subscriber.entityOfInterest === affectedEntity) {
                 return subscriber;
             }
@@ -54,7 +61,7 @@ class NotificationService {
     }
 
     subscribe(entityType, notificationCallback) {
-        const subscriber = NotificationService.buildNotificationElement(entityType, notificationCallback);
+        const subscriber = NotificationService.buildSubscriber(entityType, notificationCallback);
         this.notificationSubscribers.push(subscriber);
     }
 
