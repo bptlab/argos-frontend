@@ -51,27 +51,28 @@ class QueryInterface extends Component {
         return attributes;
     }
 
+    getEventType() {
+        const eventTypeAttributes = {};
         const attributes = this.state.eventTypeAttributes;
-        for (let i = 0; i < this.state.eventTypeAttributes.length; i++) {
-            if (attributes[i].id === id && attributes[i].readonly === false) {
-                attributes[i].type = type;
-                this.setState({ eventTypeAttributes: attributes });
+        for (let i = 0; i < attributes.length; i++) {
+            if (attributes[i].name != '') {
+                eventTypeAttributes[attributes[i].name] = attributes[i].type;
             }
         }
+        const eventType = {
+            'name': this.state.eventTypeName,
+            'timestamp': 'timestamp',
+            'attributes': eventTypeAttributes
+        };
+        return eventType;
     }
 
-    handleChangeQuery(event) {
-        this.setState({ query: event.target.value });
     getEventTypeAttribute(id) {
         return this.state.eventTypeAttributes.find((attribute) => {
             return attribute.id === id;
         });
     }
 
-    handleSaveQuery() {
-        try {
-            this.validateEventType();
-            this.validateQuery();
     handleChangeEventTypeName(name) {
         this.setState({ eventTypeName: name });
     }
@@ -95,7 +96,6 @@ class QueryInterface extends Component {
         this.setState({ eventTypeAttributes: attributes });
     }
 
-    validateEventType() {
     handleChangeAttributeType(id, type) {
         const currentAttribute = this.getEventTypeAttribute(id);
         if (currentAttribute.readonly) {
@@ -108,14 +108,13 @@ class QueryInterface extends Component {
         this.setState({ eventTypeAttributes: attributes });
     }
 
-    validateQuery() {
-        const insertInto = /\s+INSERT\s+INTO\s+(\w*)/i;
-        const match = insertInto.exec(this.state.eventQuery);
-        if (match[1] !== this.state.eventTypeName) {
-            throw '"' + match[1] + '" has to match the EventType name.';
-        }
     handleChangeQuery(event) {
         this.setState({ eventQuery: event.target.value });
+    }
+
+    handleSaveQuery() {
+        const eventType = this.getEventType();
+        this.props.dataSource.createEventtype(this.state.eventQuery, eventType, this.handleEventTypeData, this.handleError);
     }
 
     render() {
