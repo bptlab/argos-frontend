@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {argosConfig} from '../../../config/argosConfig';
 
 class Filter extends Component {
     constructor(props) {
@@ -19,7 +20,7 @@ class Filter extends Component {
                 </span>
                 <input type="text" 
                        className="form-control"
-                       placeholder="Search..." 
+                       placeholder={argosConfig.searchPlaceholder} 
                        value={this.props.filterText} onChange={this.handleFilterInput}/>
             </div>
         );
