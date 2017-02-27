@@ -126,7 +126,7 @@ class ProductFetcher {
     createEventtype(eventQuery, eventType, successCallback, errorCallback) {
         const APIRoute = ProductFetcher.getAPIRouteForCreateEventtype();
         const URI = ProductFetcher.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
-        this.client.open(this.requestMethod, URI, true);
+        this.client.open('POST', URI, true);
         const data = {
             "eventQuery":   eventQuery,
             "eventType":    eventType
@@ -135,7 +135,7 @@ class ProductFetcher {
             "clientSuccessCallback":  successCallback,
             "clientErrorCallback":    errorCallback
         };
-        this.client.sendRequest(this.receiveResults, this.receiveError, callbackContainer, data);
+        this.client.sendRequest(this.receiveResults, this.receiveError, callbackContainer, JSON.stringify(data));
     }
 }
 export default ProductFetcher;
