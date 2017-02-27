@@ -59,10 +59,10 @@ class NotificationService {
     }
 
     unsubscribe(entityType, notificationCallback) {
-        const searchElement = this.notificationSubscribers.find((element) => {
+        const subscriber = this.notificationSubscribers.find((element) => {
             return element.entityOfInterest === entityType && element.notificationCallback === notificationCallback;
         });
-        const outdatedIndex = this.notificationSubscribers.indexOf(searchElement);
+        const outdatedIndex = this.notificationSubscribers.indexOf(subscriber);
         if(outdatedIndex > -1) {
             this.notificationSubscribers.splice(outdatedIndex, 1);
         }
