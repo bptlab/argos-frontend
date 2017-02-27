@@ -30,6 +30,7 @@ class QueryInterface extends Component {
             eventQuery: '',
             validationResult: ''
         };
+        this.handleChangeEventTypeName = this.handleChangeEventTypeName.bind(this);
         this.handleChangeAttributeName = this.handleChangeAttributeName.bind(this);
         this.handleChangeAttributeType = this.handleChangeAttributeType.bind(this);
         this.handleChangeQuery = this.handleChangeQuery.bind(this);
@@ -37,7 +38,7 @@ class QueryInterface extends Component {
     }
 
     componentDidMount() {
-        this.setState({ query: this.props.defaultQuery });
+        this.setState({ eventQuery: this.props.defaultQuery });
     }
 
     handleChangeAttributeName(id, name) {
@@ -110,8 +111,9 @@ class QueryInterface extends Component {
                                           onChangeAttributeType={this.handleChangeAttributeType} />
                     <div className="form-group">
                         <label htmlFor="event-query" className="form-control-label">Event Query</label>
-                        <textarea type="text" className="form-control" id="event-query" rows="8"
-                                  value={this.state.query}
+                        <textarea type="text" className="form-control"
+                                  id="event-query" rows="8"
+                                  value={this.state.eventQuery}
                                   onChange={this.handleChangeQuery}/>
                     </div>
                     <p>{this.state.validationResult}</p>
