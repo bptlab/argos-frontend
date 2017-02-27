@@ -41,14 +41,14 @@ class QueryInterface extends Component {
         this.setState({ eventQuery: this.props.defaultQuery });
     }
 
-    handleChangeAttributeName(id, name) {
-        const attributes = this.state.eventTypeAttributes;
-        for (let i = 0; i < this.state.eventTypeAttributes.length; i++) {
-            if (attributes[i].id === id && attributes[i].readonly === false) {
-                attributes[i].name = name;
-                this.setState({ eventTypeAttributes: attributes });
-            }
-        }
+    addEmptyAttribute(attributes) {
+        attributes = attributes.concat([{
+            'id': attributes.length,
+            "name": "",
+            "type": "",
+            "readonly": false
+        }]);
+        return attributes;
     }
 
     handleChangeAttributeType(id, type) {
@@ -63,28 +63,33 @@ class QueryInterface extends Component {
 
     handleChangeQuery(event) {
         this.setState({ query: event.target.value });
+    getEventTypeAttribute(id) {
+        return this.state.eventTypeAttributes.find((attribute) => {
+            return attribute.id === id;
+        });
     }
 
     handleSaveQuery() {
         try {
             this.validateEventType();
             this.validateQuery();
+    handleChangeAttributeName(id, name) {
+        const currentAttribute = this.getEventTypeAttribute(id);
+        if (currentAttribute.readonly) {
+            return;
         }
-        catch (e) {
-            return this.setState({ validationResult: e });
+
+        let attributes = this.state.eventTypeAttributes;
+        const currentIndex = attributes.indexOf(currentAttribute);
+        attributes[currentIndex].name = name;
+
+        if (!name) {
+            attributes.splice(currentIndex, 1);
         }
-        const attributes = {};
-        for (let i = 0; i < this.state.eventTypeAttributes.length; i++) {
-            if (!this.state.eventTypeAttributes[i].name === ''){
-                attributes[this.state.eventTypeAttributes[i].name] = this.state.eventTypeAttributes[i].type;
-            }
+        if (currentIndex === attributes.length - 1) {
+            attributes = this.addEmptyAttribute(attributes);
         }
-        const eventType = {
-            'name': this.state.eventTypeName,
-            'timestamp': 'timestamp',
-            'attributes': attributes
-        };
-        this.props.dataSource.createEventtype(this.state.eventQuery, eventType, this.handleEventTypeData, this.handleError);
+        this.setState({ eventTypeAttributes: attributes });
     }
 
     validateEventType() {
