@@ -2,6 +2,7 @@ class NotificationService {
     
     constructor(remoteDomain, remotePort, API, notificationCallback) {
         this.notificationSubscribors = [];
+        this.notificationSubscribers = [];
         this.notificationEndpoint = notificationCallback;
         if('WebSocket' in window) {
             this.establishConnection(remoteDomain, remotePort, API);
@@ -54,16 +55,16 @@ class NotificationService {
 
     subscribe(entityType, notificationCallback) {
         const listElement = NotificationService.buildNotificationElement(entityType, notificationCallback);
-        this.notificationSubscribors.push(listElement);
+        this.notificationSubscribers.push(listElement);
     }
 
     unsubscribe(entityType, notificationCallback) {
-        const searchElement = this.notificationSubscribors.find((element) => {
+        const searchElement = this.notificationSubscribers.find((element) => {
             return element.entityOfInterest === entityType && element.notificationCallback === notificationCallback;
         });
-        const outdatedIndex = this.notificationSubscribors.indexOf(searchElement);
+        const outdatedIndex = this.notificationSubscribers.indexOf(searchElement);
         if(outdatedIndex > -1) {
-            this.notificationSubscribors.splice(outdatedIndex, 1);
+            this.notificationSubscribers.splice(outdatedIndex, 1);
         }
     }
     
