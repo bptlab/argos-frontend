@@ -1,6 +1,8 @@
 import DataMapper from './DataMapper.js';
 import RESTInterface from './RESTInterface.js';
 import NotificationService from '../NotificationInterface/NotificationService';
+import {argosConfig} from '../config/argosConfig';
+
 /*eslint-disable */
 if (!String.prototype.format) {
     String.prototype.format = function() {
@@ -38,7 +40,12 @@ class ProductFetcher {
         this.remotePort = remotePort;
         this.requestMethod = requestMethod;
         this.dataMapper = DataMapper;
-        this.notificationService = new NotificationService(remoteDomain, remotePort,"notifications", notificationCallback);
+        this.notificationService = new NotificationService(
+            remoteDomain, 
+            remotePort,
+            argosConfig.backendNotificationAPI, 
+            notificationCallback
+        );
         this.client = new RESTInterface();
         //function binding
         this.receiveResults = this.receiveResults.bind(this);

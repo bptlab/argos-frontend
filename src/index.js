@@ -6,15 +6,24 @@ import ProductView from './ProductView/ProductView.js';
 import DashboardView from './DashboardView/DashboardView.js';
 import ProductFetcher from './ProductFetcher/ProductFetcher.js';
 import RESTInterfaceMock from './ProductFetcher/RESTInterfaceMock.js';
+import {argosConfig} from './config/argosConfig';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.css';
 import './index.scss';
 
-const API_SERVER_URL = "172.16.20.158"; //172.16.20.158
-const API_SERVER_PORT = 8989;
-const notificationList = [];
+//### Data-Source-Initialization ###
+const dataSource = new ProductFetcher(
+    argosConfig.backendHost,
+    argosConfig.backendPort,
+    notificationCallback
+);
+if(argosConfig.useBackendMock) {
+    dataSource.client = new RESTInterfaceMock();
+}
 
+//### Notification-Initialization ###
+const notificationList = [];
 function registerNotifications(callback) {
     notificationList.push(callback);
 }
@@ -23,12 +32,13 @@ function notificationCallback(type, message) {
         callback(type, message);
     });
 }
-const dataSource = new ProductFetcher(API_SERVER_URL, API_SERVER_PORT, notificationCallback);
+
+//### React-Initialization ###
 ReactDOM.render(
     (<Router history={hashHistory}>
         <Route path="/" component={App} params={{ registerForNotificationsCallback: registerNotifications}}>
             <IndexRoute component={() => (<DashboardView dataSource={dataSource} />)} />
-            <Route path="/product/:productID"
+            <Route path={`/` + argosConfig.routeNameDetailView+`/:productID`}
                    component={(routeObject) => (
                        <ProductView dataSource={dataSource} params={routeObject.params} />
                    )}/>
