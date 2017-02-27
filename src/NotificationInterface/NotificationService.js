@@ -1,3 +1,4 @@
+import {argosConfig} from '../config/argosConfig';
 class NotificationService {
     
     constructor(remoteDomain, remotePort, API, notificationCallback) {
@@ -28,22 +29,22 @@ class NotificationService {
 
     onOpenConnection() {
         this.notificationEndpoint({
-            type: "info",
-            message: "Successfully connected to Push-Notification-Service"
+            type: argosConfig.NotificationServiceNeutralInfo,
+            message: argosConfig.messageSuccessConnectionPush
         });
     }
     
     onCloseConnection() {
         this.notificationEndpoint({
-            type: "danger",
-            message: "Connection to Push-Notification-Service lost / not possible"
+            type: argosConfig.NotificationServiceError,
+            message: argosConfig.messageLostConnectionPush
         });
     }
     
     onError(error) {
         this.notificationEndpoint({
-            type: "danger",
-            message: "Error on Push-Notification-Service: "+error
+            type: argosConfig.NotificationServiceError,
+            message: argosConfig.messageErrorConnectionPush+": "+error
         });
     }
     
