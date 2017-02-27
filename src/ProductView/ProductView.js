@@ -101,7 +101,7 @@ class ProductView extends Component {
             component = (
                 <div>
                     <Header product={this.state.product}/>
-                    <QueryInterface dataSource={this.props.dataSource} defaultQuery="INSERT INTO {NAME}[timestamp: Date, productId: Integer, productFamilyId: String] SELECT timestamp, productId, ProductFamilyId FROM ErrorEvents"/>
+                    <QueryInterface dataSource={this.props.dataSource} defaultQuery="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData"/>
                     <DetailArea product={this.state.product}/>
                     <FilterBar
                         onChangeFilterInput={this.onChangeFilterInput}
