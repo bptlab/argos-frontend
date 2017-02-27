@@ -26,7 +26,7 @@ test('Check Error Response', () => {
 
 test('Subscription', () => {
     instance.subscribe("Event", notificationCallback);
-    notificationListLength = instance.notificationSubscribors.length;
+    notificationListLength = instance.notificationSubscribers.length;
     expect(notificationListLength).toBeGreaterThan(0);
 });
 
@@ -39,5 +39,5 @@ test('New Message processing', () => {
 
 test('UnSubscription', () => {
     instance.unsubscribe("Event", notificationCallback);
-    expect(instance.notificationSubscribors.length).toBeLessThan(notificationListLength);
+    expect(instance.notificationSubscribers.length).toBeLessThan(notificationListLength);
 });
