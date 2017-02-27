@@ -10,21 +10,21 @@ class QueryInterface extends Component {
             eventTypeAttributes: [
                 {
                     "id": 0,
-                    "name": "timestamp",
-                    "type": "Date",
+                    "name": "productId",
+                    "type": "INTEGER",
                     "readonly": true
                 },
                 {
                     "id": 1,
-                    "name": "productId",
-                    "type": "Integer",
+                    "name": "productFamilyId",
+                    "type": "STRING",
                     "readonly": true
                 },
                 {
                     "id": 2,
-                    "name": "productFamilyId",
-                    "type": "String",
-                    "readonly": true
+                    "name": "",
+                    "type": "",
+                    "readonly": false
                 }
             ],
             eventQuery: '',
