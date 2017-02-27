@@ -5,10 +5,10 @@ class Notification extends Component {
             <div className={`alert alert-${this.props.data.type}`} role="alert">
                 <table>
                     <tbody>
-                    <tr>
-                        <td><i className="fa fa-info-circle" /></td>
-                        <td><p>{this.props.data.message}</p></td>
-                    </tr>
+                        <tr>
+                            <td><i className="fa fa-info-circle" /></td>
+                            <td><p>{this.props.data.message}</p></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
