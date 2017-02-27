@@ -7,7 +7,7 @@ export const argosConfig = {
     searchPlaceholder:              'Search...',
     kindOfChart:                    'doughnut',
     dashboardName:                  'Early Warning Dashboard',
-    webSocketProtocol:             'ws',
+    webSocketProtocol:              'ws',
     messageSuccessConnectionPush:   'Successfully connected to Push-Notification-Service',
     messageLostConnectionPush:      'Connection to Push-Notification-Service lost / not possible',
     messageErrorConnectionPush:     'Error on Push-Notification-Service',
