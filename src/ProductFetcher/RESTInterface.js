@@ -1,3 +1,4 @@
+import {argosConfig} from '../config/argosConfig';
 class RESTInterface {
     constructor() {
         this.client = new XMLHttpRequest();
@@ -22,12 +23,12 @@ class RESTInterface {
                 errorCallback(this.client.statusText, clientDataContainer);
             }
         } else {
-            errorCallback("Wrong route specified", clientDataContainer);
+            errorCallback(argosConfig.RESTInterfaceRouteError, clientDataContainer);
         }
     }
     
     onError(errorCallback, clientDataContainer) {
-        errorCallback("A critical connection error occurred! "+this.client.statusText, clientDataContainer);
+        errorCallback(argosConfig.RESTInterfaceConnectionError+" "+this.client.statusText, clientDataContainer);
     }
 }
 export default RESTInterface;
