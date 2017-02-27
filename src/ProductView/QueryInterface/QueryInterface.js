@@ -95,13 +95,17 @@ class QueryInterface extends Component {
         if (match[1] !== this.state.eventTypeName) {
             throw '"' + match[1] + '" has to match the EventType name.';
         }
+    handleChangeQuery(event) {
+        this.setState({ eventQuery: event.target.value });
     }
 
     render() {
         return (
             <div className="query-interface">
                 <Modal title="Create new query" onSave={this.handleSaveQuery}>
-                    <QueryInterfaceHeader eventTypeAttributes={this.state.eventTypeAttributes}
+                    <QueryInterfaceHeader eventTypeName={this.state.eventTypeName}
+                                          onChangeEventTypeName={this.handleChangeEventTypeName}
+                                          eventTypeAttributes={this.state.eventTypeAttributes}
                                           onChangeAttributeName={this.handleChangeAttributeName}
                                           onChangeAttributeType={this.handleChangeAttributeType} />
                     <div className="form-group">
