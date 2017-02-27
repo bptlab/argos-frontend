@@ -68,7 +68,7 @@ class NotificationService {
         }
     }
     
-    static buildNotificationElement(entityType, notificationCallback) {
+    static buildSubscriber(entityType, notificationCallback) {
         return ({
             entityOfInterest: entityType,
             notificationCallback: notificationCallback
