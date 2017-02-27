@@ -10,7 +10,8 @@ class TabBar extends Component {
                         <Tab key={index}
                              eventType={eventType}
                              loadEventsFor={this.props.loadEventsFor}
-                             product={this.props.product}/>
+                             product={this.props.product}
+                             notificationService={this.props.notificationService}/>
                     )}
                 </ul>
             </div>

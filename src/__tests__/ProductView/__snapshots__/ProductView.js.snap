@@ -65,9 +65,7 @@ exports[`test Rendering of ProductView 1`] = `
                 Marke:
               </p>
               <p
-                className="col">
-                Testbrand1
-              </p>
+                className="col" />
             </div>
             <div
               className="row">
@@ -76,9 +74,7 @@ exports[`test Rendering of ProductView 1`] = `
                 Produktfamilie:
               </p>
               <p
-                className="col">
-                Testproduct 30X 1W1-PSB
-              </p>
+                className="col" />
             </div>
             <div
               className="row">
@@ -98,25 +94,30 @@ exports[`test Rendering of ProductView 1`] = `
           <div>
             <h2
               className="area-title">
-              Mögliche Fehlerursachen
+              Statusherleitung
             </h2>
-            <ol>
-              <li>
-                <h4>
-                  ...
-                </h4>
-              </li>
-              <li>
-                <h4>
-                  ...
-                </h4>
-              </li>
-              <li>
-                <h4>
-                  ...
-                </h4>
-              </li>
-            </ol>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Status:
+              </p>
+              <p
+                className="col">
+                ERROR
+              </p>
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Statusbeschreibung:
+              </p>
+              <p
+                className="col">
+                Error detected! Intervention required!
+              </p>
+            </div>
           </div>
         </div>
       </div>

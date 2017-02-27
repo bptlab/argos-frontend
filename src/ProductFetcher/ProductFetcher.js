@@ -1,5 +1,6 @@
 import DataMapper from './DataMapper.js';
 import RESTInterface from './RESTInterface.js';
+import NotificationService from '../NotificationInterface/NotificationService';
 /*eslint-disable */
 if (!String.prototype.format) {
     String.prototype.format = function() {
@@ -28,14 +29,16 @@ class ProductFetcher {
     }
     
     static getServerRequestURI() {
-        return "{0}:{1}/{2}";
+        return "http://{0}:{1}/{2}";
     }
     
-    constructor(remoteAddress, remotePort, requestMethod = "GET") {
-        this.remoteAddress = remoteAddress;
+    constructor(remoteDomain, remotePort, notificationCallback, requestMethod = "GET") {
+        this.remoteAddress = remoteDomain;
+        this.notificationCallback = notificationCallback;
         this.remotePort = remotePort;
         this.requestMethod = requestMethod;
         this.dataMapper = DataMapper;
+        this.notificationService = new NotificationService(remoteDomain, remotePort,"notifications", notificationCallback);
         this.client = new RESTInterface();
         //function binding
         this.receiveResults = this.receiveResults.bind(this);

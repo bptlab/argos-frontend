@@ -11,14 +11,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.css';
 import './index.scss';
 
-const API_SERVER_URL = "localhost";
+const API_SERVER_URL = "172.16.20.158"; //172.16.20.158
 const API_SERVER_PORT = 8989;
+const notificationList = [];
 
-const dataSource = new ProductFetcher(API_SERVER_URL, API_SERVER_PORT);
-dataSource.setClient(new RESTInterfaceMock());
+function registerNotifications(callback) {
+    notificationList.push(callback);
+}
+function notificationCallback(type, message) {
+    notificationList.forEach(function(callback){
+        callback(type, message);
+    });
+}
+const dataSource = new ProductFetcher(API_SERVER_URL, API_SERVER_PORT, notificationCallback);
 ReactDOM.render(
     (<Router history={hashHistory}>
-        <Route path="/" component={App}>
+        <Route path="/" component={App} params={{ registerForNotificationsCallback: registerNotifications}}>
             <IndexRoute component={() => (<DashboardView dataSource={dataSource} />)} />
             <Route path="/product/:productID"
                    component={(routeObject) => (

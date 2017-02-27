@@ -28,9 +28,9 @@ class ProductView extends Component {
         this.handleEventData = this.handleEventData.bind(this);
         this.handleError = this.handleError.bind(this);
         this.handleEventTypeData = this.handleEventTypeData.bind(this);
-    }
-    componentDidMount() {
-        this.props.dataSource.fetchProduct(this.prodId, this.handleProductData, this.handleError);
+        this.fetchProducts = this.fetchProducts.bind(this);
+        this.fetchEventTypes = this.fetchEventTypes.bind(this);
+        this.loadEventsFor = this.loadEventsFor.bind(this);
     }
 
     handleEventData(events) {
@@ -47,11 +47,30 @@ class ProductView extends Component {
         });
     }
 
+    componentDidMount() {
+        this.fetchProducts();
+        this.props.dataSource.notificationService.subscribe("Product", this.fetchProducts);
+        this.props.dataSource.notificationService.subscribe("EventType", this.fetchEventTypes);
+    }
+
+    componentWillUnmount() {
+        this.props.dataSource.notificationService.unsubscribe("Product", this.fetchProducts);
+        this.props.dataSource.notificationService.unsubscribe("EventType", this.fetchEventTypes);
+    }
+
+    fetchProducts() {
+        this.props.dataSource.fetchProduct(this.prodId, this.handleProductData, this.handleError);
+    }
+    
+    fetchEventTypes() {
+        this.props.dataSource.fetchEventTypesOf(this.prodId, this.handleEventTypeData, this.handleError);
+    }
+
     handleProductData(products) {
         this.setState({
             product: products
         });
-        this.props.dataSource.fetchEventTypesOf(this.prodId, this.handleEventTypeData, this.handleError);
+        this.fetchEventTypes();
     }
 
     handleError(errorCode) {
@@ -107,7 +126,8 @@ class ProductView extends Component {
                     <TabBar
                         eventTypes={this.state.eventTypes}
                         loadEventsFor={this.loadEventsFor}
-                        product={this.state.product}/>
+                        product={this.state.product}
+                        notificationService={this.props.dataSource.notificationService} />
                     <EventTable
                         eventTable={this.state.eventTable}
                         filter={this.state.filter}/>

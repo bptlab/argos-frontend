@@ -5,8 +5,9 @@ import RESTInterfaceMock from '../../ProductFetcher/RESTInterfaceMock.js'
 let instance;
 
 beforeAll(() => {
-    instance = new ProductFetcher("address", 1234, "GET");
-    instance.setClient(new RESTInterfaceMock)
+    const notificationCallback = jest.fn();
+    instance = new ProductFetcher("address", 1234, notificationCallback, "GET");
+    instance.setClient(new RESTInterfaceMock);
 });
 
 test('Fetch ProductFamilies', () => {

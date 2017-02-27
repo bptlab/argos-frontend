@@ -144,13 +144,13 @@ exports[`test Error handling 1`] = `
     <i
       className="fa fa-exclamation-triangle warning-sign" />
     <p>
-      An test-error occured
+      An test-error occurred
     </p>
   </div>
 </div>
 `;
 
-exports[`test Search in Searchbar 1`] = `
+exports[`test Search in SearchBar 1`] = `
 <div
   className="dashboard-view">
   <div
@@ -158,7 +158,7 @@ exports[`test Search in Searchbar 1`] = `
     <i
       className="fa fa-exclamation-triangle warning-sign" />
     <p>
-      An test-error occured
+      An test-error occurred
     </p>
   </div>
 </div>

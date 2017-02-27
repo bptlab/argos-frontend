@@ -1,0 +1,40 @@
+@import "../definitions.scss";
+
+.alert {
+  position: absolute;
+  z-index: 2;
+  text-align: left;
+  opacity: 0;
+  width: 30vw;
+  top: 10vh;
+  right: -20vw;
+  animation: fade 5s linear;
+  padding: 1vw;
+  i {
+    float: left;
+    font-size: 2vw;
+    margin-right: 1vw;
+    color: $COLOR-font-light !important;
+}
+  p {
+    float: left;
+    color: $COLOR-font-light !important;
+}
+}
+
+.alert-info {
+  background-color: $COLOR-dark_background-transparent;
+  border-color: $COLOR-dark-background;
+}
+
+.alert-danger {
+  border-color: $COLOR-error;
+  background: $COLOR-error-transparent;
+}
+
+@keyframes fade {
+0%    {right: -20vw; display: block; opacity: 0;}
+20%   { right: -1vw; display: block; opacity: 1; }
+80%   { right: -1vw; display: block; opacity: 1; }
+100%  {right: -20vw; display: none; opacity: 0;}
+}

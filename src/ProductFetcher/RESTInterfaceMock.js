@@ -10,6 +10,8 @@ class RESTInterfaceMock {
             name: "Testproductfamily",
             brand: "Testbrand",
             products: [{
+                family: "Testproductfamily",
+                brand: "Testbrand",
                 id: 0,
                 name: "Testproduct 5000 14E-17B",
                 numberOfDevices: 52189,
@@ -19,6 +21,8 @@ class RESTInterfaceMock {
                 state: "RUNNING",
                 stateDescription: "No errors or warnings detected"
             },{
+                family: "Testproductfamily",
+                brand: "Testbrand",
                 id: 1,
                 name: "Testproduct 5010 116-1EB",
                 numberOfDevices: 90621,
@@ -28,6 +32,8 @@ class RESTInterfaceMock {
                 state: "RUNNING",
                 stateDescription: "No errors or warnings detected"
             },{
+                family: "Testproductfamily",
+                brand: "Testbrand",
                 id: 2,
                 name: "Testproduct 3010 226-1XC",
                 numberOfDevices: 746,
@@ -36,6 +42,8 @@ class RESTInterfaceMock {
                 orderNumber: "7710473416",
                 state: "WARNING",
             },{
+                family: "Testproductfamily",
+                brand: "Testbrand",
                 id: 3,
                 name: "Testproduct 20X US6-1XB",
                 numberOfDevices: 345,
@@ -45,6 +53,8 @@ class RESTInterfaceMock {
                 state: "RUNNING",
                 stateDescription: "No errors or warnings detected"
             },{
+                family: "Testproductfamily",
+                brand: "Testbrand",
                 id: 4,
                 name: "Testproduct 30X 1W1-PSB",
                 numberOfDevices: 201,
