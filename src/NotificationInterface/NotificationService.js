@@ -54,8 +54,8 @@ class NotificationService {
     }
 
     subscribe(entityType, notificationCallback) {
-        const listElement = NotificationService.buildNotificationElement(entityType, notificationCallback);
-        this.notificationSubscribers.push(listElement);
+        const subscriber = NotificationService.buildNotificationElement(entityType, notificationCallback);
+        this.notificationSubscribers.push(subscriber);
     }
 
     unsubscribe(entityType, notificationCallback) {
