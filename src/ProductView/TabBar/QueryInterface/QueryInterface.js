@@ -120,7 +120,7 @@ class QueryInterface extends Component {
     render() {
         return (
             <div className="query-interface">
-                <Modal title="Create new query" onSave={this.handleSaveQuery}>
+                <Modal onSave={this.handleSaveQuery}>
                     <QueryInterfaceHeader eventTypeName={this.state.eventTypeName}
                                           onChangeEventTypeName={this.handleChangeEventTypeName}
                                           eventTypeAttributes={this.state.eventTypeAttributes}

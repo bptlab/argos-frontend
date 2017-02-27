@@ -13,9 +13,9 @@ class Modal extends Component {
     render() {
         return (
             <div>
-                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#query-interface-modal">
-                    {this.props.title}
-                </button>
+                <a className="nav-link" data-toggle="modal" data-target="#query-interface-modal">
+                    <i className="fa fa-plus"/>
+                </a>
                 <div className="query-interface modal fade" id="query-interface-modal" tabIndex="-1" role="dialog">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">

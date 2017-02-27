@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import QueryInterface from './QueryInterface/QueryInterface.js';
 import Tab from './Tab/Tab.js';
 
 class TabBar extends Component {
@@ -12,6 +13,11 @@ class TabBar extends Component {
                              loadEventsFor={this.props.loadEventsFor}
                              product={this.props.product}/>
                     )}
+                    <li>
+                        <QueryInterface
+                            dataSource={this.props.dataSource}
+                            defaultQuery="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData"/>
+                    </li>
                 </ul>
             </div>
         );
