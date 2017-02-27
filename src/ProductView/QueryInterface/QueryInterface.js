@@ -51,7 +51,6 @@ class QueryInterface extends Component {
         return attributes;
     }
 
-    handleChangeAttributeType(id, type) {
         const attributes = this.state.eventTypeAttributes;
         for (let i = 0; i < this.state.eventTypeAttributes.length; i++) {
             if (attributes[i].id === id && attributes[i].readonly === false) {
@@ -73,6 +72,10 @@ class QueryInterface extends Component {
         try {
             this.validateEventType();
             this.validateQuery();
+    handleChangeEventTypeName(name) {
+        this.setState({ eventTypeName: name });
+    }
+
     handleChangeAttributeName(id, name) {
         const currentAttribute = this.getEventTypeAttribute(id);
         if (currentAttribute.readonly) {
@@ -93,6 +96,16 @@ class QueryInterface extends Component {
     }
 
     validateEventType() {
+    handleChangeAttributeType(id, type) {
+        const currentAttribute = this.getEventTypeAttribute(id);
+        if (currentAttribute.readonly) {
+            return;
+        }
+
+        let attributes = this.state.eventTypeAttributes;
+        const currentIndex = attributes.indexOf(currentAttribute);
+        attributes[currentIndex].type = type;
+        this.setState({ eventTypeAttributes: attributes });
     }
 
     validateQuery() {
