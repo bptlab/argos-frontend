@@ -57,7 +57,7 @@ class QueryInterface extends Component {
         const eventTypeAttributes = {};
         const attributes = this.state.eventTypeAttributes;
         for (let i = 0; i < attributes.length; i++) {
-            if (attributes[i].name != '') {
+            if (attributes[i].name) {
                 eventTypeAttributes[attributes[i].name] = attributes[i].type;
             }
         }
@@ -104,7 +104,7 @@ class QueryInterface extends Component {
             return;
         }
 
-        let attributes = this.state.eventTypeAttributes;
+        const attributes = this.state.eventTypeAttributes;
         const currentIndex = attributes.indexOf(currentAttribute);
         attributes[currentIndex].type = type;
         this.setState({ eventTypeAttributes: attributes });

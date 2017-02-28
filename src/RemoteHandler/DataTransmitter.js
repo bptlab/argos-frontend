@@ -15,7 +15,7 @@ class DataTransmitter extends RemoteHandler {
             "eventType":    eventType
         };
         const callbackContainer = {
-            "dataMappingFunction":    () => {},
+            "dataMappingFunction":    () => {/* Not necessary because no data mapping is needed. */},
             "clientSuccessCallback":  successCallback,
             "clientErrorCallback":    errorCallback
         };
