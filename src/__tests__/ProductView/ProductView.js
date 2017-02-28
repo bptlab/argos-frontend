@@ -10,7 +10,7 @@ let instance, notificationService, component;
 test("Rendering of ProductView", () => {
     const fetchProductMockCallback = jest.fn();
     const fetchEventTypesOfMockCallback = jest.fn();
-    const fetchEventsOfMockCallback = (prodId, eventTypeId, succCallback, errCallback) => {
+    const fetchEventsOfMockCallback = (prodId, eventTypeId, succCallback) => {
         succCallback(TestEvents.EVENTS);
     };
     notificationService = {
