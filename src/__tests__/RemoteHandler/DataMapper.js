@@ -1,5 +1,5 @@
 import React from 'react';
-import DataMapper from '../../RemoteHandler/DataMapper.js';
+import DataMapper from './../../RemoteHandler/DataMapper.js';
 import TestDataFamilies from './../testData/productFamilies.js'
 import TestDataEventTypes from './../testData/eventTypes.js'
 import TestDataEvents from './../testData/events.js'
