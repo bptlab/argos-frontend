@@ -4,85 +4,86 @@ import {argosConfig} from '../../config/argosConfig.js';
 
 class LineChart extends Component {
     
+    static sortEventsByTime(elementA, elementB, timeStampAttribute) {
+        let datePartsA = elementA[timeStampAttribute].split("T")[0];
+        let datePartsB = elementB[timeStampAttribute].split("T")[0];
+        datePartsA = datePartsA.split("-");
+        datePartsB = datePartsB.split("-");
+        const dateA = new Date(datePartsA[0], datePartsA[1], datePartsA[2]);
+        const dateB = new Date(datePartsB[0], datePartsB[1], datePartsB[2]);
+        return dateA - dateB;
+    }
+    
     buildChartData() {
-        const events = this.props.events;
-        const dataContainer = [];
-        const timeStampAttribute = "DateOfServiceIntervention";
-        let counter = 0;
-        events.sort(function(a, b) {
-            const datePartsA = a[timeStampAttribute].split("-");
-            const datePartsB = b[timeStampAttribute].split("-");
-            const dateA = new Date(datePartsA[0], datePartsA[1], datePartsA[2]);
-            const dateB = new Date(datePartsB[0], datePartsB[1], datePartsB[2]);
-            return dateA - dateB;
+        const dataset = [];
+        this.props.eventData.forEach((eventDataContainer) => {
+            dataset.push(this.buildChartDataset(eventDataContainer.eventType, eventDataContainer.events));
         });
-        events.forEach(function (event) {
+        return dataset;
+    }
+    buildChartDataset(eventType, events) {
+        const dataContainer = [];
+        const timeStampAttribute = eventType.timestampAttributeName;
+        let counter = 0;
+        const sortedEvents = events;
+        sortedEvents.sort((elementA, elementB) => {
+            return LineChart.sortEventsByTime(elementA, elementB, timeStampAttribute);
+        });
+        sortedEvents.forEach(function (event) {
             counter = counter + 1;
             dataContainer.push({
-                x: event[timeStampAttribute],
+                x: event[timeStampAttribute].split("T")[0],
                 y: counter
             });
         });
-        console.log(dataContainer);
-        return dataContainer;
+        return({
+            label: eventType.name,
+            fill: true,
+            lineTension: 0.1,
+            backgroundColor: "rgba(0, 78, 100, 0.5)",
+            borderColor: "rgba(0, 78, 100, 1)",
+            pointBorderWidth: 5,
+            pointHoverRadius: 8,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: dataContainer
+        });
+            
     }
 
-    componentDidUpdate() {
-        if(this.props.eventType.name) {
-            const charWrapper = this.refs.canvas;
-            if (charWrapper) {
-                const chartContext = charWrapper.getContext('2d');
-                const chart = new Chart(chartContext, {
-                    type: argosConfig.kindOfDetailChart,
-                    data: {
-                        datasets: [{
-                            label: this.props.eventType.name,
-                            fill: false,
-                            lineTension: 0.1,
-                            backgroundColor: "rgba(75,192,192,0.4)",
-                            borderColor: "rgba(75,192,192,1)",
-                            borderCapStyle: 'butt',
-                            borderDash: [],
-                            borderDashOffset: 0.0,
-                            borderJoinStyle: 'miter',
-                            pointBorderColor: "rgba(75,192,192,1)",
-                            pointBackgroundColor: "#fff",
-                            pointBorderWidth: 1,
-                            pointHoverRadius: 5,
-                            pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                            pointHoverBorderColor: "rgba(220,220,220,1)",
-                            pointHoverBorderWidth: 2,
-                            pointRadius: 1,
-                            pointHitRadius: 10,
-                            data: this.buildChartData(),
-                            spanGaps: false,
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            xAxes: [{
-                                type: 'time',
-                                time: {
-                                    displayFormats: {
-                                        quarter: 'YYYY-MM-DD'
-                                    }
+    componentDidMount() {
+        const charWrapper = this.refs.canvas;
+        if (charWrapper) {
+            const chartContext = charWrapper.getContext('2d');
+            const chart = new Chart(chartContext, {
+                type: argosConfig.kindOfDetailChart,
+                data: {
+                    datasets: this.buildChartData()
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            type: 'time',
+                            time: {
+                                displayFormats: {
+                                    quarter: 'YYYY-MM-DD'
                                 }
-                            }]
-                        }
+                            }
+                        }]
                     }
-                });
-                this.state = {
-                    chart: chart
-                };
-            }
+                }
+            });
+            this.state = {
+                chart: chart
+            };
         }
     }
     
-    render(){
+    render() {
         return (
             <div className="line-chart container">
-                <canvas ref="canvas" id="pieChart"/>
+                <canvas ref="canvas" id="lineChart" height="80"/>
             </div>
         );
     }
