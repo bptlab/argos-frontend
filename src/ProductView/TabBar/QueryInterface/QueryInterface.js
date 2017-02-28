@@ -30,6 +30,7 @@ class QueryInterface extends Component {
             eventQuery: '',
             validationResult: ''
         };
+        this.nextAttributeId = 3;
         this.handleChangeEventTypeName = this.handleChangeEventTypeName.bind(this);
         this.handleChangeAttributeName = this.handleChangeAttributeName.bind(this);
         this.handleChangeAttributeType = this.handleChangeAttributeType.bind(this);
@@ -43,11 +44,12 @@ class QueryInterface extends Component {
 
     addEmptyAttribute(attributes) {
         attributes = attributes.concat([{
-            'id': attributes.length,
+            'id': this.nextAttributeId,
             "name": "",
             "type": "",
             "readonly": false
         }]);
+        this.nextAttributeId = this.nextAttributeId + 1;
         return attributes;
     }
 
@@ -90,7 +92,7 @@ class QueryInterface extends Component {
         if (!name) {
             attributes.splice(currentIndex, 1);
         }
-        if (currentIndex === attributes.length - 1) {
+        else if (currentIndex === attributes.length - 1) {
             attributes = this.addEmptyAttribute(attributes);
         }
         this.setState({ eventTypeAttributes: attributes });
