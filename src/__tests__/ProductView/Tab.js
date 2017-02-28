@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer';
 let instance;
 
 test('Clicking ProductView Tab', () => {
-    const loadEventsFor = jest.fn();
+    const setActiveEventType = jest.fn();
     const notificationService = {
         subscribe: jest.fn(),
         unsubscribe: jest.fn()
@@ -12,14 +12,14 @@ test('Clicking ProductView Tab', () => {
     renderer.create(
         <Tab ref={(child) => {instance = child}} 
              eventType={{}}
-             loadEventsFor={loadEventsFor} 
+             setActiveEventType={setActiveEventType} 
              product={{}}
              notificationService={notificationService}
             />
     );
-    instance.loadEventsFor();
+    instance.setActiveEventType();
     instance.componentWillUnmount();
-    expect(loadEventsFor).toBeCalled();
+    expect(setActiveEventType).toBeCalled();
     expect(notificationService.subscribe).toBeCalled();
     expect(notificationService.unsubscribe).toBeCalled();
 });
