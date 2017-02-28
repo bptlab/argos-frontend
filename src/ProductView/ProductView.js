@@ -120,17 +120,20 @@ class ProductView extends Component {
                 <div>
                     <Header product={this.state.product}/>
                     <DetailArea product={this.state.product}/>
+                    <LineChart
+                        eventData={this.state.eventData}/>
                     <FilterBar
                         onChangeFilterInput={this.onChangeFilterInput}
                         filter={this.state.filter}/>
                     <TabBar
                         eventTypes={this.state.eventTypes}
-                        loadEventsFor={this.loadEventsFor}
+                        setActiveEventType={this.setActiveEventType}
                         product={this.state.product}
                         notificationService={this.props.dataSource.notificationService} />
                     <EventTable
-                        eventTable={this.state.eventTable}
-                        filter={this.state.filter}/>
+                        header={this.state.activeEventType.attributes}
+                        events={this.getCurrentEvents()}
+                        filter={this.state.filter} />
                 </div>
             );
         }
