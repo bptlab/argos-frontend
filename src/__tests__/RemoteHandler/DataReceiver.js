@@ -1,11 +1,11 @@
 import React from 'react';
-import ProductFetcher from '../../ProductFetcher/ProductFetcher.js';
-import RESTInterfaceMock from '../../ProductFetcher/RESTInterfaceMock.js'
+import DataReceiver from '../../RemoteHandler/DataReceiver.js';
+import RESTInterfaceMock from '../../RemoteHandler/RESTInterfaceMock.js';
 
 let instance;
 
 beforeAll(() => {
-    instance = new ProductFetcher("address", 1234, "GET");
+    instance = new DataReceiver("address", 1234);
     instance.setClient(new RESTInterfaceMock)
 });
 
@@ -47,6 +47,13 @@ test('Fetch Events of specific Product', () => {
     instance.fetchEventsOf(0, 0, successMockCallback, errorMockCallback);
     const expectedData = RESTInterfaceMock.getEvents();
     expect(successMockCallback).toBeCalledWith(expectedData);
+});
+
+test('Create new event type', () => {
+    const successMockCallback = jest.fn();
+    const errorMockCallback = jest.fn();
+    instance.createEventtype('', {}, successMockCallback, errorMockCallback);
+    expect(successMockCallback).toBeCalled();
 });
 
 test('Error handling', () => {

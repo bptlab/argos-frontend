@@ -1,5 +1,5 @@
 import React from 'react';
-import RESTInterface from '../../ProductFetcher/RESTInterface.js'
+import RESTInterface from '../../RemoteHandler/RESTInterface.js'
 
 let instance;
 let openMockCallback, sendMockCallback, setRequestHeaderMock;
