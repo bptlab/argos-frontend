@@ -41,10 +41,12 @@ class DataMapper {
         for(let i = 0; i < apiEventTypeCollection.length; i++) {
             const apiEventType = apiEventTypeCollection[i];
             const eventType = {
-                "id":               apiEventType.id,
-                "name":             apiEventType.name,
-                "numberOfEvents":   apiEventType.numberOfEvents,
-                "attributes":       DataMapper.mapEventTypeAttributes(apiEventType.attributes)
+                "id":                       apiEventType.id,
+                "name":                     apiEventType.name,
+                "timestampAttributeName":   apiEventType.timestampAttributeName,
+                "eventQuery":               apiEventType.eventQuery,
+                "numberOfEvents":           apiEventType.numberOfEvents,
+                "attributes":               DataMapper.mapEventTypeAttributes(apiEventType.attributes)
             };
             eventTypes.push(eventType);
         }
