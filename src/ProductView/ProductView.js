@@ -105,6 +105,7 @@ class ProductView extends Component {
                         onChangeFilterInput={this.onChangeFilterInput}
                         filter={this.state.filter}/>
                     <TabBar
+                        dataSender={this.props.dataSender}
                         eventTypes={this.state.eventTypes}
                         loadEventsFor={this.loadEventsFor}
                         product={this.state.product}/>

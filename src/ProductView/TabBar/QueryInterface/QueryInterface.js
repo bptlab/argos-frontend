@@ -114,7 +114,7 @@ class QueryInterface extends Component {
 
     handleSaveQuery() {
         const eventType = this.getEventType();
-        this.props.dataSource.createEventtype(this.state.eventQuery, eventType, this.handleEventTypeData, this.handleError);
+        this.props.dataSender.createEventtype(this.state.eventQuery, eventType, this.handleEventTypeData, this.handleError);
     }
 
     render() {
