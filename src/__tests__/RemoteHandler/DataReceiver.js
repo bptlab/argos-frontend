@@ -49,13 +49,6 @@ test('Fetch Events of specific Product', () => {
     expect(successMockCallback).toBeCalledWith(expectedData);
 });
 
-test('Create new event type', () => {
-    const successMockCallback = jest.fn();
-    const errorMockCallback = jest.fn();
-    instance.createEventtype('', {}, successMockCallback, errorMockCallback);
-    expect(successMockCallback).toBeCalled();
-});
-
 test('Error handling', () => {
     const errorMockCallback = jest.fn();
     const callbackContainer = {
