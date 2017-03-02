@@ -1,0 +1,4 @@
+exports[`test Correct drawing of PieChart 1`] = `
+<canvas
+  id="pieChart" />
+`;

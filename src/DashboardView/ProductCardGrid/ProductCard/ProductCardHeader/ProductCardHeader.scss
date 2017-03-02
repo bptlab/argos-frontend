@@ -1,0 +1,19 @@
+.ProductCardTitle {
+    width: 100%;
+    text-align: center;
+    padding: 0.6vw 0 0.5vw 0;
+    border-bottom: 1px solid white;
+    color: white;
+}
+
+.ProductCardTitle_RUNNING {
+    background: $COLOR-success-light !important;
+}
+
+.ProductCardTitle_WARNING {
+    background: $COLOR-warning-light !important;
+}
+
+.ProductCardTitle_ERROR {
+    background: $COLOR-error-light !important;
+}

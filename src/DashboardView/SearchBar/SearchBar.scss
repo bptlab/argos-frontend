@@ -1,4 +1,6 @@
 .searchArea {
-  width: 100%;
-  margin: 3vh 0;
+  margin-bottom: $element-margin-bottom;
+  @include media-breakpoint-up(uhd) {
+    margin-bottom: $uhd-element-margin-bottom;
+  }
 }

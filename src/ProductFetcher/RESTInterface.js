@@ -1,3 +1,4 @@
+import {argosConfig} from '../config/argosConfig';
 class RESTInterface {
     constructor() {
         this.client = new XMLHttpRequest();
@@ -7,13 +8,27 @@ class RESTInterface {
         this.client.open(requestMethod, api, async);
     }
 
-    sendRequest() {
+    sendRequest(successCallback, errorCallback, clientDataContainer) {
+        this.client.onload = this.onSuccess.bind(this, successCallback, errorCallback, clientDataContainer);
+        this.client.onerror = this.onError.bind(this, errorCallback, clientDataContainer);
         this.client.setRequestHeader("Content-type", "application/json");
         this.client.send();
     }
     
-    getResponse() {
-        return this.client.responseText;
+    onSuccess(successCallback, errorCallback, clientDataContainer) {
+        if (this.client.readyState === 4) {
+            if (this.client.status === 200) {
+                successCallback(this.client.responseText, clientDataContainer);
+            } else {
+                errorCallback(this.client.statusText, clientDataContainer);
+            }
+        } else {
+            errorCallback(argosConfig.RESTInterfaceRouteError, clientDataContainer);
+        }
+    }
+    
+    onError(errorCallback, clientDataContainer) {
+        errorCallback(argosConfig.RESTInterfaceConnectionError+" "+this.client.statusText, clientDataContainer);
     }
 }
 export default RESTInterface;

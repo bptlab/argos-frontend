@@ -1,0 +1,6 @@
+exports[`test Render DashboardView Header 1`] = `
+<h4
+  className="card-title ProductCardTitle ProductCardTitle_WARNING">
+  Name of Product
+</h4>
+`;

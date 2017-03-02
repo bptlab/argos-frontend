@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './SearchBar.css';
+import {argosConfig} from '../../config/argosConfig';
 
 class SearchBar extends Component {
     constructor(props) {
@@ -16,13 +16,14 @@ class SearchBar extends Component {
             <div className="container">
                 <div className="searchArea">
                     <div className="input-group">
-                    <span className="input-group-addon" id="search-addon">
-                        <i className="fa fa-search"/>
-                    </span>
+                        <span className="input-group-addon" id="search-addon">
+                            <i className="fa fa-search"/>
+                        </span>
                         <input
                             type="text"
+                            ref="searchInput"
                             className="form-control"
-                            placeholder="Search..."
+                            placeholder={argosConfig.searchPlaceholder}
                             value={this.props.searchText}
                             onChange={this.handleChangeSearchInput}/>
                     </div>

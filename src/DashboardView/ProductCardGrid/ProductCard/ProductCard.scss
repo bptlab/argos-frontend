@@ -1,11 +1,5 @@
-@import '../../../definitions.scss';
-@font-face { font-family: "Ionicons";
-    src: url("../../../assets/fonts/icons/ionicons.eot?v=2.0.0");
-    src: url("../../../assets/fonts/icons/ionicons.eot?v=2.0.0#iefix")
-    format("embedded-opentype"), url("../../../assets/fonts/icons/ionicons.ttf?v=2.0.0")
-    format("truetype"), url("../../../assets/fonts/icons/ionicons.woff?v=2.0.0")
-    format("woff"), url("../../../assets/fonts/icons/ionicons.svg?v=2.0.0#Ionicons")
-    format("svg"); font-weight: normal; font-style: normal; }
+@import "ProductCardHeader/ProductCardHeader";
+
 /* ###################### PRODUCT CARD ###################### */
 .ProductCard {
     height: min-content;
@@ -34,6 +28,10 @@ a .ProductCard:hover {
     background: $COLOR-error !important;
 }
 
+.ProductCard_UNDEFINED {
+    background: $COLOR-undefined !important;
+}
+
 /* ############ PRODUCT CARD INFORMATION LINE ############ */
 
 .ProductCardInformationLine {
@@ -44,6 +42,9 @@ a .ProductCard:hover {
     -moz-osx-font-smoothing: grayscale;
     padding-right: 1vh;
     line-height: 3vh;
+    @include media-breakpoint-down(xs) {
+        font-size: 12px;
+    }
 }
 
 .ProductCardInformationLine:before {

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import './ProductCard.css';
-import ProductCardHeader from './ProductCardHeader/CardHeader.js';
+import ProductCardHeader from './ProductCardHeader/ProductCardHeader.js';
 
 class ProductCard extends Component {
     render() {
         return (
-            <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div className="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-uhd-2">
                 <a href={ `/#/product/${this.props.product.id}`} title={ `Details for ${this.props.product.name}`}>
                     <div className={ `card ProductCard ProductCard_${this.props.product.state}` }>
                         <ProductCardHeader category={this.props.product.state}>
@@ -39,6 +38,6 @@ class ProductCardInformationLine extends Component {
             <li className={ `ProductCardInformationLine PCIL_${this.props.category}` }>
                 {this.props.children}
             </li>
-        )
+        );
     }
 }

@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import './StatusDerivation.css';
 
 class StatusDerivation extends Component {
     render() {
         return (
             <div>
-                <h2 className="area-title">Mögliche Fehlerursachen</h2>
-                <ol>
-                    <li><h4>...</h4></li>
-                    <li><h4>...</h4></li>
-                    <li><h4>...</h4></li>
-                </ol>
+                <h2 className="area-title">Statusherleitung</h2>
+                <div className="row">
+                    <p className="col-4">Status:</p>
+                    <p className="col">{this.props.product.state}</p>
+                </div>
+                <div className="row">
+                    <p className="col-4">Statusbeschreibung:</p>
+                    <p className="col">{this.props.product.stateDescription}</p>
+                </div>
             </div>
         );
     }

@@ -8,20 +8,22 @@ class DataMapper {
                 "id":       apiProductFamily.id,
                 "name":     apiProductFamily.name,
                 "brand":    apiProductFamily.brand,
-                "products": this.mapProducts(apiProductFamily.products)
+                "products": DataMapper.mapProducts(apiProductFamily.products, apiProductFamily)
             };
             productFamilies.push(productFamily);
         }
         return productFamilies;
     }
     
-    static mapProducts(apiProductCollection) {
+    static mapProducts(apiProductCollection, apiProductFamily) {
         const products = [];
         for(let i = 0; i < apiProductCollection.length; i++) {
             const apiProduct = apiProductCollection[i]; 
             const product = {
                 "id":               apiProduct.id,
                 "name":             apiProduct.name,
+                "family":           apiProductFamily.name,
+                "brand":            apiProductFamily.brand,
                 "numberOfDevices":  apiProduct.numberOfDevices,
                 "numberOfEvents":   apiProduct.numberOfEvents,
                 "productionStart":  apiProduct.productionStart,
@@ -39,10 +41,12 @@ class DataMapper {
         for(let i = 0; i < apiEventTypeCollection.length; i++) {
             const apiEventType = apiEventTypeCollection[i];
             const eventType = {
-                "id":               apiEventType.id,
-                "name":             apiEventType.name,
-                "numberOfevents":   apiEventType.numberOfEvents,
-                "attributes":       this.mapEventTypeAttributes(apiEventType.attributes)
+                "id":                       apiEventType.id,
+                "name":                     apiEventType.name,
+                "timestampAttributeName":   apiEventType.timestampAttributeName,
+                "eventQuery":               apiEventType.eventQuery,
+                "numberOfEvents":           apiEventType.numberOfEvents,
+                "attributes":               DataMapper.mapEventTypeAttributes(apiEventType.attributes)
             };
             eventTypes.push(eventType);
         }
@@ -54,7 +58,7 @@ class DataMapper {
         for(let i = 0; i < apiEventTypeAttributes.length; i++) {
             const apiEventTypeAttribute = apiEventTypeAttributes[i];
             const eventTypeAttribute = {
-                "id" :      apiEventTypeAttributes.id,
+                "id" :      apiEventTypeAttribute.id,
                 "name":     apiEventTypeAttribute.name,
                 "type":     apiEventTypeAttribute.type
             };

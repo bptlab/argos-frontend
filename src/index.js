@@ -1,23 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory, IndexRoute } from 'react-router'
+import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import App from './App/App';
-import ProductView from './ProductView/ProductView';
-import DashboardView from './DashboardView/DashboardView';
-import './index.css';
+import ProductView from './ProductView/ProductView.js';
+import DashboardView from './DashboardView/DashboardView.js';
 import ProductFetcher from './ProductFetcher/ProductFetcher.js';
-import RESTInterfaceMock from './ProductFetcher/RESTInterfaceMock';
+import RESTInterfaceMock from './ProductFetcher/RESTInterfaceMock.js';
+import {argosConfig} from './config/argosConfig';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.css';
+import './index.scss';
 
-const API_SERVER_URL = "http://172.16.20.158";
-const API_SERVER_PORT = 8989;
+//### Data-Source-Initialization ###
+const dataSource = new ProductFetcher(
+    argosConfig.backendHost,
+    argosConfig.backendPort,
+    notificationCallback
+);
+if(argosConfig.useBackendMock) {
+    dataSource.client = new RESTInterfaceMock();
+}
 
-const dataSource = new ProductFetcher(API_SERVER_URL, API_SERVER_PORT);
-dataSource.setClient(new RESTInterfaceMock());
+//### Notification-Initialization ###
+const notificationList = [];
+function registerNotifications(callback) {
+    notificationList.push(callback);
+}
+function notificationCallback(type, message) {
+    notificationList.forEach(function(callback){
+        callback(type, message);
+    });
+}
+
+//### React-Initialization ###
 ReactDOM.render(
     (<Router history={hashHistory}>
-        <Route path="/" component={App}>
-            <IndexRoute component={() => (<DashboardView products={dataSource.receiveProducts()} />)} />
-            <Route path="/product/:productID"
+        <Route path="/" component={App} params={{ registerForNotificationsCallback: registerNotifications}}>
+            <IndexRoute component={() => (<DashboardView dataSource={dataSource} />)} />
+            <Route path={`/` + argosConfig.routeNameDetailView+`/:productID`}
                    component={(routeObject) => (
                        <ProductView dataSource={dataSource} params={routeObject.params} />
                    )}/>
