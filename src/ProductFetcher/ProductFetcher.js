@@ -2,6 +2,7 @@ import DataMapper from './DataMapper.js';
 import RESTInterface from './RESTInterface.js';
 import NotificationService from '../NotificationInterface/NotificationService';
 import {argosConfig} from '../config/argosConfig';
+import RequestQueue from './RequestQueue.js';
 
 /*eslint-disable */
 if (!String.prototype.format) {
@@ -50,10 +51,17 @@ class ProductFetcher {
         //function binding
         this.receiveResults = this.receiveResults.bind(this);
         this.receiveError = this.receiveError.bind(this);
+        this.requestQueue = new RequestQueue(this.executeNextRequest.bind(this));
     }
     
     setClient(client) {
         this.client = client;
+    }
+    
+    executeNextRequest(queue) {
+        const request = queue.head();
+        this.client.open(this.requestMethod, request.URI, true);
+        this.client.sendRequest(this.receiveResults, this.receiveError, request.callbackContainer);
     }
 
     parseJSON(results, errorCallback) {
@@ -66,25 +74,26 @@ class ProductFetcher {
     }
     
     receiveResults(results, clientDataContainer) {
-        const errorCallback =   clientDataContainer.clientErrorCallback;
+        const errorCallback = clientDataContainer.clientErrorCallback;
         const data = clientDataContainer.dataMappingFunction(this.parseJSON(results), errorCallback);
         clientDataContainer.clientSuccessCallback(data);
+        this.requestQueue.pop();
     }
     
     receiveError(errorCode, clientDataContainer) {
         clientDataContainer.clientErrorCallback(errorCode);
+        this.requestQueue.pop();
     }
     
     fetchProductFamilies(successCallback, errorCallback) {
         const APIRoute = ProductFetcher.getAPIRouteForProductFamilies();
         const URI = ProductFetcher.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
-        this.client.open(this.requestMethod, URI, true);
         const callbackContainer = {
             "dataMappingFunction":    this.dataMapper.mapProductFamilies,
             "clientSuccessCallback":  successCallback,
             "clientErrorCallback":    errorCallback
         };
-        this.client.sendRequest(this.receiveResults, this.receiveError, callbackContainer);
+        this.addRequest(URI, callbackContainer);
     }
     
     fetchProducts(successCallback, errorCallback) {
@@ -108,25 +117,31 @@ class ProductFetcher {
     fetchEventTypesOf(productId, successCallback, errorCallback) {
         const APIRoute = ProductFetcher.getAPIRouteForEventTypesOfProduct().format(productId);
         const URI = ProductFetcher.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
-        this.client.open(this.requestMethod, URI, true);
         const callbackContainer = {
             "dataMappingFunction":    this.dataMapper.mapEventTypes,
             "clientSuccessCallback":  successCallback,
             "clientErrorCallback":    errorCallback
         };
-        this.client.sendRequest(this.receiveResults, this.receiveError, callbackContainer);
+        this.addRequest(URI, callbackContainer);
     }
     
     fetchEventsOf(productId, eventTypeId, successCallback, errorCallback, indexFrom=0, indexTo=9999999) {
         const APIRoute = ProductFetcher.getAPIRouteForEveentsOfProduct().format(productId, eventTypeId, indexFrom, indexTo);
         const URI = ProductFetcher.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
-        this.client.open(this.requestMethod, URI, true);
         const callbackContainer = {
             "dataMappingFunction":    this.dataMapper.mapEvents,
             "clientSuccessCallback":  successCallback,
             "clientErrorCallback":    errorCallback
         };
-        this.client.sendRequest(this.receiveResults, this.receiveError, callbackContainer);
+        this.addRequest(URI, callbackContainer);
+    }
+    
+    addRequest(URI, callbackContainer) {
+        const request = {
+            "URI":                  URI,
+            "callbackContainer":    callbackContainer
+        };
+        this.requestQueue.push(request);
     }
 }
 export default ProductFetcher;

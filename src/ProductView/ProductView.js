@@ -57,7 +57,7 @@ class ProductView extends Component {
         });
         eventTypes.forEach((eventType) => {
             this.fetchEventsFor(eventType);
-        });
+        }, this);
     }
 
     componentDidMount() {
@@ -123,9 +123,9 @@ class ProductView extends Component {
     }
     
     getCurrentEvents() {
-        const eventContainer = this.state.eventData.find((eventContainer) => {
+        const eventContainer = this.state.eventData.find(function(eventContainer)  {
             return eventContainer.eventType === this.state.activeEventType;
-        });
+        }, this );
         if(eventContainer) {
             return eventContainer.events;
         } else {
