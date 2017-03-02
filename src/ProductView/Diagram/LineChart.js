@@ -48,7 +48,7 @@ class LineChart extends Component {
             
     }
 
-    componentDidMount() {
+    componentDidUpdate() {
         const charWrapper = this.refs.canvas;
         if (charWrapper) {
             const chartContext = charWrapper.getContext('2d');
