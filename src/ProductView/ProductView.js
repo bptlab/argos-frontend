@@ -5,6 +5,7 @@ import FilterBar from './FilterBar/FilterBar.js';
 import TabBar from './TabBar/TabBar.js';
 import EventTable from './EventTable/EventTable.js';
 import Loader from './../Loader/Loader.js';
+import LineChart from './Diagram/LineChart.js';
 
 class ProductView extends Component {
     constructor(props) {
@@ -16,34 +17,46 @@ class ProductView extends Component {
             product: null,
             eventTypes: null,
             error: null,
-            eventTable: {
-                header: [],
-                events: []
-            }
+            activeEventType: {attributes: []},
+            eventData: []
         };
         //Function binding
         this.onChangeFilterInput = this.onChangeFilterInput.bind(this);
-        this.loadEventsFor = this.loadEventsFor.bind(this);
         this.handleProductData = this.handleProductData.bind(this);
         this.handleEventData = this.handleEventData.bind(this);
         this.handleError = this.handleError.bind(this);
         this.handleEventTypeData = this.handleEventTypeData.bind(this);
         this.fetchProducts = this.fetchProducts.bind(this);
         this.fetchEventTypes = this.fetchEventTypes.bind(this);
-        this.loadEventsFor = this.loadEventsFor.bind(this);
+        this.fetchEventsFor = this.fetchEventsFor.bind(this);
+        this.setActiveEventType = this.setActiveEventType.bind(this);
     }
 
-    handleEventData(events) {
-        const eventTable = {
-            header: this.activeEventType.attributes,
-            events: events
-        };
-        this.setState({ eventTable: eventTable });
+    handleEventData(eventType, events) {
+        let eventContainer = this.state.eventData.find((eventContainer) => {
+           return eventContainer.eventType === eventType;
+        });
+        const eventData = this.state.eventData;
+        if(eventContainer) {
+            const index = this.state.eventData.indexOf(eventContainer);
+            eventContainer.events = events;
+            eventData.splice(index, 1);
+        } else {
+            eventContainer = {
+                eventType: eventType,
+                events: events
+            };
+        }
+        eventData.push(eventContainer);
+        this.setState({eventData: eventData});
     }
 
     handleEventTypeData(eventTypes) {
         this.setState({
             eventTypes: eventTypes
+        });
+        eventTypes.forEach((eventType) => {
+            this.fetchEventsFor(eventType);
         });
     }
 
@@ -64,6 +77,15 @@ class ProductView extends Component {
     
     fetchEventTypes() {
         this.props.dataSource.fetchEventTypesOf(this.prodId, this.handleEventTypeData, this.handleError);
+    }
+
+    fetchEventsFor(eventType) {
+        this.props.dataSource.fetchEventsOf(
+            this.prodId,
+            eventType.id,
+            (events) => {this.handleEventData(eventType, events);},
+            this.handleError
+        );
     }
 
     handleProductData(products) {
@@ -95,15 +117,20 @@ class ProductView extends Component {
             this.setState({filter: updatedFilters});
         }
     }
-
-    loadEventsFor(eventType) {
-        this.activeEventType = eventType;
-        this.props.dataSource.fetchEventsOf(
-            this.state.product.id, 
-            eventType.id, 
-            this.handleEventData,
-            this.handleError
-        );
+    
+    setActiveEventType(eventType) {
+        this.setState({activeEventType: eventType});
+    }
+    
+    getCurrentEvents() {
+        const eventContainer = this.state.eventData.find((eventContainer) => {
+            return eventContainer.eventType === this.state.activeEventType;
+        });
+        if(eventContainer) {
+            return eventContainer.events;
+        } else {
+            return [];
+        }
     }
 
     render() {
@@ -120,17 +147,19 @@ class ProductView extends Component {
                 <div>
                     <Header product={this.state.product}/>
                     <DetailArea product={this.state.product}/>
+                    <LineChart eventData={this.state.eventData}/>
                     <FilterBar
                         onChangeFilterInput={this.onChangeFilterInput}
                         filter={this.state.filter}/>
                     <TabBar
                         eventTypes={this.state.eventTypes}
-                        loadEventsFor={this.loadEventsFor}
+                        setActiveEventType={this.setActiveEventType}
                         product={this.state.product}
                         notificationService={this.props.dataSource.notificationService} />
                     <EventTable
-                        eventTable={this.state.eventTable}
-                        filter={this.state.filter}/>
+                        header={this.state.activeEventType.attributes}
+                        events={this.getCurrentEvents()}
+                        filter={this.state.filter} />
                 </div>
             );
         }

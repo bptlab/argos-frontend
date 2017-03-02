@@ -9,7 +9,7 @@ class TabBar extends Component {
                     {this.props.eventTypes.map((eventType, index) =>
                         <Tab key={index}
                              eventType={eventType}
-                             loadEventsFor={this.props.loadEventsFor}
+                             setActiveEventType={this.props.setActiveEventType}
                              product={this.props.product}
                              notificationService={this.props.notificationService}/>
                     )}

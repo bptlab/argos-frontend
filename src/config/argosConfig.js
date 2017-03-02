@@ -6,6 +6,7 @@ export const argosConfig = {
     enumerationSymbol:              '#',
     searchPlaceholder:              'Search...',
     kindOfChart:                    'doughnut',
+    kindOfDetailChart:              'line',
     dashboardName:                  'Early Warning Dashboard',
     webSocketProtocol:              'ws',
     messageSuccessConnectionPush:   'Successfully connected to Push-Notification-Service',
