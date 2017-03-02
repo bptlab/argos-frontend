@@ -5,19 +5,16 @@ import {argosConfig} from '../../config/argosConfig.js';
 class LineChart extends Component {
     
     static sortEventsByTime(elementA, elementB, timeStampAttribute) {
-        let datePartsA = elementA[timeStampAttribute].split("T")[0];
-        let datePartsB = elementB[timeStampAttribute].split("T")[0];
-        datePartsA = datePartsA.split("-");
-        datePartsB = datePartsB.split("-");
-        const dateA = new Date(datePartsA[0], datePartsA[1], datePartsA[2]);
-        const dateB = new Date(datePartsB[0], datePartsB[1], datePartsB[2]);
+        const dateA = new Date(elementA[timeStampAttribute]);
+        const dateB = new Date(elementB[timeStampAttribute]);
         return dateA - dateB;
     }
     
     buildChartData() {
         const dataset = [];
         this.props.eventData.forEach((eventDataContainer) => {
-            dataset.push(this.buildChartDataset(eventDataContainer.eventType, eventDataContainer.events));
+            const evenTypeDiagramData = this.buildChartDataset(eventDataContainer.eventType, eventDataContainer.events);
+            dataset.push(evenTypeDiagramData);
         });
         return dataset;
     }
@@ -55,7 +52,7 @@ class LineChart extends Component {
         const charWrapper = this.refs.canvas;
         if (charWrapper) {
             const chartContext = charWrapper.getContext('2d');
-            const chart = new Chart(chartContext, {
+            const chartConfig = {
                 type: argosConfig.kindOfDetailChart,
                 data: {
                     datasets: this.buildChartData()
@@ -73,7 +70,8 @@ class LineChart extends Component {
                         }]
                     }
                 }
-            });
+            };
+            const chart = new Chart(chartContext, chartConfig);
             this.state = {
                 chart: chart
             };

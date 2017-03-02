@@ -18,8 +18,7 @@ class ProductView extends Component {
             eventTypes: null,
             error: null,
             activeEventType: {attributes: []},
-            eventData: [
-            ]
+            eventData: []
         };
         //Function binding
         this.onChangeFilterInput = this.onChangeFilterInput.bind(this);
@@ -148,8 +147,7 @@ class ProductView extends Component {
                 <div>
                     <Header product={this.state.product}/>
                     <DetailArea product={this.state.product}/>
-                    <LineChart
-                        eventData={this.state.eventData}/>
+                    <LineChart eventData={this.state.eventData}/>
                     <FilterBar
                         onChangeFilterInput={this.onChangeFilterInput}
                         filter={this.state.filter}/>
