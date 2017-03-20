@@ -10,6 +10,9 @@
 ## Requirements
 - node & npm
 
+## Configuration
+To configure argos-frontend simply access ```src/config/argosConfig.js```
+
 ## Development
 - ```git clone git@github.com:bptlab/argos-frontend.git && cd argos-frontend```
 - ```npm install```
