@@ -21,3 +21,8 @@ To configure argos-frontend simply access ```src/config/argosConfig.js```
 
 ## Testing
 Argos frontend uses ReactTestUtils and Jest to test its components. You can run tests by calling ```npm test``` in your cli. 
+
+## Deplyoment
+Argos frontend uses Docker for a simple deployment process.
+Call ```docker build . -t bptlab/argos-frontend:latest -t bptlab/argos-frontend:[VERSION]``` to create a new docker-container (replace VERSION using a sufficient version-number e.g.: 1.1.0).
+Afterwards switch to your deplyoment system, make sure all necessary dependencies are running (Unicorn and Argos backend) and call ```docker run --name argos-frontend --link argos-backend:backend -d bptlab/argos-frontend:latest```.
