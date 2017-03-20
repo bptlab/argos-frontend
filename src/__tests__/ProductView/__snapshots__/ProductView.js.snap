@@ -9,7 +9,7 @@ exports[`test Change filter 1`] = `
           <div
             className="hidden-xs-down col-sm-1 d-flex justify-content-center">
             <a
-              href="/">
+              href="/#">
               <i
                 className="home-button fa fa-home" />
             </a>
@@ -230,7 +230,7 @@ exports[`test Changing active Tab 1`] = `
           <div
             className="hidden-xs-down col-sm-1 d-flex justify-content-center">
             <a
-              href="/">
+              href="/#">
               <i
                 className="home-button fa fa-home" />
             </a>
@@ -489,7 +489,7 @@ exports[`test Rendering of ProductView 1`] = `
           <div
             className="hidden-xs-down col-sm-1 d-flex justify-content-center">
             <a
-              href="/">
+              href="/#">
               <i
                 className="home-button fa fa-home" />
             </a>
@@ -677,7 +677,7 @@ exports[`test Successful filtering 1`] = `
           <div
             className="hidden-xs-down col-sm-1 d-flex justify-content-center">
             <a
-              href="/">
+              href="/#">
               <i
                 className="home-button fa fa-home" />
             </a>
