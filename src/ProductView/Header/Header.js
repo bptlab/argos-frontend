@@ -8,7 +8,7 @@ class Header extends Component {
                 <div className="container">
                     <div className="row d-flex align-items-center">
                         <div className="hidden-xs-down col-sm-1 d-flex justify-content-center">
-                            <a href="/">
+                            <a href="/#">
                                 <i className="home-button fa fa-home" />
                             </a>
                         </div>
