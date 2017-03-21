@@ -2,7 +2,6 @@ import DataMapper from './DataMapper.js';
 import RESTInterface from './RESTInterface.js';
 import NotificationService from '../NotificationInterface/NotificationService';
 import {argosConfig} from '../config/argosConfig';
-import RequestQueue from './RequestQueue.js';
 
 /*eslint-disable */
 if (!String.prototype.format) {
@@ -47,21 +46,15 @@ class ProductFetcher {
             argosConfig.backendNotificationAPI, 
             notificationCallback
         );
-        this.client = new RESTInterface();
         //function binding
         this.receiveResults = this.receiveResults.bind(this);
         this.receiveError = this.receiveError.bind(this);
-        this.requestQueue = new RequestQueue(this.executeNextRequest.bind(this));
+        //client has to be initialized at last due to the required this context of its callback methods
+        this.client = new RESTInterface(this.receiveError, this.receiveResults);
     }
     
     setClient(client) {
         this.client = client;
-    }
-    
-    executeNextRequest(queue) {
-        const request = queue.head();
-        this.client.open(this.requestMethod, request.URI, true);
-        this.client.sendRequest(this.receiveResults, this.receiveError, request.callbackContainer);
     }
 
     parseJSON(results, errorCallback) {
@@ -77,12 +70,10 @@ class ProductFetcher {
         const errorCallback = clientDataContainer.clientErrorCallback;
         const data = clientDataContainer.dataMappingFunction(this.parseJSON(results), errorCallback);
         clientDataContainer.clientSuccessCallback(data);
-        this.requestQueue.pop();
     }
     
     receiveError(errorCode, clientDataContainer) {
         clientDataContainer.clientErrorCallback(errorCode);
-        this.requestQueue.pop();
     }
     
     fetchProductFamilies(successCallback, errorCallback) {
@@ -93,7 +84,7 @@ class ProductFetcher {
             "clientSuccessCallback":  successCallback,
             "clientErrorCallback":    errorCallback
         };
-        this.addRequest(URI, callbackContainer);
+        this.client.addRequest(URI, this.requestMethod, callbackContainer);
     }
     
     fetchProducts(successCallback, errorCallback) {
@@ -122,7 +113,7 @@ class ProductFetcher {
             "clientSuccessCallback":  successCallback,
             "clientErrorCallback":    errorCallback
         };
-        this.addRequest(URI, callbackContainer);
+        this.client.addRequest(URI, this.requestMethod, callbackContainer);
     }
     
     fetchEventsOf(productId, eventTypeId, successCallback, errorCallback, indexFrom=0, indexTo=9999999) {
@@ -133,15 +124,7 @@ class ProductFetcher {
             "clientSuccessCallback":  successCallback,
             "clientErrorCallback":    errorCallback
         };
-        this.addRequest(URI, callbackContainer);
-    }
-    
-    addRequest(URI, callbackContainer) {
-        const request = {
-            "URI":                  URI,
-            "callbackContainer":    callbackContainer
-        };
-        this.requestQueue.push(request);
+        this.client.addRequest(URI, this.requestMethod, callbackContainer);
     }
 }
 export default ProductFetcher;
