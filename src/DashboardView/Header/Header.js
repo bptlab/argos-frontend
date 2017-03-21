@@ -9,7 +9,7 @@ class Header extends Component {
                 <div className="container">
                     <div className="row d-flex align-items-center">
                         <div className="hidden-xs-down col-sm-1 d-flex justify-content-around">
-                            <a href="/">
+                            <a href="/#">
                                 <img className="product-icon" src={Boiler} alt="Overview page"/>
                             </a>
                         </div>

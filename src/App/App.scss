@@ -1,10 +1,16 @@
 @import "../definitions.scss";
-@import url('https://fonts.googleapis.com/css?family=Lato');
+@font-face {
+  font-family: 'latoregular';
+  src: url('./assets/fonts/lato/lato-regular-webfont.woff2') format('woff2'),
+  url('./assets/fonts/lato/lato-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 html, body, p, div, h1, h2, h3, h4, h5 {
   margin: 0;
   padding: 0;
-  font-family: 'Lato', Arial, "Helvetica", sans-serif;
+  font-family: 'latoregular', Arial, "Helvetica", sans-serif;
 }
 
 .AppWrapper {
