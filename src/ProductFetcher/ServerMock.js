@@ -180,7 +180,7 @@ class ServerMock {
 
     send() {
         if(this.api.indexOf("productfamilies") > -1) {
-            this.responseText = JSON.stringify(ServerMock.getProductFamily())
+            this.responseText = JSON.stringify(ServerMock.getProductFamily());
         } else if(this.api.indexOf("eventtypes") > -1) {
             this.responseText = JSON.stringify(ServerMock.getEventTypes());
         } else if(this.api.indexOf("events") > -1) {

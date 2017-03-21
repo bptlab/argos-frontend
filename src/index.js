@@ -5,7 +5,7 @@ import App from './App/App';
 import ProductView from './ProductView/ProductView.js';
 import DashboardView from './DashboardView/DashboardView.js';
 import ProductFetcher from './ProductFetcher/ProductFetcher.js';
-import RESTInterfaceMock from './ProductFetcher/RESTInterfaceMock.js';
+import ServerMock from './ProductFetcher/ServerMock.js';
 import {argosConfig} from './config/argosConfig';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,7 +19,7 @@ const dataSource = new ProductFetcher(
     notificationCallback
 );
 if(argosConfig.useBackendMock) {
-    dataSource.client = new RESTInterfaceMock();
+    dataSource.client.client = new ServerMock();
 }
 
 //### Notification-Initialization ###
