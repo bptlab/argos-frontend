@@ -46,7 +46,9 @@ test('Update Event data', () => {
 });
 
 test('Successful filtering', () => {
-   instance.onChangeFilterInput(0, 'Product');
+    instance.onChangeFilterInput(0, 'Product');
+    expect(instance.state.filter[0].value).toBe("Product");
+    expect(instance.state.filter[0].column).toBeNull();
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 });
@@ -58,7 +60,9 @@ test('Changing active Tab', () => {
 });
 
 test('Change filter', () => {
-    instance.onChangeFilterInput(0, 'Query without result');
+    instance.onChangeFilterInput(0, 'columnName:Product');
+    expect(instance.state.filter[0].value).toBe("Product");
+    expect(instance.state.filter[0].column).toBe("columnName");
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 });

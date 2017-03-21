@@ -16,3 +16,9 @@ test("Rendering of EventTable", () => {
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 });
+
+test("Inclusion of two values", () => {
+  expect(instance.doesContain("baseString", "string")).toBeTruthy();
+  expect(instance.doesContain([123], "12")).toBeTruthy();
+  expect(instance.doesContain("baseString", "strr")).toBeFalsy();
+});
