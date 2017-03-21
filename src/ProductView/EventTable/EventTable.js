@@ -15,13 +15,13 @@ class EventTable extends Component {
         if (!currentFilter.value) {
             return true;
         }
-        let headersToBeSearched = this.props.header;
+        let columnsToBeSearched = this.props.header;
         if(currentFilter.column) {
-          headersToBeSearched = headersToBeSearched.filter((eventPropertyKey) => {
+          columnsToBeSearched = columnsToBeSearched.filter((eventPropertyKey) => {
             return this.doesContain(eventPropertyKey.name, currentFilter.column);
           });
         }
-        return headersToBeSearched.some((eventPropertyKey) => {
+        return columnsToBeSearched.some((eventPropertyKey) => {
             return this.doesContain(currentEvent[eventPropertyKey.name], currentFilter.value);
         });
     }
