@@ -12,7 +12,7 @@ class ProductView extends Component {
         super(props);
         this.prodId = parseInt(this.props.params.productID, 10);
         this.state = {
-            filter: [{id: 'filter-0', value: ''}],
+            filter: [{id: 'filter-0', value: '', column: null}],
             lastFilterId: 0,
             product: null,
             eventTypes: null,
@@ -103,12 +103,20 @@ class ProductView extends Component {
 
     onChangeFilterInput(currentFilterId, value) {
         const updatedFilters = this.state.filter;
-        updatedFilters[currentFilterId].value = value;
+        const separatorPosition = value.indexOf(":");
+        if(separatorPosition > 0 && separatorPosition < value.length - 1) {
+          updatedFilters[currentFilterId].column = value.substr(0, separatorPosition);
+          updatedFilters[currentFilterId].value = value.substr(separatorPosition+1);
+        }
+        else {
+          updatedFilters[currentFilterId].column = null;
+          updatedFilters[currentFilterId].value = value;
+        }
 
         if(currentFilterId === this.state.lastFilterId) {
             const newFilterId = this.state.lastFilterId + 1;
-            const newFilter = {id: `filter-${newFilterId}`, value: ''};
-            this.setState({ 
+            const newFilter = {id: `filter-${newFilterId}`, value: '', column: null};
+            this.setState({
                 filter: updatedFilters.concat([newFilter]),
                 lastFilterId: newFilterId
             });

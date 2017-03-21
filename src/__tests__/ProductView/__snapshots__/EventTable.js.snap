@@ -29,7 +29,32 @@ exports[`test Rendering of EventTable 1`] = `
         </th>
       </tr>
     </thead>
-    <tbody />
+    <tbody>
+      <tr>
+        <th
+          scope="row">
+          0
+        </th>
+        <td>
+          404
+        </td>
+        <td>
+          Product not found.
+        </td>
+        <td>
+          Search for it.
+        </td>
+        <td>
+          666
+        </td>
+        <td>
+          Not known.
+        </td>
+        <td>
+          0.0.4.alpha
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>
 `;

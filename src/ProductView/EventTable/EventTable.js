@@ -15,11 +15,19 @@ class EventTable extends Component {
         if (!currentFilter.value) {
             return true;
         }
-        return this.props.header.some((eventPropertyKey) => {
-            const eventPropertyValue = currentEvent[eventPropertyKey.name].toString().toLowerCase();
-            const searchQuery = currentFilter.value.toString().toLowerCase();
-            return (eventPropertyValue.indexOf(searchQuery) > -1);
+        let columnsToBeSearched = this.props.header;
+        if(currentFilter.column) {
+          columnsToBeSearched = columnsToBeSearched.filter((eventPropertyKey) => {
+            return this.doesContain(eventPropertyKey.name, currentFilter.column);
+          });
+        }
+        return columnsToBeSearched.some((eventPropertyKey) => {
+            return this.doesContain(currentEvent[eventPropertyKey.name], currentFilter.value);
         });
+    }
+
+    doesContain(baseValue, subValue) {
+      return (baseValue.toString().toLowerCase().indexOf(subValue.toString().toLowerCase()) > -1);
     }
 
     render() {
