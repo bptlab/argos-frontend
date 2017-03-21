@@ -1,11 +1,9 @@
 import {argosConfig} from '../config/argosConfig';
 import RequestQueue from './RequestQueue.js';
 class RESTInterface {
-    constructor(errorCallback, successCallback) {
+    constructor() {
         this.client = new XMLHttpRequest();
         this.requestQueue = new RequestQueue(this.executeNextRequest.bind(this));
-        this.errorCallback = errorCallback;
-        this.successCallback = successCallback;
     }
     
     addRequest(URI, requestMethod, callbackContainer) {
@@ -20,32 +18,38 @@ class RESTInterface {
     executeNextRequest(queue) {
         const request = queue.head();
         this.client.open(request.requestMethod, request.URI, true);
-        this.sendRequest(this.successCallback, this.errorCallback, request.callbackContainer);
+        this.sendRequest(request.callbackContainer);
     }
 
-    sendRequest(successCallback, errorCallback, clientDataContainer) {
+    sendRequest(callbackContainer) {
         this.client.setRequestHeader("content-type", "application/json");
-        this.client.onreadystatechange = this.onSuccess.bind(this, successCallback, errorCallback, clientDataContainer);
-        this.client.onerror = this.onError.bind(this, errorCallback, clientDataContainer);
+        this.client.onreadystatechange = this.onReadyStateChange.bind(this, callbackContainer);
+        this.client.onerror = this.onError.bind(this, callbackContainer);
         this.client.send();
     }
-    
-    onSuccess(successCallback, errorCallback, clientDataContainer) {
+
+    onReadyStateChange(callbackContainer) {
         if (this.client.readyState === 4) {
             this.requestQueue.pop();
-            const responseText = this.client.responseText;
-            const statusText = this.client.statusText;
+            const resultObject = callbackContainer;
+            let event;
             if (this.client.status === 200) {
-                successCallback(responseText, clientDataContainer);
+                resultObject.results = this.client.responseText;
+                event = new CustomEvent('dataReceived', { 'detail': resultObject });
             } else {
-                errorCallback(statusText, clientDataContainer);
+                resultObject.results = this.client.statusText;
+                event = new CustomEvent('connectionError', { 'detail': resultObject });
             }
+            document.dispatchEvent(event);
         } 
     }
     
-    onError(errorCallback, clientDataContainer) {
+    onError(callbackContainer) {
         this.requestQueue.pop();
-        errorCallback(argosConfig.RESTInterfaceConnectionError+" "+this.client.statusText, clientDataContainer);
+        const resultObject = callbackContainer;
+        resultObject.results = this.client.statusText;
+        const event = new CustomEvent('connectionError', { 'detail': resultObject });
+        document.dispatchEvent(event);
     }
 }
 export default RESTInterface;
