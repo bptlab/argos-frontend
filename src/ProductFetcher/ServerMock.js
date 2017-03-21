@@ -1,7 +1,21 @@
-class RESTInterfaceMock {
+class ServerMock {
+    
+    constructor() {
+        this.statusText = 200;
+        this.status = 200;
+        this.readyState = 4;
+        this.headers = [];
+    }
     
     open(requestMethod, api) {
         this.api = api;
+    }
+    
+    setRequestHeader(key, value) {
+        this.headers.push({
+            key: key,
+            value: value
+        });
     }
     
     static getProductFamily() {
@@ -155,29 +169,26 @@ class RESTInterfaceMock {
             DateOfServiceIntervention:  "2016-11-02T00:00:00.000+0200",
         }];
     }
-
-    sendRequest(successCallback, errorCallback, clientDataContainer) {
-        if(this.api.indexOf("productfamilies") > -1) {
-            successCallback(JSON.stringify(RESTInterfaceMock.getProductFamily()), clientDataContainer);
-        } else if(this.api.indexOf("eventtypes") > -1) {
-            successCallback(JSON.stringify(RESTInterfaceMock.getEventTypes()), clientDataContainer);
-        } else if(this.api.indexOf("events") > -1) {
-            successCallback(JSON.stringify(RESTInterfaceMock.getEvents()), clientDataContainer);
-        } else {
-            successCallback(JSON.stringify(""), clientDataContainer);
-        }
+    
+    onReadyStateChange(callback) {
+        this.onreadystatechange = callback;
+    }
+    
+    onError(callback) {
+        this.onError = callback;
     }
 
-    getResponse() {
+    send() {
         if(this.api.indexOf("productfamilies") > -1) {
-                return JSON.stringify(RESTInterfaceMock.getProductFamily());
+            this.responseText = JSON.stringify(ServerMock.getProductFamily());
         } else if(this.api.indexOf("eventtypes") > -1) {
-                return JSON.stringify(RESTInterfaceMock.getEventTypes());
+            this.responseText = JSON.stringify(ServerMock.getEventTypes());
         } else if(this.api.indexOf("events") > -1) {
-                return (JSON.stringify(RESTInterfaceMock.getEvents()));
+            this.responseText = JSON.stringify(ServerMock.getEvents());
         } else {
-                return (JSON.stringify(""));
+            this.responseText = JSON.stringify("");
         }
+        this.onreadystatechange();
     }
 }
-export default RESTInterfaceMock;
+export default ServerMock;

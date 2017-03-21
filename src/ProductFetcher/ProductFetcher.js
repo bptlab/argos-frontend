@@ -55,10 +55,6 @@ class ProductFetcher {
         document.addEventListener('dataReceived', this.receiveResults);
         document.addEventListener('connectionError', this.receiveError);
     }
-    
-    setClient(client) {
-        this.client = client;
-    }
 
     parseJSON(results, errorCallback) {
         try {
