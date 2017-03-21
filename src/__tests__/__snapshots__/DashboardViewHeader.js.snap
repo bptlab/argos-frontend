@@ -7,7 +7,7 @@ exports[`test Render DashboardView Header 1`] = `
       <div
         className="hidden-xs-down col-sm-1 d-flex justify-content-around">
         <a
-          href="/">
+          href="/#">
           <img
             alt="Overview page"
             className="product-icon"
