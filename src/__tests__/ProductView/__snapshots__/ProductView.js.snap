@@ -458,6 +458,54 @@ exports[`test Changing active Tab 1`] = `
               0.0.4.alpha
             </td>
           </tr>
+          <tr>
+            <th
+              scope="row">
+              1
+            </th>
+            <td>
+              123
+            </td>
+            <td>
+              Product not found.
+            </td>
+            <td>
+              Search for it.
+            </td>
+            <td>
+              444
+            </td>
+            <td>
+              Hamburg
+            </td>
+            <td>
+              0.0.7
+            </td>
+          </tr>
+          <tr>
+            <th
+              scope="row">
+              2
+            </th>
+            <td>
+              987
+            </td>
+            <td>
+              Product not found.
+            </td>
+            <td>
+              Replace machine
+            </td>
+            <td>
+              333
+            </td>
+            <td>
+              Berlin
+            </td>
+            <td>
+              0.1.0
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
