@@ -50,7 +50,10 @@ class ProductFetcher {
         this.receiveResults = this.receiveResults.bind(this);
         this.receiveError = this.receiveError.bind(this);
         //client has to be initialized at last due to the required this context of its callback methods
-        this.client = new RESTInterface(this.receiveError, this.receiveResults);
+        this.client = new RESTInterface();
+        //event binding
+        document.addEventListener('dataReceived', this.receiveResults);
+        document.addEventListener('connectionError', this.receiveError);
     }
     
     setClient(client) {
@@ -66,14 +69,14 @@ class ProductFetcher {
         }
     }
     
-    receiveResults(results, clientDataContainer) {
-        const errorCallback = clientDataContainer.clientErrorCallback;
-        const data = clientDataContainer.dataMappingFunction(this.parseJSON(results), errorCallback);
-        clientDataContainer.clientSuccessCallback(data);
+    receiveResults(event) {
+        const errorCallback = event.detail.clientErrorCallback;
+        const data = event.detail.dataMappingFunction(this.parseJSON(event.detail.results), errorCallback);
+        event.detail.clientSuccessCallback(data);
     }
     
-    receiveError(errorCode, clientDataContainer) {
-        clientDataContainer.clientErrorCallback(errorCode);
+    receiveError(event) {
+        event.detail.clientErrorCallback(event.detail.results);
     }
     
     fetchProductFamilies(successCallback, errorCallback) {
