@@ -103,6 +103,13 @@ class ProductView extends Component {
 
     onChangeFilterInput(currentFilterId, value) {
         const updatedFilters = this.state.filter;
+
+        if (!value) {
+            delete updatedFilters[currentFilterId];
+            this.setState({filter: updatedFilters});
+            return;
+        }
+
         const separatorPosition = value.indexOf(":");
         if(separatorPosition > 0 && separatorPosition < value.length - 1) {
           updatedFilters[currentFilterId].column = value.substr(0, separatorPosition);
