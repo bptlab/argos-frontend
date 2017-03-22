@@ -192,24 +192,6 @@ exports[`test Change filter 1`] = `
             <th>
               #
             </th>
-            <th>
-              ErrorCode
-            </th>
-            <th>
-              ErrorDescription
-            </th>
-            <th>
-              PossibleFix
-            </th>
-            <th>
-              DeviceID
-            </th>
-            <th>
-              DeviceLocation
-            </th>
-            <th>
-              SoftwareVersion
-            </th>
           </tr>
         </thead>
         <tbody />
@@ -353,21 +335,6 @@ exports[`test Changing active Tab 1`] = `
       className="filter-bar container">
       <div
         className="form-group row">
-        <div
-          className="filter input-group col-xs-12 col-sm-4 col-lg-3">
-          <span
-            className="input-group-addon"
-            id="search-addon">
-            <i
-              className="fa fa-search" />
-          </span>
-          <input
-            className="form-control"
-            onChange={[Function]}
-            placeholder="Search..."
-            type="text"
-            value={undefined} />
-        </div>
         <div
           className="filter input-group col-xs-12 col-sm-4 col-lg-3">
           <span

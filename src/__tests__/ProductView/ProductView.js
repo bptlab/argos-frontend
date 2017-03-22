@@ -7,6 +7,31 @@ import TestEvents from './../testData/events.js'
 
 let instance, notificationService, component;
 
+beforeEach(() => {
+    const fetchProductMockCallback = jest.fn();
+    const fetchEventTypesOfMockCallback = jest.fn();
+    const fetchEventsOfMockCallback = (prodId, eventTypeId, succCallback) => {
+        succCallback(TestEvents.EVENTS);
+    };
+    notificationService = {
+        subscribe: jest.fn(),
+        unsubscribe: jest.fn()
+    };
+    component = renderer.create(
+        <ProductView
+            ref={(child) => {instance = child}}
+            dataSource={{
+                fetchProduct: fetchProductMockCallback,
+                fetchEventTypesOf: fetchEventTypesOfMockCallback,
+                fetchEventsOf: fetchEventsOfMockCallback,
+                notificationService: notificationService
+            }}
+            params={{productId: 0}}/>
+    );
+    instance.handleProductData(TestProduct.PRODUCT);
+    instance.handleEventTypeData(TestEventTypes.EVENTTYPES);
+})
+
 test("Rendering of ProductView", () => {
     const fetchProductMockCallback = jest.fn();
     const fetchEventTypesOfMockCallback = jest.fn();
