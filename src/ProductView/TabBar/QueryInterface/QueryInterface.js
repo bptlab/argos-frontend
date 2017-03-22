@@ -28,7 +28,8 @@ class QueryInterface extends Component {
                 }
             ],
             eventQuery: '',
-            validationResult: ''
+            validationResult: '',
+            errorMessage: '',
         };
         this.nextAttributeId = 3;
         this.handleChangeEventTypeName = this.handleChangeEventTypeName.bind(this);
@@ -36,6 +37,8 @@ class QueryInterface extends Component {
         this.handleChangeAttributeType = this.handleChangeAttributeType.bind(this);
         this.handleChangeQuery = this.handleChangeQuery.bind(this);
         this.handleSaveQuery = this.handleSaveQuery.bind(this);
+        this.handleSaveQuerySuccess = this.handleSaveQuerySuccess.bind(this);
+        this.handleSaveQueryError = this.handleSaveQueryError.bind(this);
     }
 
     componentDidMount() {
@@ -116,13 +119,21 @@ class QueryInterface extends Component {
 
     handleSaveQuery() {
         const eventType = this.getEventType();
-        this.props.dataSender.createEventtype(this.state.eventQuery, eventType, this.handleEventTypeData, this.handleError);
+        this.props.dataSender.createEventtype(this.state.eventQuery, eventType, this.handleSaveQuerySuccess, this.handleSaveQueryError);
+    }
+
+    handleSaveQuerySuccess() {
+        $('#query-interface-modal').modal('hide');
+    }
+
+    handleSaveQueryError(error) {
+        this.setState({ errorMessage: error });
     }
 
     render() {
         return (
             <div className="query-interface">
-                <Modal onSave={this.handleSaveQuery}>
+                <Modal title="Query Interface" onSave={this.handleSaveQuery}>
                     <QueryInterfaceHeader eventTypeName={this.state.eventTypeName}
                                           onChangeEventTypeName={this.handleChangeEventTypeName}
                                           eventTypeAttributes={this.state.eventTypeAttributes}
@@ -135,7 +146,7 @@ class QueryInterface extends Component {
                                   value={this.state.eventQuery}
                                   onChange={this.handleChangeQuery}/>
                     </div>
-                    <p>{this.state.validationResult}</p>
+                    <p className="error-message">{this.state.errorMessage}</p>
                 </Modal>
             </div>
         );
