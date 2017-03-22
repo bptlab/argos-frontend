@@ -23,7 +23,19 @@ To configure argos-frontend simply access ```src/config/argosConfig.js```
 Argos frontend uses ReactTestUtils and Jest to test its components. You can run tests by calling ```npm test``` in your cli. 
 
 ## Deplyoment
-Argos frontend uses Docker for a simple deployment process.
-- ```docker build . -t bptlab/argos-frontend:latest -t bptlab/argos-frontend:[VERSION]``` to create a new docker-container (replace VERSION using a sufficient version-number e.g.: 1.1.0).
-
-- Afterwards switch to your deplyoment system, make sure all necessary dependencies are running (Unicorn and Argos backend) and call ```docker run --name argos-frontend --link argos-backend:backend -d bptlab/argos-frontend:latest```.
+Let's take it step by step.
+1. First of all, deploy a database container (i.e. mysql).
+```
+docker run --name argos-database -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -d mysql:latest
+```
+2. Now that you've got yourself a database, deploy unicorn as an event processing system.
+```
+docker run --name unicorn -p 8080:8080 --link argos-database:mysql -d bptlab/unicorn:latest
+```
+3. Final step over here. Just deploy argos.
+```
+docker run --name argos -p 8989:8989 --link argos-database:mysql --link unicorn:unicorn -d bptlab/argos:latest
+```
+Note:
+- It's important to deploy step by step, becouse of the --link flags. Link flags only work on currently existing containers.
+- The -p flag exposes a port on the Docker host machine. If that port is already in use on your system you should change the second parameter of the -p flag.
