@@ -144,6 +144,9 @@ class QueryInterface extends Component {
         return (
             <div className="query-interface">
                 <Modal title="Query Interface" onSave={this.handleSaveQuery}>
+                    {this.state.errorMessage && <div className="alert alert-danger" role="alert">
+                        {this.state.errorMessage}
+                    </div>}
                     <QueryInterfaceAttributeList eventTypeName={this.state.eventTypeName}
                                                  onChangeEventTypeName={this.handleChangeEventTypeName}
                                                  eventTypeAttributes={this.state.eventTypeAttributes}
@@ -156,7 +159,6 @@ class QueryInterface extends Component {
                                   value={this.state.eventQuery}
                                   onChange={this.handleChangeQuery}/>
                     </div>
-                    <p className="error-message">{this.state.errorMessage}</p>
                 </Modal>
             </div>
         );
