@@ -4,17 +4,13 @@ import {argosConfig} from '../../config/argosConfig.js';
 
 class LineChart extends Component {
     
-    constructor(props) {
-        super(props);
-    }
-    
     static sortEventsByTime(elementA, elementB, timeStampAttribute) {
         const dateA = new Date(elementA[timeStampAttribute]);
         const dateB = new Date(elementB[timeStampAttribute]);
         return dateA - dateB;
     }
     
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate(nextProps) {
         return !(this.props.eventData === nextProps.eventData);
     }
     
