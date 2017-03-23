@@ -159,14 +159,10 @@ class ProductView extends Component {
                 <div>
                     <Header product={this.state.product}/>
                     <DetailArea product={this.state.product}/>
-                    {this.state.activeEventType.attributes.length > 0 &&
-                        <div>
-                            <LineChart eventData={this.state.eventData}/>
-                            <FilterBar
-                                onChangeFilterInput={this.onChangeFilterInput}
-                                filter={this.state.filter}/>
-                        </div>}
-                    }
+                    <LineChart eventData={this.state.eventData}/>
+                    <FilterBar
+                        onChangeFilterInput={this.onChangeFilterInput}
+                        filter={this.state.filter}/>
                     <TabBar
                         eventTypes={this.state.eventTypes}
                         setActiveEventType={this.setActiveEventType}
