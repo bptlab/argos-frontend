@@ -30,7 +30,7 @@ beforeEach(() => {
     );
     instance.handleProductData(TestProduct.PRODUCT);
     instance.handleEventTypeData(TestEventTypes.EVENTTYPES);
-})
+});
 
 test("Rendering of ProductView", () => {
     const fetchProductMockCallback = jest.fn();
@@ -102,11 +102,9 @@ test('Remove last filter', () => {
     expect(instance.state.filter.length).toEqual(1);
     instance.onInputChange(0, 'Test');
     expect(instance.state.filter.length).toEqual(2);
-    expect(instance.state.filter[0]).toBeDefined();
 
     instance.onInputChange(0, '');
-    expect(instance.state.filter[0]).not.toBeDefined();
-    expect(instance.state.filter[1].value).toEqual('');
+    expect(instance.state.filter.length).toEqual(1);
 
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
@@ -120,9 +118,9 @@ test('Remove intermediate filter', () => {
     expect(instance.state.filter.length).toEqual(3);
 
     instance.onInputChange(0, '');
-    expect(instance.state.filter[0]).not.toBeDefined();
-    expect(instance.state.filter[1].value).toEqual('Test2');
-    expect(instance.state.filter[2].value).toEqual('');
+    expect(instance.state.filter.length).toEqual(2);
+    expect(instance.state.filter[0].value).toEqual('Test2');
+    expect(instance.state.filter[1].value).toEqual('');
 });
 
 test('Handle error response', () => {

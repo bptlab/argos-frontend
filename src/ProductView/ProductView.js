@@ -12,7 +12,7 @@ class ProductView extends Component {
         super(props);
         this.prodId = parseInt(this.props.params.productID, 10);
         this.state = {
-            filter: [{id: 'filter-0', value: '', column: null}],
+            filter: [{id: '0', value: '', column: null}],
             lastFilterId: 0,
             product: null,
             eventTypes: null,
@@ -20,6 +20,7 @@ class ProductView extends Component {
             activeEventType: {attributes: []},
             eventData: []
         };
+        this.nextAttributeId = 1;
         //Function binding
         this.onInputChange = this.onInputChange.bind(this);
         this.handleProductData = this.handleProductData.bind(this);
@@ -103,26 +104,28 @@ class ProductView extends Component {
 
     onInputChange(currentFilterId, value) {
         const updatedFilters = this.state.filter;
+        const filterIds = updatedFilters.map(function(filter){return filter.id;});
+        const currentFilterIndex = filterIds.indexOf(currentFilterId.toString());
 
         if (!value) {
-            delete updatedFilters[currentFilterId];
+            updatedFilters.splice(currentFilterIndex, 1);
             this.setState({filter: updatedFilters});
             return;
         }
-
         const separatorPosition = value.indexOf(":");
         if(separatorPosition > 0 && separatorPosition < value.length - 1) {
-          updatedFilters[currentFilterId].column = value.substr(0, separatorPosition);
-          updatedFilters[currentFilterId].value = value.substr(separatorPosition+1);
+          updatedFilters[currentFilterIndex].column = value.substr(0, separatorPosition);
+          updatedFilters[currentFilterIndex].value = value.substr(separatorPosition+1);
         }
         else {
-          updatedFilters[currentFilterId].column = null;
-          updatedFilters[currentFilterId].value = value;
+          updatedFilters[currentFilterIndex].column = null;
+          updatedFilters[currentFilterIndex].value = value;
         }
 
-        if(currentFilterId === this.state.lastFilterId) {
-            const newFilterId = this.state.lastFilterId + 1;
-            const newFilter = {id: `filter-${newFilterId}`, value: '', column: null};
+        if(currentFilterId == this.state.lastFilterId) {
+            const newFilterId = this.nextAttributeId;
+            this.nextAttributeId += 1;
+            const newFilter = {id: `${newFilterId}`, value: '', column: null};
             this.setState({
                 filter: updatedFilters.concat([newFilter]),
                 lastFilterId: newFilterId
@@ -165,7 +168,7 @@ class ProductView extends Component {
                     <LineChart eventData={this.state.eventData}/>
                     <FilterBar
                         onInputChange={this.onInputChange}
-                        filter={this.state.filter}/>
+                        filter={this.state.filter} />
                     <TabBar
                         eventTypes={this.state.eventTypes}
                         setActiveEventType={this.setActiveEventType}
