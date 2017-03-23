@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import QueryInterfaceHeaderAttribute from './QueryInterfaceHeaderAttribute/QueryInterfaceHeaderAttribute.js';
+import QueryInterfaceAttribute from './QueryInterfaceAttribute/QueryInterfaceAttribute.js';
 
-class QueryInterfaceHeader extends Component {
+class QueryInterfaceAttributeList extends Component {
     constructor(props) {
         super(props);
         this.onChangeEventTypeName = this.onChangeEventTypeName.bind(this);
@@ -21,12 +21,12 @@ class QueryInterfaceHeader extends Component {
                            onChange={this.onChangeEventTypeName}/>
                 </div>
                 {this.props.eventTypeAttributes.map((eventTypeAttribute) =>
-                    <QueryInterfaceHeaderAttribute key={eventTypeAttribute.id}
-                                                   eventTypeAttribute={eventTypeAttribute}
-                                                   onChangeAttributeName={this.props.onChangeAttributeName}
-                                                   onChangeAttributeType={this.props.onChangeAttributeType}/>
+                    <QueryInterfaceAttribute key={eventTypeAttribute.id}
+                                               eventTypeAttribute={eventTypeAttribute}
+                                               onChangeAttributeName={this.props.onChangeAttributeName}
+                                               onChangeAttributeType={this.props.onChangeAttributeType}/>
                 )}
             </div>
         );
     }
-} export default QueryInterfaceHeader;
+} export default QueryInterfaceAttributeList;

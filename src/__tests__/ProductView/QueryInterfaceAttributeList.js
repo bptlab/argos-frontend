@@ -1,12 +1,12 @@
 import React from 'react';
-import QueryInterfaceHeader from '../../ProductView/TabBar/QueryInterface/QueryInterfaceHeader/QueryInterfaceHeader.js';
+import QueryInterfaceAttributeList from '../../ProductView/TabBar/QueryInterface/QueryInterfaceAttributeList/QueryInterfaceAttributeList.js';
 import renderer from 'react-test-renderer';
 let instance;
 
 test('On change eventtype name callback test', () => {
     const callbackMock = jest.fn();
     renderer.create(
-        <QueryInterfaceHeader
+        <QueryInterfaceAttributeList
             ref={(child) => {instance = child}}
             eventTypeAttributes={[]}
             onChangeEventTypeName={callbackMock}/>

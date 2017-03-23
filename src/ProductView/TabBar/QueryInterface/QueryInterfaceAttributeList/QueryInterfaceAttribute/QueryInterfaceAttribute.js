@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class QueryInterfaceHeaderAttribute extends Component {
+class QueryInterfaceAttribute extends Component {
     constructor(props) {
         super(props);
         this.onChangeAttributeName = this.onChangeAttributeName.bind(this);
@@ -39,4 +39,4 @@ class QueryInterfaceHeaderAttribute extends Component {
             </div>
         );
     }
-} export default QueryInterfaceHeaderAttribute;
+} export default QueryInterfaceAttribute;

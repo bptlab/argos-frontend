@@ -183,7 +183,9 @@ exports[`test Rendering of ProductView 1`] = `
                       className="modal-header">
                       <h5
                         className="modal-title"
-                        id="query-interface-label" />
+                        id="query-interface-label">
+                        Query Interface
+                      </h5>
                       <button
                         className="close"
                         data-dismiss="modal"
@@ -331,7 +333,8 @@ exports[`test Rendering of ProductView 1`] = `
                           type="text"
                           value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
                       </div>
-                      <p>
+                      <p
+                        className="error-message">
                         
                       </p>
                     </div>

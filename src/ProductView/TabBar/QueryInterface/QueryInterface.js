@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from './Modal/Modal.js';
-import QueryInterfaceHeader from './QueryInterfaceHeader/QueryInterfaceHeader.js';
+import QueryInterfaceAttributeList from './QueryInterfaceAttributeList/QueryInterfaceAttributeList.js';
 
 class QueryInterface extends Component {
     constructor(props) {
@@ -69,12 +69,11 @@ class QueryInterface extends Component {
                 eventTypeAttributes[attributes[i].name] = attributes[i].type;
             }
         }
-        const eventType = {
+        return {
             'name': this.state.eventTypeName,
             'timestamp': 'timestamp',
             'attributes': eventTypeAttributes
         };
-        return eventType;
     }
 
     getEventTypeAttribute(id) {
@@ -124,7 +123,12 @@ class QueryInterface extends Component {
 
     handleSaveQuery() {
         const eventType = this.buildJSONSerializableDataContainer();
-        this.props.dataSender.createEventtype(this.state.eventQuery, eventType, this.handleSaveQuerySuccess, this.handleSaveQueryError);
+        this.props.dataSender.createEventtype(
+            this.state.eventQuery,
+            eventType,
+            this.handleSaveQuerySuccess,
+            this.handleSaveQueryError
+        );
     }
 
     handleSaveQuerySuccess() {
@@ -139,11 +143,11 @@ class QueryInterface extends Component {
         return (
             <div className="query-interface">
                 <Modal title="Query Interface" onSave={this.handleSaveQuery}>
-                    <QueryInterfaceHeader eventTypeName={this.state.eventTypeName}
-                                          onChangeEventTypeName={this.handleChangeEventTypeName}
-                                          eventTypeAttributes={this.state.eventTypeAttributes}
-                                          onChangeAttributeName={this.handleChangeAttributeName}
-                                          onChangeAttributeType={this.handleChangeAttributeType} />
+                    <QueryInterfaceAttributeList eventTypeName={this.state.eventTypeName}
+                                                 onChangeEventTypeName={this.handleChangeEventTypeName}
+                                                 eventTypeAttributes={this.state.eventTypeAttributes}
+                                                 onChangeAttributeName={this.handleChangeAttributeName}
+                                                 onChangeAttributeType={this.handleChangeAttributeType} />
                     <div className="form-group">
                         <label htmlFor="event-query" className="form-control-label">Event Query</label>
                         <textarea type="text" className="form-control"

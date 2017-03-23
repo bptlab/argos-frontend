@@ -23,7 +23,9 @@ exports[`test Handling change query 1`] = `
             className="modal-header">
             <h5
               className="modal-title"
-              id="query-interface-label" />
+              id="query-interface-label">
+              Query Interface
+            </h5>
             <button
               className="close"
               data-dismiss="modal"
@@ -169,9 +171,10 @@ exports[`test Handling change query 1`] = `
                 onChange={[Function]}
                 rows="8"
                 type="text"
-                value="" />
+                value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
             </div>
-            <p>
+            <p
+              className="error-message">
               
             </p>
           </div>
@@ -216,7 +219,9 @@ exports[`test Handling change query 2`] = `
             className="modal-header">
             <h5
               className="modal-title"
-              id="query-interface-label" />
+              id="query-interface-label">
+              Query Interface
+            </h5>
             <button
               className="close"
               data-dismiss="modal"
@@ -364,7 +369,8 @@ exports[`test Handling change query 2`] = `
                 type="text"
                 value="TEST" />
             </div>
-            <p>
+            <p
+              className="error-message">
               
             </p>
           </div>
