@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Filter from './Filter/Filter.js';
+import InputField from '../../Utils/InputField.js';
 
 class FilterBar extends Component {
     render() {
@@ -7,8 +7,8 @@ class FilterBar extends Component {
             <div className="filter-bar container">
                 <div className="form-group row">
                     {this.props.filter.map((filter, index) =>
-                        <Filter key={filter.id} id={index} value={filter.value}
-                                onChangeFilterInput={this.props.onChangeFilterInput}/>
+                        <InputField key={filter.id} id={index} value={filter.value} placeholder="Search..."
+                                    onInputChange={this.props.onInputChange}/>
                     )}
                 </div>
             </div>

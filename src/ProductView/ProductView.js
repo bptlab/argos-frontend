@@ -21,7 +21,7 @@ class ProductView extends Component {
             eventData: []
         };
         //Function binding
-        this.onChangeFilterInput = this.onChangeFilterInput.bind(this);
+        this.onInputChange = this.onInputChange.bind(this);
         this.handleProductData = this.handleProductData.bind(this);
         this.handleEventData = this.handleEventData.bind(this);
         this.handleError = this.handleError.bind(this);
@@ -101,7 +101,7 @@ class ProductView extends Component {
         });
     }
 
-    onChangeFilterInput(currentFilterId, value) {
+    onInputChange(currentFilterId, value) {
         const updatedFilters = this.state.filter;
 
         if (!value) {
@@ -164,7 +164,7 @@ class ProductView extends Component {
                     <DetailArea product={this.state.product}/>
                     <LineChart eventData={this.state.eventData}/>
                     <FilterBar
-                        onChangeFilterInput={this.onChangeFilterInput}
+                        onInputChange={this.onInputChange}
                         filter={this.state.filter}/>
                     <TabBar
                         eventTypes={this.state.eventTypes}

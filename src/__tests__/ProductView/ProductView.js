@@ -71,7 +71,7 @@ test('Update Event data', () => {
 });
 
 test('Successful filtering', () => {
-    instance.onChangeFilterInput(0, 'Product');
+    instance.onInputChange(0, 'Product');
     expect(instance.state.filter[0].value).toBe("Product");
     expect(instance.state.filter[0].column).toBeNull();
     const tree = component.toJSON();
@@ -85,7 +85,7 @@ test('Changing active Tab', () => {
 });
 
 test('Change filter', () => {
-    instance.onChangeFilterInput(0, 'columnName:Product');
+    instance.onInputChange(0, 'columnName:Product');
     expect(instance.state.filter[0].value).toBe("Product");
     expect(instance.state.filter[0].column).toBe("columnName");
     const tree = component.toJSON();
@@ -94,17 +94,17 @@ test('Change filter', () => {
 
 test('Add filter', () => {
     expect(instance.state.filter.length).toEqual(1);
-    instance.onChangeFilterInput(0, 'Test');
+    instance.onInputChange(0, 'Test');
     expect(instance.state.filter.length).toEqual(2);
 });
 
 test('Remove last filter', () => {
     expect(instance.state.filter.length).toEqual(1);
-    instance.onChangeFilterInput(0, 'Test');
+    instance.onInputChange(0, 'Test');
     expect(instance.state.filter.length).toEqual(2);
     expect(instance.state.filter[0]).toBeDefined();
 
-    instance.onChangeFilterInput(0, '');
+    instance.onInputChange(0, '');
     expect(instance.state.filter[0]).not.toBeDefined();
     expect(instance.state.filter[1].value).toEqual('');
 
@@ -114,12 +114,12 @@ test('Remove last filter', () => {
 
 test('Remove intermediate filter', () => {
     expect(instance.state.filter.length).toEqual(1);
-    instance.onChangeFilterInput(0, 'Test');
+    instance.onInputChange(0, 'Test');
     expect(instance.state.filter.length).toEqual(2);
-    instance.onChangeFilterInput(1, 'Test2');
+    instance.onInputChange(1, 'Test2');
     expect(instance.state.filter.length).toEqual(3);
 
-    instance.onChangeFilterInput(0, '');
+    instance.onInputChange(0, '');
     expect(instance.state.filter[0]).not.toBeDefined();
     expect(instance.state.filter[1].value).toEqual('Test2');
     expect(instance.state.filter[2].value).toEqual('');
