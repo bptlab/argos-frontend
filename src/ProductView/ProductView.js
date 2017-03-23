@@ -65,6 +65,7 @@ class ProductView extends Component {
         this.fetchProducts();
         this.props.dataSource.notificationService.subscribe("Product", this.fetchProducts);
         this.props.dataSource.notificationService.subscribe("EventType", this.fetchEventTypes);
+        this.props.dataSource.notificationService.subscribe("Event", this.fetchEventsFor.bind(this.state.activeEventType));
     }
 
     componentWillUnmount() {
@@ -173,8 +174,7 @@ class ProductView extends Component {
                         dataSender={this.props.dataSender}
                         eventTypes={this.state.eventTypes}
                         setActiveEventType={this.setActiveEventType}
-                        product={this.state.product}
-                        notificationService={this.props.dataSource.notificationService} />
+                        product={this.state.product} />
                     <EventTable
                         header={this.state.activeEventType.attributes}
                         events={this.getCurrentEvents()}

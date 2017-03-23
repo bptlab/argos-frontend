@@ -11,14 +11,6 @@ class Tab extends Component {
         this.props.setActiveEventType(this.props.eventType);
     }
 
-    componentDidMount() {
-        this.props.notificationService.subscribe("Event", this.setActiveEventType);
-    }
-
-    componentWillUnmount() {
-        this.props.notificationService.unsubscribe("Event", this.setActiveEventType);
-    }
-
     render() {
         return (
             <li className="tab nav-item">
