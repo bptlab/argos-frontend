@@ -22,3 +22,29 @@ test("Inclusion of two values", () => {
   expect(instance.doesContain([123], "12")).toBeTruthy();
   expect(instance.doesContain("baseString", "strr")).toBeFalsy();
 });
+
+test("Comma separated values", () => {
+    const mockFilter = {id: 'mock-filter', value: '', column: ''};
+    const mockEvent = TestEvents.EVENTS[0];
+    mockFilter.value = "404,12";
+    expect(instance.testFilterArguments(mockEvent, mockFilter )).toBeTruthy();
+    mockFilter.value = "404, 12";
+    expect(instance.testFilterArguments(mockEvent, mockFilter )).toBeTruthy();
+    mockFilter.value = "404,04";
+    expect(instance.testFilterArguments(mockEvent, mockFilter )).toBeTruthy();
+    mockFilter.value = "555,888";
+    expect(instance.testFilterArguments(mockEvent, mockFilter )).toBeFalsy();
+});
+
+test("Columns and comma separated values", () => {
+    const mockFilter = {id: 'mock-filter', value: '', column: 'ErrorCode'};
+    const mockEvent = TestEvents.EVENTS[0];
+    mockFilter.value = "404,12";
+    expect(instance.testFilterArguments(mockEvent, mockFilter )).toBeTruthy();
+    mockFilter.value = "404, 12";
+    expect(instance.testFilterArguments(mockEvent, mockFilter )).toBeTruthy();
+    mockFilter.value = "404,04";
+    expect(instance.testFilterArguments(mockEvent, mockFilter )).toBeTruthy();
+    mockFilter.value = "555,888";
+    expect(instance.testFilterArguments(mockEvent, mockFilter )).toBeFalsy();
+});
