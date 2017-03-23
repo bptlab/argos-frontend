@@ -60,7 +60,7 @@ class QueryInterface extends Component {
         return attributes;
     }
 
-    getEventType() {
+    buildJSONSerializableDataContainer() {
         const eventTypeAttributes = {};
         const attributes = this.state.eventTypeAttributes;
         for (let i = 0; i < attributes.length; i++) {
@@ -122,7 +122,7 @@ class QueryInterface extends Component {
     }
 
     handleSaveQuery() {
-        const eventType = this.getEventType();
+        const eventType = this.buildJSONSerializableDataContainer();
         this.props.dataSender.createEventtype(this.state.eventQuery, eventType, this.handleSaveQuerySuccess, this.handleSaveQueryError);
     }
 
