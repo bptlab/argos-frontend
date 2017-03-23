@@ -122,7 +122,7 @@ class ProductView extends Component {
           updatedFilters[currentFilterIndex].value = value;
         }
 
-        if(currentFilterId == this.state.lastFilterId) {
+        if(parseInt(currentFilterId) === this.state.lastFilterId) {
             const newFilterId = this.nextAttributeId;
             this.nextAttributeId += 1;
             const newFilter = {id: `${newFilterId}`, value: '', column: null};

@@ -6,7 +6,7 @@ class FilterBar extends Component {
         return (
             <div className="filter-bar container">
                 <div className="form-group row">
-                    {this.props.filter.map((filter, index) =>
+                    {this.props.filter.map((filter) =>
                         <InputField key={filter.id} id={filter.id} value={filter.value} placeholder="Search..."
                                     onInputChange={this.props.onInputChange}/>
                     )}
