@@ -7,9 +7,10 @@ test('Clicking ProductView Tab', () => {
     const setActiveEventType = jest.fn();
     renderer.create(
         <Tab ref={(child) => {instance = child}} 
+             id={0}
+             index={0}
              eventType={{}}
-             setActiveEventType={setActiveEventType} 
-             product={{}}
+             setActiveEventType={setActiveEventType}
             />
     );
     instance.setActiveEventType();

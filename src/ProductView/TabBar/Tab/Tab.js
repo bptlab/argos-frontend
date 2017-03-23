@@ -12,7 +12,8 @@ class Tab extends Component {
     }
     
     componentDidMount() {
-        if(this.props.id === 0) {
+        if(this.props.id === 0 && this.tabLink) {
+            /* istanbul ignore next */
             this.tabLink.click();
         }
     }
