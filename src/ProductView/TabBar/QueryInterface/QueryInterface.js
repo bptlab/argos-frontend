@@ -41,8 +41,12 @@ class QueryInterface extends Component {
         this.handleSaveQueryError = this.handleSaveQueryError.bind(this);
     }
 
+    static getDefaultQuery() {
+        return "INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData";
+    }
+
     componentDidMount() {
-        this.setState({ eventQuery: this.props.defaultQuery });
+        this.setState({ eventQuery: QueryInterface.getDefaultQuery() });
     }
 
     addEmptyAttribute(attributes) {

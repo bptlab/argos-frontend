@@ -14,9 +14,7 @@ class TabBar extends Component {
                              product={this.props.product}/>
                     )}
                     <li>
-                        <QueryInterface
-                            dataSender={this.props.dataSender}
-                            defaultQuery="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData"/>
+                        <QueryInterface dataSender={this.props.dataSender} />
                     </li>
                 </ul>
             </div>
