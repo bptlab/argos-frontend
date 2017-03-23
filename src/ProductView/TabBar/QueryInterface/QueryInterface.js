@@ -65,6 +65,7 @@ class QueryInterface extends Component {
         const attributes = this.state.eventTypeAttributes;
         for (let i = 0; i < attributes.length; i++) {
             if (attributes[i].name) {
+                // Unicorn explicitly requires a map of event types in this format: {EventTypeName: EventTypeType}
                 eventTypeAttributes[attributes[i].name] = attributes[i].type;
             }
         }
