@@ -64,8 +64,9 @@ class ProductView extends Component {
         this.fetchProducts();
         this.props.dataSource.notificationService.subscribe("Product", this.fetchProducts);
         this.props.dataSource.notificationService.subscribe("EventType", this.fetchEventTypes);
-        this.props.dataSource.notificationService.subscribe("Event", this.fetchEventsFor.bind(this.state.activeEventType));
+        this.props.dataSource.notificationService.subscribe("Event", this.fetchEventsFor);
     }
+    
 
     componentWillUnmount() {
         this.props.dataSource.notificationService.unsubscribe("Product", this.fetchProducts);
@@ -80,13 +81,15 @@ class ProductView extends Component {
         this.props.dataSource.fetchEventTypesOf(this.prodId, this.handleEventTypeData, this.handleError);
     }
 
-    fetchEventsFor(eventType) {
-        this.props.dataSource.fetchEventsOf(
-            this.prodId,
-            eventType.id,
-            (events) => {this.handleEventData(eventType, events);},
-            this.handleError
-        );
+    fetchEventsFor(eventType = this.state.activeEventType) {
+        if(eventType) {
+            this.props.dataSource.fetchEventsOf(
+                this.prodId,
+                eventType.id,
+                (events) => {this.handleEventData(eventType, events);},
+                this.handleError
+            );
+        }
     }
 
     handleProductData(products) {
