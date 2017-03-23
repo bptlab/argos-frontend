@@ -15,3 +15,12 @@ test('Create new event type', () => {
     instance.createEventtype('', {}, successMockCallback, errorMockCallback);
     expect(successMockCallback).toBeCalled();
 });
+
+test('Error in data what has to be converted', () => {
+    const errorMockCallback = jest.fn();
+    // data object is recursive
+    const data = {};
+    data.a = {b: data};
+    instance.convertToJson(data, errorMockCallback);
+    expect(errorMockCallback).toBeCalled();
+});

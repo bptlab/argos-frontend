@@ -132,6 +132,7 @@ class QueryInterface extends Component {
     }
 
     handleSaveQuerySuccess() {
+        /* istanbul ignore next */
         $('#query-interface-modal').modal('hide');
     }
 

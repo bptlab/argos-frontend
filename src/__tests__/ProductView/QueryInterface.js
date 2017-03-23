@@ -53,3 +53,8 @@ test('Handling save query', () => {
     instance.handleSaveQuery();
     expect(callbackMock).toBeCalled();
 });
+
+test('Handling save query failure', () => {
+    instance.handleSaveQueryError('test');
+    expect(instance.state.errorMessage).toBe('test');
+});
