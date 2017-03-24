@@ -28,6 +28,10 @@ a .ProductCard:hover {
     background: $COLOR-error !important;
 }
 
+.ProductCard_UNDEFINED {
+    background: $COLOR-undefined !important;
+}
+
 /* ############ PRODUCT CARD INFORMATION LINE ############ */
 
 .ProductCardInformationLine {

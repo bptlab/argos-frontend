@@ -6,27 +6,49 @@ import ProductView from './ProductView/ProductView.js';
 import DashboardView from './DashboardView/DashboardView.js';
 import DataReceiver from './RemoteHandler/DataReceiver.js';
 import DataTransmitter from './RemoteHandler/DataTransmitter.js';
-import RESTInterfaceMock from './RemoteHandler/RESTInterfaceMock.js';
+import ServerMock from './RemoteHandler/ServerMock.js';
+import {argosConfig} from './config/argosConfig';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.css';
 import './index.scss';
 
-const API_SERVER_URL = "localhost";
-const API_SERVER_PORT = 8989;
+//### Data-Source-Initialization ###
+const dataSource = new DataReceiver(
+    argosConfig.backendHost,
+    argosConfig.backendPort,
+    notificationCallback
+);
+const dataSender = new DataTransmitter(
+    argosConfig.backendHost,
+    argosConfig.backendPort,
+    notificationCallback
+);
+if(argosConfig.useBackendMock) {
+    dataSource.client.client = new ServerMock();
+}
 
-const dataSource = new DataReceiver(API_SERVER_URL, API_SERVER_PORT);
-const dataSender = new DataTransmitter(API_SERVER_URL, API_SERVER_PORT);
-dataSource.setClient(new RESTInterfaceMock());
+//### Notification-Initialization ###
+const notificationList = [];
+function registerNotifications(callback) {
+    notificationList.push(callback);
+}
+function notificationCallback(type, message) {
+    notificationList.forEach(function(callback){
+        callback(type, message);
+    });
+}
+
+//### React-Initialization ###
 ReactDOM.render(
     (<Router history={hashHistory}>
-        <Route path="/" component={App}>
+        <Route path="/" component={App} params={{ registerForNotificationsCallback: registerNotifications}}>
             <IndexRoute component={() => (<DashboardView dataSource={dataSource} />)} />
-            <Route path="/product/:productID"
+            <Route path={`/` + argosConfig.routeNameDetailView+`/:productID`}
                    component={(routeObject) => (
-                       <ProductView
-                           dataSource={dataSource}
-                           dataSender={dataSender}
+                       <ProductView 
+                           dataSource={dataSource} 
+                           dataSender={dataSender} 
                            params={routeObject.params} />
                    )}/>
         </Route>

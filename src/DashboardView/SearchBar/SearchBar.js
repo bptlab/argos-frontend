@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {argosConfig} from '../../config/argosConfig';
 
 class SearchBar extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class SearchBar extends Component {
                             type="text"
                             ref="searchInput"
                             className="form-control"
-                            placeholder="Search..."
+                            placeholder={argosConfig.searchPlaceholder}
                             value={this.props.searchText}
                             onChange={this.handleChangeSearchInput}/>
                     </div>

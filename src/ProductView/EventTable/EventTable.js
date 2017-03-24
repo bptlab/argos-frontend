@@ -15,26 +15,35 @@ class EventTable extends Component {
         if (!currentFilter.value) {
             return true;
         }
-        return this.props.eventTable.header.some((eventPropertyKey) => {
-            const eventPropertyValue = currentEvent[eventPropertyKey.name].toString().toLowerCase();
-            const searchQuery = currentFilter.value.toString().toLowerCase();
-            return (eventPropertyValue.indexOf(searchQuery) > -1);
+        let columnsToBeSearched = this.props.header;
+        if(currentFilter.column) {
+          columnsToBeSearched = columnsToBeSearched.filter((eventPropertyKey) => {
+            return this.doesContain(eventPropertyKey.name, currentFilter.column);
+          });
+        }
+        return columnsToBeSearched.some((eventPropertyKey) => {
+            return this.doesContain(currentEvent[eventPropertyKey.name], currentFilter.value);
         });
+    }
+
+    doesContain(baseValue, subValue) {
+      return (baseValue.toString().toLowerCase().indexOf(subValue.toString().toLowerCase()) > -1);
     }
 
     render() {
         return (
             <div className="container event-table-container">
                 <table className="table">
-                    <EventTableHeader eventTypeAttributes={this.props.eventTable.header}/>
+                    <EventTableHeader eventTypeAttributes={this.props.header}/>
                     <tbody>
-                    {this.props.eventTable.events.map((event, index) => {
+                    {this.props.events.map((event, index) => {
                         if(this.testFilter(event)) {
                             return (
-                                <EventTableRow key={index} 
-                                               id={index} 
-                                               event={event}
-                                               eventTypeAttributes={this.props.eventTable.header}/>
+                                <EventTableRow 
+                                    key={index} 
+                                    id={index} 
+                                    event={event}
+                                    eventTypeAttributes={this.props.header}/>
                             );
                         } else {
                             return false;

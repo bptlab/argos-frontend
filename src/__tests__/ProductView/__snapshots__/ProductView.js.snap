@@ -1,4 +1,4 @@
-exports[`test Rendering of ProductView 1`] = `
+exports[`test Change filter 1`] = `
 <div>
   <div>
     <header>
@@ -9,7 +9,7 @@ exports[`test Rendering of ProductView 1`] = `
           <div
             className="hidden-xs-down col-sm-1 d-flex justify-content-center">
             <a
-              href="/">
+              href="/#">
               <i
                 className="home-button fa fa-home" />
             </a>
@@ -65,9 +65,7 @@ exports[`test Rendering of ProductView 1`] = `
                 Marke:
               </p>
               <p
-                className="col">
-                Testbrand1
-              </p>
+                className="col" />
             </div>
             <div
               className="row">
@@ -76,9 +74,7 @@ exports[`test Rendering of ProductView 1`] = `
                 Produktfamilie:
               </p>
               <p
-                className="col">
-                Testproduct 30X 1W1-PSB
-              </p>
+                className="col" />
             </div>
             <div
               className="row">
@@ -98,35 +94,61 @@ exports[`test Rendering of ProductView 1`] = `
           <div>
             <h2
               className="area-title">
-              Mögliche Fehlerursachen
+              Statusherleitung
             </h2>
-            <ol>
-              <li>
-                <h4>
-                  ...
-                </h4>
-              </li>
-              <li>
-                <h4>
-                  ...
-                </h4>
-              </li>
-              <li>
-                <h4>
-                  ...
-                </h4>
-              </li>
-            </ol>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Status:
+              </p>
+              <p
+                className="col">
+                ERROR
+              </p>
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Statusbeschreibung:
+              </p>
+              <p
+                className="col">
+                Error detected! Intervention required!
+              </p>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+    <div
+      className="line-chart container">
+      <canvas
+        height="80"
+        id="lineChart" />
     </div>
     <div
       className="filter-bar container">
       <div
         className="form-group row">
         <div
-          className="filter input-group col-xs-12 col-sm-4 col-lg-3">
+          className="input-field input-group col-xs-12 col-sm-4 col-lg-3">
+          <span
+            className="input-group-addon"
+            id="search-addon">
+            <i
+              className="fa fa-search" />
+          </span>
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="Search..."
+            type="text"
+            value={undefined} />
+        </div>
+        <div
+          className="input-field input-group col-xs-12 col-sm-4 col-lg-3">
           <span
             className="input-group-addon"
             id="search-addon">
@@ -197,6 +219,7 @@ exports[`test Rendering of ProductView 1`] = `
                     </div>
                     <div
                       className="modal-body">
+                      
                       <div
                         className="query-interface-header">
                         <div
@@ -333,10 +356,386 @@ exports[`test Rendering of ProductView 1`] = `
                           type="text"
                           value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
                       </div>
-                      <p
-                        className="error-message">
-                        
-                      </p>
+                    </div>
+                    <div
+                      className="modal-footer">
+                      <button
+                        className="btn btn-primary"
+                        onClick={[Function]}
+                        type="button">
+                        Save
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div
+      className="container event-table-container">
+      <table
+        className="table">
+        <thead
+          className="event-table-header thead">
+          <tr>
+            <th>
+              #
+            </th>
+          </tr>
+        </thead>
+        <tbody />
+      </table>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`test Changing active Tab 1`] = `
+<div>
+  <div>
+    <header>
+      <div
+        className="container">
+        <div
+          className="row d-flex align-items-center">
+          <div
+            className="hidden-xs-down col-sm-1 d-flex justify-content-center">
+            <a
+              href="/#">
+              <i
+                className="home-button fa fa-home" />
+            </a>
+          </div>
+          <div
+            className="col-xs-12 col-sm-10 d-flex justify-content-around">
+            <h1
+              className="dashboard-title">
+              Testproduct 30X 1W1-PSB
+            </h1>
+          </div>
+          <div
+            className="hidden-xs-down col-sm-1 d-flex justify-content-around">
+            <div
+              className="status-point d-flex align-items-center error">
+              <svg
+                className="status-point"
+                viewBox="0 0 42 42">
+                <circle
+                  className="status-point-shadow"
+                  cx="21"
+                  cy="21"
+                  r="21" />
+                <circle
+                  className="status-point"
+                  cx="20"
+                  cy="20"
+                  r="20" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div
+      className="detail-area container">
+      <div
+        className="row detail-row">
+        <div
+          className="detail-area-block col-xs-12 col-sm-6">
+          <div>
+            <div
+              className="row">
+              <h2
+                className="col area-title">
+                Produkt Details
+              </h2>
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Marke:
+              </p>
+              <p
+                className="col" />
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Produktfamilie:
+              </p>
+              <p
+                className="col" />
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Seriennummer:
+              </p>
+              <p
+                className="col">
+                0
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="detail-area-block col-xs-12 col-sm-6">
+          <div>
+            <h2
+              className="area-title">
+              Statusherleitung
+            </h2>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Status:
+              </p>
+              <p
+                className="col">
+                ERROR
+              </p>
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Statusbeschreibung:
+              </p>
+              <p
+                className="col">
+                Error detected! Intervention required!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="line-chart container">
+      <canvas
+        height="80"
+        id="lineChart" />
+    </div>
+    <div
+      className="filter-bar container">
+      <div
+        className="form-group row">
+        <div
+          className="input-field input-group col-xs-12 col-sm-4 col-lg-3">
+          <span
+            className="input-group-addon"
+            id="search-addon">
+            <i
+              className="fa fa-search" />
+          </span>
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="Search..."
+            type="text"
+            value={undefined} />
+        </div>
+      </div>
+    </div>
+    <div
+      className="tab-bar container">
+      <ul
+        className="nav nav-tabs border-0"
+        role="tablist">
+        <li
+          className="tab nav-item">
+          <a
+            className="nav-link"
+            data-toggle="tab"
+            href="#Error Events"
+            onClick={[Function]}
+            role="tab">
+            Error Events
+          </a>
+        </li>
+        <li>
+          <div
+            className="query-interface">
+            <div>
+              <a
+                className="nav-link"
+                data-target="#query-interface-modal"
+                data-toggle="modal">
+                <i
+                  className="fa fa-plus" />
+              </a>
+              <div
+                className="query-interface modal fade"
+                id="query-interface-modal"
+                role="dialog"
+                tabIndex="-1">
+                <div
+                  className="modal-dialog"
+                  role="document">
+                  <div
+                    className="modal-content">
+                    <div
+                      className="modal-header">
+                      <h5
+                        className="modal-title"
+                        id="query-interface-label">
+                        Query Interface
+                      </h5>
+                      <button
+                        className="close"
+                        data-dismiss="modal"
+                        type="button">
+                        <span>
+                          ×
+                        </span>
+                      </button>
+                    </div>
+                    <div
+                      className="modal-body">
+                      
+                      <div
+                        className="query-interface-header">
+                        <div
+                          className="form-group">
+                          <input
+                            className="form-control"
+                            id="query-name"
+                            onChange={[Function]}
+                            placeholder="Name"
+                            type="text"
+                            value="" />
+                        </div>
+                        <div
+                          className="query-interface-header-attribute form-group row">
+                          <div
+                            className="col-6">
+                            <input
+                              className="form-control"
+                              id="example-text-input"
+                              onChange={[Function]}
+                              placeholder="Attribute name"
+                              readOnly={true}
+                              type="text"
+                              value="productId" />
+                          </div>
+                          <div
+                            className="col-6">
+                            <select
+                              className="form-control"
+                              id="exampleSelect1"
+                              onChange={[Function]}
+                              readOnly={true}
+                              value="INTEGER">
+                              <option>
+                                STRING
+                              </option>
+                              <option>
+                                BOOLEAN
+                              </option>
+                              <option>
+                                INTEGER
+                              </option>
+                              <option>
+                                FLOAT
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div
+                          className="query-interface-header-attribute form-group row">
+                          <div
+                            className="col-6">
+                            <input
+                              className="form-control"
+                              id="example-text-input"
+                              onChange={[Function]}
+                              placeholder="Attribute name"
+                              readOnly={true}
+                              type="text"
+                              value="productFamilyId" />
+                          </div>
+                          <div
+                            className="col-6">
+                            <select
+                              className="form-control"
+                              id="exampleSelect1"
+                              onChange={[Function]}
+                              readOnly={true}
+                              value="STRING">
+                              <option>
+                                STRING
+                              </option>
+                              <option>
+                                BOOLEAN
+                              </option>
+                              <option>
+                                INTEGER
+                              </option>
+                              <option>
+                                FLOAT
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div
+                          className="query-interface-header-attribute form-group row">
+                          <div
+                            className="col-6">
+                            <input
+                              className="form-control"
+                              id="example-text-input"
+                              onChange={[Function]}
+                              placeholder="Attribute name"
+                              readOnly={false}
+                              type="text"
+                              value="" />
+                          </div>
+                          <div
+                            className="col-6">
+                            <select
+                              className="form-control"
+                              id="exampleSelect1"
+                              onChange={[Function]}
+                              readOnly={false}
+                              value="">
+                              <option>
+                                STRING
+                              </option>
+                              <option>
+                                BOOLEAN
+                              </option>
+                              <option>
+                                INTEGER
+                              </option>
+                              <option>
+                                FLOAT
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="form-group">
+                        <label
+                          className="form-control-label"
+                          htmlFor="event-query">
+                          Event Query
+                        </label>
+                        <textarea
+                          className="form-control"
+                          id="event-query"
+                          onChange={[Function]}
+                          rows="8"
+                          type="text"
+                          value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                      </div>
                     </div>
                     <div
                       className="modal-footer">
@@ -383,6 +782,9 @@ exports[`test Rendering of ProductView 1`] = `
             <th>
               SoftwareVersion
             </th>
+            <th>
+              DateOfServiceIntervention
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -390,6 +792,141 @@ exports[`test Rendering of ProductView 1`] = `
             <th
               scope="row">
               0
+            </th>
+            <td>
+              235
+            </td>
+            <td>
+              Critical Error 235
+            </td>
+            <td>
+              Fix it.
+            </td>
+            <td>
+              12352
+            </td>
+            <td>
+              Hamburg
+            </td>
+            <td>
+              12.0.9
+            </td>
+            <td>
+              2016-01-29T00:00:00.000+0200
+            </td>
+          </tr>
+          <tr>
+            <th
+              scope="row">
+              1
+            </th>
+            <td>
+              900
+            </td>
+            <td>
+              Critical Error 900
+            </td>
+            <td>
+              Fix it.
+            </td>
+            <td>
+              93812
+            </td>
+            <td>
+              Stuttgart
+            </td>
+            <td>
+              13.0.1
+            </td>
+            <td>
+              2017-01-02T00:00:00.000+0200
+            </td>
+          </tr>
+          <tr>
+            <th
+              scope="row">
+              2
+            </th>
+            <td>
+              283
+            </td>
+            <td>
+              Critical Error 283
+            </td>
+            <td>
+              Fix it.
+            </td>
+            <td>
+              234182
+            </td>
+            <td>
+              Berlin
+            </td>
+            <td>
+              13.2.0
+            </td>
+            <td>
+              2016-04-22T00:00:00.000+0200
+            </td>
+          </tr>
+          <tr>
+            <th
+              scope="row">
+              3
+            </th>
+            <td>
+              353
+            </td>
+            <td>
+              Critical Error 353
+            </td>
+            <td>
+              Fix it.
+            </td>
+            <td>
+              190347
+            </td>
+            <td>
+              Berlin
+            </td>
+            <td>
+              14.4.3
+            </td>
+            <td>
+              2016-10-18T00:00:00.000+0200
+            </td>
+          </tr>
+          <tr>
+            <th
+              scope="row">
+              4
+            </th>
+            <td>
+              500
+            </td>
+            <td>
+              Critical Error 500
+            </td>
+            <td>
+              Fix it.
+            </td>
+            <td>
+              89128
+            </td>
+            <td>
+              Berlin
+            </td>
+            <td>
+              13.0.5
+            </td>
+            <td>
+              2017-03-12T00:00:00.000+0200
+            </td>
+          </tr>
+          <tr>
+            <th
+              scope="row">
+              5
             </th>
             <td>
               404
@@ -409,6 +946,9 @@ exports[`test Rendering of ProductView 1`] = `
             <td>
               0.0.4.alpha
             </td>
+            <td>
+              2016-11-02T00:00:00.000+0200
+            </td>
           </tr>
         </tbody>
       </table>
@@ -417,7 +957,7 @@ exports[`test Rendering of ProductView 1`] = `
 </div>
 `;
 
-exports[`test Rendering of ProductView 2`] = `
+exports[`test Handle error response 1`] = `
 <div>
   <div
     className="critical-error">
@@ -426,6 +966,1161 @@ exports[`test Rendering of ProductView 2`] = `
     <p>
       404
     </p>
+  </div>
+</div>
+`;
+
+exports[`test Remove last filter 1`] = `
+<div>
+  <div>
+    <header>
+      <div
+        className="container">
+        <div
+          className="row d-flex align-items-center">
+          <div
+            className="hidden-xs-down col-sm-1 d-flex justify-content-center">
+            <a
+              href="/#">
+              <i
+                className="home-button fa fa-home" />
+            </a>
+          </div>
+          <div
+            className="col-xs-12 col-sm-10 d-flex justify-content-around">
+            <h1
+              className="dashboard-title">
+              Testproduct 30X 1W1-PSB
+            </h1>
+          </div>
+          <div
+            className="hidden-xs-down col-sm-1 d-flex justify-content-around">
+            <div
+              className="status-point d-flex align-items-center error">
+              <svg
+                className="status-point"
+                viewBox="0 0 42 42">
+                <circle
+                  className="status-point-shadow"
+                  cx="21"
+                  cy="21"
+                  r="21" />
+                <circle
+                  className="status-point"
+                  cx="20"
+                  cy="20"
+                  r="20" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div
+      className="detail-area container">
+      <div
+        className="row detail-row">
+        <div
+          className="detail-area-block col-xs-12 col-sm-6">
+          <div>
+            <div
+              className="row">
+              <h2
+                className="col area-title">
+                Produkt Details
+              </h2>
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Marke:
+              </p>
+              <p
+                className="col" />
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Produktfamilie:
+              </p>
+              <p
+                className="col" />
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Seriennummer:
+              </p>
+              <p
+                className="col">
+                0
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="detail-area-block col-xs-12 col-sm-6">
+          <div>
+            <h2
+              className="area-title">
+              Statusherleitung
+            </h2>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Status:
+              </p>
+              <p
+                className="col">
+                ERROR
+              </p>
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Statusbeschreibung:
+              </p>
+              <p
+                className="col">
+                Error detected! Intervention required!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="line-chart container">
+      <canvas
+        height="80"
+        id="lineChart" />
+    </div>
+    <div
+      className="filter-bar container">
+      <div
+        className="form-group row">
+        <div
+          className="input-field input-group col-xs-12 col-sm-4 col-lg-3">
+          <span
+            className="input-group-addon"
+            id="search-addon">
+            <i
+              className="fa fa-search" />
+          </span>
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="Search..."
+            type="text"
+            value={undefined} />
+        </div>
+      </div>
+    </div>
+    <div
+      className="tab-bar container">
+      <ul
+        className="nav nav-tabs border-0"
+        role="tablist">
+        <li
+          className="tab nav-item">
+          <a
+            className="nav-link"
+            data-toggle="tab"
+            href="#Error Events"
+            onClick={[Function]}
+            role="tab">
+            Error Events
+          </a>
+        </li>
+        <li>
+          <div
+            className="query-interface">
+            <div>
+              <a
+                className="nav-link"
+                data-target="#query-interface-modal"
+                data-toggle="modal">
+                <i
+                  className="fa fa-plus" />
+              </a>
+              <div
+                className="query-interface modal fade"
+                id="query-interface-modal"
+                role="dialog"
+                tabIndex="-1">
+                <div
+                  className="modal-dialog"
+                  role="document">
+                  <div
+                    className="modal-content">
+                    <div
+                      className="modal-header">
+                      <h5
+                        className="modal-title"
+                        id="query-interface-label">
+                        Query Interface
+                      </h5>
+                      <button
+                        className="close"
+                        data-dismiss="modal"
+                        type="button">
+                        <span>
+                          ×
+                        </span>
+                      </button>
+                    </div>
+                    <div
+                      className="modal-body">
+                      
+                      <div
+                        className="query-interface-header">
+                        <div
+                          className="form-group">
+                          <input
+                            className="form-control"
+                            id="query-name"
+                            onChange={[Function]}
+                            placeholder="Name"
+                            type="text"
+                            value="" />
+                        </div>
+                        <div
+                          className="query-interface-header-attribute form-group row">
+                          <div
+                            className="col-6">
+                            <input
+                              className="form-control"
+                              id="example-text-input"
+                              onChange={[Function]}
+                              placeholder="Attribute name"
+                              readOnly={true}
+                              type="text"
+                              value="productId" />
+                          </div>
+                          <div
+                            className="col-6">
+                            <select
+                              className="form-control"
+                              id="exampleSelect1"
+                              onChange={[Function]}
+                              readOnly={true}
+                              value="INTEGER">
+                              <option>
+                                STRING
+                              </option>
+                              <option>
+                                BOOLEAN
+                              </option>
+                              <option>
+                                INTEGER
+                              </option>
+                              <option>
+                                FLOAT
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div
+                          className="query-interface-header-attribute form-group row">
+                          <div
+                            className="col-6">
+                            <input
+                              className="form-control"
+                              id="example-text-input"
+                              onChange={[Function]}
+                              placeholder="Attribute name"
+                              readOnly={true}
+                              type="text"
+                              value="productFamilyId" />
+                          </div>
+                          <div
+                            className="col-6">
+                            <select
+                              className="form-control"
+                              id="exampleSelect1"
+                              onChange={[Function]}
+                              readOnly={true}
+                              value="STRING">
+                              <option>
+                                STRING
+                              </option>
+                              <option>
+                                BOOLEAN
+                              </option>
+                              <option>
+                                INTEGER
+                              </option>
+                              <option>
+                                FLOAT
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div
+                          className="query-interface-header-attribute form-group row">
+                          <div
+                            className="col-6">
+                            <input
+                              className="form-control"
+                              id="example-text-input"
+                              onChange={[Function]}
+                              placeholder="Attribute name"
+                              readOnly={false}
+                              type="text"
+                              value="" />
+                          </div>
+                          <div
+                            className="col-6">
+                            <select
+                              className="form-control"
+                              id="exampleSelect1"
+                              onChange={[Function]}
+                              readOnly={false}
+                              value="">
+                              <option>
+                                STRING
+                              </option>
+                              <option>
+                                BOOLEAN
+                              </option>
+                              <option>
+                                INTEGER
+                              </option>
+                              <option>
+                                FLOAT
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="form-group">
+                        <label
+                          className="form-control-label"
+                          htmlFor="event-query">
+                          Event Query
+                        </label>
+                        <textarea
+                          className="form-control"
+                          id="event-query"
+                          onChange={[Function]}
+                          rows="8"
+                          type="text"
+                          value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                      </div>
+                    </div>
+                    <div
+                      className="modal-footer">
+                      <button
+                        className="btn btn-primary"
+                        onClick={[Function]}
+                        type="button">
+                        Save
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div
+      className="container event-table-container">
+      <table
+        className="table">
+        <thead
+          className="event-table-header thead">
+          <tr>
+            <th>
+              #
+            </th>
+          </tr>
+        </thead>
+        <tbody />
+      </table>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`test Rendering of ProductView 1`] = `
+<div>
+  <div>
+    <header>
+      <div
+        className="container">
+        <div
+          className="row d-flex align-items-center">
+          <div
+            className="hidden-xs-down col-sm-1 d-flex justify-content-center">
+            <a
+              href="/#">
+              <i
+                className="home-button fa fa-home" />
+            </a>
+          </div>
+          <div
+            className="col-xs-12 col-sm-10 d-flex justify-content-around">
+            <h1
+              className="dashboard-title">
+              Testproduct 30X 1W1-PSB
+            </h1>
+          </div>
+          <div
+            className="hidden-xs-down col-sm-1 d-flex justify-content-around">
+            <div
+              className="status-point d-flex align-items-center error">
+              <svg
+                className="status-point"
+                viewBox="0 0 42 42">
+                <circle
+                  className="status-point-shadow"
+                  cx="21"
+                  cy="21"
+                  r="21" />
+                <circle
+                  className="status-point"
+                  cx="20"
+                  cy="20"
+                  r="20" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div
+      className="detail-area container">
+      <div
+        className="row detail-row">
+        <div
+          className="detail-area-block col-xs-12 col-sm-6">
+          <div>
+            <div
+              className="row">
+              <h2
+                className="col area-title">
+                Produkt Details
+              </h2>
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Marke:
+              </p>
+              <p
+                className="col" />
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Produktfamilie:
+              </p>
+              <p
+                className="col" />
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Seriennummer:
+              </p>
+              <p
+                className="col">
+                0
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="detail-area-block col-xs-12 col-sm-6">
+          <div>
+            <h2
+              className="area-title">
+              Statusherleitung
+            </h2>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Status:
+              </p>
+              <p
+                className="col">
+                ERROR
+              </p>
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Statusbeschreibung:
+              </p>
+              <p
+                className="col">
+                Error detected! Intervention required!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="line-chart container">
+      <canvas
+        height="80"
+        id="lineChart" />
+    </div>
+    <div
+      className="filter-bar container">
+      <div
+        className="form-group row">
+        <div
+          className="input-field input-group col-xs-12 col-sm-4 col-lg-3">
+          <span
+            className="input-group-addon"
+            id="search-addon">
+            <i
+              className="fa fa-search" />
+          </span>
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="Search..."
+            type="text"
+            value={undefined} />
+        </div>
+      </div>
+    </div>
+    <div
+      className="tab-bar container">
+      <ul
+        className="nav nav-tabs border-0"
+        role="tablist">
+        <li
+          className="tab nav-item">
+          <a
+            className="nav-link"
+            data-toggle="tab"
+            href="#Error Events"
+            onClick={[Function]}
+            role="tab">
+            Error Events
+          </a>
+        </li>
+        <li>
+          <div
+            className="query-interface">
+            <div>
+              <a
+                className="nav-link"
+                data-target="#query-interface-modal"
+                data-toggle="modal">
+                <i
+                  className="fa fa-plus" />
+              </a>
+              <div
+                className="query-interface modal fade"
+                id="query-interface-modal"
+                role="dialog"
+                tabIndex="-1">
+                <div
+                  className="modal-dialog"
+                  role="document">
+                  <div
+                    className="modal-content">
+                    <div
+                      className="modal-header">
+                      <h5
+                        className="modal-title"
+                        id="query-interface-label">
+                        Query Interface
+                      </h5>
+                      <button
+                        className="close"
+                        data-dismiss="modal"
+                        type="button">
+                        <span>
+                          ×
+                        </span>
+                      </button>
+                    </div>
+                    <div
+                      className="modal-body">
+                      
+                      <div
+                        className="query-interface-header">
+                        <div
+                          className="form-group">
+                          <input
+                            className="form-control"
+                            id="query-name"
+                            onChange={[Function]}
+                            placeholder="Name"
+                            type="text"
+                            value="" />
+                        </div>
+                        <div
+                          className="query-interface-header-attribute form-group row">
+                          <div
+                            className="col-6">
+                            <input
+                              className="form-control"
+                              id="example-text-input"
+                              onChange={[Function]}
+                              placeholder="Attribute name"
+                              readOnly={true}
+                              type="text"
+                              value="productId" />
+                          </div>
+                          <div
+                            className="col-6">
+                            <select
+                              className="form-control"
+                              id="exampleSelect1"
+                              onChange={[Function]}
+                              readOnly={true}
+                              value="INTEGER">
+                              <option>
+                                STRING
+                              </option>
+                              <option>
+                                BOOLEAN
+                              </option>
+                              <option>
+                                INTEGER
+                              </option>
+                              <option>
+                                FLOAT
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div
+                          className="query-interface-header-attribute form-group row">
+                          <div
+                            className="col-6">
+                            <input
+                              className="form-control"
+                              id="example-text-input"
+                              onChange={[Function]}
+                              placeholder="Attribute name"
+                              readOnly={true}
+                              type="text"
+                              value="productFamilyId" />
+                          </div>
+                          <div
+                            className="col-6">
+                            <select
+                              className="form-control"
+                              id="exampleSelect1"
+                              onChange={[Function]}
+                              readOnly={true}
+                              value="STRING">
+                              <option>
+                                STRING
+                              </option>
+                              <option>
+                                BOOLEAN
+                              </option>
+                              <option>
+                                INTEGER
+                              </option>
+                              <option>
+                                FLOAT
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div
+                          className="query-interface-header-attribute form-group row">
+                          <div
+                            className="col-6">
+                            <input
+                              className="form-control"
+                              id="example-text-input"
+                              onChange={[Function]}
+                              placeholder="Attribute name"
+                              readOnly={false}
+                              type="text"
+                              value="" />
+                          </div>
+                          <div
+                            className="col-6">
+                            <select
+                              className="form-control"
+                              id="exampleSelect1"
+                              onChange={[Function]}
+                              readOnly={false}
+                              value="">
+                              <option>
+                                STRING
+                              </option>
+                              <option>
+                                BOOLEAN
+                              </option>
+                              <option>
+                                INTEGER
+                              </option>
+                              <option>
+                                FLOAT
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="form-group">
+                        <label
+                          className="form-control-label"
+                          htmlFor="event-query">
+                          Event Query
+                        </label>
+                        <textarea
+                          className="form-control"
+                          id="event-query"
+                          onChange={[Function]}
+                          rows="8"
+                          type="text"
+                          value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                      </div>
+                    </div>
+                    <div
+                      className="modal-footer">
+                      <button
+                        className="btn btn-primary"
+                        onClick={[Function]}
+                        type="button">
+                        Save
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div
+      className="container event-table-container">
+      <table
+        className="table">
+        <thead
+          className="event-table-header thead">
+          <tr>
+            <th>
+              #
+            </th>
+          </tr>
+        </thead>
+        <tbody />
+      </table>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`test Successful filtering 1`] = `
+<div>
+  <div>
+    <header>
+      <div
+        className="container">
+        <div
+          className="row d-flex align-items-center">
+          <div
+            className="hidden-xs-down col-sm-1 d-flex justify-content-center">
+            <a
+              href="/#">
+              <i
+                className="home-button fa fa-home" />
+            </a>
+          </div>
+          <div
+            className="col-xs-12 col-sm-10 d-flex justify-content-around">
+            <h1
+              className="dashboard-title">
+              Testproduct 30X 1W1-PSB
+            </h1>
+          </div>
+          <div
+            className="hidden-xs-down col-sm-1 d-flex justify-content-around">
+            <div
+              className="status-point d-flex align-items-center error">
+              <svg
+                className="status-point"
+                viewBox="0 0 42 42">
+                <circle
+                  className="status-point-shadow"
+                  cx="21"
+                  cy="21"
+                  r="21" />
+                <circle
+                  className="status-point"
+                  cx="20"
+                  cy="20"
+                  r="20" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div
+      className="detail-area container">
+      <div
+        className="row detail-row">
+        <div
+          className="detail-area-block col-xs-12 col-sm-6">
+          <div>
+            <div
+              className="row">
+              <h2
+                className="col area-title">
+                Produkt Details
+              </h2>
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Marke:
+              </p>
+              <p
+                className="col" />
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Produktfamilie:
+              </p>
+              <p
+                className="col" />
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Seriennummer:
+              </p>
+              <p
+                className="col">
+                0
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className="detail-area-block col-xs-12 col-sm-6">
+          <div>
+            <h2
+              className="area-title">
+              Statusherleitung
+            </h2>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Status:
+              </p>
+              <p
+                className="col">
+                ERROR
+              </p>
+            </div>
+            <div
+              className="row">
+              <p
+                className="col-4">
+                Statusbeschreibung:
+              </p>
+              <p
+                className="col">
+                Error detected! Intervention required!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="line-chart container">
+      <canvas
+        height="80"
+        id="lineChart" />
+    </div>
+    <div
+      className="filter-bar container">
+      <div
+        className="form-group row">
+        <div
+          className="input-field input-group col-xs-12 col-sm-4 col-lg-3">
+          <span
+            className="input-group-addon"
+            id="search-addon">
+            <i
+              className="fa fa-search" />
+          </span>
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="Search..."
+            type="text"
+            value={undefined} />
+        </div>
+        <div
+          className="input-field input-group col-xs-12 col-sm-4 col-lg-3">
+          <span
+            className="input-group-addon"
+            id="search-addon">
+            <i
+              className="fa fa-search" />
+          </span>
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="Search..."
+            type="text"
+            value={undefined} />
+        </div>
+      </div>
+    </div>
+    <div
+      className="tab-bar container">
+      <ul
+        className="nav nav-tabs border-0"
+        role="tablist">
+        <li
+          className="tab nav-item">
+          <a
+            className="nav-link"
+            data-toggle="tab"
+            href="#Error Events"
+            onClick={[Function]}
+            role="tab">
+            Error Events
+          </a>
+        </li>
+        <li>
+          <div
+            className="query-interface">
+            <div>
+              <a
+                className="nav-link"
+                data-target="#query-interface-modal"
+                data-toggle="modal">
+                <i
+                  className="fa fa-plus" />
+              </a>
+              <div
+                className="query-interface modal fade"
+                id="query-interface-modal"
+                role="dialog"
+                tabIndex="-1">
+                <div
+                  className="modal-dialog"
+                  role="document">
+                  <div
+                    className="modal-content">
+                    <div
+                      className="modal-header">
+                      <h5
+                        className="modal-title"
+                        id="query-interface-label">
+                        Query Interface
+                      </h5>
+                      <button
+                        className="close"
+                        data-dismiss="modal"
+                        type="button">
+                        <span>
+                          ×
+                        </span>
+                      </button>
+                    </div>
+                    <div
+                      className="modal-body">
+                      
+                      <div
+                        className="query-interface-header">
+                        <div
+                          className="form-group">
+                          <input
+                            className="form-control"
+                            id="query-name"
+                            onChange={[Function]}
+                            placeholder="Name"
+                            type="text"
+                            value="" />
+                        </div>
+                        <div
+                          className="query-interface-header-attribute form-group row">
+                          <div
+                            className="col-6">
+                            <input
+                              className="form-control"
+                              id="example-text-input"
+                              onChange={[Function]}
+                              placeholder="Attribute name"
+                              readOnly={true}
+                              type="text"
+                              value="productId" />
+                          </div>
+                          <div
+                            className="col-6">
+                            <select
+                              className="form-control"
+                              id="exampleSelect1"
+                              onChange={[Function]}
+                              readOnly={true}
+                              value="INTEGER">
+                              <option>
+                                STRING
+                              </option>
+                              <option>
+                                BOOLEAN
+                              </option>
+                              <option>
+                                INTEGER
+                              </option>
+                              <option>
+                                FLOAT
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div
+                          className="query-interface-header-attribute form-group row">
+                          <div
+                            className="col-6">
+                            <input
+                              className="form-control"
+                              id="example-text-input"
+                              onChange={[Function]}
+                              placeholder="Attribute name"
+                              readOnly={true}
+                              type="text"
+                              value="productFamilyId" />
+                          </div>
+                          <div
+                            className="col-6">
+                            <select
+                              className="form-control"
+                              id="exampleSelect1"
+                              onChange={[Function]}
+                              readOnly={true}
+                              value="STRING">
+                              <option>
+                                STRING
+                              </option>
+                              <option>
+                                BOOLEAN
+                              </option>
+                              <option>
+                                INTEGER
+                              </option>
+                              <option>
+                                FLOAT
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div
+                          className="query-interface-header-attribute form-group row">
+                          <div
+                            className="col-6">
+                            <input
+                              className="form-control"
+                              id="example-text-input"
+                              onChange={[Function]}
+                              placeholder="Attribute name"
+                              readOnly={false}
+                              type="text"
+                              value="" />
+                          </div>
+                          <div
+                            className="col-6">
+                            <select
+                              className="form-control"
+                              id="exampleSelect1"
+                              onChange={[Function]}
+                              readOnly={false}
+                              value="">
+                              <option>
+                                STRING
+                              </option>
+                              <option>
+                                BOOLEAN
+                              </option>
+                              <option>
+                                INTEGER
+                              </option>
+                              <option>
+                                FLOAT
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="form-group">
+                        <label
+                          className="form-control-label"
+                          htmlFor="event-query">
+                          Event Query
+                        </label>
+                        <textarea
+                          className="form-control"
+                          id="event-query"
+                          onChange={[Function]}
+                          rows="8"
+                          type="text"
+                          value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                      </div>
+                    </div>
+                    <div
+                      className="modal-footer">
+                      <button
+                        className="btn btn-primary"
+                        onClick={[Function]}
+                        type="button">
+                        Save
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div
+      className="container event-table-container">
+      <table
+        className="table">
+        <thead
+          className="event-table-header thead">
+          <tr>
+            <th>
+              #
+            </th>
+          </tr>
+        </thead>
+        <tbody />
+      </table>
+    </div>
   </div>
 </div>
 `;

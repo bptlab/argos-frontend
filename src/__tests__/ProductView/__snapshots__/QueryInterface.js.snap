@@ -37,6 +37,7 @@ exports[`test Handling change query 1`] = `
           </div>
           <div
             className="modal-body">
+            
             <div
               className="query-interface-header">
               <div
@@ -173,10 +174,6 @@ exports[`test Handling change query 1`] = `
                 type="text"
                 value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
             </div>
-            <p
-              className="error-message">
-              
-            </p>
           </div>
           <div
             className="modal-footer">
@@ -233,6 +230,7 @@ exports[`test Handling change query 2`] = `
           </div>
           <div
             className="modal-body">
+            
             <div
               className="query-interface-header">
               <div
@@ -369,10 +367,6 @@ exports[`test Handling change query 2`] = `
                 type="text"
                 value="TEST" />
             </div>
-            <p
-              className="error-message">
-              
-            </p>
           </div>
           <div
             className="modal-footer">

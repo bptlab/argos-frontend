@@ -9,11 +9,11 @@ class ProductDetails extends Component {
                 </div>
                 <div className="row">
                     <p className="col-4">Marke:</p>
-                    <p className="col">Testbrand1</p>
+                    <p className="col">{this.props.product.brand}</p>
                 </div>
                 <div className="row">
                     <p className="col-4">Produktfamilie:</p>
-                    <p className="col">{this.props.product.name}</p>
+                    <p className="col">{this.props.product.family}</p>
                 </div>
                 <div className="row">
                     <p className="col-4">Seriennummer:</p>

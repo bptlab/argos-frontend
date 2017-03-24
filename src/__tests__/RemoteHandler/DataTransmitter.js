@@ -1,12 +1,13 @@
 import React from 'react';
 import DataTransmitter from '../../RemoteHandler/DataTransmitter.js';
-import RESTInterfaceMock from '../../RemoteHandler/RESTInterfaceMock.js';
+import ServerMock from '../../RemoteHandler/ServerMock.js';
 
 let instance;
 
 beforeAll(() => {
-    instance = new DataTransmitter("address", 1234);
-    instance.setClient(new RESTInterfaceMock)
+    const notificationCallback = jest.fn();
+    instance = new DataTransmitter("address", 1234, notificationCallback);
+    instance.client.client = new ServerMock();
 });
 
 test('Create new event type', () => {
@@ -21,6 +22,6 @@ test('Error in data what has to be converted', () => {
     // data object is recursive
     const data = {};
     data.a = {b: data};
-    instance.convertToJson(data, errorMockCallback);
+    DataTransmitter.convertToJson(data, errorMockCallback);
     expect(errorMockCallback).toBeCalled();
 });

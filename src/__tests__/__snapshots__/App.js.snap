@@ -1,0 +1,29 @@
+exports[`test renders without crashing 1`] = `
+<div>
+  
+</div>
+`;
+
+exports[`test renders without crashing 2`] = `
+<div>
+  <div
+    className="alert alert-danger"
+    role="alert">
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <i
+              className="fa fa-info-circle" />
+          </td>
+          <td>
+            <p>
+              Test-Notification
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;

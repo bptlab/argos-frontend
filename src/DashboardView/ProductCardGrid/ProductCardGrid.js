@@ -26,12 +26,13 @@ class ProductCardGrid extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    {this.props.products.map((product) =>  {
+                    {this.props.products.map((product, index) =>  {
                         if(this.searchMatches(product, this.props.searchText) &&
                         this.props.excludedStates.indexOf(product.state) === -1) {
                             return (
                                 <ProductCard
-                                    key={product.id}
+                                    //use of index is necessary, because products may be incomplete (=> no id)!
+                                    key={index}
                                     product={product}/>
                             );
                         } else {

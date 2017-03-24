@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Chart from "chart.js";
+import {argosConfig} from '../../../config/argosConfig.js';
 
 const stateColor = {
     ERROR: "#D33F49",
@@ -31,7 +32,7 @@ class PieChart extends Component {
             const that = this;
             const chartContext = charWrapper.getContext('2d');
             const chart = new Chart(chartContext, {
-                type: 'doughnut',
+                type: argosConfig.kindOfChart,
                 data: {
                     labels: this.props.chartLabels,
                     datasets: [{

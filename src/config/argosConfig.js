@@ -1,0 +1,21 @@
+export const argosConfig = {
+    useBackendMock:                 false,
+    backendHost:                    '172.16.20.158',
+    backendPort:                    8989,
+    backendNotificationAPI:         'notifications',
+    enumerationSymbol:              '#',
+    searchPlaceholder:              'Search...',
+    kindOfChart:                    'doughnut',
+    kindOfDetailChart:              'line',
+    dashboardName:                  'Early Warning Dashboard',
+    webSocketProtocol:              'ws',
+    messageSuccessConnectionPush:   'Successfully connected to Push-Notification-Service',
+    messageLostConnectionPush:      'Connection to Push-Notification-Service lost / not possible',
+    messageErrorConnectionPush:     'Error on Push-Notification-Service',
+    NotificationServiceSuccess:     'success',
+    NotificationServiceError:       'danger',
+    NotificationServiceNeutralInfo: 'info',
+    RESTInterfaceRouteError:        'Wrong route specified',
+    RESTInterfaceConnectionError:   'A critical connection error occurred!',
+    routeNameDetailView:            'product'
+};

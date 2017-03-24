@@ -2,11 +2,16 @@ import RemoteHandler from './RemoteHandler.js';
 
 class DataTransmitter extends RemoteHandler {
 
+    constructor(remoteAddress, remotePort, notificationCallback) {
+        super(remoteAddress, remotePort, notificationCallback);
+        this.requestMethod = 'POST';
+    }
+
     static getAPIRouteForCreateEventtype() {
         return "api/eventtypes/create";
     }
 
-    convertToJson(data, errorCallback) {
+    static convertToJson(data, errorCallback) {
         try {
             return JSON.stringify(data);
         }
@@ -18,7 +23,6 @@ class DataTransmitter extends RemoteHandler {
     createEventtype(eventQuery, eventType, successCallback, errorCallback) {
         const APIRoute = DataTransmitter.getAPIRouteForCreateEventtype();
         const URI = DataTransmitter.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
-        this.client.open('POST', URI, true);
         const data = {
             "eventQuery":   eventQuery,
             "eventType":    eventType
@@ -28,8 +32,8 @@ class DataTransmitter extends RemoteHandler {
             "clientSuccessCallback":  successCallback,
             "clientErrorCallback":    errorCallback
         };
-        const jsonData = this.convertToJson(data, errorCallback);
-        this.client.sendRequest(this.receiveResults, this.receiveError, callbackContainer, jsonData);
+        const jsonData = DataTransmitter.convertToJson(data, errorCallback);
+        this.client.addRequest(URI, this.requestMethod, callbackContainer, jsonData);
     }
 }
 export default DataTransmitter;

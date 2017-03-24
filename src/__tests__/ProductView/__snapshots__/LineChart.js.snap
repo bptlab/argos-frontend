@@ -1,0 +1,8 @@
+exports[`test Correct drawing of LineChart 1`] = `
+<div
+  className="line-chart container">
+  <canvas
+    height="80"
+    id="lineChart" />
+</div>
+`;
