@@ -56,7 +56,6 @@ class LineChart extends Component {
     componentDidUpdate() {
         const charWrapper = this.refs.canvas;
         if (charWrapper) {
-            console.log(this.buildChartData());
             const chartContext = charWrapper.getContext('2d');
             const chartConfig = {
                 type: argosConfig.kindOfDetailChart,
