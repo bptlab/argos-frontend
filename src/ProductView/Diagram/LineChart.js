@@ -10,6 +10,10 @@ class LineChart extends Component {
         return dateA - dateB;
     }
     
+    shouldComponentUpdate(nextProps) {
+        return !(this.props.eventData === nextProps.eventData);
+    }
+    
     buildChartData() {
         const dataset = [];
         this.props.eventData.forEach((eventDataContainer) => {
@@ -48,7 +52,7 @@ class LineChart extends Component {
             
     }
 
-    componentDidUpdate() {
+    componentDidMount() {
         const charWrapper = this.refs.canvas;
         if (charWrapper) {
             const chartContext = charWrapper.getContext('2d');
