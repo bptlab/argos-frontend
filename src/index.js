@@ -4,8 +4,9 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import App from './App/App';
 import ProductView from './ProductView/ProductView.js';
 import DashboardView from './DashboardView/DashboardView.js';
-import ProductFetcher from './ProductFetcher/ProductFetcher.js';
-import ServerMock from './ProductFetcher/ServerMock.js';
+import DataReceiver from './RemoteHandler/DataReceiver.js';
+import DataTransmitter from './RemoteHandler/DataTransmitter.js';
+import ServerMock from './RemoteHandler/ServerMock.js';
 import {argosConfig} from './config/argosConfig';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,7 +14,12 @@ import 'font-awesome/css/font-awesome.css';
 import './index.scss';
 
 //### Data-Source-Initialization ###
-const dataSource = new ProductFetcher(
+const dataSource = new DataReceiver(
+    argosConfig.backendHost,
+    argosConfig.backendPort,
+    notificationCallback
+);
+const dataSender = new DataTransmitter(
     argosConfig.backendHost,
     argosConfig.backendPort,
     notificationCallback
@@ -40,7 +46,10 @@ ReactDOM.render(
             <IndexRoute component={() => (<DashboardView dataSource={dataSource} />)} />
             <Route path={`/` + argosConfig.routeNameDetailView+`/:productID`}
                    component={(routeObject) => (
-                       <ProductView dataSource={dataSource} params={routeObject.params} />
+                       <ProductView 
+                           dataSource={dataSource} 
+                           dataSender={dataSender} 
+                           params={routeObject.params} />
                    )}/>
         </Route>
     </Router>),

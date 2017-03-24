@@ -2,8 +2,8 @@ import React from 'react';
 import ProductView from '../../ProductView/ProductView.js';
 import renderer from 'react-test-renderer';
 import TestProduct from './../testData/product.js'
-import TestEventTypes from './../testData/eventTypes.js'
-import TestEvents from './../testData/events.js'
+import TestEventTypes from '../testData/frontend_eventTypes.js'
+import TestEvents from '../testData/frontend_events.js'
 
 let instance, notificationService, component;
 
@@ -96,6 +96,15 @@ test('Add filter', () => {
     expect(instance.state.filter.length).toEqual(1);
     instance.onInputChange(0, 'Test');
     expect(instance.state.filter.length).toEqual(2);
+});
+
+test('Modify filter which is not the latest one', () => {
+    instance.onInputChange(0, 'Test1');
+    instance.onInputChange(1, 'Test2');
+    expect(instance.state.filter[1].value).toEqual("Test2");
+    instance.onInputChange(2, 'Test3');
+    instance.onInputChange(1, 'new Value');
+    expect(instance.state.filter[1].value).toEqual("new Value");
 });
 
 test('Remove last filter', () => {

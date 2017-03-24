@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import QueryInterface from './QueryInterface/QueryInterface.js';
 import Tab from './Tab/Tab.js';
 
 class TabBar extends Component {
@@ -13,6 +14,9 @@ class TabBar extends Component {
                              product={this.props.product}
                              notificationService={this.props.notificationService}/>
                     )}
+                    <li>
+                        <QueryInterface dataSender={this.props.dataSender} />
+                    </li>
                 </ul>
             </div>
         );

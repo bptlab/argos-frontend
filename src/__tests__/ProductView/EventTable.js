@@ -1,8 +1,8 @@
 import React from 'react';
 import EventTable from '../../ProductView/EventTable/EventTable.js';
 import renderer from 'react-test-renderer';
-import TestEvents from './../testData/events.js';
-import TestEventTypes from './../testData/eventTypes';
+import TestEvents from '../testData/frontend_events.js';
+import TestEventTypes from '../testData/frontend_eventTypes';
 let instance;
 
 test("Rendering of EventTable", () => {

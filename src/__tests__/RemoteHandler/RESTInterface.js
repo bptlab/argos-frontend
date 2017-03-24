@@ -1,6 +1,6 @@
 import React from 'react';
-import RESTInterface from '../../ProductFetcher/RESTInterface.js'
-import ServerMock from '../../ProductFetcher/ServerMock.js'
+import RESTInterface from '../../RemoteHandler/RESTInterface.js'
+import ServerMock from '../../RemoteHandler/ServerMock.js'
 
 let instance;
 let successCallback, errorCallback;

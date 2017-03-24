@@ -24,8 +24,6 @@ class ServerMock {
             name: "Testproductfamily",
             brand: "Testbrand",
             products: [{
-                family: "Testproductfamily",
-                brand: "Testbrand",
                 id: 0,
                 name: "Testproduct 5000 14E-17B",
                 numberOfDevices: 52189,
@@ -33,10 +31,13 @@ class ServerMock {
                 productionStart: "2016-05-07",
                 orderNumber: "9830510416",
                 state: "RUNNING",
-                stateDescription: "No errors or warnings detected"
+                stateDescription: "No errors or warnings detected",
+                statusUpdateQueries: {
+                    RUNNING: "ESPER-QUERY",
+                    WARNING: "ESPER-QUERY",
+                    ERROR: "ESPER-QUERY"
+                }
             },{
-                family: "Testproductfamily",
-                brand: "Testbrand",
                 id: 1,
                 name: "Testproduct 5010 116-1EB",
                 numberOfDevices: 90621,
@@ -44,10 +45,13 @@ class ServerMock {
                 productionStart: "2016-04-06",
                 orderNumber: "7716013254",
                 state: "RUNNING",
-                stateDescription: "No errors or warnings detected"
+                stateDescription: "No errors or warnings detected",
+                statusUpdateQueries: {
+                    RUNNING: "ESPER-QUERY",
+                    WARNING: "ESPER-QUERY",
+                    ERROR: "ESPER-QUERY"
+                }
             },{
-                family: "Testproductfamily",
-                brand: "Testbrand",
                 id: 2,
                 name: "Testproduct 3010 226-1XC",
                 numberOfDevices: 746,
@@ -55,9 +59,13 @@ class ServerMock {
                 productionStart: "2016-01-01",
                 orderNumber: "7710473416",
                 state: "WARNING",
+                stateDescription: "Warning detected!",
+                statusUpdateQueries: {
+                    RUNNING: "ESPER-QUERY",
+                    WARNING: "ESPER-QUERY",
+                    ERROR: "ESPER-QUERY"
+                }
             },{
-                family: "Testproductfamily",
-                brand: "Testbrand",
                 id: 3,
                 name: "Testproduct 20X US6-1XB",
                 numberOfDevices: 345,
@@ -65,10 +73,13 @@ class ServerMock {
                 productionStart: "2016-03-02",
                 orderNumber: "0139210418",
                 state: "RUNNING",
-                stateDescription: "No errors or warnings detected"
+                stateDescription: "No errors or warnings detected",
+                statusUpdateQueries: {
+                    RUNNING: "ESPER-QUERY",
+                    WARNING: "ESPER-QUERY",
+                    ERROR: "ESPER-QUERY"
+                }
             },{
-                family: "Testproductfamily",
-                brand: "Testbrand",
                 id: 4,
                 name: "Testproduct 30X 1W1-PSB",
                 numberOfDevices: 201,
@@ -76,9 +87,75 @@ class ServerMock {
                 productionStart: "2016-06-07",
                 orderNumber: "7711294712",
                 state: "ERROR",
-                stateDescription: "Error detected! Intervention required!"
-            }]
-        }];
+                stateDescription: "Error detected! Intervention required!",
+                statusUpdateQueries: {
+                    RUNNING: "ESPER-QUERY",
+                    WARNING: "ESPER-QUERY",
+                    ERROR: "ESPER-QUERY"
+                }
+            }]},
+            {
+            id: 1,
+            name: "TestproductfamilyNeo",
+            brand: "TestbrandNeo",
+            products: [{
+                id: 5,
+                name: "Testproduct 7000 27E-11C",
+                numberOfDevices: 3475,
+                numberOfEvents: 13,
+                productionStart: "2016-02-06",
+                orderNumber: "48958959",
+                state: "WARNING",
+                stateDescription: "Sensor defect!",
+                statusUpdateQueries: {
+                    RUNNING: "ESPER-QUERY",
+                    WARNING: "ESPER-QUERY",
+                    ERROR: "ESPER-QUERY"
+                }
+            },{
+                id: 6,
+                name: "Testproduct 5010 115",
+                numberOfDevices: 90621,
+                numberOfEvents: 741,
+                productionStart: "2016-04-06",
+                orderNumber: "7716013254",
+                state: "RUNNING",
+                stateDescription: "No errors or warnings detected",
+                statusUpdateQueries: {
+                    RUNNING: "ESPER-QUERY",
+                    WARNING: "ESPER-QUERY",
+                    ERROR: "ESPER-QUERY"
+                }
+            },{
+                id: 7,
+                name: "Testproduct 012 226-1FC",
+                numberOfDevices: 746,
+                numberOfEvents: 362,
+                productionStart: "2016-02-01",
+                orderNumber: "7710473416",
+                state: "ERROR",
+                stateDescription: "Controller defect!",
+                statusUpdateQueries: {
+                    RUNNING: "ESPER-QUERY",
+                    WARNING: "ESPER-QUERY",
+                    ERROR: "ESPER-QUERY"
+                }
+            },{
+                id: 8,
+                name: "Testproduct 20X US6-1XB",
+                numberOfDevices: 345,
+                numberOfEvents: 23,
+                productionStart: "2016-03-02",
+                orderNumber: "0139210418",
+                state: "ERROR",
+                stateDescription: "Battery low!",
+                statusUpdateQueries: {
+                    RUNNING: "ESPER-QUERY",
+                    WARNING: "ESPER-QUERY",
+                    ERROR: "ESPER-QUERY"
+                }
+            }]}
+        ];
     }
     
     static getEventTypes() {
@@ -113,6 +190,10 @@ class ServerMock {
                     id:     5,
                     name:   "SoftwareVersion",
                     type:   "String"
+                }, {
+                    id:     6,
+                    name:   "DateOfServiceIntervention",
+                    type:   "Date"
                 }
             ]
         }];

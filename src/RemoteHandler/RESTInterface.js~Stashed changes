@@ -1,16 +1,17 @@
-import {argosConfig} from '../config/argosConfig';
 import RequestQueue from './RequestQueue.js';
+
 class RESTInterface {
     constructor() {
         this.client = new XMLHttpRequest();
         this.requestQueue = new RequestQueue(this.executeNextRequest.bind(this));
     }
-    
-    addRequest(URI, requestMethod, callbackContainer) {
+
+    addRequest(URI, requestMethod, callbackContainer, data = null) {
         const request = {
             "URI":                  URI,
             "requestMethod":        requestMethod, //GET or POST
-            "callbackContainer":    callbackContainer
+            "callbackContainer":    callbackContainer,
+            "data":                 data //In case of POST
         };
         this.requestQueue.push(request);
     }
@@ -18,14 +19,14 @@ class RESTInterface {
     executeNextRequest(queue) {
         const request = queue.head();
         this.client.open(request.requestMethod, request.URI, true);
-        this.sendRequest(request.callbackContainer);
+        this.sendRequest(request.callbackContainer, request.data);
     }
 
-    sendRequest(callbackContainer) {
+    sendRequest(callbackContainer, data) {
         this.client.setRequestHeader("content-type", "application/json");
         this.client.onreadystatechange = this.onReadyStateChange.bind(this, callbackContainer);
         this.client.onerror = this.onError.bind(this, callbackContainer);
-        this.client.send();
+        this.client.send(data);
     }
 
     onReadyStateChange(callbackContainer) {
@@ -41,9 +42,9 @@ class RESTInterface {
                 event = new CustomEvent('connectionError', { 'detail': resultObject });
             }
             document.dispatchEvent(event);
-        } 
+        }
     }
-    
+
     onError(callbackContainer) {
         this.requestQueue.pop();
         const resultObject = callbackContainer;

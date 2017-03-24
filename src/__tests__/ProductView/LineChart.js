@@ -1,8 +1,8 @@
 import React from 'react';
 import LineChart from '../../ProductView/Diagram/LineChart.js';
 import renderer from 'react-test-renderer';
-import TestDataEvents from './../testData/events.js'
-import TestDataEventTypes from './../testData/eventTypes.js'
+import TestDataEvents from '../testData/frontend_events.js'
+import TestDataEventTypes from '../testData/frontend_eventTypes.js'
 
 test("Correct drawing of LineChart", () => {
     const component = renderer.create(
