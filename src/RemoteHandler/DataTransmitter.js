@@ -5,6 +5,7 @@ class DataTransmitter extends RemoteHandler {
     constructor(remoteAddress, remotePort, notificationCallback) {
         super(remoteAddress, remotePort, notificationCallback);
         this.requestMethod = 'POST';
+        document.addEventListener('dataSended', this.receiveResults);
     }
 
     static getAPIRouteForCreateEventtype() {

@@ -7,6 +7,9 @@ class DataReceiver extends RemoteHandler {
         super(remoteAddress, remotePort, notificationCallback);
         this.dataMapper = DataMapper;
         this.requestMethod = 'GET';
+        //event binding
+        document.addEventListener('dataReceived', this.receiveResults);
+        document.addEventListener('connectionError', this.receiveError);
     }
 
     static getAPIRouteForProductFamilies() {

@@ -35,9 +35,6 @@ class RemoteHandler {
         //function binding
         this.receiveResults = this.receiveResults.bind(this);
         this.receiveError = this.receiveError.bind(this);
-        //event binding
-        document.addEventListener('dataReceived', this.receiveResults);
-        document.addEventListener('connectionError', this.receiveError);
     }
 
     parseJSON(results, errorCallback) {
