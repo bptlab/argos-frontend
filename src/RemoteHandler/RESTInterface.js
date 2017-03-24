@@ -24,19 +24,24 @@ class RESTInterface {
 
     sendRequest(callbackContainer, data) {
         this.client.setRequestHeader("content-type", "application/json");
-        this.client.onreadystatechange = this.onReadyStateChange.bind(this, callbackContainer);
+        const dataSended = !!data;
+        this.client.onreadystatechange = this.onReadyStateChange.bind(this, callbackContainer, dataSended);
         this.client.onerror = this.onError.bind(this, callbackContainer);
         this.client.send(data);
     }
 
-    onReadyStateChange(callbackContainer) {
+    onReadyStateChange(callbackContainer, dataSended) {
         if (this.client.readyState === 4) {
             this.requestQueue.pop();
             const resultObject = callbackContainer;
             let event;
             if (this.client.status === 200) {
                 resultObject.results = this.client.responseText;
-                event = new CustomEvent('dataReceived', { 'detail': resultObject });
+                if(dataSended) {
+                    event = new CustomEvent('dataSended', { 'detail': resultObject });
+                } else {
+                    event = new CustomEvent('dataReceived', { 'detail': resultObject });
+                }
             } else {
                 resultObject.results = this.client.statusText;
                 event = new CustomEvent('connectionError', { 'detail': resultObject });
