@@ -9,10 +9,9 @@ class TabBar extends Component {
                 <ul className="nav nav-tabs border-0" role="tablist">
                     {this.props.eventTypes.map((eventType, index) =>
                         <Tab key={index}
+                             id={index}
                              eventType={eventType}
-                             setActiveEventType={this.props.setActiveEventType}
-                             product={this.props.product}
-                             notificationService={this.props.notificationService}/>
+                             setActiveEventType={this.props.setActiveEventType}/>
                     )}
                     <li>
                         <QueryInterface dataSender={this.props.dataSender} />

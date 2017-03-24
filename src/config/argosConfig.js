@@ -1,6 +1,6 @@
 export const argosConfig = {
-    useBackendMock:                 true,
-    backendHost:                    '172.16.20.158',
+    useBackendMock:                 false,
+    backendHost:                    '172.18.0.155',
     backendPort:                    8989,
     backendNotificationAPI:         'notifications',
     enumerationSymbol:              '#',

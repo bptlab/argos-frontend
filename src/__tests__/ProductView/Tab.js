@@ -5,21 +5,14 @@ let instance;
 
 test('Clicking ProductView Tab', () => {
     const setActiveEventType = jest.fn();
-    const notificationService = {
-        subscribe: jest.fn(),
-        unsubscribe: jest.fn()
-    };
     renderer.create(
         <Tab ref={(child) => {instance = child}} 
+             id={0}
+             index={0}
              eventType={{}}
-             setActiveEventType={setActiveEventType} 
-             product={{}}
-             notificationService={notificationService}
+             setActiveEventType={setActiveEventType}
             />
     );
     instance.setActiveEventType();
-    instance.componentWillUnmount();
     expect(setActiveEventType).toBeCalled();
-    expect(notificationService.subscribe).toBeCalled();
-    expect(notificationService.unsubscribe).toBeCalled();
 });

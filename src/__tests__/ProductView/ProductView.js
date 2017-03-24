@@ -65,11 +65,6 @@ test("Rendering of ProductView", () => {
     expect(notificationService.subscribe).toHaveBeenCalledTimes(3);
 });
 
-test('Update Event data', () => {
-    //Use same Eventtype again to check other if branch
-    instance.handleEventData(TestEventTypes.EVENTTYPES[0], TestEvents.EVENTS);
-});
-
 test('Successful filtering', () => {
     instance.onInputChange(0, 'Product');
     expect(instance.state.filter[0].value).toBe("Product");

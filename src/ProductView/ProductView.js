@@ -18,7 +18,7 @@ class ProductView extends Component {
             eventTypes: null,
             error: null,
             activeEventType: {attributes: []},
-            eventData: []
+            activeEvents: []
         };
         this.nextAttributeId = 1;
         //Function binding
@@ -33,39 +33,23 @@ class ProductView extends Component {
         this.setActiveEventType = this.setActiveEventType.bind(this);
     }
 
-    handleEventData(eventType, events) {
-        let eventContainer = this.state.eventData.find((eventContainer) => {
-           return eventContainer.eventType === eventType;
-        });
-        const eventData = this.state.eventData;
-        if(eventContainer) {
-            const index = this.state.eventData.indexOf(eventContainer);
-            eventContainer.events = events;
-            eventData.splice(index, 1);
-        } else {
-            eventContainer = {
-                eventType: eventType,
-                events: events
-            };
-        }
-        eventData.push(eventContainer);
-        this.setState({eventData: eventData});
+    handleEventData(events) {
+        this.setState({activeEvents: events});
     }
 
     handleEventTypeData(eventTypes) {
         this.setState({
             eventTypes: eventTypes
         });
-        eventTypes.forEach((eventType) => {
-            this.fetchEventsFor(eventType);
-        }, this);
     }
 
     componentDidMount() {
         this.fetchProducts();
         this.props.dataSource.notificationService.subscribe("Product", this.fetchProducts);
         this.props.dataSource.notificationService.subscribe("EventType", this.fetchEventTypes);
+        this.props.dataSource.notificationService.subscribe("Event", this.fetchEventsFor);
     }
+    
 
     componentWillUnmount() {
         this.props.dataSource.notificationService.unsubscribe("Product", this.fetchProducts);
@@ -80,13 +64,15 @@ class ProductView extends Component {
         this.props.dataSource.fetchEventTypesOf(this.prodId, this.handleEventTypeData, this.handleError);
     }
 
-    fetchEventsFor(eventType) {
-        this.props.dataSource.fetchEventsOf(
-            this.prodId,
-            eventType.id,
-            (events) => {this.handleEventData(eventType, events);},
-            this.handleError
-        );
+    fetchEventsFor(eventType = this.state.activeEventType) {
+        if(eventType) {
+            this.props.dataSource.fetchEventsOf(
+                this.prodId,
+                eventType.id,
+                this.handleEventData,
+                this.handleError
+            );
+        }
     }
 
     handleProductData(products) {
@@ -137,19 +123,10 @@ class ProductView extends Component {
     }
     
     setActiveEventType(eventType) {
+        this.fetchEventsFor(eventType);
         this.setState({activeEventType: eventType});
     }
     
-    getCurrentEvents() {
-        const eventContainer = this.state.eventData.find(function(eventContainer)  {
-            return eventContainer.eventType === this.state.activeEventType;
-        }, this );
-        if(eventContainer) {
-            return eventContainer.events;
-        } else {
-            return [];
-        }
-    }
 
     render() {
         let component = (<Loader/>);
@@ -165,7 +142,9 @@ class ProductView extends Component {
                 <div>
                     <Header product={this.state.product}/>
                     <DetailArea product={this.state.product}/>
-                    <LineChart eventData={this.state.eventData}/>
+                    <LineChart 
+                        events={this.state.activeEvents}
+                        eventType={this.state.activeEventType} />
                     <FilterBar
                         onInputChange={this.onInputChange}
                         filter={this.state.filter} />
@@ -173,11 +152,10 @@ class ProductView extends Component {
                         dataSender={this.props.dataSender}
                         eventTypes={this.state.eventTypes}
                         setActiveEventType={this.setActiveEventType}
-                        product={this.state.product}
-                        notificationService={this.props.dataSource.notificationService} />
+                        product={this.state.product} />
                     <EventTable
                         header={this.state.activeEventType.attributes}
-                        events={this.getCurrentEvents()}
+                        events={this.state.activeEvents}
                         filter={this.state.filter} />
                 </div>
             );

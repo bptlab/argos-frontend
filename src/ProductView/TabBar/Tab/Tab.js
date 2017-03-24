@@ -10,13 +10,12 @@ class Tab extends Component {
     setActiveEventType() {
         this.props.setActiveEventType(this.props.eventType);
     }
-
+    
     componentDidMount() {
-        this.props.notificationService.subscribe("Event", this.setActiveEventType);
-    }
-
-    componentWillUnmount() {
-        this.props.notificationService.unsubscribe("Event", this.setActiveEventType);
+        if(this.props.id === 0 && this.tabLink) {
+            /* istanbul ignore next */
+            this.tabLink.click();
+        }
     }
 
     render() {
@@ -24,7 +23,8 @@ class Tab extends Component {
             <li className="tab nav-item">
                 <a className="nav-link" data-toggle="tab"
                    href={'#' + this.props.eventType.name}
-                   role="tab" onClick={this.setActiveEventType}>
+                   role="tab" onClick={this.setActiveEventType}
+                   ref={(a) => { this.tabLink = a; }}>
                     {this.props.eventType.name}
                 </a>
             </li>
