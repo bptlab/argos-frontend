@@ -3,25 +3,26 @@ import Chart from "chart.js";
 import {argosConfig} from '../../config/argosConfig.js';
 
 class LineChart extends Component {
-    
+
     static sortEventsByTime(elementA, elementB, timeStampAttribute) {
         const dateA = new Date(elementA[timeStampAttribute]);
         const dateB = new Date(elementB[timeStampAttribute]);
         return dateA - dateB;
     }
     
-    shouldComponentUpdate(nextProps) {
-        return !(this.props.eventData === nextProps.eventData);
-    }
-    
     buildChartData() {
         const dataset = [];
-        this.props.eventData.forEach((eventDataContainer) => {
-            const evenTypeDiagramData = this.buildChartDataset(eventDataContainer.eventType, eventDataContainer.events);
-            dataset.push(evenTypeDiagramData);
-        });
+        const evenTypeDiagramData = this.buildChartDataset(this.props.eventType, this.props.events);
+        dataset.push(evenTypeDiagramData);
         return dataset;
     }
+    
+    shouldComponentUpdate(nextProps) {
+        return (nextProps.events.length !== this.props.events.length
+        || nextProps.eventType.name !== this.props.eventType.name);
+    }
+    
+    
     buildChartDataset(eventType, events) {
         const dataContainer = [];
         const timeStampAttribute = eventType.timestampAttributeName;
@@ -52,9 +53,10 @@ class LineChart extends Component {
             
     }
 
-    componentDidMount() {
+    componentDidUpdate() {
         const charWrapper = this.refs.canvas;
         if (charWrapper) {
+            console.log(this.buildChartData());
             const chartContext = charWrapper.getContext('2d');
             const chartConfig = {
                 type: argosConfig.kindOfDetailChart,
@@ -75,10 +77,7 @@ class LineChart extends Component {
                     }
                 }
             };
-            const chart = new Chart(chartContext, chartConfig);
-            this.state = {
-                chart: chart
-            };
+            this.chart = new Chart(chartContext, chartConfig);
         }
     }
     
