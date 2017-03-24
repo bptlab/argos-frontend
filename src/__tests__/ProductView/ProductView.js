@@ -98,6 +98,15 @@ test('Add filter', () => {
     expect(instance.state.filter.length).toEqual(2);
 });
 
+test('Modify filter which is not the latest one', () => {
+    instance.onInputChange(0, 'Test1');
+    instance.onInputChange(1, 'Test2');
+    expect(instance.state.filter[1].value).toEqual("Test2");
+    instance.onInputChange(2, 'Test3');
+    instance.onInputChange(1, 'new Value');
+    expect(instance.state.filter[1].value).toEqual("new Value");
+});
+
 test('Remove last filter', () => {
     expect(instance.state.filter.length).toEqual(1);
     instance.onInputChange(0, 'Test');
