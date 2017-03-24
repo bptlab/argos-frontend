@@ -54,6 +54,7 @@ class DataMapper {
                 "id":               apiEventType.id,
                 "name":             apiEventType.name,
                 "numberOfEvents":   apiEventType.numberOfEvents,
+                "timestampAttributeName": apiEventType.timestampAttributeName,
                 "attributes":       DataMapper.mapEventTypeAttributes(apiEventType.attributes)
             };
             eventTypes.push(eventType);
