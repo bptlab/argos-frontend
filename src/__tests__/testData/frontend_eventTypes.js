@@ -2,6 +2,7 @@ const eventTypes = [{
     id:             0,
     name:           "Error Events",
     numberOfEvents: 8493,
+    timestampAttributeName: "DateOfServiceIntervention",
     attributes: [
         {
             id:     0,
