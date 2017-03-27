@@ -1,5 +1,5 @@
 .form-group {
-  margin: 5px;
+  margin: 0 10px 5px 10px;
 }
 #configurationHeader select {
   background-color: inherit;
@@ -9,5 +9,5 @@
   padding: 10px 10px;
 }
 #configurationHeader option {
-  background-color: $COLOR-dark_background-transparent;
+  background-color: $COLOR-dark_background;
 }
