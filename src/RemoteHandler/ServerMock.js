@@ -65,34 +65,6 @@ class ServerMock {
                     WARNING: "ESPER-QUERY",
                     ERROR: "ESPER-QUERY"
                 }
-            },{
-                id: 3,
-                name: "Testproduct 20X US6-1XB",
-                numberOfDevices: 345,
-                numberOfEvents: 23,
-                productionStart: "2016-03-02",
-                orderNumber: "0139210418",
-                state: "RUNNING",
-                stateDescription: "No errors or warnings detected",
-                statusUpdateQueries: {
-                    RUNNING: "ESPER-QUERY",
-                    WARNING: "ESPER-QUERY",
-                    ERROR: "ESPER-QUERY"
-                }
-            },{
-                id: 4,
-                name: "Testproduct 30X 1W1-PSB",
-                numberOfDevices: 201,
-                numberOfEvents: 553,
-                productionStart: "2016-06-07",
-                orderNumber: "7711294712",
-                state: "ERROR",
-                stateDescription: "Error detected! Intervention required!",
-                statusUpdateQueries: {
-                    RUNNING: "ESPER-QUERY",
-                    WARNING: "ESPER-QUERY",
-                    ERROR: "ESPER-QUERY"
-                }
             }]},
             {
             id: 1,
@@ -135,20 +107,6 @@ class ServerMock {
                 orderNumber: "7710473416",
                 state: "ERROR",
                 stateDescription: "Controller defect!",
-                statusUpdateQueries: {
-                    RUNNING: "ESPER-QUERY",
-                    WARNING: "ESPER-QUERY",
-                    ERROR: "ESPER-QUERY"
-                }
-            },{
-                id: 8,
-                name: "Testproduct 20X US6-1XB",
-                numberOfDevices: 345,
-                numberOfEvents: 23,
-                productionStart: "2016-03-02",
-                orderNumber: "0139210418",
-                state: "ERROR",
-                stateDescription: "Battery low!",
                 statusUpdateQueries: {
                     RUNNING: "ESPER-QUERY",
                     WARNING: "ESPER-QUERY",

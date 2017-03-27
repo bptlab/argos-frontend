@@ -50,38 +50,6 @@ const productFamilies = [{
             WARNING: "ESPER-QUERY",
             RUNNING: "ESPER-QUERY"
         }
-    },{
-        family: "Testproductfamily",
-        brand: "Testbrand",
-        id: 3,
-        name: "Testproduct 20X US6-1XB",
-        numberOfDevices: 345,
-        numberOfEvents: 23,
-        productionStart: "2016-03-02",
-        orderNumber: "0139210418",
-        state: "RUNNING",
-        stateDescription: "No errors or warnings detected",
-        statusUpdateQueries: {
-            ERROR: "ESPER-QUERY",
-            WARNING: "ESPER-QUERY",
-            RUNNING: "ESPER-QUERY"
-        }
-    },{
-        family: "Testproductfamily",
-        brand: "Testbrand",
-        id: 4,
-        name: "Testproduct 30X 1W1-PSB",
-        numberOfDevices: 201,
-        numberOfEvents: 553,
-        productionStart: "2016-06-07",
-        orderNumber: "7711294712",
-        state: "ERROR",
-        stateDescription: "Error detected! Intervention required!",
-        statusUpdateQueries: {
-            ERROR: "ESPER-QUERY",
-            WARNING: "ESPER-QUERY",
-            RUNNING: "ESPER-QUERY"
-        }
     }]},
     {
     id: 1,
@@ -130,22 +98,6 @@ const productFamilies = [{
         orderNumber: "7710473416",
         state: "ERROR",
         stateDescription: "Controller defect!",
-        statusUpdateQueries: {
-            ERROR: "ESPER-QUERY",
-            WARNING: "ESPER-QUERY",
-            RUNNING: "ESPER-QUERY"
-        }
-    },{
-        family: "TestproductfamilyNeo",
-        brand: "TestbrandNeo",
-        id: 8,
-        name: "Testproduct 20X US6-1XB",
-        numberOfDevices: 345,
-        numberOfEvents: 23,
-        productionStart: "2016-03-02",
-        orderNumber: "0139210418",
-        state: "ERROR",
-        stateDescription: "Battery low!",
         statusUpdateQueries: {
             ERROR: "ESPER-QUERY",
             WARNING: "ESPER-QUERY",
