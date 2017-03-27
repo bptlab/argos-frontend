@@ -29,7 +29,6 @@ body {
     @include media-breakpoint-up(uhd) {
       margin-bottom: $uhd-element-margin-bottom;
     }
-    background-color: $COLOR-dark-background;
     @include dropdown-shadow($highlight-shadow);
     .dashboard-title {
       margin: 10px 0;

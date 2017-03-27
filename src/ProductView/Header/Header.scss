@@ -1,8 +1,16 @@
-@import "StatusPoint/StatusPoint";
+@import "ProductHeader/ProductHeader";
+@import "ConfigurationHeader/ConfigurationHeader";
 
 header {
 	h1, p, a, a:hover {
 		color: $COLOR-font-light !important;
+	}
+	#productHeader {
+		background-color: $COLOR-dark-background;
+	}
+	#configurationHeader {
+		background-color: $COLOR-dark_background-transparent;
+		color: $COLOR-font-light;
 	}
 	.home-button {
 		font-size: 30px;
