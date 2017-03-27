@@ -32,9 +32,9 @@ docker run --name argos-database -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -d mysql:late
 ```
 docker run --name unicorn -p 8080:8080 --link argos-database:mysql -d bptlab/unicorn:latest
 ```
-3. Final step over here. Just deploy argos.
+3. When Unicorn is started, deploy Argos. Windows only: please share the drive in your docker settings, that your event types directory is located on.
 ```
-docker run --name argos -p 8989:8989 --link argos-database:mysql --link unicorn:unicorn -d bptlab/argos:latest
+docker run --name argos -p 8989:8989 --link argos-database:mysql --link unicorn:unicorn -d -v [PATH TO DIR WITH EVENT TYPES WITH TRAILING SLASH]:/target/classes/event_types bptlab/argos:latest
 ```
 Note:
 - It's important to deploy step by step, because of the --link flags. Link flags only work on currently existing containers.
