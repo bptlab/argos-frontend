@@ -22,3 +22,4 @@ npm-debug.log
 #Development
 dev-resources/
 *.css
+src/config/argosConfig.js
