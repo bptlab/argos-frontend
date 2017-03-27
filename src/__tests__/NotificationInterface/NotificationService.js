@@ -41,3 +41,11 @@ test('UnSubscription', () => {
     instance.unsubscribe("Event", notificationCallback);
     expect(instance.notificationSubscribers.length).toBeLessThan(notificationListLength);
 });
+
+test('Check building of subscriber', () => {
+    const expectedResult = {
+        entityOfInterest: "entityType",
+        notificationCallback: notificationCallback
+    };
+    expect(NotificationService.buildSubscriber("entityType", notificationCallback)).toEqual(expectedResult);
+});
