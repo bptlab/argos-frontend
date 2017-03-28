@@ -312,7 +312,7 @@ exports[`test Change filter 1`] = `
                       <div
                         className="query-interface-header">
                         <div
-                          className="form-group">
+                          className="form-group has-danger">
                           <input
                             className="form-control"
                             id="query-name"
@@ -320,6 +320,10 @@ exports[`test Change filter 1`] = `
                             placeholder="Name"
                             type="text"
                             value="" />
+                          <div
+                            className="form-control-feedback">
+                            This field can\'t be empty.
+                          </div>
                         </div>
                         <div
                           className="query-interface-header-attribute form-group row">
