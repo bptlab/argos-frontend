@@ -7,13 +7,6 @@ header {
 	h1, p, a, a:hover, .form-group {
 		color: $COLOR-font-light !important;
 	}
-	#productHeader {
-		background-color: $COLOR-dark-background;
-	}
-	#configurationHeader {
-		background-color: $COLOR-dark_background-transparent;
-		color: $COLOR-font-light;
-	}
 	.home-button {
 		font-size: 50px;
 		@include media-breakpoint-up(uhd) {
