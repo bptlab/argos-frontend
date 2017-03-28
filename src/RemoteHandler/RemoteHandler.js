@@ -48,12 +48,13 @@ class RemoteHandler {
 
     receiveResults(event) {
         const errorCallback = event.detail.clientErrorCallback;
-        const data = event.detail.dataMappingFunction(this.parseJSON(event.detail.results), errorCallback);
+        const parsedResults = this.parseJSON(event.detail.results, errorCallback);
+        const data = event.detail.dataMappingFunction(parsedResults, errorCallback);
         event.detail.clientSuccessCallback(data);
     }
 
     receiveError(event) {
-        event.detail.clientErrorCallback(event.detail.results);
+        event.detail.clientErrorCallback(event.detail.results, event.detail.statusCode);
     }
 }
 export default RemoteHandler;
