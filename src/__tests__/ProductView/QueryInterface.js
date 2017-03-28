@@ -56,6 +56,21 @@ test('Handling save query', () => {
 });
 
 test('Handling save query failure', () => {
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+    instance.handleSaveQuerySuccess();
+    expect(instance.state.modalLoading).toBe(false);
+});
+
+test('Handling save query failure', () => {
     instance.handleSaveQueryError('test');
+    expect(instance.state.modalLoading).toBe(false);
     expect(instance.state.errorMessage).toBe('test');
+});
+
+test('Form validation of event queries', () => {
+    instance.eventQueryFormValidation('');
+    expect(instance.state.validationClasses).toBe('has-danger');
+    instance.eventQueryFormValidation('test');
+    expect(instance.state.validationClasses).toBe('');
 });
