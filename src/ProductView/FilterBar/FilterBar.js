@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InputField from '../../Utils/InputField.js';
+import InputField from '../../Utils/InputField/InputField.js';
 
 class FilterBar extends Component {
     render() {
