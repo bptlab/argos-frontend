@@ -1,6 +1,7 @@
 import React from 'react';
 import DataTransmitter from '../../RemoteHandler/DataTransmitter.js';
 import ServerMock from '../../RemoteHandler/ServerMock.js';
+import TestData from '../testData/frontend_eventTypes';
 
 let instance;
 
@@ -24,4 +25,12 @@ test('Error in data what has to be converted', () => {
     data.a = {b: data};
     DataTransmitter.convertToJson(data, errorMockCallback);
     expect(errorMockCallback).toBeCalled();
+});
+
+test('Delete eventType', () => {
+    const successMockCallback = jest.fn();
+    const errorMockCallback = jest.fn();
+    document.addEventListener('dataReceived', successMockCallback);
+    instance.deleteEventType(TestData.EVENTTYPES[0], successMockCallback, errorMockCallback);
+    expect(successMockCallback).toBeCalled();
 });
