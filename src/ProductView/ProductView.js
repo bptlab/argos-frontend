@@ -50,7 +50,6 @@ class ProductView extends Component {
         this.props.dataSource.notificationService.subscribe("EventType", this.fetchEventTypes);
         this.props.dataSource.notificationService.subscribe("Event", this.fetchEventsFor);
     }
-    
 
     componentWillUnmount() {
         this.props.dataSource.notificationService.unsubscribe("Product", this.fetchProducts);
@@ -60,7 +59,7 @@ class ProductView extends Component {
     fetchProducts() {
         this.props.dataSource.fetchProduct(this.prodId, this.handleProductData, this.handleError);
     }
-    
+
     fetchEventTypes() {
         this.props.dataSource.fetchEventTypesOf(this.prodId, this.handleEventTypeData, this.handleError);
     }
@@ -122,17 +121,27 @@ class ProductView extends Component {
             this.setState({filter: updatedFilters});
         }
     }
-    
+
     setActiveEventType(eventType) {
         this.fetchEventsFor(eventType);
         this.setState({activeEventType: eventType});
     }
-    
 
     setProductConfiguration(codingPlug, softwareVersion) {
+
+        //TODO: IMPLEMENT FILTER FOR CONFIGURATION
+        console.log("Set config to: CP:" + codingPlug + " and SW:"+softwareVersion);
+
     }
 
     render() {
+        let temporaryConfigurationMock = {
+            "1.0":[ "4.0.0", "4.0.1", "4.0.2" ],
+            "1.1":[ "4.1.0", "4.1.1", "4.1.2" ],
+            "1.2":[ "4.2.0", "4.2.1", "4.2.2" ],
+            "2.1":[ "5.0.0", "5.0.1", "5.0.2" ]
+        };
+
         let component = (<Loader/>);
         if(this.state.error) {
             component = (
@@ -144,9 +153,9 @@ class ProductView extends Component {
         } else if(this.state.product && this.state.eventTypes) {
             component = (
                 <div>
-                    <Header product={this.state.product} setProductConfiguration={this.setProductConfiguration}/>
+                    <Header product={this.state.product} configurations={temporaryConfigurationMock} setProductConfiguration={this.setProductConfiguration}/>
                     <DetailArea product={this.state.product}/>
-                    <LineChart 
+                    <LineChart
                         events={this.state.activeEvents}
                         eventType={this.state.activeEventType} />
                     <FilterBar
