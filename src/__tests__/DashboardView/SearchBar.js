@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from '../DashboardView/SearchBar/SearchBar.js';
+import SearchBar from '../../DashboardView/SearchBar/SearchBar.js';
 import renderer from 'react-test-renderer';
 import ReactTestUtils from 'react-addons-test-utils' // ES6
 

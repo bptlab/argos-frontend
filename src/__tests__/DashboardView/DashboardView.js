@@ -1,7 +1,7 @@
 import React from 'react';
-import DashboardView from '../DashboardView/DashboardView.js';
+import DashboardView from '../../DashboardView/DashboardView.js';
 import renderer from 'react-test-renderer';
-import TestData from './testData/products.js'
+import TestData from '../testData/products.js'
 let instance, component, notificationService;
 
 test("Correct drawing of DashboardView", () => {

@@ -1,10 +1,10 @@
 import React from 'react';
-import ProductCardHeader from '../DashboardView/ProductCardGrid/ProductCard/ProductCardHeader/ProductCardHeader.js';
+import Header from '../../DashboardView/Header/Header.js';
 import renderer from 'react-test-renderer';
 
 test('Render DashboardView Header', () => {
     const component = renderer.create(
-        <ProductCardHeader category="WARNING">Name of Product</ProductCardHeader>
+        <Header />
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
