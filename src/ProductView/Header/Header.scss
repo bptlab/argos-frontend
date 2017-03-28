@@ -2,7 +2,7 @@
 @import "ConfigurationHeader/ConfigurationHeader";
 
 header {
-	padding: 5px;
+	padding: 5px, 0px;
 
 	h1, p, a, a:hover, .form-group {
 		color: $COLOR-font-light !important;
