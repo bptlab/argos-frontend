@@ -77,7 +77,9 @@ class DashboardView extends Component {
         } else if(this.state.products) {
             component = (
                 <div>
-                    <Header/>
+                    <Header 
+                        dataSource={this.props.dataSource}
+                        dataSender={this.props.dataSender} />
                     <Diagram 
                         products={this.state.products}
                         onStateExcludeInput={this.handleExcludeStateInput} />
