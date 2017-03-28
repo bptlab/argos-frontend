@@ -24,7 +24,7 @@ exports[`test Correct rendering of EventTypes-Settings 1`] = `
     <tbody />
   </table>
   <p>
-    To add a new Event-Type please refer to the corresponding product and click the plus button.
+    To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
   </p>
 </div>
 `;
@@ -71,7 +71,7 @@ exports[`test Receive eventTypes 1`] = `
     </tbody>
   </table>
   <p>
-    To add a new Event-Type please refer to the corresponding product and click the plus button.
+    To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
   </p>
 </div>
 `;
@@ -82,7 +82,7 @@ exports[`test Receiving 403 error 1`] = `
   <div
     className="alert alert-danger"
     role="alert">
-    You are not allowed to performed this operation.
+    Your are not allowed to modify this Event-Type
   </div>
   <table
     className="table table-striped event-types-table">
@@ -106,7 +106,7 @@ exports[`test Receiving 403 error 1`] = `
     <tbody />
   </table>
   <p>
-    To add a new Event-Type please refer to the corresponding product and click the plus button.
+    To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
   </p>
 </div>
 `;
@@ -117,7 +117,7 @@ exports[`test Receiving 500 error 1`] = `
   <div
     className="alert alert-danger"
     role="alert">
-    Operation failed! There exist dependencies, which have to be resolved first.<br/>Dependent eventTypes: There still exist dependencies concerning this eventType
+    You can not delete this Event-Type, because of existing dependencies<br/>Dependent eventTypes: There still exist dependencies concerning this eventType
   </div>
   <table
     className="table table-striped event-types-table">
@@ -141,7 +141,7 @@ exports[`test Receiving 500 error 1`] = `
     <tbody />
   </table>
   <p>
-    To add a new Event-Type please refer to the corresponding product and click the plus button.
+    To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
   </p>
 </div>
 `;
@@ -176,7 +176,7 @@ exports[`test Receiving undefined error 1`] = `
     <tbody />
   </table>
   <p>
-    To add a new Event-Type please refer to the corresponding product and click the plus button.
+    To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
   </p>
 </div>
 `;

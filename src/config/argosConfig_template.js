@@ -18,5 +18,10 @@ export const argosConfig = {
     NotificationServiceNeutralInfo: 'info',
     RESTInterfaceRouteError:        'Wrong route specified',
     RESTInterfaceConnectionError:   'A critical connection error occurred!',
-    routeNameDetailView:            'product'
+    routeNameDetailView:            'product',
+    tableHeaderDescriptionDelete:   'Delete?',
+    eventTypeAddHint:               'To add a new Event-Type please refer to a Product and press the "Plus"-Button.',
+    errorMessage403:                'Your are not allowed to modify this Event-Type',
+    errorRemainingDependencies:     'You can not delete this Event-Type, because of existing dependencies',
+
 };

@@ -115,7 +115,7 @@ exports[`test Render DashboardView Header 1`] = `
                               <tbody />
                             </table>
                             <p>
-                              To add a new Event-Type please refer to the corresponding product and click the plus button.
+                              To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
                             </p>
                           </div>
                         </div>
