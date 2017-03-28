@@ -1,6 +1,7 @@
 import React from 'react';
 import QueryInterface from '../../ProductView/TabBar/QueryInterface/QueryInterface.js';
 import renderer from 'react-test-renderer';
+import 'bootstrap';
 
 let instance, component;
 const callbackMock = jest.fn();
