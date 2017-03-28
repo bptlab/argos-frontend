@@ -26,6 +26,7 @@ class ConfigurationHeader extends Component {
             }
         }
     }
+
     selectedSoftwareVersionChanged(event) {
         this.setState({selectedSoftwareVersion: event.target.value});
     }
