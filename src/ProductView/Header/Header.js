@@ -12,22 +12,20 @@ class Header extends Component {
         };
         return (
             <header>
-                <div id="productHeader">
-                  <div className="container">
+                <div className="container">
                     <div className="row d-flex align-items-center">
-                      <div className="hidden-xs-down col-sm-1 d-flex justify-content-center">
-                        <a href="/#">
-                          <i className="home-button fa fa-home" />
-                        </a>
-                      </div>
-                      <div className="col-xs-12 col-sm-10 d-flex justify-content-around">
-                        <h1 className="dashboard-title">{this.props.product.name}</h1>
-                      </div>
-                      <div className="hidden-xs-down col-sm-1 d-flex justify-content-around">
-                        <StatusPoint product={this.props.product}/>
-                      </div>
+                        <div className="hidden-xs-down col-sm-1 d-flex justify-content-center">
+                            <a href="/#">
+                                <i className="home-button fa fa-home" />
+                            </a>
+                        </div>
+                        <div className="col-xs-12 col-sm-10 d-flex justify-content-around">
+                            <h1 className="dashboard-title">{this.props.product.name}</h1>
+                        </div>
+                        <div className="hidden-xs-down col-sm-1 d-flex justify-content-around">
+                            <StatusPoint product={this.props.product}/>
+                        </div>
                     </div>
-                  </div>
                 </div>
                 <ConfigurationHeader product={this.props.product} configurations={test} setProductConfiguration={this.props.setProductConfiguration}/>
             </header>
