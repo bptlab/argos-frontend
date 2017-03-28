@@ -13,15 +13,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.css';
 import './index.scss';
 
+let backendHost, backendPort;
+if (argosConfig.sameServer) {
+    backendHost = window.location.hostname;
+    backendPort = 8989;
+} else {
+    backendHost = argosConfig.backendHost;
+    backendPort = argosConfig.backendPort;
+}
+
 //### Data-Source-Initialization ###
 const dataSource = new DataReceiver(
-    argosConfig.backendHost,
-    argosConfig.backendPort,
+    backendHost,
+    backendPort,
     notificationCallback
 );
 const dataSender = new DataTransmitter(
-    argosConfig.backendHost,
-    argosConfig.backendPort,
+    backendHost,
+    backendPort,
     notificationCallback
 );
 if(argosConfig.useBackendMock) {
