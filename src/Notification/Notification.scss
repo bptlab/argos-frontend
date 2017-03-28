@@ -1,6 +1,6 @@
 @import "../definitions.scss";
 
-.alert {
+.alert-sliding {
   position: absolute;
   z-index: 2;
   text-align: left;
@@ -22,12 +22,12 @@
 }
 }
 
-.alert-info {
+.alert-sliding-info {
   background-color: $COLOR-dark_background-transparent;
   border-color: $COLOR-dark-background;
 }
 
-.alert-danger {
+.alert-sliding-danger {
   border-color: $COLOR-error;
   background: $COLOR-error-transparent;
 }
