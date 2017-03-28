@@ -24,6 +24,10 @@ class DataReceiver extends RemoteHandler {
         return "api/products/{0}/events/{1}/{2}/{3}";
     }
     
+    static getAPIRouteForAllEventTypes() {
+        return "api/eventtypes";
+    }
+    
     fetchProductFamilies(successCallback, errorCallback) {
         const APIRoute = DataReceiver.getAPIRouteForProductFamilies();
         const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
@@ -55,6 +59,17 @@ class DataReceiver extends RemoteHandler {
 
     fetchEventTypesOf(productId, successCallback, errorCallback) {
         const APIRoute = DataReceiver.getAPIRouteForEventTypesOfProduct().format(productId);
+        const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
+        const callbackContainer = {
+            "dataMappingFunction":    this.dataMapper.mapEventTypes,
+            "clientSuccessCallback":  successCallback,
+            "clientErrorCallback":    errorCallback
+        };
+        this.client.addRequest(URI, this.requestMethod, callbackContainer);
+    }
+    
+    fetchAllEventTypes(successCallback, errorCallback) {
+        const APIRoute = DataReceiver.getAPIRouteForAllEventTypes();
         const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
         const callbackContainer = {
             "dataMappingFunction":    this.dataMapper.mapEventTypes,
