@@ -5,18 +5,19 @@ class ConfigurationHeader extends Component {
         super(props);
         this.selectedCodingPlugChanged = this.selectedCodingPlugChanged.bind(this);
         this.selectedSoftwareVersionChanged = this.selectedSoftwareVersionChanged.bind(this);
-        this.state = {selectedCodingPlug: Object.keys(this.props.configurations)[0]};
+        let initialCodingPlugVersion = Object.keys(this.props.configurations)[0];
+        this.state = {selectedCodingPlug: initialCodingPlugVersion,
+                        selectedSoftwareVersion: this.props.configurations[initialCodingPlugVersion][0]};
     }
 
     selectedCodingPlugChanged(event) {
         this.setState({selectedCodingPlug: event.target.value,
             selectedSoftwareVersion: this.props.configurations[event.target.value][0]});
     }
+
     selectedSoftwareVersionChanged(event) {
         this.setState({selectedSoftwareVersion: event.target.value});
     }
-
-
 
     render() {
         return (
@@ -26,7 +27,7 @@ class ConfigurationHeader extends Component {
                 <div className="col-12 d-flex justify-content-center">
                     <div className="form-group">
                         <label htmlFor="codingPlugSelection">CP:</label>
-                        <select id="codingPlugSelection" onChange={this.selectedCodingPlugChanged}>
+                        <select id="codingPlugSelection" value={this.state.selectedCodingPlug} onChange={this.selectedCodingPlugChanged}>
                             {Object.keys(this.props.configurations).map(function(codingPlug, i) {
                                 return <option key={i}>{codingPlug}</option>;
                             })}
@@ -34,7 +35,7 @@ class ConfigurationHeader extends Component {
                     </div>
                   <div className="form-group">
                     <label htmlFor="softwareVersionSelection">SW:</label>
-                    <select id="softwareVersionSelection" onChange={this.selectedSoftwareVersionChanged}>
+                    <select id="softwareVersionSelection" value={this.state.selectedSoftwareVersion} onChange={this.selectedSoftwareVersionChanged}>
                         {this.props.configurations[this.state.selectedCodingPlug].map(function(softwareVersion, i) {
                             return <option key={i}>{softwareVersion}</option>;
                         })}
