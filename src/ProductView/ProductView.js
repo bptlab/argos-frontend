@@ -31,6 +31,7 @@ class ProductView extends Component {
         this.fetchEventTypes = this.fetchEventTypes.bind(this);
         this.fetchEventsFor = this.fetchEventsFor.bind(this);
         this.setActiveEventType = this.setActiveEventType.bind(this);
+        this.setProductConfiguration = this.setProductConfiguration.bind(this);
     }
 
     handleEventData(events) {
@@ -128,6 +129,9 @@ class ProductView extends Component {
     }
     
 
+    setProductConfiguration(codingPlug, softwareVersion) {
+    }
+
     render() {
         let component = (<Loader/>);
         if(this.state.error) {
@@ -140,7 +144,7 @@ class ProductView extends Component {
         } else if(this.state.product && this.state.eventTypes) {
             component = (
                 <div>
-                    <Header product={this.state.product}/>
+                    <Header product={this.state.product} setProductConfiguration={this.setProductConfiguration}/>
                     <DetailArea product={this.state.product}/>
                     <LineChart 
                         events={this.state.activeEvents}

@@ -13,7 +13,7 @@ class Header extends Component {
         return (
             <header>
                 <ProductHeader product={this.props.product}/>
-                <ConfigurationHeader product={this.props.product} configurations={test}/>
+                <ConfigurationHeader product={this.props.product} configurations={test} setProductConfiguration={this.props.setProductConfiguration}/>
             </header>
         );
     }

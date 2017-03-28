@@ -11,12 +11,16 @@ class ConfigurationHeader extends Component {
     }
 
     selectedCodingPlugChanged(event) {
-        this.setState({selectedCodingPlug: event.target.value,
-            selectedSoftwareVersion: this.props.configurations[event.target.value][0]});
+        let newCodingPlug = event.target.value;
+        let newSoftwareVersion = this.props.configurations[newCodingPlug][0];
+        this.setState({selectedCodingPlug: newCodingPlug,
+            selectedSoftwareVersion: newSoftwareVersion});
+        this.props.setProductConfiguration(newCodingPlug, newSoftwareVersion);
     }
 
     selectedSoftwareVersionChanged(event) {
         this.setState({selectedSoftwareVersion: event.target.value});
+        this.props.setProductConfiguration(this.state.selectedCodingPlug, event.target.value);
     }
 
     render() {
