@@ -19,15 +19,19 @@ class Header extends Component {
                                 <i className="home-button fa fa-home" />
                             </a>
                         </div>
-                        <div className="col-xs-12 col-sm-10 d-flex justify-content-around">
-                            <h1 className="dashboard-title">{this.props.product.name}</h1>
+                        <div className="row col-xs-12 col-sm-10 d-flex justify-content-around">
+                            <div className="col-12 d-flex justify-content-center">
+                                <h1 className="dashboard-title">{this.props.product.name}</h1>
+                            </div>
+                            <div className="col-12 d-flex justify-content-center">
+                                <ConfigurationHeader product={this.props.product} configurations={test} setProductConfiguration={this.props.setProductConfiguration}/>
+                            </div>
                         </div>
                         <div className="hidden-xs-down col-sm-1 d-flex justify-content-around">
                             <StatusPoint product={this.props.product}/>
                         </div>
                     </div>
                 </div>
-                <ConfigurationHeader product={this.props.product} configurations={test} setProductConfiguration={this.props.setProductConfiguration}/>
             </header>
         );
     }
