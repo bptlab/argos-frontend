@@ -21,7 +21,7 @@ test('On change eventtype name callback test', () => {
 
 });
 
-test('Form validation for query name', () => {3
+test('Form validation for query name', () => {
     instance.queryNameFormValidation('');
 
 });

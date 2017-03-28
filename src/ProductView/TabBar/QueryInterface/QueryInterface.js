@@ -128,12 +128,7 @@ class QueryInterface extends Component {
     }
 
     isModalAbleToSave(eventTypeName, eventQuery) {
-        if (eventTypeName && eventQuery) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return eventTypeName && eventQuery;
     }
 
     handleSaveQuery() {

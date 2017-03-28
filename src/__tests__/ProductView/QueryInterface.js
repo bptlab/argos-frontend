@@ -56,7 +56,7 @@ test('Handling save query', () => {
 });
 
 test('Handling save query failure', () => {
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
     instance.handleSaveQuerySuccess();
     expect(instance.state.modalLoading).toBe(false);
