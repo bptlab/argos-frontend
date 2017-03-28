@@ -25,8 +25,8 @@ class ConfigurationHeader extends Component {
 
     render() {
         return (
-            <div className="row col-12 d-flex align-items-center">
-                <div className="col-6 d-flex justify-content-around">
+            <div className="row col-12 d-flex justify-content-center">
+                <div className="col-3 d-flex">
                     <div className="form-group">
                         <label htmlFor="codingPlugSelection">CP:</label>
                         <select id="codingPlugSelection" value={this.state.selectedCodingPlug} onChange={this.selectedCodingPlugChanged}>
@@ -36,7 +36,7 @@ class ConfigurationHeader extends Component {
                         </select>
                     </div>
                 </div>
-                <div className="col-6 d-flex justify-content-around">
+                <div className="col-3 d-flex justify-content-around">
                       <div className="form-group">
                           <label htmlFor="softwareVersionSelection">SW:</label>
                           <select id="softwareVersionSelection" value={this.state.selectedSoftwareVersion} onChange={this.selectedSoftwareVersionChanged}>
