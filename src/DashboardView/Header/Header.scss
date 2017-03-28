@@ -1,4 +1,6 @@
 header {
+	padding: 5px;
+
 	.product-icon {
 		height: 50px;
 		@include media-breakpoint-up(uhd) {

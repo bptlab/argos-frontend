@@ -2,13 +2,15 @@
 @import "ConfigurationHeader/ConfigurationHeader";
 
 header {
+	padding: 5px;
+
 	h1, p, a, a:hover, .form-group {
 		color: $COLOR-font-light !important;
 	}
 	.home-button {
-		font-size: 30px;
+		font-size: 50px;
 		@include media-breakpoint-up(uhd) {
-			font-size: 90px;
+			font-size: 120px;
 		}
 	}
 	.form-group {
