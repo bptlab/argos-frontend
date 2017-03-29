@@ -187,13 +187,6 @@ class ProductView extends Component {
     }
 
     render() {
-        let temporaryConfigurationMock = {
-            "1.0":[ "4.0.0", "4.0.1", "4.0.2" ],
-            "1.1":[ "4.1.0", "4.1.1", "4.1.2" ],
-            "1.2":[ "4.2.0", "4.2.1", "4.2.2" ],
-            "2.1":[ "5.0.0", "5.0.1", "5.0.2" ]
-        };
-
         let component = (<Loader/>);
         if(this.state.error) {
             component = (
