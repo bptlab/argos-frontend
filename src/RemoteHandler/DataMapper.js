@@ -1,5 +1,5 @@
 class DataMapper {
-    
+
     static mapProductFamilies(apiProductFamilyCollection) {
         const productFamilies = [];
         for(let i = 0; i < apiProductFamilyCollection.length; i++) {
@@ -14,12 +14,12 @@ class DataMapper {
         }
         return productFamilies;
     }
-    
+
     static mapProducts(productFamily) {
         const apiProductCollection = productFamily.products;
         const products = [];
         for(let i = 0; i < apiProductCollection.length; i++) {
-            const apiProduct = apiProductCollection[i]; 
+            const apiProduct = apiProductCollection[i];
             const product = {
                 "id":                   apiProduct.id,
                 "name":                 apiProduct.name,
@@ -29,15 +29,16 @@ class DataMapper {
                 "numberOfEvents":       apiProduct.numberOfEvents,
                 "productionStart":      apiProduct.productionStart,
                 "orderNumber":          apiProduct.orderNumber,
-                "state":                apiProduct.state,           
+                "state":                apiProduct.state,
                 "stateDescription":     apiProduct.stateDescription,
+                "configurations":       apiProduct.configurations,
                 "statusUpdateQueries":  DataMapper.mapStatusUpdateQueries(apiProduct.statusUpdateQueries)
             };
             products.push(product);
         }
         return products;
     }
-    
+
     static mapStatusUpdateQueries(queries) {
         return {
             "ERROR":    queries.ERROR,
@@ -45,7 +46,7 @@ class DataMapper {
             "RUNNING":  queries.RUNNING
         };
     }
-    
+
     static mapEventTypes(apiEventTypeCollection) {
         const eventTypes = [];
         for(let i = 0; i < apiEventTypeCollection.length; i++) {
@@ -61,7 +62,7 @@ class DataMapper {
         }
         return eventTypes;
     }
-    
+
     static mapEventTypeAttributes(apiEventTypeAttributes) {
         const eventTypeAttributes = [];
         for(let i = 0; i < apiEventTypeAttributes.length; i++) {
@@ -75,7 +76,7 @@ class DataMapper {
         }
         return eventTypeAttributes;
     }
-    
+
     static mapEvents(apiEvents) {
         return apiEvents; //No mapping possible, due to its dynamic construction;
         //Attributes defined in is corresponding eventType

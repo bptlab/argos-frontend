@@ -127,21 +127,11 @@ class ProductView extends Component {
         this.setState({activeEventType: eventType});
     }
 
-    setProductConfiguration(codingPlug, softwareVersion) {
-
-        //TODO: IMPLEMENT FILTER FOR CONFIGURATION
-        console.log("Set config to: CP:" + codingPlug + " and SW:"+softwareVersion);
+    setProductConfiguration(configurationId) {
 
     }
 
     render() {
-        let temporaryConfigurationMock = {
-            "1.0":[ "4.0.0", "4.0.1", "4.0.2" ],
-            "1.1":[ "4.1.0", "4.1.1", "4.1.2" ],
-            "1.2":[ "4.2.0", "4.2.1", "4.2.2" ],
-            "2.1":[ "5.0.0", "5.0.1", "5.0.2" ]
-        };
-
         let component = (<Loader/>);
         if(this.state.error) {
             component = (
@@ -153,7 +143,7 @@ class ProductView extends Component {
         } else if(this.state.product && this.state.eventTypes) {
             component = (
                 <div>
-                    <Header product={this.state.product} configurations={temporaryConfigurationMock} setProductConfiguration={this.setProductConfiguration}/>
+                    <Header product={this.state.product} configurations={this.state.product.configurations} setProductConfiguration={this.setProductConfiguration}/>
                     <DetailArea product={this.state.product}/>
                     <LineChart
                         events={this.state.activeEvents}

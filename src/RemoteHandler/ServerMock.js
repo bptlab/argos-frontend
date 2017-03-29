@@ -1,5 +1,5 @@
 class ServerMock {
-    
+
     constructor() {
         this.statusText = 200;
         this.status = 200;
@@ -12,18 +12,18 @@ class ServerMock {
         //function binding
         this.deleteEventType = this.deleteEventType.bind(this);
     }
-    
+
     open(requestMethod, api) {
         this.api = api;
     }
-    
+
     setRequestHeader(key, value) {
         this.headers.push({
             key: key,
             value: value
         });
     }
-    
+
     static getProductFamily() {
         return [{
             id: 0,
@@ -42,7 +42,30 @@ class ServerMock {
                     RUNNING: "ESPER-QUERY",
                     WARNING: "ESPER-QUERY",
                     ERROR: "ESPER-QUERY"
-                }
+                },
+                configurations: [
+                    {
+                        id: 100,
+                        codingPlugId: 10,
+                        codingPlugSoftwareVersions: [1.0, 1.1, 1.2]
+                    },
+                    {
+                        id: 200,
+                        codingPlugId: 20,
+                        codingPlugSoftwareVersions: [2.0, 2.1]
+                    },
+                    {
+                        id: 300,
+                        codingPlugId: 30,
+                        codingPlugSoftwareVersions: [1.0, 1.1, 3.1]
+                    },
+                    {
+                        id: 400,
+                        codingPlugId: 10,
+                        codingPlugSoftwareVersions: [4.0, 4.1]
+                    }
+
+                ]
             },{
                 id: 1,
                 name: "Testproduct 5010 116-1EB",
@@ -56,7 +79,19 @@ class ServerMock {
                     RUNNING: "ESPER-QUERY",
                     WARNING: "ESPER-QUERY",
                     ERROR: "ESPER-QUERY"
-                }
+                },
+                configurations: [
+                    {
+                        id: 100,
+                        codingPlugId: 10,
+                        codingPlugSoftwareVersions: [1.0, 1.1, 1.2]
+                    },
+                    {
+                        id: 200,
+                        codingPlugId: 20,
+                        codingPlugSoftwareVersions: [2.0, 2.1]
+                    }
+                ]
             },{
                 id: 2,
                 name: "Testproduct 3010 226-1XC",
@@ -70,7 +105,24 @@ class ServerMock {
                     RUNNING: "ESPER-QUERY",
                     WARNING: "ESPER-QUERY",
                     ERROR: "ESPER-QUERY"
-                }
+                },
+                configurations: [
+                    {
+                        id: 100,
+                        codingPlugId: 10,
+                        codingPlugSoftwareVersions: [1.0, 1.1, 1.2]
+                    },
+                    {
+                        id: 200,
+                        codingPlugId: 20,
+                        codingPlugSoftwareVersions: [2.0, 2.1]
+                    },
+                    {
+                        id: 300,
+                        codingPlugId: 30,
+                        codingPlugSoftwareVersions: [1.0, 1.1, 3.1]
+                    },
+                ]
             }]},
             {
             id: 1,
@@ -89,7 +141,24 @@ class ServerMock {
                     RUNNING: "ESPER-QUERY",
                     WARNING: "ESPER-QUERY",
                     ERROR: "ESPER-QUERY"
-                }
+                },
+                configurations: [
+                    {
+                        id: 100,
+                        codingPlugId: 10,
+                        codingPlugSoftwareVersions: [1.0, 1.1, 1.2]
+                    },
+                    {
+                        id: 200,
+                        codingPlugId: 20,
+                        codingPlugSoftwareVersions: [2.0, 2.1]
+                    },
+                    {
+                        id: 300,
+                        codingPlugId: 30,
+                        codingPlugSoftwareVersions: [1.0, 1.1, 3.1]
+                    },
+                ]
             },{
                 id: 6,
                 name: "Testproduct 5010 115",
@@ -103,7 +172,24 @@ class ServerMock {
                     RUNNING: "ESPER-QUERY",
                     WARNING: "ESPER-QUERY",
                     ERROR: "ESPER-QUERY"
-                }
+                },
+                configurations: [
+                    {
+                        id: 100,
+                        codingPlugId: 10,
+                        codingPlugSoftwareVersions: [1.0, 1.1, 1.2]
+                    },
+                    {
+                        id: 200,
+                        codingPlugId: 20,
+                        codingPlugSoftwareVersions: [2.0, 2.1]
+                    },
+                    {
+                        id: 300,
+                        codingPlugId: 30,
+                        codingPlugSoftwareVersions: [1.0, 1.1, 3.1]
+                    },
+                ]
             },{
                 id: 7,
                 name: "Testproduct 012 226-1FC",
@@ -117,7 +203,24 @@ class ServerMock {
                     RUNNING: "ESPER-QUERY",
                     WARNING: "ESPER-QUERY",
                     ERROR: "ESPER-QUERY"
-                }
+                },
+                configurations: [
+                    {
+                        id: 100,
+                        codingPlugId: 10,
+                        codingPlugSoftwareVersions: [1.0, 1.1, 1.2]
+                    },
+                    {
+                        id: 200,
+                        codingPlugId: 20,
+                        codingPlugSoftwareVersions: [2.0, 2.1]
+                    },
+                    {
+                        id: 300,
+                        codingPlugId: 30,
+                        codingPlugSoftwareVersions: [1.0, 1.1, 3.1]
+                    },
+                ]
             }]}
         ];
     }
@@ -169,7 +272,7 @@ class ServerMock {
             ]
         }];
     }
-    
+
     static getEvents() {
         return [{
             ErrorCode:                  235,
@@ -221,11 +324,11 @@ class ServerMock {
             DateOfServiceIntervention:  "2016-11-02T00:00:00.000+0200",
         }];
     }
-    
+
     onReadyStateChange(callback) {
         this.onreadystatechange = callback;
     }
-    
+
     onError(callback) {
         this.onError = callback;
     }

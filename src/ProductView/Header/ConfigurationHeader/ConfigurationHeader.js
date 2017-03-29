@@ -5,22 +5,36 @@ class ConfigurationHeader extends Component {
         super(props);
         this.selectedCodingPlugChanged = this.selectedCodingPlugChanged.bind(this);
         this.selectedSoftwareVersionChanged = this.selectedSoftwareVersionChanged.bind(this);
-        let initialCodingPlugVersion = Object.keys(this.props.configurations)[0];
+        this.cpSwToIdMapping = {};
+        for (let configuration of this.props.configurations) {
+            if(!this.cpSwToIdMapping[configuration.codingPlugId]) {
+                this.cpSwToIdMapping[configuration.codingPlugId] = {};
+            }
+            for (let softwareVersion of configuration.codingPlugSoftwareVersions) {
+                this.cpSwToIdMapping[configuration.codingPlugId][softwareVersion] = configuration.id;
+            }
+        }
+        let initialCodingPlugVersion = Object.keys(this.cpSwToIdMapping)[0];
         this.state = {selectedCodingPlug: initialCodingPlugVersion,
-                        selectedSoftwareVersion: this.props.configurations[initialCodingPlugVersion][0]};
+                        selectedSoftwareVersion: Object.keys(this.cpSwToIdMapping[initialCodingPlugVersion])[0]};
+        this.updateProductConfiguration(this.state.selectedCodingPlug, this.state.selectedSoftwareVersion);
+    }
+
+    updateProductConfiguration(newCodingPlug, newSoftwareVersion) {
+        this.props.setProductConfiguration(this.cpSwToIdMapping[newCodingPlug][newSoftwareVersion]);
     }
 
     selectedCodingPlugChanged(event) {
         let newCodingPlug = event.target.value;
-        let newSoftwareVersion = this.props.configurations[newCodingPlug][0];
+        let newSoftwareVersion = Object.keys(this.cpSwToIdMapping[newCodingPlug])[0];
         this.setState({selectedCodingPlug: newCodingPlug,
             selectedSoftwareVersion: newSoftwareVersion});
-        this.props.setProductConfiguration(newCodingPlug, newSoftwareVersion);
+        this.updateProductConfiguration(newCodingPlug, newSoftwareVersion);
     }
 
     selectedSoftwareVersionChanged(event) {
         this.setState({selectedSoftwareVersion: event.target.value});
-        this.props.setProductConfiguration(this.state.selectedCodingPlug, event.target.value);
+        this.updateProductConfiguration(this.state.selectedCodingPlug, event.target.value);
     }
 
     render() {
@@ -30,7 +44,7 @@ class ConfigurationHeader extends Component {
                     <div className="form-group">
                         <label htmlFor="codingPlugSelection">CP:</label>
                         <select id="codingPlugSelection" value={this.state.selectedCodingPlug} onChange={this.selectedCodingPlugChanged}>
-                            {Object.keys(this.props.configurations).map(function(codingPlug, i) {
+                            {Object.keys(this.cpSwToIdMapping).map(function(codingPlug, i) {
                                 return <option key={i}>{codingPlug}</option>;
                             })}
                         </select>
@@ -40,7 +54,7 @@ class ConfigurationHeader extends Component {
                       <div className="form-group">
                           <label htmlFor="softwareVersionSelection">SW:</label>
                           <select id="softwareVersionSelection" value={this.state.selectedSoftwareVersion} onChange={this.selectedSoftwareVersionChanged}>
-                              {this.props.configurations[this.state.selectedCodingPlug].map(function(softwareVersion, i) {
+                              {Object.keys(this.cpSwToIdMapping[this.state.selectedCodingPlug]).map(function(softwareVersion, i) {
                                   return <option key={i}>{softwareVersion}</option>;
                               })}
                           </select>
