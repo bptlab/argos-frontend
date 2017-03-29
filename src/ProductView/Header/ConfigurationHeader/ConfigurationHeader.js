@@ -5,6 +5,16 @@ class ConfigurationHeader extends Component {
         super(props);
         this.selectedCodingPlugChanged = this.selectedCodingPlugChanged.bind(this);
         this.selectedSoftwareVersionChanged = this.selectedSoftwareVersionChanged.bind(this);
+        this.toggleShowAll = this.toggleShowAll.bind(this);
+        this.buildCodingPlugAndSoftwareVersionToIdMapping();
+        let initialCodingPlugVersion = Object.keys(this.cpSwToIdMapping)[0];
+        this.state = {selectedCodingPlug: initialCodingPlugVersion,
+                        selectedSoftwareVersion: Object.keys(this.cpSwToIdMapping[initialCodingPlugVersion])[0],
+                        showAll: false};
+        this.updateProductConfiguration(this.state.selectedCodingPlug, this.state.selectedSoftwareVersion);
+    }
+
+    buildCodingPlugAndSoftwareVersionToIdMapping() {
         this.cpSwToIdMapping = {};
         for (let configuration of this.props.configurations) {
             if(!this.cpSwToIdMapping[configuration.codingPlugId]) {
@@ -14,10 +24,6 @@ class ConfigurationHeader extends Component {
                 this.cpSwToIdMapping[configuration.codingPlugId][softwareVersion] = configuration.id;
             }
         }
-        let initialCodingPlugVersion = Object.keys(this.cpSwToIdMapping)[0];
-        this.state = {selectedCodingPlug: initialCodingPlugVersion,
-                        selectedSoftwareVersion: Object.keys(this.cpSwToIdMapping[initialCodingPlugVersion])[0]};
-        this.updateProductConfiguration(this.state.selectedCodingPlug, this.state.selectedSoftwareVersion);
     }
 
     updateProductConfiguration(newCodingPlug, newSoftwareVersion) {
@@ -37,13 +43,29 @@ class ConfigurationHeader extends Component {
         this.updateProductConfiguration(this.state.selectedCodingPlug, event.target.value);
     }
 
+    toggleShowAll(event) {
+        this.setState({showAll: event.target.checked});
+        if(event.target.checked) {
+            this.props.setProductConfiguration(null);
+        }
+        else {
+            this.updateProductConfiguration(this.state.selectedCodingPlug, this.state.selectedSoftwareVersion);
+        }
+    }
+
     render() {
         return (
             <div className="row col-12 d-flex justify-content-center">
+                <div className="col-4 d-flex justify-content-around">
+                      <div className="form-group">
+                          <input type="checkbox" id="showAllCheckbox" checked={this.state.showAll} onChange={this.toggleShowAll}/>
+                          <label htmlFor="softwareVersionSelection">show all configurations</label>
+                      </div>
+                </div>
                 <div className="col-3 d-flex">
                     <div className="form-group">
-                        <label htmlFor="codingPlugSelection">CP:</label>
-                        <select id="codingPlugSelection" value={this.state.selectedCodingPlug} onChange={this.selectedCodingPlugChanged}>
+                        <label htmlFor="codingPlugSelection" hidden={this.state.showAll}>CP:</label>
+                        <select id="codingPlugSelection" value={this.state.selectedCodingPlug} onChange={this.selectedCodingPlugChanged} disabled={this.state.showAll}>
                             {Object.keys(this.cpSwToIdMapping).map(function(codingPlug, i) {
                                 return <option key={i}>{codingPlug}</option>;
                             })}
@@ -52,8 +74,8 @@ class ConfigurationHeader extends Component {
                 </div>
                 <div className="col-3 d-flex justify-content-around">
                       <div className="form-group">
-                          <label htmlFor="softwareVersionSelection">SW:</label>
-                          <select id="softwareVersionSelection" value={this.state.selectedSoftwareVersion} onChange={this.selectedSoftwareVersionChanged}>
+                          <label htmlFor="softwareVersionSelection" hidden={this.state.showAll}>SW:</label>
+                          <select id="softwareVersionSelection" value={this.state.selectedSoftwareVersion} onChange={this.selectedSoftwareVersionChanged} disabled={this.state.showAll}>
                               {Object.keys(this.cpSwToIdMapping[this.state.selectedCodingPlug]).map(function(softwareVersion, i) {
                                   return <option key={i}>{softwareVersion}</option>;
                               })}

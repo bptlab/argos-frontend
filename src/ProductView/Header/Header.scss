@@ -23,6 +23,14 @@ header {
 	  padding: 10px 10px;
 	}
 
+	select:disabled {
+		color: $COLOR-dark_background;
+	}
+
+	[type=checkbox] {
+		margin: 14px 10px 10px 10px;
+	}
+
 	option {
 	  background-color: $COLOR-dark_background;
 	}
