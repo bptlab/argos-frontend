@@ -32,11 +32,30 @@ class DataMapper {
                 "state":                apiProduct.state,
                 "stateDescription":     apiProduct.stateDescription,
                 "configurations":       apiProduct.configurations,
-                "statusUpdateQueries":  DataMapper.mapStatusUpdateQueries(apiProduct.statusUpdateQueries)
             };
             products.push(product);
         }
         return products;
+    }
+
+    static mapConfigurations(apiConfigurations) {
+        const configurations = [];
+        for(let i = 0; i < apiConfigurations.length; i++) {
+            const apiConfiguration = apiConfigurations[i];
+            const configuration = {
+                "id":                   apiConfiguration.id,
+                "productId":            apiConfiguration.productId,
+                "numberOfEvents":       apiConfiguration.numberOfEvents,
+                "codingPlugId":         apiConfiguration.codingPlugId,
+                "codingPlugSoftwareVersion": apiConfiguration.codingPlugSoftwareVersion,
+                "state":                apiConfiguration.state,
+                "stateDescription":     apiConfiguration.stateDescription,
+                "errorTypes":           apiConfiguration.errorTypes,
+                "statusUpdateQueries":  DataMapper.mapStatusUpdateQueries(apiConfiguration.statusUpdateQueries)
+            };
+            configurations.push(configuration);
+        }
+        return configurations;
     }
 
     static mapStatusUpdateQueries(queries) {

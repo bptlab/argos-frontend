@@ -16,6 +16,10 @@ class DataReceiver extends RemoteHandler {
         return "api/productfamilies";
     }
 
+    static getAPIRouteForProductConfiguration() {
+        return "api/productconfigurations/{0}";
+    }
+
     static getAPIRouteForEventTypesOfProduct() {
         return "api/products/{0}/eventtypes";
     }
@@ -38,7 +42,7 @@ class DataReceiver extends RemoteHandler {
         };
         this.client.addRequest(URI, this.requestMethod, callbackContainer);
     }
-    
+
     fetchProducts(successCallback, errorCallback) {
         this.fetchProductFamilies(function(productFamilies) {
             const products = [];
@@ -48,13 +52,24 @@ class DataReceiver extends RemoteHandler {
             successCallback(products);
         }, errorCallback);
     }
-    
+
     fetchProduct(prodId, successCallback, errorCallback) {
         this.fetchProducts(function(products) {
             successCallback(products.find((product) => {
                 return product.id === prodId;}
             ));
         }, errorCallback);
+    }
+
+    fetchConfiguration(configurationId, successCallback, errorCallback) {
+        const APIRoute = DataReceiver.getAPIRouteForProductConfiguration().format(configurationId);
+        const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
+        const callbackContainer = {
+            "dataMappingFunction":    this.dataMapper.mapConfigurations,
+            "clientSuccessCallback":  successCallback,
+            "clientErrorCallback":    errorCallback
+        };
+        this.client.addRequest(URI, this.requestMethod, callbackContainer);
     }
 
     fetchEventTypesOf(productId, successCallback, errorCallback) {

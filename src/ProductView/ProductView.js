@@ -21,13 +21,16 @@ class ProductView extends Component {
             activeEvents: []
         };
         this.nextAttributeId = 1;
+        this.showAllConfigurations = true;
         //Function binding
         this.onInputChange = this.onInputChange.bind(this);
         this.handleProductData = this.handleProductData.bind(this);
+        this.handleConfigurationData = this.handleConfigurationData.bind(this);
         this.handleEventData = this.handleEventData.bind(this);
         this.handleError = this.handleError.bind(this);
         this.handleEventTypeData = this.handleEventTypeData.bind(this);
-        this.fetchProducts = this.fetchProducts.bind(this);
+        this.fetchProduct = this.fetchProduct.bind(this);
+        this.fetchConfiguration = this.fetchConfiguration.bind(this);
         this.fetchEventTypes = this.fetchEventTypes.bind(this);
         this.fetchEventsFor = this.fetchEventsFor.bind(this);
         this.setActiveEventType = this.setActiveEventType.bind(this);
@@ -45,23 +48,35 @@ class ProductView extends Component {
     }
 
     componentDidMount() {
-        this.fetchProducts();
-        this.props.dataSource.notificationService.subscribe("Product", this.fetchProducts);
+        this.fetchProduct();
+        this.props.dataSource.notificationService.subscribe("Product", this.fetchProduct);
+        this.props.dataSource.notificationService.subscribe("Configuration", this.fetchConfiguration);
         this.props.dataSource.notificationService.subscribe("EventType", this.fetchEventTypes);
         this.props.dataSource.notificationService.subscribe("Event", this.fetchEventsFor);
     }
 
     componentWillUnmount() {
-        this.props.dataSource.notificationService.unsubscribe("Product", this.fetchProducts);
+        this.props.dataSource.notificationService.unsubscribe("Product", this.fetchProduct);
+        this.props.dataSource.notificationService.unsubscribe("Configuration", this.fetchConfiguration);
         this.props.dataSource.notificationService.unsubscribe("EventType", this.fetchEventTypes);
     }
 
-    fetchProducts() {
+    fetchProduct() {
+        console.log(this.prodId);
         this.props.dataSource.fetchProduct(this.prodId, this.handleProductData, this.handleError);
     }
 
+    fetchConfiguration() {
+        this.props.dataSource.fetchConfiguration(this.configurationId, this.handleConfigurationData, this.handleError);
+    }
+
     fetchEventTypes() {
-        this.props.dataSource.fetchEventTypesOf(this.prodId, this.handleEventTypeData, this.handleError);
+        if(this.showAllConfigurations) {
+            this.props.dataSource.fetchEventTypesOf(this.prodId, this.handleEventTypeData, this.handleError);
+        }
+        else {
+            this.props.dataSource.fetchEventTypesOf(this.configurationId, this.handleEventTypeData, this.handleError);
+        }
     }
 
     fetchEventsFor(eventType = this.state.activeEventType) {
@@ -75,11 +90,18 @@ class ProductView extends Component {
         }
     }
 
-    handleProductData(products) {
+    handleProductData(product) {
         this.setState({
-            product: products
+            product: product
         });
         this.fetchEventTypes();
+    }
+
+    handleConfigurationData(configuration) {
+        this.setState({
+            configuration: configuration
+        });
+        // this.fetchEventTypes();
     }
 
     handleError(errorCode) {
@@ -128,7 +150,15 @@ class ProductView extends Component {
     }
 
     setProductConfiguration(configurationId) {
-
+        if(configurationId) {
+            this.showAllConfigurations = false;
+            this.configurationId = configurationId;
+            this.fetchConfiguration();
+        }
+        else {
+            this.showAllConfigurations = true;
+            this.fetchProduct();
+        }
     }
 
     render() {

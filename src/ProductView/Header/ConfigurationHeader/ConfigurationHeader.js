@@ -10,7 +10,7 @@ class ConfigurationHeader extends Component {
         let initialCodingPlugVersion = Object.keys(this.cpSwToIdMapping)[0];
         this.state = {selectedCodingPlug: initialCodingPlugVersion,
                         selectedSoftwareVersion: Object.keys(this.cpSwToIdMapping[initialCodingPlugVersion])[0],
-                        showAll: false};
+                        showAll: true};
         this.updateProductConfiguration(this.state.selectedCodingPlug, this.state.selectedSoftwareVersion);
     }
 
