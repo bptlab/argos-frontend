@@ -24,6 +24,7 @@ class ProductView extends Component {
             loading: true
         };
         this.nextAttributeId = 1;
+        this.showAllConfigurations = true;
         //Function binding
         this.onInputChange = this.onInputChange.bind(this);
         this.handleProductData = this.handleProductData.bind(this);
