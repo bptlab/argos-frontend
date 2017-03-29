@@ -17,7 +17,29 @@ const productFamilies = [{
             ERROR: "ESPER-QUERY",
             WARNING: "ESPER-QUERY",
             RUNNING: "ESPER-QUERY"
-        }
+        },
+        configurations: [
+            {
+                id: 100,
+                codingPlugId: 10,
+                codingPlugSoftwareVersions: [1.0, 1.1, 1.2]
+            },
+            {
+                id: 200,
+                codingPlugId: 20,
+                codingPlugSoftwareVersions: [2.0, 2.1]
+            },
+            {
+                id: 300,
+                codingPlugId: 30,
+                codingPlugSoftwareVersions: [1.0, 1.1, 3.1]
+            },
+            {
+                id: 400,
+                codingPlugId: 10,
+                codingPlugSoftwareVersions: [4.0, 4.1]
+            }
+        ]
     },{
         family: "Testproductfamily",
         brand: "Testbrand",
@@ -33,7 +55,19 @@ const productFamilies = [{
             ERROR: "ESPER-QUERY",
             WARNING: "ESPER-QUERY",
             RUNNING: "ESPER-QUERY"
-        }
+        },
+        configurations: [
+            {
+                id: 100,
+                codingPlugId: 10,
+                codingPlugSoftwareVersions: [1.0, 1.1, 1.2]
+            },
+            {
+                id: 200,
+                codingPlugId: 20,
+                codingPlugSoftwareVersions: [2.0, 2.1]
+            }
+        ]
     },{
         family: "Testproductfamily",
         brand: "Testbrand",
@@ -49,7 +83,24 @@ const productFamilies = [{
             ERROR: "ESPER-QUERY",
             WARNING: "ESPER-QUERY",
             RUNNING: "ESPER-QUERY"
-        }
+        },
+        configurations: [
+            {
+                id: 100,
+                codingPlugId: 10,
+                codingPlugSoftwareVersions: [1.0, 1.1, 1.2]
+            },
+            {
+                id: 200,
+                codingPlugId: 20,
+                codingPlugSoftwareVersions: [2.0, 2.1]
+            },
+            {
+                id: 300,
+                codingPlugId: 30,
+                codingPlugSoftwareVersions: [1.0, 1.1, 3.1]
+            },
+        ]
     }]},
     {
     id: 1,
@@ -70,7 +121,24 @@ const productFamilies = [{
             ERROR: "ESPER-QUERY",
             WARNING: "ESPER-QUERY",
             RUNNING: "ESPER-QUERY"
-        }
+        },
+        configurations: [
+            {
+                id: 100,
+                codingPlugId: 10,
+                codingPlugSoftwareVersions: [1.0, 1.1, 1.2]
+            },
+            {
+                id: 200,
+                codingPlugId: 20,
+                codingPlugSoftwareVersions: [2.0, 2.1]
+            },
+            {
+                id: 300,
+                codingPlugId: 30,
+                codingPlugSoftwareVersions: [1.0, 1.1, 3.1]
+            },
+        ]
     },{
         family: "TestproductfamilyNeo",
         brand: "TestbrandNeo",
@@ -86,7 +154,24 @@ const productFamilies = [{
             ERROR: "ESPER-QUERY",
             WARNING: "ESPER-QUERY",
             RUNNING: "ESPER-QUERY"
-        }
+        },
+        configurations: [
+            {
+                id: 100,
+                codingPlugId: 10,
+                codingPlugSoftwareVersions: [1.0, 1.1, 1.2]
+            },
+            {
+                id: 200,
+                codingPlugId: 20,
+                codingPlugSoftwareVersions: [2.0, 2.1]
+            },
+            {
+                id: 300,
+                codingPlugId: 30,
+                codingPlugSoftwareVersions: [1.0, 1.1, 3.1]
+            },
+        ]
     },{
         family: "TestproductfamilyNeo",
         brand: "TestbrandNeo",
@@ -102,7 +187,24 @@ const productFamilies = [{
             ERROR: "ESPER-QUERY",
             WARNING: "ESPER-QUERY",
             RUNNING: "ESPER-QUERY"
-        }
+        },
+        configurations: [
+            {
+                id: 100,
+                codingPlugId: 10,
+                codingPlugSoftwareVersions: [1.0, 1.1, 1.2]
+            },
+            {
+                id: 200,
+                codingPlugId: 20,
+                codingPlugSoftwareVersions: [2.0, 2.1]
+            },
+            {
+                id: 300,
+                codingPlugId: 30,
+                codingPlugSoftwareVersions: [1.0, 1.1, 3.1]
+            },
+        ]
     }]}
 ];
 

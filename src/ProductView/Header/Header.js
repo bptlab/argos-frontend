@@ -18,7 +18,7 @@ class Header extends Component {
                                 <h1 className="dashboard-title">{this.props.product.name}</h1>
                             </div>
                             <div className="col-12 d-flex justify-content-center">
-                                <ConfigurationHeader product={this.props.product} configurations={this.props.configurations} setProductConfiguration={this.props.setProductConfiguration}/>
+                                <ConfigurationHeader configurations={this.props.configurations} setProductConfiguration={this.props.setProductConfiguration}/>
                             </div>
                         </div>
                         <div className="hidden-xs-down col-sm-1 d-flex justify-content-around">

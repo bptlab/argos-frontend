@@ -64,7 +64,6 @@ class ServerMock {
                         codingPlugId: 10,
                         codingPlugSoftwareVersions: [4.0, 4.1]
                     }
-
                 ]
             },{
                 id: 1,
