@@ -46,12 +46,9 @@ class RESTInterface {
                     document.dispatchEvent(event);
                     break;
                 }
-                case 403: {
-                    callbackContainer.clientErrorCallback(this.client.responseText, 403);
-                    break;
-                }
+                case 403:
                 case 500: {
-                    callbackContainer.clientErrorCallback(this.client.responseText, 500);
+                    callbackContainer.clientErrorCallback(this.client.responseText, this.client.status);
                     break;
                 } default: {
                     this.onError(callbackContainer);

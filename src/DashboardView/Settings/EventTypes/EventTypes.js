@@ -55,33 +55,38 @@ class EventTypes extends Component {
     delteEventType(eventType) {
         this.props.dataSender.deleteEventType(eventType, this.deletionSuccessful, this.receiveError);
     }
-
-    render() {
-        let errorMessage = "";
-        if(this.state.error.errorCode) {
-            switch(this.state.error.errorCode) {
+    
+    matchError() {
+        const errorCode = this.state.error.errorCode;
+        const errorMessage = this.state.error.errorMessage;
+        if(errorCode) {
+            switch(errorCode) {
                 case 403: {
-                    errorMessage = argosConfig.errorMessage403;
-                    break;
+                    return argosConfig.errorMessage403;
                 }
                 case 500: {
-                    errorMessage = argosConfig.errorRemainingDependencies;
-                    errorMessage += "<br/>Dependent eventTypes: " + this.state.error.errorMessage;
-                    break;
+                    return argosConfig.errorRemainingDependencies + "<br/>Dependent eventTypes: " + errorMessage;
                 }
                 default:
-                    errorMessage = argosConfig.RESTInterfaceConnectionError;
+                    return argosConfig.RESTInterfaceConnectionError;
             }
+        } else {
+            return "";
         }
+    }
+
+    render() {
+        const errorMessage = this.matchError();
         const lineElements = [];
         this.state.eventTypes.forEach((eventType) => {
+            const deleteCallback = this.delteEventType.bind(this, eventType);
             lineElements.push(
                 <tr key={eventType.id}>
                     <td>{eventType.id}</td>
                     <td>{eventType.name}</td>
                     <td>{eventType.eventQuery}</td>
                     <td className="center">
-                        <i className="fa fa-trash" onClick={this.delteEventType.bind(this, eventType)} />
+                        <i className="fa fa-trash" onClick={deleteCallback} />
                     </td>
                 </tr>
             );
@@ -96,15 +101,17 @@ class EventTypes extends Component {
                 }
                 <table className="table table-striped event-types-table">
                     <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Query</th>
-                        <th className="center">{argosConfig.tableHeaderDescriptionDelete}</th>
-                    </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Query</th>
+                            <th className="center">
+                                {argosConfig.tableHeaderDescriptionDelete}
+                            </th>
+                        </tr>
                     </thead>
                     <tbody>
-                    {lineElements}
+                        {lineElements}
                     </tbody>
                 </table>
                 <p>{argosConfig.eventTypeAddHint}</p>

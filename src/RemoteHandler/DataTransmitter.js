@@ -13,7 +13,7 @@ class DataTransmitter extends RemoteHandler {
     }
     
     static getAPIRouteForDeleteEventType() {
-        return "/api/eventtypes/delete/{0}";
+        return "api/eventtypes/delete/{0}";
     }
 
     static convertToJson(data, errorCallback) {

@@ -5,6 +5,7 @@ import renderer from 'react-test-renderer';
 import TestData from '../testData/frontend_eventTypes.js';
 let instance, dataSource, dataSender, component;
 import 'bootstrap';
+import {argosConfig} from './../../config/argosConfig.js'
 
 beforeEach(() => {
     const notificationService = {
@@ -57,15 +58,23 @@ test('Correct rendering of EventTypes-Settings while beeing visible', () => {
 });
 
 test('Receiving 403 error', () => {
-    instance.receiveError("You are not allowed to touch this eventType", 403);
+    const errorCode = 403;
+    const errorMessage = "You are not allowed to touch this eventType";
+    instance.receiveError(errorMessage, errorCode);
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
+    expect(instance.state.error.errorCode).toEqual(errorCode);
+    expect(instance.state.error.errorMessage).toEqual(errorMessage);
 });
 
 test('Receiving 500 error', () => {
-    instance.receiveError("There still exist dependencies concerning this eventType", 500);
+    const errorCode = 500;
+    const errorMessage = "There still exist dependencies concerning this eventType";
+    instance.receiveError(errorMessage, errorCode);
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
+    expect(instance.state.error.errorCode).toEqual(errorCode);
+    expect(instance.state.error.errorMessage).toEqual(errorMessage);
 });
 
 test('Receiving undefined error', () => {
