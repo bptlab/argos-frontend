@@ -14,7 +14,7 @@ beforeAll(() => {
 test('Create new event type', () => {
     const successMockCallback = jest.fn();
     const errorMockCallback = jest.fn();
-    instance.createEventtype('', {}, successMockCallback, errorMockCallback);
+    instance.createEventtype('', {}, {}, successMockCallback, errorMockCallback);
     expect(successMockCallback).toBeCalled();
 });
 

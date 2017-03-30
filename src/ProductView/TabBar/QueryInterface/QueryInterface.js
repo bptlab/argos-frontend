@@ -28,7 +28,7 @@ class QueryInterface extends Component {
                     "readonly": false
                 }
             ],
-            eventQuery: '',
+            eventQuery: argosConfig.createEventTypeDefaultQuery,
             errorMessage: '',
             validationClasses: '',
             modalLoading: false,
@@ -44,14 +44,6 @@ class QueryInterface extends Component {
         this.handleSaveQueryError = this.handleSaveQueryError.bind(this);
     }
 
-    static getDefaultQuery() {
-        return argosConfig.createEventTypeDefaultQuery;
-    }
-
-    componentDidMount() {
-        this.setState({ eventQuery: QueryInterface.getDefaultQuery() });
-    }
-
     addEmptyAttribute(attributes) {
         attributes = attributes.concat([{
             'id': this.nextAttributeId,
@@ -63,21 +55,7 @@ class QueryInterface extends Component {
         return attributes;
     }
 
-    buildJSONSerializableDataContainer() {
-        const eventTypeAttributes = {};
-        const attributes = this.state.eventTypeAttributes;
-        for (let i = 0; i < attributes.length; i++) {
-            if (attributes[i].name) {
-                // Unicorn explicitly requires a map of event types in this format: {EventTypeName: EventTypeType}
-                eventTypeAttributes[attributes[i].name] = attributes[i].type;
-            }
-        }
-        return {
-            'name': this.state.eventTypeName,
-            'timestamp': 'timestamp',
-            'attributes': eventTypeAttributes
-        };
-    }
+
 
     getEventTypeAttribute(id) {
         return this.state.eventTypeAttributes.find((attribute) => {
@@ -86,7 +64,7 @@ class QueryInterface extends Component {
     }
 
     handleChangeEventTypeName(name) {
-        const modalIsAbleToSave = this.isModalAbleToSave(name, this.state.eventQuery);
+        const modalIsAbleToSave = this.queryIsSafeable(name, this.state.eventQuery);
         this.setState({ eventTypeName: name, modalIsAbleToSave: modalIsAbleToSave });
     }
 
@@ -123,21 +101,21 @@ class QueryInterface extends Component {
 
     handleChangeQuery(event) {
         const queryValue = event.target.value;
-        const modalIsAbleToSave = this.isModalAbleToSave(this.state.eventTypeName, queryValue);
+        const modalIsAbleToSave = this.queryIsSafeable(this.state.eventTypeName, queryValue);
         this.setState({ eventQuery: queryValue, modalIsAbleToSave: modalIsAbleToSave });
         this.eventQueryFormValidation(queryValue);
     }
 
-    isModalAbleToSave(eventTypeName, eventQuery) {
+    queryIsSafeable(eventTypeName, eventQuery) {
         return eventTypeName && eventQuery;
     }
 
     handleSaveQuery() {
         this.setState({ modalLoading: true });
-        const eventType = this.buildJSONSerializableDataContainer();
         this.props.dataSender.createEventtype(
             this.state.eventQuery,
-            eventType,
+            this.state.eventTypeName,
+            this.state.eventTypeAttributes,
             this.handleSaveQuerySuccess,
             this.handleSaveQueryError
         );
@@ -187,7 +165,10 @@ class QueryInterface extends Component {
                                   id="event-query" rows="8"
                                   value={this.state.eventQuery}
                                   onChange={this.handleChangeQuery}/>
-                        {this.state.validationClasses && <div className="form-control-feedback">This field can't be empty.</div>}
+                        {this.state.validationClasses &&
+                        <div className="form-control-feedback">
+                            {argosConfig.formValidationNoEmptyMessage}
+                        </div>}
                     </div>
                 </Modal>
             </div>

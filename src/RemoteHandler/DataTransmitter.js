@@ -24,14 +24,30 @@ class DataTransmitter extends RemoteHandler {
             errorCallback(e);
         }
     }
-    
+
     receiveResponse(event) {
         event.detail.clientSuccessCallback();
     }
 
-    createEventtype(eventQuery, eventType, successCallback, errorCallback) {
+    createEventTypeJson(eventTypeName, eventTypeAttributes) {
+        const eventTypeAttributeMap = {};
+        for (let i = 0; i < eventTypeAttributes.length; i++) {
+            if (eventTypeAttributes[i].name) {
+                // Unicorn explicitly requires a map of event types in this format: {EventTypeName: EventTypeType}
+                eventTypeAttributeMap[eventTypeAttributes[i].name] = eventTypeAttributes[i].type;
+            }
+        }
+        return {
+            'name': eventTypeName,
+            'timestamp': 'timestamp',
+            'attributes': eventTypeAttributeMap
+        };
+    }
+
+    createEventtype(eventQuery, eventTypeName, eventTypeAttributes, successCallback, errorCallback) {
         const APIRoute = DataTransmitter.getAPIRouteForCreateEventtype();
         const URI = DataTransmitter.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
+        const eventType = this.createEventTypeJson(eventTypeName, eventTypeAttributes);
         const data = {
             "eventQuery":   eventQuery,
             "eventType":    eventType

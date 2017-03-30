@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import QueryInterfaceAttribute from './QueryInterfaceAttribute/QueryInterfaceAttribute.js';
+import {argosConfig} from './../../../../config/argosConfig.js';
 
 class QueryInterfaceAttributeList extends Component {
     constructor(props) {
@@ -32,7 +33,10 @@ class QueryInterfaceAttributeList extends Component {
                            placeholder="Name" id="query-name"
                            value={this.props.eventTypeName}
                            onChange={this.onChangeEventTypeName}/>
-                    {this.state.validationClasses && <div className="form-control-feedback">This field can't be empty.</div>}
+                    {this.state.validationClasses &&
+                    <div className="form-control-feedback">
+                        {argosConfig.formValidationNoEmptyMessage}
+                    </div>}
                 </div>
                 {this.props.eventTypeAttributes.map((eventTypeAttribute) =>
                     <QueryInterfaceAttribute key={eventTypeAttribute.id}

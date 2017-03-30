@@ -25,7 +25,9 @@ class Modal extends Component {
                             {this.props.children}
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-primary" onClick={this.onSubmit} disabled={!this.props.isAbleToSave && `disabled`}>
+                            <button type="button" className="btn btn-primary"
+                                    onClick={this.onSubmit}
+                                    disabled={!this.props.isAbleToSave && `disabled`}>
                                 <div>
                                 {this.props.loading && <i className="fa fa-circle-o-notch fa-spin"></i>}
                                 {!this.props.loading && this.props.buttonText}
