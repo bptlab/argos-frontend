@@ -222,7 +222,7 @@ exports[`test Change filter 1`] = `
                     <div
                       className="query-interface-header">
                       <div
-                        className="form-group">
+                        className="form-group has-danger">
                         <input
                           className="form-control"
                           id="query-name"
@@ -230,11 +230,15 @@ exports[`test Change filter 1`] = `
                           placeholder="Name"
                           type="text"
                           value="" />
+                        <div
+                          className="form-control-feedback">
+                          This field can\'t be empty.
+                        </div>
                       </div>
                       <div
                         className="query-interface-header-attribute form-group row">
                         <div
-                          className="form-group has-danger">
+                          className="col-6">
                           <input
                             className="form-control"
                             id="example-text-input"
@@ -242,11 +246,7 @@ exports[`test Change filter 1`] = `
                             placeholder="Attribute name"
                             readOnly={true}
                             type="text"
-                            value="" />
-                          <div
-                            className="form-control-feedback">
-                            This field can\'t be empty.
-                          </div>
+                            value="productId" />
                         </div>
                         <div
                           className="col-6">
@@ -308,38 +308,69 @@ exports[`test Change filter 1`] = `
                         </div>
                       </div>
                       <div
-                        className="form-group">
-                        <label
-                          className="form-control-label"
-                          htmlFor="event-query">
-                          Event Query
-                        </label>
-                        <textarea
-                          className="form-control"
-                          id="event-query"
-                          onChange={[Function]}
-                          rows="8"
-                          type="text"
-                          value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                        className="query-interface-header-attribute form-group row">
+                        <div
+                          className="col-6">
+                          <input
+                            className="form-control"
+                            id="example-text-input"
+                            onChange={[Function]}
+                            placeholder="Attribute name"
+                            readOnly={false}
+                            type="text"
+                            value="" />
+                        </div>
+                        <div
+                          className="col-6">
+                          <select
+                            className="form-control"
+                            id="exampleSelect1"
+                            onChange={[Function]}
+                            readOnly={false}
+                            value="">
+                            <option>
+                              STRING
+                            </option>
+                            <option>
+                              BOOLEAN
+                            </option>
+                            <option>
+                              INTEGER
+                            </option>
+                            <option>
+                              FLOAT
+                            </option>
+                          </select>
+                        </div>
                       </div>
                     </div>
                     <div
-                      className="modal-footer">
-                      <button
-                        className="btn btn-primary"
-                        onClick={[Function]}
-                        type="button">
-                        Save
-                      </button>
+                      className="form-group ">
+                      <label
+                        className="form-control-label"
+                        htmlFor="event-query">
+                        Event Query
+                      </label>
+                      <textarea
+                        className="form-control"
+                        id="event-query"
+                        onChange={[Function]}
+                        rows="8"
+                        type="text"
+                        value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                      
                     </div>
                   </div>
                   <div
                     className="modal-footer">
                     <button
                       className="btn btn-primary"
+                      disabled="disabled"
                       onClick={[Function]}
                       type="button">
-                      Save
+                      <div>
+                        Save
+                      </div>
                     </button>
                   </div>
                 </div>
@@ -577,7 +608,7 @@ exports[`test Changing active Tab 1`] = `
                     <div
                       className="query-interface-header">
                       <div
-                        className="form-group">
+                        className="form-group has-danger">
                         <input
                           className="form-control"
                           id="query-name"
@@ -585,11 +616,15 @@ exports[`test Changing active Tab 1`] = `
                           placeholder="Name"
                           type="text"
                           value="" />
+                        <div
+                          className="form-control-feedback">
+                          This field can\'t be empty.
+                        </div>
                       </div>
                       <div
                         className="query-interface-header-attribute form-group row">
                         <div
-                          className="form-group">
+                          className="col-6">
                           <input
                             className="form-control"
                             id="example-text-input"
@@ -597,7 +632,7 @@ exports[`test Changing active Tab 1`] = `
                             placeholder="Attribute name"
                             readOnly={true}
                             type="text"
-                            value="" />
+                            value="productId" />
                         </div>
                         <div
                           className="col-6">
@@ -659,38 +694,69 @@ exports[`test Changing active Tab 1`] = `
                         </div>
                       </div>
                       <div
-                        className="form-group">
-                        <label
-                          className="form-control-label"
-                          htmlFor="event-query">
-                          Event Query
-                        </label>
-                        <textarea
-                          className="form-control"
-                          id="event-query"
-                          onChange={[Function]}
-                          rows="8"
-                          type="text"
-                          value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                        className="query-interface-header-attribute form-group row">
+                        <div
+                          className="col-6">
+                          <input
+                            className="form-control"
+                            id="example-text-input"
+                            onChange={[Function]}
+                            placeholder="Attribute name"
+                            readOnly={false}
+                            type="text"
+                            value="" />
+                        </div>
+                        <div
+                          className="col-6">
+                          <select
+                            className="form-control"
+                            id="exampleSelect1"
+                            onChange={[Function]}
+                            readOnly={false}
+                            value="">
+                            <option>
+                              STRING
+                            </option>
+                            <option>
+                              BOOLEAN
+                            </option>
+                            <option>
+                              INTEGER
+                            </option>
+                            <option>
+                              FLOAT
+                            </option>
+                          </select>
+                        </div>
                       </div>
                     </div>
                     <div
-                      className="modal-footer">
-                      <button
-                        className="btn btn-primary"
-                        onClick={[Function]}
-                        type="button">
-                        Save
-                      </button>
+                      className="form-group ">
+                      <label
+                        className="form-control-label"
+                        htmlFor="event-query">
+                        Event Query
+                      </label>
+                      <textarea
+                        className="form-control"
+                        id="event-query"
+                        onChange={[Function]}
+                        rows="8"
+                        type="text"
+                        value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                      
                     </div>
                   </div>
                   <div
                     className="modal-footer">
                     <button
                       className="btn btn-primary"
+                      disabled="disabled"
                       onClick={[Function]}
                       type="button">
-                      Save
+                      <div>
+                        Save
+                      </div>
                     </button>
                   </div>
                 </div>
@@ -1125,7 +1191,7 @@ exports[`test Remove last filter 1`] = `
                     <div
                       className="query-interface-header">
                       <div
-                        className="form-group">
+                        className="form-group has-danger">
                         <input
                           className="form-control"
                           id="query-name"
@@ -1133,11 +1199,15 @@ exports[`test Remove last filter 1`] = `
                           placeholder="Name"
                           type="text"
                           value="" />
+                        <div
+                          className="form-control-feedback">
+                          This field can\'t be empty.
+                        </div>
                       </div>
                       <div
                         className="query-interface-header-attribute form-group row">
                         <div
-                          className="form-group">
+                          className="col-6">
                           <input
                             className="form-control"
                             id="example-text-input"
@@ -1145,7 +1215,7 @@ exports[`test Remove last filter 1`] = `
                             placeholder="Attribute name"
                             readOnly={true}
                             type="text"
-                            value="" />
+                            value="productId" />
                         </div>
                         <div
                           className="col-6">
@@ -1207,38 +1277,69 @@ exports[`test Remove last filter 1`] = `
                         </div>
                       </div>
                       <div
-                        className="form-group">
-                        <label
-                          className="form-control-label"
-                          htmlFor="event-query">
-                          Event Query
-                        </label>
-                        <textarea
-                          className="form-control"
-                          id="event-query"
-                          onChange={[Function]}
-                          rows="8"
-                          type="text"
-                          value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                        className="query-interface-header-attribute form-group row">
+                        <div
+                          className="col-6">
+                          <input
+                            className="form-control"
+                            id="example-text-input"
+                            onChange={[Function]}
+                            placeholder="Attribute name"
+                            readOnly={false}
+                            type="text"
+                            value="" />
+                        </div>
+                        <div
+                          className="col-6">
+                          <select
+                            className="form-control"
+                            id="exampleSelect1"
+                            onChange={[Function]}
+                            readOnly={false}
+                            value="">
+                            <option>
+                              STRING
+                            </option>
+                            <option>
+                              BOOLEAN
+                            </option>
+                            <option>
+                              INTEGER
+                            </option>
+                            <option>
+                              FLOAT
+                            </option>
+                          </select>
+                        </div>
                       </div>
                     </div>
                     <div
-                      className="modal-footer">
-                      <button
-                        className="btn btn-primary"
-                        onClick={[Function]}
-                        type="button">
-                        Save
-                      </button>
+                      className="form-group ">
+                      <label
+                        className="form-control-label"
+                        htmlFor="event-query">
+                        Event Query
+                      </label>
+                      <textarea
+                        className="form-control"
+                        id="event-query"
+                        onChange={[Function]}
+                        rows="8"
+                        type="text"
+                        value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                      
                     </div>
                   </div>
                   <div
                     className="modal-footer">
                     <button
                       className="btn btn-primary"
+                      disabled="disabled"
                       onClick={[Function]}
                       type="button">
-                      Save
+                      <div>
+                        Save
+                      </div>
                     </button>
                   </div>
                 </div>
@@ -1476,7 +1577,7 @@ exports[`test Rendering of ProductView 1`] = `
                     <div
                       className="query-interface-header">
                       <div
-                        className="form-group">
+                        className="form-group has-danger">
                         <input
                           className="form-control"
                           id="query-name"
@@ -1484,11 +1585,15 @@ exports[`test Rendering of ProductView 1`] = `
                           placeholder="Name"
                           type="text"
                           value="" />
+                        <div
+                          className="form-control-feedback">
+                          This field can\'t be empty.
+                        </div>
                       </div>
                       <div
                         className="query-interface-header-attribute form-group row">
                         <div
-                          className="form-group">
+                          className="col-6">
                           <input
                             className="form-control"
                             id="example-text-input"
@@ -1496,7 +1601,7 @@ exports[`test Rendering of ProductView 1`] = `
                             placeholder="Attribute name"
                             readOnly={true}
                             type="text"
-                            value="" />
+                            value="productId" />
                         </div>
                         <div
                           className="col-6">
@@ -1558,38 +1663,69 @@ exports[`test Rendering of ProductView 1`] = `
                         </div>
                       </div>
                       <div
-                        className="form-group">
-                        <label
-                          className="form-control-label"
-                          htmlFor="event-query">
-                          Event Query
-                        </label>
-                        <textarea
-                          className="form-control"
-                          id="event-query"
-                          onChange={[Function]}
-                          rows="8"
-                          type="text"
-                          value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                        className="query-interface-header-attribute form-group row">
+                        <div
+                          className="col-6">
+                          <input
+                            className="form-control"
+                            id="example-text-input"
+                            onChange={[Function]}
+                            placeholder="Attribute name"
+                            readOnly={false}
+                            type="text"
+                            value="" />
+                        </div>
+                        <div
+                          className="col-6">
+                          <select
+                            className="form-control"
+                            id="exampleSelect1"
+                            onChange={[Function]}
+                            readOnly={false}
+                            value="">
+                            <option>
+                              STRING
+                            </option>
+                            <option>
+                              BOOLEAN
+                            </option>
+                            <option>
+                              INTEGER
+                            </option>
+                            <option>
+                              FLOAT
+                            </option>
+                          </select>
+                        </div>
                       </div>
                     </div>
                     <div
-                      className="modal-footer">
-                      <button
-                        className="btn btn-primary"
-                        onClick={[Function]}
-                        type="button">
-                        Save
-                      </button>
+                      className="form-group ">
+                      <label
+                        className="form-control-label"
+                        htmlFor="event-query">
+                        Event Query
+                      </label>
+                      <textarea
+                        className="form-control"
+                        id="event-query"
+                        onChange={[Function]}
+                        rows="8"
+                        type="text"
+                        value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                      
                     </div>
                   </div>
                   <div
                     className="modal-footer">
                     <button
                       className="btn btn-primary"
+                      disabled="disabled"
                       onClick={[Function]}
                       type="button">
-                      Save
+                      <div>
+                        Save
+                      </div>
                     </button>
                   </div>
                 </div>
@@ -1842,7 +1978,7 @@ exports[`test Successful filtering 1`] = `
                     <div
                       className="query-interface-header">
                       <div
-                        className="form-group">
+                        className="form-group has-danger">
                         <input
                           className="form-control"
                           id="query-name"
@@ -1850,11 +1986,15 @@ exports[`test Successful filtering 1`] = `
                           placeholder="Name"
                           type="text"
                           value="" />
+                        <div
+                          className="form-control-feedback">
+                          This field can\'t be empty.
+                        </div>
                       </div>
                       <div
                         className="query-interface-header-attribute form-group row">
                         <div
-                          className="form-group">
+                          className="col-6">
                           <input
                             className="form-control"
                             id="example-text-input"
@@ -1862,7 +2002,7 @@ exports[`test Successful filtering 1`] = `
                             placeholder="Attribute name"
                             readOnly={true}
                             type="text"
-                            value="" />
+                            value="productId" />
                         </div>
                         <div
                           className="col-6">
@@ -1924,38 +2064,69 @@ exports[`test Successful filtering 1`] = `
                         </div>
                       </div>
                       <div
-                        className="form-group">
-                        <label
-                          className="form-control-label"
-                          htmlFor="event-query">
-                          Event Query
-                        </label>
-                        <textarea
-                          className="form-control"
-                          id="event-query"
-                          onChange={[Function]}
-                          rows="8"
-                          type="text"
-                          value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                        className="query-interface-header-attribute form-group row">
+                        <div
+                          className="col-6">
+                          <input
+                            className="form-control"
+                            id="example-text-input"
+                            onChange={[Function]}
+                            placeholder="Attribute name"
+                            readOnly={false}
+                            type="text"
+                            value="" />
+                        </div>
+                        <div
+                          className="col-6">
+                          <select
+                            className="form-control"
+                            id="exampleSelect1"
+                            onChange={[Function]}
+                            readOnly={false}
+                            value="">
+                            <option>
+                              STRING
+                            </option>
+                            <option>
+                              BOOLEAN
+                            </option>
+                            <option>
+                              INTEGER
+                            </option>
+                            <option>
+                              FLOAT
+                            </option>
+                          </select>
+                        </div>
                       </div>
                     </div>
                     <div
-                      className="modal-footer">
-                      <button
-                        className="btn btn-primary"
-                        onClick={[Function]}
-                        type="button">
-                        Save
-                      </button>
+                      className="form-group ">
+                      <label
+                        className="form-control-label"
+                        htmlFor="event-query">
+                        Event Query
+                      </label>
+                      <textarea
+                        className="form-control"
+                        id="event-query"
+                        onChange={[Function]}
+                        rows="8"
+                        type="text"
+                        value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                      
                     </div>
                   </div>
                   <div
                     className="modal-footer">
                     <button
                       className="btn btn-primary"
+                      disabled="disabled"
                       onClick={[Function]}
                       type="button">
-                      Save
+                      <div>
+                        Save
+                      </div>
                     </button>
                   </div>
                 </div>

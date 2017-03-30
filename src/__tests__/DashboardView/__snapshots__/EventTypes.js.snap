@@ -16,16 +16,12 @@ exports[`test Correct rendering of EventTypes-Settings 1`] = `
           Query
         </th>
         <th
-          className="center">
-          Delete?
-        </th>
+          className="center" />
       </tr>
     </thead>
     <tbody />
   </table>
-  <p>
-    To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
-  </p>
+  <p />
 </div>
 `;
 
@@ -47,9 +43,7 @@ exports[`test Receive eventTypes 1`] = `
           Query
         </th>
         <th
-          className="center">
-          Delete?
-        </th>
+          className="center" />
       </tr>
     </thead>
     <tbody>
@@ -70,20 +64,13 @@ exports[`test Receive eventTypes 1`] = `
       </tr>
     </tbody>
   </table>
-  <p>
-    To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
-  </p>
+  <p />
 </div>
 `;
 
 exports[`test Receiving 403 error 1`] = `
 <div
   className="event-types-settings">
-  <div
-    className="alert alert-danger"
-    role="alert">
-    Your are not allowed to modify this Event-Type
-  </div>
   <table
     className="table table-striped event-types-table">
     <thead>
@@ -98,16 +85,12 @@ exports[`test Receiving 403 error 1`] = `
           Query
         </th>
         <th
-          className="center">
-          Delete?
-        </th>
+          className="center" />
       </tr>
     </thead>
     <tbody />
   </table>
-  <p>
-    To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
-  </p>
+  <p />
 </div>
 `;
 
@@ -117,7 +100,7 @@ exports[`test Receiving 500 error 1`] = `
   <div
     className="alert alert-danger"
     role="alert">
-    You can not delete this Event-Type, because of existing dependencies<br/>Dependent eventTypes: There still exist dependencies concerning this eventType
+    undefined<br/>Dependent eventTypes: There still exist dependencies concerning this eventType
   </div>
   <table
     className="table table-striped event-types-table">
@@ -133,16 +116,12 @@ exports[`test Receiving 500 error 1`] = `
           Query
         </th>
         <th
-          className="center">
-          Delete?
-        </th>
+          className="center" />
       </tr>
     </thead>
     <tbody />
   </table>
-  <p>
-    To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
-  </p>
+  <p />
 </div>
 `;
 
@@ -168,15 +147,11 @@ exports[`test Receiving undefined error 1`] = `
           Query
         </th>
         <th
-          className="center">
-          Delete?
-        </th>
+          className="center" />
       </tr>
     </thead>
     <tbody />
   </table>
-  <p>
-    To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
-  </p>
+  <p />
 </div>
 `;
