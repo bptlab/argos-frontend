@@ -43,6 +43,11 @@ body {
       font-size: 15px;
     }
   }
+  @include media-breakpoint-up(sm) {
+    h1 {
+      font-size: 25px;
+    }
+  }
   @include media-breakpoint-up(uhd) {
     h1 {
       font-size: 80px;
