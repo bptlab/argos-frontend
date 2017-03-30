@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Modal from '../../../Utils/Modal/Modal.js';
 import QueryInterfaceAttributeList from './QueryInterfaceAttributeList/QueryInterfaceAttributeList.js';
+import {argosConfig} from './../../../config/argosConfig.js';
 
 class QueryInterface extends Component {
     constructor(props) {
@@ -44,7 +45,7 @@ class QueryInterface extends Component {
     }
 
     static getDefaultQuery() {
-        return "INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData";
+        return argosConfig.createEventTypeDefaultQuery;
     }
 
     componentDidMount() {
