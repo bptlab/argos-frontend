@@ -47,7 +47,8 @@ class ProductView extends Component {
 
     handleEventTypeData(eventTypes) {
         this.setState({
-            eventTypes: eventTypes
+            eventTypes: eventTypes,
+            loading: false
         });
         if(eventTypes.length == 0) {
             this.handleEventData([]);
@@ -55,9 +56,6 @@ class ProductView extends Component {
                 activeEventType: {attributes: []}
             });
         }
-        this.setState({
-            loading: false
-        });
     }
 
     componentDidMount() {
