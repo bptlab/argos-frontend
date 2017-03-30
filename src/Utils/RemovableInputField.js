@@ -5,11 +5,11 @@ class RemovableInputField extends Component {
         super(props);
         //Function binding
         this.handleInput = this.handleInput.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
     }
 
     handleInput(event) {
         this.props.onInputChange(this.props.id, event.target.value);
-        this.handleRemove = this.handleRemove.bind(this);
     }
 
     handleRemove(event) {

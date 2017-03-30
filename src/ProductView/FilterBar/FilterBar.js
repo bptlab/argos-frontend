@@ -4,8 +4,7 @@ import RemovableInputField from '../../Utils/RemovableInputField.js';
 
 class FilterBar extends Component {
     decideOnRemoveButton(currentFilter) {
-        // TODO Think that over..
-        if(this.props.filter[0] === currentFilter || this.props.filter[this.props.filter.length - 1] === currentFilter) {
+        if(this.props.filter[this.props.filter.length - 1] === currentFilter) {
             return false;
         } else {
             return true;

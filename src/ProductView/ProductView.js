@@ -96,18 +96,6 @@ class ProductView extends Component {
         if (!value) {
             updatedFilters.splice(currentFilterIndex, 1);
             this.setState({filter: updatedFilters});
-
-            if(parseInt(currentFilterId) === this.state.lastFilterId) {
-                this.setState({lastFilterId: updatedFilters[updatedFilters.length - 1].id});
-                const newFilterId = this.nextAttributeId;
-                this.nextAttributeId += 1;
-                const newFilter = {id: `${newFilterId}`, value: '', column: null};
-                this.setState({
-                    filter: updatedFilters.concat([newFilter]),
-                    lastFilterId: newFilterId
-                });
-            }
-
             return;
         }
         const separatorPosition = value.indexOf(":");
