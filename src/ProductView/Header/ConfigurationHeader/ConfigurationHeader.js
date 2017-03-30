@@ -11,7 +11,6 @@ class ConfigurationHeader extends Component {
         this.state = {selectedCodingPlug: initialCodingPlugVersion,
                         selectedSoftwareVersion: Object.keys(this.cpSwToIdMapping[initialCodingPlugVersion])[0],
                         showAll: true};
-        this.updateProductConfiguration(this.state.selectedCodingPlug, this.state.selectedSoftwareVersion);
     }
 
     buildCodingPlugAndSoftwareVersionToIdMapping() {

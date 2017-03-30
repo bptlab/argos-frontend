@@ -14,7 +14,7 @@ class DetailArea extends Component {
 
     setConfiguration(props) {
         let configuration = props.configuration;
-        if(props.showAllConfigurations) {
+        if(props.showAllConfigurations || !props.configuration) {
             configuration = props.product;
         }
         this.state = {
