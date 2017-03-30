@@ -70,6 +70,7 @@ class ProductView extends Component {
         this.props.dataSource.notificationService.unsubscribe("Product", this.fetchProduct);
         this.props.dataSource.notificationService.unsubscribe("Configuration", this.fetchConfiguration);
         this.props.dataSource.notificationService.unsubscribe("EventType", this.fetchEventTypes);
+        this.props.dataSource.notificationService.unsubscribe("Event", this.fetchEventsFor);
     }
 
     fetchProduct() {
