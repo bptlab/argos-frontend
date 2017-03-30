@@ -15,14 +15,15 @@ class ProductView extends Component {
             filter: [{id: '0', value: '', column: null}],
             lastFilterId: 0,
             product: null,
+            configuration: null,
             eventTypes: null,
             error: null,
             activeEventType: {attributes: []},
             activeEvents: [],
+            showAllConfigurations: true,
             loading: true
         };
         this.nextAttributeId = 1;
-        this.showAllConfigurations = true;
         //Function binding
         this.onInputChange = this.onInputChange.bind(this);
         this.handleProductData = this.handleProductData.bind(this);
@@ -118,11 +119,11 @@ class ProductView extends Component {
     }
 
     isProductRequested() {
-        return this.showAllConfigurations;
+        return this.state.showAllConfigurations;
     }
 
     getInstanceId() {
-        if(this.showAllConfigurations) {
+        if(this.state.showAllConfigurations) {
             return this.prodId;
         }
         return this.configurationId;
@@ -172,12 +173,16 @@ class ProductView extends Component {
             loading: true
         });
         if(configurationId) {
-            this.showAllConfigurations = false;
+            this.setState({
+                showAllConfigurations: false
+            });
             this.configurationId = configurationId;
             this.fetchConfiguration();
         }
         else {
-            this.showAllConfigurations = true;
+            this.setState({
+                showAllConfigurations: true
+            });
             this.fetchProduct();
         }
     }
@@ -217,7 +222,7 @@ class ProductView extends Component {
             component = (
                 <div>
                     <Header product={this.state.product} configurations={this.state.product.configurations} setProductConfiguration={this.setProductConfiguration}/>
-                    <DetailArea product={this.state.product}/>
+                    <DetailArea product={this.state.product} configuration={this.state.configuration} showAllConfigurations={this.state.showAllConfigurations}/>
                     {pageContent}
                 </div>
             );

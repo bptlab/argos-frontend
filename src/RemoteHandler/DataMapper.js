@@ -38,24 +38,19 @@ class DataMapper {
         return products;
     }
 
-    static mapConfigurations(apiConfigurations) {
-        const configurations = [];
-        for(let i = 0; i < apiConfigurations.length; i++) {
-            const apiConfiguration = apiConfigurations[i];
-            const configuration = {
-                "id":                   apiConfiguration.id,
-                "productId":            apiConfiguration.productId,
-                "numberOfEvents":       apiConfiguration.numberOfEvents,
-                "codingPlugId":         apiConfiguration.codingPlugId,
-                "codingPlugSoftwareVersion": apiConfiguration.codingPlugSoftwareVersion,
-                "state":                apiConfiguration.state,
-                "stateDescription":     apiConfiguration.stateDescription,
-                "errorTypes":           apiConfiguration.errorTypes,
-                "statusUpdateQueries":  DataMapper.mapStatusUpdateQueries(apiConfiguration.statusUpdateQueries)
-            };
-            configurations.push(configuration);
-        }
-        return configurations;
+    static mapConfigurations(apiConfiguration) {
+        const configuration = {
+            "id":                   apiConfiguration.id,
+            "productId":            apiConfiguration.productId,
+            "numberOfEvents":       apiConfiguration.numberOfEvents,
+            "codingPlugId":         apiConfiguration.codingPlugId,
+            "codingPlugSoftwareVersion": apiConfiguration.codingPlugSoftwareVersion,
+            "state":                apiConfiguration.state,
+            "stateDescription":     apiConfiguration.stateDescription,
+            "errorTypes":           apiConfiguration.errorTypes,
+            "statusUpdateQueries":  DataMapper.mapStatusUpdateQueries(apiConfiguration.statusUpdateQueries)
+        };
+        return configuration;
     }
 
     static mapStatusUpdateQueries(queries) {

@@ -3,6 +3,25 @@ import ProductDetails from './ProductDetails/ProductDetails.js';
 import StatusDerivation from './StatusDerivation/StatusDerivation.js';
 
 class DetailArea extends Component {
+    constructor(props) {
+        super(props);
+        this.setConfiguration(this.props);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setConfiguration(nextProps);
+    }
+
+    setConfiguration(props) {
+        let configuration = props.configuration;
+        if(props.showAllConfigurations) {
+            configuration = props.product;
+        }
+        this.state = {
+            configuration: configuration
+        };
+    }
+
     render() {
         return (
             <div className="detail-area container">
@@ -11,7 +30,7 @@ class DetailArea extends Component {
                         <ProductDetails product={this.props.product}/>
                     </div>
                     <div className="detail-area-block col-xs-12 col-sm-6">
-                        <StatusDerivation product={this.props.product}/>
+                        <StatusDerivation configuration={this.state.configuration}/>
                     </div>
                 </div>
             </div>
