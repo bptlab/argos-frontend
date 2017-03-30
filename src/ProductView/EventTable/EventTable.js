@@ -23,15 +23,12 @@ class EventTable extends Component {
         }
 
         return columnsToBeSearched.some((eventPropertyKey) => {
-            const splits = currentFilter.value.split(",");
-            var result = false;
-            for (var i = 0; i < splits.length; i++) {
-                if (this.doesContain(currentEvent[eventPropertyKey.name], splits[i].trim())) {
-                    result = true;
-                    break;
+            const splittedFilterValues = currentFilter.value.split(",");
+            for (var i = 0; i < splittedFilterValues.length; i++) {
+                if (this.doesContain(currentEvent[eventPropertyKey.name], splittedFilterValues[i].trim())) {
+                    return true;
                 }
             }
-            return result;
         });
     }
 
