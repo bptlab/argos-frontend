@@ -25,7 +25,7 @@ test("Inclusion of two values", () => {
 
 test("Comma separated values", () => {
     const mockFilter = {id: 'mock-filter', value: '', column: ''};
-    const mockEvent = TestEvents.EVENTS[0];
+    const mockEvent = TestEvents.EVENTS[5];
     mockFilter.value = "404,12";
     expect(instance.testFilterArguments(mockEvent, mockFilter )).toBeTruthy();
     mockFilter.value = "404, 12";
@@ -38,7 +38,7 @@ test("Comma separated values", () => {
 
 test("Columns and comma separated values", () => {
     const mockFilter = {id: 'mock-filter', value: '', column: 'ErrorCode'};
-    const mockEvent = TestEvents.EVENTS[0];
+    const mockEvent = TestEvents.EVENTS[5];
     mockFilter.value = "404,12";
     expect(instance.testFilterArguments(mockEvent, mockFilter )).toBeTruthy();
     mockFilter.value = "404, 12";
