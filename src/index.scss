@@ -8,12 +8,17 @@
 @import "ProductView/ProductView";
 @import "Notification/Notification";
 @import "Utils/RemovableInputField";
+@import "Utils/Modal/Modal";
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  font-size: 1.6vh;
+  font-size: 16px;
+
+  @include media-breakpoint-up(uhd) {
+    font-size: 40px;
+  }
   height: 100%;
   width: 100%;
   overflow-x: hidden;
@@ -51,6 +56,9 @@ body {
   @include media-breakpoint-up(uhd) {
     h1 {
       font-size: 80px;
+    }
+    h2 {
+      font-size: 64px;
     }
     h4 {
       font-size: 35px;

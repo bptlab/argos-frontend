@@ -3,3 +3,9 @@
 		border-color: $COLOR-dark-background;
 	}
 }
+
+.tab {
+	.nav-link {
+		border-top-radius: 2px !important;
+	}
+}

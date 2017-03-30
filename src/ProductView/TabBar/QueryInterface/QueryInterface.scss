@@ -1,1 +1,20 @@
 @import "QueryInterfaceAttributeList/QueryInterfaceAttributeList";
+
+.nav-link {
+  border-top-radius: 2px !important;
+}
+
+#new-complex-eventtype {
+  cursor: pointer;
+}
+
+.tooltip {
+  font-size: 12px;
+  @include media-breakpoint-up(uhd){
+    font-size: 40px;
+  }
+}
+
+#event-query{
+  border-radius: 0px;
+}

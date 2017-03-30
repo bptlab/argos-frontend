@@ -28,7 +28,7 @@ class QueryInterfaceAttributeList extends Component {
     render() {
         return (
             <div className="query-interface-header">
-                <div className={`form-group ` + this.state.validationClasses}>
+                <div className={`form-group row ` + this.state.validationClasses}>
                     <input className="form-control" type="text"
                            placeholder="Name" id="query-name"
                            value={this.props.eventTypeName}

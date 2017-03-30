@@ -23,19 +23,31 @@ a, p, h1, h2, h3, h4, h5, span, a:hover {
 }
 
 h1 {
-  font-size: 2.5vh;
+  font-size: 30px;
+  @include media-breakpoint-up(uhd){
+    font-size: 80px;
+  }
 }
 
 h2 {
-  font-size: 2.2vh;
+  font-size: 25px;
+  @include media-breakpoint-up(uhd){
+    font-size: 64px;
+  }
 }
 
 h3 {
-  font-size: 1.9vh;
+  font-size: 20px;
+  @include media-breakpoint-up(uhd){
+    font-size: 40px;
+  }
 }
 
 h4 {
-  font-size: 1.7vh;
+  font-size: 18px;
+  @include media-breakpoint-up(uhd){
+    font-size: 35px;
+  }
 }
 
 .input-group {
