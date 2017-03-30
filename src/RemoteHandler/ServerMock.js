@@ -5,6 +5,12 @@ class ServerMock {
         this.status = 200;
         this.readyState = 4;
         this.headers = [];
+        this.productFamilies = ServerMock.getProductFamily();
+        this.eventTypes = ServerMock.getEventTypes();
+        this.events = ServerMock.getEvents();
+        
+        //function binding
+        this.deleteEventType = this.deleteEventType.bind(this);
     }
     
     open(requestMethod, api) {
@@ -116,6 +122,13 @@ class ServerMock {
         ];
     }
     
+    deleteEventType(event) {
+        const searchIndex = this.eventTypes.indexOf(event);
+        if(searchIndex > -1) {
+            this.eventTypes.splice(searchIndex, 1);
+        }
+    }
+    
     static getEventTypes() {
         return [{
             id:     0,
@@ -218,12 +231,27 @@ class ServerMock {
     }
 
     send() {
-        if(this.api.indexOf("productfamilies") > -1) {
-            this.responseText = JSON.stringify(ServerMock.getProductFamily());
+        if(this.api.indexOf("eventtypes/delete") > -1) {
+            const splitResults = this.api.split("/");
+            const eventTypeId = parseInt(splitResults[splitResults.length-1]);
+            const eventTypeToBeDeleted = this.eventTypes.find((eventType) => {
+                return eventType.id === eventTypeId;
+            });
+            if(eventTypeToBeDeleted) {
+                this.deleteEventType(eventTypeToBeDeleted);
+                this.status = 200;
+                this.statusText = "Success";
+            } else {
+                this.status = 404;
+                this.statusText = "No EventType found by id "+eventTypeId;
+            }
+            this.responseText = this.statusText;
+        } else if(this.api.indexOf("productfamilies") > -1) {
+            this.responseText = JSON.stringify(this.productFamilies);
         } else if(this.api.indexOf("eventtypes") > -1) {
-            this.responseText = JSON.stringify(ServerMock.getEventTypes());
+            this.responseText = JSON.stringify(this.eventTypes);
         } else if(this.api.indexOf("events") > -1) {
-            this.responseText = JSON.stringify(ServerMock.getEvents());
+            this.responseText = JSON.stringify(this.events);
         } else {
             this.responseText = JSON.stringify("");
         }

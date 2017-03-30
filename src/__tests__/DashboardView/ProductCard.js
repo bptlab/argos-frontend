@@ -1,6 +1,6 @@
 import React from 'react';
-import ProductCard from '../DashboardView/ProductCardGrid/ProductCard/ProductCard.js';
-import TestData from './testData/products';
+import ProductCard from '../../DashboardView/ProductCardGrid/ProductCard/ProductCard.js';
+import TestData from '../testData/products';
 import renderer from 'react-test-renderer';
 
 test('Render DashboardView Header', () => {

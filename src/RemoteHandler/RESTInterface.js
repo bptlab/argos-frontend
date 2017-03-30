@@ -35,18 +35,26 @@ class RESTInterface {
             this.requestQueue.pop();
             const resultObject = callbackContainer;
             let event;
-            if (this.client.status === 200) {
-                resultObject.results = this.client.responseText;
-                if(dataSended) {
-                    event = new CustomEvent('dataSended', { 'detail': resultObject });
-                } else {
-                    event = new CustomEvent('dataReceived', { 'detail': resultObject });
+            switch(this.client.status) {
+                case 200: {
+                    resultObject.results = this.client.responseText;
+                    if (dataSended) {
+                        event = new CustomEvent('dataSended', {'detail': resultObject});
+                    } else {
+                        event = new CustomEvent('dataReceived', {'detail': resultObject});
+                    }
+                    document.dispatchEvent(event);
+                    break;
                 }
-            } else {
-                resultObject.results = this.client.statusText;
-                event = new CustomEvent('connectionError', { 'detail': resultObject });
+                case 403:
+                case 500: {
+                    callbackContainer.clientErrorCallback(this.client.responseText, this.client.status);
+                    break;
+                } default: {
+                    this.onError(callbackContainer);
+                    break;
+                }
             }
-            document.dispatchEvent(event);
         }
     }
 

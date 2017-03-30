@@ -49,6 +49,14 @@ test('Fetch EventTypes of specific Product', () => {
     expect(successMockCallback).toBeCalledWith(expectedData);
 });
 
+test('Fetch all EventTypes', () => {
+    const successMockCallback = jest.fn();
+    const errorMockCallback = jest.fn();
+    instance.fetchAllEventTypes(successMockCallback, errorMockCallback);
+    const expectedData = frontend_eventTypes.EVENTTYPES;
+    expect(successMockCallback).toBeCalledWith(expectedData);
+});
+
 test('Fetch Events of specific Product', () => {
     const successMockCallback = jest.fn();
     const errorMockCallback = jest.fn();
@@ -61,10 +69,11 @@ test('Error handling', () => {
     const errorMockCallback = jest.fn();
     const callbackContainer = {
         "clientErrorCallback":    errorMockCallback,
-        "results":  404
+        "statusCode":   404,
+        "results":  "An error occured"
     };
     instance.receiveError({detail: callbackContainer});
-    expect(errorMockCallback).toBeCalledWith(404);
+    expect(errorMockCallback).toBeCalledWith(callbackContainer.results, callbackContainer.statusCode);
 });
 
 test('Error handling while parsing JSON', () => {

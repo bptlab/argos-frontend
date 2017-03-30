@@ -1,7 +1,7 @@
 import React from 'react';
-import Diagram from '../DashboardView/Diagram/Diagram.js';
+import Diagram from '../../DashboardView/Diagram/Diagram.js';
 import renderer from 'react-test-renderer';
-import TestData from './testData/products.js'
+import TestData from '../testData/products.js'
 let instance;
 
 test("Correct drawing of Diagram", () => {

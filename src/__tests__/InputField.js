@@ -1,5 +1,5 @@
 import React from 'react';
-import InputField from '../Utils/InputField.js';
+import InputField from '../Utils/InputField/InputField.js';
 import renderer from 'react-test-renderer';
 let instance;
 

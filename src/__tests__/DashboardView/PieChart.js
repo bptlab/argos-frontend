@@ -1,5 +1,5 @@
 import React from 'react';
-import PieChart from '../DashboardView/Diagram/PieChart/PieChart';
+import PieChart from '../../DashboardView/Diagram/PieChart/PieChart';
 import renderer from 'react-test-renderer';
 
 const chartLabels = ["ERROR", "ERROR", "RUNNING"];

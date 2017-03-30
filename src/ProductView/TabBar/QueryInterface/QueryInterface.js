@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Modal from './Modal/Modal.js';
+import Modal from '../../../Utils/Modal/Modal.js';
 import QueryInterfaceAttributeList from './QueryInterfaceAttributeList/QueryInterfaceAttributeList.js';
 
 class QueryInterface extends Component {
@@ -130,7 +130,7 @@ class QueryInterface extends Component {
             this.handleSaveQueryError
         );
     }
-
+    /* istanbul ignore next */
     handleSaveQuerySuccess() {
         /* istanbul ignore next */
         $('#query-interface-modal').modal('hide');
@@ -143,7 +143,10 @@ class QueryInterface extends Component {
     render() {
         return (
             <div className="query-interface">
-                <Modal title="Query Interface" onSave={this.handleSaveQuery}>
+                <a className="nav-link" data-toggle="modal" data-target="#query-interface-modal">
+                    <i className="fa fa-plus"/>
+                </a>
+                <Modal title="Query Interface" onSubmit={this.handleSaveQuery} id="query-interface" buttonText="Save">
                     {this.state.errorMessage && <div className="alert alert-danger" role="alert">
                         {this.state.errorMessage}
                     </div>}

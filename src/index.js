@@ -35,6 +35,7 @@ const dataSender = new DataTransmitter(
 );
 if(argosConfig.useBackendMock) {
     dataSource.client.client = new ServerMock();
+    dataSender.client.client = dataSource.client.client;
 }
 
 //### Notification-Initialization ###
@@ -52,7 +53,9 @@ function notificationCallback(type, message) {
 ReactDOM.render(
     (<Router history={hashHistory}>
         <Route path="/" component={App} params={{ registerForNotificationsCallback: registerNotifications}}>
-            <IndexRoute component={() => (<DashboardView dataSource={dataSource} />)} />
+            <IndexRoute component={() => (<DashboardView 
+                dataSource={dataSource}
+                dataSender={dataSender} />)} />
             <Route path={`/` + argosConfig.routeNameDetailView+`/:productID`}
                    component={(routeObject) => (
                        <ProductView 
