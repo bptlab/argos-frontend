@@ -18,7 +18,8 @@ class ProductView extends Component {
             eventTypes: null,
             error: null,
             activeEventType: {attributes: []},
-            activeEvents: []
+            activeEvents: [],
+            loading: true
         };
         this.nextAttributeId = 1;
         this.showAllConfigurations = true;
@@ -38,12 +39,23 @@ class ProductView extends Component {
     }
 
     handleEventData(events) {
-        this.setState({activeEvents: events});
+        this.setState({
+            activeEvents: events
+        });
     }
 
     handleEventTypeData(eventTypes) {
         this.setState({
             eventTypes: eventTypes
+        });
+        if(eventTypes.length == 0) {
+            this.handleEventData([]);
+            this.setState({
+                activeEventType: {attributes: []}
+            });
+        }
+        this.setState({
+            loading: false
         });
     }
 
@@ -156,6 +168,9 @@ class ProductView extends Component {
     }
 
     setProductConfiguration(configurationId) {
+        this.setState({
+            loading: true
+        });
         if(configurationId) {
             this.showAllConfigurations = false;
             this.configurationId = configurationId;
@@ -177,25 +192,33 @@ class ProductView extends Component {
                 </div>
             );
         } else if(this.state.product && this.state.eventTypes) {
+            let pageContent = (<Loader/>);
+            if(!this.state.loading) {
+                pageContent = (
+                    <div>
+                        <LineChart
+                            events={this.state.activeEvents}
+                            eventType={this.state.activeEventType} />
+                        <FilterBar
+                            onInputChange={this.onInputChange}
+                            filter={this.state.filter} />
+                        <TabBar
+                            dataSender={this.props.dataSender}
+                            eventTypes={this.state.eventTypes}
+                            setActiveEventType={this.setActiveEventType}
+                            product={this.state.product} />
+                        <EventTable
+                            header={this.state.activeEventType.attributes}
+                            events={this.state.activeEvents}
+                            filter={this.state.filter} />
+                    </div>
+                );
+            }
             component = (
                 <div>
                     <Header product={this.state.product} configurations={this.state.product.configurations} setProductConfiguration={this.setProductConfiguration}/>
                     <DetailArea product={this.state.product}/>
-                    <LineChart
-                        events={this.state.activeEvents}
-                        eventType={this.state.activeEventType} />
-                    <FilterBar
-                        onInputChange={this.onInputChange}
-                        filter={this.state.filter} />
-                    <TabBar
-                        dataSender={this.props.dataSender}
-                        eventTypes={this.state.eventTypes}
-                        setActiveEventType={this.setActiveEventType}
-                        product={this.state.product} />
-                    <EventTable
-                        header={this.state.activeEventType.attributes}
-                        events={this.state.activeEvents}
-                        filter={this.state.filter} />
+                    {pageContent}
                 </div>
             );
         }
