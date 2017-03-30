@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class InputField extends Component {
+class RemovableInputField extends Component {
     constructor(props) {
         super(props);
         //Function binding
@@ -26,4 +26,4 @@ class InputField extends Component {
     }
 }
 
-export default InputField;
+export default RemovableInputField;

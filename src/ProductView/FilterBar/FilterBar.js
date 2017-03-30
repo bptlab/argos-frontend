@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InputField from '../../Utils/InputField/InputField.js';
+import RemovableInputField from '../../Utils/RemovableInputField.js';
 
 class FilterBar extends Component {
     render() {
@@ -7,8 +7,8 @@ class FilterBar extends Component {
             <div className="filter-bar container">
                 <div className="form-group row">
                     {this.props.filter.map((filter) =>
-                        <InputField key={filter.id} id={filter.id} value={filter.value} placeholder="Search..."
-                                    onInputChange={this.props.onInputChange}/>
+                        <RemovableInputField key={filter.id} id={filter.id} value={filter.value} placeholder="Search..."
+                                             onInputChange={this.props.onInputChange}/>
                     )}
                 </div>
             </div>
