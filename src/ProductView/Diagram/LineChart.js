@@ -82,8 +82,8 @@ class LineChart extends Component {
     
     render() {
         return (
-            <div className="line-chart container">
-                <canvas ref="canvas" id="lineChart" height="80"/>
+            <div className="line-chart">
+                <canvas ref="canvas" id="lineChart" height="160"/>
             </div>
         );
     }
