@@ -8,7 +8,8 @@ class ServerMock {
         this.productFamilies = ServerMock.getProductFamily();
         this.eventTypes = ServerMock.getEventTypes();
         this.events = ServerMock.getEvents();
-        
+        this.productConfigurations = ServerMock.getProductConfigurations();
+
         //function binding
         this.deleteEventType = this.deleteEventType.bind(this);
     }
@@ -23,15 +24,94 @@ class ServerMock {
             value: value
         });
     }
-    
+
     static getProductConfigurations() {
         return [{
-            id: 0,
+            id: 100,
             productId: 0,
             state: "RUNNING",
             stateDescription: "No errors or warnings detected",
+            codingPlugId: 10,
+            codingPlugSoftwareVersions: [1.0, 1.1, 1.2],
+            numberOfEvents: 234,
+            statusUpdateQueries: {
+                RUNNING: "ESPER-QUERY",
+                WARNING: "ESPER-QUERY",
+                ERROR: "ESPER-QUERY"
+            },
+            errorTypes: [{
+                id: 0,
+                errorTypeId: "0",
+                displayCode: "0Z",
+                causeCode:  0,
+                errorDescription: "Heating produces strange sounds",
+                errorCauses: [{
+                    id: 0,
+                    causeDescription: "Kabelbaum missing",
+                    errorOccurrences: 3,
+                    errorPrediction: 0.3
+                }]
+            }]
+        },
+        {
+            id: 200,
+            productId: 0,
+            state: "WARNING",
+            stateDescription: "Few errors or warnings",
+            codingPlugId: 20,
+            codingPlugSoftwareVersions: [2.0, 2.1],
+            numberOfEvents: 234,
+            statusUpdateQueries: {
+                RUNNING: "ESPER-QUERY",
+                WARNING: "ESPER-QUERY",
+                ERROR: "ESPER-QUERY"
+            },
+            errorTypes: [{
+                id: 0,
+                errorTypeId: "0",
+                displayCode: "0Z",
+                causeCode:  0,
+                errorDescription: "Heating produces strange sounds",
+                errorCauses: [{
+                    id: 0,
+                    causeDescription: "Kabelbaum missing",
+                    errorOccurrences: 3,
+                    errorPrediction: 0.3
+                }]
+            }]
+        },{
+            id: 300,
+            productId: 0,
+            state: "ERROR",
+            stateDescription: "Too many errors",
             codingPlugId: 30,
             codingPlugSoftwareVersions: [1.0, 1.1, 3.1],
+            numberOfEvents: 234,
+            statusUpdateQueries: {
+                RUNNING: "ESPER-QUERY",
+                WARNING: "ESPER-QUERY",
+                ERROR: "ESPER-QUERY"
+            },
+            errorTypes: [{
+                id: 0,
+                errorTypeId: "0",
+                displayCode: "0Z",
+                causeCode:  0,
+                errorDescription: "Heating produces strange sounds",
+                errorCauses: [{
+                    id: 0,
+                    causeDescription: "Kabelbaum missing",
+                    errorOccurrences: 3,
+                    errorPrediction: 0.3
+                }]
+            }]
+        },{
+            id: 400,
+            productId: 0,
+            state: "UNDEFINED",
+            stateDescription: "No status information yet.",
+            codingPlugId: 10,
+            codingPlugSoftwareVersions: [4.0, 4.1],
             numberOfEvents: 234,
             statusUpdateQueries: {
                 RUNNING: "ESPER-QUERY",
@@ -67,7 +147,7 @@ class ServerMock {
                 productionStart: "2016-05-07",
                 orderNumber: "9830510416",
                 state: "RUNNING",
-                stateDescription: "No errors or warnings detected",
+                stateDescription: "No errors or warnings in configurations",
                 statusUpdateQueries: {
                     RUNNING: "ESPER-QUERY",
                     WARNING: "ESPER-QUERY",
@@ -102,8 +182,8 @@ class ServerMock {
                 numberOfEvents: 741,
                 productionStart: "2016-04-06",
                 orderNumber: "7716013254",
-                state: "RUNNING",
-                stateDescription: "No errors or warnings detected",
+                state: "WARNING",
+                stateDescription: "Few errors or warnings in configurations",
                 statusUpdateQueries: {
                     RUNNING: "ESPER-QUERY",
                     WARNING: "ESPER-QUERY",
@@ -129,7 +209,7 @@ class ServerMock {
                 productionStart: "2016-01-01",
                 orderNumber: "7710473416",
                 state: "WARNING",
-                stateDescription: "Warning detected!",
+                stateDescription: "Warning detected in configuration",
                 statusUpdateQueries: {
                     RUNNING: "ESPER-QUERY",
                     WARNING: "ESPER-QUERY",
@@ -165,7 +245,7 @@ class ServerMock {
                 productionStart: "2016-02-06",
                 orderNumber: "48958959",
                 state: "WARNING",
-                stateDescription: "Sensor defect!",
+                stateDescription: "Sensor defect in configuration",
                 statusUpdateQueries: {
                     RUNNING: "ESPER-QUERY",
                     WARNING: "ESPER-QUERY",
@@ -196,7 +276,7 @@ class ServerMock {
                 productionStart: "2016-04-06",
                 orderNumber: "7716013254",
                 state: "RUNNING",
-                stateDescription: "No errors or warnings detected",
+                stateDescription: "No errors or warnings in configurations detected",
                 statusUpdateQueries: {
                     RUNNING: "ESPER-QUERY",
                     WARNING: "ESPER-QUERY",
@@ -227,7 +307,7 @@ class ServerMock {
                 productionStart: "2016-02-01",
                 orderNumber: "7710473416",
                 state: "ERROR",
-                stateDescription: "Controller defect!",
+                stateDescription: "Controller defect in configuration",
                 statusUpdateQueries: {
                     RUNNING: "ESPER-QUERY",
                     WARNING: "ESPER-QUERY",
@@ -253,14 +333,14 @@ class ServerMock {
             }]}
         ];
     }
-    
+
     deleteEventType(event) {
         const searchIndex = this.eventTypes.indexOf(event);
         if(searchIndex > -1) {
             this.eventTypes.splice(searchIndex, 1);
         }
     }
-    
+
     static getEventTypes() {
         return [{
             id:     0,
@@ -363,6 +443,7 @@ class ServerMock {
     }
 
     send() {
+        console.log(this.api);
         if(this.api.indexOf("eventtypes/delete") > -1) {
             const splitResults = this.api.split("/");
             const eventTypeId = parseInt(splitResults[splitResults.length-1]);
@@ -384,6 +465,10 @@ class ServerMock {
             this.responseText = JSON.stringify(this.eventTypes);
         } else if(this.api.indexOf("events") > -1) {
             this.responseText = JSON.stringify(this.events);
+        } else if(this.api.indexOf("productconfigurations") > -1) {
+            this.responseText = JSON.stringify(this.productConfigurations.find((configuration) => {
+                return (configuration.id == this.api.split("/").pop());
+            }));
         } else {
             this.responseText = JSON.stringify("");
         }
