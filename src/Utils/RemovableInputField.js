@@ -9,6 +9,19 @@ class RemovableInputField extends Component {
 
     handleInput(event) {
         this.props.onInputChange(this.props.id, event.target.value);
+        this.handleRemove = this.handleRemove.bind(this);
+    }
+
+    handleRemove(event) {
+        this.props.onInputChange(this.props.id, '');
+    }
+
+    addRemoveButton() {
+        if (this.props.showRemove){
+            return <button className="input-group-addon" id="remove-addon" onClick={this.handleRemove}>
+                <i className="fa fa-times" />
+            </button>;
+        }
     }
 
     render() {
@@ -21,6 +34,7 @@ class RemovableInputField extends Component {
                        className="form-control"
                        placeholder={this.props.placeholder}
                        value={this.props.filterText} onChange={this.handleInput}/>
+                {this.addRemoveButton()}
             </div>
         );
     }
