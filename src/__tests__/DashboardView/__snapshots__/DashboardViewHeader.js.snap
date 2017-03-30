@@ -107,12 +107,16 @@ exports[`test Render DashboardView Header 1`] = `
                                     Query
                                   </th>
                                   <th
-                                    className="center" />
+                                    className="center">
+                                    Delete?
+                                  </th>
                                 </tr>
                               </thead>
                               <tbody />
                             </table>
-                            <p />
+                            <p>
+                              To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
+                            </p>
                           </div>
                         </div>
                       </div>
