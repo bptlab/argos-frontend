@@ -62,7 +62,6 @@ class ProductView extends Component {
     }
 
     fetchProduct() {
-        console.log(this.prodId);
         this.props.dataSource.fetchProduct(this.prodId, this.handleProductData, this.handleError);
     }
 
@@ -71,21 +70,17 @@ class ProductView extends Component {
     }
 
     fetchEventTypes() {
-        if(this.showAllConfigurations) {
-            this.props.dataSource.fetchEventTypesOf(this.prodId, this.handleEventTypeData, this.handleError);
-        }
-        else {
-            this.props.dataSource.fetchEventTypesOf(this.configurationId, this.handleEventTypeData, this.handleError);
-        }
+        this.props.dataSource.fetchEventTypesOf(this.getInstanceId(), this.handleEventTypeData, this.handleError, this.isProductRequested());
     }
 
     fetchEventsFor(eventType = this.state.activeEventType) {
         if(eventType) {
             this.props.dataSource.fetchEventsOf(
-                this.prodId,
+                this.getInstanceId(),
                 eventType.id,
                 this.handleEventData,
-                this.handleError
+                this.handleError,
+                this.isProductRequested()
             );
         }
     }
@@ -101,13 +96,24 @@ class ProductView extends Component {
         this.setState({
             configuration: configuration
         });
-        // this.fetchEventTypes();
+        this.fetchEventTypes();
     }
 
     handleError(errorCode) {
         this.setState({
             error: errorCode
         });
+    }
+
+    isProductRequested() {
+        return this.showAllConfigurations;
+    }
+
+    getInstanceId() {
+        if(this.showAllConfigurations) {
+            return this.prodId;
+        }
+        return this.configurationId;
     }
 
     onInputChange(currentFilterId, value) {

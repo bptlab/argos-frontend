@@ -24,6 +24,10 @@ class DataReceiver extends RemoteHandler {
         return "api/products/{0}/eventtypes";
     }
 
+    static getAPIRouteForEventTypesOfConfiguration() {
+        return "api/productconfigurations/{0}/eventtypes";
+    }
+
     static getAPIRouteForEveentsOfProduct() {
         return "api/products/{0}/events/{1}/{2}/{3}";
     }
@@ -32,6 +36,11 @@ class DataReceiver extends RemoteHandler {
         return "api/eventtypes";
     }
     
+
+    static getAPIRouteForEveentsOfConfiguration() {
+        return "api/productconfigurations/{0}/events/{1}/{2}/{3}";
+    }
+
     fetchProductFamilies(successCallback, errorCallback) {
         const APIRoute = DataReceiver.getAPIRouteForProductFamilies();
         const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
@@ -72,8 +81,14 @@ class DataReceiver extends RemoteHandler {
         this.client.addRequest(URI, this.requestMethod, callbackContainer);
     }
 
-    fetchEventTypesOf(productId, successCallback, errorCallback) {
-        const APIRoute = DataReceiver.getAPIRouteForEventTypesOfProduct().format(productId);
+    fetchEventTypesOf(productId, successCallback, errorCallback, forProduct=true) {
+        var APIRoute = "";
+        if(forProduct) {
+            APIRoute = DataReceiver.getAPIRouteForEventTypesOfProduct().format(productId);
+        }
+        else {
+            APIRoute = DataReceiver.getAPIRouteForEventTypesOfConfiguration().format(productId);
+        }
         const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
         const callbackContainer = {
             "dataMappingFunction":    this.dataMapper.mapEventTypes,
@@ -94,8 +109,15 @@ class DataReceiver extends RemoteHandler {
         this.client.addRequest(URI, this.requestMethod, callbackContainer);
     }
     
-    fetchEventsOf(productId, eventTypeId, successCallback, errorCallback, indexFrom=0, indexTo=9999999) {
-        const APIRoute = DataReceiver.getAPIRouteForEveentsOfProduct().format(productId, eventTypeId, indexFrom, indexTo);
+
+    fetchEventsOf(productId, eventTypeId, successCallback, errorCallback, forProduct=true, indexFrom=0, indexTo=9999999) {
+        var APIRoute = "";
+        if(forProduct) {
+            APIRoute = DataReceiver.getAPIRouteForEveentsOfProduct().format(productId, eventTypeId, indexFrom, indexTo);
+        }
+        else {
+            APIRoute = DataReceiver.getAPIRouteForEveentsOfConfiguration().format(productId, eventTypeId, indexFrom, indexTo);
+        }
         const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
         const callbackContainer = {
             "dataMappingFunction":    this.dataMapper.mapEvents,
