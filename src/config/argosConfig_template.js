@@ -36,4 +36,5 @@ export const argosConfig = {
     runningStateTransparentColor:   'rgba(159, 171, 97, 0.4)',
     warningStateTransparentColor:   'rgba(239, 157, 110, 0.4)',
     errorStateTransparentColor:     'rgba(211, 63, 73, 0.4)',
+    eventQueryInterfaceTooltip:     'Yohoho',
 };
