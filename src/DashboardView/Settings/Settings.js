@@ -25,7 +25,7 @@ class Settings extends Component {
     }
     
     componentDidMount() {
-        $('#settings-modal').on('hidden.bs.modal', function (event) {
+        $('#settings-modal').on('hidden.bs.modal', function () {
             /* istanbul ignore next */
             this.setState({settingsVisible: false});
         }.bind(this));
