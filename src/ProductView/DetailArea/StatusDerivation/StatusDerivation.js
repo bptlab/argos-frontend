@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class StatusDerivation extends Component {
     render() {
         return (
-            <div>
+            <div className="status-derivation">
                 <h2 className="area-title">Statusherleitung</h2>
                 <div className="row">
                     <p className="col-4">Status:</p>
