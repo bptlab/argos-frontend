@@ -21,8 +21,14 @@ class EventTable extends Component {
             return this.doesContain(eventPropertyKey.name, currentFilter.column);
           });
         }
+
         return columnsToBeSearched.some((eventPropertyKey) => {
-            return this.doesContain(currentEvent[eventPropertyKey.name], currentFilter.value);
+            const splittedFilterValues = currentFilter.value.split(",");
+            for (var i = 0; i < splittedFilterValues.length; i++) {
+                if (this.doesContain(currentEvent[eventPropertyKey.name], splittedFilterValues[i].trim())) {
+                    return true;
+                }
+            }
         });
     }
 
