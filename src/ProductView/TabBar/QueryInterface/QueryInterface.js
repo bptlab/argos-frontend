@@ -28,8 +28,10 @@ class QueryInterface extends Component {
                 }
             ],
             eventQuery: '',
-            validationResult: '',
             errorMessage: '',
+            validationClasses: '',
+            modalLoading: false,
+            modalIsAbleToSave: false
         };
         this.nextAttributeId = 3;
         this.handleChangeEventTypeName = this.handleChangeEventTypeName.bind(this);
@@ -83,7 +85,8 @@ class QueryInterface extends Component {
     }
 
     handleChangeEventTypeName(name) {
-        this.setState({ eventTypeName: name });
+        const modalIsAbleToSave = this.isModalAbleToSave(name, this.state.eventQuery);
+        this.setState({ eventTypeName: name, modalIsAbleToSave: modalIsAbleToSave });
     }
 
     handleChangeAttributeName(id, name) {
@@ -118,10 +121,18 @@ class QueryInterface extends Component {
     }
 
     handleChangeQuery(event) {
-        this.setState({ eventQuery: event.target.value });
+        const queryValue = event.target.value;
+        const modalIsAbleToSave = this.isModalAbleToSave(this.state.eventTypeName, queryValue);
+        this.setState({ eventQuery: queryValue, modalIsAbleToSave: modalIsAbleToSave });
+        this.eventQueryFormValidation(queryValue);
+    }
+
+    isModalAbleToSave(eventTypeName, eventQuery) {
+        return eventTypeName && eventQuery;
     }
 
     handleSaveQuery() {
+        this.setState({ modalLoading: true });
         const eventType = this.buildJSONSerializableDataContainer();
         this.props.dataSender.createEventtype(
             this.state.eventQuery,
@@ -132,12 +143,21 @@ class QueryInterface extends Component {
     }
     /* istanbul ignore next */
     handleSaveQuerySuccess() {
-        /* istanbul ignore next */
         $('#query-interface-modal').modal('hide');
+        this.setState({ modalLoading: false });
     }
 
     handleSaveQueryError(error) {
-        this.setState({ errorMessage: error });
+        this.setState({ errorMessage: error, modalLoading: false });
+    }
+
+    eventQueryFormValidation (queryName) {
+        if (!queryName) {
+            this.setState({ validationClasses: 'has-danger' });
+        }
+        else {
+            this.setState({ validationClasses: '' });
+        }
     }
 
     render() {
@@ -146,7 +166,12 @@ class QueryInterface extends Component {
                 <a className="nav-link" data-toggle="modal" data-target="#query-interface-modal">
                     <i className="fa fa-plus"/>
                 </a>
-                <Modal title="Query Interface" onSubmit={this.handleSaveQuery} id="query-interface" buttonText="Save">
+                <Modal title="Query Interface"
+                       onSubmit={this.handleSaveQuery}
+                       id="query-interface"
+                       buttonText="Save"
+                       loading={this.state.modalLoading}
+                       isAbleToSave={this.state.modalIsAbleToSave}>
                     {this.state.errorMessage && <div className="alert alert-danger" role="alert">
                         {this.state.errorMessage}
                     </div>}
@@ -155,12 +180,13 @@ class QueryInterface extends Component {
                                                  eventTypeAttributes={this.state.eventTypeAttributes}
                                                  onChangeAttributeName={this.handleChangeAttributeName}
                                                  onChangeAttributeType={this.handleChangeAttributeType} />
-                    <div className="form-group">
+                    <div className={`form-group ` + this.state.validationClasses}>
                         <label htmlFor="event-query" className="form-control-label">Event Query</label>
                         <textarea type="text" className="form-control"
                                   id="event-query" rows="8"
                                   value={this.state.eventQuery}
                                   onChange={this.handleChangeQuery}/>
+                        {this.state.validationClasses && <div className="form-control-feedback">This field can't be empty.</div>}
                     </div>
                 </Modal>
             </div>
