@@ -42,8 +42,8 @@ class LineChart extends Component {
                 this.borderColor = argosConfig.errorStateColor;
                 break;
             default:
-                this.backgroundColor = argosConfig.runningStateTransparentColor;
-                this.borderColor = argosConfig.runningStateColor;
+                this.backgroundColor = argosConfig.undefinedStateTransparentColor;
+                this.borderColor = argosConfig.undefinedStateColor;
         }
     }
     
