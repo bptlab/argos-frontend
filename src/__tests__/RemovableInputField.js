@@ -9,7 +9,7 @@ test("Rendering of RemovableInputField with button", () => {
         <RemovableInputField ref={(child) => {instance = child}}
                              id='0' value=''
                              onInputChange={callbackMock}
-                             showRemove={true}/>
+                             displayRemoveButton={true}/>
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
@@ -21,7 +21,7 @@ test('Handling ProductView Filter input', () => {
         <RemovableInputField ref={(child) => {instance = child}}
                              id='0' value=''
                              onInputChange={callbackMock}
-                             showRemove={false}/>
+                             displayRemoveButton={false}/>
     );
     const event = {target: {}};
     instance.handleInput(event);

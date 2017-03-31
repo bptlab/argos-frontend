@@ -12,15 +12,19 @@ class RemovableInputField extends Component {
         this.props.onInputChange(this.props.id, event.target.value);
     }
 
-    handleRemove(event) {
+    handleRemove() {
         this.props.onInputChange(this.props.id, '');
     }
 
     addRemoveButton() {
-        if (this.props.showRemove){
-            return <button className="input-group-addon" id="remove-addon" onClick={this.handleRemove}>
-                <i className="fa fa-times" />
-            </button>;
+        if (this.props.displayRemoveButton){
+            return (
+                <button className="input-group-addon"
+                        id="remove-addon"
+                        onClick={this.handleRemove}>
+                    <i className="fa fa-times" />
+                </button>
+            );
         }
     }
 
