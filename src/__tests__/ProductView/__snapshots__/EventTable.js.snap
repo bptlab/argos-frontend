@@ -1,6 +1,6 @@
 exports[`test Rendering of EventTable 1`] = `
 <div
-  className="container event-table-container">
+  className="event-table-container">
   <table
     className="table">
     <thead

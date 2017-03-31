@@ -57,7 +57,8 @@ exports[`test Correct drawing of DashboardView 1`] = `
                         className="close"
                         data-dismiss="modal"
                         type="button">
-                        <span>
+                        <span
+                          id="close">
                           ×
                         </span>
                       </button>
