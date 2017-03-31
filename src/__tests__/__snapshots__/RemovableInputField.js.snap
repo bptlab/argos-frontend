@@ -1,0 +1,24 @@
+exports[`test Rendering of RemovableInputField with button 1`] = `
+<div
+  className="input-field input-group col-xs-12 col-sm-4 col-lg-3">
+  <span
+    className="input-group-addon"
+    id="search-addon">
+    <i
+      className="fa fa-search" />
+  </span>
+  <input
+    className="form-control"
+    onChange={[Function]}
+    placeholder={undefined}
+    type="text"
+    value={undefined} />
+  <button
+    className="input-group-addon"
+    id="remove-addon"
+    onClick={[Function]}>
+    <i
+      className="fa fa-times" />
+  </button>
+</div>
+`;
