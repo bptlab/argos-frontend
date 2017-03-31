@@ -7,7 +7,7 @@ class ConfigurationHeader extends Component {
         this.selectedSoftwareVersionChanged = this.selectedSoftwareVersionChanged.bind(this);
         this.toggleShowAll = this.toggleShowAll.bind(this);
         this.buildCodingPlugAndSoftwareVersionToIdMapping();
-        let initialCodingPlugVersion = Object.keys(this.cpSwToIdMapping)[0];
+        const initialCodingPlugVersion = Object.keys(this.cpSwToIdMapping)[0];
         this.state = {selectedCodingPlug: initialCodingPlugVersion,
                         selectedSoftwareVersion: Object.keys(this.cpSwToIdMapping[initialCodingPlugVersion])[0],
                         showAll: true};
@@ -15,11 +15,11 @@ class ConfigurationHeader extends Component {
 
     buildCodingPlugAndSoftwareVersionToIdMapping() {
         this.cpSwToIdMapping = {};
-        for (let configuration of this.props.configurations) {
+        for (const configuration of this.props.configurations) {
             if(!this.cpSwToIdMapping[configuration.codingPlugId]) {
                 this.cpSwToIdMapping[configuration.codingPlugId] = {};
             }
-            for (let softwareVersion of configuration.codingPlugSoftwareVersions) {
+            for (const softwareVersion of configuration.codingPlugSoftwareVersions) {
                 this.cpSwToIdMapping[configuration.codingPlugId][softwareVersion] = configuration.id;
             }
         }
@@ -30,8 +30,8 @@ class ConfigurationHeader extends Component {
     }
 
     selectedCodingPlugChanged(event) {
-        let newCodingPlug = event.target.value;
-        let newSoftwareVersion = Object.keys(this.cpSwToIdMapping[newCodingPlug])[0];
+        const newCodingPlug = event.target.value;
+        const newSoftwareVersion = Object.keys(this.cpSwToIdMapping[newCodingPlug])[0];
         this.setState({selectedCodingPlug: newCodingPlug,
             selectedSoftwareVersion: newSoftwareVersion});
         this.updateProductConfiguration(newCodingPlug, newSoftwareVersion);

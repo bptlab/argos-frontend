@@ -31,11 +31,11 @@ class DataReceiver extends RemoteHandler {
     static getAPIRouteForEveentsOfProduct() {
         return "api/products/{0}/events/{1}/{2}/{3}";
     }
-    
+
     static getAPIRouteForAllEventTypes() {
         return "api/eventtypes";
     }
-    
+
 
     static getAPIRouteForEveentsOfConfiguration() {
         return "api/productconfigurations/{0}/events/{1}/{2}/{3}";
@@ -82,11 +82,8 @@ class DataReceiver extends RemoteHandler {
     }
 
     fetchEventTypesOf(productId, successCallback, errorCallback, forProduct=true) {
-        var APIRoute = "";
-        if(forProduct) {
-            APIRoute = DataReceiver.getAPIRouteForEventTypesOfProduct().format(productId);
-        }
-        else {
+        var APIRoute = APIRoute = DataReceiver.getAPIRouteForEventTypesOfProduct().format(productId);
+        if(!forProduct) {
             APIRoute = DataReceiver.getAPIRouteForEventTypesOfConfiguration().format(productId);
         }
         const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
@@ -97,7 +94,7 @@ class DataReceiver extends RemoteHandler {
         };
         this.client.addRequest(URI, this.requestMethod, callbackContainer);
     }
-    
+
     fetchAllEventTypes(successCallback, errorCallback) {
         const APIRoute = DataReceiver.getAPIRouteForAllEventTypes();
         const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
@@ -108,14 +105,11 @@ class DataReceiver extends RemoteHandler {
         };
         this.client.addRequest(URI, this.requestMethod, callbackContainer);
     }
-    
+
 
     fetchEventsOf(productId, eventTypeId, successCallback, errorCallback, forProduct=true, indexFrom=0, indexTo=9999999) {
-        var APIRoute = "";
-        if(forProduct) {
-            APIRoute = DataReceiver.getAPIRouteForEveentsOfProduct().format(productId, eventTypeId, indexFrom, indexTo);
-        }
-        else {
+        var APIRoute = DataReceiver.getAPIRouteForEveentsOfProduct().format(productId, eventTypeId, indexFrom, indexTo);
+        if(!forProduct) {
             APIRoute = DataReceiver.getAPIRouteForEveentsOfConfiguration().format(productId, eventTypeId, indexFrom, indexTo);
         }
         const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);

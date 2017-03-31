@@ -50,7 +50,7 @@ class ProductView extends Component {
             eventTypes: eventTypes,
             loading: false
         });
-        if(eventTypes.length == 0) {
+        if(eventTypes.length === 0) {
             this.handleEventData([]);
             this.setState({
                 activeEventType: {attributes: []}

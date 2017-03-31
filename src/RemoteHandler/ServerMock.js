@@ -443,7 +443,6 @@ class ServerMock {
     }
 
     send() {
-        console.log(this.api);
         if(this.api.indexOf("eventtypes/delete") > -1) {
             const splitResults = this.api.split("/");
             const eventTypeId = parseInt(splitResults[splitResults.length-1]);
@@ -467,7 +466,7 @@ class ServerMock {
             this.responseText = JSON.stringify(this.events);
         } else if(this.api.indexOf("productconfigurations") > -1) {
             this.responseText = JSON.stringify(this.productConfigurations.find((configuration) => {
-                return (configuration.id == this.api.split("/").pop());
+                return (configuration.id.toString() === this.api.split("/").pop());
             }));
         } else {
             this.responseText = JSON.stringify("");
