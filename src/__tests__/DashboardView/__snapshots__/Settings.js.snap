@@ -83,12 +83,16 @@ exports[`test Correct rendering of Settings 1`] = `
                             Query
                           </th>
                           <th
-                            className="center" />
+                            className="center">
+                            Delete?
+                          </th>
                         </tr>
                       </thead>
                       <tbody />
                     </table>
-                    <p />
+                    <p>
+                      To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -195,12 +199,16 @@ exports[`test Correct rendering of Settings after modal has been closed 1`] = `
                             Query
                           </th>
                           <th
-                            className="center" />
+                            className="center">
+                            Delete?
+                          </th>
                         </tr>
                       </thead>
                       <tbody />
                     </table>
-                    <p />
+                    <p>
+                      To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -307,12 +315,16 @@ exports[`test Correct rendering of Settings after modal has been opened 1`] = `
                             Query
                           </th>
                           <th
-                            className="center" />
+                            className="center">
+                            Delete?
+                          </th>
                         </tr>
                       </thead>
                       <tbody />
                     </table>
-                    <p />
+                    <p>
+                      To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
+                    </p>
                   </div>
                 </div>
               </div>
