@@ -44,7 +44,7 @@ class DataMapper {
             "productId":            apiConfiguration.productId,
             "numberOfEvents":       apiConfiguration.numberOfEvents,
             "codingPlugId":         apiConfiguration.codingPlugId,
-            "codingPlugSoftwareVersion": apiConfiguration.codingPlugSoftwareVersion,
+            "codingPlugSoftwareVersions": apiConfiguration.codingPlugSoftwareVersions,
             "state":                apiConfiguration.state,
             "stateDescription":     apiConfiguration.stateDescription,
             "errorTypes":           apiConfiguration.errorTypes,

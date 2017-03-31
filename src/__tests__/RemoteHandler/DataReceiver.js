@@ -2,6 +2,7 @@ import React from 'react';
 import ProductFetcher from '../../RemoteHandler/DataReceiver.js';
 import ServerMock from '../../RemoteHandler/ServerMock.js'
 import frontend_ProductFamilies from '../testData/frontend_productFamilies.js'
+import frontend_configurations from '../testData/frontend_configurations.js'
 import frontend_eventTypes from '../testData/frontend_eventTypes.js'
 import frontend_events from '../testData/frontend_events.js'
 
@@ -62,6 +63,14 @@ test('Fetch Events of specific Product', () => {
     const errorMockCallback = jest.fn();
     instance.fetchEventsOf(0, 0, successMockCallback, errorMockCallback);
     const expectedData = frontend_events.EVENTS;
+    expect(successMockCallback).toBeCalledWith(expectedData);
+});
+
+test('Fetch Configuration', () => {
+    const successMockCallback = jest.fn();
+    const errorMockCallback = jest.fn();
+    instance.fetchConfiguration(100, successMockCallback, errorMockCallback);
+    const expectedData = frontend_configurations.CONFIGURATIONS[0];
     expect(successMockCallback).toBeCalledWith(expectedData);
 });
 

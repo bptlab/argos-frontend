@@ -12,12 +12,7 @@ const productFamilies = [{
         productionStart: "2016-05-07",
         orderNumber: "9830510416",
         state: "RUNNING",
-        stateDescription: "No errors or warnings detected",
-        statusUpdateQueries: {
-            ERROR: "ESPER-QUERY",
-            WARNING: "ESPER-QUERY",
-            RUNNING: "ESPER-QUERY"
-        },
+        stateDescription: "No errors or warnings in configurations",
         configurations: [
             {
                 id: 100,
@@ -49,13 +44,8 @@ const productFamilies = [{
         numberOfEvents: 741,
         productionStart: "2016-04-06",
         orderNumber: "7716013254",
-        state: "RUNNING",
-        stateDescription: "No errors or warnings detected",
-        statusUpdateQueries: {
-            ERROR: "ESPER-QUERY",
-            WARNING: "ESPER-QUERY",
-            RUNNING: "ESPER-QUERY"
-        },
+        state: "WARNING",
+        stateDescription: "Few errors or warnings in configurations",
         configurations: [
             {
                 id: 100,
@@ -78,12 +68,7 @@ const productFamilies = [{
         productionStart: "2016-01-01",
         orderNumber: "7710473416",
         state: "WARNING",
-        stateDescription: "Warning detected!",
-        statusUpdateQueries: {
-            ERROR: "ESPER-QUERY",
-            WARNING: "ESPER-QUERY",
-            RUNNING: "ESPER-QUERY"
-        },
+        stateDescription: "Warning detected in configuration",
         configurations: [
             {
                 id: 100,
@@ -116,12 +101,7 @@ const productFamilies = [{
         productionStart: "2016-02-06",
         orderNumber: "48958959",
         state: "WARNING",
-        stateDescription: "Sensor defect!",
-        statusUpdateQueries: {
-            ERROR: "ESPER-QUERY",
-            WARNING: "ESPER-QUERY",
-            RUNNING: "ESPER-QUERY"
-        },
+        stateDescription: "Sensor defect in configuration",
         configurations: [
             {
                 id: 100,
@@ -149,12 +129,7 @@ const productFamilies = [{
         productionStart: "2016-04-06",
         orderNumber: "7716013254",
         state: "RUNNING",
-        stateDescription: "No errors or warnings detected",
-        statusUpdateQueries: {
-            ERROR: "ESPER-QUERY",
-            WARNING: "ESPER-QUERY",
-            RUNNING: "ESPER-QUERY"
-        },
+        stateDescription: "No errors or warnings in configurations detected",
         configurations: [
             {
                 id: 100,
@@ -182,12 +157,7 @@ const productFamilies = [{
         productionStart: "2016-02-01",
         orderNumber: "7710473416",
         state: "ERROR",
-        stateDescription: "Controller defect!",
-        statusUpdateQueries: {
-            ERROR: "ESPER-QUERY",
-            WARNING: "ESPER-QUERY",
-            RUNNING: "ESPER-QUERY"
-        },
+        stateDescription: "Controller defect in configuration",
         configurations: [
             {
                 id: 100,

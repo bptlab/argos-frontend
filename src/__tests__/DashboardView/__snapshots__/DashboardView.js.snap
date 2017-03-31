@@ -110,16 +110,12 @@ exports[`test Correct drawing of DashboardView 1`] = `
                                         Query
                                       </th>
                                       <th
-                                        className="center">
-                                        Delete?
-                                      </th>
+                                        className="center" />
                                     </tr>
                                   </thead>
                                   <tbody />
                                 </table>
-                                <p>
-                                  To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
-                                </p>
+                                <p />
                               </div>
                             </div>
                           </div>
