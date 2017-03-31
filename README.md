@@ -55,7 +55,7 @@ Constructor methods should be structured in this way:
 ## Testing
 Argos frontend uses ReactTestUtils and Jest to test its components. You can run tests by calling ```npm test``` in your cli. 
 
-## Deployment
+## Deployment 
 ### Deploy a database.
 ```
 docker run --name argos-database -e MYSQL_ROOT_PASSWORD=[secret] -e MYSQL_USER=[user] -e MYSQL_PASSWORD=[password] -d mysql:latest
