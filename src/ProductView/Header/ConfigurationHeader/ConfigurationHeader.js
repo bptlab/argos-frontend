@@ -46,9 +46,11 @@ class ConfigurationHeader extends Component {
     }
 
     toggleShowAll(event) {
-        this.setState({showAll: event.target.checked});
+        this.setState({
+            showAll: event.target.checked
+        });
         if(event.target.checked) {
-            this.props.setProductConfiguration(null);
+            this.props.onChangeProductConfiguration(null);
         }
         else {
             this.onChangeProductConfiguration(this.state.selectedCodingPlug, this.state.selectedSoftwareVersion);

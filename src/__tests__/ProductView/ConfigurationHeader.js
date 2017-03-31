@@ -37,3 +37,15 @@ test("Changing configuration selection", () => {
     expect(instance.state.selectedSoftwareVersion).toEqual(secondTestConfiguration.codingPlugSoftwareVersions[1].toString());
     expect(onChangeProductConfiguration).toBeCalled();
 });
+
+test("Toggle between all and configuration selection", () => {
+    let event = {target: {checked: true}};
+    instance.toggleShowAll(event);
+    expect(instance.state.showAll).toBeTruthy();
+    expect(onChangeProductConfiguration).toBeCalledWith(null);
+
+    event = {target: {checked: false}};
+    instance.toggleShowAll(event);
+    expect(instance.state.showAll).toBeFalsy();
+    expect(onChangeProductConfiguration).toBeCalled();
+});

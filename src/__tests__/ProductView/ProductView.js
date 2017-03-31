@@ -69,8 +69,22 @@ test("Show configuration", () => {
     instance.handleChangeProductConfiguration(TestProduct.PRODUCT.configurations[0].id);
     expect(instance.state.showAllConfigurations).toBeFalsy();
     expect(instance.configurationId).toEqual(TestProduct.PRODUCT.configurations[0].id);
-
+    expect(instance.getInstanceId()).toEqual(TestProduct.PRODUCT.configurations[0].id);
     expect(fetchConfigurationMockCallback).toHaveBeenCalled();
+    instance.handleConfigurationData(TestConfigurations.CONFIGURATIONS[0]);
+    expect(fetchEventTypesOfMockCallback).toBeCalled();
+});
+
+test("Show product", () => {
+    instance.handleChangeProductConfiguration(null);
+    expect(instance.state.showAllConfigurations).toBeTruthy();
+    expect(fetchProductMockCallback).toHaveBeenCalled();
+});
+
+test("Handle no eventTypes", () => {
+    instance.handleEventTypeData([]);
+    expect(instance.state.activeEventType).toEqual({attributes: []});
+    expect(instance.state.activeEvents).toEqual([]);
 });
 
 test('Successful filtering', () => {

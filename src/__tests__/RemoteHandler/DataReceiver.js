@@ -50,6 +50,14 @@ test('Fetch EventTypes of specific Product', () => {
     expect(successMockCallback).toBeCalledWith(expectedData);
 });
 
+test('Fetch EventTypes of specific configuration', () => {
+    const successMockCallback = jest.fn();
+    const errorMockCallback = jest.fn();
+    instance.fetchEventTypesOf(100, successMockCallback, errorMockCallback, false);
+    const expectedData = frontend_eventTypes.EVENTTYPES;
+    expect(successMockCallback).toBeCalledWith(expectedData);
+});
+
 test('Fetch all EventTypes', () => {
     const successMockCallback = jest.fn();
     const errorMockCallback = jest.fn();
@@ -62,6 +70,14 @@ test('Fetch Events of specific Product', () => {
     const successMockCallback = jest.fn();
     const errorMockCallback = jest.fn();
     instance.fetchEventsOf(0, 0, successMockCallback, errorMockCallback);
+    const expectedData = frontend_events.EVENTS;
+    expect(successMockCallback).toBeCalledWith(expectedData);
+});
+
+test('Fetch Events of specific configuration', () => {
+    const successMockCallback = jest.fn();
+    const errorMockCallback = jest.fn();
+    instance.fetchEventsOf(100, 0, successMockCallback, errorMockCallback, false);
     const expectedData = frontend_events.EVENTS;
     expect(successMockCallback).toBeCalledWith(expectedData);
 });
