@@ -15,69 +15,98 @@ class ProductView extends Component {
             filter: [{id: '0', value: '', column: null}],
             lastFilterId: 0,
             product: null,
+            configuration: null,
             eventTypes: null,
             error: null,
             activeEventType: {attributes: []},
-            activeEvents: []
+            activeEvents: [],
+            showAllConfigurations: true,
+            loading: true
         };
         this.nextAttributeId = 1;
         //Function binding
         this.onInputChange = this.onInputChange.bind(this);
         this.handleProductData = this.handleProductData.bind(this);
+        this.handleConfigurationData = this.handleConfigurationData.bind(this);
         this.handleEventData = this.handleEventData.bind(this);
         this.handleError = this.handleError.bind(this);
         this.handleEventTypeData = this.handleEventTypeData.bind(this);
-        this.fetchProducts = this.fetchProducts.bind(this);
+        this.fetchProduct = this.fetchProduct.bind(this);
+        this.fetchConfiguration = this.fetchConfiguration.bind(this);
         this.fetchEventTypes = this.fetchEventTypes.bind(this);
         this.fetchEventsFor = this.fetchEventsFor.bind(this);
         this.setActiveEventType = this.setActiveEventType.bind(this);
+        this.handleChangeProductConfiguration = this.handleChangeProductConfiguration.bind(this);
     }
 
     handleEventData(events) {
-        this.setState({activeEvents: events});
+        this.setState({
+            activeEvents: events
+        });
     }
 
     handleEventTypeData(eventTypes) {
         this.setState({
-            eventTypes: eventTypes
+            eventTypes: eventTypes,
+            loading: false
         });
+        if(eventTypes.length === 0) {
+            this.handleEventData([]);
+            this.setState({
+                activeEventType: {attributes: []}
+            });
+        }
     }
 
     componentDidMount() {
-        this.fetchProducts();
-        this.props.dataSource.notificationService.subscribe("Product", this.fetchProducts);
+        this.fetchProduct();
+        this.props.dataSource.notificationService.subscribe("Product", this.fetchProduct);
+        this.props.dataSource.notificationService.subscribe("Configuration", this.fetchConfiguration);
         this.props.dataSource.notificationService.subscribe("EventType", this.fetchEventTypes);
         this.props.dataSource.notificationService.subscribe("Event", this.fetchEventsFor);
     }
-    
 
     componentWillUnmount() {
-        this.props.dataSource.notificationService.unsubscribe("Product", this.fetchProducts);
+        this.props.dataSource.notificationService.unsubscribe("Product", this.fetchProduct);
+        this.props.dataSource.notificationService.unsubscribe("Configuration", this.fetchConfiguration);
         this.props.dataSource.notificationService.unsubscribe("EventType", this.fetchEventTypes);
+        this.props.dataSource.notificationService.unsubscribe("Event", this.fetchEventsFor);
     }
 
-    fetchProducts() {
+    fetchProduct() {
         this.props.dataSource.fetchProduct(this.prodId, this.handleProductData, this.handleError);
     }
-    
+
+    fetchConfiguration() {
+        this.props.dataSource.fetchConfiguration(this.configurationId, this.handleConfigurationData, this.handleError);
+    }
+
     fetchEventTypes() {
-        this.props.dataSource.fetchEventTypesOf(this.prodId, this.handleEventTypeData, this.handleError);
+        this.props.dataSource.fetchEventTypesOf(this.getInstanceId(), this.handleEventTypeData, this.handleError, this.isProductRequested());
     }
 
     fetchEventsFor(eventType = this.state.activeEventType) {
         if(eventType) {
             this.props.dataSource.fetchEventsOf(
-                this.prodId,
+                this.getInstanceId(),
                 eventType.id,
                 this.handleEventData,
-                this.handleError
+                this.handleError,
+                this.isProductRequested()
             );
         }
     }
 
-    handleProductData(products) {
+    handleProductData(product) {
         this.setState({
-            product: products
+            product: product
+        });
+        this.fetchEventTypes();
+    }
+
+    handleConfigurationData(configuration) {
+        this.setState({
+            configuration: configuration
         });
         this.fetchEventTypes();
     }
@@ -86,6 +115,17 @@ class ProductView extends Component {
         this.setState({
             error: errorCode
         });
+    }
+
+    isProductRequested() {
+        return this.state.showAllConfigurations;
+    }
+
+    getInstanceId() {
+        if(this.state.showAllConfigurations) {
+            return this.prodId;
+        }
+        return this.configurationId;
     }
 
     onInputChange(currentFilterId, value) {
@@ -121,12 +161,30 @@ class ProductView extends Component {
             this.setState({filter: updatedFilters});
         }
     }
-    
+
     setActiveEventType(eventType) {
         this.fetchEventsFor(eventType);
         this.setState({activeEventType: eventType});
     }
-    
+
+    handleChangeProductConfiguration(configurationId) {
+        this.setState({
+            loading: true
+        });
+        if(configurationId) {
+            this.setState({
+                showAllConfigurations: false
+            });
+            this.configurationId = configurationId;
+            this.fetchConfiguration();
+        }
+        else {
+            this.setState({
+                showAllConfigurations: true
+            });
+            this.fetchProduct();
+        }
+    }
 
     render() {
         let component = (<Loader/>);
@@ -138,25 +196,33 @@ class ProductView extends Component {
                 </div>
             );
         } else if(this.state.product && this.state.eventTypes) {
+            let pageContent = (<Loader/>);
+            if(!this.state.loading) {
+                pageContent = (
+                    <div>
+                        <LineChart
+                            events={this.state.activeEvents}
+                            eventType={this.state.activeEventType} />
+                        <FilterBar
+                            onInputChange={this.onInputChange}
+                            filter={this.state.filter} />
+                        <TabBar
+                            dataSender={this.props.dataSender}
+                            eventTypes={this.state.eventTypes}
+                            setActiveEventType={this.setActiveEventType}
+                            product={this.state.product} />
+                        <EventTable
+                            header={this.state.activeEventType.attributes}
+                            events={this.state.activeEvents}
+                            filter={this.state.filter} />
+                    </div>
+                );
+            }
             component = (
                 <div>
-                    <Header product={this.state.product}/>
-                    <DetailArea product={this.state.product}/>
-                    <LineChart 
-                        events={this.state.activeEvents}
-                        eventType={this.state.activeEventType} />
-                    <FilterBar
-                        onInputChange={this.onInputChange}
-                        filter={this.state.filter} />
-                    <TabBar
-                        dataSender={this.props.dataSender}
-                        eventTypes={this.state.eventTypes}
-                        setActiveEventType={this.setActiveEventType}
-                        product={this.state.product} />
-                    <EventTable
-                        header={this.state.activeEventType.attributes}
-                        events={this.state.activeEvents}
-                        filter={this.state.filter} />
+                    <Header product={this.state.product} configurations={this.state.product.configurations} onChangeProductConfiguration={this.handleChangeProductConfiguration}/>
+                    <DetailArea product={this.state.product} configuration={this.state.configuration} showAllConfigurations={this.state.showAllConfigurations}/>
+                    {pageContent}
                 </div>
             );
         }

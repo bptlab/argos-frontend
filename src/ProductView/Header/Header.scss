@@ -1,7 +1,8 @@
 @import "StatusPoint/StatusPoint";
+@import "ConfigurationHeader/ConfigurationHeader";
 
 header {
-	h1, p, a, a:hover {
+	h1, p, a, a:hover, .form-group {
 		color: $COLOR-font-light !important;
 	}
 	.home-button {
@@ -9,5 +10,32 @@ header {
 		@include media-breakpoint-up(uhd) {
 			font-size: 90px;
 		}
+	}
+	.form-group {
+	  margin: 0 10px 5px 10px;
+	}
+
+	select {
+	  background-color: inherit;
+	  color: $COLOR-font-light;
+	  border-style: none;
+	  width: auto;
+	  padding: 10px 10px;
+	}
+
+	select:disabled {
+		color: $COLOR-dark_background;
+	}
+
+	[type=checkbox] {
+		margin: 14px 10px 10px 10px;
+	}
+
+	option {
+	  background-color: $COLOR-dark_background;
+	}
+
+	label {
+	  margin-right: 5px;
 	}
 }

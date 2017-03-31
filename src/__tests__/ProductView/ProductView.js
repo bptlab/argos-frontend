@@ -2,17 +2,20 @@ import React from 'react';
 import ProductView from '../../ProductView/ProductView.js';
 import renderer from 'react-test-renderer';
 import TestProduct from './../testData/product.js'
+import TestConfigurations from './../testData/frontend_configurations.js'
 import TestEventTypes from '../testData/frontend_eventTypes.js'
 import TestEvents from '../testData/frontend_events.js'
 
 let instance, notificationService, component;
 
+const fetchProductMockCallback = jest.fn();
+const fetchConfigurationMockCallback = jest.fn();
+const fetchEventTypesOfMockCallback = jest.fn();
+const fetchEventsOfMockCallback = (prodId, eventTypeId, succCallback) => {
+    succCallback(TestEvents.EVENTS);
+};
+
 beforeEach(() => {
-    const fetchProductMockCallback = jest.fn();
-    const fetchEventTypesOfMockCallback = jest.fn();
-    const fetchEventsOfMockCallback = (prodId, eventTypeId, succCallback) => {
-        succCallback(TestEvents.EVENTS);
-    };
     notificationService = {
         subscribe: jest.fn(),
         unsubscribe: jest.fn()
@@ -22,22 +25,18 @@ beforeEach(() => {
             ref={(child) => {instance = child}}
             dataSource={{
                 fetchProduct: fetchProductMockCallback,
+                fetchConfiguration: fetchConfigurationMockCallback,
                 fetchEventTypesOf: fetchEventTypesOfMockCallback,
                 fetchEventsOf: fetchEventsOfMockCallback,
                 notificationService: notificationService
             }}
-            params={{productId: 0}}/>
+            params={{productId: TestProduct.PRODUCT.id}}/>
     );
     instance.handleProductData(TestProduct.PRODUCT);
     instance.handleEventTypeData(TestEventTypes.EVENTTYPES);
 });
 
 test("Rendering of ProductView", () => {
-    const fetchProductMockCallback = jest.fn();
-    const fetchEventTypesOfMockCallback = jest.fn();
-    const fetchEventsOfMockCallback = (prodId, eventTypeId, succCallback) => {
-        succCallback(TestEvents.EVENTS);
-    };
     notificationService = {
         subscribe: jest.fn(),
         unsubscribe: jest.fn()
@@ -47,22 +46,45 @@ test("Rendering of ProductView", () => {
             ref={(child) => {instance = child}}
             dataSource={{
                 fetchProduct: fetchProductMockCallback,
+                fetchConfiguration: fetchConfigurationMockCallback,
                 fetchEventTypesOf: fetchEventTypesOfMockCallback,
                 fetchEventsOf: fetchEventsOfMockCallback,
                 notificationService: notificationService
             }}
-            params={{productId: 0}}/>
+            params={{productId: TestProduct.PRODUCT.id}}/>
     );
     expect(fetchProductMockCallback).toBeCalled();
     instance.handleProductData(TestProduct.PRODUCT);
     expect(fetchEventTypesOfMockCallback).toBeCalled();
     instance.handleEventTypeData(TestEventTypes.EVENTTYPES);
-    
+
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 
-    //Two Tabs for two eventTypes and Event+Product on ProductView
-    expect(notificationService.subscribe).toHaveBeenCalledTimes(3);
+    //Two Tabs for two eventTypes and Event+Product+Configuration on ProductView
+    expect(notificationService.subscribe).toHaveBeenCalledTimes(4);
+});
+
+test("Show configuration", () => {
+    instance.handleChangeProductConfiguration(TestProduct.PRODUCT.configurations[0].id);
+    expect(instance.state.showAllConfigurations).toBeFalsy();
+    expect(instance.configurationId).toEqual(TestProduct.PRODUCT.configurations[0].id);
+    expect(instance.getInstanceId()).toEqual(TestProduct.PRODUCT.configurations[0].id);
+    expect(fetchConfigurationMockCallback).toHaveBeenCalled();
+    instance.handleConfigurationData(TestConfigurations.CONFIGURATIONS[0]);
+    expect(fetchEventTypesOfMockCallback).toBeCalled();
+});
+
+test("Show product", () => {
+    instance.handleChangeProductConfiguration(null);
+    expect(instance.state.showAllConfigurations).toBeTruthy();
+    expect(fetchProductMockCallback).toHaveBeenCalled();
+});
+
+test("Handle no eventTypes", () => {
+    instance.handleEventTypeData([]);
+    expect(instance.state.activeEventType).toEqual({attributes: []});
+    expect(instance.state.activeEvents).toEqual([]);
 });
 
 test('Successful filtering', () => {
@@ -135,5 +157,5 @@ test('Handle error response', () => {
 
 test('Unmounting component', () => {
     instance.componentWillUnmount();
-    expect(notificationService.unsubscribe).toHaveBeenCalledTimes(2);
+    expect(notificationService.unsubscribe).toHaveBeenCalledTimes(4);
 });
