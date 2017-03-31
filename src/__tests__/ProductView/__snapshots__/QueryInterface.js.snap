@@ -3,8 +3,11 @@ exports[`test Handling change query 1`] = `
   className="query-interface">
   <a
     className="nav-link"
+    data-placement="top"
     data-target="#query-interface-modal"
-    data-toggle="modal">
+    data-toggle="modal"
+    id="new-complex-eventtype"
+    title="Click to create new event type">
     <i
       className="fa fa-plus" />
   </a>
@@ -29,7 +32,8 @@ exports[`test Handling change query 1`] = `
             className="close"
             data-dismiss="modal"
             type="button">
-            <span>
+            <span
+              id="close">
               ×
             </span>
           </button>
@@ -56,7 +60,7 @@ exports[`test Handling change query 1`] = `
             <div
               className="query-interface-header-attribute form-group row">
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <input
                   className="form-control"
                   id="example-text-input"
@@ -67,7 +71,7 @@ exports[`test Handling change query 1`] = `
                   value="productId" />
               </div>
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <select
                   className="form-control"
                   id="exampleSelect1"
@@ -92,7 +96,7 @@ exports[`test Handling change query 1`] = `
             <div
               className="query-interface-header-attribute form-group row">
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <input
                   className="form-control"
                   id="example-text-input"
@@ -103,7 +107,7 @@ exports[`test Handling change query 1`] = `
                   value="productFamilyId" />
               </div>
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <select
                   className="form-control"
                   id="exampleSelect1"
@@ -128,7 +132,7 @@ exports[`test Handling change query 1`] = `
             <div
               className="query-interface-header-attribute form-group row">
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <input
                   className="form-control"
                   id="example-text-input"
@@ -139,7 +143,7 @@ exports[`test Handling change query 1`] = `
                   value="" />
               </div>
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <select
                   className="form-control"
                   id="exampleSelect1"
@@ -202,8 +206,11 @@ exports[`test Handling change query 2`] = `
   className="query-interface">
   <a
     className="nav-link"
+    data-placement="top"
     data-target="#query-interface-modal"
-    data-toggle="modal">
+    data-toggle="modal"
+    id="new-complex-eventtype"
+    title="Click to create new event type">
     <i
       className="fa fa-plus" />
   </a>
@@ -228,7 +235,8 @@ exports[`test Handling change query 2`] = `
             className="close"
             data-dismiss="modal"
             type="button">
-            <span>
+            <span
+              id="close">
               ×
             </span>
           </button>
@@ -255,7 +263,7 @@ exports[`test Handling change query 2`] = `
             <div
               className="query-interface-header-attribute form-group row">
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <input
                   className="form-control"
                   id="example-text-input"
@@ -266,7 +274,7 @@ exports[`test Handling change query 2`] = `
                   value="productId" />
               </div>
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <select
                   className="form-control"
                   id="exampleSelect1"
@@ -291,7 +299,7 @@ exports[`test Handling change query 2`] = `
             <div
               className="query-interface-header-attribute form-group row">
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <input
                   className="form-control"
                   id="example-text-input"
@@ -302,7 +310,7 @@ exports[`test Handling change query 2`] = `
                   value="productFamilyId" />
               </div>
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <select
                   className="form-control"
                   id="exampleSelect1"
@@ -327,7 +335,7 @@ exports[`test Handling change query 2`] = `
             <div
               className="query-interface-header-attribute form-group row">
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <input
                   className="form-control"
                   id="example-text-input"
@@ -338,7 +346,7 @@ exports[`test Handling change query 2`] = `
                   value="" />
               </div>
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <select
                   className="form-control"
                   id="exampleSelect1"

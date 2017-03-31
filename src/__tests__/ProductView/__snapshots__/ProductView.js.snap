@@ -127,78 +127,128 @@ exports[`test Change filter 1`] = `
       </div>
     </header>
     <div
-      className="detail-area container">
+      className="container">
       <div
         className="row detail-row">
         <div
-          className="detail-area-block col-xs-12 col-sm-6">
-          <div>
+          className="col-xs-12 col-sm-6">
+          <div
+            className="detail-area">
             <div
-              className="row">
+              className="product-details">
+              <div
+                className="row">
+                <h2
+                  className="col area-title">
+                  Produkt Details
+                </h2>
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Marke:
+                </p>
+                <p
+                  className="col" />
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Produktfamilie:
+                </p>
+                <p
+                  className="col" />
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Seriennummer:
+                </p>
+                <p
+                  className="col">
+                  0
+                </p>
+              </div>
+            </div>
+            <div
+              className="status-derivation">
               <h2
-                className="col area-title">
-                Produkt Details
+                className="area-title">
+                Statusherleitung
               </h2>
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Marke:
-              </p>
-              <p
-                className="col" />
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Produktfamilie:
-              </p>
-              <p
-                className="col" />
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Seriennummer:
-              </p>
-              <p
-                className="col">
-                0
-              </p>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Status:
+                </p>
+                <p
+                  className="col">
+                  ERROR
+                </p>
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Statusbeschreibung:
+                </p>
+                <p
+                  className="col">
+                  Error detected! Intervention required!
+                </p>
+              </div>
             </div>
           </div>
         </div>
         <div
-          className="detail-area-block col-xs-12 col-sm-6">
-          <div>
-            <h2
-              className="area-title">
-              Statusherleitung
-            </h2>
+          className="col-xs-12 col-sm-6">
+          <div
+            className="line-chart">
+            <canvas
+              height="160"
+              id="lineChart" />
+          </div>
+        </div>
+        <div
+          className="col-xs-12 col-sm-12">
+          <div
+            className="filter-bar">
             <div
-              className="row">
-              <p
-                className="col-4">
-                Status:
-              </p>
-              <p
-                className="col">
-                ERROR
-              </p>
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Statusbeschreibung:
-              </p>
-              <p
-                className="col">
-                Error detected! Intervention required!
-              </p>
+              className="form-group row">
+              <div
+                className="input-field input-group col-xs-12 col-sm-4 col-lg-3">
+                <span
+                  className="input-group-addon"
+                  id="search-addon">
+                  <i
+                    className="fa fa-search" />
+                </span>
+                <input
+                  className="form-control"
+                  onChange={[Function]}
+                  placeholder="Search..."
+                  type="text"
+                  value={undefined} />
+              </div>
+              <div
+                className="input-field input-group col-xs-12 col-sm-4 col-lg-3">
+                <span
+                  className="input-group-addon"
+                  id="search-addon">
+                  <i
+                    className="fa fa-search" />
+                </span>
+                <input
+                  className="form-control"
+                  onChange={[Function]}
+                  placeholder="Search..."
+                  type="text"
+                  value={undefined} />
+              </div>
             </div>
           </div>
         </div>
@@ -619,78 +669,113 @@ exports[`test Changing active Tab 1`] = `
       </div>
     </header>
     <div
-      className="detail-area container">
+      className="container">
       <div
         className="row detail-row">
         <div
-          className="detail-area-block col-xs-12 col-sm-6">
-          <div>
+          className="col-xs-12 col-sm-6">
+          <div
+            className="detail-area">
             <div
-              className="row">
+              className="product-details">
+              <div
+                className="row">
+                <h2
+                  className="col area-title">
+                  Produkt Details
+                </h2>
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Marke:
+                </p>
+                <p
+                  className="col" />
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Produktfamilie:
+                </p>
+                <p
+                  className="col" />
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Seriennummer:
+                </p>
+                <p
+                  className="col">
+                  0
+                </p>
+              </div>
+            </div>
+            <div
+              className="status-derivation">
               <h2
-                className="col area-title">
-                Produkt Details
+                className="area-title">
+                Statusherleitung
               </h2>
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Marke:
-              </p>
-              <p
-                className="col" />
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Produktfamilie:
-              </p>
-              <p
-                className="col" />
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Seriennummer:
-              </p>
-              <p
-                className="col">
-                0
-              </p>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Status:
+                </p>
+                <p
+                  className="col">
+                  ERROR
+                </p>
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Statusbeschreibung:
+                </p>
+                <p
+                  className="col">
+                  Error detected! Intervention required!
+                </p>
+              </div>
             </div>
           </div>
         </div>
         <div
-          className="detail-area-block col-xs-12 col-sm-6">
-          <div>
-            <h2
-              className="area-title">
-              Statusherleitung
-            </h2>
+          className="col-xs-12 col-sm-6">
+          <div
+            className="line-chart">
+            <canvas
+              height="160"
+              id="lineChart" />
+          </div>
+        </div>
+        <div
+          className="col-xs-12 col-sm-12">
+          <div
+            className="filter-bar">
             <div
-              className="row">
-              <p
-                className="col-4">
-                Status:
-              </p>
-              <p
-                className="col">
-                ERROR
-              </p>
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Statusbeschreibung:
-              </p>
-              <p
-                className="col">
-                Error detected! Intervention required!
-              </p>
+              className="form-group row">
+              <div
+                className="input-field input-group col-xs-12 col-sm-4 col-lg-3">
+                <span
+                  className="input-group-addon"
+                  id="search-addon">
+                  <i
+                    className="fa fa-search" />
+                </span>
+                <input
+                  className="form-control"
+                  onChange={[Function]}
+                  placeholder="Search..."
+                  type="text"
+                  value={undefined} />
+              </div>
             </div>
           </div>
         </div>
@@ -1286,78 +1371,113 @@ exports[`test Remove last filter 1`] = `
       </div>
     </header>
     <div
-      className="detail-area container">
+      className="container">
       <div
         className="row detail-row">
         <div
-          className="detail-area-block col-xs-12 col-sm-6">
-          <div>
+          className="col-xs-12 col-sm-6">
+          <div
+            className="detail-area">
             <div
-              className="row">
+              className="product-details">
+              <div
+                className="row">
+                <h2
+                  className="col area-title">
+                  Produkt Details
+                </h2>
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Marke:
+                </p>
+                <p
+                  className="col" />
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Produktfamilie:
+                </p>
+                <p
+                  className="col" />
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Seriennummer:
+                </p>
+                <p
+                  className="col">
+                  0
+                </p>
+              </div>
+            </div>
+            <div
+              className="status-derivation">
               <h2
-                className="col area-title">
-                Produkt Details
+                className="area-title">
+                Statusherleitung
               </h2>
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Marke:
-              </p>
-              <p
-                className="col" />
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Produktfamilie:
-              </p>
-              <p
-                className="col" />
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Seriennummer:
-              </p>
-              <p
-                className="col">
-                0
-              </p>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Status:
+                </p>
+                <p
+                  className="col">
+                  ERROR
+                </p>
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Statusbeschreibung:
+                </p>
+                <p
+                  className="col">
+                  Error detected! Intervention required!
+                </p>
+              </div>
             </div>
           </div>
         </div>
         <div
-          className="detail-area-block col-xs-12 col-sm-6">
-          <div>
-            <h2
-              className="area-title">
-              Statusherleitung
-            </h2>
+          className="col-xs-12 col-sm-6">
+          <div
+            className="line-chart">
+            <canvas
+              height="160"
+              id="lineChart" />
+          </div>
+        </div>
+        <div
+          className="col-xs-12 col-sm-12">
+          <div
+            className="filter-bar">
             <div
-              className="row">
-              <p
-                className="col-4">
-                Status:
-              </p>
-              <p
-                className="col">
-                ERROR
-              </p>
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Statusbeschreibung:
-              </p>
-              <p
-                className="col">
-                Error detected! Intervention required!
-              </p>
+              className="form-group row">
+              <div
+                className="input-field input-group col-xs-12 col-sm-4 col-lg-3">
+                <span
+                  className="input-group-addon"
+                  id="search-addon">
+                  <i
+                    className="fa fa-search" />
+                </span>
+                <input
+                  className="form-control"
+                  onChange={[Function]}
+                  placeholder="Search..."
+                  type="text"
+                  value={undefined} />
+              </div>
             </div>
           </div>
         </div>
@@ -1756,78 +1876,113 @@ exports[`test Rendering of ProductView 1`] = `
       </div>
     </header>
     <div
-      className="detail-area container">
+      className="container">
       <div
         className="row detail-row">
         <div
-          className="detail-area-block col-xs-12 col-sm-6">
-          <div>
+          className="col-xs-12 col-sm-6">
+          <div
+            className="detail-area">
             <div
-              className="row">
+              className="product-details">
+              <div
+                className="row">
+                <h2
+                  className="col area-title">
+                  Produkt Details
+                </h2>
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Marke:
+                </p>
+                <p
+                  className="col" />
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Produktfamilie:
+                </p>
+                <p
+                  className="col" />
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Seriennummer:
+                </p>
+                <p
+                  className="col">
+                  0
+                </p>
+              </div>
+            </div>
+            <div
+              className="status-derivation">
               <h2
-                className="col area-title">
-                Produkt Details
+                className="area-title">
+                Statusherleitung
               </h2>
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Marke:
-              </p>
-              <p
-                className="col" />
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Produktfamilie:
-              </p>
-              <p
-                className="col" />
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Seriennummer:
-              </p>
-              <p
-                className="col">
-                0
-              </p>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Status:
+                </p>
+                <p
+                  className="col">
+                  ERROR
+                </p>
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Statusbeschreibung:
+                </p>
+                <p
+                  className="col">
+                  Error detected! Intervention required!
+                </p>
+              </div>
             </div>
           </div>
         </div>
         <div
-          className="detail-area-block col-xs-12 col-sm-6">
-          <div>
-            <h2
-              className="area-title">
-              Statusherleitung
-            </h2>
+          className="col-xs-12 col-sm-6">
+          <div
+            className="line-chart">
+            <canvas
+              height="160"
+              id="lineChart" />
+          </div>
+        </div>
+        <div
+          className="col-xs-12 col-sm-12">
+          <div
+            className="filter-bar">
             <div
-              className="row">
-              <p
-                className="col-4">
-                Status:
-              </p>
-              <p
-                className="col">
-                ERROR
-              </p>
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Statusbeschreibung:
-              </p>
-              <p
-                className="col">
-                Error detected! Intervention required!
-              </p>
+              className="form-group row">
+              <div
+                className="input-field input-group col-xs-12 col-sm-4 col-lg-3">
+                <span
+                  className="input-group-addon"
+                  id="search-addon">
+                  <i
+                    className="fa fa-search" />
+                </span>
+                <input
+                  className="form-control"
+                  onChange={[Function]}
+                  placeholder="Search..."
+                  type="text"
+                  value={undefined} />
+              </div>
             </div>
           </div>
         </div>
@@ -2226,78 +2381,128 @@ exports[`test Successful filtering 1`] = `
       </div>
     </header>
     <div
-      className="detail-area container">
+      className="container">
       <div
         className="row detail-row">
         <div
-          className="detail-area-block col-xs-12 col-sm-6">
-          <div>
+          className="col-xs-12 col-sm-6">
+          <div
+            className="detail-area">
             <div
-              className="row">
+              className="product-details">
+              <div
+                className="row">
+                <h2
+                  className="col area-title">
+                  Produkt Details
+                </h2>
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Marke:
+                </p>
+                <p
+                  className="col" />
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Produktfamilie:
+                </p>
+                <p
+                  className="col" />
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Seriennummer:
+                </p>
+                <p
+                  className="col">
+                  0
+                </p>
+              </div>
+            </div>
+            <div
+              className="status-derivation">
               <h2
-                className="col area-title">
-                Produkt Details
+                className="area-title">
+                Statusherleitung
               </h2>
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Marke:
-              </p>
-              <p
-                className="col" />
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Produktfamilie:
-              </p>
-              <p
-                className="col" />
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Seriennummer:
-              </p>
-              <p
-                className="col">
-                0
-              </p>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Status:
+                </p>
+                <p
+                  className="col">
+                  ERROR
+                </p>
+              </div>
+              <div
+                className="row">
+                <p
+                  className="col-4">
+                  Statusbeschreibung:
+                </p>
+                <p
+                  className="col">
+                  Error detected! Intervention required!
+                </p>
+              </div>
             </div>
           </div>
         </div>
         <div
-          className="detail-area-block col-xs-12 col-sm-6">
-          <div>
-            <h2
-              className="area-title">
-              Statusherleitung
-            </h2>
+          className="col-xs-12 col-sm-6">
+          <div
+            className="line-chart">
+            <canvas
+              height="160"
+              id="lineChart" />
+          </div>
+        </div>
+        <div
+          className="col-xs-12 col-sm-12">
+          <div
+            className="filter-bar">
             <div
-              className="row">
-              <p
-                className="col-4">
-                Status:
-              </p>
-              <p
-                className="col">
-                ERROR
-              </p>
-            </div>
-            <div
-              className="row">
-              <p
-                className="col-4">
-                Statusbeschreibung:
-              </p>
-              <p
-                className="col">
-                Error detected! Intervention required!
-              </p>
+              className="form-group row">
+              <div
+                className="input-field input-group col-xs-12 col-sm-4 col-lg-3">
+                <span
+                  className="input-group-addon"
+                  id="search-addon">
+                  <i
+                    className="fa fa-search" />
+                </span>
+                <input
+                  className="form-control"
+                  onChange={[Function]}
+                  placeholder="Search..."
+                  type="text"
+                  value={undefined} />
+              </div>
+              <div
+                className="input-field input-group col-xs-12 col-sm-4 col-lg-3">
+                <span
+                  className="input-group-addon"
+                  id="search-addon">
+                  <i
+                    className="fa fa-search" />
+                </span>
+                <input
+                  className="form-control"
+                  onChange={[Function]}
+                  placeholder="Search..."
+                  type="text"
+                  value={undefined} />
+              </div>
             </div>
           </div>
         </div>
