@@ -9,7 +9,7 @@ class DetailArea extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(JSON.stringify(nextProps) != JSON.stringify(this.props)) {
+        if(JSON.stringify(nextProps) !== JSON.stringify(this.props)) {
             this.setConfiguration(nextProps);
         }
     }
