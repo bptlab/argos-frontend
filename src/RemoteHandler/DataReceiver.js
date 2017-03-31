@@ -82,7 +82,7 @@ class DataReceiver extends RemoteHandler {
     }
 
     fetchEventTypesOf(productId, successCallback, errorCallback, forProduct=true) {
-        var APIRoute = APIRoute = DataReceiver.getAPIRouteForEventTypesOfProduct().format(productId);
+        var APIRoute = DataReceiver.getAPIRouteForEventTypesOfProduct().format(productId);
         if(!forProduct) {
             APIRoute = DataReceiver.getAPIRouteForEventTypesOfConfiguration().format(productId);
         }
