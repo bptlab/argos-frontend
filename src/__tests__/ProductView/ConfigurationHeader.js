@@ -7,19 +7,18 @@ let instance, component;
 
 const firstTestConfiguration = TestProduct.PRODUCT.configurations[0];
 const secondTestConfiguration = TestProduct.PRODUCT.configurations[1];
-const setProductConfiguration = jest.fn();
+const onChangeProductConfiguration = jest.fn();
 
 test("Rendering of ConfigurationHeader", () => {
     component = renderer.create(
         <ConfigurationHeader
             ref={(child) => {instance = child}}
             configurations={TestProduct.PRODUCT.configurations}
-            setProductConfiguration={setProductConfiguration}/>
+            onChangeProductConfiguration={onChangeProductConfiguration}/>
     );
 
     expect(instance.state.selectedCodingPlug).toEqual(firstTestConfiguration.codingPlugId.toString());
     expect(instance.state.selectedSoftwareVersion).toEqual(firstTestConfiguration.codingPlugSoftwareVersions[0].toString());
-    expect(setProductConfiguration).toBeCalled();
 
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
@@ -27,14 +26,14 @@ test("Rendering of ConfigurationHeader", () => {
 
 test("Changing configuration selection", () => {
     let event = {target: {value: secondTestConfiguration.codingPlugId.toString()}};
-    instance.selectedCodingPlugChanged(event);
+    instance.handleChangeSelectedCodingPlug(event);
     expect(instance.state.selectedCodingPlug).toEqual(secondTestConfiguration.codingPlugId.toString());
     expect(instance.state.selectedSoftwareVersion).toEqual(secondTestConfiguration.codingPlugSoftwareVersions[0].toString());
-    expect(setProductConfiguration).toBeCalled();
+    expect(onChangeProductConfiguration).toBeCalled();
 
     event = {target: {value: secondTestConfiguration.codingPlugSoftwareVersions[1].toString()}};
-    instance.selectedSoftwareVersionChanged(event);
+    instance.handleChangeSelectedSoftwareVersion(event);
     expect(instance.state.selectedCodingPlug).toEqual(secondTestConfiguration.codingPlugId.toString());
     expect(instance.state.selectedSoftwareVersion).toEqual(secondTestConfiguration.codingPlugSoftwareVersions[1].toString());
-    expect(setProductConfiguration).toBeCalled();
+    expect(onChangeProductConfiguration).toBeCalled();
 });

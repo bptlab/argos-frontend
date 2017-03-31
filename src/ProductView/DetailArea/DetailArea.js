@@ -3,13 +3,15 @@ import ProductDetails from './ProductDetails/ProductDetails.js';
 import StatusDerivation from './StatusDerivation/StatusDerivation.js';
 
 class DetailArea extends Component {
-    constructor(props) {
-        super(props);
+
+    componentWillMount() {
         this.setConfiguration(this.props);
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setConfiguration(nextProps);
+        if(JSON.stringify(nextProps) != JSON.stringify(this.props)) {
+            this.setConfiguration(nextProps);
+        }
     }
 
     setConfiguration(props) {
@@ -17,9 +19,9 @@ class DetailArea extends Component {
         if(props.showAllConfigurations || !props.configuration) {
             configuration = props.product;
         }
-        this.state = {
+        this.setState({
             configuration: configuration
-        };
+        });
     }
 
     render() {

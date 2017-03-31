@@ -36,7 +36,7 @@ class ProductView extends Component {
         this.fetchEventTypes = this.fetchEventTypes.bind(this);
         this.fetchEventsFor = this.fetchEventsFor.bind(this);
         this.setActiveEventType = this.setActiveEventType.bind(this);
-        this.setProductConfiguration = this.setProductConfiguration.bind(this);
+        this.handleChangeProductConfiguration = this.handleChangeProductConfiguration.bind(this);
     }
 
     handleEventData(events) {
@@ -167,7 +167,7 @@ class ProductView extends Component {
         this.setState({activeEventType: eventType});
     }
 
-    setProductConfiguration(configurationId) {
+    handleChangeProductConfiguration(configurationId) {
         this.setState({
             loading: true
         });
@@ -220,7 +220,7 @@ class ProductView extends Component {
             }
             component = (
                 <div>
-                    <Header product={this.state.product} configurations={this.state.product.configurations} setProductConfiguration={this.setProductConfiguration}/>
+                    <Header product={this.state.product} configurations={this.state.product.configurations} onChangeProductConfiguration={this.handleChangeProductConfiguration}/>
                     <DetailArea product={this.state.product} configuration={this.state.configuration} showAllConfigurations={this.state.showAllConfigurations}/>
                     {pageContent}
                 </div>

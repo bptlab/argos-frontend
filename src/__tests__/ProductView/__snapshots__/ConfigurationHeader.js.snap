@@ -2,14 +2,31 @@ exports[`test Rendering of ConfigurationHeader 1`] = `
 <div
   className="row col-12 d-flex justify-content-center">
   <div
+    className="col-4 d-flex justify-content-around">
+    <div
+      className="form-group">
+      <input
+        checked={true}
+        id="showAllCheckbox"
+        onChange={[Function]}
+        type="checkbox" />
+      <label
+        htmlFor="softwareVersionSelection">
+        show all configurations
+      </label>
+    </div>
+  </div>
+  <div
     className="col-3 d-flex">
     <div
       className="form-group">
       <label
+        hidden={true}
         htmlFor="codingPlugSelection">
         CP:
       </label>
       <select
+        disabled={true}
         id="codingPlugSelection"
         onChange={[Function]}
         value="10">
@@ -30,10 +47,12 @@ exports[`test Rendering of ConfigurationHeader 1`] = `
     <div
       className="form-group">
       <label
+        hidden={true}
         htmlFor="softwareVersionSelection">
         SW:
       </label>
       <select
+        disabled={true}
         id="softwareVersionSelection"
         onChange={[Function]}
         value="1">

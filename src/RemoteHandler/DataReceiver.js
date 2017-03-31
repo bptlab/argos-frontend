@@ -82,7 +82,7 @@ class DataReceiver extends RemoteHandler {
     }
 
     fetchEventTypesOf(productId, successCallback, errorCallback, forProduct=true) {
-        var APIRoute = DataReceiver.getAPIRouteForEventTypesOfProduct().format(productId);
+        let APIRoute = DataReceiver.getAPIRouteForEventTypesOfProduct().format(productId);
         if(!forProduct) {
             APIRoute = DataReceiver.getAPIRouteForEventTypesOfConfiguration().format(productId);
         }
@@ -108,9 +108,11 @@ class DataReceiver extends RemoteHandler {
 
 
     fetchEventsOf(productId, eventTypeId, successCallback, errorCallback, forProduct=true, indexFrom=0, indexTo=9999999) {
-        var APIRoute = DataReceiver.getAPIRouteForEveentsOfProduct().format(productId, eventTypeId, indexFrom, indexTo);
+        let APIRoute = DataReceiver.getAPIRouteForEveentsOfProduct().format(
+            productId, eventTypeId, indexFrom, indexTo);
         if(!forProduct) {
-            APIRoute = DataReceiver.getAPIRouteForEveentsOfConfiguration().format(productId, eventTypeId, indexFrom, indexTo);
+            APIRoute = DataReceiver.getAPIRouteForEveentsOfConfiguration().format(
+                productId, eventTypeId, indexFrom, indexTo);
         }
         const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
         const callbackContainer = {
