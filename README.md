@@ -14,10 +14,43 @@
 To configure argos-frontend simply access ```src/config/argosConfig.js```
 
 ## Development
+### Setup
 - ```git clone git@github.com:bptlab/argos-frontend.git && cd argos-frontend```
 - ```npm install```
 - ```npm start```
 - The server is now running at [localhost:3000](http://localhost:3000)
+
+## Conventions
+### Git
+#### Feature branch naming
+Branches are named in this style: BP_[JIN]_[DWU]
+* JIN = Jira issue number
+* DWU = Story description with underscores
+
+
+### Code Structure
+#### Break component initialisations
+If initialising a component with more than two parameters, insert a linebreak after the components name and each parameter. 
+
+Right
+```
+<EventTable
+    header={this.state.activeEventType.attributes}
+    events={this.state.activeEvents}
+    filter={this.state.filter} />
+```
+Wrong
+```
+<EventTable header={this.state.activeEventType.attributes} events={this.state.activeEvents} filter={this.state.filter} />
+```
+
+## Constructor method
+Constructor methods should be structured in this way:
+1. Call the parent constructor.
+2. Initialize the components state.
+3. Execute initilisation functions.
+4. Bind ```this``` to functions.
+
 
 ## Testing
 Argos frontend uses ReactTestUtils and Jest to test its components. You can run tests by calling ```npm test``` in your cli. 
