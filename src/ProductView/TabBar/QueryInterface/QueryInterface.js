@@ -45,7 +45,7 @@ class QueryInterface extends Component {
     }
 
     componentDidMount() {
-        $('#new-complex-eventtype').tooltip();
+        $(document).ready(function(){ $("#new-complex-eventtype").tooltip(); });
     }
 
     addEmptyAttribute(attributes) {
