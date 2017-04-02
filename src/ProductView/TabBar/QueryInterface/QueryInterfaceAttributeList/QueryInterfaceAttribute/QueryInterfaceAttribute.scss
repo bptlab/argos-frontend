@@ -3,16 +3,9 @@ input.form-control[readonly] {
   border-color: #999999;
   background-color: white;
 }
-#exampleSelect1[readonly] {
+
+select[readonly] {
   color: #999999;
-  border-color: #999999;
-  background-color: white;
-
-}
-
-#exampleSelect1 {
-  border-top-width: 0px;
-  border-left-width: 0px;
-  border-right-width: 0px;
-
+  border: 0;
+  border-bottom: 1px solid $COLOR-dark-background;
 }
