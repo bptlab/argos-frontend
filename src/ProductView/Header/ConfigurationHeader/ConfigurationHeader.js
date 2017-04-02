@@ -64,7 +64,7 @@ class ConfigurationHeader extends Component {
 
     render() {
         return (
-            <div className="row col-12 d-flex justify-content-center">
+            <div className="row col-10 d-flex justify-content-center">
                 <div className="col-4 d-flex justify-content-around">
                       <div className="form-group">
                           <input

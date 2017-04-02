@@ -13,7 +13,7 @@ class Header extends Component {
                                     <i className="home-button fa fa-home"/>
                                 </a>
                             </div>
-                            <div className="col-12 d-flex justify-content-center">
+                            <div className="col-10 d-flex justify-content-center">
                                 <ConfigurationHeader configurations={this.props.configurations} onChangeProductConfiguration={this.props.onChangeProductConfiguration}/>
                             </div>
                             <div className="hidden-xs-down col-sm-1 d-flex justify-content-around">

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PredictionView from './PredictionView/PredictionView.js';
 
 class PredictionList extends Component {
 
@@ -7,16 +8,13 @@ class PredictionList extends Component {
     }
 
     render() {
-        const errorList = [];
+        const errorList = []; 
         if(this.props.configuration && this.props.configuration.errorTypes) {
             this.props.configuration.errorTypes.forEach((errorType, index) => {
                 errorList.push(
-                    <li key={index} className="list-group-item justify-content-between list-group-item-action">
-                        {errorType.errorTypeId} - {errorType.errorDescription}
-                        <span className="badge badge-default badge-pill">
-                            {errorType.errorCauses.length}
-                        </span>
-                    </li>
+                    <PredictionView
+                        key={index}
+                        errorType={errorType} />
                 );
             });
         }
