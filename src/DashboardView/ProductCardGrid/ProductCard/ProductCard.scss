@@ -42,7 +42,10 @@ a .ProductCard:hover {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding-right: 1vh;
-    line-height: 3vh;
+    line-height: 30px;
+    @include media-breakpoint-up(uhd) {
+        line-height: 65px;
+    }
     @include media-breakpoint-down(xs) {
         font-size: 12px;
     }
