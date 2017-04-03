@@ -41,8 +41,8 @@ class ServerMock {
             },
             errorTypes: [{
                 id: 0,
-                errorTypeId: "0",
-                displayCode: "0Z",
+                errorTypeId: "EF-254",
+                displayCode: "EF",
                 causeCode:  0,
                 errorDescription: "Heating produces strange sounds",
                 errorCauses: [{
