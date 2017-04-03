@@ -46,7 +46,7 @@ class QueryInterface extends Component {
             modalLoading: false,
             modalIsAbleToSave: false
         };
-        this.nextAttributeId = 3;
+        this.nextAttributeId = this.state.eventTypeAttributes.length;
         this.handleChangeEventTypeName = this.handleChangeEventTypeName.bind(this);
         this.handleChangeAttributeName = this.handleChangeAttributeName.bind(this);
         this.handleChangeAttributeType = this.handleChangeAttributeType.bind(this);
