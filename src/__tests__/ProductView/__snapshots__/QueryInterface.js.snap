@@ -53,9 +53,7 @@ exports[`test Handling change query 1`] = `
                 type="text"
                 value="" />
               <div
-                className="form-control-feedback">
-                This field can\'t be empty.
-              </div>
+                className="form-control-feedback" />
             </div>
             <div
               className="query-interface-header-attribute form-group row">
@@ -73,8 +71,7 @@ exports[`test Handling change query 1`] = `
               <div
                 className="input-field input-group col-6">
                 <select
-                  className="form-control"
-                  id="exampleSelect1"
+                  className="form-control qi-select"
                   onChange={[Function]}
                   readOnly={true}
                   value="INTEGER">
@@ -109,8 +106,7 @@ exports[`test Handling change query 1`] = `
               <div
                 className="input-field input-group col-6">
                 <select
-                  className="form-control"
-                  id="exampleSelect1"
+                  className="form-control qi-select"
                   onChange={[Function]}
                   readOnly={true}
                   value="STRING">
@@ -145,8 +141,7 @@ exports[`test Handling change query 1`] = `
               <div
                 className="input-field input-group col-6">
                 <select
-                  className="form-control"
-                  id="exampleSelect1"
+                  className="form-control qi-select"
                   onChange={[Function]}
                   readOnly={false}
                   value="">
@@ -179,14 +174,14 @@ exports[`test Handling change query 1`] = `
               onChange={[Function]}
               rows="8"
               type="text"
-              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+              value={undefined} />
             
           </div>
         </div>
         <div
           className="modal-footer">
           <button
-            className="btn btn-primary"
+            className="btn"
             disabled="disabled"
             onClick={[Function]}
             type="button">
@@ -256,9 +251,7 @@ exports[`test Handling change query 2`] = `
                 type="text"
                 value="" />
               <div
-                className="form-control-feedback">
-                This field can\'t be empty.
-              </div>
+                className="form-control-feedback" />
             </div>
             <div
               className="query-interface-header-attribute form-group row">
@@ -276,8 +269,7 @@ exports[`test Handling change query 2`] = `
               <div
                 className="input-field input-group col-6">
                 <select
-                  className="form-control"
-                  id="exampleSelect1"
+                  className="form-control qi-select"
                   onChange={[Function]}
                   readOnly={true}
                   value="INTEGER">
@@ -312,8 +304,7 @@ exports[`test Handling change query 2`] = `
               <div
                 className="input-field input-group col-6">
                 <select
-                  className="form-control"
-                  id="exampleSelect1"
+                  className="form-control qi-select"
                   onChange={[Function]}
                   readOnly={true}
                   value="STRING">
@@ -348,8 +339,7 @@ exports[`test Handling change query 2`] = `
               <div
                 className="input-field input-group col-6">
                 <select
-                  className="form-control"
-                  id="exampleSelect1"
+                  className="form-control qi-select"
                   onChange={[Function]}
                   readOnly={false}
                   value="">
@@ -389,7 +379,7 @@ exports[`test Handling change query 2`] = `
         <div
           className="modal-footer">
           <button
-            className="btn btn-primary"
+            className="btn"
             disabled="disabled"
             onClick={[Function]}
             type="button">
@@ -409,8 +399,11 @@ exports[`test Handling save query failure 1`] = `
   className="query-interface">
   <a
     className="nav-link"
+    data-placement="top"
     data-target="#query-interface-modal"
-    data-toggle="modal">
+    data-toggle="modal"
+    id="new-complex-eventtype"
+    title="Click to create new event type">
     <i
       className="fa fa-plus" />
   </a>
@@ -435,7 +428,8 @@ exports[`test Handling save query failure 1`] = `
             className="close"
             data-dismiss="modal"
             type="button">
-            <span>
+            <span
+              id="close">
               ×
             </span>
           </button>
@@ -455,14 +449,12 @@ exports[`test Handling save query failure 1`] = `
                 type="text"
                 value="" />
               <div
-                className="form-control-feedback">
-                This field can\'t be empty.
-              </div>
+                className="form-control-feedback" />
             </div>
             <div
               className="query-interface-header-attribute form-group row">
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <input
                   className="form-control"
                   id="example-text-input"
@@ -473,10 +465,9 @@ exports[`test Handling save query failure 1`] = `
                   value="productId" />
               </div>
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <select
-                  className="form-control"
-                  id="exampleSelect1"
+                  className="form-control qi-select"
                   onChange={[Function]}
                   readOnly={true}
                   value="INTEGER">
@@ -498,7 +489,7 @@ exports[`test Handling save query failure 1`] = `
             <div
               className="query-interface-header-attribute form-group row">
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <input
                   className="form-control"
                   id="example-text-input"
@@ -509,10 +500,9 @@ exports[`test Handling save query failure 1`] = `
                   value="productFamilyId" />
               </div>
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <select
-                  className="form-control"
-                  id="exampleSelect1"
+                  className="form-control qi-select"
                   onChange={[Function]}
                   readOnly={true}
                   value="STRING">
@@ -534,7 +524,7 @@ exports[`test Handling save query failure 1`] = `
             <div
               className="query-interface-header-attribute form-group row">
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <input
                   className="form-control"
                   id="example-text-input"
@@ -545,10 +535,9 @@ exports[`test Handling save query failure 1`] = `
                   value="" />
               </div>
               <div
-                className="col-6">
+                className="input-field input-group col-6">
                 <select
-                  className="form-control"
-                  id="exampleSelect1"
+                  className="form-control qi-select"
                   onChange={[Function]}
                   readOnly={false}
                   value="">
@@ -581,14 +570,14 @@ exports[`test Handling save query failure 1`] = `
               onChange={[Function]}
               rows="8"
               type="text"
-              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+              value={undefined} />
             
           </div>
         </div>
         <div
           className="modal-footer">
           <button
-            className="btn btn-primary"
+            className="btn"
             disabled="disabled"
             onClick={[Function]}
             type="button">

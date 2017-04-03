@@ -26,7 +26,7 @@ class QueryInterfaceAttribute extends Component {
                            readOnly={this.props.eventTypeAttribute.readonly}/>
                 </div>
                 <div className="input-field input-group col-6">
-                    <select className="form-control" id="exampleSelect1"
+                    <select className="form-control qi-select"
                             value={this.props.eventTypeAttribute.type}
                             onChange={this.onChangeAttributeType}
                             readOnly={this.props.eventTypeAttribute.readonly}>

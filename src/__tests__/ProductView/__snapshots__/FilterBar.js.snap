@@ -1,6 +1,6 @@
 exports[`test Rendering of FilterBar 1`] = `
 <div
-  className="filter-bar container">
+  className="filter-bar">
   <div
     className="form-group row">
     <div

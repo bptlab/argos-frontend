@@ -127,7 +127,7 @@ exports[`test Render DashboardView Header 1`] = `
                 <div
                   className="modal-footer">
                   <button
-                    className="btn btn-primary"
+                    className="btn"
                     disabled="disabled"
                     onClick={[Function]}
                     type="button">
