@@ -14,8 +14,9 @@ beforeAll(() => {
 test('Create new event type', () => {
     const successMockCallback = jest.fn();
     const errorMockCallback = jest.fn();
-    instance.createEventtype('', {}, successMockCallback, errorMockCallback);
+    instance.createEventtype('', {}, [{name: 'test', type: 'STRING'}], successMockCallback, errorMockCallback);
     expect(successMockCallback).toBeCalled();
+    instance.createEventtype('', {}, [{name: '', type: ''}], successMockCallback, errorMockCallback);
 });
 
 test('Error in data what has to be converted', () => {

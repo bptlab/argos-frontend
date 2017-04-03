@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Modal from '../../../Utils/Modal/Modal.js';
 import QueryInterfaceAttributeList from './QueryInterfaceAttributeList/QueryInterfaceAttributeList.js';
+import {argosConfig} from './../../../config/argosConfig.js';
 
 class QueryInterface extends Component {
     constructor(props) {
@@ -27,9 +28,11 @@ class QueryInterface extends Component {
                     "readonly": false
                 }
             ],
-            eventQuery: '',
-            validationResult: '',
+            eventQuery: argosConfig.createEventTypeDefaultQuery,
             errorMessage: '',
+            validationClasses: '',
+            modalLoading: false,
+            modalIsAbleToSave: false
         };
         this.nextAttributeId = 3;
         this.handleChangeEventTypeName = this.handleChangeEventTypeName.bind(this);
@@ -39,14 +42,6 @@ class QueryInterface extends Component {
         this.handleSaveQuery = this.handleSaveQuery.bind(this);
         this.handleSaveQuerySuccess = this.handleSaveQuerySuccess.bind(this);
         this.handleSaveQueryError = this.handleSaveQueryError.bind(this);
-    }
-
-    static getDefaultQuery() {
-        return "INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData";
-    }
-
-    componentDidMount() {
-        this.setState({ eventQuery: QueryInterface.getDefaultQuery() });
     }
 
     addEmptyAttribute(attributes) {
@@ -60,21 +55,7 @@ class QueryInterface extends Component {
         return attributes;
     }
 
-    buildJSONSerializableDataContainer() {
-        const eventTypeAttributes = {};
-        const attributes = this.state.eventTypeAttributes;
-        for (let i = 0; i < attributes.length; i++) {
-            if (attributes[i].name) {
-                // Unicorn explicitly requires a map of event types in this format: {EventTypeName: EventTypeType}
-                eventTypeAttributes[attributes[i].name] = attributes[i].type;
-            }
-        }
-        return {
-            'name': this.state.eventTypeName,
-            'timestamp': 'timestamp',
-            'attributes': eventTypeAttributes
-        };
-    }
+
 
     getEventTypeAttribute(id) {
         return this.state.eventTypeAttributes.find((attribute) => {
@@ -83,7 +64,8 @@ class QueryInterface extends Component {
     }
 
     handleChangeEventTypeName(name) {
-        this.setState({ eventTypeName: name });
+        const modalIsAbleToSave = this.queryIsSafeable(name, this.state.eventQuery);
+        this.setState({ eventTypeName: name, modalIsAbleToSave: modalIsAbleToSave });
     }
 
     handleChangeAttributeName(id, name) {
@@ -118,26 +100,43 @@ class QueryInterface extends Component {
     }
 
     handleChangeQuery(event) {
-        this.setState({ eventQuery: event.target.value });
+        const queryValue = event.target.value;
+        const modalIsAbleToSave = this.queryIsSafeable(this.state.eventTypeName, queryValue);
+        this.setState({ eventQuery: queryValue, modalIsAbleToSave: modalIsAbleToSave });
+        this.eventQueryFormValidation(queryValue);
+    }
+
+    queryIsSafeable(eventTypeName, eventQuery) {
+        return eventTypeName && eventQuery;
     }
 
     handleSaveQuery() {
-        const eventType = this.buildJSONSerializableDataContainer();
+        this.setState({ modalLoading: true });
         this.props.dataSender.createEventtype(
             this.state.eventQuery,
-            eventType,
+            this.state.eventTypeName,
+            this.state.eventTypeAttributes,
             this.handleSaveQuerySuccess,
             this.handleSaveQueryError
         );
     }
     /* istanbul ignore next */
     handleSaveQuerySuccess() {
-        /* istanbul ignore next */
         $('#query-interface-modal').modal('hide');
+        this.setState({ modalLoading: false });
     }
 
     handleSaveQueryError(error) {
-        this.setState({ errorMessage: error });
+        this.setState({ errorMessage: error, modalLoading: false });
+    }
+
+    eventQueryFormValidation (queryName) {
+        if (!queryName) {
+            this.setState({ validationClasses: 'has-danger' });
+        }
+        else {
+            this.setState({ validationClasses: '' });
+        }
     }
 
     render() {
@@ -146,7 +145,12 @@ class QueryInterface extends Component {
                 <a className="nav-link" data-toggle="modal" data-target="#query-interface-modal">
                     <i className="fa fa-plus"/>
                 </a>
-                <Modal title="Query Interface" onSubmit={this.handleSaveQuery} id="query-interface" buttonText="Save">
+                <Modal title="Query Interface"
+                       onSubmit={this.handleSaveQuery}
+                       id="query-interface"
+                       buttonText="Save"
+                       loading={this.state.modalLoading}
+                       isAbleToSave={this.state.modalIsAbleToSave}>
                     {this.state.errorMessage && <div className="alert alert-danger" role="alert">
                         {this.state.errorMessage}
                     </div>}
@@ -155,12 +159,16 @@ class QueryInterface extends Component {
                                                  eventTypeAttributes={this.state.eventTypeAttributes}
                                                  onChangeAttributeName={this.handleChangeAttributeName}
                                                  onChangeAttributeType={this.handleChangeAttributeType} />
-                    <div className="form-group">
+                    <div className={`form-group ` + this.state.validationClasses}>
                         <label htmlFor="event-query" className="form-control-label">Event Query</label>
                         <textarea type="text" className="form-control"
                                   id="event-query" rows="8"
                                   value={this.state.eventQuery}
                                   onChange={this.handleChangeQuery}/>
+                        {this.state.validationClasses &&
+                        <div className="form-control-feedback">
+                            {argosConfig.formValidationNoEmptyMessage}
+                        </div>}
                     </div>
                 </Modal>
             </div>

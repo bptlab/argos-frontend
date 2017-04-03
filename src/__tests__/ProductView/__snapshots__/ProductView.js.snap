@@ -312,7 +312,7 @@ exports[`test Change filter 1`] = `
                       <div
                         className="query-interface-header">
                         <div
-                          className="form-group">
+                          className="form-group has-danger">
                           <input
                             className="form-control"
                             id="query-name"
@@ -320,6 +320,10 @@ exports[`test Change filter 1`] = `
                             placeholder="Name"
                             type="text"
                             value="" />
+                          <div
+                            className="form-control-feedback">
+                            This field can\'t be empty.
+                          </div>
                         </div>
                         <div
                           className="query-interface-header-attribute form-group row">
@@ -431,7 +435,7 @@ exports[`test Change filter 1`] = `
                         </div>
                       </div>
                       <div
-                        className="form-group">
+                        className="form-group ">
                         <label
                           className="form-control-label"
                           htmlFor="event-query">
@@ -444,15 +448,19 @@ exports[`test Change filter 1`] = `
                           rows="8"
                           type="text"
                           value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                        
                       </div>
                     </div>
                     <div
                       className="modal-footer">
                       <button
                         className="btn btn-primary"
+                        disabled="disabled"
                         onClick={[Function]}
                         type="button">
-                        Save
+                        <div>
+                          Save
+                        </div>
                       </button>
                     </div>
                   </div>
@@ -774,7 +782,7 @@ exports[`test Changing active Tab 1`] = `
                       <div
                         className="query-interface-header">
                         <div
-                          className="form-group">
+                          className="form-group has-danger">
                           <input
                             className="form-control"
                             id="query-name"
@@ -782,6 +790,10 @@ exports[`test Changing active Tab 1`] = `
                             placeholder="Name"
                             type="text"
                             value="" />
+                          <div
+                            className="form-control-feedback">
+                            This field can\'t be empty.
+                          </div>
                         </div>
                         <div
                           className="query-interface-header-attribute form-group row">
@@ -893,7 +905,7 @@ exports[`test Changing active Tab 1`] = `
                         </div>
                       </div>
                       <div
-                        className="form-group">
+                        className="form-group ">
                         <label
                           className="form-control-label"
                           htmlFor="event-query">
@@ -906,15 +918,19 @@ exports[`test Changing active Tab 1`] = `
                           rows="8"
                           type="text"
                           value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                        
                       </div>
                     </div>
                     <div
                       className="modal-footer">
                       <button
                         className="btn btn-primary"
+                        disabled="disabled"
                         onClick={[Function]}
                         type="button">
-                        Save
+                        <div>
+                          Save
+                        </div>
                       </button>
                     </div>
                   </div>
@@ -1433,7 +1449,7 @@ exports[`test Remove last filter 1`] = `
                       <div
                         className="query-interface-header">
                         <div
-                          className="form-group">
+                          className="form-group has-danger">
                           <input
                             className="form-control"
                             id="query-name"
@@ -1441,6 +1457,10 @@ exports[`test Remove last filter 1`] = `
                             placeholder="Name"
                             type="text"
                             value="" />
+                          <div
+                            className="form-control-feedback">
+                            This field can\'t be empty.
+                          </div>
                         </div>
                         <div
                           className="query-interface-header-attribute form-group row">
@@ -1552,7 +1572,7 @@ exports[`test Remove last filter 1`] = `
                         </div>
                       </div>
                       <div
-                        className="form-group">
+                        className="form-group ">
                         <label
                           className="form-control-label"
                           htmlFor="event-query">
@@ -1565,15 +1585,19 @@ exports[`test Remove last filter 1`] = `
                           rows="8"
                           type="text"
                           value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                        
                       </div>
                     </div>
                     <div
                       className="modal-footer">
                       <button
                         className="btn btn-primary"
+                        disabled="disabled"
                         onClick={[Function]}
                         type="button">
-                        Save
+                        <div>
+                          Save
+                        </div>
                       </button>
                     </div>
                   </div>
@@ -1895,7 +1919,7 @@ exports[`test Rendering of ProductView 1`] = `
                       <div
                         className="query-interface-header">
                         <div
-                          className="form-group">
+                          className="form-group has-danger">
                           <input
                             className="form-control"
                             id="query-name"
@@ -1903,6 +1927,10 @@ exports[`test Rendering of ProductView 1`] = `
                             placeholder="Name"
                             type="text"
                             value="" />
+                          <div
+                            className="form-control-feedback">
+                            This field can\'t be empty.
+                          </div>
                         </div>
                         <div
                           className="query-interface-header-attribute form-group row">
@@ -2014,7 +2042,7 @@ exports[`test Rendering of ProductView 1`] = `
                         </div>
                       </div>
                       <div
-                        className="form-group">
+                        className="form-group ">
                         <label
                           className="form-control-label"
                           htmlFor="event-query">
@@ -2027,15 +2055,19 @@ exports[`test Rendering of ProductView 1`] = `
                           rows="8"
                           type="text"
                           value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                        
                       </div>
                     </div>
                     <div
                       className="modal-footer">
                       <button
                         className="btn btn-primary"
+                        disabled="disabled"
                         onClick={[Function]}
                         type="button">
-                        Save
+                        <div>
+                          Save
+                        </div>
                       </button>
                     </div>
                   </div>
@@ -2379,7 +2411,7 @@ exports[`test Successful filtering 1`] = `
                       <div
                         className="query-interface-header">
                         <div
-                          className="form-group">
+                          className="form-group has-danger">
                           <input
                             className="form-control"
                             id="query-name"
@@ -2387,6 +2419,10 @@ exports[`test Successful filtering 1`] = `
                             placeholder="Name"
                             type="text"
                             value="" />
+                          <div
+                            className="form-control-feedback">
+                            This field can\'t be empty.
+                          </div>
                         </div>
                         <div
                           className="query-interface-header-attribute form-group row">
@@ -2498,7 +2534,7 @@ exports[`test Successful filtering 1`] = `
                         </div>
                       </div>
                       <div
-                        className="form-group">
+                        className="form-group ">
                         <label
                           className="form-control-label"
                           htmlFor="event-query">
@@ -2511,15 +2547,19 @@ exports[`test Successful filtering 1`] = `
                           rows="8"
                           type="text"
                           value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                        
                       </div>
                     </div>
                     <div
                       className="modal-footer">
                       <button
                         className="btn btn-primary"
+                        disabled="disabled"
                         onClick={[Function]}
                         type="button">
-                        Save
+                        <div>
+                          Save
+                        </div>
                       </button>
                     </div>
                   </div>
