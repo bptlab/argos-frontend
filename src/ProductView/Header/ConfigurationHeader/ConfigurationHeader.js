@@ -27,11 +27,6 @@ class ConfigurationHeader extends Component {
         }
     }
 
-    selectedSoftwareVersionChanged(event) {
-        this.setState({selectedSoftwareVersion: event.target.value});
-        this.updateProductConfiguration(this.state.selectedCodingPlug, event.target.value);
-    }
-
     onChangeProductConfiguration(newCodingPlug, newSoftwareVersion) {
         const selectedConfigurationId = this.cpSwToIdMapping[newCodingPlug][newSoftwareVersion];
         this.props.onChangeProductConfiguration(selectedConfigurationId);
