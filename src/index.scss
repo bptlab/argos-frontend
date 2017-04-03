@@ -7,14 +7,21 @@
 @import "Loader/Loader";
 @import "ProductView/ProductView";
 @import "Notification/Notification";
+@import "Utils/RemovableInputField";
+@import "Utils/Modal/Modal";
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  font-size: 1.6vh;
+  font-size: 16px;
+
+  @include media-breakpoint-up(uhd) {
+    font-size: 40px;
+  }
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
   #root {
     height: 100%;
   }
@@ -23,11 +30,11 @@ body {
     color: $COLOR-dark-background;
   }
   header {
+    background-color: $COLOR-dark-background;
     margin-bottom: $element-margin-bottom;
     @include media-breakpoint-up(uhd) {
       margin-bottom: $uhd-element-margin-bottom;
     }
-    background-color: $COLOR-dark-background;
     @include dropdown-shadow($highlight-shadow);
     .dashboard-title {
       margin: 10px 0;
@@ -41,9 +48,17 @@ body {
       font-size: 15px;
     }
   }
+  @include media-breakpoint-up(sm) {
+    h1 {
+      font-size: 25px;
+    }
+  }
   @include media-breakpoint-up(uhd) {
     h1 {
       font-size: 80px;
+    }
+    h2 {
+      font-size: 64px;
     }
     h4 {
       font-size: 35px;

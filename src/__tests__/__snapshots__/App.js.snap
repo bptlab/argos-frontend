@@ -7,7 +7,7 @@ exports[`test renders without crashing 1`] = `
 exports[`test renders without crashing 2`] = `
 <div>
   <div
-    className="alert alert-danger"
+    className="alert-sliding alert-sliding-danger"
     role="alert">
     <table>
       <tbody>

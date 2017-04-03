@@ -1,0 +1,359 @@
+exports[`test Correct rendering of Settings 1`] = `
+<div
+  className="settings">
+  <a
+    className="nav-link"
+    data-target="#settings-modal"
+    data-toggle="modal"
+    onClick={[Function]}>
+    <i
+      className="settings-icon fa fa-bars" />
+  </a>
+  <div
+    className="settings modal fade"
+    id="settings-modal"
+    role="dialog"
+    tabIndex="-1">
+    <div
+      className="modal-dialog modal-lg"
+      role="document">
+      <div
+        className="modal-content">
+        <div
+          className="modal-header">
+          <h5
+            className="modal-title"
+            id="settings-label">
+            Settings
+          </h5>
+          <button
+            className="close"
+            data-dismiss="modal"
+            type="button">
+            <span
+              id="close">
+              ×
+            </span>
+          </button>
+        </div>
+        <div
+          className="modal-body">
+          <div
+            aria-multiselectable="true"
+            id="accordion"
+            role="tablist">
+            <div
+              className="card">
+              <div
+                className="card-header"
+                id="headingOne"
+                role="tab">
+                <h5
+                  className="mb-0">
+                  <a
+                    aria-controls="collapseOne"
+                    aria-expanded="true"
+                    data-parent="#accordion"
+                    data-toggle="collapse"
+                    href="#collapseOne">
+                    Event-Types
+                  </a>
+                </h5>
+              </div>
+              <div
+                aria-labelledby="headingOne"
+                className="collapse show"
+                id="collapseOne"
+                role="tabpanel">
+                <div
+                  className="card-block">
+                  <div
+                    className="event-types-settings">
+                    
+                    <table
+                      className="table table-striped event-types-table">
+                      <thead>
+                        <tr>
+                          <th>
+                            #
+                          </th>
+                          <th>
+                            Name
+                          </th>
+                          <th>
+                            Query
+                          </th>
+                          <th
+                            className="center">
+                            Delete?
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody />
+                    </table>
+                    <p>
+                      To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="modal-footer">
+          <button
+            className="btn"
+            disabled="disabled"
+            onClick={[Function]}
+            type="button">
+            <div>
+              Exit
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`test Correct rendering of Settings after modal has been closed 1`] = `
+<div
+  className="settings">
+  <a
+    className="nav-link"
+    data-target="#settings-modal"
+    data-toggle="modal"
+    onClick={[Function]}>
+    <i
+      className="settings-icon fa fa-bars" />
+  </a>
+  <div
+    className="settings modal fade"
+    id="settings-modal"
+    role="dialog"
+    tabIndex="-1">
+    <div
+      className="modal-dialog modal-lg"
+      role="document">
+      <div
+        className="modal-content">
+        <div
+          className="modal-header">
+          <h5
+            className="modal-title"
+            id="settings-label">
+            Settings
+          </h5>
+          <button
+            className="close"
+            data-dismiss="modal"
+            type="button">
+            <span
+              id="close">
+              ×
+            </span>
+          </button>
+        </div>
+        <div
+          className="modal-body">
+          <div
+            aria-multiselectable="true"
+            id="accordion"
+            role="tablist">
+            <div
+              className="card">
+              <div
+                className="card-header"
+                id="headingOne"
+                role="tab">
+                <h5
+                  className="mb-0">
+                  <a
+                    aria-controls="collapseOne"
+                    aria-expanded="true"
+                    data-parent="#accordion"
+                    data-toggle="collapse"
+                    href="#collapseOne">
+                    Event-Types
+                  </a>
+                </h5>
+              </div>
+              <div
+                aria-labelledby="headingOne"
+                className="collapse show"
+                id="collapseOne"
+                role="tabpanel">
+                <div
+                  className="card-block">
+                  <div
+                    className="event-types-settings">
+                    
+                    <table
+                      className="table table-striped event-types-table">
+                      <thead>
+                        <tr>
+                          <th>
+                            #
+                          </th>
+                          <th>
+                            Name
+                          </th>
+                          <th>
+                            Query
+                          </th>
+                          <th
+                            className="center">
+                            Delete?
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody />
+                    </table>
+                    <p>
+                      To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="modal-footer">
+          <button
+            className="btn"
+            disabled="disabled"
+            onClick={[Function]}
+            type="button">
+            <div>
+              Exit
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`test Correct rendering of Settings after modal has been opened 1`] = `
+<div
+  className="settings">
+  <a
+    className="nav-link"
+    data-target="#settings-modal"
+    data-toggle="modal"
+    onClick={[Function]}>
+    <i
+      className="settings-icon fa fa-bars" />
+  </a>
+  <div
+    className="settings modal fade"
+    id="settings-modal"
+    role="dialog"
+    tabIndex="-1">
+    <div
+      className="modal-dialog modal-lg"
+      role="document">
+      <div
+        className="modal-content">
+        <div
+          className="modal-header">
+          <h5
+            className="modal-title"
+            id="settings-label">
+            Settings
+          </h5>
+          <button
+            className="close"
+            data-dismiss="modal"
+            type="button">
+            <span
+              id="close">
+              ×
+            </span>
+          </button>
+        </div>
+        <div
+          className="modal-body">
+          <div
+            aria-multiselectable="true"
+            id="accordion"
+            role="tablist">
+            <div
+              className="card">
+              <div
+                className="card-header"
+                id="headingOne"
+                role="tab">
+                <h5
+                  className="mb-0">
+                  <a
+                    aria-controls="collapseOne"
+                    aria-expanded="true"
+                    data-parent="#accordion"
+                    data-toggle="collapse"
+                    href="#collapseOne">
+                    Event-Types
+                  </a>
+                </h5>
+              </div>
+              <div
+                aria-labelledby="headingOne"
+                className="collapse show"
+                id="collapseOne"
+                role="tabpanel">
+                <div
+                  className="card-block">
+                  <div
+                    className="event-types-settings">
+                    
+                    <table
+                      className="table table-striped event-types-table">
+                      <thead>
+                        <tr>
+                          <th>
+                            #
+                          </th>
+                          <th>
+                            Name
+                          </th>
+                          <th>
+                            Query
+                          </th>
+                          <th
+                            className="center">
+                            Delete?
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody />
+                    </table>
+                    <p>
+                      To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="modal-footer">
+          <button
+            className="btn"
+            disabled="disabled"
+            onClick={[Function]}
+            type="button">
+            <div>
+              Exit
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -15,16 +15,30 @@ class EventTable extends Component {
         if (!currentFilter.value) {
             return true;
         }
-        return this.props.header.some((eventPropertyKey) => {
-            const eventPropertyValue = currentEvent[eventPropertyKey.name].toString().toLowerCase();
-            const searchQuery = currentFilter.value.toString().toLowerCase();
-            return (eventPropertyValue.indexOf(searchQuery) > -1);
+        let columnsToBeSearched = this.props.header;
+        if(currentFilter.column) {
+          columnsToBeSearched = columnsToBeSearched.filter((eventPropertyKey) => {
+            return this.doesContain(eventPropertyKey.name, currentFilter.column);
+          });
+        }
+
+        return columnsToBeSearched.some((eventPropertyKey) => {
+            const splittedFilterValues = currentFilter.value.split(",");
+            for (var i = 0; i < splittedFilterValues.length; i++) {
+                if (this.doesContain(currentEvent[eventPropertyKey.name], splittedFilterValues[i].trim())) {
+                    return true;
+                }
+            }
         });
+    }
+
+    doesContain(baseValue, subValue) {
+      return (baseValue.toString().toLowerCase().indexOf(subValue.toString().toLowerCase()) > -1);
     }
 
     render() {
         return (
-            <div className="container event-table-container">
+            <div className="event-table-container">
                 <table className="table">
                     <EventTableHeader eventTypeAttributes={this.props.header}/>
                     <tbody>

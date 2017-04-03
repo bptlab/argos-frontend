@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 class Notification extends Component {
     render() {
         return(
-            <div className={`alert alert-${this.props.data.type}`} role="alert">
+            <div className={`alert-sliding alert-sliding-${this.props.data.type}`} role="alert">
                 <table>
                     <tbody>
                         <tr>

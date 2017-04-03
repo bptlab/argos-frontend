@@ -1,8 +1,8 @@
 exports[`test Correct drawing of LineChart 1`] = `
 <div
-  className="line-chart container">
+  className="line-chart">
   <canvas
-    height="80"
+    height="160"
     id="lineChart" />
 </div>
 `;

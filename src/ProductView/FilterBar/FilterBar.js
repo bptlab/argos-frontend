@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
-import Filter from './Filter/Filter.js';
+import RemovableInputField from '../../Utils/RemovableInputField.js';
+
 
 class FilterBar extends Component {
+    decideOnRemoveButton(currentFilter) {
+        return !(this.props.filter[this.props.filter.length - 1] === currentFilter);
+    }
+
     render() {
         return (
-            <div className="filter-bar container">
+            <div className="filter-bar">
                 <div className="form-group row">
-                    {this.props.filter.map((filter, index) =>
-                        <Filter key={filter.id} id={index} value={filter.value}
-                                onChangeFilterInput={this.props.onChangeFilterInput}/>
+                    {this.props.filter.map((filter) =>
+                        <RemovableInputField key={filter.id}
+                                             id={filter.id}
+                                             value={filter.value}
+                                             placeholder="Search..."
+                                             onInputChange={this.props.onInputChange}
+                                             displayRemoveButton={this.decideOnRemoveButton(filter)}/>
                     )}
                 </div>
             </div>

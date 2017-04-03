@@ -4,27 +4,26 @@ class NotificationService {
     constructor(remoteDomain, remotePort, API, notificationCallback) {
         this.notificationSubscribers = [];
         this.notificationEndpoint = notificationCallback;
-        if('WebSocket' in window) {
-            /* istanbul ignore next */
-            this.establishConnection(remoteDomain, remotePort, API);
-        } else {
-            this.onError("WebSocket is not supported in this Browser / Environment");
-        }
+        this.establishConnection(remoteDomain, remotePort, API);
     }
     
     establishConnection(remoteDomain, remotePort, API) {
-        /* istanbul ignore next */
-        const protocol = argosConfig.webSocketProtocol+"://";
-        /* istanbul ignore next */
-        this.connection = new WebSocket(protocol + remoteDomain + ":" + remotePort + "/" + API);
-        /* istanbul ignore next */
-        this.connection.onopen = this.onOpenConnection.bind(this);
-        /* istanbul ignore next */
-        this.connection.onclose = this.onCloseConnection.bind(this);
-        /* istanbul ignore next */
-        this.connection.onerror = this.onError.bind(this);
-        /* istanbul ignore next */
-        this.connection.onmessage = this.processNewMessage.bind(this);
+        if('WebSocket' in window) {
+            /* istanbul ignore next */
+            const protocol = argosConfig.webSocketProtocol + "://";
+            /* istanbul ignore next */
+            this.connection = new WebSocket(protocol + remoteDomain + ":" + remotePort + "/" + API);
+            /* istanbul ignore next */
+            this.connection.onopen = this.onOpenConnection.bind(this);
+            /* istanbul ignore next */
+            this.connection.onclose = this.onCloseConnection.bind(this);
+            /* istanbul ignore next */
+            this.connection.onerror = this.onError.bind(this);
+            /* istanbul ignore next */
+            this.connection.onmessage = this.processNewMessage.bind(this);
+        } else {
+            this.onError("WebSocket is not supported in this Browser / Environment");
+        }
     }
 
     onOpenConnection() {

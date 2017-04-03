@@ -8,6 +8,7 @@
     -moz-box-shadow: 10px 10px 22px -5px rgba(168,168,168,0.65);
     box-shadow: 10px 10px 22px -5px rgba(168,168,168,0.65);
     margin-bottom: 30px;
+    border-radius: 0px;
     //min-width: 19vw;
 }
 
@@ -41,7 +42,10 @@ a .ProductCard:hover {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding-right: 1vh;
-    line-height: 3vh;
+    line-height: 30px;
+    @include media-breakpoint-up(uhd) {
+        line-height: 65px;
+    }
     @include media-breakpoint-down(xs) {
         font-size: 12px;
     }

@@ -1,0 +1,854 @@
+exports[`test Handling change query 1`] = `
+<div
+  className="query-interface">
+  <a
+    className="nav-link"
+    data-placement="top"
+    data-target="#query-interface-modal"
+    data-toggle="modal"
+    id="new-complex-eventtype"
+    title="Click to create new event type">
+    <i
+      className="fa fa-plus" />
+  </a>
+  <div
+    className="query-interface modal fade"
+    id="query-interface-modal"
+    role="dialog"
+    tabIndex="-1">
+    <div
+      className="modal-dialog modal-lg"
+      role="document">
+      <div
+        className="modal-content">
+        <div
+          className="modal-header">
+          <h5
+            className="modal-title"
+            id="query-interface-label">
+            Query Interface
+          </h5>
+          <button
+            className="close"
+            data-dismiss="modal"
+            type="button">
+            <span
+              id="close">
+              ×
+            </span>
+          </button>
+        </div>
+        <div
+          className="modal-body">
+          
+          <div
+            className="query-interface-header">
+            <div
+              className="form-group has-danger">
+              <input
+                className="form-control"
+                id="query-name"
+                onChange={[Function]}
+                placeholder="Name"
+                type="text"
+                value="" />
+              <div
+                className="form-control-feedback">
+                This field can\'t be empty.
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="productId" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="LONG">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="productFamilyId" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="STRING">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="codingPlugId" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="INTEGER">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="codingPlugSoftwareVersion" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="FLOAT">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={false}
+                  type="text"
+                  value="" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={false}
+                  value="">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div
+            className="form-group ">
+            <label
+              className="form-control-label"
+              htmlFor="event-query">
+              Event Query
+            </label>
+            <textarea
+              className="form-control"
+              id="event-query"
+              onChange={[Function]}
+              rows="8"
+              type="text"
+              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+            
+          </div>
+        </div>
+        <div
+          className="modal-footer">
+          <button
+            className="btn"
+            disabled="disabled"
+            onClick={[Function]}
+            type="button">
+            <div>
+              Save
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`test Handling change query 2`] = `
+<div
+  className="query-interface">
+  <a
+    className="nav-link"
+    data-placement="top"
+    data-target="#query-interface-modal"
+    data-toggle="modal"
+    id="new-complex-eventtype"
+    title="Click to create new event type">
+    <i
+      className="fa fa-plus" />
+  </a>
+  <div
+    className="query-interface modal fade"
+    id="query-interface-modal"
+    role="dialog"
+    tabIndex="-1">
+    <div
+      className="modal-dialog modal-lg"
+      role="document">
+      <div
+        className="modal-content">
+        <div
+          className="modal-header">
+          <h5
+            className="modal-title"
+            id="query-interface-label">
+            Query Interface
+          </h5>
+          <button
+            className="close"
+            data-dismiss="modal"
+            type="button">
+            <span
+              id="close">
+              ×
+            </span>
+          </button>
+        </div>
+        <div
+          className="modal-body">
+          
+          <div
+            className="query-interface-header">
+            <div
+              className="form-group has-danger">
+              <input
+                className="form-control"
+                id="query-name"
+                onChange={[Function]}
+                placeholder="Name"
+                type="text"
+                value="" />
+              <div
+                className="form-control-feedback">
+                This field can\'t be empty.
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="productId" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="LONG">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="productFamilyId" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="STRING">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="codingPlugId" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="INTEGER">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="codingPlugSoftwareVersion" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="FLOAT">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={false}
+                  type="text"
+                  value="" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={false}
+                  value="">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div
+            className="form-group ">
+            <label
+              className="form-control-label"
+              htmlFor="event-query">
+              Event Query
+            </label>
+            <textarea
+              className="form-control"
+              id="event-query"
+              onChange={[Function]}
+              rows="8"
+              type="text"
+              value="TEST" />
+            
+          </div>
+        </div>
+        <div
+          className="modal-footer">
+          <button
+            className="btn"
+            disabled="disabled"
+            onClick={[Function]}
+            type="button">
+            <div>
+              Save
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`test Handling save query failure 1`] = `
+<div
+  className="query-interface">
+  <a
+    className="nav-link"
+    data-placement="top"
+    data-target="#query-interface-modal"
+    data-toggle="modal"
+    id="new-complex-eventtype"
+    title="Click to create new event type">
+    <i
+      className="fa fa-plus" />
+  </a>
+  <div
+    className="query-interface modal fade"
+    id="query-interface-modal"
+    role="dialog"
+    tabIndex="-1">
+    <div
+      className="modal-dialog modal-lg"
+      role="document">
+      <div
+        className="modal-content">
+        <div
+          className="modal-header">
+          <h5
+            className="modal-title"
+            id="query-interface-label">
+            Query Interface
+          </h5>
+          <button
+            className="close"
+            data-dismiss="modal"
+            type="button">
+            <span
+              id="close">
+              ×
+            </span>
+          </button>
+        </div>
+        <div
+          className="modal-body">
+          
+          <div
+            className="query-interface-header">
+            <div
+              className="form-group has-danger">
+              <input
+                className="form-control"
+                id="query-name"
+                onChange={[Function]}
+                placeholder="Name"
+                type="text"
+                value="" />
+              <div
+                className="form-control-feedback">
+                This field can\'t be empty.
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="productId" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="LONG">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="productFamilyId" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="STRING">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="codingPlugId" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="INTEGER">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="codingPlugSoftwareVersion" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="FLOAT">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={false}
+                  type="text"
+                  value="" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={false}
+                  value="">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div
+            className="form-group ">
+            <label
+              className="form-control-label"
+              htmlFor="event-query">
+              Event Query
+            </label>
+            <textarea
+              className="form-control"
+              id="event-query"
+              onChange={[Function]}
+              rows="8"
+              type="text"
+              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+            
+          </div>
+        </div>
+        <div
+          className="modal-footer">
+          <button
+            className="btn"
+            disabled="disabled"
+            onClick={[Function]}
+            type="button">
+            <div>
+              Save
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

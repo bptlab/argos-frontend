@@ -1,10 +1,16 @@
 @import "../definitions.scss";
-@import url('https://fonts.googleapis.com/css?family=Lato');
+@font-face {
+  font-family: 'latoregular';
+  src: url('./assets/fonts/lato/lato-regular-webfont.woff2') format('woff2'),
+  url('./assets/fonts/lato/lato-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 html, body, p, div, h1, h2, h3, h4, h5 {
   margin: 0;
   padding: 0;
-  font-family: 'Lato', Arial, "Helvetica", sans-serif;
+  font-family: 'latoregular', Arial, "Helvetica", sans-serif;
 }
 
 .AppWrapper {
@@ -12,24 +18,36 @@ html, body, p, div, h1, h2, h3, h4, h5 {
 }
 
 a, p, h1, h2, h3, h4, h5, span, a:hover {
-  color: black;
+  color: $COLOR-font-dark;
   text-decoration: none;
 }
 
 h1 {
-  font-size: 2.5vh;
+  font-size: 30px;
+  @include media-breakpoint-up(uhd){
+    font-size: 80px;
+  }
 }
 
 h2 {
-  font-size: 2.2vh;
+  font-size: 25px;
+  @include media-breakpoint-up(uhd){
+    font-size: 64px;
+  }
 }
 
 h3 {
-  font-size: 1.9vh;
+  font-size: 20px;
+  @include media-breakpoint-up(uhd){
+    font-size: 40px;
+  }
 }
 
 h4 {
-  font-size: 1.7vh;
+  font-size: 18px;
+  @include media-breakpoint-up(uhd){
+    font-size: 35px;
+  }
 }
 
 .input-group {
@@ -39,6 +57,14 @@ h4 {
     border-color: $COLOR-dark-background;
     border-style: none none solid none;
     border-radius: 0;
+  }
+  #remove-addon {
+    background-color: transparent;
+    color: $COLOR-dark-background;
+    border-color: $COLOR-dark-background;
+    border-style: none none solid none;
+    border-radius: 0;
+    outline: none;
   }
   input, input:focus {
     border-color: $COLOR-dark-background;
