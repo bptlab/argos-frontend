@@ -33,6 +33,7 @@ class QueryInterfaceAttribute extends Component {
                         <option>STRING</option>
                         <option>BOOLEAN</option>
                         <option>INTEGER</option>
+                        <option>LONG</option>
                         <option>FLOAT</option>
                     </select>
                 </div>

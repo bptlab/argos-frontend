@@ -12,7 +12,7 @@ class QueryInterface extends Component {
                 {
                     "id": 0,
                     "name": "productId",
-                    "type": "INTEGER",
+                    "type": "LONG",
                     "readonly": true
                 },
                 {
@@ -23,6 +23,18 @@ class QueryInterface extends Component {
                 },
                 {
                     "id": 2,
+                    "name": "codingPlugId",
+                    "type": "INTEGER",
+                    "readonly": true
+                },
+                {
+                    "id": 3,
+                    "name": "codingPlugSoftwareVersion",
+                    "type": "FLOAT",
+                    "readonly": true
+                },
+                {
+                    "id": 4,
                     "name": "",
                     "type": "",
                     "readonly": false
