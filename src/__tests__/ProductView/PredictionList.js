@@ -8,6 +8,6 @@ test('Render DetailArea', () => {
     const component = renderer.create(
         <PredictionList
             configuration={testConfigurations.CONFIGURATIONS[0]} />);
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 });
