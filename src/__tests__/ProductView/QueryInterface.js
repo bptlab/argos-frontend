@@ -38,8 +38,8 @@ test('Handling change attribute name', () => {
     instance.handleChangeAttributeName(4, 'Test');
     expect(instance.getEventTypeAttribute(4).name).toBe('Test');
     expect(instance.state.eventTypeAttributes.length).toBe(6);
-    instance.handleChangeAttributeName(2, '');
-    expect(instance.state.eventTypeAttributes.length).toBe(6);
+    instance.handleChangeAttributeName(4, '');
+    expect(instance.state.eventTypeAttributes.length).toBe(5);
 });
 
 test('Handling change attribute type', () => {
