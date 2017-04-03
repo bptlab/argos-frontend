@@ -23,10 +23,8 @@ class PredictionView extends Component {
         return ({
             labels: labels,
             datasets: [{
-                label: this.props.errorType.errorDescription,
-                backgroundColor: [
-                    "rgba(0, 78, 100, 0.5)"
-                ],
+                label: this.props.errorType.errorTypeId,
+                backgroundColor: "rgba(0, 78, 100, 0.5)",
                 data: data,
             }]
         });
@@ -46,7 +44,19 @@ class PredictionView extends Component {
             const chartContext = charWrapper.getContext('2d');
             const chartConfig = {
                 type: 'bar',
-                data: this.getChartData()
+                data: this.getChartData(),
+                options: {
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                max: 1,
+                                min: 0,
+                                stepSize: 0.1
+                            }
+                        }]
+                    }
+                }
             };
             this.chart = new Chart(chartContext, chartConfig);
         }
@@ -63,17 +73,19 @@ class PredictionView extends Component {
                         <span className="badge badge-default badge-pill">
                                 {this.props.errorType.errorCauses.length}
                         </span>
-                        <Modal title={`Prediction Detail View ${this.props.errorType.errorDescription}`}
-                               onSubmit={this.handleSubmit}
-                               id={`prediction-view-${this.props.errorType.errorTypeId}`}
-                               buttonText="Close">
-                            <h2>{this.props.errorType.errorTypeId} - {this.props.errorType.errorDescription}</h2>
-                            {this.state.isVisible &&
-                                <div className="line-chart container">
-                                    <canvas ref="predictionChart" id="predictionChart" height="80"/>
-                                </div>
-                            }
-                        </Modal>
+                        <div className="prediction-view">
+                            <Modal title={`Prediction Details: ${this.props.errorType.errorDescription}`}
+                                   onSubmit={this.handleSubmit}
+                                   id={`prediction-view-${this.props.errorType.errorTypeId}`}
+                                   buttonText="Close">
+                                <h2>{this.props.errorType.errorTypeId}</h2>
+                                {this.state.isVisible &&
+                                    <div className="line-chart container">
+                                        <canvas ref="predictionChart" id="predictionChart" />
+                                    </div>
+                                }
+                            </Modal>
+                        </div>
                     </li>
                 </a>
         );
