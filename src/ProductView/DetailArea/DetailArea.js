@@ -28,7 +28,7 @@ class DetailArea extends Component {
         return (
             <div className="detail-area">
                 <ProductDetails product={this.props.product}/>
-                <StatusDerivation product={this.props.product}/>
+                <StatusDerivation configuration={this.state.configuration}/>
             </div>
         );
     }
