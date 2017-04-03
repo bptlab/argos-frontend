@@ -5,15 +5,3 @@
 @import "TabBar/TabBar";
 @import "Diagram/LineChart";
 @import "PredictionList/PredictionList";
-
-@include media-breakpoint-up(xlg) {
-  .prediction-view .modal-lg {
-    max-width: 95%;
-  }
-}
-
-@include media-breakpoint-up(uhd) {
-  .prediction-view .modal-lg {
-    max-width: 95%;
-  }
-}
