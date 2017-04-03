@@ -45,8 +45,8 @@ test('Handling change attribute name', () => {
 test('Handling change attribute type', () => {
     instance.handleChangeAttributeType(0, 'STRING');
     expect(instance.state.eventTypeAttributes[0].type).not.toBe('STRING');
-    instance.handleChangeAttributeType(2, 'INTEGER');
-    expect(instance.state.eventTypeAttributes[2].type).toBe('INTEGER');
+    instance.handleChangeAttributeType(4, 'INTEGER');
+    expect(instance.state.eventTypeAttributes[4].type).toBe('INTEGER');
 
 });
 
