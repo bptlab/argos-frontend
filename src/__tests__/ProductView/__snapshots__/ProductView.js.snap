@@ -332,7 +332,9 @@ exports[`test Change filter 1`] = `
                                 type="text"
                                 value="" />
                               <div
-                                className="form-control-feedback" />
+                                className="form-control-feedback">
+                                This field can\'t be empty.
+                              </div>
                             </div>
                             <div
                               className="query-interface-header-attribute form-group row">
@@ -453,7 +455,7 @@ exports[`test Change filter 1`] = `
                               onChange={[Function]}
                               rows="8"
                               type="text"
-                              value={undefined} />
+                              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
                             
                           </div>
                         </div>
@@ -813,7 +815,9 @@ exports[`test Changing active Tab 1`] = `
                                 type="text"
                                 value="" />
                               <div
-                                className="form-control-feedback" />
+                                className="form-control-feedback">
+                                This field can\'t be empty.
+                              </div>
                             </div>
                             <div
                               className="query-interface-header-attribute form-group row">
@@ -934,7 +938,7 @@ exports[`test Changing active Tab 1`] = `
                               onChange={[Function]}
                               rows="8"
                               type="text"
-                              value={undefined} />
+                              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
                             
                           </div>
                         </div>
@@ -1491,7 +1495,9 @@ exports[`test Remove last filter 1`] = `
                                 type="text"
                                 value="" />
                               <div
-                                className="form-control-feedback" />
+                                className="form-control-feedback">
+                                This field can\'t be empty.
+                              </div>
                             </div>
                             <div
                               className="query-interface-header-attribute form-group row">
@@ -1612,7 +1618,7 @@ exports[`test Remove last filter 1`] = `
                               onChange={[Function]}
                               rows="8"
                               type="text"
-                              value={undefined} />
+                              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
                             
                           </div>
                         </div>
@@ -1972,7 +1978,9 @@ exports[`test Rendering of ProductView 1`] = `
                                 type="text"
                                 value="" />
                               <div
-                                className="form-control-feedback" />
+                                className="form-control-feedback">
+                                This field can\'t be empty.
+                              </div>
                             </div>
                             <div
                               className="query-interface-header-attribute form-group row">
@@ -2093,7 +2101,7 @@ exports[`test Rendering of ProductView 1`] = `
                               onChange={[Function]}
                               rows="8"
                               type="text"
-                              value={undefined} />
+                              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
                             
                           </div>
                         </div>
@@ -2475,7 +2483,9 @@ exports[`test Successful filtering 1`] = `
                                 type="text"
                                 value="" />
                               <div
-                                className="form-control-feedback" />
+                                className="form-control-feedback">
+                                This field can\'t be empty.
+                              </div>
                             </div>
                             <div
                               className="query-interface-header-attribute form-group row">
@@ -2596,7 +2606,7 @@ exports[`test Successful filtering 1`] = `
                               onChange={[Function]}
                               rows="8"
                               type="text"
-                              value={undefined} />
+                              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
                             
                           </div>
                         </div>

@@ -53,7 +53,9 @@ exports[`test Handling change query 1`] = `
                 type="text"
                 value="" />
               <div
-                className="form-control-feedback" />
+                className="form-control-feedback">
+                This field can\'t be empty.
+              </div>
             </div>
             <div
               className="query-interface-header-attribute form-group row">
@@ -174,7 +176,7 @@ exports[`test Handling change query 1`] = `
               onChange={[Function]}
               rows="8"
               type="text"
-              value={undefined} />
+              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
             
           </div>
         </div>
@@ -251,7 +253,9 @@ exports[`test Handling change query 2`] = `
                 type="text"
                 value="" />
               <div
-                className="form-control-feedback" />
+                className="form-control-feedback">
+                This field can\'t be empty.
+              </div>
             </div>
             <div
               className="query-interface-header-attribute form-group row">
@@ -449,7 +453,9 @@ exports[`test Handling save query failure 1`] = `
                 type="text"
                 value="" />
               <div
-                className="form-control-feedback" />
+                className="form-control-feedback">
+                This field can\'t be empty.
+              </div>
             </div>
             <div
               className="query-interface-header-attribute form-group row">
@@ -570,7 +576,7 @@ exports[`test Handling save query failure 1`] = `
               onChange={[Function]}
               rows="8"
               type="text"
-              value={undefined} />
+              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
             
           </div>
         </div>
