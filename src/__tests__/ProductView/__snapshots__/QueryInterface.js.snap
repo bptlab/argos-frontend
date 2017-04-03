@@ -76,7 +76,7 @@ exports[`test Handling change query 1`] = `
                   className="form-control qi-select"
                   onChange={[Function]}
                   readOnly={true}
-                  value="INTEGER">
+                  value="LONG">
                   <option>
                     STRING
                   </option>
@@ -85,6 +85,9 @@ exports[`test Handling change query 1`] = `
                   </option>
                   <option>
                     INTEGER
+                  </option>
+                  <option>
+                    LONG
                   </option>
                   <option>
                     FLOAT
@@ -122,6 +125,85 @@ exports[`test Handling change query 1`] = `
                     INTEGER
                   </option>
                   <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="codingPlugId" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="INTEGER">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="codingPlugSoftwareVersion" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="FLOAT">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
                     FLOAT
                   </option>
                 </select>
@@ -155,6 +237,9 @@ exports[`test Handling change query 1`] = `
                   </option>
                   <option>
                     INTEGER
+                  </option>
+                  <option>
+                    LONG
                   </option>
                   <option>
                     FLOAT
@@ -276,7 +361,7 @@ exports[`test Handling change query 2`] = `
                   className="form-control qi-select"
                   onChange={[Function]}
                   readOnly={true}
-                  value="INTEGER">
+                  value="LONG">
                   <option>
                     STRING
                   </option>
@@ -285,6 +370,9 @@ exports[`test Handling change query 2`] = `
                   </option>
                   <option>
                     INTEGER
+                  </option>
+                  <option>
+                    LONG
                   </option>
                   <option>
                     FLOAT
@@ -322,6 +410,85 @@ exports[`test Handling change query 2`] = `
                     INTEGER
                   </option>
                   <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="codingPlugId" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="INTEGER">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="codingPlugSoftwareVersion" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="FLOAT">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
                     FLOAT
                   </option>
                 </select>
@@ -355,6 +522,9 @@ exports[`test Handling change query 2`] = `
                   </option>
                   <option>
                     INTEGER
+                  </option>
+                  <option>
+                    LONG
                   </option>
                   <option>
                     FLOAT
@@ -476,7 +646,7 @@ exports[`test Handling save query failure 1`] = `
                   className="form-control qi-select"
                   onChange={[Function]}
                   readOnly={true}
-                  value="INTEGER">
+                  value="LONG">
                   <option>
                     STRING
                   </option>
@@ -485,6 +655,9 @@ exports[`test Handling save query failure 1`] = `
                   </option>
                   <option>
                     INTEGER
+                  </option>
+                  <option>
+                    LONG
                   </option>
                   <option>
                     FLOAT
@@ -522,6 +695,85 @@ exports[`test Handling save query failure 1`] = `
                     INTEGER
                   </option>
                   <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="codingPlugId" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="INTEGER">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
+                    FLOAT
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div
+              className="query-interface-header-attribute form-group row">
+              <div
+                className="input-field input-group col-6">
+                <input
+                  className="form-control"
+                  id="example-text-input"
+                  onChange={[Function]}
+                  placeholder="Attribute name"
+                  readOnly={true}
+                  type="text"
+                  value="codingPlugSoftwareVersion" />
+              </div>
+              <div
+                className="input-field input-group col-6">
+                <select
+                  className="form-control qi-select"
+                  onChange={[Function]}
+                  readOnly={true}
+                  value="FLOAT">
+                  <option>
+                    STRING
+                  </option>
+                  <option>
+                    BOOLEAN
+                  </option>
+                  <option>
+                    INTEGER
+                  </option>
+                  <option>
+                    LONG
+                  </option>
+                  <option>
                     FLOAT
                   </option>
                 </select>
@@ -555,6 +807,9 @@ exports[`test Handling save query failure 1`] = `
                   </option>
                   <option>
                     INTEGER
+                  </option>
+                  <option>
+                    LONG
                   </option>
                   <option>
                     FLOAT

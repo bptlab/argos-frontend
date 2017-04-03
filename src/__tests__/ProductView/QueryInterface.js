@@ -26,27 +26,27 @@ test('Handling change query', () => {
     expect(tree).toMatchSnapshot();
 });
 
-test('Handling change attribute type', () => {
+test('Handling change event type name', () => {
     instance.handleChangeEventTypeName('Test');
     expect(instance.state.eventTypeName).toBe('Test');
 
 });
 
-test('Handling change attribute type', () => {
+test('Handling change attribute name', () => {
     instance.handleChangeAttributeName(0, 'Test');
     expect(instance.state.eventTypeAttributes[0].name).not.toBe('Test');
-    instance.handleChangeAttributeName(2, 'Test');
-    expect(instance.getEventTypeAttribute(2).name).toBe('Test');
-    expect(instance.state.eventTypeAttributes.length).toBe(4);
-    instance.handleChangeAttributeName(2, '');
-    expect(instance.state.eventTypeAttributes.length).toBe(3);
+    instance.handleChangeAttributeName(4, 'Test');
+    expect(instance.getEventTypeAttribute(4).name).toBe('Test');
+    expect(instance.state.eventTypeAttributes.length).toBe(6);
+    instance.handleChangeAttributeName(4, '');
+    expect(instance.state.eventTypeAttributes.length).toBe(5);
 });
 
 test('Handling change attribute type', () => {
     instance.handleChangeAttributeType(0, 'STRING');
     expect(instance.state.eventTypeAttributes[0].type).not.toBe('STRING');
-    instance.handleChangeAttributeType(2, 'INTEGER');
-    expect(instance.state.eventTypeAttributes[2].type).toBe('INTEGER');
+    instance.handleChangeAttributeType(4, 'INTEGER');
+    expect(instance.state.eventTypeAttributes[4].type).toBe('INTEGER');
 
 });
 
