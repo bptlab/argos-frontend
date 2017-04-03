@@ -1,0 +1,78 @@
+exports[`test Render DetailArea 1`] = `
+<div
+  className="container prediction-list-container">
+  <h2>
+    Possible product errors
+  </h2>
+  <ul
+    className="list-group">
+    <a
+      className="prediction-view"
+      data-target="#prediction-view-EF-254-modal"
+      data-toggle="modal"
+      onClick={[Function]}>
+      <li
+        className="list-group-item justify-content-between list-group-item-action">
+        EF-254
+         - 
+        Heating produces strange sounds
+        <span
+          className="badge badge-default badge-pill">
+          2
+        </span>
+        <div
+          className="prediction-view">
+          <div
+            className="prediction-view-EF-254 modal fade"
+            id="prediction-view-EF-254-modal"
+            role="dialog"
+            tabIndex="-1">
+            <div
+              className="modal-dialog modal-lg"
+              role="document">
+              <div
+                className="modal-content">
+                <div
+                  className="modal-header">
+                  <h5
+                    className="modal-title"
+                    id="prediction-view-EF-254-label">
+                    Prediction Details: Heating produces strange sounds
+                  </h5>
+                  <button
+                    className="close"
+                    data-dismiss="modal"
+                    type="button">
+                    <span
+                      id="close">
+                      ×
+                    </span>
+                  </button>
+                </div>
+                <div
+                  className="modal-body">
+                  <h2>
+                    EF-254
+                  </h2>
+                </div>
+                <div
+                  className="modal-footer">
+                  <button
+                    className="btn"
+                    disabled="disabled"
+                    onClick={[Function]}
+                    type="button">
+                    <div>
+                      Close
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </a>
+  </ul>
+</div>
+`;
