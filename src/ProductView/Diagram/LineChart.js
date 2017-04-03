@@ -76,7 +76,6 @@ class LineChart extends Component {
             pointHitRadius: 10,
             data: dataContainer
         });
-            
     }
 
     componentDidUpdate() {

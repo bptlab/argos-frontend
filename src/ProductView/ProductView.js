@@ -216,13 +216,7 @@ class ProductView extends Component {
                             </div>
                             <div className="col-12">
                                 <PredictionList
-                                    configuration={{errorTypes: [{
-                                        errorTypeId: 0,
-                                        errorDescription: "Fatal Error!",
-                                        errorCauses: [
-                                            "a", "b", "c"
-                                        ]
-                                    }]}} />
+                                    configuration={this.state.configuration} />
                             </div>
                             <div className="col-12">
                                 <FilterBar

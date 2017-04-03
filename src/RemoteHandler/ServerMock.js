@@ -47,9 +47,14 @@ class ServerMock {
                 errorDescription: "Heating produces strange sounds",
                 errorCauses: [{
                     id: 0,
-                    causeDescription: "Kabelbaum missing",
+                    causeDescription: "Cabel-tree missing",
                     errorOccurrences: 3,
                     errorPrediction: 0.3
+                },{
+                    id: 1,
+                    causeDescription: "Pump broken",
+                    errorOccurrences: 3,
+                    errorPrediction: 0.7
                 }]
             }]
         },
