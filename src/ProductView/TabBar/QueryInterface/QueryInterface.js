@@ -44,6 +44,10 @@ class QueryInterface extends Component {
         this.handleSaveQueryError = this.handleSaveQueryError.bind(this);
     }
 
+    componentDidMount() {
+        $(document).ready(function(){ $("#new-complex-eventtype").tooltip(); });
+    }
+
     addEmptyAttribute(attributes) {
         attributes = attributes.concat([{
             'id': this.nextAttributeId,
@@ -142,7 +146,9 @@ class QueryInterface extends Component {
     render() {
         return (
             <div className="query-interface">
-                <a className="nav-link" data-toggle="modal" data-target="#query-interface-modal">
+                <a id="new-complex-eventtype" className="nav-link" data-toggle="modal"
+                   data-target="#query-interface-modal" title={argosConfig.eventQueryInterfaceTooltip}
+                   data-placement="top">
                     <i className="fa fa-plus"/>
                 </a>
                 <Modal title="Query Interface"

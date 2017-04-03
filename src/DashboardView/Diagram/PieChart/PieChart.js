@@ -3,9 +3,9 @@ import Chart from "chart.js";
 import {argosConfig} from '../../../config/argosConfig.js';
 
 const stateColor = {
-    ERROR: "#D33F49",
-    WARNING: "#EF9D6E",
-    RUNNING: "#9FAB61",
+    ERROR: argosConfig.errorStateColor,
+    WARNING: argosConfig.warningStateColor,
+    RUNNING: argosConfig.runningStateColor,
 };
 
 class PieChart extends Component {

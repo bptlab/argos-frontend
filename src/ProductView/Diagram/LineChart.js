@@ -9,6 +9,10 @@ class LineChart extends Component {
         const dateB = new Date(elementB[timeStampAttribute]);
         return dateA - dateB;
     }
+
+    componentDidMount() {
+        this.getDiagramColors();
+    }
     
     buildChartData() {
         const dataset = [];
@@ -20,6 +24,27 @@ class LineChart extends Component {
     shouldComponentUpdate(nextProps) {
         return (nextProps.events.length !== this.props.events.length
         || nextProps.eventType.name !== this.props.eventType.name);
+    }
+
+    getDiagramColors() {
+        const state = this.props.product.state.toLowerCase();
+        switch(state) {
+            case argosConfig.runningStateName:
+                this.backgroundColor = argosConfig.runningStateTransparentColor;
+                this.borderColor = argosConfig.runningStateColor;
+                break;
+            case argosConfig.warningStateName:
+                this.backgroundColor = argosConfig.warningStateTransparentColor;
+                this.borderColor = argosConfig.warningStateColor;
+                break;
+            case argosConfig.errorStateName:
+                this.backgroundColor = argosConfig.errorStateTransparentColor;
+                this.borderColor = argosConfig.errorStateColor;
+                break;
+            default:
+                this.backgroundColor = argosConfig.undefinedStateTransparentColor;
+                this.borderColor = argosConfig.undefinedStateColor;
+        }
     }
     
     
@@ -38,12 +63,13 @@ class LineChart extends Component {
                 y: counter
             });
         });
+
         return({
             label: eventType.name,
             fill: true,
             lineTension: 0.1,
-            backgroundColor: "rgba(0, 78, 100, 0.5)",
-            borderColor: "rgba(0, 78, 100, 1)",
+            backgroundColor: this.backgroundColor,
+            borderColor: this.borderColor,
             pointBorderWidth: 5,
             pointHoverRadius: 8,
             pointRadius: 1,
@@ -82,8 +108,8 @@ class LineChart extends Component {
     
     render() {
         return (
-            <div className="line-chart container">
-                <canvas ref="canvas" id="lineChart" height="80"/>
+            <div className="line-chart">
+                <canvas ref="canvas" id="lineChart" height="160"/>
             </div>
         );
     }

@@ -27,4 +27,16 @@ export const argosConfig = {
     createEventTypeDefaultQuery:    'INSERT INTO TestErrorEvents SELECT timestamp, productId, ' +
                                     'productFamilyId FROM FeedbackData',
     formValidationNoEmptyMessage:   'This field can\'t be empty.',
+    runningStateName:               'running',
+    warningStateName:               'warning',
+    errorStateName:                 'error',
+    runningStateColor:              '#9FAB61',
+    runningStateTransparentColor:   'rgba(159, 171, 97, 0.4)',
+    warningStateColor:              '#EF9D6E',
+    warningStateTransparentColor:   'rgba(239, 157, 110, 0.4)',
+    errorStateColor:                '#D33F49',
+    errorStateTransparentColor:     'rgba(211, 63, 73, 0.4)',
+    undefinedStateColor:            '#666666',
+    undefinedStateTransparentColor: 'rgba(102, 102, 102, 0.4)',
+    eventQueryInterfaceTooltip:     'Click to create new event type',
 };

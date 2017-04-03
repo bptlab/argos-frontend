@@ -1,0 +1,22 @@
+select.form-control, input.form-control {
+  border: 0;
+  border-bottom: 1px solid $COLOR-dark-background;
+  border-radius: 0;
+}
+
+select.form-control {
+  -moz-appearance: none !important;
+  -webkit-appearance: none !important;
+}
+
+input.form-control[readonly] {
+  color: #999999;
+  border-color: #999999;
+  background-color: white;
+}
+
+.qi-select[readonly] {
+  color: #999999;
+  border-color: #999999;
+  background-color: white;
+}

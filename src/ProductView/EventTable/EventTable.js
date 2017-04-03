@@ -38,7 +38,7 @@ class EventTable extends Component {
 
     render() {
         return (
-            <div className="container event-table-container">
+            <div className="event-table-container">
                 <table className="table">
                     <EventTableHeader eventTypeAttributes={this.props.header}/>
                     <tbody>

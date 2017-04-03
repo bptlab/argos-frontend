@@ -199,29 +199,48 @@ class ProductView extends Component {
             let pageContent = (<Loader/>);
             if(!this.state.loading) {
                 pageContent = (
-                    <div>
-                        <LineChart
-                            events={this.state.activeEvents}
-                            eventType={this.state.activeEventType} />
-                        <FilterBar
-                            onInputChange={this.onInputChange}
-                            filter={this.state.filter} />
-                        <TabBar
-                            dataSender={this.props.dataSender}
-                            eventTypes={this.state.eventTypes}
-                            setActiveEventType={this.setActiveEventType}
-                            product={this.state.product} />
-                        <EventTable
-                            header={this.state.activeEventType.attributes}
-                            events={this.state.activeEvents}
-                            filter={this.state.filter} />
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-xs-12 col-sm-6">
+                                <DetailArea
+                                    product={this.state.product}
+                                    configuration={this.state.configuration}
+                                    showAllConfigurations={this.state.showAllConfigurations}/>
+                            </div>
+                            <div className="col-xs-12 col-sm-6">
+                                <LineChart
+                                    events={this.state.activeEvents}
+                                    eventType={this.state.activeEventType}
+                                    product={this.state.product} />
+                            </div>
+                            <div className="col-12">
+                                <FilterBar
+                                    onInputChange={this.onInputChange}
+                                    filter={this.state.filter} />
+                            </div>
+                            <div className="col-12">
+                                <TabBar
+                                    dataSender={this.props.dataSender}
+                                    eventTypes={this.state.eventTypes}
+                                    setActiveEventType={this.setActiveEventType}
+                                    product={this.state.product} />
+                            </div>
+                            <div className="col-12">
+                                <EventTable
+                                    header={this.state.activeEventType.attributes}
+                                    events={this.state.activeEvents}
+                                    filter={this.state.filter} />
+                            </div>
+                        </div>
                     </div>
                 );
             }
             component = (
                 <div>
-                    <Header product={this.state.product} configurations={this.state.product.configurations} onChangeProductConfiguration={this.handleChangeProductConfiguration}/>
-                    <DetailArea product={this.state.product} configuration={this.state.configuration} showAllConfigurations={this.state.showAllConfigurations}/>
+                    <Header
+                        product={this.state.product}
+                        configurations={this.state.product.configurations}
+                        onChangeProductConfiguration={this.handleChangeProductConfiguration}/>
                     {pageContent}
                 </div>
             );

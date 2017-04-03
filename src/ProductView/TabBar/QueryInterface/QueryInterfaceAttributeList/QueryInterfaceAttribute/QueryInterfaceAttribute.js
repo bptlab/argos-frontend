@@ -18,15 +18,15 @@ class QueryInterfaceAttribute extends Component {
     render() {
         return (
             <div className="query-interface-header-attribute form-group row">
-                <div className="col-6">
+                <div className="input-field input-group col-6">
                     <input className="form-control" type="text"
                            placeholder="Attribute name" id="example-text-input"
                            value={this.props.eventTypeAttribute.name}
                            onChange={this.onChangeAttributeName}
                            readOnly={this.props.eventTypeAttribute.readonly}/>
                 </div>
-                <div className="col-6">
-                    <select className="form-control" id="exampleSelect1"
+                <div className="input-field input-group col-6">
+                    <select className="form-control qi-select"
                             value={this.props.eventTypeAttribute.type}
                             onChange={this.onChangeAttributeType}
                             readOnly={this.props.eventTypeAttribute.readonly}>

@@ -30,7 +30,8 @@ exports[`test Correct rendering of Settings 1`] = `
             className="close"
             data-dismiss="modal"
             type="button">
-            <span>
+            <span
+              id="close">
               ×
             </span>
           </button>
@@ -102,7 +103,7 @@ exports[`test Correct rendering of Settings 1`] = `
         <div
           className="modal-footer">
           <button
-            className="btn btn-primary"
+            className="btn"
             disabled="disabled"
             onClick={[Function]}
             type="button">
@@ -149,7 +150,8 @@ exports[`test Correct rendering of Settings after modal has been closed 1`] = `
             className="close"
             data-dismiss="modal"
             type="button">
-            <span>
+            <span
+              id="close">
               ×
             </span>
           </button>
@@ -221,7 +223,7 @@ exports[`test Correct rendering of Settings after modal has been closed 1`] = `
         <div
           className="modal-footer">
           <button
-            className="btn btn-primary"
+            className="btn"
             disabled="disabled"
             onClick={[Function]}
             type="button">
@@ -268,7 +270,8 @@ exports[`test Correct rendering of Settings after modal has been opened 1`] = `
             className="close"
             data-dismiss="modal"
             type="button">
-            <span>
+            <span
+              id="close">
               ×
             </span>
           </button>
@@ -340,7 +343,7 @@ exports[`test Correct rendering of Settings after modal has been opened 1`] = `
         <div
           className="modal-footer">
           <button
-            className="btn btn-primary"
+            className="btn"
             disabled="disabled"
             onClick={[Function]}
             type="button">
