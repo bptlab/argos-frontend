@@ -84,7 +84,7 @@ test('Receiving undefined error', () => {
 });
 
 test('Delete eventTypes', () => {
-    instance.delteEventType(TestData.EVENTTYPES);
+    instance.deleteEventType(TestData.EVENTTYPES);
     expect(dataSender.deleteEventType).toHaveBeenCalled();
 });
 
