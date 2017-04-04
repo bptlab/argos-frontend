@@ -25,7 +25,7 @@ export const argosConfig = {
     errorRemainingDependencies:     'You can not delete this Event-Type, because of existing dependencies',
     messageSuccessEventTypeCreation:'EventType sucessfully created.',
     createEventTypeDefaultQuery:    'INSERT INTO TestErrorEvents SELECT timestamp, productId, ' +
-                                    'productFamilyId FROM FeedbackData',
+                                    'productFamilyId, codingPlugId, codingPlugSoftwareVersionu FROM FeedbackData',
     formValidationNoEmptyMessage:   'This field can\'t be empty.',
     runningStateName:               'running',
     warningStateName:               'warning',
