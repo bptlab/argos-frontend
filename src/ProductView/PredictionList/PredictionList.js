@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import PredictionView from './PredictionView/PredictionView.js';
 
 class PredictionList extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        const errorList = []; 
+    
+    generateErrorList() {
+        const errorList = [];
         if(this.props.configuration && this.props.configuration.errorTypes) {
             this.props.configuration.errorTypes.forEach((errorType, index) => {
                 errorList.push(
@@ -18,6 +14,10 @@ class PredictionList extends Component {
                 );
             });
         }
+    }
+    
+    render() {
+        const errorList = this.generateErrorList();
         return (
             <div className="container prediction-list-container">
                 <h2>Possible product errors</h2>
