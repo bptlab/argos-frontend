@@ -63,7 +63,7 @@ class PredictionView extends Component {
     }
 
     render() {
-        const errorTypeId = +this.props.errorType.errorTypeId;
+        const errorTypeId = this.props.errorType.errorTypeId;
         const modalId = "#prediction-view-"+errorTypeId+"-modal";
         return (<a  className="prediction-view"
                     data-target={modalId}
