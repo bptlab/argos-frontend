@@ -29,6 +29,7 @@ class PieChart extends Component {
     componentDidMount() {
         const charWrapper = this.refs.canvas;
         if(charWrapper) {
+            const fontSize = Math.max((12/1920) * window.innerWidth, 15);
             const that = this;
             const chartContext = charWrapper.getContext('2d');
             const chart = new Chart(chartContext, {
@@ -55,6 +56,9 @@ class PieChart extends Component {
                                 meta.data[index].hidden = !meta.data[index].hidden;
                             }
                             lChart.update();
+                        },
+                        labels: {
+                            fontSize: fontSize
                         }
                     }
                 }
