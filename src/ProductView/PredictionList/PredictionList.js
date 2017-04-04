@@ -23,7 +23,7 @@ class PredictionList extends Component {
             <div className="container prediction-list-container">
                 {!this.props.showAllConfigurations && errorList.length > 0 && (
                     <div>
-                        <h2>Possible product errors</h2>
+                        <h2 className="w-100">Possible product errors</h2>
                         <ul className="list-group">
                             {errorList}
                         </ul>
