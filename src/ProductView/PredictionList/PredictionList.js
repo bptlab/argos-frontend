@@ -21,10 +21,14 @@ class PredictionList extends Component {
         const errorList = this.generateErrorList();
         return (
             <div className="container prediction-list-container">
-                <h2>Possible product errors</h2>
-                <ul className="list-group">
-                    {errorList}
-                </ul>
+                {!this.props.showAllConfigurations && errorList.length > 0 && (
+                    <div>
+                        <h2>Possible product errors</h2>
+                        <ul className="list-group">
+                            {errorList}
+                        </ul>
+                    </div>
+                )}
             </div>
         );
     }
