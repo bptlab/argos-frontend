@@ -206,13 +206,7 @@ exports[`test Change filter 1`] = `
         <div
           className="col-12">
           <div
-            className="container prediction-list-container">
-            <h2>
-              Possible product errors
-            </h2>
-            <ul
-              className="list-group" />
-          </div>
+            className="container prediction-list-container" />
         </div>
         <div
           className="col-12">
@@ -797,13 +791,7 @@ exports[`test Changing active Tab 1`] = `
         <div
           className="col-12">
           <div
-            className="container prediction-list-container">
-            <h2>
-              Possible product errors
-            </h2>
-            <ul
-              className="list-group" />
-          </div>
+            className="container prediction-list-container" />
         </div>
         <div
           className="col-12">
@@ -1563,13 +1551,7 @@ exports[`test Remove last filter 1`] = `
         <div
           className="col-12">
           <div
-            className="container prediction-list-container">
-            <h2>
-              Possible product errors
-            </h2>
-            <ul
-              className="list-group" />
-          </div>
+            className="container prediction-list-container" />
         </div>
         <div
           className="col-12">
@@ -2132,13 +2114,7 @@ exports[`test Rendering of ProductView 1`] = `
         <div
           className="col-12">
           <div
-            className="container prediction-list-container">
-            <h2>
-              Possible product errors
-            </h2>
-            <ul
-              className="list-group" />
-          </div>
+            className="container prediction-list-container" />
         </div>
         <div
           className="col-12">
@@ -2701,13 +2677,7 @@ exports[`test Successful filtering 1`] = `
         <div
           className="col-12">
           <div
-            className="container prediction-list-container">
-            <h2>
-              Possible product errors
-            </h2>
-            <ul
-              className="list-group" />
-          </div>
+            className="container prediction-list-container" />
         </div>
         <div
           className="col-12">

@@ -216,7 +216,8 @@ class ProductView extends Component {
                             </div>
                             <div className="col-12">
                                 <PredictionList
-                                    configuration={this.state.configuration} />
+                                    configuration={this.state.configuration}
+                                    showAllConfigurations={this.state.showAllConfigurations} />
                             </div>
                             <div className="col-12">
                                 <FilterBar
