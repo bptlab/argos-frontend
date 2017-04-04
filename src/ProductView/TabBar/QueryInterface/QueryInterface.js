@@ -6,6 +6,18 @@ import {argosConfig} from './../../../config/argosConfig.js';
 class QueryInterface extends Component {
     constructor(props) {
         super(props);
+        this.setDefaultState();
+        this.nextAttributeId = this.state.eventTypeAttributes.length;
+        this.handleChangeEventTypeName = this.handleChangeEventTypeName.bind(this);
+        this.handleChangeAttributeName = this.handleChangeAttributeName.bind(this);
+        this.handleChangeAttributeType = this.handleChangeAttributeType.bind(this);
+        this.handleChangeQuery = this.handleChangeQuery.bind(this);
+        this.handleSaveQuery = this.handleSaveQuery.bind(this);
+        this.handleSaveQuerySuccess = this.handleSaveQuerySuccess.bind(this);
+        this.handleSaveQueryError = this.handleSaveQueryError.bind(this);
+    }
+
+    setDefaultState() {
         this.state = {
             eventTypeName: '',
             eventTypeAttributes: [
@@ -46,14 +58,6 @@ class QueryInterface extends Component {
             modalLoading: false,
             modalIsAbleToSave: false
         };
-        this.nextAttributeId = this.state.eventTypeAttributes.length;
-        this.handleChangeEventTypeName = this.handleChangeEventTypeName.bind(this);
-        this.handleChangeAttributeName = this.handleChangeAttributeName.bind(this);
-        this.handleChangeAttributeType = this.handleChangeAttributeType.bind(this);
-        this.handleChangeQuery = this.handleChangeQuery.bind(this);
-        this.handleSaveQuery = this.handleSaveQuery.bind(this);
-        this.handleSaveQuerySuccess = this.handleSaveQuerySuccess.bind(this);
-        this.handleSaveQueryError = this.handleSaveQueryError.bind(this);
     }
 
     componentDidMount() {
@@ -70,8 +74,6 @@ class QueryInterface extends Component {
         this.nextAttributeId = this.nextAttributeId + 1;
         return attributes;
     }
-
-
 
     getEventTypeAttribute(id) {
         return this.state.eventTypeAttributes.find((attribute) => {
@@ -139,7 +141,7 @@ class QueryInterface extends Component {
     /* istanbul ignore next */
     handleSaveQuerySuccess() {
         $('#query-interface-modal').modal('hide');
-        this.setState({ modalLoading: false });
+        this.setDefaultState();
     }
 
     handleSaveQueryError(error) {
