@@ -1,8 +1,16 @@
 import React, {Component} from 'react';
 class Notification extends Component {
+
+    componentWillReceiveProps(nextProps) {
+        $(document).ready(function () {
+            $('#notification').removeClass('sliding-animation');
+            $('#notification').addClass('sliding-animation');
+        });
+    }
+
     render() {
         return(
-            <div className={`alert-sliding alert-sliding-${this.props.data.type}`} role="alert">
+            <div className={`alert-sliding alert-sliding-${this.props.data.type}`} id="notification" role="alert">
                 <table>
                     <tbody>
                         <tr>

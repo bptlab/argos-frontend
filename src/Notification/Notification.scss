@@ -8,7 +8,6 @@
   width: 30vw;
   top: 10vh;
   right: -20vw;
-  animation: fade 5s linear;
   padding: 1vw;
   i {
     float: left;
@@ -30,6 +29,10 @@
 .alert-sliding-danger {
   border-color: $COLOR-error;
   background: $COLOR-error-transparent;
+}
+
+.sliding-animation {
+  animation: fade 5s linear;
 }
 
 @keyframes fade {
