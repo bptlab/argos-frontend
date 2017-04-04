@@ -17,8 +17,8 @@ test('Render PredictionList', () => {
 test('Render PredictionList without content', () => {
     const component = renderer.create(
         <PredictionList
-            configuration={testConfigurations.CONFIGURATIONS[0]}
-            showAllConfigurations={false} />
+            configuration={{}}
+            showAllConfigurations={true} />
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();

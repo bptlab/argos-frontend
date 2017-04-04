@@ -5,7 +5,7 @@ class PredictionList extends Component {
     
     generateErrorList() {
         const errorList = [];
-        if(this.props.configuration && this.props.configuration.errorTypes) {
+        if(!this.props.showAllConfigurations && this.props.configuration && this.props.configuration.errorTypes) {
             this.props.configuration.errorTypes.forEach((errorType, index) => {
                 errorList.push(
                     <PredictionView
