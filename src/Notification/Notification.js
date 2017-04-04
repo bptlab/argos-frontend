@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 class Notification extends Component {
 
-    componentWillReceiveProps(nextProps) {
+    /* istanbul ignore next */
+    componentWillReceiveProps() {
         $(document).ready(function () {
             $('#notification').removeClass('sliding-animation');
             $('#notification').addClass('sliding-animation');
