@@ -7,7 +7,7 @@ let instance, component;
 const callbackMock = jest.fn();
 
 beforeEach(() => {
-    const dataSender = {'createEventtype': callbackMock};
+    const dataSender = {'createEventtype': callbackMock, 'notificationCallback': callbackMock};
     component = renderer.create(
         <QueryInterface
             ref={(child) => {
@@ -55,7 +55,7 @@ test('Handling save query', () => {
     expect(callbackMock).toBeCalled();
 });
 
-test('Handling save query failure', () => {
+test('Handling save query sucess', () => {
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
     instance.handleSaveQuerySuccess();
