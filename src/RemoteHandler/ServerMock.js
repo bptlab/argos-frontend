@@ -47,7 +47,7 @@ class ServerMock {
                 errorDescription: "Heating produces strange sounds",
                 errorCauses: [{
                     id: 0,
-                    causeDescription: "Cabel-tree missing",
+                    causeDescription: "cable harness missing",
                     errorOccurrences: 3,
                     errorPrediction: 0.3
                 },{
@@ -79,7 +79,7 @@ class ServerMock {
                 errorDescription: "Heating produces strange sounds",
                 errorCauses: [{
                     id: 0,
-                    causeDescription: "Kabelbaum missing",
+                    causeDescription: "cable harness missing",
                     errorOccurrences: 3,
                     errorPrediction: 0.3
                 }]
@@ -105,7 +105,7 @@ class ServerMock {
                 errorDescription: "Heating produces strange sounds",
                 errorCauses: [{
                     id: 0,
-                    causeDescription: "Kabelbaum missing",
+                    causeDescription: "cable harness missing",
                     errorOccurrences: 3,
                     errorPrediction: 0.3
                 }]
@@ -131,7 +131,7 @@ class ServerMock {
                 errorDescription: "Heating produces strange sounds",
                 errorCauses: [{
                     id: 0,
-                    causeDescription: "Kabelbaum missing",
+                    causeDescription: "cable harness missing",
                     errorOccurrences: 3,
                     errorPrediction: 0.3
                 }]
