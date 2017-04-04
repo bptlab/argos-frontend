@@ -64,6 +64,7 @@ class QueryInterface extends Component {
         });
     }
 
+    /* istanbul ignore next */
     componentDidMount() {
         $(document).ready(function(){
             $("#new-complex-eventtype").tooltip();
