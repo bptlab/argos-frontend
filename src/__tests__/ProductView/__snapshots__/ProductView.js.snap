@@ -15,90 +15,80 @@ exports[`test Change filter 1`] = `
             </a>
           </div>
           <div
-            className="row col-xs-12 col-sm-10 d-flex justify-content-around">
+            className="col-10 d-flex justify-content-center">
             <div
-              className="col-12 d-flex justify-content-center">
-              <h1
-                className="dashboard-title">
-                Testproduct 30X 1W1-PSB
-              </h1>
-            </div>
-            <div
-              className="col-12 d-flex justify-content-center">
+              className="row col-10 d-flex justify-content-center">
               <div
-                className="row col-12 d-flex justify-content-center">
+                className="col-4 d-flex justify-content-around">
                 <div
-                  className="col-4 d-flex justify-content-around">
-                  <div
-                    className="form-group">
-                    <input
-                      checked={true}
-                      id="showAllCheckbox"
-                      onChange={[Function]}
-                      type="checkbox" />
-                    <label
-                      htmlFor="softwareVersionSelection">
-                      show all configurations
-                    </label>
-                  </div>
+                  className="form-group">
+                  <input
+                    checked={true}
+                    id="showAllCheckbox"
+                    onChange={[Function]}
+                    type="checkbox" />
+                  <label
+                    htmlFor="softwareVersionSelection">
+                    show all configurations
+                  </label>
                 </div>
+              </div>
+              <div
+                className="col-3 d-flex">
                 <div
-                  className="col-3 d-flex">
-                  <div
-                    className="form-group">
-                    <label
-                      hidden={true}
-                      htmlFor="codingPlugSelection">
-                      CP:
-                    </label>
-                    <select
-                      disabled={true}
-                      id="codingPlugSelection"
-                      onChange={[Function]}
-                      value="10">
-                      <option>
-                        10
-                      </option>
-                      <option>
-                        20
-                      </option>
-                      <option>
-                        30
-                      </option>
-                    </select>
-                  </div>
+                  className="form-group">
+                  <label
+                    hidden={true}
+                    htmlFor="codingPlugSelection">
+                    CP:
+                  </label>
+                  <select
+                    disabled={true}
+                    id="codingPlugSelection"
+                    onChange={[Function]}
+                    value="10">
+                    <option>
+                      10
+                    </option>
+                    <option>
+                      20
+                    </option>
+                    <option>
+                      30
+                    </option>
+                  </select>
                 </div>
+              </div>
+              <div
+                className="col-3 d-flex justify-content-around">
                 <div
-                  className="col-3 d-flex justify-content-around">
-                  <div
-                    className="form-group">
-                    <label
-                      hidden={true}
-                      htmlFor="softwareVersionSelection">
-                      SW:
-                    </label>
-                    <select
-                      disabled={true}
-                      id="softwareVersionSelection"
-                      onChange={[Function]}
-                      value="1">
-                      <option>
-                        1
-                      </option>
-                      <option>
-                        4
-                      </option>
-                      <option>
-                        1.1
-                      </option>
-                      <option>
-                        1.2
-                      </option>
-                      <option>
-                        4.1
-                      </option>
-                    </select>
-                  </div>
+                  className="form-group">
+                  <label
+                    hidden={true}
+                    htmlFor="softwareVersionSelection">
+                    SW:
+                  </label>
+                  <select
+                    disabled={true}
+                    id="softwareVersionSelection"
+                    onChange={[Function]}
+                    value="1">
+                    <option>
+                      1
+                    </option>
+                    <option>
+                      4
+                    </option>
+                    <option>
+                      1.1
+                    </option>
+                    <option>
+                      1.2
+                    </option>
+                    <option>
+                      4.1
+                    </option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -212,6 +202,11 @@ exports[`test Change filter 1`] = `
               height="160"
               id="lineChart" />
           </div>
+        </div>
+        <div
+          className="col-12">
+          <div
+            className="container prediction-list-container" />
         </div>
         <div
           className="col-12">
@@ -605,90 +600,80 @@ exports[`test Changing active Tab 1`] = `
             </a>
           </div>
           <div
-            className="row col-xs-12 col-sm-10 d-flex justify-content-around">
+            className="col-10 d-flex justify-content-center">
             <div
-              className="col-12 d-flex justify-content-center">
-              <h1
-                className="dashboard-title">
-                Testproduct 30X 1W1-PSB
-              </h1>
-            </div>
-            <div
-              className="col-12 d-flex justify-content-center">
+              className="row col-10 d-flex justify-content-center">
               <div
-                className="row col-12 d-flex justify-content-center">
+                className="col-4 d-flex justify-content-around">
                 <div
-                  className="col-4 d-flex justify-content-around">
-                  <div
-                    className="form-group">
-                    <input
-                      checked={true}
-                      id="showAllCheckbox"
-                      onChange={[Function]}
-                      type="checkbox" />
-                    <label
-                      htmlFor="softwareVersionSelection">
-                      show all configurations
-                    </label>
-                  </div>
+                  className="form-group">
+                  <input
+                    checked={true}
+                    id="showAllCheckbox"
+                    onChange={[Function]}
+                    type="checkbox" />
+                  <label
+                    htmlFor="softwareVersionSelection">
+                    show all configurations
+                  </label>
                 </div>
+              </div>
+              <div
+                className="col-3 d-flex">
                 <div
-                  className="col-3 d-flex">
-                  <div
-                    className="form-group">
-                    <label
-                      hidden={true}
-                      htmlFor="codingPlugSelection">
-                      CP:
-                    </label>
-                    <select
-                      disabled={true}
-                      id="codingPlugSelection"
-                      onChange={[Function]}
-                      value="10">
-                      <option>
-                        10
-                      </option>
-                      <option>
-                        20
-                      </option>
-                      <option>
-                        30
-                      </option>
-                    </select>
-                  </div>
+                  className="form-group">
+                  <label
+                    hidden={true}
+                    htmlFor="codingPlugSelection">
+                    CP:
+                  </label>
+                  <select
+                    disabled={true}
+                    id="codingPlugSelection"
+                    onChange={[Function]}
+                    value="10">
+                    <option>
+                      10
+                    </option>
+                    <option>
+                      20
+                    </option>
+                    <option>
+                      30
+                    </option>
+                  </select>
                 </div>
+              </div>
+              <div
+                className="col-3 d-flex justify-content-around">
                 <div
-                  className="col-3 d-flex justify-content-around">
-                  <div
-                    className="form-group">
-                    <label
-                      hidden={true}
-                      htmlFor="softwareVersionSelection">
-                      SW:
-                    </label>
-                    <select
-                      disabled={true}
-                      id="softwareVersionSelection"
-                      onChange={[Function]}
-                      value="1">
-                      <option>
-                        1
-                      </option>
-                      <option>
-                        4
-                      </option>
-                      <option>
-                        1.1
-                      </option>
-                      <option>
-                        1.2
-                      </option>
-                      <option>
-                        4.1
-                      </option>
-                    </select>
-                  </div>
+                  className="form-group">
+                  <label
+                    hidden={true}
+                    htmlFor="softwareVersionSelection">
+                    SW:
+                  </label>
+                  <select
+                    disabled={true}
+                    id="softwareVersionSelection"
+                    onChange={[Function]}
+                    value="1">
+                    <option>
+                      1
+                    </option>
+                    <option>
+                      4
+                    </option>
+                    <option>
+                      1.1
+                    </option>
+                    <option>
+                      1.2
+                    </option>
+                    <option>
+                      4.1
+                    </option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -802,6 +787,11 @@ exports[`test Changing active Tab 1`] = `
               height="160"
               id="lineChart" />
           </div>
+        </div>
+        <div
+          className="col-12">
+          <div
+            className="container prediction-list-container" />
         </div>
         <div
           className="col-12">
@@ -1370,90 +1360,80 @@ exports[`test Remove last filter 1`] = `
             </a>
           </div>
           <div
-            className="row col-xs-12 col-sm-10 d-flex justify-content-around">
+            className="col-10 d-flex justify-content-center">
             <div
-              className="col-12 d-flex justify-content-center">
-              <h1
-                className="dashboard-title">
-                Testproduct 30X 1W1-PSB
-              </h1>
-            </div>
-            <div
-              className="col-12 d-flex justify-content-center">
+              className="row col-10 d-flex justify-content-center">
               <div
-                className="row col-12 d-flex justify-content-center">
+                className="col-4 d-flex justify-content-around">
                 <div
-                  className="col-4 d-flex justify-content-around">
-                  <div
-                    className="form-group">
-                    <input
-                      checked={true}
-                      id="showAllCheckbox"
-                      onChange={[Function]}
-                      type="checkbox" />
-                    <label
-                      htmlFor="softwareVersionSelection">
-                      show all configurations
-                    </label>
-                  </div>
+                  className="form-group">
+                  <input
+                    checked={true}
+                    id="showAllCheckbox"
+                    onChange={[Function]}
+                    type="checkbox" />
+                  <label
+                    htmlFor="softwareVersionSelection">
+                    show all configurations
+                  </label>
                 </div>
+              </div>
+              <div
+                className="col-3 d-flex">
                 <div
-                  className="col-3 d-flex">
-                  <div
-                    className="form-group">
-                    <label
-                      hidden={true}
-                      htmlFor="codingPlugSelection">
-                      CP:
-                    </label>
-                    <select
-                      disabled={true}
-                      id="codingPlugSelection"
-                      onChange={[Function]}
-                      value="10">
-                      <option>
-                        10
-                      </option>
-                      <option>
-                        20
-                      </option>
-                      <option>
-                        30
-                      </option>
-                    </select>
-                  </div>
+                  className="form-group">
+                  <label
+                    hidden={true}
+                    htmlFor="codingPlugSelection">
+                    CP:
+                  </label>
+                  <select
+                    disabled={true}
+                    id="codingPlugSelection"
+                    onChange={[Function]}
+                    value="10">
+                    <option>
+                      10
+                    </option>
+                    <option>
+                      20
+                    </option>
+                    <option>
+                      30
+                    </option>
+                  </select>
                 </div>
+              </div>
+              <div
+                className="col-3 d-flex justify-content-around">
                 <div
-                  className="col-3 d-flex justify-content-around">
-                  <div
-                    className="form-group">
-                    <label
-                      hidden={true}
-                      htmlFor="softwareVersionSelection">
-                      SW:
-                    </label>
-                    <select
-                      disabled={true}
-                      id="softwareVersionSelection"
-                      onChange={[Function]}
-                      value="1">
-                      <option>
-                        1
-                      </option>
-                      <option>
-                        4
-                      </option>
-                      <option>
-                        1.1
-                      </option>
-                      <option>
-                        1.2
-                      </option>
-                      <option>
-                        4.1
-                      </option>
-                    </select>
-                  </div>
+                  className="form-group">
+                  <label
+                    hidden={true}
+                    htmlFor="softwareVersionSelection">
+                    SW:
+                  </label>
+                  <select
+                    disabled={true}
+                    id="softwareVersionSelection"
+                    onChange={[Function]}
+                    value="1">
+                    <option>
+                      1
+                    </option>
+                    <option>
+                      4
+                    </option>
+                    <option>
+                      1.1
+                    </option>
+                    <option>
+                      1.2
+                    </option>
+                    <option>
+                      4.1
+                    </option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -1567,6 +1547,11 @@ exports[`test Remove last filter 1`] = `
               height="160"
               id="lineChart" />
           </div>
+        </div>
+        <div
+          className="col-12">
+          <div
+            className="container prediction-list-container" />
         </div>
         <div
           className="col-12">
@@ -1938,90 +1923,80 @@ exports[`test Rendering of ProductView 1`] = `
             </a>
           </div>
           <div
-            className="row col-xs-12 col-sm-10 d-flex justify-content-around">
+            className="col-10 d-flex justify-content-center">
             <div
-              className="col-12 d-flex justify-content-center">
-              <h1
-                className="dashboard-title">
-                Testproduct 30X 1W1-PSB
-              </h1>
-            </div>
-            <div
-              className="col-12 d-flex justify-content-center">
+              className="row col-10 d-flex justify-content-center">
               <div
-                className="row col-12 d-flex justify-content-center">
+                className="col-4 d-flex justify-content-around">
                 <div
-                  className="col-4 d-flex justify-content-around">
-                  <div
-                    className="form-group">
-                    <input
-                      checked={true}
-                      id="showAllCheckbox"
-                      onChange={[Function]}
-                      type="checkbox" />
-                    <label
-                      htmlFor="softwareVersionSelection">
-                      show all configurations
-                    </label>
-                  </div>
+                  className="form-group">
+                  <input
+                    checked={true}
+                    id="showAllCheckbox"
+                    onChange={[Function]}
+                    type="checkbox" />
+                  <label
+                    htmlFor="softwareVersionSelection">
+                    show all configurations
+                  </label>
                 </div>
+              </div>
+              <div
+                className="col-3 d-flex">
                 <div
-                  className="col-3 d-flex">
-                  <div
-                    className="form-group">
-                    <label
-                      hidden={true}
-                      htmlFor="codingPlugSelection">
-                      CP:
-                    </label>
-                    <select
-                      disabled={true}
-                      id="codingPlugSelection"
-                      onChange={[Function]}
-                      value="10">
-                      <option>
-                        10
-                      </option>
-                      <option>
-                        20
-                      </option>
-                      <option>
-                        30
-                      </option>
-                    </select>
-                  </div>
+                  className="form-group">
+                  <label
+                    hidden={true}
+                    htmlFor="codingPlugSelection">
+                    CP:
+                  </label>
+                  <select
+                    disabled={true}
+                    id="codingPlugSelection"
+                    onChange={[Function]}
+                    value="10">
+                    <option>
+                      10
+                    </option>
+                    <option>
+                      20
+                    </option>
+                    <option>
+                      30
+                    </option>
+                  </select>
                 </div>
+              </div>
+              <div
+                className="col-3 d-flex justify-content-around">
                 <div
-                  className="col-3 d-flex justify-content-around">
-                  <div
-                    className="form-group">
-                    <label
-                      hidden={true}
-                      htmlFor="softwareVersionSelection">
-                      SW:
-                    </label>
-                    <select
-                      disabled={true}
-                      id="softwareVersionSelection"
-                      onChange={[Function]}
-                      value="1">
-                      <option>
-                        1
-                      </option>
-                      <option>
-                        4
-                      </option>
-                      <option>
-                        1.1
-                      </option>
-                      <option>
-                        1.2
-                      </option>
-                      <option>
-                        4.1
-                      </option>
-                    </select>
-                  </div>
+                  className="form-group">
+                  <label
+                    hidden={true}
+                    htmlFor="softwareVersionSelection">
+                    SW:
+                  </label>
+                  <select
+                    disabled={true}
+                    id="softwareVersionSelection"
+                    onChange={[Function]}
+                    value="1">
+                    <option>
+                      1
+                    </option>
+                    <option>
+                      4
+                    </option>
+                    <option>
+                      1.1
+                    </option>
+                    <option>
+                      1.2
+                    </option>
+                    <option>
+                      4.1
+                    </option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -2135,6 +2110,11 @@ exports[`test Rendering of ProductView 1`] = `
               height="160"
               id="lineChart" />
           </div>
+        </div>
+        <div
+          className="col-12">
+          <div
+            className="container prediction-list-container" />
         </div>
         <div
           className="col-12">
@@ -2506,90 +2486,80 @@ exports[`test Successful filtering 1`] = `
             </a>
           </div>
           <div
-            className="row col-xs-12 col-sm-10 d-flex justify-content-around">
+            className="col-10 d-flex justify-content-center">
             <div
-              className="col-12 d-flex justify-content-center">
-              <h1
-                className="dashboard-title">
-                Testproduct 30X 1W1-PSB
-              </h1>
-            </div>
-            <div
-              className="col-12 d-flex justify-content-center">
+              className="row col-10 d-flex justify-content-center">
               <div
-                className="row col-12 d-flex justify-content-center">
+                className="col-4 d-flex justify-content-around">
                 <div
-                  className="col-4 d-flex justify-content-around">
-                  <div
-                    className="form-group">
-                    <input
-                      checked={true}
-                      id="showAllCheckbox"
-                      onChange={[Function]}
-                      type="checkbox" />
-                    <label
-                      htmlFor="softwareVersionSelection">
-                      show all configurations
-                    </label>
-                  </div>
+                  className="form-group">
+                  <input
+                    checked={true}
+                    id="showAllCheckbox"
+                    onChange={[Function]}
+                    type="checkbox" />
+                  <label
+                    htmlFor="softwareVersionSelection">
+                    show all configurations
+                  </label>
                 </div>
+              </div>
+              <div
+                className="col-3 d-flex">
                 <div
-                  className="col-3 d-flex">
-                  <div
-                    className="form-group">
-                    <label
-                      hidden={true}
-                      htmlFor="codingPlugSelection">
-                      CP:
-                    </label>
-                    <select
-                      disabled={true}
-                      id="codingPlugSelection"
-                      onChange={[Function]}
-                      value="10">
-                      <option>
-                        10
-                      </option>
-                      <option>
-                        20
-                      </option>
-                      <option>
-                        30
-                      </option>
-                    </select>
-                  </div>
+                  className="form-group">
+                  <label
+                    hidden={true}
+                    htmlFor="codingPlugSelection">
+                    CP:
+                  </label>
+                  <select
+                    disabled={true}
+                    id="codingPlugSelection"
+                    onChange={[Function]}
+                    value="10">
+                    <option>
+                      10
+                    </option>
+                    <option>
+                      20
+                    </option>
+                    <option>
+                      30
+                    </option>
+                  </select>
                 </div>
+              </div>
+              <div
+                className="col-3 d-flex justify-content-around">
                 <div
-                  className="col-3 d-flex justify-content-around">
-                  <div
-                    className="form-group">
-                    <label
-                      hidden={true}
-                      htmlFor="softwareVersionSelection">
-                      SW:
-                    </label>
-                    <select
-                      disabled={true}
-                      id="softwareVersionSelection"
-                      onChange={[Function]}
-                      value="1">
-                      <option>
-                        1
-                      </option>
-                      <option>
-                        4
-                      </option>
-                      <option>
-                        1.1
-                      </option>
-                      <option>
-                        1.2
-                      </option>
-                      <option>
-                        4.1
-                      </option>
-                    </select>
-                  </div>
+                  className="form-group">
+                  <label
+                    hidden={true}
+                    htmlFor="softwareVersionSelection">
+                    SW:
+                  </label>
+                  <select
+                    disabled={true}
+                    id="softwareVersionSelection"
+                    onChange={[Function]}
+                    value="1">
+                    <option>
+                      1
+                    </option>
+                    <option>
+                      4
+                    </option>
+                    <option>
+                      1.1
+                    </option>
+                    <option>
+                      1.2
+                    </option>
+                    <option>
+                      4.1
+                    </option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -2703,6 +2673,11 @@ exports[`test Successful filtering 1`] = `
               height="160"
               id="lineChart" />
           </div>
+        </div>
+        <div
+          className="col-12">
+          <div
+            className="container prediction-list-container" />
         </div>
         <div
           className="col-12">

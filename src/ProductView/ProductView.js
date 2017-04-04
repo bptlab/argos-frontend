@@ -6,6 +6,7 @@ import TabBar from './TabBar/TabBar.js';
 import EventTable from './EventTable/EventTable.js';
 import Loader from './../Loader/Loader.js';
 import LineChart from './Diagram/LineChart.js';
+import PredictionList from "./PredictionList/PredictionList";
 
 class ProductView extends Component {
     constructor(props) {
@@ -212,6 +213,11 @@ class ProductView extends Component {
                                     events={this.state.activeEvents}
                                     eventType={this.state.activeEventType}
                                     product={this.state.product} />
+                            </div>
+                            <div className="col-12">
+                                <PredictionList
+                                    configuration={this.state.configuration}
+                                    showAllConfigurations={this.state.showAllConfigurations} />
                             </div>
                             <div className="col-12">
                                 <FilterBar
