@@ -63,19 +63,20 @@ class PredictionView extends Component {
     }
 
     render() {
-        const modalId = "#prediction-view-"+this.props.errorType.errorTypeId+"-modal";
+        const errorTypeId = +this.props.errorType.errorTypeId;
+        const modalId = "#prediction-view-"+errorTypeId+"-modal";
         return (<a  className="prediction-view"
                     data-target={modalId}
                     data-toggle="modal" onClick={this.onOpenModal}>
                     <li
                         className="list-group-item justify-content-between list-group-item-action">
-                        {this.props.errorType.errorTypeId} - {this.props.errorType.errorDescription}
+                        {errorTypeId} - {this.props.errorType.errorDescription}
                         <div className="prediction-view">
                             <Modal title={`Prediction Details: ${this.props.errorType.errorDescription}`}
                                    onSubmit={this.handleSubmit}
-                                   id={`prediction-view-${this.props.errorType.errorTypeId}`}
+                                   id={`prediction-view-${errorTypeId}`}
                                    buttonText="Close">
-                                <h2>{this.props.errorType.errorTypeId}</h2>
+                                <h2>{errorTypeId}</h2>
                                 {this.state.isVisible &&
                                     <div className="line-chart container">
                                         <canvas ref="predictionChart" id="predictionChart" />
