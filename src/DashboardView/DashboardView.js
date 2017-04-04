@@ -11,12 +11,14 @@ class DashboardView extends Component {
         this.state = {
             searchText: '',
             products:   null,
+            productFamilies: null,
             error:      null,
             excludedStates: []
         };
         // function binding
         this.handleSearchInput = this.handleSearchInput.bind(this);
         this.handleProductData = this.handleProductData.bind(this);
+        this.handleProductFamilyData = this.handleProductFamilyData.bind(this);
         this.handleError = this.handleError.bind(this);
         this.handleExcludeStateInput = this.handleExcludeStateInput.bind(this);
     }
@@ -51,11 +53,18 @@ class DashboardView extends Component {
     
     fetchData() {
         this.props.dataSource.fetchProducts(this.handleProductData, this.handleError);
+        this.props.dataSource.fetchProductFamilies(this.handleProductFamilyData, this.handleError);
     }
 
     handleProductData(products) {
         this.setState({
             products: products
+        });
+    }
+
+    handleProductFamilyData(productFamilies) {
+        this.setState({
+            productFamilies: productFamilies
         });
     }
     
@@ -87,7 +96,7 @@ class DashboardView extends Component {
                         onChangeSearchInput={this.handleSearchInput}
                         searchText={this.state.searchText}/>
                     <ProductCardGrid
-                        products={this.state.products}
+                        productFamilies={this.state.productFamilies}
                         searchText={this.state.searchText}
                         excludedStates={this.state.excludedStates} />
                 </div>
