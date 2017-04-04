@@ -9,6 +9,9 @@ header .settings a, header .settings p, header .settings a:hover, header .settin
 
 .settings-icon {
   color: $COLOR-font-light;
-  font-size: 2.5vw;
+  font-size: 35px;
+  @include media-breakpoint-up(uhd) {  
+    font-size: 80px;
+  }
   cursor: pointer;
 }
