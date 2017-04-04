@@ -6,7 +6,7 @@ import {argosConfig} from './../../../config/argosConfig.js';
 class QueryInterface extends Component {
     constructor(props) {
         super(props);
-        this.setDefaultState();
+        this.state = QueryInterface.getDefaultState();
         this.nextAttributeId = this.state.eventTypeAttributes.length;
         this.handleChangeEventTypeName = this.handleChangeEventTypeName.bind(this);
         this.handleChangeAttributeName = this.handleChangeAttributeName.bind(this);
@@ -18,7 +18,11 @@ class QueryInterface extends Component {
     }
 
     setDefaultState() {
-        this.state = {
+        this.setState(QueryInterface.getDefaultState());
+    }
+
+    static getDefaultState() {
+        return ({
             eventTypeName: '',
             eventTypeAttributes: [
                 {
@@ -57,11 +61,16 @@ class QueryInterface extends Component {
             validationClasses: '',
             modalLoading: false,
             modalIsAbleToSave: false
-        };
+        });
     }
 
     componentDidMount() {
-        $(document).ready(function(){ $("#new-complex-eventtype").tooltip(); });
+        $(document).ready(function(){
+            $("#new-complex-eventtype").tooltip();
+            $("#query-interface-modal").on('hidden.bs.modal', function() {
+                this.setDefaultState();
+            }.bind(this));
+        }.bind(this));
     }
 
     addEmptyAttribute(attributes) {
@@ -141,7 +150,6 @@ class QueryInterface extends Component {
     /* istanbul ignore next */
     handleSaveQuerySuccess() {
         $('#query-interface-modal').modal('hide');
-        this.setDefaultState();
     }
 
     handleSaveQueryError(error) {
