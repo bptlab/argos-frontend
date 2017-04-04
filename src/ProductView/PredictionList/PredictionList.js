@@ -14,6 +14,7 @@ class PredictionList extends Component {
                 );
             });
         }
+        return errorList;
     }
     
     render() {
