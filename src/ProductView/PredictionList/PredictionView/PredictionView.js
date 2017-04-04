@@ -70,9 +70,6 @@ class PredictionView extends Component {
                     <li
                         className="list-group-item justify-content-between list-group-item-action">
                         {this.props.errorType.errorTypeId} - {this.props.errorType.errorDescription}
-                        <span className="badge badge-default badge-pill">
-                                {this.props.errorType.errorCauses.length}
-                        </span>
                         <div className="prediction-view">
                             <Modal title={`Prediction Details: ${this.props.errorType.errorDescription}`}
                                    onSubmit={this.handleSubmit}
@@ -86,6 +83,9 @@ class PredictionView extends Component {
                                 }
                             </Modal>
                         </div>
+                        <span className="badge badge-default badge-pill">
+                                {this.props.errorType.errorCauses.length}
+                        </span>
                     </li>
                 </a>
         );
