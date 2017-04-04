@@ -14,7 +14,9 @@ class Header extends Component {
                                 </a>
                             </div>
                             <div className="col-10 d-flex justify-content-center">
-                                <ConfigurationHeader configurations={this.props.configurations} onChangeProductConfiguration={this.props.onChangeProductConfiguration}/>
+                                <ConfigurationHeader 
+                                    configurations={this.props.configurations} 
+                                    onChangeProductConfiguration={this.props.onChangeProductConfiguration}/>
                             </div>
                             <div className="hidden-xs-down col-sm-1 d-flex justify-content-around">
                                 <StatusPoint product={this.props.product}/>
