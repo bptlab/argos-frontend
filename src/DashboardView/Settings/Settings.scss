@@ -6,3 +6,9 @@
 header .settings a, header .settings p, header .settings a:hover, header .settings h1, header .settings {
   color: $COLOR-font-dark !important;
 }
+
+.settings-icon {
+  color: $COLOR-font-light;
+  font-size: 2.5vw;
+  cursor: pointer;
+}
