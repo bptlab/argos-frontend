@@ -1,5 +1,5 @@
 import React from 'react';
-import RemovableInputField from '../Utils/RemovableInputField.js';
+import RemovableInputField from '../../Utils/RemovableInputField.js';
 import renderer from 'react-test-renderer';
 let instance;
 
