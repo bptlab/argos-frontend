@@ -88,7 +88,7 @@ test('Delete eventTypes', () => {
     expect(dataSender.deleteEventType).toHaveBeenCalled();
 });
 
-test('Successfuly remmoved eventType', () => {
+test('Successfuly removed eventType', () => {
     instance.deletionSuccessful();
     expect(dataSource.fetchAllEventTypes).toHaveBeenCalled();
 });
