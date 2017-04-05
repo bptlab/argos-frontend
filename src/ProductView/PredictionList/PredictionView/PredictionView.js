@@ -15,17 +15,23 @@ class PredictionView extends Component {
     
     getChartData() {
         const labels = [];
-        const data = [];
+        const predictedValue = [];
+        const actualValue = [];
         this.props.errorType.errorCauses.forEach(function(errorCause) {
             labels.push(errorCause.causeDescription);
-            data.push(errorCause.errorPrediction);
-        });
+            predictedValue.push(errorCause.errorPrediction);
+            actualValue.push(errorCause.errorOccurrences / this.props.errorType.errorOccurrences);
+        }.bind(this));
         return ({
             labels: labels,
             datasets: [{
-                label: this.props.errorType.errorTypeId,
+                label: 'Predicted Value',
+                backgroundColor: "rgba(159, 171, 97, 0.5)",
+                data: predictedValue,
+            }, {
+                label: 'Actual Value',
                 backgroundColor: "rgba(0, 78, 100, 0.5)",
-                data: data,
+                data: actualValue,
             }]
         });
     }
