@@ -58,6 +58,7 @@ class EventTypes extends Component {
         this.props.dataSender.deleteEventType(eventType, this.deletionSuccessful, this.receiveError);
     }
 
+    /* istanbul ignore next */
     onAbort() {
         $("#delete-prompt-modal").modal('toggle');
     }
