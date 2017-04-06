@@ -17,7 +17,7 @@ class EventTypes extends Component {
         this.receiveEventTypes = this.receiveEventTypes.bind(this);
         this.receiveError = this.receiveError.bind(this);
         this.fetchEventTypes = this.fetchEventTypes.bind(this);
-        this.deleteEventType = this.deleteEventType.bind(this);
+        this.handleDeleteEventType = this.handleDeleteEventType.bind(this);
         this.deletionSuccessful = this.deletionSuccessful.bind(this);
     }
 
@@ -53,14 +53,14 @@ class EventTypes extends Component {
         this.fetchEventTypes();
     }
 
-    deleteEventType(eventType) {
-        $("#delete-prompt-modal").modal('toggle');
+    handleDeleteEventType(eventType) {
+        $("#delete-prompt-modal").modal('show');
         this.props.dataSender.deleteEventType(eventType, this.deletionSuccessful, this.receiveError);
     }
 
     /* istanbul ignore next */
-    onAbort() {
-        $("#delete-prompt-modal").modal('toggle');
+    handleAbortDelete() {
+        $("#delete-prompt-modal").modal('hide');
     }
     
     matchError() {
@@ -86,8 +86,8 @@ class EventTypes extends Component {
         const errorMessage = this.matchError();
         const lineElements = [];
         this.state.eventTypes.forEach((eventType) => {
-            const deleteCallback = this.deleteEventType.bind(this, eventType);
-            const onAbort = this.onAbort.bind(this);
+            const deleteCallback = this.handleDeleteEventType.bind(this, eventType);
+            const abortCallback = this.handleAbortDelete.bind(this);
             lineElements.push(
                 <tr key={eventType.id}>
                     <td>{eventType.id}</td>
@@ -98,7 +98,7 @@ class EventTypes extends Component {
                             <i className="fa fa-trash" />
                         </a>
                     </td>
-                    <ConfirmOverlay title="Delete Event Type?" onAbort={onAbort} onSubmit={deleteCallback}
+                    <ConfirmOverlay title="Delete Event Type?" onAbort={abortCallback} onSubmit={deleteCallback}
                                     id="delete-prompt" abortButtonText="Abort" submitButtonText="Submit">
                         {argosConfig.confirmEventTypeDeletion}
                     </ConfirmOverlay>

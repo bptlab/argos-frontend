@@ -1,26 +1,28 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import ConfirmOverlay from "../../Utils/ConfirmOverlay/ConfirmOverlay";
-let instance;
+let instance, component;
+
+const submitMockCallback = jest.fn();
+const abortMockCallback = jest.fn();
+
+beforeEach(() => {
+    component = renderer.create(
+        <ConfirmOverlay
+            ref={(child) => {
+                instance = child
+            }}
+            onSubmit={submitMockCallback}
+            onAbort={abortMockCallback}/>
+    );
+});
 
 test('On submit callback test', () => {
-    const callbackMock = jest.fn();
-    renderer.create(
-        <ConfirmOverlay
-            ref={(child) => {instance = child}}
-            onSubmit={callbackMock} />
-    );
     instance.onSubmit();
-    expect(callbackMock).toBeCalled();
+    expect(submitMockCallback).toBeCalled();
 });
 
 test('On abort callback test', () => {
-    const callbackMock = jest.fn();
-    renderer.create(
-        <ConfirmOverlay
-            ref={(child) => {instance = child}}
-            onAbort={callbackMock} />
-    );
     instance.onAbort();
-    expect(callbackMock).toBeCalled();
+    expect(abortMockCallback).toBeCalled();
 });
