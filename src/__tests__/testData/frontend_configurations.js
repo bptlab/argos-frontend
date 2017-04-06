@@ -16,6 +16,7 @@ const configurations =   [{
         errorTypeId: "EF-254",
         displayCode: "EF",
         causeCode:  0,
+        errorOccurrences: 5,
         errorDescription: "Heating produces strange sounds",
         errorCauses: [{
             id: 0,
@@ -25,7 +26,7 @@ const configurations =   [{
         },{
             id: 1,
             causeDescription: "Pump broken",
-            errorOccurrences: 3,
+            errorOccurrences: 2,
             errorPrediction: 0.7
         }]
     }]
@@ -48,12 +49,13 @@ const configurations =   [{
             errorTypeId: "0",
             displayCode: "0Z",
             causeCode:  0,
+            errorOccurrences: 3,
             errorDescription: "Heating produces strange sounds",
             errorCauses: [{
                 id: 0,
                 causeDescription: "cable harness missing",
                 errorOccurrences: 3,
-                errorPrediction: 0.3
+                errorPrediction: 1
             }]
         }]
     },{
@@ -74,12 +76,13 @@ const configurations =   [{
             errorTypeId: "0",
             displayCode: "0Z",
             causeCode:  0,
+            errorOccurrences: 3,
             errorDescription: "Heating produces strange sounds",
             errorCauses: [{
                 id: 0,
                 causeDescription: "cable harness missing",
                 errorOccurrences: 3,
-                errorPrediction: 0.3
+                errorPrediction: 1
             }]
         }]
     },{
@@ -100,12 +103,13 @@ const configurations =   [{
             errorTypeId: "0",
             displayCode: "0Z",
             causeCode:  0,
+            errorOccurrences: 3,
             errorDescription: "Heating produces strange sounds",
             errorCauses: [{
                 id: 0,
                 causeDescription: "cable harness missing",
                 errorOccurrences: 3,
-                errorPrediction: 0.3
+                errorPrediction: 1
             }]
         }]
     }];
