@@ -78,10 +78,11 @@ class PredictionView extends Component {
                         className="list-group-item justify-content-between list-group-item-action">
                         {errorTypeId} - {this.props.errorType.errorDescription}
                         <div className="prediction-view">
-                            <Modal title={`Prediction Details: ${this.props.errorType.errorDescription}`}
+                            <Modal title={`Prediction Details: ${this.props.errorType.errorDescription}` }
+                                   isAbleToSave="true"
                                    onSubmit={this.handleSubmit}
                                    id={`prediction-view-${errorTypeId}`}
-                                   buttonText="Close">
+                                   buttonText="Exit">
                                 <h2>{errorTypeId}</h2>
                                 {this.state.isVisible &&
                                     <div className="line-chart container">
