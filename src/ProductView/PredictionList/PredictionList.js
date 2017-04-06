@@ -20,7 +20,7 @@ class PredictionList extends Component {
     render() {
         const errorList = this.generateErrorList();
         return (
-            <div className="container prediction-list-container">
+            <div className="prediction-list-container">
                 {!this.props.showAllConfigurations && errorList.length > 0 && (
                     <div>
                         <h2 className="w-100">Possible product errors</h2>
