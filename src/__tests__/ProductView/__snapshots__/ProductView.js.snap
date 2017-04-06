@@ -535,7 +535,7 @@ exports[`test Change filter 1`] = `
                               onChange={[Function]}
                               rows="8"
                               type="text"
-                              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId, codingPlugId, codingPlugSoftwareVersion FROM FeedbackData" />
                             
                           </div>
                         </div>
@@ -1098,7 +1098,7 @@ exports[`test Changing active Tab 1`] = `
                               onChange={[Function]}
                               rows="8"
                               type="text"
-                              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId, codingPlugId, codingPlugSoftwareVersion FROM FeedbackData" />
                             
                           </div>
                         </div>
@@ -1858,7 +1858,7 @@ exports[`test Remove last filter 1`] = `
                               onChange={[Function]}
                               rows="8"
                               type="text"
-                              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId, codingPlugId, codingPlugSoftwareVersion FROM FeedbackData" />
                             
                           </div>
                         </div>
@@ -2421,7 +2421,7 @@ exports[`test Rendering of ProductView 1`] = `
                               onChange={[Function]}
                               rows="8"
                               type="text"
-                              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId, codingPlugId, codingPlugSoftwareVersion FROM FeedbackData" />
                             
                           </div>
                         </div>
@@ -3006,7 +3006,7 @@ exports[`test Successful filtering 1`] = `
                               onChange={[Function]}
                               rows="8"
                               type="text"
-                              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
+                              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId, codingPlugId, codingPlugSoftwareVersion FROM FeedbackData" />
                             
                           </div>
                         </div>
