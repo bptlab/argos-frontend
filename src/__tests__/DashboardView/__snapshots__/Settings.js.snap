@@ -104,7 +104,7 @@ exports[`test Correct rendering of Settings 1`] = `
           className="modal-footer">
           <button
             className="btn"
-            disabled="disabled"
+            disabled={false}
             onClick={[Function]}
             type="button">
             <div>
@@ -224,7 +224,7 @@ exports[`test Correct rendering of Settings after modal has been closed 1`] = `
           className="modal-footer">
           <button
             className="btn"
-            disabled="disabled"
+            disabled={false}
             onClick={[Function]}
             type="button">
             <div>
@@ -344,7 +344,7 @@ exports[`test Correct rendering of Settings after modal has been opened 1`] = `
           className="modal-footer">
           <button
             className="btn"
-            disabled="disabled"
+            disabled={false}
             onClick={[Function]}
             type="button">
             <div>
