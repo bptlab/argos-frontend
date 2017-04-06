@@ -1,6 +1,6 @@
 exports[`test Render PredictionList 1`] = `
 <div
-  className="container prediction-list-container">
+  className="prediction-list-container">
   <div>
     <h2
       className="w-100">
@@ -82,5 +82,5 @@ exports[`test Render PredictionList 1`] = `
 
 exports[`test Render PredictionList without content 1`] = `
 <div
-  className="container prediction-list-container" />
+  className="prediction-list-container" />
 `;
