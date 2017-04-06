@@ -74,3 +74,9 @@ test('Form validation of event queries', () => {
     instance.eventQueryFormValidation('test');
     expect(instance.state.validationClasses).toBe('');
 });
+
+test('Set default state', () => {
+    instance.setState({modalIsAbleToSave: true});
+    instance.setDefaultState();
+    expect(instance.state.modalIsAbleToSave).toBe(false);
+});
