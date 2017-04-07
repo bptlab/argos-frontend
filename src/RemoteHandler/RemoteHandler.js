@@ -18,7 +18,7 @@ if (!String.prototype.format) {
 class RemoteHandler {
 
     static getServerRequestURI() {
-        return "http://{0}/argosTT/{1}";
+        return "https://{0}/argosTT/{1}";
     }
     
     constructor(remoteDomain, remotePort, notificationCallback) {
