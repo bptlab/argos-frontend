@@ -3,7 +3,7 @@ export const argosConfig = {
     sameServer:                     true,
     backendHost:                    'localhost',
     backendPort:                    8989,
-    backendNotificationAPI:         'notifications',
+    backendNotificationAPI:         'argosTT/notifications',
     enumerationSymbol:              '#',
     searchPlaceholder:              'Search...',
     kindOfChart:                    'doughnut',

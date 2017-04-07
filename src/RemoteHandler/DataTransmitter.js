@@ -46,7 +46,7 @@ class DataTransmitter extends RemoteHandler {
 
     createEventtype(eventQuery, eventTypeName, eventTypeAttributes, successCallback, errorCallback) {
         const APIRoute = DataTransmitter.getAPIRouteForCreateEventtype();
-        const URI = DataTransmitter.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
+        const URI = DataTransmitter.getServerRequestURI().format(this.remoteAddress, APIRoute);
         const eventType = this.createEventTypeJson(eventTypeName, eventTypeAttributes);
         const data = {
             "eventQuery":   eventQuery,
@@ -63,7 +63,7 @@ class DataTransmitter extends RemoteHandler {
     
     deleteEventType(eventType, successCallback, errorCallback) {
         const APIRoute = DataTransmitter.getAPIRouteForDeleteEventType().format(eventType.id);
-        const URI = DataTransmitter.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
+        const URI = DataTransmitter.getServerRequestURI().format(this.remoteAddress, APIRoute);
         const callbackContainer = {
             "dataMappingFunction":    () => {/* Not necessary because no data mapping is needed. */},
             "clientSuccessCallback":  successCallback,

@@ -43,7 +43,7 @@ class DataReceiver extends RemoteHandler {
 
     fetchProductFamilies(successCallback, errorCallback) {
         const APIRoute = DataReceiver.getAPIRouteForProductFamilies();
-        const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
+        const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, APIRoute);
         const callbackContainer = {
             "dataMappingFunction":    this.dataMapper.mapProductFamilies,
             "clientSuccessCallback":  successCallback,
@@ -72,7 +72,7 @@ class DataReceiver extends RemoteHandler {
 
     fetchConfiguration(configurationId, successCallback, errorCallback) {
         const APIRoute = DataReceiver.getAPIRouteForProductConfiguration().format(configurationId);
-        const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
+        const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, APIRoute);
         const callbackContainer = {
             "dataMappingFunction":    this.dataMapper.mapConfigurations,
             "clientSuccessCallback":  successCallback,
@@ -86,7 +86,7 @@ class DataReceiver extends RemoteHandler {
         if(!forProduct) {
             APIRoute = DataReceiver.getAPIRouteForEventTypesOfConfiguration().format(productId);
         }
-        const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
+        const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, APIRoute);
         const callbackContainer = {
             "dataMappingFunction":    this.dataMapper.mapEventTypes,
             "clientSuccessCallback":  successCallback,
@@ -97,7 +97,7 @@ class DataReceiver extends RemoteHandler {
 
     fetchAllEventTypes(successCallback, errorCallback) {
         const APIRoute = DataReceiver.getAPIRouteForAllEventTypes();
-        const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
+        const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, APIRoute);
         const callbackContainer = {
             "dataMappingFunction":    this.dataMapper.mapEventTypes,
             "clientSuccessCallback":  successCallback,
@@ -114,7 +114,7 @@ class DataReceiver extends RemoteHandler {
             APIRoute = DataReceiver.getAPIRouteForEveentsOfConfiguration().format(
                 productId, eventTypeId, indexFrom, indexTo);
         }
-        const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, this.remotePort, APIRoute);
+        const URI = DataReceiver.getServerRequestURI().format(this.remoteAddress, APIRoute);
         const callbackContainer = {
             "dataMappingFunction":    this.dataMapper.mapEvents,
             "clientSuccessCallback":  successCallback,

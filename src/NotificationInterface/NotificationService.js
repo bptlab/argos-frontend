@@ -12,7 +12,7 @@ class NotificationService {
             /* istanbul ignore next */
             const protocol = argosConfig.webSocketProtocol + "://";
             /* istanbul ignore next */
-            this.connection = new WebSocket(protocol + remoteDomain + ":" + remotePort + "/" + API);
+            this.connection = new WebSocket(protocol + remoteDomain + "/" + API);
             /* istanbul ignore next */
             this.connection.onopen = this.onOpenConnection.bind(this);
             /* istanbul ignore next */
