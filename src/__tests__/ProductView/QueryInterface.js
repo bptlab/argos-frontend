@@ -55,7 +55,7 @@ test('Handling save query', () => {
     expect(callbackMock).toBeCalled();
 });
 
-test('Handling save query sucess', () => {
+test('Handling save query success', () => {
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
     instance.handleSaveQuerySuccess();

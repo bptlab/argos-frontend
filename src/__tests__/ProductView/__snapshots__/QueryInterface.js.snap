@@ -568,7 +568,7 @@ exports[`test Handling change query 2`] = `
 </div>
 `;
 
-exports[`test Handling save query sucess 1`] = `
+exports[`test Handling save query success 1`] = `
 <div
   className="query-interface">
   <a
