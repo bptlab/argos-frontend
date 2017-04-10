@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 class Notification extends Component {
-
-    /* istanbul ignore next */
     componentWillReceiveProps() {
         $(document).ready(function () {
-            $('#notification').removeClass('sliding-animation');
-            $('#notification').addClass('sliding-animation');
+            $('#notification')[0].style.animation = "fade 5s linear";
+            $('#notification')[0].addEventListener('animationend', function(){
+                this.style.animation = '';
+            }, false);
+            $('#notification')[0].style.webkitAnimation = "fade 5s linear";
+            $('#notification')[0].addEventListener('webkitAnimationEnd', function(){
+                this.style.webkitAnimation = '';
+            }, false);
         });
     }
 
