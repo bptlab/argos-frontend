@@ -5,7 +5,7 @@ import TestData from '../testData/products.js'
 import ProductFamilyData from '../testData/frontend_productFamilies'
 let instance, component, notificationService;
 const fetchProducts = jest.fn();
-const fetchProductFamilies = jest.fn();3
+const fetchProductFamilies = jest.fn();
 
 beforeEach(() => {
     notificationService = {
