@@ -1,8 +1,22 @@
 import React, {Component} from 'react';
 class Notification extends Component {
+    componentWillReceiveProps() {
+        /* istanbul ignore next */
+        $(document).ready(function () {
+            $('#notification')[0].style.animation = "fade 5s linear";
+            $('#notification')[0].addEventListener('animationend', function(){
+                this.style.animation = '';
+            }, false);
+            $('#notification')[0].style.webkitAnimation = "fade 5s linear";
+            $('#notification')[0].addEventListener('webkitAnimationEnd', function(){
+                this.style.webkitAnimation = '';
+            }, false);
+        });
+    }
+
     render() {
         return(
-            <div className={`alert-sliding alert-sliding-${this.props.data.type}`} role="alert">
+            <div className={`alert-sliding alert-sliding-${this.props.data.type}`} id="notification" role="alert">
                 <table>
                     <tbody>
                         <tr>

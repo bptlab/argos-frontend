@@ -151,6 +151,11 @@ class QueryInterface extends Component {
     /* istanbul ignore next */
     handleSaveQuerySuccess() {
         $('#query-interface-modal').modal('hide');
+        this.props.dataSender.notificationCallback({
+            type: argosConfig.NotificationServiceNeutralInfo,
+            message: argosConfig.messageSuccessEventTypeCreation
+        });
+        this.setState({ modalLoading: false });
     }
 
     handleSaveQueryError(error) {
