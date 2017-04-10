@@ -2,23 +2,30 @@ import React from 'react';
 import DashboardView from '../../DashboardView/DashboardView.js';
 import renderer from 'react-test-renderer';
 import TestData from '../testData/products.js'
+import ProductFamilyData from '../testData/frontend_productFamilies'
 let instance, component, notificationService;
+const fetchProducts = jest.fn();
+const fetchProductFamilies = jest.fn();3
 
-test("Correct drawing of DashboardView", () => {
-    const fetchProducts = jest.fn();
+beforeEach(() => {
     notificationService = {
-            subscribe: jest.fn(),
-            unsubscribe: jest.fn()
+        subscribe: jest.fn(),
+        unsubscribe: jest.fn()
     };
     component = renderer.create(
         <DashboardView
             ref={(child) => {instance = child}}
             dataSource={{
                 notificationService: notificationService,
-                fetchProducts: fetchProducts
+                fetchProducts: fetchProducts,
+                fetchProductFamilies: fetchProductFamilies
             }}/>
     );
+    instance.handleProductFamilyData(ProductFamilyData.PRODUCTFAMILIES);
     instance.handleProductData(TestData.PRODUCTS);
+});
+
+test("Correct drawing of DashboardView", () => {
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
     expect(notificationService.subscribe).toBeCalled();
