@@ -13,7 +13,8 @@ RUN git clone -b $frontendBranch --single-branch https://github.com/bptlab/argos
 RUN git clone -b $backendBranch --single-branch https://github.com/bptlab/argos-backend /argos-backend && \
 	mv /argos-backend/src/main/resources/argos-backend_template.properties /argos-backend/src/main/resources/argos-backend.properties
 
-RUN mv /argos-frontend/build/* /argos-backend/src/main/resources/public/argosTT/
+RUN mkdir /argos-backend/src/main/resources/public/argosTT && \
+    mv /argos-frontend/build/* /argos-backend/src/main/resources/public/argosTT/
 
 RUN cd /argos-backend && mvn clean install -DskipTests
 RUN mv /argos-backend/target /target && \
