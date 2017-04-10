@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 class Notification extends Component {
     componentWillReceiveProps() {
+        /* istanbul ignore next */
         $(document).ready(function () {
             $('#notification')[0].style.animation = "fade 5s linear";
             $('#notification')[0].addEventListener('animationend', function(){
