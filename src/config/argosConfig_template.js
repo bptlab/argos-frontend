@@ -39,4 +39,6 @@ export const argosConfig = {
     undefinedStateColor:            '#666666',
     undefinedStateTransparentColor: 'rgba(102, 102, 102, 0.4)',
     eventQueryInterfaceTooltip:     'Click to create new event type',
+    confirmEventTypeDeletion:       'Do you really want to delete this event type? This is a destructive action ' +
+                                    'and cannot be undone.'
 };

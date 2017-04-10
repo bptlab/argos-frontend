@@ -84,11 +84,11 @@ test('Receiving undefined error', () => {
 });
 
 test('Delete eventTypes', () => {
-    instance.delteEventType(TestData.EVENTTYPES);
+    instance.handleDeleteEventType(TestData.EVENTTYPES);
     expect(dataSender.deleteEventType).toHaveBeenCalled();
 });
 
-test('Successfuly remmoved eventType', () => {
+test('Successfuly removed eventType', () => {
     instance.deletionSuccessful();
     expect(dataSource.fetchAllEventTypes).toHaveBeenCalled();
 });
