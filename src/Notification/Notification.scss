@@ -31,10 +31,6 @@
   background: $COLOR-error-transparent;
 }
 
-.sliding-animation {
-  animation: fade 5s linear;
-}
-
 @keyframes fade {
 0%    {right: -20vw; display: block; opacity: 0;}
 20%   { right: -1vw; display: block; opacity: 1; }
