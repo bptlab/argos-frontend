@@ -1,6 +1,5 @@
 import React from 'react';
 import DetailArea from '../../ProductView/DetailArea/DetailArea.js';
-import renderer from 'react-test-renderer';
 import react from 'react-dom';
 import testProduct from '../testData/product.js';
 import testConfigurations from '../testData/frontend_configurations.js';

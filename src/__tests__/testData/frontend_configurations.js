@@ -13,96 +13,106 @@ const configurations =   [{
     },
     errorTypes: [{
         id: 0,
-        errorTypeId: "0",
-        displayCode: "0Z",
+        errorTypeId: "EF-254",
+        displayCode: "EF",
         causeCode:  0,
+        errorOccurrences: 5,
         errorDescription: "Heating produces strange sounds",
         errorCauses: [{
             id: 0,
-            causeDescription: "Kabelbaum missing",
+            causeDescription: "cable harness missing",
             errorOccurrences: 3,
             errorPrediction: 0.3
+        },{
+            id: 1,
+            causeDescription: "Pump broken",
+            errorOccurrences: 2,
+            errorPrediction: 0.7
         }]
     }]
-},{
-    id: 200,
-    productId: 0,
-    state: "WARNING",
-    stateDescription: "Few errors or warnings",
-    codingPlugId: 20,
-    codingPlugSoftwareVersions: [2.0, 2.1],
-    numberOfEvents: 234,
-    statusUpdateQueries: {
-        RUNNING: "ESPER-QUERY",
-        WARNING: "ESPER-QUERY",
-        ERROR: "ESPER-QUERY"
-    },
-    errorTypes: [{
-        id: 0,
-        errorTypeId: "0",
-        displayCode: "0Z",
-        causeCode:  0,
-        errorDescription: "Heating produces strange sounds",
-        errorCauses: [{
+},
+    {
+        id: 200,
+        productId: 0,
+        state: "WARNING",
+        stateDescription: "Few errors or warnings",
+        codingPlugId: 20,
+        codingPlugSoftwareVersions: [2.0, 2.1],
+        numberOfEvents: 234,
+        statusUpdateQueries: {
+            RUNNING: "ESPER-QUERY",
+            WARNING: "ESPER-QUERY",
+            ERROR: "ESPER-QUERY"
+        },
+        errorTypes: [{
             id: 0,
-            causeDescription: "Kabelbaum missing",
+            errorTypeId: "0",
+            displayCode: "0Z",
+            causeCode:  0,
             errorOccurrences: 3,
-            errorPrediction: 0.3
+            errorDescription: "Heating produces strange sounds",
+            errorCauses: [{
+                id: 0,
+                causeDescription: "cable harness missing",
+                errorOccurrences: 3,
+                errorPrediction: 1
+            }]
         }]
-    }]
-},{
-    id: 300,
-    productId: 0,
-    state: "ERROR",
-    stateDescription: "Too many errors",
-    codingPlugId: 30,
-    codingPlugSoftwareVersions: [1.0, 1.1, 3.1],
-    numberOfEvents: 234,
-    statusUpdateQueries: {
-        RUNNING: "ESPER-QUERY",
-        WARNING: "ESPER-QUERY",
-        ERROR: "ESPER-QUERY"
-    },
-    errorTypes: [{
-        id: 0,
-        errorTypeId: "0",
-        displayCode: "0Z",
-        causeCode:  0,
-        errorDescription: "Heating produces strange sounds",
-        errorCauses: [{
+    },{
+        id: 300,
+        productId: 0,
+        state: "ERROR",
+        stateDescription: "Too many errors",
+        codingPlugId: 30,
+        codingPlugSoftwareVersions: [1.0, 1.1, 3.1],
+        numberOfEvents: 234,
+        statusUpdateQueries: {
+            RUNNING: "ESPER-QUERY",
+            WARNING: "ESPER-QUERY",
+            ERROR: "ESPER-QUERY"
+        },
+        errorTypes: [{
             id: 0,
-            causeDescription: "Kabelbaum missing",
+            errorTypeId: "0",
+            displayCode: "0Z",
+            causeCode:  0,
             errorOccurrences: 3,
-            errorPrediction: 0.3
+            errorDescription: "Heating produces strange sounds",
+            errorCauses: [{
+                id: 0,
+                causeDescription: "cable harness missing",
+                errorOccurrences: 3,
+                errorPrediction: 1
+            }]
         }]
-    }]
-},{
-    id: 400,
-    productId: 0,
-    state: "UNDEFINED",
-    stateDescription: "No status information yet.",
-    codingPlugId: 10,
-    codingPlugSoftwareVersions: [4.0, 4.1],
-    numberOfEvents: 234,
-    statusUpdateQueries: {
-        RUNNING: "ESPER-QUERY",
-        WARNING: "ESPER-QUERY",
-        ERROR: "ESPER-QUERY"
-    },
-    errorTypes: [{
-        id: 0,
-        errorTypeId: "0",
-        displayCode: "0Z",
-        causeCode:  0,
-        errorDescription: "Heating produces strange sounds",
-        errorCauses: [{
+    },{
+        id: 400,
+        productId: 0,
+        state: "UNDEFINED",
+        stateDescription: "No status information yet.",
+        codingPlugId: 10,
+        codingPlugSoftwareVersions: [4.0, 4.1],
+        numberOfEvents: 234,
+        statusUpdateQueries: {
+            RUNNING: "ESPER-QUERY",
+            WARNING: "ESPER-QUERY",
+            ERROR: "ESPER-QUERY"
+        },
+        errorTypes: [{
             id: 0,
-            causeDescription: "Kabelbaum missing",
+            errorTypeId: "0",
+            displayCode: "0Z",
+            causeCode:  0,
             errorOccurrences: 3,
-            errorPrediction: 0.3
+            errorDescription: "Heating produces strange sounds",
+            errorCauses: [{
+                id: 0,
+                causeDescription: "cable harness missing",
+                errorOccurrences: 3,
+                errorPrediction: 1
+            }]
         }]
-    }]
-}];
+    }];
 
 export default {
     CONFIGURATIONS: configurations

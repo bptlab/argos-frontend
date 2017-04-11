@@ -6,7 +6,23 @@ import {argosConfig} from './../../../config/argosConfig.js';
 class QueryInterface extends Component {
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = QueryInterface.getDefaultState();
+        this.nextAttributeId = this.state.eventTypeAttributes.length;
+        this.handleChangeEventTypeName = this.handleChangeEventTypeName.bind(this);
+        this.handleChangeAttributeName = this.handleChangeAttributeName.bind(this);
+        this.handleChangeAttributeType = this.handleChangeAttributeType.bind(this);
+        this.handleChangeQuery = this.handleChangeQuery.bind(this);
+        this.handleSaveQuery = this.handleSaveQuery.bind(this);
+        this.handleSaveQuerySuccess = this.handleSaveQuerySuccess.bind(this);
+        this.handleSaveQueryError = this.handleSaveQueryError.bind(this);
+    }
+
+    setDefaultState() {
+        this.setState(QueryInterface.getDefaultState());
+    }
+
+    static getDefaultState() {
+        return ({
             eventTypeName: '',
             eventTypeAttributes: [
                 {
@@ -45,19 +61,17 @@ class QueryInterface extends Component {
             validationClasses: '',
             modalLoading: false,
             modalIsAbleToSave: false
-        };
-        this.nextAttributeId = this.state.eventTypeAttributes.length;
-        this.handleChangeEventTypeName = this.handleChangeEventTypeName.bind(this);
-        this.handleChangeAttributeName = this.handleChangeAttributeName.bind(this);
-        this.handleChangeAttributeType = this.handleChangeAttributeType.bind(this);
-        this.handleChangeQuery = this.handleChangeQuery.bind(this);
-        this.handleSaveQuery = this.handleSaveQuery.bind(this);
-        this.handleSaveQuerySuccess = this.handleSaveQuerySuccess.bind(this);
-        this.handleSaveQueryError = this.handleSaveQueryError.bind(this);
+        });
     }
 
+    /* istanbul ignore next */
     componentDidMount() {
-        $(document).ready(function(){ $("#new-complex-eventtype").tooltip(); });
+        $(document).ready(function(){
+            $("#new-complex-eventtype").tooltip();
+            $("#query-interface-modal").on('hidden.bs.modal', function() {
+                this.setDefaultState();
+            }.bind(this));
+        }.bind(this));
     }
 
     addEmptyAttribute(attributes) {
@@ -70,8 +84,6 @@ class QueryInterface extends Component {
         this.nextAttributeId = this.nextAttributeId + 1;
         return attributes;
     }
-
-
 
     getEventTypeAttribute(id) {
         return this.state.eventTypeAttributes.find((attribute) => {
@@ -139,6 +151,10 @@ class QueryInterface extends Component {
     /* istanbul ignore next */
     handleSaveQuerySuccess() {
         $('#query-interface-modal').modal('hide');
+        this.props.dataSender.notificationCallback({
+            type: argosConfig.NotificationServiceNeutralInfo,
+            message: argosConfig.messageSuccessEventTypeCreation
+        });
         this.setState({ modalLoading: false });
     }
 

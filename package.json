@@ -86,7 +86,8 @@
     "coveragePathIgnorePatterns": [
       "Mock",
       "PieChart",
-      "LineChart"
+      "LineChart",
+      "PredictionView"
     ],
     "testEnvironment": "node",
     "testURL": "http://localhost",

@@ -41,15 +41,21 @@ class ServerMock {
             },
             errorTypes: [{
                 id: 0,
-                errorTypeId: "0",
-                displayCode: "0Z",
+                errorTypeId: "EF-254",
+                displayCode: "EF",
                 causeCode:  0,
+                errorOccurrences: 5,
                 errorDescription: "Heating produces strange sounds",
                 errorCauses: [{
                     id: 0,
-                    causeDescription: "Kabelbaum missing",
+                    causeDescription: "cable harness missing",
                     errorOccurrences: 3,
                     errorPrediction: 0.3
+                },{
+                    id: 1,
+                    causeDescription: "Pump broken",
+                    errorOccurrences: 2,
+                    errorPrediction: 0.7
                 }]
             }]
         },
@@ -71,12 +77,13 @@ class ServerMock {
                 errorTypeId: "0",
                 displayCode: "0Z",
                 causeCode:  0,
+                errorOccurrences: 3,
                 errorDescription: "Heating produces strange sounds",
                 errorCauses: [{
                     id: 0,
-                    causeDescription: "Kabelbaum missing",
+                    causeDescription: "cable harness missing",
                     errorOccurrences: 3,
-                    errorPrediction: 0.3
+                    errorPrediction: 1
                 }]
             }]
         },{
@@ -97,12 +104,13 @@ class ServerMock {
                 errorTypeId: "0",
                 displayCode: "0Z",
                 causeCode:  0,
+                errorOccurrences: 3,
                 errorDescription: "Heating produces strange sounds",
                 errorCauses: [{
                     id: 0,
-                    causeDescription: "Kabelbaum missing",
+                    causeDescription: "cable harness missing",
                     errorOccurrences: 3,
-                    errorPrediction: 0.3
+                    errorPrediction: 1
                 }]
             }]
         },{
@@ -123,12 +131,13 @@ class ServerMock {
                 errorTypeId: "0",
                 displayCode: "0Z",
                 causeCode:  0,
+                errorOccurrences: 3,
                 errorDescription: "Heating produces strange sounds",
                 errorCauses: [{
                     id: 0,
-                    causeDescription: "Kabelbaum missing",
+                    causeDescription: "cable harness missing",
                     errorOccurrences: 3,
-                    errorPrediction: 0.3
+                    errorPrediction: 1
                 }]
             }]
         }];

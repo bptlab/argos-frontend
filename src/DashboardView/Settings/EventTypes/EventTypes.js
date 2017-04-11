@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {argosConfig} from './../../../config/argosConfig';
+import ConfirmOverlay from "../../../Utils/ConfirmOverlay/ConfirmOverlay";
 
 class EventTypes extends Component {
 
@@ -16,7 +17,7 @@ class EventTypes extends Component {
         this.receiveEventTypes = this.receiveEventTypes.bind(this);
         this.receiveError = this.receiveError.bind(this);
         this.fetchEventTypes = this.fetchEventTypes.bind(this);
-        this.delteEventType = this.delteEventType.bind(this);
+        this.handleDeleteEventType = this.handleDeleteEventType.bind(this);
         this.deletionSuccessful = this.deletionSuccessful.bind(this);
     }
 
@@ -52,8 +53,14 @@ class EventTypes extends Component {
         this.fetchEventTypes();
     }
 
-    delteEventType(eventType) {
+    handleDeleteEventType(eventType) {
+        $("#delete-prompt-modal").modal('hide');
         this.props.dataSender.deleteEventType(eventType, this.deletionSuccessful, this.receiveError);
+    }
+
+    /* istanbul ignore next */
+    handleAbortDelete() {
+        $("#delete-prompt-modal").modal('hide');
     }
     
     matchError() {
@@ -79,20 +86,27 @@ class EventTypes extends Component {
         const errorMessage = this.matchError();
         const lineElements = [];
         this.state.eventTypes.forEach((eventType) => {
-            const deleteCallback = this.delteEventType.bind(this, eventType);
+            const deleteCallback = this.handleDeleteEventType.bind(this, eventType);
+            const abortCallback = this.handleAbortDelete.bind(this);
             lineElements.push(
                 <tr key={eventType.id}>
                     <td>{eventType.id}</td>
                     <td>{eventType.name}</td>
                     <td>{eventType.eventQuery}</td>
                     <td className="center">
-                        <i className="fa fa-trash" onClick={deleteCallback} />
+                        <a className="nav-link" data-toggle="modal" data-target="#delete-prompt-modal">
+                            <i className="fa fa-trash" />
+                        </a>
                     </td>
+                    <ConfirmOverlay title="Delete Event Type?" onAbort={abortCallback} onSubmit={deleteCallback}
+                                    id="delete-prompt" abortButtonText="Abort" submitButtonText="Submit">
+                        {argosConfig.confirmEventTypeDeletion}
+                    </ConfirmOverlay>
                 </tr>
             );
         });
         
-        return(
+        return (
             <div className="event-types-settings">
                 {errorMessage && 
                     (<div className="alert alert-danger" role="alert">

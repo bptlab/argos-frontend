@@ -29,6 +29,9 @@ body {
   h1, p, a, a:hover {
     color: $COLOR-dark-background;
   }
+  a, a:hover, a:focus {
+    text-decoration: none;
+  }
   header {
     background-color: $COLOR-dark-background;
     margin-bottom: $element-margin-bottom;

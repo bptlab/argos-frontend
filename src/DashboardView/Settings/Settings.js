@@ -37,7 +37,7 @@ class Settings extends Component {
                 <a className="nav-link" data-toggle="modal" data-target="#settings-modal" onClick={this.modalShow}>
                     <i className="settings-icon fa fa-bars" />
                 </a>
-                <Modal title="Settings" onSubmit={this.onSubmit} id="settings" buttonText="Exit">
+                <Modal title="Settings" onSubmit={this.onSubmit} isAbleToSave="true" id="settings" buttonText="Exit">
                     <div id="accordion" role="tablist" aria-multiselectable="true">
                         <div className="card">
                             <div className="card-header" role="tab" id="headingOne">

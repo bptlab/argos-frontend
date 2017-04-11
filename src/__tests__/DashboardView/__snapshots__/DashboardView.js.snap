@@ -131,7 +131,7 @@ exports[`test Correct drawing of DashboardView 1`] = `
                       className="modal-footer">
                       <button
                         className="btn"
-                        disabled="disabled"
+                        disabled={false}
                         onClick={[Function]}
                         type="button">
                         <div>
@@ -185,70 +185,257 @@ exports[`test Correct drawing of DashboardView 1`] = `
     <div
       className="container">
       <div
-        className="row">
+        id="product-family-accordion"
+        role="tablist">
         <div
-          className="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-uhd-2">
+          className="card">
           <a
-            href="/#/product/0"
-            title="Details for Testproduct 5000 14E-17B">
+            className=""
+            data-parent="#product-family-accordion"
+            data-toggle="collapse"
+            href="#collapse-product-family-0">
             <div
-              className="card ProductCard ProductCard_RUNNING">
-              <h4
-                className="card-title ProductCardTitle ProductCardTitle_RUNNING">
-                Testproduct 5000 14E-17B
-              </h4>
-              <ul>
-                <li
-                  className="ProductCardInformationLine PCIL_serialNumber">
-                  9830510416
-                </li>
-                <li
-                  className="ProductCardInformationLine PCIL_quantity">
-                  52189
-                </li>
-                <li
-                  className="ProductCardInformationLine PCIL_date">
-                  2016-05-07
-                </li>
-                <li
-                  className="ProductCardInformationLine PCIL_errorQuantity">
-                  84
-                </li>
-              </ul>
+              className="card-header"
+              id="product-family-header-0"
+              role="tab">
+              <h5
+                className="mb-0">
+                Testproductfamily
+              </h5>
             </div>
           </a>
+          <div
+            className="collapse show"
+            id="collapse-product-family-0"
+            role="tabpanel">
+            <div
+              className="card-block">
+              <div
+                className="row">
+                <div
+                  className="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-uhd-2">
+                  <a
+                    href="/#/product/0"
+                    title="Details for Testproduct 5000 14E-17B">
+                    <div
+                      className="card ProductCard ProductCard_RUNNING">
+                      <h4
+                        className="card-title ProductCardTitle ProductCardTitle_RUNNING">
+                        Testproduct 5000 14E-17B
+                      </h4>
+                      <ul>
+                        <li
+                          className="ProductCardInformationLine PCIL_serialNumber">
+                          9830510416
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_quantity">
+                          52189
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_date">
+                          2016-05-07
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_errorQuantity">
+                          84
+                        </li>
+                      </ul>
+                    </div>
+                  </a>
+                </div>
+                <div
+                  className="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-uhd-2">
+                  <a
+                    href="/#/product/1"
+                    title="Details for Testproduct 5010 116-1EB">
+                    <div
+                      className="card ProductCard ProductCard_WARNING">
+                      <h4
+                        className="card-title ProductCardTitle ProductCardTitle_WARNING">
+                        Testproduct 5010 116-1EB
+                      </h4>
+                      <ul>
+                        <li
+                          className="ProductCardInformationLine PCIL_serialNumber">
+                          7716013254
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_quantity">
+                          90621
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_date">
+                          2016-04-06
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_errorQuantity">
+                          741
+                        </li>
+                      </ul>
+                    </div>
+                  </a>
+                </div>
+                <div
+                  className="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-uhd-2">
+                  <a
+                    href="/#/product/2"
+                    title="Details for Testproduct 3010 226-1XC">
+                    <div
+                      className="card ProductCard ProductCard_WARNING">
+                      <h4
+                        className="card-title ProductCardTitle ProductCardTitle_WARNING">
+                        Testproduct 3010 226-1XC
+                      </h4>
+                      <ul>
+                        <li
+                          className="ProductCardInformationLine PCIL_serialNumber">
+                          7710473416
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_quantity">
+                          746
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_date">
+                          2016-01-01
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_errorQuantity">
+                          362
+                        </li>
+                      </ul>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div
-          className="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-uhd-2">
+          className="card">
           <a
-            href="/#/product/1"
-            title="Details for Testproduct 5100 12E-15B">
+            className="collapsed"
+            data-parent="#product-family-accordion"
+            data-toggle="collapse"
+            href="#collapse-product-family-1">
             <div
-              className="card ProductCard ProductCard_WARNING">
-              <h4
-                className="card-title ProductCardTitle ProductCardTitle_WARNING">
-                Testproduct 5100 12E-15B
-              </h4>
-              <ul>
-                <li
-                  className="ProductCardInformationLine PCIL_serialNumber">
-                  7840516417
-                </li>
-                <li
-                  className="ProductCardInformationLine PCIL_quantity">
-                  3215
-                </li>
-                <li
-                  className="ProductCardInformationLine PCIL_date">
-                  2016-03-01
-                </li>
-                <li
-                  className="ProductCardInformationLine PCIL_errorQuantity">
-                  54
-                </li>
-              </ul>
+              className="card-header"
+              id="product-family-header-1"
+              role="tab">
+              <h5
+                className="mb-0">
+                TestproductfamilyNeo
+              </h5>
             </div>
           </a>
+          <div
+            className="collapse"
+            id="collapse-product-family-1"
+            role="tabpanel">
+            <div
+              className="card-block">
+              <div
+                className="row">
+                <div
+                  className="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-uhd-2">
+                  <a
+                    href="/#/product/5"
+                    title="Details for Testproduct 7000 27E-11C">
+                    <div
+                      className="card ProductCard ProductCard_WARNING">
+                      <h4
+                        className="card-title ProductCardTitle ProductCardTitle_WARNING">
+                        Testproduct 7000 27E-11C
+                      </h4>
+                      <ul>
+                        <li
+                          className="ProductCardInformationLine PCIL_serialNumber">
+                          48958959
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_quantity">
+                          3475
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_date">
+                          2016-02-06
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_errorQuantity">
+                          13
+                        </li>
+                      </ul>
+                    </div>
+                  </a>
+                </div>
+                <div
+                  className="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-uhd-2">
+                  <a
+                    href="/#/product/6"
+                    title="Details for Testproduct 5010 115">
+                    <div
+                      className="card ProductCard ProductCard_RUNNING">
+                      <h4
+                        className="card-title ProductCardTitle ProductCardTitle_RUNNING">
+                        Testproduct 5010 115
+                      </h4>
+                      <ul>
+                        <li
+                          className="ProductCardInformationLine PCIL_serialNumber">
+                          7716013254
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_quantity">
+                          90621
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_date">
+                          2016-04-06
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_errorQuantity">
+                          741
+                        </li>
+                      </ul>
+                    </div>
+                  </a>
+                </div>
+                <div
+                  className="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-uhd-2">
+                  <a
+                    href="/#/product/7"
+                    title="Details for Testproduct 012 226-1FC">
+                    <div
+                      className="card ProductCard ProductCard_ERROR">
+                      <h4
+                        className="card-title ProductCardTitle ProductCardTitle_ERROR">
+                        Testproduct 012 226-1FC
+                      </h4>
+                      <ul>
+                        <li
+                          className="ProductCardInformationLine PCIL_serialNumber">
+                          7710473416
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_quantity">
+                          746
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_date">
+                          2016-02-01
+                        </li>
+                        <li
+                          className="ProductCardInformationLine PCIL_errorQuantity">
+                          362
+                        </li>
+                      </ul>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -273,13 +460,250 @@ exports[`test Error handling 1`] = `
 exports[`test Search in SearchBar 1`] = `
 <div
   className="dashboard-view">
-  <div
-    className="critical-error">
-    <i
-      className="fa fa-exclamation-triangle warning-sign" />
-    <p>
-      An test-error occurred
-    </p>
+  <div>
+    <header>
+      <div
+        className="container">
+        <div
+          className="row d-flex align-items-center">
+          <div
+            className="hidden-xs-down col-sm-1 d-flex justify-content-around">
+            <a
+              href="/#">
+              <img
+                alt="Overview page"
+                className="product-icon"
+                src="boiler.svg" />
+            </a>
+          </div>
+          <div
+            className="col-xs-11 col-sm-10 d-flex justify-content-around">
+            <h1
+              className="dashboard-title">
+              Early Warning Dashboard
+            </h1>
+          </div>
+          <div
+            className="hidden-xs-down col-sm-1 d-flex justify-content-around">
+            <div
+              className="settings">
+              <a
+                className="nav-link"
+                data-target="#settings-modal"
+                data-toggle="modal"
+                onClick={[Function]}>
+                <i
+                  className="settings-icon fa fa-bars" />
+              </a>
+              <div
+                className="settings modal fade"
+                id="settings-modal"
+                role="dialog"
+                tabIndex="-1">
+                <div
+                  className="modal-dialog modal-lg"
+                  role="document">
+                  <div
+                    className="modal-content">
+                    <div
+                      className="modal-header">
+                      <h5
+                        className="modal-title"
+                        id="settings-label">
+                        Settings
+                      </h5>
+                      <button
+                        className="close"
+                        data-dismiss="modal"
+                        type="button">
+                        <span
+                          id="close">
+                          ×
+                        </span>
+                      </button>
+                    </div>
+                    <div
+                      className="modal-body">
+                      <div
+                        aria-multiselectable="true"
+                        id="accordion"
+                        role="tablist">
+                        <div
+                          className="card">
+                          <div
+                            className="card-header"
+                            id="headingOne"
+                            role="tab">
+                            <h5
+                              className="mb-0">
+                              <a
+                                aria-controls="collapseOne"
+                                aria-expanded="true"
+                                data-parent="#accordion"
+                                data-toggle="collapse"
+                                href="#collapseOne">
+                                Event-Types
+                              </a>
+                            </h5>
+                          </div>
+                          <div
+                            aria-labelledby="headingOne"
+                            className="collapse show"
+                            id="collapseOne"
+                            role="tabpanel">
+                            <div
+                              className="card-block">
+                              <div
+                                className="event-types-settings">
+                                
+                                <table
+                                  className="table table-striped event-types-table">
+                                  <thead>
+                                    <tr>
+                                      <th>
+                                        #
+                                      </th>
+                                      <th>
+                                        Name
+                                      </th>
+                                      <th>
+                                        Query
+                                      </th>
+                                      <th
+                                        className="center">
+                                        Delete?
+                                      </th>
+                                    </tr>
+                                  </thead>
+                                  <tbody />
+                                </table>
+                                <p>
+                                  To add a new Event-Type please refer to a Product and press the \"Plus\"-Button.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className="modal-footer">
+                      <button
+                        className="btn"
+                        disabled={false}
+                        onClick={[Function]}
+                        type="button">
+                        <div>
+                          Exit
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div
+      className="container">
+      <div
+        className="diagram">
+        <div
+          className="row">
+          <div
+            className="col-xs-12 offset-sm-3 col-sm-6 offset-lg-4 col-lg-4 offset-uhd-5 col-uhd-2">
+            <canvas
+              id="pieChart" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="container">
+      <div
+        className="searchArea">
+        <div
+          className="input-group">
+          <span
+            className="input-group-addon"
+            id="search-addon">
+            <i
+              className="fa fa-search" />
+          </span>
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="Search..."
+            type="text"
+            value="ProductDescription with Error" />
+        </div>
+      </div>
+    </div>
+    <div
+      className="container">
+      <div
+        id="product-family-accordion"
+        role="tablist">
+        <div
+          className="card">
+          <a
+            className=""
+            data-parent="#product-family-accordion"
+            data-toggle="collapse"
+            href="#collapse-product-family-0">
+            <div
+              className="card-header"
+              id="product-family-header-0"
+              role="tab">
+              <h5
+                className="mb-0">
+                Testproductfamily
+              </h5>
+            </div>
+          </a>
+          <div
+            className="collapse show"
+            id="collapse-product-family-0"
+            role="tabpanel">
+            <div
+              className="card-block">
+              <div
+                className="row" />
+            </div>
+          </div>
+        </div>
+        <div
+          className="card">
+          <a
+            className="collapsed"
+            data-parent="#product-family-accordion"
+            data-toggle="collapse"
+            href="#collapse-product-family-1">
+            <div
+              className="card-header"
+              id="product-family-header-1"
+              role="tab">
+              <h5
+                className="mb-0">
+                TestproductfamilyNeo
+              </h5>
+            </div>
+          </a>
+          <div
+            className="collapse"
+            id="collapse-product-family-1"
+            role="tabpanel">
+            <div
+              className="card-block">
+              <div
+                className="row" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;

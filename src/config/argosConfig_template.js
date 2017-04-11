@@ -25,7 +25,7 @@ export const argosConfig = {
     errorRemainingDependencies:     'You can not delete this Event-Type, because of existing dependencies',
     messageSuccessEventTypeCreation:'EventType sucessfully created.',
     createEventTypeDefaultQuery:    'INSERT INTO TestErrorEvents SELECT timestamp, productId, ' +
-                                    'productFamilyId FROM FeedbackData',
+                                    'productFamilyId, codingPlugId, codingPlugSoftwareVersion FROM FeedbackData',
     formValidationNoEmptyMessage:   'This field can\'t be empty.',
     runningStateName:               'running',
     warningStateName:               'warning',
@@ -39,4 +39,6 @@ export const argosConfig = {
     undefinedStateColor:            '#666666',
     undefinedStateTransparentColor: 'rgba(102, 102, 102, 0.4)',
     eventQueryInterfaceTooltip:     'Click to create new event type',
+    confirmEventTypeDeletion:       'Do you really want to delete this event type? This is a destructive action ' +
+                                    'and cannot be undone.'
 };
