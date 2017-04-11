@@ -54,7 +54,7 @@ class EventTypes extends Component {
     }
 
     handleDeleteEventType(eventType) {
-        $("#delete-prompt-modal").modal('show');
+        $("#delete-prompt-modal").modal('hide');
         this.props.dataSender.deleteEventType(eventType, this.deletionSuccessful, this.receiveError);
     }
 
