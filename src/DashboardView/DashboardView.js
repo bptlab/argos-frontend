@@ -52,7 +52,6 @@ class DashboardView extends Component {
     }
     
     fetchData() {
-        this.props.dataSource.fetchProducts(this.handleProductData, this.handleError);
         this.props.dataSource.fetchProductFamilies(this.handleProductFamilyData, this.handleError);
     }
 
@@ -83,14 +82,14 @@ class DashboardView extends Component {
                     <p>{this.state.error}</p>
                 </div>
             );
-        } else if(this.state.products) {
+        } else if(this.state.productFamilies) {
             component = (
                 <div>
                     <Header 
                         dataSource={this.props.dataSource}
                         dataSender={this.props.dataSender} />
                     <Diagram 
-                        products={this.state.products}
+                        products={this.state.productFamilies}
                         onStateExcludeInput={this.handleExcludeStateInput} />
                     <SearchBar
                         onChangeSearchInput={this.handleSearchInput}
