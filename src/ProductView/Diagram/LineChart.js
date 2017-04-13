@@ -12,6 +12,7 @@ class LineChart extends Component {
 
     componentDidMount() {
         this.getDiagramColors();
+        this.componentDidUpdate();
     }
     
     buildChartData() {
