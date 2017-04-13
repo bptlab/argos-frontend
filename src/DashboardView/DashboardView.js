@@ -55,14 +55,14 @@ class DashboardView extends Component {
     }
 
     handleProductFamilyData(productFamilies) {
-        const products = this.extractProducts(productFamilies);
+        const products = DashboardView.extractProducts(productFamilies);
         this.setState({
             productFamilies: productFamilies,
             minimizedProducts: products
         });
     }
     
-    extractProducts(productFamilies) {
+    static extractProducts(productFamilies) {
         let products = [];
         productFamilies.forEach(function(productFamily) {
             products = products.concat(productFamily.products);
