@@ -22,7 +22,6 @@ beforeEach(() => {
             }}/>
     );
     instance.handleProductFamilyData(ProductFamilyData.PRODUCTFAMILIES);
-    instance.handleProductData(TestData.PRODUCTS);
 });
 
 test("Correct drawing of DashboardView", () => {
