@@ -10,14 +10,13 @@ class DashboardView extends Component {
         super(props);
         this.state = {
             searchText: '',
-            products:   null,
+            minimizedProducts:   [],
             productFamilies: null,
             error:      null,
             excludedStates: []
         };
         // function binding
         this.handleSearchInput = this.handleSearchInput.bind(this);
-        this.handleProductData = this.handleProductData.bind(this);
         this.handleProductFamilyData = this.handleProductFamilyData.bind(this);
         this.handleError = this.handleError.bind(this);
         this.handleExcludeStateInput = this.handleExcludeStateInput.bind(this);
@@ -52,20 +51,23 @@ class DashboardView extends Component {
     }
     
     fetchData() {
-        this.props.dataSource.fetchProducts(this.handleProductData, this.handleError);
         this.props.dataSource.fetchProductFamilies(this.handleProductFamilyData, this.handleError);
     }
 
-    handleProductData(products) {
+    handleProductFamilyData(productFamilies) {
+        const products = DashboardView.extractProducts(productFamilies);
         this.setState({
-            products: products
+            productFamilies: productFamilies,
+            minimizedProducts: products
         });
     }
-
-    handleProductFamilyData(productFamilies) {
-        this.setState({
-            productFamilies: productFamilies
+    
+    static extractProducts(productFamilies) {
+        let products = [];
+        productFamilies.forEach(function(productFamily) {
+            products = products.concat(productFamily.products);
         });
+        return products;
     }
     
     handleError(errorCode) {
@@ -83,14 +85,14 @@ class DashboardView extends Component {
                     <p>{this.state.error}</p>
                 </div>
             );
-        } else if(this.state.products) {
+        } else if(this.state.productFamilies) {
             component = (
                 <div>
                     <Header 
                         dataSource={this.props.dataSource}
                         dataSender={this.props.dataSender} />
-                    <Diagram 
-                        products={this.state.products}
+                    <Diagram
+                        products={this.state.minimizedProducts}
                         onStateExcludeInput={this.handleExcludeStateInput} />
                     <SearchBar
                         onChangeSearchInput={this.handleSearchInput}

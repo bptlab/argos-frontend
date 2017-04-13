@@ -3,6 +3,11 @@ import Chart from "chart.js";
 import {argosConfig} from '../../config/argosConfig.js';
 
 class LineChart extends Component {
+    
+    constructor(props) {
+        super(props);
+        this.buildChart = this.buildChart.bind(this);
+    }
 
     static sortEventsByTime(elementA, elementB, timeStampAttribute) {
         const dateA = new Date(elementA[timeStampAttribute]);
@@ -12,6 +17,7 @@ class LineChart extends Component {
 
     componentDidMount() {
         this.getDiagramColors();
+        this.buildChart();
     }
     
     buildChartData() {
@@ -77,8 +83,8 @@ class LineChart extends Component {
             data: dataContainer
         });
     }
-
-    componentDidUpdate() {
+    
+    buildChart() {
         const charWrapper = this.refs.canvas;
         if (charWrapper) {
             const chartContext = charWrapper.getContext('2d');
@@ -103,6 +109,10 @@ class LineChart extends Component {
             };
             this.chart = new Chart(chartContext, chartConfig);
         }
+    }
+
+    componentDidUpdate() {
+       this.buildChart();
     }
     
     render() {
