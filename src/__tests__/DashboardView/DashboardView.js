@@ -29,7 +29,7 @@ test("Correct drawing of DashboardView", () => {
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
     expect(notificationService.subscribe).toBeCalled();
-    expect(fetchProducts).toBeCalledWith(instance.handleProductData, instance.handleError)
+    expect(fetchProductFamilies).toBeCalledWith(instance.handleProductFamilyData, instance.handleError)
 });
 
 test("Error handling", () => {

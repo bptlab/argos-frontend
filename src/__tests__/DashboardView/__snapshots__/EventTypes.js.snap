@@ -89,7 +89,9 @@ exports[`test Receive eventTypes 1`] = `
                   </h5>
                 </div>
                 <div
-                  className="modal-body" />
+                  className="modal-body">
+                  Do you really want to delete this event type? This is a destructive action and cannot be undone.
+                </div>
                 <div
                   className="modal-footer">
                   <button
