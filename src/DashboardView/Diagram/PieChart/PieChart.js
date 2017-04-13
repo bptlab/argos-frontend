@@ -6,6 +6,7 @@ const stateColor = {
     ERROR: argosConfig.errorStateColor,
     WARNING: argosConfig.warningStateColor,
     RUNNING: argosConfig.runningStateColor,
+    UNDEFINED: argosConfig.undefinedStateColor,
 };
 
 class PieChart extends Component {

@@ -70,51 +70,51 @@ exports[`test Receive eventTypes 1`] = `
             <i
               className="fa fa-trash" />
           </a>
-        </td>
-        <div
-          className="delete-prompt modal fade"
-          id="delete-prompt-modal"
-          role="dialog"
-          tabIndex="-1">
           <div
-            className="modal-dialog modal-md"
-            role="document">
+            className="delete-prompt modal fade"
+            id="delete-prompt-modal"
+            role="dialog"
+            tabIndex="-1">
             <div
-              className="modal-content">
+              className="modal-dialog modal-md"
+              role="document">
               <div
-                className="modal-header">
-                <h5
-                  className="modal-title"
-                  id="delete-prompt-label">
-                  Delete Event Type?
-                </h5>
-              </div>
-              <div
-                className="modal-body">
-                Do you really want to delete this event type? This is a destructive action and cannot be undone.
-              </div>
-              <div
-                className="modal-footer">
-                <button
-                  className="btn"
-                  onClick={[Function]}
-                  type="button">
-                  <div>
-                    Abort
-                  </div>
-                </button>
-                <button
-                  className="btn"
-                  onClick={[Function]}
-                  type="button">
-                  <div>
-                    Submit
-                  </div>
-                </button>
+                className="modal-content">
+                <div
+                  className="modal-header">
+                  <h5
+                    className="modal-title"
+                    id="delete-prompt-label">
+                    Delete Event Type?
+                  </h5>
+                </div>
+                <div
+                  className="modal-body">
+                  Do you really want to delete this event type? This is a destructive action and cannot be undone.
+                </div>
+                <div
+                  className="modal-footer">
+                  <button
+                    className="btn"
+                    onClick={[Function]}
+                    type="button">
+                    <div>
+                      Abort
+                    </div>
+                  </button>
+                  <button
+                    className="btn"
+                    onClick={[Function]}
+                    type="button">
+                    <div>
+                      Submit
+                    </div>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </td>
       </tr>
     </tbody>
   </table>
