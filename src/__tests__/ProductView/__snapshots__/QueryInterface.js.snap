@@ -261,7 +261,7 @@ exports[`test Handling change query 1`] = `
               onChange={[Function]}
               rows="8"
               type="text"
-              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId, codingPlugId, codingPlugSoftwareVersion FROM FeedbackData" />
+              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
             
           </div>
         </div>
@@ -831,7 +831,7 @@ exports[`test Handling save query success 1`] = `
               onChange={[Function]}
               rows="8"
               type="text"
-              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId, codingPlugId, codingPlugSoftwareVersion FROM FeedbackData" />
+              value="INSERT INTO TestErrorEvents SELECT timestamp, productId, productFamilyId FROM FeedbackData" />
             
           </div>
         </div>
