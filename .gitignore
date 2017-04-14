@@ -1,25 +1,22 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+# See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-node_modules
+/node_modules
 
 # testing
-coverage
+/coverage
 
 # production
-build
-*.css
+/build
 
 # misc
 .DS_Store
 .env
-npm-debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 #IDEA
 .idea/
 *.iml
 
-#Development
-dev-resources/
-*.css
-src/config/argosConfig.js

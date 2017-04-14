@@ -1,8 +1,0 @@
-exports[`test Correct drawing of LineChart 1`] = `
-<div
-  className="line-chart">
-  <canvas
-    height="160"
-    id="lineChart" />
-</div>
-`;
