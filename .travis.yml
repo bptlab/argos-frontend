@@ -3,33 +3,33 @@ language: node_js
 node_js: '6'
 
 cache:
-  directories:
-    - node_modules
-    - /home/travis/.sonar/cache
+    directories:
+        - node_modules
+        - /home/travis/.sonar/cache
 
 addons:
-  sonarqube:
-    branches:
-      - .*
-    token: $SONAR_AUTH_TOKEN
-    github_token: $GITHUB_ACCESS_TOKEN
+    sonarqube:
+        branches:
+            - .*
+        token: $SONAR_AUTH_TOKEN
+        github_token: $GITHUB_ACCESS_TOKEN
 
 install:
-  - npm install
+    - npm install
 
 before_script:
-  - chmod +x scripts/sonarqube.sh
-  - mv src/config/argosConfig_template.js src/config/argosConfig.js
+    - chmod +x scripts/sonarqube.sh
+    - mv src/config/argosConfig_template.js src/config/argosConfig.js
 
 script:
-  - scripts/sonarqube.sh
-  - npm test
-  - npm build
+    - scripts/sonarqube.sh
+    - npm test
+    - npm build
 
 after_success:
-  - npm run coveralls
+    - npm run coveralls
 
 notifications:
-  email: false
-  slack:
-    secure: DOVwG5PZCA4NpJl3Zqi6byQGTQdbsFkCQ0j1EtKuc1uSmON3GzdJrEhxXPb2VS8cAhSKbKf2q1Oeqr3geTyfwmpC1xeZPyIPdqtH5nX8lu6OPVSqSO+Qij+4ICwL2+tJ5OQgcEMQRI2nqjuT8gPknzsd9+vpx0BSlVeJRSNtW9gAWr+fzrOtm37YgDe1Pt3Ben9XO5G1aZIFXetzKXdhaOZgCosrsp4yJoRZGtEsqYI8j9RFIupkhfscfKKhAYFAcw9Ltpipkar/e2Osg1TmmMSnE2/6lOGofjssK23zr2E6W7CqFy4eyuLKH5g99HaCr9tAigGbgIdsCD8Yv/byBx9AH4BNkprEx5gJ1sE6f/PyRFyYCOFVkAcPLcJbVmRqCSaC/sCoKdZSh+4I2KL5QUyAzSzvCqYz+/6qwI95Q+5SoSkMwgaFFmLbQooq0k92iFpxHdm1d2IFE2wfTypVGMzxYRJu9m9mAaGKRdH7PcxdEhZLMMNWURWBDc2C7Amv8ndxWPg94bGNLu4IOKon3UVRg7uLbnDWXqIzPKRh9V4TMYf1YK2Au5fXCkQucNpPnEkUc6KI6qExySt5wJG+WupZJ4Tkxz0BQvBpaJ0NFbbLPBCmvuHt5OnfRssPPhgBt3b39ImtTam7kdgyCu5MBL0ENqAJl/MNSuohULK94aE=
+    email: false
+    slack:
+        secure: DOVwG5PZCA4NpJl3Zqi6byQGTQdbsFkCQ0j1EtKuc1uSmON3GzdJrEhxXPb2VS8cAhSKbKf2q1Oeqr3geTyfwmpC1xeZPyIPdqtH5nX8lu6OPVSqSO+Qij+4ICwL2+tJ5OQgcEMQRI2nqjuT8gPknzsd9+vpx0BSlVeJRSNtW9gAWr+fzrOtm37YgDe1Pt3Ben9XO5G1aZIFXetzKXdhaOZgCosrsp4yJoRZGtEsqYI8j9RFIupkhfscfKKhAYFAcw9Ltpipkar/e2Osg1TmmMSnE2/6lOGofjssK23zr2E6W7CqFy4eyuLKH5g99HaCr9tAigGbgIdsCD8Yv/byBx9AH4BNkprEx5gJ1sE6f/PyRFyYCOFVkAcPLcJbVmRqCSaC/sCoKdZSh+4I2KL5QUyAzSzvCqYz+/6qwI95Q+5SoSkMwgaFFmLbQooq0k92iFpxHdm1d2IFE2wfTypVGMzxYRJu9m9mAaGKRdH7PcxdEhZLMMNWURWBDc2C7Amv8ndxWPg94bGNLu4IOKon3UVRg7uLbnDWXqIzPKRh9V4TMYf1YK2Au5fXCkQucNpPnEkUc6KI6qExySt5wJG+WupZJ4Tkxz0BQvBpaJ0NFbbLPBCmvuHt5OnfRssPPhgBt3b39ImtTam7kdgyCu5MBL0ENqAJl/MNSuohULK94aE=

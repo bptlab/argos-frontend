@@ -14,11 +14,17 @@
 To configure argos-frontend simply access ```src/config/argosConfig.js```
 
 ## Development
-### Setup
+### Quick Start
 - ```git clone git@github.com:bptlab/argos-frontend.git && cd argos-frontend```
 - ```npm install```
 - ```npm start```
 - The server is now running at [localhost:3000](http://localhost:3000)
+
+### Development Environment
+1. Set the intendation inside the IDE of your choice to:
+	- tabs, smart tabs
+	- tab size 4
+	- indent 4, continuation indent 4
 
 ## Conventions
 ### Git
@@ -35,9 +41,9 @@ If initialising a component with more than two parameters, insert a linebreak af
 Right
 ```
 <EventTable
-    header={this.state.activeEventType.attributes}
-    events={this.state.activeEvents}
-    filter={this.state.filter} />
+	header={this.state.activeEventType.attributes}
+	events={this.state.activeEvents}
+	filter={this.state.filter} />
 ```
 Wrong
 ```
