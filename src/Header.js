@@ -6,6 +6,7 @@ class Header extends Component {
 		return (
 			<AppBar
 				title="Argos"
+				showMenuIconButton={false}
 				iconClassNameRight="muidocs-icon-navigation-expand-more"
 			/>
 		);

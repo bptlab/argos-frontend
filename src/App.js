@@ -7,7 +7,8 @@ class App extends Component {
     render() {
         return (
             <MuiThemeProvider>
-                <Header />
+                <Header/>
+                {children}
             </MuiThemeProvider>
         );
     }
