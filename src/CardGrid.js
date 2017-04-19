@@ -3,7 +3,7 @@ import { Card, CardTitle, CardText, CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import './CardGrid.css';
 
-class GridView extends Component {
+class CardGrid extends Component {
 	render() {
 		return (
 			<div className="card-grid d-flex">
@@ -16,7 +16,7 @@ class GridView extends Component {
 						Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
 					</CardText>
 					<CardActions className="d-flex">
-						<FlatButton label="Childs" className="card-button" />
+						<FlatButton label="Children" className="card-button" />
 						<FlatButton label="Inspect" className="card-button" />
 					</CardActions>
 				</Card>
@@ -25,4 +25,4 @@ class GridView extends Component {
 	}
 }
 
-export default GridView;
+export default CardGrid;
