@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import GridView from './GridView';
+import GridView from './GridView/GridView';
 import './index.css';
 
 ReactDOM.render(
