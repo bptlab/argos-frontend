@@ -1,9 +1,14 @@
 .card-grid {
-	max-width: 800px;
-	margin: 0 auto;
-	display: flex;
+	flex-wrap: wrap;
+}
 
-	.card {
+.card {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	width: 31%;
+}
 
-	}
+.card-button {
+	width: 50%;
 }

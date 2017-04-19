@@ -9,7 +9,9 @@ class App extends Component {
             <MuiThemeProvider>
                 <div>
                     <Header/>
-	                {this.props.children}
+                    <div className="container">
+	                    {this.props.children}
+                    </div>
                 </div>
             </MuiThemeProvider>
         );
