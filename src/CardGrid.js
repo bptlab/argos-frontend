@@ -20,6 +20,58 @@ class CardGrid extends Component {
 						<FlatButton label="Inspect" className="card-button" />
 					</CardActions>
 				</Card>
+				<Card className="card">
+					<CardTitle title="Card title" subtitle="Card subtitle" />
+					<CardText>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+						Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+						Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+					</CardText>
+					<CardActions className="d-flex">
+						<FlatButton label="Children" className="card-button" />
+						<FlatButton label="Inspect" className="card-button" />
+					</CardActions>
+				</Card>
+				<Card className="card">
+					<CardTitle title="Card title" subtitle="Card subtitle" />
+					<CardText>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+						Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+						Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+					</CardText>
+					<CardActions className="d-flex">
+						<FlatButton label="Children" className="card-button" />
+						<FlatButton label="Inspect" className="card-button" />
+					</CardActions>
+				</Card>
+				<Card className="card">
+					<CardTitle title="Card title" subtitle="Card subtitle" />
+					<CardText>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+						Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+						Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+					</CardText>
+					<CardActions className="d-flex">
+						<FlatButton label="Children" className="card-button" />
+						<FlatButton label="Inspect" className="card-button" />
+					</CardActions>
+				</Card>
+				<Card className="card">
+					<CardTitle title="Card title" subtitle="Card subtitle" />
+					<CardText>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+						Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+						Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+					</CardText>
+					<CardActions className="d-flex">
+						<FlatButton label="Children" className="card-button" />
+						<FlatButton label="Inspect" className="card-button" />
+					</CardActions>
+				</Card>
 			</div>
 		);
 	}
