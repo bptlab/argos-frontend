@@ -65,14 +65,14 @@ exports[`test Receive eventTypes 1`] = `
           className="center">
           <a
             className="nav-link"
-            data-target="#delete-prompt-modal"
+            data-target="#delete-eventType-0-prompt-modal"
             data-toggle="modal">
             <i
               className="fa fa-trash" />
           </a>
           <div
-            className="delete-prompt modal fade"
-            id="delete-prompt-modal"
+            className="delete-eventType-0-prompt modal fade"
+            id="delete-eventType-0-prompt-modal"
             role="dialog"
             tabIndex="-1">
             <div
@@ -84,7 +84,7 @@ exports[`test Receive eventTypes 1`] = `
                   className="modal-header">
                   <h5
                     className="modal-title"
-                    id="delete-prompt-label">
+                    id="delete-eventType-0-prompt-label">
                     Delete Event Type?
                   </h5>
                 </div>
