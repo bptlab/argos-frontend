@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import DonutChart from './DonutChart'
 import HierarchyStepper from './HierarchyStepper'
+import SearchBar from './../Utils/SearchBar'
 import CardGrid from './CardGrid';
 
 class GridView extends Component {
@@ -7,9 +9,9 @@ class GridView extends Component {
 		return (
 			<div>
 				<HierarchyStepper/>
-				<div className="container">
-					<CardGrid/>
-				</div>
+				<DonutChart/>
+				<SearchBar/>
+				<CardGrid entities={this.props.entities}/>
 			</div>
 		);
 	}
