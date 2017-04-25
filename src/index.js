@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import GridView from './GridView/GridView';
 import DetailView from './DetailView/DetailView';
 import SettingsView from './SettingsView/SettingsView';
+import './definitions.css';
 import './index.css';
 
 ReactDOM.render(
