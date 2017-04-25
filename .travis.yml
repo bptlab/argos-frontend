@@ -19,7 +19,6 @@ install:
 
 before_script:
     - chmod +x scripts/sonarqube.sh
-    - mv src/config/argosConfig_template.js src/config/argosConfig.js
 
 script:
     - scripts/sonarqube.sh
