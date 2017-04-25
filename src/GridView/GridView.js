@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
+import {connect, PromiseState} from 'react-refetch';
+import LoadingAnimation from './../Utils/LoadingAnimation';
+import ErrorMessage from './../Utils/ErrorMessage';
 import DonutChart from './DonutChart';
 import HierarchyStepper from './HierarchyStepper';
 import SearchBar from './../Utils/SearchBar';
 import CardGrid from './CardGrid';
-import {connect, PromiseState} from 'react-refetch';
+
 
 class GridView extends Component {
 	
@@ -13,7 +16,7 @@ class GridView extends Component {
 		if (allFetches.pending) {
 			return <LoadingAnimation/>;
 		} else if (allFetches.rejected) {
-			return <ErrorMessage error={allFetches.reason}/>;
+			return <ErrorMessage message={allFetches.reason}/>;
 		} else if (allFetches.fulfilled) {
 			return (
 				<div>

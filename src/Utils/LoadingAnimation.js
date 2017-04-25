@@ -4,7 +4,9 @@ import CircularProgress from 'material-ui/CircularProgress';
 class LoadingAnimation extends Component {
 	render() {
 		return (
-			<CircularProgress size={80} thickness={5} />
+			<div className="d-flex justify-content-center">
+				<CircularProgress size={80} thickness={5} />
+			</div>
 		);
 	}
 }
