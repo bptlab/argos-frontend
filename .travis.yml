@@ -19,6 +19,7 @@ install:
 
 before_script:
     - chmod +x scripts/sonarqube.sh
+    - mv src/config/config-template.js src/config/config.js
 
 script:
     - scripts/sonarqube.sh
