@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
+import {connect, PromiseState} from 'react-refetch';
 import { Card, CardTitle, CardText, CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import './CardGrid.css';
 
 class CardGrid extends Component {
+	
+	constructor(props) {
+		super(props);
+		const attributeNames = props.entity.Attributes.map((attribute) => {
+			return attribute.Name;
+		});
+		this.attributesList = attributeNames.join("+");
+	}
+	
 	render() {
 		return (
 			<div className="card-grid d-flex">
-				{this.props.entities.map((entity) => {
+				{this.props.lazyChildEntities(this.attributesList).map((childEntity) => {
 					return (
 						<Card className="card">
-							<CardTitle title="Card Title" subtitle="Card subtitle"/>
+							<CardTitle title={childEntity.Name} subtitle={this.props.childEntityType.name} />
 							<CardText>
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 								Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
@@ -29,4 +39,8 @@ class CardGrid extends Component {
 	}
 }
 
-export default CardGrid;
+export default connect(props => ({
+	lazyChildEntities: attributeList => ({
+		childEntities: `/entity/${props.currentEntity.Id}/children/type/${props.childEntityType.Id}/${attributeList}`	
+	})
+}))(CardGrid);
