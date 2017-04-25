@@ -5,6 +5,18 @@ import SearchBar from './../Utils/SearchBar'
 import CardGrid from './CardGrid';
 
 class GridView extends Component {
+
+
+	componentDidMount() {
+		this.props.datasource.getEntities(3, this.getEntities);
+	}
+
+	getEntities(entities) {
+		this.setState({
+			entities: entities
+		});
+	}
+
 	render() {
 		return (
 			<div>

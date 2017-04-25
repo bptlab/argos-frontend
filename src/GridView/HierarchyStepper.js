@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
-import CallSplitIcon from 'material-ui/svg-icons/communication/call-split';
 
 
 class HierarchyStepper extends Component {
 	render() {
 		return (
-			<Stepper activeStep={3} connector={<CallSplitIcon className="rotate-90" />}>
+			<Stepper activeStep={3}>
 				<Step>
 					<StepLabel>Productfamilies</StepLabel>
 				</Step>
