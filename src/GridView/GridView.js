@@ -10,6 +10,15 @@ import CardGrid from './CardGrid';
 
 class GridView extends Component {
 	
+	getChildEntityTypes(parentEntityTypeId, hierarchy) {
+		let childEntities  = [];
+		hierarchy.forEach(hierarchyLayer => {
+			childEntities = childEntities.concat(hierarchyLayer.filter( (entityType) => {
+				return entityType.ParentId === parentEntityTypeId;
+			}));
+		});
+	}
+	
 	render() {
 		const { hierarchy, entity } = this.props;
 		const allFetches = PromiseState.all([hierarchy, entity]);
@@ -18,6 +27,7 @@ class GridView extends Component {
 		} else if (allFetches.rejected) {
 			return <ErrorMessage message={allFetches.reason}/>;
 		} else if (allFetches.fulfilled) {
+			const childEntityTypes = this.getChildEntityTypes(entity.TypeId, hierarchy);
 			return (
 				<div>
 					<h1>{entity.Name}</h1>
@@ -26,7 +36,12 @@ class GridView extends Component {
 						currentEntityType={entity.TypeId}/>
 					<DonutChart/>
 					<SearchBar/>
-					<CardGrid currentEntityId={this.props.match.params.entityId}/>
+					{childEntityTypes.map((childEntityType) => {
+						return(<CardGrid
+							key={childEntityType.Id}
+							currentEntity={entity}
+							childEntityType={childEntityType} />);
+					})}
 				</div>
 			);
 		}
