@@ -94,12 +94,19 @@ class EventTypes extends Component {
                     <td>{eventType.name}</td>
                     <td>{eventType.eventQuery}</td>
                     <td className="center">
-                        <a className="nav-link" data-toggle="modal" data-target="#delete-prompt-modal">
+                        <a className="nav-link" 
+                           data-toggle="modal" 
+                           data-target={`#delete-eventType-${eventType.id}-prompt-modal`}>
                             <i className="fa fa-trash" />
                         </a>
-                        <ConfirmOverlay title="Delete Event Type?" onAbort={abortCallback} onSubmit={deleteCallback}
-                                        id="delete-prompt" abortButtonText="Abort" submitButtonText="Submit">
-                            {argosConfig.confirmEventTypeDeletion}
+                        <ConfirmOverlay 
+                            title="Delete Event Type?" 
+                            onAbort={abortCallback} 
+                            onSubmit={deleteCallback}
+                            id={`delete-eventType-${eventType.id}-prompt`} 
+                            abortButtonText="Abort" 
+                            submitButtonText="Submit">
+                                {argosConfig.confirmEventTypeDeletion}
                         </ConfirmOverlay>
                     </td>
                 </tr>
