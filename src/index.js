@@ -10,11 +10,11 @@ import './index.css';
 
 ReactDOM.render(
 	<Router>
-		<Route path="/" component={App}>
-			<Route path="/grid" component={GridView}/>
+		<App>
+			<Route path="/grid/:entityId" component={GridView}/>
 			<Route path="/details" component={DetailView}/>
 			<Route path="/settings" component={SettingsView}/>
-		</Route>
+		</App>
 	</Router>,
 	document.getElementById('root')
 );
