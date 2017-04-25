@@ -25,7 +25,7 @@ class GridView extends Component {
 		if (allFetches.pending) {
 			return <LoadingAnimation/>;
 		} else if (allFetches.rejected) {
-			return <ErrorMessage message={allFetches.reason}/>;
+			return <ErrorMessage message={allFetches.reason.message}/>;
 		} else if (allFetches.fulfilled) {
 			const childEntityTypes = this.getChildEntityTypes(entity.TypeId, hierarchy);
 			return (
@@ -34,13 +34,17 @@ class GridView extends Component {
 					<HierarchyStepper
 						hierarchy={hierarchy}
 						currentEntityType={entity.TypeId}/>
-					<DonutChart/>
 					<SearchBar/>
 					{childEntityTypes.map((childEntityType) => {
-						return(<CardGrid
-							key={childEntityType.Id}
-							currentEntity={entity}
-							entityType={childEntityType} />);
+						return(
+							<div>
+								<DonutChart/>
+								<CardGrid
+									key={childEntityType.Id}
+									currentEntity={entity}
+									entityType={childEntityType} />
+							</div>
+						);
 					})}
 				</div>
 			);
