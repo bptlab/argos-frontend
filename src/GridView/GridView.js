@@ -40,7 +40,7 @@ class GridView extends Component {
 						return(<CardGrid
 							key={childEntityType.Id}
 							currentEntity={entity}
-							childEntityType={childEntityType} />);
+							entityType={childEntityType} />);
 					})}
 				</div>
 			);

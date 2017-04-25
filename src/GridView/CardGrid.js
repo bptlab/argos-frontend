@@ -17,14 +17,14 @@ class CardGrid extends Component {
 	}
 	
 	render() {
-		if (this.props.childEntities.pending) {
+		if (this.props.entities.pending) {
 			return <LoadingAnimation/>;
-		} else if (this.props.childEntities.rejected) {
-			return <ErrorMessage message={this.props.childEntities.reason}/>;
-		} else if (this.props.childEntities.fulfilled) {
+		} else if (this.props.entities.rejected) {
+			return <ErrorMessage message={this.props.entities.reason}/>;
+		} else if (this.props.entities.fulfilled) {
 			return (
 				<div className="card-grid d-flex">
-					{this.props.childEntities.map((childEntity) => {
+					{this.props.entities.map((childEntity) => {
 						return (
 							<Card className="card">
 								<CardTitle title={childEntity.Name} subtitle={this.props.childEntityType.name}/>
@@ -49,6 +49,6 @@ class CardGrid extends Component {
 
 export default connect(props => ({
 	lazyChildEntities: attributeList => ({
-		childEntities: `/entity/${props.currentEntity.Id}/children/type/${props.childEntityType.Id}/${attributeList}`	
+		entities: `/entity/${props.currentEntity.Id}/children/type/${props.entityType.Id}/${attributeList}`	
 	})
 }))(CardGrid);
