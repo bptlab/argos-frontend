@@ -3,29 +3,33 @@ import {connect} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import { Card, CardTitle, CardText, CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import LoadingAnimation from './../Utils/LoadingAnimation';
 import './CardGrid.css';
 
 class CardGrid extends ConnectionComponent {
 	
 	constructor(props) {
 		super(props);
-		const attributeNames = props.entity.Attributes.map((attribute) => {
+		const attributeNames = props.currentEntity.Attributes.map((attribute) => {
 			return attribute.Name;
 		});
 		this.props.lazyChildEntities(attributeNames.join("+"));
 	}
 	
 	render() {
+		if(!this.props.entities) {
+			return <LoadingAnimation/>;
+		}
 		const connectionIncomplete = super.render(this.props.entities);
 		if(connectionIncomplete) {
 			return connectionIncomplete;
 		}
 		return (
 			<div className="card-grid d-flex">
-				{this.props.entities.map((childEntity) => {
+				{this.props.entities.value.map((childEntity, index) => {
 					return (
-						<Card className="card">
-							<CardTitle title={childEntity.Name} subtitle={this.props.childEntityType.name}/>
+						<Card className="card" key={index}>
+							<CardTitle title={childEntity.Name} subtitle={this.props.entityType.name}/>
 							<CardText>
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 								Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.

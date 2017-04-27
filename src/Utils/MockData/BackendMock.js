@@ -8,6 +8,7 @@ class BackendMock {
 		return new Map()
 			.set(/entitytype\/hierarchy/i, BackendMock.getEntityTypeHierarchy)
 			.set(/entitytype\/(\d+)\/attributes/i, BackendMock.getEntityTypeAttributes)
+			.set(/entity\/(\d+)\/children\/type\/(\d+)\/(((\w)+)\+)*(\w)+/i, BackendMock.getChildEntitiesOfEntityType)
 			.set(/entity\/(\d+)/i, BackendMock.getEntity);
 	}
 		
@@ -35,9 +36,12 @@ class BackendMock {
 		
 	}
 	
+	static getChildEntitiesOfEntityType(params) {
+		return Entity;
+	}
+	
 	static buildResponse(value) {
-		const response = new Response(JSON.stringify(value));
-		return response;
+		return new Response(JSON.stringify(value));
 	}
 	
 	
