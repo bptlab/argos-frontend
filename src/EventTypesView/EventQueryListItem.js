@@ -7,13 +7,17 @@ import {ListItem} from 'material-ui/List';
 
 class EventQueryListItem extends Component {
 	deleteEventQuery() {
+		// TODO: to be filled
+	}
 
+	editEventQuery() {
+		// TODO: to be filled
 	}
 
 	static deleteEventQueryButton () {
 		return (
 			<div>
-				<IconButton onTouchTap={this.deleteEventQuery}>
+				<IconButton onTouchTap={this.editEventQuery}>
 					<IconEdit/>
 				</IconButton>
 				<IconButton onTouchTap={this.deleteEventQuery}>
