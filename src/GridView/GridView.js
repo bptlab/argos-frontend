@@ -1,11 +1,10 @@
-import {connect, PromiseState} from 'react-refetch';
 import React from 'react';
 import DonutChart from './DonutChart';
 import HierarchyStepper from './HierarchyStepper';
 import SearchBar from './../Utils/SearchBar';
 import CardGrid from './CardGrid';
+import {connect, PromiseState} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
-
 
 class GridView extends ConnectionComponent {
 	
@@ -49,7 +48,7 @@ class GridView extends ConnectionComponent {
 	}
 }
 
-export default connect(props => ({
+export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
 	hierarchy: `/entityType/hierarchy`,
 	entity: `/entity/${props.match.params.entityId}`
 }))(GridView);
