@@ -20,14 +20,18 @@ class EventType extends Component {
 
 	render() {
 		return (
-			<Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
+			<Card
+				expanded={this.state.expanded}
+				onExpandChange={this.handleExpandChange}>
 				<CardHeader
 					title="Event type 1"
 					subtitle="Event type description 1"
 					actAsExpander={true}
 					showExpandableButton={true}
 				/>
-				<CardText expandable={true} className={css(AppStyles.dFlex)}>
+				<CardText
+					expandable={true}
+					className={css(AppStyles.dFlex)}>
 					<List className={css(AppStyles.w50)}>
 						<EventQueryListItem/>
 						<EventQueryListItem/>
