@@ -17,9 +17,8 @@ class ConnectionComponent extends Component {
 	
 	static switchFetch(input, init) {
 		if(Config.useBackendMock) {
-			const promise = new Promise(resolve => resolve(BackendMock.handleRequest(input, init)));
-			console.log(promise);
-			return promise;
+			const response = BackendMock.handleRequest(input, init);
+			return new Promise(resolve => resolve(response));
 		} else {
 			const req = new Request(input, init);
 			return fetch(req);

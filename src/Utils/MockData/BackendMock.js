@@ -36,7 +36,8 @@ class BackendMock {
 	}
 	
 	static buildResponse(value) {
-		return {value: value};
+		const response = new Response(JSON.stringify(value));
+		return response;
 	}
 	
 	

@@ -44,7 +44,7 @@ class CardGrid extends ConnectionComponent {
 	}
 }
 
-export default connect(props => ({
+export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
 	lazyChildEntities: attributeList => ({
 		entities: `/entity/${props.currentEntity.Id}/children/type/${props.entityType.Id}/${attributeList}`	
 	})

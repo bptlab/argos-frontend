@@ -15,11 +15,14 @@ class GridView extends ConnectionComponent {
 				return entityType.ParentId === parentEntityTypeId;
 			}));
 		});
+		return childEntities;
 	}
 	
 	render() {
-		const { hierarchy, entity } = this.props;
+		let { hierarchy, entity } = this.props;
 		const allFetches = PromiseState.all([hierarchy, entity]);
+		hierarchy = hierarchy.value;
+		entity = entity.value;
 		const connectionIncomplete = super.render(allFetches);
 		if(connectionIncomplete) {
 			return connectionIncomplete;
@@ -34,7 +37,7 @@ class GridView extends ConnectionComponent {
 				<SearchBar/>
 				{childEntityTypes.map((childEntityType) => {
 					return(
-						<div>
+						<div key={`div-${childEntityType.Id}`}>
 							<DonutChart/>
 							<CardGrid
 								key={childEntityType.Id}

@@ -1,21 +1,21 @@
 const Hierarchy = [
 	[
 		{
-			id: 0,
+			Id: 0,
 			ParentId: -1,
 			Name: "TransportationMode"
 		},
 	],
 	[
 		{
-			id: 1,
+			Id: 1,
 			ParentId: 0,
 			Name: "Lines"
 		},
 	],
 	[
 		{
-			id: 1,
+			Id: 2,
 			ParentId: 0,
 			Name: "StopPoints"
 		},
