@@ -9,6 +9,7 @@ import EventTypesView from './EventTypesView/EventTypesView';
 ReactDOM.render(
 	<Router>
 		<App>
+			<Route path="/" component={GridView}/>
 			<Route path="/grid/:entityId" component={GridView}/>
 			<Route path="/details" component={DetailView}/>
 			<Route path="/eventtypes" component={EventTypesView}/>
