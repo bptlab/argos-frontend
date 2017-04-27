@@ -10,17 +10,21 @@ import config from './config/config'
 
 class Header extends Component {
 
-	composeAppBar(pageLocation) {
+	static goBackInHistory() {
+		window.history.back();
+	}
+
+	static composeAppBar(pageLocation) {
 		let iconElementLeft;
 
 		if (pageLocation === "grid") {
-            iconElementLeft = <IconButton><IconHome/></IconButton>;
+            iconElementLeft = <IconButton href="/"><IconHome/></IconButton>;
         }
         if (pageLocation === "details") {
-            iconElementLeft = <IconButton><IconArrowBack/></IconButton>;
+            iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
         }
         if (pageLocation === "settings") {
-			iconElementLeft = <IconButton><IconArrowBack/></IconButton>;
+			iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
         }
 
         return (
@@ -28,7 +32,7 @@ class Header extends Component {
 				title={<span>{config.projectName}</span>}
 				iconElementLeft={iconElementLeft}
 				iconElementRight={<IconButton><IconSettings/></IconButton>}
-				className="primary-color"
+				className="primary-color fixed-position"
 			/>
 		);
 	}
@@ -37,9 +41,10 @@ class Header extends Component {
 		return (
 			<Router>
 				<div>
-					<Route path="/grid/:entityId" component={() => this.composeAppBar("grid")}/>
-					<Route path="/details" component={() => this.composeAppBar("details")}/>
-					<Route path="/settings" component={() => this.composeAppBar("settings")}/>
+					<Route path="/" component={() => Header.composeAppBar("grid")}/>
+					<Route path="/grid/:entityId" component={() => Header.composeAppBar("grid")}/>
+					<Route path="/details" component={() => Header.composeAppBar("details")}/>
+					<Route path="/settings" component={() => Header.composeAppBar("settings")}/>
 				</div>
 			</Router>
 		);
