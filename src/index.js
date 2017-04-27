@@ -14,8 +14,8 @@ ReactDOM.render(
 		<App>
 			<Switch>
 				<Route exact path="/" component={GridView}/>
-				<Route path="/grid/:hierarchyId/:entityId" component={GridView}/>
-				<Route path="/details/:hierarchyId/:entityId" component={DetailView}/>
+				<Route path="/grid/:entityId" component={GridView}/>
+				<Route path="/details/:parentId/:entityId" component={DetailView}/>
 			<Route path="/eventtypes" component={EventTypesView}/>
 				<Route path="*" component={NotFound}/>
 			</Switch>

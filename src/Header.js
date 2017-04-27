@@ -18,8 +18,9 @@ class Header extends Component {
 
 	static goBackToGrid() {
 		const currentPath = window.location.pathname;
-        window.location.href = currentPath.replace("details", "grid");
-	}
+        let newPath = currentPath.replace("details", "grid");
+        window.location.href = newPath.substring(0, newPath.lastIndexOf("/") + 1);
+    }
 
 	static composeAppBar(pageLocation) {
 		let iconElementLeft;
@@ -49,8 +50,8 @@ class Header extends Component {
 			<Router>
 				<Switch>
 					<Route exact path="/" component={() => Header.composeAppBar("grid")}/>
-					<Route path="/grid/:hierarchyId/:entityId" component={() => Header.composeAppBar("grid")}/>
-					<Route path="/details/:hierarchyId/:entityId" component={() => Header.composeAppBar("details")}/>
+					<Route path="/grid/:entityId" component={() => Header.composeAppBar("grid")}/>
+					<Route path="/details/:parentId/:entityId" component={() => Header.composeAppBar("details")}/>
 					<Route path="/settings" component={() => Header.composeAppBar("settings")}/>
 					<Route path="*" component={() => Header.composeAppBar("grid")}/>
 				</Switch>
