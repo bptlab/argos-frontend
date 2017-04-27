@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
 import EventQueryListItem from  './EventQueryListItem';
+import { css } from 'aphrodite';
+import AppStyles from './../App-styles';
 
 
 class EventType extends Component {
@@ -25,8 +27,8 @@ class EventType extends Component {
 					actAsExpander={true}
 					showExpandableButton={true}
 				/>
-				<CardText expandable={true} className="d-flex">
-					<List className="w-50">
+				<CardText expandable={true} className={css(AppStyles.dFlex)}>
+					<List className={css(AppStyles.w50)}>
 						<EventQueryListItem/>
 						<EventQueryListItem/>
 						<EventQueryListItem/>
@@ -34,7 +36,7 @@ class EventType extends Component {
 						<EventQueryListItem/>
 						<EventQueryListItem/>
 					</List>
-					<List className="w-50">
+					<List className={css(AppStyles.w50)}>
 						<ListItem
 							primaryText="Event Type Attribute 1 Value"
 							secondaryText="Event Type Attribute 1 Name"
