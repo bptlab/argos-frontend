@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import IconWarning from 'material-ui/svg-icons/alert/warning';
 import { css } from 'aphrodite';
-import AppStyles from './../App-styles';
-import DefinitionStyles from './../Definition-styles';
-import ErrorMessageStyles from './ErrorMessage-styles';
+import AppStyles from '../AppStyles';
+import DefinitionStyles from '../DefinitionStyles';
+import ErrorMessageStyles from './ErrorMessageStyles';
 
 class ErrorMessage extends Component {
 	

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import config from './../config/config';
 import { css } from 'aphrodite';
-import AppStyles from './../App-styles';
+import AppStyles from '../AppStyles';
 
 class SearchBar extends Component {
 	constructor () {

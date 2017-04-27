@@ -1,7 +1,7 @@
 import { StyleSheet } from 'aphrodite';
 import config from './config/config';
 
-const definitionStyles = StyleSheet.create({
+const DefinitionStyles = StyleSheet.create({
 	primaryBackgroundColor: {
 		backgroundColor: config.colors.primaryColor,
 	},
@@ -16,4 +16,4 @@ const definitionStyles = StyleSheet.create({
 	},
 });
 
-export default definitionStyles;
+export default DefinitionStyles;

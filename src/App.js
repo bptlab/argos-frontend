@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Header from './Header';
 import { css } from 'aphrodite';
-import AppStyles from './App-styles';
+import AppStyles from './AppStyles';
 
 class App extends Component {
 

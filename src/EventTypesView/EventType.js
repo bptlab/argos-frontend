@@ -3,7 +3,7 @@ import {Card, CardHeader, CardText} from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
 import EventQueryListItem from  './EventQueryListItem';
 import { css } from 'aphrodite';
-import AppStyles from './../App-styles';
+import AppStyles from '../AppStyles';
 
 
 class EventType extends Component {

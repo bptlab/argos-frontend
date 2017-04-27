@@ -1,6 +1,6 @@
 import { StyleSheet } from 'aphrodite';
 
-const appStyles = StyleSheet.create({
+const AppStyles = StyleSheet.create({
 	container: {
 		maxWidth: '900px',
 		margin: '0 auto',
@@ -35,4 +35,4 @@ const appStyles = StyleSheet.create({
 	},
 });
 
-export default appStyles;
+export default AppStyles;

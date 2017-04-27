@@ -1,10 +1,10 @@
 import { StyleSheet } from 'aphrodite';
 
-const errorMessageStyles = StyleSheet.create({
+const ErrorMessageStyles = StyleSheet.create({
 	iconSize: {
 		width: '100px',
 		height: '100px',
 	},
 });
 
-export default errorMessageStyles;
+export default ErrorMessageStyles;

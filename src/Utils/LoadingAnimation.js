@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
 import { css } from 'aphrodite';
-import AppStyles from './../App-styles';
+import AppStyles from '../AppStyles';
 
 class LoadingAnimation extends Component {
 	render() {
