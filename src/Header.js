@@ -5,7 +5,7 @@ import IconHome from 'material-ui/svg-icons/action/home';
 import IconSettings from 'material-ui/svg-icons/action/settings';
 import IconArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import config from './config/config';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import config from './config/config'
 import { css } from 'aphrodite';
 import DefinitionStyles from './DefinitionStyles';
@@ -16,14 +16,19 @@ class Header extends Component {
 		window.history.back();
 	}
 
+	static goBackToGrid() {
+		const currentPath = window.location.pathname;
+        window.location.href = currentPath.replace("details", "grid");
+	}
+
 	static composeAppBar(pageLocation) {
 		let iconElementLeft;
 
 		if (pageLocation === "grid") {
-            iconElementLeft = <IconButton href="/"><IconHome/></IconButton>;
+            iconElementLeft = <IconButton href="/grid/1/1"><IconHome/></IconButton>;
         }
         if (pageLocation === "details") {
-            iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
+            iconElementLeft = <IconButton onTouchTap={Header.goBackToGrid}><IconArrowBack/></IconButton>;
         }
         if (pageLocation === "settings") {
 			iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
@@ -33,7 +38,7 @@ class Header extends Component {
 			<AppBar
 				title={<span>{config.projectName}</span>}
 				iconElementLeft={iconElementLeft}
-				iconElementRight={<IconButton><IconSettings/></IconButton>}
+				iconElementRight={<IconButton href="/settings"><IconSettings/></IconButton>}
 				className="primary-color fixed-position"
 			/>
 		);
@@ -42,12 +47,13 @@ class Header extends Component {
 	render() {
 		return (
 			<Router>
-				<div>
-					<Route path="/" component={() => Header.composeAppBar("grid")}/>
-					<Route path="/grid/:entityId" component={() => Header.composeAppBar("grid")}/>
-					<Route path="/details" component={() => Header.composeAppBar("details")}/>
+				<Switch>
+					<Route exact path="/" component={() => Header.composeAppBar("grid")}/>
+					<Route path="/grid/:hierarchyId/:entityId" component={() => Header.composeAppBar("grid")}/>
+					<Route path="/details/:hierarchyId/:entityId" component={() => Header.composeAppBar("details")}/>
 					<Route path="/settings" component={() => Header.composeAppBar("settings")}/>
-				</div>
+					<Route path="*" component={() => Header.composeAppBar("grid")}/>
+				</Switch>
 			</Router>
 		);
     }

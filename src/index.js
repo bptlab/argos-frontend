@@ -1,18 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import GridView from './GridView/GridView';
 import DetailView from './DetailView/DetailView';
-import EventTypesView from './EventTypesView/EventTypesView';
+import SettingsView from './SettingsView/SettingsView';
+import './definitions.css';
+import './index.css';
+import NotFound from "./Utils/NotFound";
 
 ReactDOM.render(
 	<Router>
 		<App>
-			<Route path="/" component={GridView}/>
-			<Route path="/grid/:entityId" component={GridView}/>
-			<Route path="/details" component={DetailView}/>
+			<Switch>
+				<Route exact path="/" component={GridView}/>
+				<Route path="/grid/:hierarchyId/:entityId" component={GridView}/>
+				<Route path="/details/:hierarchyId/:entityId" component={DetailView}/>
 			<Route path="/eventtypes" component={EventTypesView}/>
+				<Route path="*" component={NotFound}/>
+			</Switch>
 		</App>
 	</Router>,
 	document.getElementById('root')
