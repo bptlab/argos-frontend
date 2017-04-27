@@ -5,8 +5,6 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import GridView from './GridView/GridView';
 import DetailView from './DetailView/DetailView';
 import EventTypesView from './EventTypesView/EventTypesView';
-import './definitions.css';
-import './index.css';
 
 ReactDOM.render(
 	<Router>
