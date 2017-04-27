@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EventType from './EventType';
+import SearchBar from './../Utils/SearchBar';
 
 
 class EventTypesView extends Component {
@@ -12,6 +13,7 @@ class EventTypesView extends Component {
 	render() {
 		return (
 			<div>
+				<SearchBar/>
 				<EventType/>
 				<EventType/>
 				<EventType/>
