@@ -5,7 +5,7 @@ class SearchBar extends Component {
 	render() {
 		return (
 			<div>
-				<TextField hintText="Search"/>
+				<TextField hintText="Search" className="w-100 primary-border-color"/>
 			</div>
 		);
 	}
