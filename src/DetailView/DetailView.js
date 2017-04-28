@@ -6,17 +6,18 @@ import EventTabs from './EventTabs';
 import EventTable from './EventTable';
 import { css } from 'aphrodite';
 import AppStyles from './../AppStyles';
+import DefinitionStyles from './../DefinitionStyles';
 
 class DetailView extends Component {
 	render() {
 		return (
 			<div>
-				<div className={css(AppStyles.dFlex)}>
+				<div className={css(AppStyles.dFlex, DefinitionStyles.elementMarginTop)}>
 					<EntityInformation styles={[AppStyles.w50]}/>
 					<EventDiagram styles={[AppStyles.w50]}/>
 				</div>
-				<SearchBar/>
-				<EventTabs/>
+				<SearchBar styles={[DefinitionStyles.elementMarginTop]}/>
+				<EventTabs styles={[DefinitionStyles.elementMarginTop]}/>
 				<EventTable/>
 			</div>
 		);

@@ -16,11 +16,10 @@ class SearchBar extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className={css(this.props.styles)}>
 				<TextField
 					hintText="Search"
 					className={css(AppStyles.w100)}
-					underlineFocusStyle={this.styles.primaryBorderColor}
 				/>
 			</div>
 		);
