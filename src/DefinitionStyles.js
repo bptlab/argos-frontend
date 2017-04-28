@@ -2,6 +2,7 @@ import { StyleSheet } from 'aphrodite';
 import config from './config/config';
 
 const DefinitionStyles = StyleSheet.create({
+	// Colors //
 	primaryBackgroundColor: {
 		backgroundColor: config.colors.primaryColor,
 	},
@@ -14,6 +15,11 @@ const DefinitionStyles = StyleSheet.create({
 	errorColor: {
 		color: config.colors.errorColor,
 	},
+
+	// Spacing //
+	elementMarginTop: {
+		marginTop: '30px'
+	}
 });
 
 export default DefinitionStyles;
