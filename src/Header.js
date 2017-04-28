@@ -14,7 +14,6 @@ class Header extends Component {
 				title={<span>{config.projectName}</span>}
 				iconElementLeft={<IconButton><IconHome/></IconButton>}
 				iconElementRight={<IconButton><IconSettings/></IconButton>}
-			    className={css(DefinitionStyles.primaryBackgroundColor)}
 			/>
 		);
 	}
