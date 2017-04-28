@@ -44,7 +44,7 @@ class EventDiagram extends Component {
 	render() {
 		return (
 			<div className={css(this.props.styles)}>
-				<canvas id="event-diagram" width="400" height="200"/>
+				<canvas id="event-diagram" width="400" height="315"/>
 			</div>
 		);
 	}

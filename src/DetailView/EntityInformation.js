@@ -18,6 +18,14 @@ class EntityInformation extends Component {
 					primaryText="Attribute value"
 					secondaryText="Entity attribute title"
 				/>
+				<ListItem
+					primaryText="Attribute value"
+					secondaryText="Entity attribute title"
+				/>
+				<ListItem
+					primaryText="Attribute value"
+					secondaryText="Entity attribute title"
+				/>
 			</List>
 		);
 	}
