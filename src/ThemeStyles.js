@@ -1,26 +1,24 @@
 import {
-	cyan500,
-	pinkA200,
-	grey100, grey300, grey500,
-	white, darkBlack, fullBlack,
+	blueGrey600, blueGrey400,
+	amberA700,
+	grey300, grey800
 } from 'material-ui/styles/colors';
-import config from './config/config';
 
 const ThemeStyles = {
 	fontFamily: 'Roboto, sans-serif',
 	palette: {
-		primary1Color: 'green',
-		primary2Color: 'red',
-		primary3Color: 'yellow',
-		accent1Color: 'pink',
-		accent2Color: 'orange',
-		accent3Color: 'blue',
-		textColor: darkBlack,
-		alternateTextColor: white,
-		canvasColor: white,
+		primary1Color: blueGrey600,
+		primary2Color: '#E91E63',
+		primary3Color: '#9C27B0',
+		accent1Color: amberA700,
+		accent2Color: '#673AB7',
+		accent3Color: blueGrey400,
+		textColor: grey800,
+		alternateTextColor: '#FFFFFF', //done
+		canvasColor: '#FFFFFF', //done
 		borderColor: grey300,
-		pickerHeaderColor: cyan500,
-		shadowColor: fullBlack,
+		pickerHeaderColor: '#FFC107',
+		shadowColor: '#FF5722',
 		},
 };
 
