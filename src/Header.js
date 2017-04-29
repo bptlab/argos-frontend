@@ -4,8 +4,6 @@ import IconButton from 'material-ui/IconButton';
 import IconHome from 'material-ui/svg-icons/action/home';
 import IconSettings from 'material-ui/svg-icons/action/settings';
 import config from './config/config'
-import { css } from 'aphrodite';
-import DefinitionStyles from './DefinitionStyles';
 
 class Header extends Component {
 	render() {
