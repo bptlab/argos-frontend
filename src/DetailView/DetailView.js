@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect, PromiseState} from 'react-refetch';
+import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import EntityInformation from './EntityInformation';
 import EventDiagram from './EventDiagram';
 import SearchBar from './../Utils/SearchBar';
@@ -7,8 +9,14 @@ import EventTable from './EventTable';
 import { css } from 'aphrodite';
 import AppStyles from './../AppStyles';
 
-class DetailView extends Component {
+class DetailView extends ConnectionComponent {
 	render() {
+        const allFetches = PromiseState.all([this.props.entity]);
+        const entity = this.props.entity.value;
+        const connectionIncomplete = super.render(allFetches);
+        if(connectionIncomplete) {
+            return connectionIncomplete;
+        }
 		return (
 			<div>
 				<div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>
@@ -23,4 +31,7 @@ class DetailView extends Component {
 	}
 }
 
-export default DetailView;
+
+export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
+    entity: `/entity/${props.match.params.entityId}`
+}))(DetailView);
