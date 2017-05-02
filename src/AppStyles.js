@@ -28,6 +28,10 @@ const AppStyles = StyleSheet.create({
 	w100: {
 		width: '100%',
 	},
+
+	elementMarginTop: {
+		marginTop: '30px'
+	}
 });
 
 export default AppStyles;
