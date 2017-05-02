@@ -2,6 +2,7 @@ import Config from './../../config/config.js';
 import Hierarchy from './TransportForLondon/Hierarchy.js';
 import Entity from './TransportForLondon/Entity.js';
 import EntityType from './TransportForLondon/EntityType.js';
+import EventType from './TransportForLondon/EventType.js';
 
 class BackendMock {
 
@@ -10,7 +11,8 @@ class BackendMock {
 			.set(/^entitytype\/hierarchy$/i, BackendMock.getEntityTypeHierarchy)
 			.set(/^entitytype\/(-?\d+)\/attributes$/i, BackendMock.getEntityTypeAttributes)
 			.set(/^entity\/(-?\d+)\/children\/type\/(-?\d+)\/(((\w)+)\+)*(\w)*$/i, BackendMock.getChildEntitiesOfEntityType)
-			.set(/^entity\/(-?\d+)$/i, BackendMock.getEntity);
+			.set(/^entity\/(-?\d+)$/i, BackendMock.getEntity)
+            .set(/^entity\/(-?\d+)\/eventtypes$/i, BackendMock.getEventTypesOfEntity);
 	}
 		
 	static handleRequest(request) {
@@ -43,6 +45,10 @@ class BackendMock {
                 Entity.TypeId === parseInt(params[2], 10));
 		});
 	}
+
+	static getEventTypesOfEntity(params) {
+
+    }
 	
 	static buildResponse(value) {
 		return new Response(JSON.stringify(value));

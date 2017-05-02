@@ -33,5 +33,6 @@ class DetailView extends ConnectionComponent {
 
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
-    entity: `/entity/${props.match.params.entityId}`
+    entity: `/entity/${props.match.params.entityId}`,
+	eventTypes: `/entity/${props.match.params.entityId}/eventtypes`,
 }))(DetailView);
