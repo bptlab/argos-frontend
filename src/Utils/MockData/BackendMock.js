@@ -37,7 +37,9 @@ class BackendMock {
 	}
 	
 	static getChildEntitiesOfEntityType(params) {
-		return Entity;
+		return Entity.filter((Entity) => {
+			return (Entity.ParentId == params[1] && Entity.TypeId == params[2]);
+		});
 	}
 	
 	static buildResponse(value) {
