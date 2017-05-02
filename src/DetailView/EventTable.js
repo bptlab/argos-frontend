@@ -5,14 +5,16 @@ class EventTable extends Component {
 	render() {
 		return (
 			<Table>
-				<TableHeader>
+				<TableHeader
+					displaySelectAll={false}
+					adjustForCheckbox={false}>
 					<TableRow>
 						<TableHeaderColumn>ID</TableHeaderColumn>
 						<TableHeaderColumn>Name</TableHeaderColumn>
 						<TableHeaderColumn>Status</TableHeaderColumn>
 					</TableRow>
 				</TableHeader>
-				<TableBody>
+				<TableBody displayRowCheckbox={false}>
 					<TableRow>
 						<TableRowColumn>1</TableRowColumn>
 						<TableRowColumn>John Smith</TableRowColumn>
