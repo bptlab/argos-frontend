@@ -5,6 +5,7 @@ import SearchBar from './../Utils/SearchBar';
 import CardGrid from './CardGrid';
 import {connect, PromiseState} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
+import AppStyles from './../AppStyles';
 
 class GridView extends ConnectionComponent {
 	
@@ -37,8 +38,9 @@ class GridView extends ConnectionComponent {
 				{childEntityTypes.map((childEntityType) => {
 					return(
 						<div key={`div-${childEntityType.Id}`}>
-							<DonutChart/>
+							<DonutChart styles={[AppStyles.elementMarginTop]} />
 							<CardGrid
+								styles={[AppStyles.elementMarginTop]}
 								key={childEntityType.Id}
 								currentEntity={entity}
 								entityType={childEntityType} />

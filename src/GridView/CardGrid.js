@@ -4,7 +4,8 @@ import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import { Card, CardTitle, CardText, CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import LoadingAnimation from './../Utils/LoadingAnimation';
-import './CardGrid.css';
+import { Row, Col } from 'react-grid-system';
+import { css } from 'aphrodite';
 
 class CardGrid extends ConnectionComponent {
 	
@@ -17,35 +18,39 @@ class CardGrid extends ConnectionComponent {
 			return connectionIncomplete;
 		}
 		return (
-			<div className="card-grid d-flex">
+			<Row className={css(this.props.styles)}>
 				{this.props.entities.value.map((childEntity, index) => {
 					return (
-						<Card
-							className="card"
-							key={index}>
-							<CardTitle
-								title={childEntity.Name}
-								subtitle={this.props.entityType.name}/>
-							<CardText>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-								Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-								Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-								Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-							</CardText>
-							<CardActions className="d-flex">
-								<FlatButton
-									label="Children"
-									className="card-button"
-									href={`/grid/${childEntity.Id}`}/>
-								<FlatButton
-									label="Inspect"
-									className="card-button"
-									href={`/details/${this.props.currentEntity.Id}/${childEntity.Id}`}/>
-							</CardActions>
-						</Card>
+						<Col key={index} xs={12} sm={4} md={3}>
+							<Card>
+								<CardTitle
+									title={childEntity.Name}
+									subtitle={this.props.entityType.name}/>
+								<CardText>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+									Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+									Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+									Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+								</CardText>
+								<CardActions>
+									<Row>
+										<Col xs={6}>
+											<FlatButton
+												label="Children"
+												href={`/grid/${childEntity.Id}`}/>
+										</Col>
+										<Col xs={6}>
+											<FlatButton
+												label="Inspect"
+												href={`/details/${this.props.currentEntity.Id}/${childEntity.Id}`}/>
+										</Col>
+									</Row>
+								</CardActions>
+							</Card>
+						</Col>
 					);
 				})}
-			</div>
+			</Row>
 		);
 	}
 }
