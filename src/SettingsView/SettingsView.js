@@ -5,7 +5,7 @@ import EventType from './EventType';
 import SearchBar from './../Utils/SearchBar';
 
 
-class EventTypesView extends ConnectionComponent {
+class SettingsView extends ConnectionComponent {
 
 	render() {
 		const connectionIncomplete = super.render(this.props.eventTypes);
@@ -16,9 +16,10 @@ class EventTypesView extends ConnectionComponent {
 			<div>
 				<SearchBar/>
 				{this.props.eventTypes.value.map((eventType) => {
-					return(<EventType eventType={eventType} />);
+					return(<EventType 
+						eventType={eventType} 
+						key={eventType.Id} />);
 				})}
-				<EventType/>
 			</div>
 		);
 	}
@@ -26,4 +27,4 @@ class EventTypesView extends ConnectionComponent {
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
 	eventTypes: `/eventtypes`,
-}))(EventTypesView);
+}))(SettingsView);

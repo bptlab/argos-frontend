@@ -5,7 +5,7 @@ import IconHome from 'material-ui/svg-icons/action/home';
 import IconSettings from 'material-ui/svg-icons/action/settings';
 import IconArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import config from './config/config'
+import config from './config/config';
 
 class Header extends Component {
 

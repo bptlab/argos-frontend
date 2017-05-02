@@ -2,7 +2,7 @@ import Config from './../../config/config.js';
 import Hierarchy from './TransportForLondon/Hierarchy.js';
 import Entity from './TransportForLondon/Entity.js';
 import EntityType from './TransportForLondon/EntityType.js';
-import EventType from './TransportForLondon/EventType.js';
+import Query from './TransportForLondon/Query.js';
 import Event from './TransportForLondon/Event.js';
 import EventTypeAttribute from './TransportForLondon/EventTypeAttribute.js';
 
@@ -14,6 +14,7 @@ class BackendMock {
 			.set(/^entitytype\/(-?\d+)\/attributes$/i, BackendMock.getEntityTypeAttributes)
 			.set(/^entity\/(-?\d+)\/children\/type\/(-?\d+)\/(((\w)+)\+)*(\w)*$/i, BackendMock.getChildEntitiesOfEntityType)
 			.set(/^eventtypes$/i, BackendMock.getEventTypes)
+			.set(/^eventtype\/(-?\d+)\/queries/i, BackendMock.getQueriesForEventType)
 			.set(/^entity\/(-?\d+)$/i, BackendMock.getEntity);
 			.set(/^entity\/(-?\d+)$/i, BackendMock.getEntity)
             .set(/^entity\/(-?\d+)\/eventtypes$/i, BackendMock.getEventTypesOfEntity)
@@ -36,6 +37,10 @@ class BackendMock {
 		return Hierarchy;
 	}
 	
+	static getQueriesForEventType() {
+		return Query;
+	}
+	
 	static getEntity(params) {
 		return Entity.find((entity) => {
 			return entity.Id === parseInt(params[1], 10);
@@ -47,7 +52,11 @@ class BackendMock {
 	}
 	
 	static getEventTypes() {
-		return [];
+		let eventTypes = [];
+		EventType.forEach((association) => {
+			eventTypes = eventTypes.concat(association.eventTypes);
+		});
+		return eventTypes;
 	}
 	
 	static getChildEntitiesOfEntityType(params) {
