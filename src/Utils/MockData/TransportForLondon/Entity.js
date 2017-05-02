@@ -19,6 +19,10 @@ const Entity = [
 			{
 				Name:	"isScheduledService",
 				Value:	"true"
+			},
+			{
+				Name:	"isFarePaying",
+				Value:	"true"
 			}
 		]
 	}, 	
@@ -32,6 +36,10 @@ const Entity = [
 			{
 				Name:	"isScheduledService",
 				Value:	"true"
+			},
+			{
+				Name:	"isFarePaying",
+				Value:	"true"
 			}
 		]
 	},
@@ -44,7 +52,18 @@ const Entity = [
 		ParentId:	10,
 		Name:		"9",
 		Status:		"RUNNING",
-		Attributes: []
+		Attributes: [
+			{
+				Name: 	"serviceTypes",
+				Value:	 [
+					{
+						$type: "Tfl.Api.Presentation.Entities.LineServiceTypeInfo, Tfl.Api.Presentation.Entities",
+						name: "Regular",
+						uri: "/Line/Route?ids=9&serviceTypes=Regular"
+					}
+				]
+			}
+		]
 	},
 	{
 		Id: 		102,
@@ -52,7 +71,18 @@ const Entity = [
 		ParentId:	10,
 		Name:		"39",
 		Status:		"RUNNING",
-		Attributes: []
+		Attributes: [
+			{
+				Name: 	"serviceTypes",
+				Value:	 [
+					{
+						$type: "Tfl.Api.Presentation.Entities.LineServiceTypeInfo, Tfl.Api.Presentation.Entities",
+						name: "Regular",
+						uri: "/Line/Route?ids=39&serviceTypes=Regular"
+					}
+				]
+			}
+		]
 	},
 		/* TUBE */
 	{
@@ -61,7 +91,23 @@ const Entity = [
 		ParentId:	20,
 		Name:		"Victoria",
 		Status:		"RUNNING",
-		Attributes: []
+		Attributes: [
+			{
+				Name: 	"serviceTypes",
+				Value:	[
+					{
+						$type: "Tfl.Api.Presentation.Entities.LineServiceTypeInfo, Tfl.Api.Presentation.Entities",
+						name: "Regular",
+						uri: "/Line/Route?ids=Victoria&serviceTypes=Regular"
+					},
+					{
+						$type: "Tfl.Api.Presentation.Entities.LineServiceTypeInfo, Tfl.Api.Presentation.Entities",
+						name: "Night",
+						uri: "/Line/Route?ids=Victoria&serviceTypes=Night"
+					}
+				],
+			}
+		]
 	},
 	{
 		Id: 		202,
@@ -69,7 +115,18 @@ const Entity = [
 		ParentId:	20,
 		Name:		"Waterloo & City",
 		Status:		"RUNNING",
-		Attributes: []
+		Attributes: [
+			{
+				Name: 	"serviceTypes",
+				Value:	[
+					{
+						"$type": "Tfl.Api.Presentation.Entities.LineServiceTypeInfo, Tfl.Api.Presentation.Entities",
+						"name": "Regular",
+						"uri": "/Line/Route?ids=Waterloo & City&serviceTypes=Regular"
+					}
+				],
+			}
+		]
 	},
 
 	/* ### StopPoints ### */

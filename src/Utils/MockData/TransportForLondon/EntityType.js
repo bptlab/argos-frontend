@@ -2,15 +2,15 @@ const EntityType = [
     {
         /* ### TransportationMode ### */
         0: {
-            attributes: ["isScheduledService"],
+            attributes: ["isScheduledService", "isFarePaying"],
             entitymappings: [],
         },
-        /* ### Lines ### */
+        /* ### Line ### */
         1: {
-            attributes: [],
+            attributes: ["serviceTypes"],
             entitymappings: [],
         },
-        /* ### StopPoints ### */
+        /* ### StopPoint ### */
         2: {
             attributes: [],
             entitymappings: [],
