@@ -21,7 +21,7 @@ class DetailView extends ConnectionComponent {
         return (
 			<div>
 				<div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>
-					<EntityInformation styles={[AppStyles.w50]}/>
+					<EntityInformation attributes={[{"primaryText": "Test", "secondaryText": "Test2"},{"primaryText": "Test3", "secondaryText": "Test4"}]} styles={[AppStyles.w50]}/>
 					<EventDiagram styles={[AppStyles.w50]}/>
 				</div>
 				<SearchBar styles={[AppStyles.elementMarginTop]}/>
