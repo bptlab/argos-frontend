@@ -12,7 +12,7 @@ const EntityType =
         },
         /* ### StopPoint ### */
         2: {
-            attributes: ["indicator", "stopLetter", "commonName", "lat", "long"],
+            attributes: ["lat", "long"],
             entitymappings: [],
         },
     };
