@@ -1,14 +1,12 @@
-import React, {Component} from 'react';
-import {connect, PromiseState} from 'react-refetch';
-import LoadingAnimation from './../Utils/LoadingAnimation';
-import ErrorMessage from './../Utils/ErrorMessage';
+import React from 'react';
 import DonutChart from './DonutChart';
 import HierarchyStepper from './HierarchyStepper';
 import SearchBar from './../Utils/SearchBar';
 import CardGrid from './CardGrid';
+import {connect, PromiseState} from 'react-refetch';
+import ConnectionComponent from './../Utils/ConnectionComponent.js';
 
-
-class GridView extends Component {
+class GridView extends ConnectionComponent {
 	
 	getChildEntityTypes(parentEntityTypeId, hierarchy) {
 		let childEntities  = [];
@@ -17,38 +15,42 @@ class GridView extends Component {
 				return entityType.ParentId === parentEntityTypeId;
 			}));
 		});
+		return childEntities;
 	}
 	
 	render() {
-		const { hierarchy, entity } = this.props;
-		const allFetches = PromiseState.all([hierarchy, entity]);
-		if (allFetches.pending) {
-			return <LoadingAnimation/>;
-		} else if (allFetches.rejected) {
-			return <ErrorMessage message={allFetches.reason}/>;
-		} else if (allFetches.fulfilled) {
-			const childEntityTypes = this.getChildEntityTypes(entity.TypeId, hierarchy);
-			return (
-				<div>
-					<h1>{entity.Name}</h1>
-					<HierarchyStepper
-						hierarchy={hierarchy}
-						currentEntityType={entity.TypeId}/>
-					<DonutChart/>
-					<SearchBar/>
-					{childEntityTypes.map((childEntityType) => {
-						return(<CardGrid
-							key={childEntityType.Id}
-							currentEntity={entity}
-							entityType={childEntityType} />);
-					})}
-				</div>
-			);
+		const allFetches = PromiseState.all([this.props.hierarchy, this.props.entity]);
+		const hierarchy = this.props.hierarchy.value;
+		const entity = this.props.entity.value;
+		const connectionIncomplete = super.render(allFetches);
+		if(connectionIncomplete) {
+			return connectionIncomplete;
 		}
+		const childEntityTypes = this.getChildEntityTypes(entity.TypeId, hierarchy);
+		return (
+			<div>
+				<h1>{entity.Name}</h1>
+				<HierarchyStepper
+					hierarchy={hierarchy}
+					currentEntityType={entity.TypeId}/>
+				<SearchBar/>
+				{childEntityTypes.map((childEntityType) => {
+					return(
+						<div key={`div-${childEntityType.Id}`}>
+							<DonutChart/>
+							<CardGrid
+								key={childEntityType.Id}
+								currentEntity={entity}
+								entityType={childEntityType} />
+						</div>
+					);
+				})}
+			</div>
+		);
 	}
 }
 
-export default connect(props => ({
+export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
 	hierarchy: `/entityType/hierarchy`,
 	entity: `/entity/${props.match.params.entityId}`
 }))(GridView);

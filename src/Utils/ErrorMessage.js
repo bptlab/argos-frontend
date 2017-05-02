@@ -11,7 +11,7 @@ class ErrorMessage extends Component {
 		return (
 			<div className={css(AppStyles.dFlex, AppStyles.alignItemsCenter, AppStyles.flexDirectionColumn)}>
 				<IconWarning className={css(DefinitionStyles.errorColor, ErrorMessageStyles.iconSize)}/>
-				<p dangerouslySetInnerHTML={{__html: this.props.message}} />
+				<p>{this.props.message}</p>
 			</div>
 		);
 	}
