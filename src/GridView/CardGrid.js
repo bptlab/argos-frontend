@@ -47,7 +47,7 @@ class CardGrid extends ConnectionComponent {
 								<FlatButton
 									label="Inspect"
 									className="card-button"
-									href={`/details/${childEntity.Id}`}/>
+									href={`/details/${this.props.currentEntity.Id}/${childEntity.Id}`}/>
 							</CardActions>
 						</Card>
 					);

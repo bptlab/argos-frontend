@@ -4,11 +4,8 @@ import IconButton from 'material-ui/IconButton';
 import IconHome from 'material-ui/svg-icons/action/home';
 import IconSettings from 'material-ui/svg-icons/action/settings';
 import IconArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
-import config from './config/config';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import config from './config/config'
-import { css } from 'aphrodite';
-import DefinitionStyles from './DefinitionStyles';
 
 class Header extends Component {
 
@@ -26,7 +23,7 @@ class Header extends Component {
 		let iconElementLeft;
 
 		if (pageLocation === "grid") {
-            iconElementLeft = <IconButton href="/grid/1/1"><IconHome/></IconButton>;
+            iconElementLeft = <IconButton href="/grid/-1"><IconHome/></IconButton>;
         }
         if (pageLocation === "details") {
             iconElementLeft = <IconButton onTouchTap={Header.goBackToGrid}><IconArrowBack/></IconButton>;
@@ -40,7 +37,6 @@ class Header extends Component {
 				title={<span>{config.projectName}</span>}
 				iconElementLeft={iconElementLeft}
 				iconElementRight={<IconButton href="/eventtypes"><IconSettings/></IconButton>}
-				className={css(DefinitionStyles.primaryBackgroundColor)}
 			/>
 		);
 	}
