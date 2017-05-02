@@ -39,7 +39,7 @@ const EventType = [
                             2021, 2022],
         eventTypes: [
             {
-                Id: 99101992,
+                Id: 991011991,
                 Name: "StopPointInformation",
                 NumberOfEvents: 0,
                 TimestampAttributeId: 0
@@ -53,7 +53,7 @@ const EventType = [
             2021, 2022],
         eventTypes: [
             {
-                Id: 99101993,
+                Id: 991011992,
                 Name: "StopPointInterruption",
                 NumberOfEvents: 0,
                 TimestampAttributeId: 0
