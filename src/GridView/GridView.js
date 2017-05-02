@@ -19,10 +19,9 @@ class GridView extends ConnectionComponent {
 	}
 	
 	render() {
-		let { hierarchy, entity } = this.props;
-		const allFetches = PromiseState.all([hierarchy, entity]);
-		hierarchy = hierarchy.value;
-		entity = entity.value;
+		const allFetches = PromiseState.all([this.props.hierarchy, this.props.entity]);
+		const hierarchy = this.props.hierarchy.value;
+		const entity = this.props.entity.value;
 		const connectionIncomplete = super.render(allFetches);
 		if(connectionIncomplete) {
 			return connectionIncomplete;
