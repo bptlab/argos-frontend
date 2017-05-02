@@ -9,12 +9,9 @@ const config = {
 		text: "#424242",
 		textAlternate: "#ffffff",
 		border: "#e0e0e0",
+		diagramLine: '#9E9E9E',
+		diagramBackground: "rgba(224, 224, 224, 0.6)",
 		error: "#B71C1C",
-		transparent: {
-			primary: "rgba(0, 78, 100, 0.7)",
-			secondary: "rgba(0, 123, 157, 0.5)",
-			tertiary: "rgba(0, 28, 36, 0.5)",
-		}
 	}
 };
 
