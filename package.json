@@ -7,6 +7,7 @@
     "material-ui": "^0.17.3",
     "react": "^15.5.3",
     "react-dom": "^15.5.3",
+    "react-grid-system": "^2.9.0",
     "react-refetch": "^1.0.0",
     "react-router-dom": "^4.1.1",
     "react-tap-event-plugin": "^2.0.1",

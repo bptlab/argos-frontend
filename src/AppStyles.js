@@ -1,11 +1,6 @@
 import { StyleSheet } from 'aphrodite';
 
 const AppStyles = StyleSheet.create({
-	container: {
-		maxWidth: '900px',
-		margin: '0 auto',
-	},
-
 	dFlex: {
 		display: 'flex',
 	},
