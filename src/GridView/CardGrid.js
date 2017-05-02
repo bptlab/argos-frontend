@@ -8,9 +8,8 @@ import './CardGrid.css';
 
 class CardGrid extends ConnectionComponent {
 	
-	constructor(props) {
-		super(props);
-		const attributeNames = props.currentEntity.Attributes.map((attribute) => {
+	componentWillMount() {
+		const attributeNames = this.props.currentEntity.Attributes.map((attribute) => {
 			return attribute.Name;
 		});
 		this.props.lazyChildEntities(attributeNames.join("+"));
