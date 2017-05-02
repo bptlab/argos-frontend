@@ -1,4 +1,13 @@
 const Entity = [
+	/* ### Virtual Root ### */
+	{
+		Id: -1,
+		TypeId: -1,
+		ParentId: -1,
+		Name: "",
+		Status: "",
+		Attributes: []
+	},
 	/* ### TransportationMode ### */
 	{
 		Id: 		10,

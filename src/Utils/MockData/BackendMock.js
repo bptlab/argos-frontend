@@ -7,10 +7,10 @@ class BackendMock {
 
 	static getRouteMapper() {
 		return new Map()
-			.set(/entitytype\/hierarchy/i, BackendMock.getEntityTypeHierarchy)
-			.set(/entitytype\/(\d+)\/attributes/i, BackendMock.getEntityTypeAttributes)
-			.set(/entity\/(\d+)\/children\/type\/(\d+)\/(((\w)+)\+)*(\w)+/i, BackendMock.getChildEntitiesOfEntityType)
-			.set(/entity\/(\d+)/i, BackendMock.getEntity);
+			.set(/^entitytype\/hierarchy$/i, BackendMock.getEntityTypeHierarchy)
+			.set(/^entitytype\/(-?\d+)\/attributes$/i, BackendMock.getEntityTypeAttributes)
+			.set(/^entity\/(-?\d+)\/children\/type\/(-?\d+)\/(((\w)+)\+)*(\w)*$/i, BackendMock.getChildEntitiesOfEntityType)
+			.set(/^entity\/(-?\d+)$/i, BackendMock.getEntity);
 	}
 		
 	static handleRequest(request) {
@@ -29,7 +29,7 @@ class BackendMock {
 	
 	static getEntity(params) {
 		return Entity.find((entity) => {
-			return entity.Id = params[1];
+			return entity.Id === parseInt(params[1]);
 		});
 	}
 	
@@ -39,7 +39,7 @@ class BackendMock {
 	
 	static getChildEntitiesOfEntityType(params) {
 		return Entity.filter((Entity) => {
-			return (Entity.ParentId == params[1] && Entity.TypeId == params[2]);
+			return (Entity.ParentId === parseInt(params[1]) && Entity.TypeId === parseInt(params[2]));
 		});
 	}
 	
