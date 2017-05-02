@@ -37,8 +37,8 @@ class CardGrid extends ConnectionComponent {
 								Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
 							</CardText>
 							<CardActions className="d-flex">
-								<FlatButton label="Children" className="card-button"/>
-								<FlatButton label="Inspect" className="card-button"/>
+								<FlatButton label="Children" className="card-button" href={`./${childEntity.Id}`}/>
+								<FlatButton label="Inspect" className="card-button" href={`/details/${childEntity.Id}`}/>
 							</CardActions>
 						</Card>
 					);
