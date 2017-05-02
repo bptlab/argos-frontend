@@ -151,7 +151,7 @@ const Entity = [
 		Id: 		2011,
 		TypeId:		2,
 		ParentId:	201,
-		Name:		"Blackhorse Road Underground Station,
+		Name:		"Blackhorse Road Underground Station",
 		Status:		"RUNNING",
 		Attributes: []
 	},
