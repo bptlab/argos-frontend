@@ -13,6 +13,7 @@ class DetailView extends ConnectionComponent {
 	render() {
         const allFetches = PromiseState.all([this.props.entity]);
         const entity = this.props.entity.value;
+        const eventTypes = this.props.eventTypes.value;
         const connectionIncomplete = super.render(allFetches);
         if(connectionIncomplete) {
             return connectionIncomplete;
