@@ -3,6 +3,7 @@ import Hierarchy from './TransportForLondon/Hierarchy.js';
 import Entity from './TransportForLondon/Entity.js';
 import EntityType from './TransportForLondon/EntityType.js';
 import EventType from './TransportForLondon/EventType.js';
+import Event from './TransportForLondon/Event.js';
 
 class BackendMock {
 
@@ -12,7 +13,8 @@ class BackendMock {
 			.set(/^entitytype\/(-?\d+)\/attributes$/i, BackendMock.getEntityTypeAttributes)
 			.set(/^entity\/(-?\d+)\/children\/type\/(-?\d+)\/(((\w)+)\+)*(\w)*$/i, BackendMock.getChildEntitiesOfEntityType)
 			.set(/^entity\/(-?\d+)$/i, BackendMock.getEntity)
-            .set(/^entity\/(-?\d+)\/eventtypes$/i, BackendMock.getEventTypesOfEntity);
+            .set(/^entity\/(-?\d+)\/eventtypes$/i, BackendMock.getEventTypesOfEntity)
+            .set(/^entity\/(-?\d+)\/eventtype\/(-?\d+)\/events/i, BackendMock.getEventsOfEventTypeAndEntity);
 	}
 		
 	static handleRequest(request) {
@@ -56,6 +58,23 @@ class BackendMock {
             associatedEventTypes = associatedEventTypes.concat(eventTypeInformation.eventTypes);
         });
         return associatedEventTypes;
+    }
+
+    static getEventsOfEventTypeAndEntity(params) {
+	    const entityId = parseInt(params[1]);
+	    const eventTypeId = parseInt(params[2]);
+        const concernedEventsByEventType = Event.filter((eventInformation) => {
+           return  eventInformation.eventTypeId === eventTypeId;
+        });
+        let associatedEvents = [];
+        concernedEventsByEventType.map((eventInformation) => {
+            eventInformation.eventInformation.map((eventsByEntity) => {
+               if (eventsByEntity.associatedEntities.includes(entityId)) {
+                   associatedEvents = associatedEvents.concat(eventsByEntity.events);
+               }
+            });
+        });
+        return associatedEvents;
     }
 	
 	static buildResponse(value) {

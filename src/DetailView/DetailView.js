@@ -18,7 +18,7 @@ class DetailView extends ConnectionComponent {
         if(connectionIncomplete) {
             return connectionIncomplete;
         }
-		return (
+        return (
 			<div>
 				<div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>
 					<EntityInformation styles={[AppStyles.w50]}/>

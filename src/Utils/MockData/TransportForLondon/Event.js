@@ -1,4 +1,4 @@
-const EventType = [
+const Event = [
     /* BusStatus */
     {
         eventTypeId: 99101991,
@@ -58,7 +58,8 @@ const EventType = [
                                 Value: "3"
                             },
                         ]
-                    },{
+                    },
+                    {
                         Attributes: [
                             {
                                 Name: "timestamp",
@@ -293,4 +294,4 @@ const EventType = [
     },
 ];
 
-export default EventType;
+export default Event;
