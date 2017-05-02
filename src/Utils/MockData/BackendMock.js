@@ -39,7 +39,8 @@ class BackendMock {
 	
 	static getChildEntitiesOfEntityType(params) {
 		return Entity.filter((Entity) => {
-			return (Entity.ParentId === parseInt(params[1], 10) && Entity.TypeId === parseInt(params[2], 10));
+			return (Entity.ParentId === parseInt(params[1], 10) &&
+                Entity.TypeId === parseInt(params[2], 10));
 		});
 	}
 	
