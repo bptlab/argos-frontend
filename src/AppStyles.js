@@ -1,4 +1,5 @@
 import { StyleSheet } from 'aphrodite';
+import config from "./config/config";
 
 const AppStyles = StyleSheet.create({
 	dFlex: {
@@ -31,6 +32,10 @@ const AppStyles = StyleSheet.create({
 
 	elementMarginTop: {
 		marginTop: '30px'
+	},
+
+	borderBottomStatusFirst: {
+		borderBottom: '10px solid ' + config.status[0].color
 	},
 
 	capitalize: {
