@@ -5,6 +5,7 @@ import { Card, CardTitle, CardText, CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import LoadingAnimation from './../Utils/LoadingAnimation';
 import { Row, Col } from 'react-grid-system';
+import { css } from 'aphrodite';
 
 class CardGrid extends ConnectionComponent {
 	
@@ -17,11 +18,11 @@ class CardGrid extends ConnectionComponent {
 			return connectionIncomplete;
 		}
 		return (
-			<Row>
+			<Row className={css(this.props.styles)}>
 				{this.props.entities.value.map((childEntity, index) => {
 					return (
-						<Col xs={12} sm={4} md={3}>
-							<Card key={index}>
+						<Col key={index} xs={12} sm={4} md={3}>
+							<Card>
 								<CardTitle
 									title={childEntity.Name}
 									subtitle={this.props.entityType.name}/>
