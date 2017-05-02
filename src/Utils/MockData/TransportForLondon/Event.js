@@ -251,11 +251,11 @@ const EventType = [
                         Attributes: [
                             {
                                 Name: "timestamp",
-                                Value: ""
+                                Value: "2017/05/01T12:12"
                             },
                             {
-                                Name: "",
-                                Value: ""
+                                Name: "crowded",
+                                Value: "true"
                             },
                         ]
                     }
@@ -265,7 +265,7 @@ const EventType = [
     },
 
     /* StopPointInterruption */
-   /* {
+    {
         eventTypeId: 991011992,
         eventInformation: [
             {
@@ -279,18 +279,18 @@ const EventType = [
                         Attributes: [
                             {
                                 Name: "timestamp",
-                                Value: ""
+                                Value: "2017/04/18T19:12"
                             },
                             {
-                                Name: "",
-                                Value: ""
+                                Name: "interrupted",
+                                Value: "false"
                             },
                         ]
                     }
                 ],
             },
         ],
-    },*/
+    },
 ];
 
 export default EventType;
