@@ -8,13 +8,6 @@ import './CardGrid.css';
 
 class CardGrid extends ConnectionComponent {
 	
-	componentWillMount() {
-		const attributeNames = this.props.currentEntity.Attributes.map((attribute) => {
-			return attribute.Name;
-		});
-		this.props.lazyChildEntities(attributeNames.join("+"));
-	}
-	
 	render() {
 		if(!this.props.entities) {
 			return <LoadingAnimation/>;
@@ -58,7 +51,8 @@ class CardGrid extends ConnectionComponent {
 }
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
-	lazyChildEntities: attributeList => ({
-		entities: `/entity/${props.currentEntity.Id}/children/type/${props.entityType.Id}/${attributeList}`	
-	})
+	entities: {
+		url: `/EntityType/${props.entityType.Id}/attributes`,
+		then: attributes => `/entity/${props.currentEntity.Id}/children/type/${props.entityType.Id}/${attributes.join("+")}`,
+	}
 }))(CardGrid);

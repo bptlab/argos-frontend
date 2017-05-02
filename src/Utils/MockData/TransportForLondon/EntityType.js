@@ -1,4 +1,4 @@
-const EntityType = [
+const EntityType = 
     {
         /* ### TransportationMode ### */
         0: {
@@ -12,10 +12,10 @@ const EntityType = [
         },
         /* ### StopPoint ### */
         2: {
-            attributes: [],
+            attributes: ["indicator", "stopLetter", "commonName", "lat", "long"],
             entitymappings: [],
         },
-    },
-];
+    };
+
 
 export default EntityType;
