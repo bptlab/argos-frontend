@@ -1,7 +1,7 @@
 import Config from './../../config/config.js';
-import Hierarchy from './Transport for London/Hierarchy.js';
-import Entity from './Transport for London/Entity.js';
-import EntityType from './Transport for London/EntityType.js';
+import Hierarchy from './TransportForLondon/Hierarchy.js';
+import Entity from './TransportForLondon/Entity.js';
+import EntityType from './TransportForLondon/EntityType.js';
 
 class BackendMock {
 
