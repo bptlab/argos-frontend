@@ -1,6 +1,7 @@
 import Config from './../../config/config.js';
 import Hierarchy from './Transport for London/Hierarchy.js';
 import Entity from './Transport for London/Entity.js';
+import EntityType from './Transport for London/EntityType.js';
 
 class BackendMock {
 
@@ -33,7 +34,7 @@ class BackendMock {
 	}
 	
 	static getEntityTypeAttributes(params) {
-		
+		return EntityType[params[1]]["attributes"];
 	}
 	
 	static getChildEntitiesOfEntityType(params) {
