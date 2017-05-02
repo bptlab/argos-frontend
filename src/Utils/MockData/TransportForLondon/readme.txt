@@ -6,7 +6,8 @@ Entity:
     Continue this schema: Children of 101 get 1011, 1012, 1013, ...
 
 EventTypes:
-    Get a prefix with 99 appended by the entityId
-    ET for root entities would be 9910, 9920, ...
+    99*id of entity*99*counter for ET of this entity*
+    id's for root entities would be 9910991, 9910992, 9920991, ...
+
 
 

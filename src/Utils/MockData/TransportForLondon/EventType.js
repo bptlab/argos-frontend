@@ -3,7 +3,7 @@ const EventType = [
         associatedEntities: [101, 102],
         eventTypes: [
             {
-                Id: 0,
+                Id: 99101991,
                 Name: "BusDelay",
                 NumberOfEvents: 0,
                 TimestampAttributeId: 0
