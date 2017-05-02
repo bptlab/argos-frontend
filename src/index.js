@@ -4,9 +4,7 @@ import App from './App';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import GridView from './GridView/GridView';
 import DetailView from './DetailView/DetailView';
-import SettingsView from './SettingsView/SettingsView';
-import './definitions.css';
-import './index.css';
+import EventTypesView from './EventTypesView/EventTypesView';
 import NotFound from "./Utils/NotFound";
 
 ReactDOM.render(

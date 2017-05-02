@@ -7,6 +7,8 @@ import IconArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import config from './config/config';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import config from './config/config'
+import { css } from 'aphrodite';
+import DefinitionStyles from './DefinitionStyles';
 
 class Header extends Component {
 
@@ -29,7 +31,7 @@ class Header extends Component {
         if (pageLocation === "details") {
             iconElementLeft = <IconButton onTouchTap={Header.goBackToGrid}><IconArrowBack/></IconButton>;
         }
-        if (pageLocation === "settings") {
+        if (pageLocation === "eventtypes") {
 			iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
         }
 
@@ -37,8 +39,8 @@ class Header extends Component {
 			<AppBar
 				title={<span>{config.projectName}</span>}
 				iconElementLeft={iconElementLeft}
-				iconElementRight={<IconButton href="/settings"><IconSettings/></IconButton>}
-				className="primary-color fixed-position"
+				iconElementRight={<IconButton href="/eventtypes"><IconSettings/></IconButton>}
+				className={css(DefinitionStyles.primaryBackgroundColor)}
 			/>
 		);
 	}
@@ -50,7 +52,7 @@ class Header extends Component {
 					<Route exact path="/" component={() => Header.composeAppBar("grid")}/>
 					<Route path="/grid/:entityId" component={() => Header.composeAppBar("grid")}/>
 					<Route path="/details/:parentId/:entityId" component={() => Header.composeAppBar("details")}/>
-					<Route path="/settings" component={() => Header.composeAppBar("settings")}/>
+					<Route path="/eventtypes" component={() => Header.composeAppBar("eventtypes")}/>
 					<Route path="*" component={() => Header.composeAppBar("grid")}/>
 				</Switch>
 			</Router>
