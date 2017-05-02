@@ -1,24 +1,20 @@
-import {
-	blueGrey600, blueGrey400,
-	amberA700,
-	grey300, grey800
-} from 'material-ui/styles/colors';
+import config from './config/config';
 
 const ThemeStyles = {
 	fontFamily: 'Roboto, sans-serif',
 	palette: {
-		primary1Color: blueGrey600,
-		primary2Color: '#E91E63',
-		primary3Color: '#9C27B0',
-		accent1Color: amberA700,
-		accent2Color: '#673AB7',
-		accent3Color: blueGrey400,
-		textColor: grey800,
-		alternateTextColor: '#FFFFFF', //done
-		canvasColor: '#FFFFFF', //done
-		borderColor: grey300,
-		pickerHeaderColor: '#FFC107',
-		shadowColor: '#FF5722',
+		primary1Color: config.colors.primaryDark,
+		primary2Color: config.colors.primary,
+		primary3Color: config.colors.primaryLight,
+		accent1Color: config.colors.accent,
+		accent2Color: config.colors.accentLight,
+		accent3Color: config.colors.primary,
+		textColor: config.colors.text,
+		alternateTextColor: config.colors.textAlternate,
+		canvasColor: '#ffffff',
+		borderColor: config.colors.border,
+		pickerHeaderColor: config.colors.accent,
+		shadowColor: config.colors.primary,
 		},
 };
 
