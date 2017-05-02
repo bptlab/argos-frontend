@@ -27,8 +27,12 @@ class CardGrid extends ConnectionComponent {
 			<div className="card-grid d-flex">
 				{this.props.entities.value.map((childEntity, index) => {
 					return (
-						<Card className="card" key={index}>
-							<CardTitle title={childEntity.Name} subtitle={this.props.entityType.name}/>
+						<Card
+							className="card"
+							key={index}>
+							<CardTitle
+								title={childEntity.Name}
+								subtitle={this.props.entityType.name}/>
 							<CardText>
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 								Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
@@ -36,8 +40,14 @@ class CardGrid extends ConnectionComponent {
 								Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
 							</CardText>
 							<CardActions className="d-flex">
-								<FlatButton label="Children" className="card-button" href={`./${childEntity.Id}`}/>
-								<FlatButton label="Inspect" className="card-button" href={`/details/${childEntity.Id}`}/>
+								<FlatButton
+									label="Children"
+									className="card-button"
+									href={`/grid/${childEntity.Id}`}/>
+								<FlatButton
+									label="Inspect"
+									className="card-button"
+									href={`/details/${childEntity.Id}`}/>
 							</CardActions>
 						</Card>
 					);
