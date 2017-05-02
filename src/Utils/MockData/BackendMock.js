@@ -29,7 +29,7 @@ class BackendMock {
 	
 	static getEntity(params) {
 		return Entity.find((entity) => {
-			return entity.Id === parseInt(params[1]);
+			return entity.Id === parseInt(params[1], 10);
 		});
 	}
 	
@@ -39,7 +39,7 @@ class BackendMock {
 	
 	static getChildEntitiesOfEntityType(params) {
 		return Entity.filter((Entity) => {
-			return (Entity.ParentId === parseInt(params[1]) && Entity.TypeId === parseInt(params[2]));
+			return (Entity.ParentId === parseInt(params[1], 10) && Entity.TypeId === parseInt(params[2], 10));
 		});
 	}
 	
