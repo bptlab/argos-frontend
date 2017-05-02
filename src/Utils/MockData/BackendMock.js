@@ -63,16 +63,14 @@ class BackendMock {
     static getEventsOfEventTypeAndEntity(params) {
 	    const entityId = parseInt(params[1]);
 	    const eventTypeId = parseInt(params[2]);
-        const concernedEventsByEventType = Event.filter((eventInformation) => {
+        const concernedEventTypeInformation = Event.find((eventInformation) => {
            return  eventInformation.eventTypeId === eventTypeId;
         });
         let associatedEvents = [];
-        concernedEventsByEventType.map((eventInformation) => {
-            eventInformation.eventInformation.map((eventsByEntity) => {
-               if (eventsByEntity.associatedEntities.includes(entityId)) {
-                   associatedEvents = associatedEvents.concat(eventsByEntity.events);
-               }
-            });
+        concernedEventTypeInformation.eventInformation.map((eventInformation) => {
+           if (eventInformation.associatedEntities.includes(entityId)) {
+               associatedEvents = associatedEvents.concat(eventInformation.events);
+           }
         });
         return associatedEvents;
     }
