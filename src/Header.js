@@ -17,7 +17,7 @@ class Header extends Component {
 
 	static goBackToGrid() {
 		const currentPath = window.location.pathname;
-        let newPath = currentPath.replace("details", "grid");
+        const newPath = currentPath.replace("details", "grid");
         window.location.href = newPath.substring(0, newPath.lastIndexOf("/") + 1);
     }
 
