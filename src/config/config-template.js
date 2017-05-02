@@ -1,7 +1,7 @@
 const config = {
 	projectName: "Argos",
 	useBackendMock: false,
-	backendRESTRoute: "http://localhost/api/",
+	backendRESTRoute: "http://localhost:3000/",
 	colors: {
 		primaryDark: "#000051",
 		primary: "#1a237e",
