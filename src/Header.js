@@ -6,8 +6,14 @@ import IconSettings from 'material-ui/svg-icons/action/settings';
 import IconArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import config from './config/config';
-import { css } from 'aphrodite';
+import { css, StyleSheet } from 'aphrodite';
 import AppStyles from './AppStyles';
+
+const status = StyleSheet.create({
+    color: {
+        borderColor: config.status.running.color
+    }
+});
 
 class Header extends Component {
 
@@ -23,14 +29,13 @@ class Header extends Component {
 
 	static composeAppBar(pageLocation) {
 		let iconElementLeft;
-		let statusBorder;
 
 		if (pageLocation === "grid") {
             iconElementLeft = <IconButton href="/grid/-1"><IconHome/></IconButton>;
         }
         if (pageLocation === "details") {
             iconElementLeft = <IconButton onTouchTap={Header.goBackToGrid}><IconArrowBack/></IconButton>;
-            statusBorder = AppStyles.borderBottomStatusFirst;
+
         }
         if (pageLocation === "settings") {
 			iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
@@ -41,7 +46,7 @@ class Header extends Component {
 				title={<span>{config.projectName}</span>}
 				iconElementLeft={iconElementLeft}
 				iconElementRight={<IconButton href="/settings"><IconSettings/></IconButton>}
-				className={css(statusBorder)}
+				className={css(AppStyles.headerBorderDetail, status.color)}
 			/>
 		);
 	}
@@ -60,4 +65,5 @@ class Header extends Component {
 		);
     }
 }
+
 export default Header;
