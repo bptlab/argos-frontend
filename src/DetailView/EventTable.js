@@ -2,40 +2,57 @@ import React, { Component } from 'react';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 class EventTable extends Component {
+	composeTableHeader(eventTypeAttributes) {
+		return (
+			<TableHeader
+				displaySelectAll={false}
+				adjustForCheckbox={false}>
+				<TableRow>
+                    {eventTypeAttributes.map(
+                        (attribute) => {
+                            return (<TableRowColumn>{attribute.name}</TableRowColumn>);
+                        })
+                    }
+				</TableRow>
+			</TableHeader>
+		);
+	}
+
+	composeTableRow(event) {
+		let row = Object.keys(event).map(
+            (key) => {return (<TableRowColumn>{event[key]}</TableRowColumn>);});
+		return (<TableRow>{row}</TableRow>);
+	}
+
+	composeTableBody(events) {
+		return (
+			<TableBody displayRowCheckbox={false}>
+				{events.map((event) => this.composeTableRow(event))}
+			</TableBody>
+		);
+	}
+
 	render() {
 		return (
 			<Table>
-				<TableHeader
-					displaySelectAll={false}
-					adjustForCheckbox={false}>
-					<TableRow>
-						<TableHeaderColumn>ID</TableHeaderColumn>
-						<TableHeaderColumn>Name</TableHeaderColumn>
-						<TableHeaderColumn>Status</TableHeaderColumn>
-					</TableRow>
-				</TableHeader>
-				<TableBody displayRowCheckbox={false}>
-					<TableRow>
-						<TableRowColumn>1</TableRowColumn>
-						<TableRowColumn>John Smith</TableRowColumn>
-						<TableRowColumn>Employed</TableRowColumn>
-					</TableRow>
-					<TableRow>
-						<TableRowColumn>2</TableRowColumn>
-						<TableRowColumn>Randal White</TableRowColumn>
-						<TableRowColumn>Unemployed</TableRowColumn>
-					</TableRow>
-					<TableRow>
-						<TableRowColumn>3</TableRowColumn>
-						<TableRowColumn>Stephanie Sanders</TableRowColumn>
-						<TableRowColumn>Employed</TableRowColumn>
-					</TableRow>
-					<TableRow>
-						<TableRowColumn>4</TableRowColumn>
-						<TableRowColumn>Steve Brown</TableRowColumn>
-						<TableRowColumn>Employed</TableRowColumn>
-					</TableRow>
-				</TableBody>
+				{this.composeTableHeader([
+                    {
+                        name: "id",
+                        type: "int"
+                    }, {
+						name: "name",
+						type: "string"
+					}, {
+                        name: "employed",
+                        type: "string"
+                    }
+				])}
+				{this.composeTableBody(
+					[
+						{id: "1", name: "John Smith", employed: "Employed"},
+                        {id: "2", name: "Stephanie Sanders", employed: "Unemployed"}
+					]
+				)}
 			</Table>
 		);
 	}

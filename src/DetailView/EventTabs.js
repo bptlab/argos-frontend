@@ -8,9 +8,8 @@ class EventTabs extends Component {
 	render() {
 		return (
 			<Tabs className={css(this.props.styles)}>
-				<Tab label="Item One"/>
-				<Tab label="Item Two"/>
-				<Tab label="Item Tree"/>
+				<Tab label="FeedbackData"/>
+				<Tab label="StatusUpdate"/>
 			</Tabs>
 		);
 	}
