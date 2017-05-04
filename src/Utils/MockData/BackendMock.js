@@ -15,6 +15,8 @@ class BackendMock {
 			.set(/^entity\/(-?\d+)\/children\/type\/(-?\d+)\/(((\w)+)\+)*(\w)*$/i, BackendMock.getChildEntitiesOfEntityType)
 			.set(/^eventtypes$/i, BackendMock.getEventTypes)
 			.set(/^eventtype\/(-?\d+)\/queries/i, BackendMock.getQueriesOfEventType)
+			.set(/^entity\/(-?\d+)$/i, BackendMock.getEntity)
+			.set(/^eventtype\/(-?\d+)\/delete$/i, BackendMock.deleteEventType);
             .set(/^entity\/(-?\d+)\/eventtypes$/i, BackendMock.getEventTypesOfEntity)
             .set(/^eventtype\/(-?\d+)\/attributes$/i, BackendMock.getAttributesOfEventType)
             .set(/^entity\/(-?\d+)\/eventtype\/(-?\d+)\/events/i, BackendMock.getEventsOfEventTypeAndEntity);
@@ -36,6 +38,10 @@ class BackendMock {
 	}
 	
 	static deleteEventQuery() {
+		return "Success";
+	}
+
+	static deleteEventType() {
 		return "Success";
 	}
 	
