@@ -14,7 +14,7 @@ class BackendMock {
 			.set(/^entitytype\/(-?\d+)\/attributes$/i, BackendMock.getEntityTypeAttributes)
 			.set(/^entity\/(-?\d+)\/children\/type\/(-?\d+)\/(((\w)+)\+)*(\w)*$/i, BackendMock.getChildEntitiesOfEntityType)
 			.set(/^eventtypes$/i, BackendMock.getEventTypes)
-			.set(/^eventtype\/(-?\d+)\/queries/i, BackendMock.getQueriesForEventType)
+			.set(/^eventtype\/(-?\d+)\/queries/i, BackendMock.getQueriesOfEventType)
 			.set(/^entity\/(-?\d+)$/i, BackendMock.getEntity);
 			.set(/^entity\/(-?\d+)$/i, BackendMock.getEntity)
             .set(/^entity\/(-?\d+)\/eventtypes$/i, BackendMock.getEventTypesOfEntity)
@@ -37,7 +37,7 @@ class BackendMock {
 		return Hierarchy;
 	}
 	
-	static getQueriesForEventType() {
+	static getQueriesOfEventType() {
 		return Query;
 	}
 	
