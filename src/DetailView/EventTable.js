@@ -68,14 +68,12 @@ class EventTable extends ConnectionComponent {
 		if(eventFetchingIncomplete) {
 			return eventFetchingIncomplete;
 		}
-		else {
-			return (
-				<Table>
-					{this.composeTableHeader(this.props.eventTypeAttributes.value)}
-					{this.composeTableBody(this.props.events.value)}
-				</Table>
-			);
-		}
+		return (
+			<Table>
+				{this.composeTableHeader(this.props.eventTypeAttributes.value)}
+				{this.composeTableBody(this.props.events.value)}
+			</Table>
+		);
 	}
 
 	render() {

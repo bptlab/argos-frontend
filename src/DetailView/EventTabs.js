@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { css } from 'aphrodite';
+import config from './../config/config';
 injectTapEventPlugin();
 
 class EventTabs extends Component {
@@ -28,7 +29,7 @@ class EventTabs extends Component {
 		}
 		else {
 			return (
-				<Tab label="No event types" />
+				<Tab label={config.messages.noEventTypes} />
 			);
 		}
 	}
