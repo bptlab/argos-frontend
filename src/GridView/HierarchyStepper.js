@@ -52,7 +52,12 @@ class HierarchyStepper extends Component {
 
 	displayStepLabel(entityType, index) {
 		if(this.state.highlitedEntityTypes.includes(entityType)) {
-			return (<StepLabel key={index} completed={true}>{entityType.Name}</StepLabel>);
+			return (
+				<StepLabel
+					key={index}
+					completed={true}>
+					{entityType.Name}
+				</StepLabel>);
 		}
 		else {
 			return (<StepLabel key={index}>{entityType.Name}</StepLabel>);
@@ -61,7 +66,9 @@ class HierarchyStepper extends Component {
 
 	render() {
 		return (
-			<Stepper activeStep={this.state.activeStep} className={css(this.props.styles, AppStyles.elementMarginTop)}>
+			<Stepper
+				activeStep={this.state.activeStep}
+				className={css(this.props.styles, AppStyles.elementMarginTop)}>
 				{this.props.hierarchy.map((hierarchyLayer, index) => {
 					return (
 						<Step key={index}>
