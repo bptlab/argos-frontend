@@ -4,6 +4,7 @@ import Entity from './TransportForLondon/Entity.js';
 import EntityType from './TransportForLondon/EntityType.js';
 import EventType from './TransportForLondon/EventType.js';
 import Event from './TransportForLondon/Event.js';
+import EventTypeAttribute from './TransportForLondon/EventTypeAttribute.js';
 
 class BackendMock {
 
@@ -14,6 +15,7 @@ class BackendMock {
 			.set(/^entity\/(-?\d+)\/children\/type\/(-?\d+)\/(((\w)+)\+)*(\w)*$/i, BackendMock.getChildEntitiesOfEntityType)
 			.set(/^entity\/(-?\d+)$/i, BackendMock.getEntity)
             .set(/^entity\/(-?\d+)\/eventtypes$/i, BackendMock.getEventTypesOfEntity)
+            .set(/^eventtype\/(-?\d+)\/attributes$/i, BackendMock.getAttributesOfEventType)
             .set(/^entity\/(-?\d+)\/eventtype\/(-?\d+)\/events/i, BackendMock.getEventsOfEventTypeAndEntity);
 	}
 		
@@ -58,6 +60,14 @@ class BackendMock {
             associatedEventTypes = associatedEventTypes.concat(eventTypeInformation.eventTypes);
         });
         return associatedEventTypes;
+    }
+
+    static getAttributesOfEventType(params) {
+        const eventTypeId = parseInt(params[1]);
+		const eventTypeAttributeInformation = EventTypeAttribute.find((eventTypeAttribute) => {
+            return eventTypeAttribute.Id === eventTypeId;
+        });
+        return eventTypeAttributeInformation.TypeAttributes;
     }
 
     static getEventsOfEventTypeAndEntity(params) {
