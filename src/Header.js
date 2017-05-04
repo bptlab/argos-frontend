@@ -44,7 +44,6 @@ class Header extends Component {
             className = css(AppStyles.headerBorderDetail, statusColor.color);
         }
 
-
         return (
 			<AppBar
 				title={<span>{this.props.title}</span>}
