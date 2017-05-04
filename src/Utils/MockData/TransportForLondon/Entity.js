@@ -55,13 +55,13 @@ const Entity = [
 		Attributes: [
 			{
 				Name: 	"serviceTypes",
-				Value:	 [
+				Value:	JSON.stringify([
 					{
 						$type: "Tfl.Api.Presentation.Entities.LineServiceTypeInfo, Tfl.Api.Presentation.Entities",
 						name: "Regular",
 						uri: "/Line/Route?ids=9&serviceTypes=Regular"
 					}
-				]
+				])
 			}
 		]
 	},
@@ -74,13 +74,13 @@ const Entity = [
 		Attributes: [
 			{
 				Name: 	"serviceTypes",
-				Value:	 [
+				Value:	 JSON.stringify([
 					{
 						$type: "Tfl.Api.Presentation.Entities.LineServiceTypeInfo, Tfl.Api.Presentation.Entities",
 						name: "Regular",
 						uri: "/Line/Route?ids=39&serviceTypes=Regular"
 					}
-				]
+				])
 			}
 		]
 	},
@@ -94,7 +94,7 @@ const Entity = [
 		Attributes: [
 			{
 				Name: 	"serviceTypes",
-				Value:	[
+				Value:	JSON.stringify([
 					{
 						$type: "Tfl.Api.Presentation.Entities.LineServiceTypeInfo, Tfl.Api.Presentation.Entities",
 						name: "Regular",
@@ -105,7 +105,7 @@ const Entity = [
 						name: "Night",
 						uri: "/Line/Route?ids=Victoria&serviceTypes=Night"
 					}
-				],
+				]),
 			}
 		]
 	},
@@ -118,13 +118,13 @@ const Entity = [
 		Attributes: [
 			{
 				Name: 	"serviceTypes",
-				Value:	[
+				Value:	JSON.stringify([
 					{
 						"$type": "Tfl.Api.Presentation.Entities.LineServiceTypeInfo, Tfl.Api.Presentation.Entities",
 						"name": "Regular",
 						"uri": "/Line/Route?ids=Waterloo & City&serviceTypes=Regular"
 					}
-				],
+				]),
 			}
 		]
 	},
