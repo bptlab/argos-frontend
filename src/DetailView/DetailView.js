@@ -17,9 +17,10 @@ class DetailView extends ConnectionComponent {
 		if(connectionIncomplete) {
 			return connectionIncomplete;
 		}
+
 		return (
 			<div>
-				<Header title={entity.Name}/>
+				<Header title={entity.Name} status={entity.Status}/>
 				<Container>
 					<div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>
 						<EntityInformation entity={entity} styles={[AppStyles.w50]}/>

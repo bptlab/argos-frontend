@@ -1,13 +1,14 @@
-import React from 'react';
-import { Container } from 'react-grid-system';
-import DonutChart from './DonutChart';
-import HierarchyStepper from './HierarchyStepper';
-import SearchBar from './../Utils/SearchBar';
-import CardGrid from './CardGrid';
-import {connect, PromiseState} from 'react-refetch';
-import ConnectionComponent from './../Utils/ConnectionComponent.js';
-import AppStyles from './../AppStyles';
+import React from "react";
+import {Container} from "react-grid-system";
+import DonutChart from "./DonutChart";
+import HierarchyStepper from "./HierarchyStepper";
+import SearchBar from "./../Utils/SearchBar";
+import CardGrid from "./CardGrid";
+import {connect, PromiseState} from "react-refetch";
+import ConnectionComponent from "./../Utils/ConnectionComponent.js";
+import AppStyles from "./../AppStyles";
 import Header from "../Header";
+import {css} from "aphrodite";
 
 class GridView extends ConnectionComponent {
 	
@@ -44,7 +45,7 @@ class GridView extends ConnectionComponent {
 		const childEntityTypes = this.getChildEntityTypes(entity.TypeId, hierarchy);
 		return (
 			<div>
-				<Header title={this.getPageTitle(entity, hierarchy)} />
+				<Header title={this.getPageTitle(entity, hierarchy)} status={entity.Status} />
 				<Container>
 				<HierarchyStepper
 					hierarchy={hierarchy}

@@ -9,12 +9,6 @@ import config from './config/config';
 import { css, StyleSheet } from 'aphrodite';
 import AppStyles from './AppStyles';
 
-const status = StyleSheet.create({
-    color: {
-        borderColor: "green"
-    }
-});
-
 class Header extends Component {
 
 	static goBackInHistory() {
@@ -35,18 +29,23 @@ class Header extends Component {
         }
         if (pageLocation === "details") {
             iconElementLeft = <IconButton onTouchTap={Header.goBackToGrid}><IconArrowBack/></IconButton>;
-
         }
         if (pageLocation === "settings") {
 			iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
         }
+
+		const statusColor = StyleSheet.create({
+			color: {
+				borderColor: config.status[this.props.status]
+			}
+		});
 
         return (
 			<AppBar
 				title={<span>{this.props.title}</span>}
 				iconElementLeft={iconElementLeft}
 				iconElementRight={<IconButton href="/settings"><IconSettings/></IconButton>}
-				className={css(AppStyles.headerBorderDetail, status.color)}
+				className={css(AppStyles.headerBorderDetail, statusColor.color)}
 			/>
 		);
 	}
