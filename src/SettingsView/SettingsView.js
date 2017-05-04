@@ -18,7 +18,8 @@ class SettingsView extends ConnectionComponent {
 				{this.props.eventTypes.value.map((eventType) => {
 					return(<EventType 
 						eventType={eventType} 
-						key={eventType.Id} />);
+						key={eventType.Id}
+						deleteEventType={this.props.deleteEventType} />);
 				})}
 			</div>
 		);
@@ -27,4 +28,17 @@ class SettingsView extends ConnectionComponent {
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
 	eventTypes: `/eventtypes`,
+	deleteEventType: eventType => ({
+		postLikeResponse: {
+			url: `/eventtype/${eventType.Id}/delete`,
+			method: 'DELETE',
+			body: "",
+			andThen: () => ({
+				eventTypes: {
+					url: `/eventtypes`,
+					refreishing: true
+				}
+			})
+		}
+	})
 }))(SettingsView);

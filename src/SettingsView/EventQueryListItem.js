@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import IconButton from 'material-ui/IconButton';
 import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 import IconDelete from 'material-ui/svg-icons/action/delete';
 import {ListItem} from 'material-ui/List';
-import {connect} from 'react-refetch';
-import ConnectionComponent from './../Utils/ConnectionComponent.js';
 
 
-class EventQueryListItem extends ConnectionComponent {
+class EventQueryListItem extends Component {
+	
+	constructor(props) {
+		super(props);
+		this.deleteEventQuery = this.deleteEventQuery.bind(this);
+	}
+	
 	deleteEventQuery() {
 		this.props.deleteQuery(this.props.query);
 	}
@@ -40,12 +44,4 @@ class EventQueryListItem extends ConnectionComponent {
 	}
 }
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
-	deleteQuery: query => ({
-		postLikeResponse: {
-			url: `/eventquery/${query.Id}/delete`,
-			method: 'DELETE',
-			body: ""
-		}
-	})
-}))(EventQueryListItem);
+export default EventQueryListItem;

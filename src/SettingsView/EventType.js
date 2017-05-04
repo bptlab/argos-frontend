@@ -16,10 +16,15 @@ class EventType extends ConnectionComponent {
 			expanded: false,
 		};
 		this.handleExpandChange = this.handleExpandChange.bind(this);
+		this.handleEventTypeDeletion = this.handleEventTypeDeletion.bind(this);
 	}
 
 	handleExpandChange(expanded) {
 		this.setState({expanded: expanded});
+	}
+	
+	handleEventTypeDeletion() {
+		this.props.deleteEventType(this.props.eventType);
 	}
 
 	render() {
@@ -45,7 +50,9 @@ class EventType extends ConnectionComponent {
 					className={css(AppStyles.dFlex)}>
 					<List className={css(AppStyles.w50)}>
 						{queries.value.forEach((query) => {
-								return(<EventQueryListItem query={query} />);
+								return(<EventQueryListItem 
+									query={query}
+									deleteQuery={this.props.deleteQuery} />);
 							}
 						)}
 					</List>
@@ -67,5 +74,18 @@ class EventType extends ConnectionComponent {
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
 	queries: `/eventtype/${props.eventType.Id}/queries`,
-	attributes: `/eventtype/${props.eventType.Id}/attributes`
+	attributes: `/eventtype/${props.eventType.Id}/attributes`,
+	deleteQuery: query => ({
+		postLikeResponse: {
+			url: `/eventquery/${query.Id}/delete`,
+			method: 'DELETE',
+			body: "",
+			andThen: () => ({
+				queries: {
+					url: `/eventtype/${props.eventType.Id}/queries`,
+					refreshing: true
+				}
+			})
+		}
+	})
 }))(EventType);
