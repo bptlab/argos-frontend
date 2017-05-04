@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
-import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
-import IconHome from 'material-ui/svg-icons/action/home';
-import IconSettings from 'material-ui/svg-icons/action/settings';
-import IconArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import config from './config/config';
+import React, {Component} from "react";
+import AppBar from "material-ui/AppBar";
+import IconButton from "material-ui/IconButton";
+import IconHome from "material-ui/svg-icons/action/home";
+import IconSettings from "material-ui/svg-icons/action/settings";
+import IconArrowBack from "material-ui/svg-icons/navigation/arrow-back";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import config from "./config/config";
+import {css, StyleSheet} from "aphrodite";
+import AppStyles from "./AppStyles";
 
 class Header extends Component {
 
@@ -19,7 +21,7 @@ class Header extends Component {
         window.location.href = newPath.substring(0, newPath.lastIndexOf("/") + 1);
     }
 
-	static composeAppBar(pageLocation) {
+	composeAppBar(pageLocation) {
 		let iconElementLeft;
 
 		if (pageLocation === "grid") {
@@ -32,11 +34,18 @@ class Header extends Component {
 			iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
         }
 
+		const statusColor = StyleSheet.create({
+			color: {
+				borderColor: config.status[this.props.status]
+			}
+		});
+
         return (
 			<AppBar
-				title={<span>{config.projectName}</span>}
+				title={<span>{this.props.title}</span>}
 				iconElementLeft={iconElementLeft}
 				iconElementRight={<IconButton href="/settings"><IconSettings/></IconButton>}
+				className={css(AppStyles.headerBorderDetail, statusColor.color)}
 			/>
 		);
 	}
@@ -45,14 +54,15 @@ class Header extends Component {
 		return (
 			<Router>
 				<Switch>
-					<Route exact path="/" component={() => Header.composeAppBar("grid")}/>
-					<Route path="/grid/:entityId" component={() => Header.composeAppBar("grid")}/>
-					<Route path="/details/:parentId/:entityId" component={() => Header.composeAppBar("details")}/>
-					<Route path="/settings" component={() => Header.composeAppBar("settings")}/>
-					<Route path="*" component={() => Header.composeAppBar("grid")}/>
+					<Route exact path="/" component={() => this.composeAppBar("grid")}/>
+					<Route path="/grid/:entityId" component={() => this.composeAppBar("grid")}/>
+					<Route path="/details/:parentId/:entityId" component={() => this.composeAppBar("details")}/>
+					<Route path="/settings" component={() => this.composeAppBar("settings")}/>
+					<Route path="*" component={() => this.composeAppBar("grid")}/>
 				</Switch>
 			</Router>
 		);
     }
 }
+
 export default Header;

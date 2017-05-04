@@ -33,6 +33,10 @@ const AppStyles = StyleSheet.create({
 		marginTop: '30px'
 	},
 
+	headerBorderDetail: {
+		borderBottom: '10px solid',
+	},
+
 	capitalize: {
 		textTransform: 'capitalize',
 		fontWeight: 'bold'

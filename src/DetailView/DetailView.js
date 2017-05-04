@@ -1,25 +1,39 @@
-import React, {Component} from "react";
+import React from "react";
+import {Container} from "react-grid-system";
+import {connect} from "react-refetch";
+import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import EntityInformation from "./EntityInformation";
 import EventDiagram from "./EventDiagram";
 import SearchBar from "./../Utils/SearchBar";
 import EventTable from "./EventTable";
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
+import Header from "../Header";
 
-class DetailView extends Component {
+class DetailView extends ConnectionComponent {
 	render() {
-        return (
+		const entity = this.props.entity.value;
+		const connectionIncomplete = super.render(this.props.entity);
+		if(connectionIncomplete) {
+			return connectionIncomplete;
+		}
+
+		return (
 			<div>
-				<div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>
-					<EntityInformation entityId={this.props.match.params.entityId} styles={[AppStyles.w50]}/>
-					<EventDiagram styles={[AppStyles.w50]}/>
-				</div>
-				<SearchBar styles={[AppStyles.elementMarginTop]}/>
-				<EventTable entityId={this.props.match.params.entityId} />
+				<Header title={entity.Name} status={entity.Status}/>
+				<Container>
+					<div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>
+						<EntityInformation entity={entity} styles={[AppStyles.w50]}/>
+						<EventDiagram styles={[AppStyles.w50]}/>
+					</div>
+					<SearchBar styles={[AppStyles.elementMarginTop]}/>
+					<EventTable entityId={this.props.match.params.entityId} />
+				</Container>
 			</div>
 		);
 	}
 }
 
-
-export default DetailView;
+export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
+	entity: `/entity/${props.match.params.entityId}`,
+}))(DetailView);

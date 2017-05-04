@@ -14,7 +14,7 @@ const Entity = [
 		TypeId:		0,
 		ParentId:	-1,
 		Name:		"bus",
-		Status:		"RUNNING",
+		Status:		"FAILURE",
 		Attributes: [
 			{
 				Name:	"isScheduledService",
