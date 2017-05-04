@@ -4,7 +4,7 @@ import App from './App';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import GridView from './GridView/GridView';
 import DetailView from './DetailView/DetailView';
-import EventTypesView from './SettingsView/EventType';
+import SettingsView from './SettingsView/SettingsView';
 import NotFound from "./Utils/NotFound";
 
 ReactDOM.render(
@@ -16,7 +16,7 @@ ReactDOM.render(
 				}} />
 				<Route path="/grid/:entityId" component={GridView}/>
 				<Route path="/details/:parentId/:entityId" component={DetailView}/>
-			    <Route path="/settings" component={EventTypesView}/>
+			    <Route path="/settings" component={SettingsView}/>
 				<Route path="*" component={NotFound}/>
 			</Switch>
 		</App>
