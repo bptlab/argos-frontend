@@ -17,6 +17,7 @@ class BackendMock {
             .set(/^entity\/(-?\d+)\/eventtypes$/i, BackendMock.getEventTypesOfEntity)
             .set(/^eventtype\/(-?\d+)\/attributes$/i, BackendMock.getAttributesOfEventType)
             .set(/^entity\/(-?\d+)\/eventtype\/(-?\d+)\/events/i, BackendMock.getEventsOfEventTypeAndEntity);
+				//No $ at the end because it might get called with offset parameters
 	}
 		
 	static handleRequest(request) {
