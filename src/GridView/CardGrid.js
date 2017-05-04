@@ -6,6 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import LoadingAnimation from './../Utils/LoadingAnimation';
 import { Row, Col } from 'react-grid-system';
 import { css } from 'aphrodite';
+import config from './../config/config';
 
 class CardGrid extends ConnectionComponent {
 	
@@ -57,8 +58,8 @@ class CardGrid extends ConnectionComponent {
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
 	entities: {
-		url: `/entityType/${props.entityType.Id}/attributes`,
-		then: attributes => 
-			`/entity/${props.currentEntity.Id}/children/type/${props.entityType.Id}/${attributes.join("+")}`,
+		url: config.backendRESTRoute + `/entityType/${props.entityType.Id}/attributes`,
+		then: attributes =>
+			config.backendRESTRoute + `/entity/${props.currentEntity.Id}/children/type/${props.entityType.Id}/${attributes.join("+")}`,
 	}
 }))(CardGrid);

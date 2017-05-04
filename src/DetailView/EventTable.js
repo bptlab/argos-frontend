@@ -5,6 +5,7 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 import EventTabs from './EventTabs';
 import { css } from 'aphrodite';
 import AppStyles from './../AppStyles';
+import config from './../config/config';
 
 class EventTable extends ConnectionComponent {
 
@@ -99,9 +100,9 @@ class EventTable extends ConnectionComponent {
 }
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
-	eventTypes: `/entity/${props.entityId}/eventtypes`,
+	eventTypes: config.backendRESTRoute + `/entity/${props.entityId}/eventtypes`,
 	lazyEventLoading: eventTypeId => ({
-		eventTypeAttributes: `/eventtype/${eventTypeId}/attributes`,
-		events: `/entity/${props.entityId}/eventtype/${eventTypeId}/events`
+		eventTypeAttributes: config.backendRESTRoute + `/eventtype/${eventTypeId}/attributes`,
+		events: config.backendRESTRoute + `/entity/${props.entityId}/eventtype/${eventTypeId}/events`
 	}),
 }))(EventTable);
