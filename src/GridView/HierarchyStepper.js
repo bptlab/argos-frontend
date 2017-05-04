@@ -7,14 +7,17 @@ class HierarchyStepper extends Component {
 		super();
 		this.entityTypes = [];
 		this.state = {
+			activeStep: 0,
 			highlitedEntityTypes: []
 		}
 	}
 
 	componentDidMount() {
 		this.updateEntityTypes();
+		const highlitedEntityTypes = this.getHighlitedEntityTypes(this.props.currentEntityTypeId)
 		this.setState({
-			highlitedEntityTypes: this.getHighlitedEntityTypes(this.props.currentEntityTypeId)
+			activeStep: highlitedEntityTypes.length,
+			highlitedEntityTypes: highlitedEntityTypes
 		});
 
 	}
@@ -57,7 +60,7 @@ class HierarchyStepper extends Component {
 
 	render() {
 		return (
-			<Stepper>
+			<Stepper activeStep={this.state.activeStep}>
 				{this.props.hierarchy.map((hierarchyLayer, index) => {
 					return (
 						<Step key={index}>
