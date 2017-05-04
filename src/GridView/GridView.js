@@ -7,6 +7,7 @@ import CardGrid from "./CardGrid";
 import {connect, PromiseState} from "react-refetch";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import AppStyles from "./../AppStyles";
+import config from './../config/config.js';
 import Header from "../Header";
 import {css} from "aphrodite";
 
@@ -71,6 +72,6 @@ class GridView extends ConnectionComponent {
 }
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
-	hierarchy: `/entityType/hierarchy`,
-	entity: `/entity/${props.match.params.entityId}`
+	hierarchy: config.backendRESTRoute + `/entityType/hierarchy`,
+	entity: config.backendRESTRoute + `/entity/${props.match.params.entityId}`
 }))(GridView);

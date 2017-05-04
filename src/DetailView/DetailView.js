@@ -9,6 +9,7 @@ import EventTable from "./EventTable";
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
 import Header from "../Header";
+import config from './../config/config.js';
 
 class DetailView extends ConnectionComponent {
 	render() {
@@ -35,5 +36,5 @@ class DetailView extends ConnectionComponent {
 }
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
-	entity: `/entity/${props.match.params.entityId}`,
+	entity: config.backendRESTRoute + `/entity/${props.match.params.entityId}`,
 }))(DetailView);

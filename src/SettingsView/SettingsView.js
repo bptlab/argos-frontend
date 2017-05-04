@@ -5,6 +5,7 @@ import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import Header from './../Header';
 import EventType from './EventType';
 import SearchBar from './../Utils/SearchBar';
+import config from './../config/config';
 
 
 class SettingsView extends ConnectionComponent {
@@ -32,16 +33,16 @@ class SettingsView extends ConnectionComponent {
 }
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(() => ({
-	eventTypes: `/eventtypes`,
+	eventTypes: config.backendRESTRoute + `/eventtypes`,
 	deleteEventType: eventType => ({
 		postLikeResponse: {
-			url: `/eventtype/${eventType.Id}/delete`,
+			url: config.backendRESTRoute + `/eventtype/${eventType.Id}/delete`,
 			method: 'DELETE',
 			body: "",
 			andThen: () => ({
 				eventTypes: {
-					url: `/eventtypes`,
-					refreishing: true
+					url: config.backendRESTRoute + `/eventtypes`,
+					refreshing: true
 				}
 			})
 		}

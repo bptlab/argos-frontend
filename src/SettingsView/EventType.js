@@ -73,16 +73,16 @@ class EventType extends ConnectionComponent {
 }
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
-	queries: `/eventtype/${props.eventType.Id}/queries`,
-	attributes: `/eventtype/${props.eventType.Id}/attributes`,
+	queries: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/queries`,
+	attributes: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/attributes`,
 	deleteQuery: query => ({
 		postLikeResponse: {
-			url: `/eventquery/${query.Id}/delete`,
+			url: config.backendRESTRoute + `/eventquery/${query.Id}/delete`,
 			method: 'DELETE',
 			body: "",
 			andThen: () => ({
 				queries: {
-					url: `/eventtype/${props.eventType.Id}/queries`,
+					url: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/queries`,
 					refreshing: true
 				}
 			})
