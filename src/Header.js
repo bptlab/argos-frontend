@@ -34,18 +34,23 @@ class Header extends Component {
 			iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
         }
 
-		const statusColor = StyleSheet.create({
-			color: {
-				borderColor: config.status[this.props.status]
-			}
-		});
+        let className = "";
+        if(this.props.status) {
+            const statusColor = StyleSheet.create({
+                color: {
+                    borderColor: config.status[this.props.status]
+                }
+            });
+            className = css(AppStyles.headerBorderDetail, statusColor.color);
+        }
+
 
         return (
 			<AppBar
 				title={<span>{this.props.title}</span>}
 				iconElementLeft={iconElementLeft}
 				iconElementRight={<IconButton href="/settings"><IconSettings/></IconButton>}
-				className={css(AppStyles.headerBorderDetail, statusColor.color)}
+				className={className}
 			/>
 		);
 	}
