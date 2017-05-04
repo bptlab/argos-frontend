@@ -14,13 +14,11 @@ class EntityInformation extends ConnectionComponent {
     }
 
     render() {
-        const allFetches = PromiseState.all([this.props.entity]);
         const entity = this.props.entity.value;
-        const connectionIncomplete = super.render(allFetches);
+        const connectionIncomplete = super.render(this.props.entity);
         if(connectionIncomplete) {
             return connectionIncomplete;
         }
-        console.log(entity.Attributes);
         return (
 			<List className={css(this.props.styles)}>
                 {
