@@ -41,7 +41,7 @@ class EventType extends ConnectionComponent {
 				onExpandChange={this.handleExpandChange}>
 				<CardHeader
 					title={this.props.eventType.Name}
-					subtitle={`${config.textNumberOfEvents} ${this.props.eventType.NumberOfEvents}`}
+					subtitle={`${config.descriptions.textNumberOfEvents} ${this.props.eventType.NumberOfEvents}`}
 					actAsExpander={true}
 					showExpandableButton={true}
 				/>
@@ -49,21 +49,21 @@ class EventType extends ConnectionComponent {
 					expandable={true}
 					className={css(AppStyles.dFlex)}>
 					<List className={css(AppStyles.w50)}>
-						{queries.forEach((query) => {
-								return(<EventQueryListItem 
-									query={query}
-									deleteQuery={this.props.deleteQuery} />);
+						{queries.forEach((query) => {return(
+							<EventQueryListItem
+								query={query}
+								deleteQuery={this.props.deleteQuery} />);
 							}
 						)}
 					</List>
 					<List className={css(AppStyles.w50)}>
-						{attributes.map((attribute) => {
-							return(
-								<ListItem
-									primaryText={attribute.Name}
-									secondaryText={attribute.Id}
-								/>
-							);
+						{attributes.map((attribute) => { return(
+							<ListItem 
+								primaryText={attribute.Name}
+								secondaryText={attribute.Id}
+								key={attribute.Id}
+							/>
+						);
 						})}
 					</List>
 				</CardText>
