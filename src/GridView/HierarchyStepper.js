@@ -22,17 +22,16 @@ class HierarchyStepper extends Component {
 
 	render() {
 		return (
-			<Stepper activeStep={3}>
-				<Step>
-					<StepLabel>Productfamilies</StepLabel>
-				</Step>
-				<Step>
-					<StepLabel>Products</StepLabel>
-				</Step>
-				<Step>
-					<StepLabel>Configurations</StepLabel>
-					<StepLabel completed={false}>Parts</StepLabel>
-				</Step>
+			<Stepper>
+				{this.props.hierarchy.map((hierarchyLayer, index) => {
+					return (
+						<Step key={index}>
+							{hierarchyLayer.map((entityType, index) => {
+								return this.displayStepLabel(entityType, index);
+							})}
+						</Step>
+					);
+				})}
 			</Stepper>
 		);
 	}
