@@ -26,7 +26,7 @@ class SettingsView extends ConnectionComponent {
 	}
 }
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
+export default connect.defaults({fetch: ConnectionComponent.switchFetch})(() => ({
 	eventTypes: `/eventtypes`,
 	deleteEventType: eventType => ({
 		postLikeResponse: {
