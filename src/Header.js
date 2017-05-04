@@ -11,7 +11,7 @@ import AppStyles from './AppStyles';
 
 const status = StyleSheet.create({
     color: {
-        borderColor: config.status.running.color
+        borderColor: "green"
     }
 });
 
@@ -27,7 +27,7 @@ class Header extends Component {
         window.location.href = newPath.substring(0, newPath.lastIndexOf("/") + 1);
     }
 
-	static composeAppBar(pageLocation) {
+	composeAppBar(pageLocation) {
 		let iconElementLeft;
 
 		if (pageLocation === "grid") {
@@ -43,7 +43,7 @@ class Header extends Component {
 
         return (
 			<AppBar
-				title={<span>{config.projectName}</span>}
+				title={<span>{this.props.title}</span>}
 				iconElementLeft={iconElementLeft}
 				iconElementRight={<IconButton href="/settings"><IconSettings/></IconButton>}
 				className={css(AppStyles.headerBorderDetail, status.color)}
@@ -55,11 +55,11 @@ class Header extends Component {
 		return (
 			<Router>
 				<Switch>
-					<Route exact path="/" component={() => Header.composeAppBar("grid")}/>
-					<Route path="/grid/:entityId" component={() => Header.composeAppBar("grid")}/>
-					<Route path="/details/:parentId/:entityId" component={() => Header.composeAppBar("details")}/>
+					<Route exact path="/" component={() => this.composeAppBar("grid")}/>
+					<Route path="/grid/:entityId" component={() => this.composeAppBar("grid")}/>
+					<Route path="/details/:parentId/:entityId" component={() => this.composeAppBar("details")}/>
 					<Route path="/settings" component={() => Header.composeAppBar("settings")}/>
-					<Route path="*" component={() => Header.composeAppBar("grid")}/>
+					<Route path="*" component={() => this.composeAppBar("grid")}/>
 				</Switch>
 			</Router>
 		);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container } from 'react-grid-system';
 import DonutChart from './DonutChart';
 import HierarchyStepper from './HierarchyStepper';
 import SearchBar from './../Utils/SearchBar';
@@ -6,6 +7,7 @@ import CardGrid from './CardGrid';
 import {connect, PromiseState} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import AppStyles from './../AppStyles';
+import Header from "../Header";
 
 class GridView extends ConnectionComponent {
 	
@@ -17,6 +19,18 @@ class GridView extends ConnectionComponent {
 			}));
 		});
 		return childEntities;
+	}
+
+	getPageTitle(entity, hierarchy) {
+		const entityTypeInformation = hierarchy.find(hierarchyArray => {
+			return hierarchyArray.find(entityType => {
+				return entityType.Id === entity.TypeId;
+			});
+		});
+		if (entityTypeInformation) {
+			return entityTypeInformation[0].Name + ": " + entity.Name;
+		}
+		return "Home";
 	}
 	
 	render() {
@@ -30,7 +44,8 @@ class GridView extends ConnectionComponent {
 		const childEntityTypes = this.getChildEntityTypes(entity.TypeId, hierarchy);
 		return (
 			<div>
-				<h1>{entity.Name}</h1>
+				<Header title={this.getPageTitle(entity, hierarchy)} />
+				<Container>
 				<HierarchyStepper
 					hierarchy={hierarchy}
 					currentEntityTypeId={entity.TypeId}/>
@@ -48,6 +63,7 @@ class GridView extends ConnectionComponent {
 						</div>
 					);
 				})}
+				</Container>
 			</div>
 		);
 	}
