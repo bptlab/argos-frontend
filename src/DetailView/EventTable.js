@@ -37,7 +37,7 @@ class EventTable extends ConnectionComponent {
 	}
 
 	composeTableRow(event, key) {
-		let row = event.Attributes.map(
+		const row = event.Attributes.map(
 			(eventAttribute, attributeKey) => {
 				return (
 					<TableRowColumn key={attributeKey}>
