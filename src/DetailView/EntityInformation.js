@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import {connect, PromiseState} from 'react-refetch';
+import React from 'react';
+import { connect } from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import {List, ListItem} from 'material-ui/List';
 import { css } from 'aphrodite';

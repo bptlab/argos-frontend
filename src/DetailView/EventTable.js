@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {connect, PromiseState} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
