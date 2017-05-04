@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
-
+import { css } from 'aphrodite';
+import AppStyles from "./../AppStyles";
 
 class HierarchyStepper extends Component {
 	constructor() {
 		super();
 		this.entityTypes = [];
 		this.state = {
+			activeStep: 0,
 			highlitedEntityTypes: []
 		}
 	}
 
 	componentDidMount() {
 		this.updateEntityTypes();
+		const highlitedEntityTypes = this.getHighlitedEntityTypes(this.props.currentEntityTypeId)
 		this.setState({
-			highlitedEntityTypes: this.getHighlitedEntityTypes(this.props.currentEntityTypeId)
+			activeStep: highlitedEntityTypes.length,
+			highlitedEntityTypes: highlitedEntityTypes
 		});
 
 	}
@@ -48,7 +52,12 @@ class HierarchyStepper extends Component {
 
 	displayStepLabel(entityType, index) {
 		if(this.state.highlitedEntityTypes.includes(entityType)) {
-			return (<StepLabel key={index} completed={true}>{entityType.Name}</StepLabel>);
+			return (
+				<StepLabel
+					key={index}
+					completed={true}>
+					{entityType.Name}
+				</StepLabel>);
 		}
 		else {
 			return (<StepLabel key={index}>{entityType.Name}</StepLabel>);
@@ -57,7 +66,9 @@ class HierarchyStepper extends Component {
 
 	render() {
 		return (
-			<Stepper>
+			<Stepper
+				activeStep={this.state.activeStep}
+				className={css(this.props.styles, AppStyles.elementMarginTop)}>
 				{this.props.hierarchy.map((hierarchyLayer, index) => {
 					return (
 						<Step key={index}>
