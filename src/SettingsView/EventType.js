@@ -62,7 +62,6 @@ class EventType extends ConnectionComponent {
 						{attributes.map((attribute) => { return(
 							<ListItem 
 								primaryText={attribute.Name}
-								secondaryText={attribute.Id}
 								key={attribute.Id}
 							/>);
 						})}
