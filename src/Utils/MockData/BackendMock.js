@@ -26,7 +26,7 @@ class BackendMock {
 		
 	static handleRequest(request) {
 		const RouteMapper = BackendMock.getRouteMapper();
-		const cleanedRoute = request.url.replace(Config.backendRESTRoute,"");
+		const cleanedRoute = request.url.replace(Config.backendRESTRoute + "/","").toLowerCase();
 		const targetRoute = [...RouteMapper.keys()].find((route) => {
 			return route.exec(cleanedRoute);
 		});
