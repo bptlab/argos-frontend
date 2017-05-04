@@ -1,34 +1,34 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-refetch';
+import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import {List, ListItem} from 'material-ui/List';
 import { css } from 'aphrodite';
 
-class EntityInformation extends Component {
-	render() {
-		return (
+class EntityInformation extends ConnectionComponent {
+    static generateListItem(attribute, key) {
+        return <ListItem
+			key = {key}
+			primaryText = {attribute.Name}
+			secondaryText = {attribute.Value}
+		/>;
+    }
+
+    render() {
+        const entity = this.props.entity.value;
+        const connectionIncomplete = super.render(this.props.entity);
+        if(connectionIncomplete) {
+            return connectionIncomplete;
+        }
+        return (
 			<List className={css(this.props.styles)}>
-				<ListItem
-					primaryText="Attribute value"
-					secondaryText="Entity attribute title"
-				/>
-				<ListItem
-					primaryText="Attribute value"
-					secondaryText="Entity attribute title"
-				/>
-				<ListItem
-					primaryText="Attribute value"
-					secondaryText="Entity attribute title"
-				/>
-				<ListItem
-					primaryText="Attribute value"
-					secondaryText="Entity attribute title"
-				/>
-				<ListItem
-					primaryText="Attribute value"
-					secondaryText="Entity attribute title"
-				/>
+                {
+                    entity.Attributes.map((attribute, key) => EntityInformation.generateListItem(attribute, key))
+                }
 			</List>
-		);
-	}
+        );
+    }
 }
 
-export default EntityInformation;
+export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
+    entity: `/entity/${props.entityId}`,
+}))(EntityInformation);

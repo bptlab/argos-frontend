@@ -2,6 +2,9 @@ import Config from './../../config/config.js';
 import Hierarchy from './TransportForLondon/Hierarchy.js';
 import Entity from './TransportForLondon/Entity.js';
 import EntityType from './TransportForLondon/EntityType.js';
+import EventType from './TransportForLondon/EventType.js';
+import Event from './TransportForLondon/Event.js';
+import EventTypeAttribute from './TransportForLondon/EventTypeAttribute.js';
 
 class BackendMock {
 
@@ -10,7 +13,11 @@ class BackendMock {
 			.set(/^entitytype\/hierarchy$/i, BackendMock.getEntityTypeHierarchy)
 			.set(/^entitytype\/(-?\d+)\/attributes$/i, BackendMock.getEntityTypeAttributes)
 			.set(/^entity\/(-?\d+)\/children\/type\/(-?\d+)\/(((\w)+)\+)*(\w)*$/i, BackendMock.getChildEntitiesOfEntityType)
-			.set(/^entity\/(-?\d+)$/i, BackendMock.getEntity);
+			.set(/^entity\/(-?\d+)$/i, BackendMock.getEntity)
+            .set(/^entity\/(-?\d+)\/eventtypes$/i, BackendMock.getEventTypesOfEntity)
+            .set(/^eventtype\/(-?\d+)\/attributes$/i, BackendMock.getAttributesOfEventType)
+            .set(/^entity\/(-?\d+)\/eventtype\/(-?\d+)\/events/i, BackendMock.getEventsOfEventTypeAndEntity);
+				//No $ at the end because it might get called with offset parameters
 	}
 		
 	static handleRequest(request) {
@@ -43,6 +50,41 @@ class BackendMock {
                 Entity.TypeId === parseInt(params[2], 10));
 		});
 	}
+
+	static getEventTypesOfEntity(params) {
+	    const entityId = parseInt(params[1]);
+	    const associatedEventTypeInformation = EventType.filter((eventTypeInformation) => {
+	        return eventTypeInformation.associatedEntities.includes(entityId);
+        });
+	    let associatedEventTypes = [];
+        associatedEventTypeInformation.map((eventTypeInformation) => {
+            associatedEventTypes = associatedEventTypes.concat(eventTypeInformation.eventTypes);
+        });
+        return associatedEventTypes;
+    }
+
+    static getAttributesOfEventType(params) {
+        const eventTypeId = parseInt(params[1]);
+		const eventTypeAttributeInformation = EventTypeAttribute.find((eventTypeAttribute) => {
+            return eventTypeAttribute.Id === eventTypeId;
+        });
+        return eventTypeAttributeInformation.TypeAttributes;
+    }
+
+    static getEventsOfEventTypeAndEntity(params) {
+	    const entityId = parseInt(params[1]);
+	    const eventTypeId = parseInt(params[2]);
+        const concernedEventTypeInformation = Event.find((eventInformation) => {
+           return  eventInformation.eventTypeId === eventTypeId;
+        });
+        let associatedEvents = [];
+        concernedEventTypeInformation.eventInformation.map((eventInformation) => {
+           if (eventInformation.associatedEntities.includes(entityId)) {
+               associatedEvents = associatedEvents.concat(eventInformation.events);
+           }
+        });
+        return associatedEvents;
+    }
 	
 	static buildResponse(value) {
 		return new Response(JSON.stringify(value));

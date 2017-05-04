@@ -2,15 +2,42 @@ import React, { Component } from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { css } from 'aphrodite';
+import config from './../config/config';
 injectTapEventPlugin();
 
 class EventTabs extends Component {
+
+	componentWillMount() {
+		if (this.props.eventTypes.length > 0) {
+			const firstEventTypeId = this.props.eventTypes[0].Id;
+			this.props.eventTypeChangeHandler(firstEventTypeId);
+		}
+	}
+
+	getTabs() {
+		if (this.props.eventTypes.length > 0) {
+			return (
+				this.props.eventTypes.map((eventType, key) => {
+					return (
+						<Tab
+							label={eventType.Name}
+							onClick={() => this.props.eventTypeChangeHandler((eventType.Id))}
+							key={key} />
+					);
+				})
+			);
+		}
+		else {
+			return (
+				<Tab label={config.messages.noEventTypes} />
+			);
+		}
+	}
+
 	render() {
 		return (
 			<Tabs className={css(this.props.styles)}>
-				<Tab label="Item One"/>
-				<Tab label="Item Two"/>
-				<Tab label="Item Tree"/>
+				{this.getTabs()}
 			</Tabs>
 		);
 	}

@@ -6,7 +6,7 @@ class NotFound extends Component {
 
     render() {
         return (
-            <ErrorMessage message={config.notFoundMessage} />
+            <ErrorMessage message={config.messages.notFound} />
         );
     }
 }
