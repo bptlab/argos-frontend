@@ -57,7 +57,7 @@ class Header extends Component {
 					<Route exact path="/" component={() => this.composeAppBar("grid")}/>
 					<Route path="/grid/:entityId" component={() => this.composeAppBar("grid")}/>
 					<Route path="/details/:parentId/:entityId" component={() => this.composeAppBar("details")}/>
-					<Route path="/settings" component={() => Header.composeAppBar("settings")}/>
+					<Route path="/settings" component={() => this.composeAppBar("settings")}/>
 					<Route path="*" component={() => this.composeAppBar("grid")}/>
 				</Switch>
 			</Router>
