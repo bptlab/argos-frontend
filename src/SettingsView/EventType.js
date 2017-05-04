@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
 import EventQueryListItem from  './EventQueryListItem';
 import config from './../config/config.js';
 import { css } from 'aphrodite';
 import AppStyles from '../AppStyles';
-import {connect} from 'react-refetch';
+import {connect, PromiseState} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 
 
@@ -23,7 +23,10 @@ class EventType extends ConnectionComponent {
 	}
 
 	render() {
-		const connectionIncomplete = super.render(this.props.queries);
+		const allFetches = PromiseState.all([this.props.queries, this.props.attributes]);
+		const queries = this.props.queries.value;
+		const attributes = this.props.attributes.value;
+		const connectionIncomplete = super.render(allFetches);
 		if(connectionIncomplete) {
 			return connectionIncomplete;
 		}
@@ -41,20 +44,20 @@ class EventType extends ConnectionComponent {
 					expandable={true}
 					className={css(AppStyles.dFlex)}>
 					<List className={css(AppStyles.w50)}>
-						{this.props.queries.value.forEach((query) => {
+						{queries.value.forEach((query) => {
 								return(<EventQueryListItem query={query} />);
 							}
 						)}
 					</List>
 					<List className={css(AppStyles.w50)}>
-						<ListItem
-							primaryText="Event Type Attribute 1 Value"
-							secondaryText="Event Type Attribute 1 Name"
-						/>
-						<ListItem
-							primaryText="Event Type Attribute 1 Value"
-							secondaryText="Event Type Attribute 1 Name"
-						/>
+						{attributes.map((attribute) => {
+							return(
+								<ListItem
+									primaryText={attribute.Name}
+									secondaryText={attribute.Id}
+								/>
+							);
+						})}
 					</List>
 				</CardText>
 			</Card>
@@ -64,4 +67,5 @@ class EventType extends ConnectionComponent {
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
 	queries: `/eventtype/${props.eventType.Id}/queries`,
+	attributes: `/eventtype/${props.eventType.Id}/attributes`
 }))(EventType);
