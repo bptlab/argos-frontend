@@ -31,6 +31,11 @@ const AppStyles = StyleSheet.create({
 
 	elementMarginTop: {
 		marginTop: '30px'
+	},
+
+	capitalize: {
+		textTransform: 'capitalize',
+		fontWeight: 'bold'
 	}
 });
 

@@ -3,6 +3,7 @@ import {connect, PromiseState} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import EventTabs from './EventTabs';
+import { css } from 'aphrodite';
 import AppStyles from './../AppStyles';
 
 class EventTable extends ConnectionComponent {
@@ -22,7 +23,9 @@ class EventTable extends ConnectionComponent {
 					{eventTypeAttributes.map(
 						(attribute, key) => {
 							return (
-								<TableHeaderColumn key={key}>
+								<TableHeaderColumn
+									className={css(AppStyles.capitalize)}
+									key={key}>
 									{attribute.Name}
 								</TableHeaderColumn>
 							);
