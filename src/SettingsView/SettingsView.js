@@ -25,6 +25,6 @@ class SettingsView extends ConnectionComponent {
 	}
 }
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(({
+export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
 	eventTypes: `/eventtypes`,
 }))(SettingsView);
