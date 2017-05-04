@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
-
+import { css } from 'aphrodite';
+import AppStyles from "./../AppStyles";
 
 class HierarchyStepper extends Component {
 	constructor() {
@@ -60,7 +61,7 @@ class HierarchyStepper extends Component {
 
 	render() {
 		return (
-			<Stepper activeStep={this.state.activeStep}>
+			<Stepper activeStep={this.state.activeStep} className={css(this.props.styles, AppStyles.elementMarginTop)}>
 				{this.props.hierarchy.map((hierarchyLayer, index) => {
 					return (
 						<Step key={index}>
