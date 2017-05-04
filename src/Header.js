@@ -3,6 +3,7 @@ import AppBar from "material-ui/AppBar";
 import IconButton from "material-ui/IconButton";
 import IconHome from "material-ui/svg-icons/action/home";
 import IconSettings from "material-ui/svg-icons/action/settings";
+import IconAdd from 'material-ui/svg-icons/content/add';
 import IconArrowBack from "material-ui/svg-icons/navigation/arrow-back";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import config from "./config/config";
@@ -23,6 +24,7 @@ class Header extends Component {
 
 	composeAppBar(pageLocation) {
 		let iconElementLeft;
+		let iconElementRight;
 
 		if (pageLocation === "grid") {
             iconElementLeft = <IconButton href="/grid/-1"><IconHome/></IconButton>;
@@ -32,7 +34,12 @@ class Header extends Component {
         }
         if (pageLocation === "settings") {
 			iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
+            iconElementRight = <IconButton href="/create/eventType"><IconAdd/></IconButton>;
         }
+        if (pageLocation === "createEventType") {
+            iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
+            iconElementRight = <div/>;
+		}
 
         let className = "";
         if(this.props.status) {
@@ -48,7 +55,9 @@ class Header extends Component {
 			<AppBar
 				title={<span>{this.props.title}</span>}
 				iconElementLeft={iconElementLeft}
-				iconElementRight={<IconButton href="/settings"><IconSettings/></IconButton>}
+				iconElementRight={
+					iconElementRight ? iconElementRight : <IconButton href="/settings"><IconSettings/></IconButton>
+				}
 				className={className}
 			/>
 		);
@@ -62,6 +71,7 @@ class Header extends Component {
 					<Route path="/grid/:entityId" component={() => this.composeAppBar("grid")}/>
 					<Route path="/details/:parentId/:entityId" component={() => this.composeAppBar("details")}/>
 					<Route path="/settings" component={() => this.composeAppBar("settings")}/>
+					<Route path="/create/eventType" component={() => this.composeAppBar("createEventType")}/>
 					<Route path="*" component={() => this.composeAppBar("grid")}/>
 				</Switch>
 			</Router>
