@@ -7,9 +7,9 @@ import { css } from 'aphrodite';
 class EntityInformation extends ConnectionComponent {
     static generateListItem(attribute, key) {
         return <ListItem
-			key = {key}
-			primaryText = {attribute.Name}
-			secondaryText = {attribute.Value}
+			key={key}
+			primaryText={attribute.Name}
+			secondaryText={attribute.Value}
 		/>;
     }
 

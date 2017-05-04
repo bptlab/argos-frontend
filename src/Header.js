@@ -5,7 +5,7 @@ import IconHome from 'material-ui/svg-icons/action/home';
 import IconSettings from 'material-ui/svg-icons/action/settings';
 import IconArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import config from './config/config'
+import config from './config/config';
 
 class Header extends Component {
 
@@ -28,7 +28,7 @@ class Header extends Component {
         if (pageLocation === "details") {
             iconElementLeft = <IconButton onTouchTap={Header.goBackToGrid}><IconArrowBack/></IconButton>;
         }
-        if (pageLocation === "eventtypes") {
+        if (pageLocation === "settings") {
 			iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
         }
 
@@ -36,7 +36,7 @@ class Header extends Component {
 			<AppBar
 				title={<span>{config.projectName}</span>}
 				iconElementLeft={iconElementLeft}
-				iconElementRight={<IconButton href="/eventtypes"><IconSettings/></IconButton>}
+				iconElementRight={<IconButton href="/settings"><IconSettings/></IconButton>}
 			/>
 		);
 	}
@@ -48,7 +48,7 @@ class Header extends Component {
 					<Route exact path="/" component={() => Header.composeAppBar("grid")}/>
 					<Route path="/grid/:entityId" component={() => Header.composeAppBar("grid")}/>
 					<Route path="/details/:parentId/:entityId" component={() => Header.composeAppBar("details")}/>
-					<Route path="/eventtypes" component={() => Header.composeAppBar("eventtypes")}/>
+					<Route path="/settings" component={() => Header.composeAppBar("settings")}/>
 					<Route path="*" component={() => Header.composeAppBar("grid")}/>
 				</Switch>
 			</Router>

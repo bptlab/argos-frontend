@@ -15,6 +15,9 @@ const config = {
 		diagramBackground: "rgba(224, 224, 224, 0.6)",
 		error: "#B71C1C",
 	},
+	descriptions: {
+		textNumberOfEvents: "Number of events"
+	},
 	messages: {
 		notFound: "Error 404. The requested page does not exist. You found a glitch in the matrix.",
 		noEventTypes: "No event types",

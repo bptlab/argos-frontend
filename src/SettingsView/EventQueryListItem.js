@@ -6,8 +6,14 @@ import {ListItem} from 'material-ui/List';
 
 
 class EventQueryListItem extends Component {
+	
+	constructor(props) {
+		super(props);
+		this.deleteEventQuery = this.deleteEventQuery.bind(this);
+	}
+	
 	deleteEventQuery() {
-		// TODO: to be filled
+		this.props.deleteQuery(this.props.query);
 	}
 
 	editEventQuery() {
@@ -30,7 +36,8 @@ class EventQueryListItem extends Component {
 	render() {
 		return (
 			<ListItem
-				primaryText="Event Query 1"
+				primaryText={this.props.query.Description}
+				secondaryText={this.props.query.Query}
 				rightIconButton={EventQueryListItem.deleteEventQueryButton()}
 			/>
 		);
