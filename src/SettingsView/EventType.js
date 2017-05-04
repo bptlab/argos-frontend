@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
-import EventQueryListItem from  './EventQueryListItem';
+import EventQueryListItem from  './EventQueryListItem.js';
 import config from './../config/config.js';
 import { css } from 'aphrodite';
 import AppStyles from '../AppStyles';
@@ -49,10 +49,12 @@ class EventType extends ConnectionComponent {
 					expandable={true}
 					className={css(AppStyles.dFlex)}>
 					<List className={css(AppStyles.w50)}>
-						{queries.forEach((query) => {return(
+						{queries.map((query) => {
+							return(
 							<EventQueryListItem
 								query={query}
-								deleteQuery={this.props.deleteQuery} />);
+								deleteQuery={this.props.deleteQuery}
+								key={query.Id}/>);
 							}
 						)}
 					</List>
@@ -62,8 +64,7 @@ class EventType extends ConnectionComponent {
 								primaryText={attribute.Name}
 								secondaryText={attribute.Id}
 								key={attribute.Id}
-							/>
-						);
+							/>);
 						})}
 					</List>
 				</CardText>
