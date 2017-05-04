@@ -10,7 +10,7 @@ class EventTable extends Component {
 				<TableRow>
                     {eventTypeAttributes.map(
                         (attribute) => {
-                            return (<TableRowColumn>{attribute.name}</TableRowColumn>);
+                            return (<TableHeaderColumn>{attribute.name}</TableHeaderColumn>);
                         })
                     }
 				</TableRow>

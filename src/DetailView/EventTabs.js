@@ -5,11 +5,15 @@ import { css } from 'aphrodite';
 injectTapEventPlugin();
 
 class EventTabs extends Component {
+	changeEventType() {
+		console.log("hi");
+	}
+
 	render() {
 		return (
 			<Tabs className={css(this.props.styles)}>
-				<Tab label="FeedbackData"/>
-				<Tab label="StatusUpdate"/>
+				<Tab label="FeedbackData" onClick={this.changeEventType} />
+				<Tab label="StatusUpdate" onClick={this.changeEventType} />
 			</Tabs>
 		);
 	}
