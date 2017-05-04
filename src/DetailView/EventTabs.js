@@ -5,18 +5,35 @@ import { css } from 'aphrodite';
 injectTapEventPlugin();
 
 class EventTabs extends Component {
-	changeEventType() {
-		console.log("hi");
-	}
+    changeEventType() {
+    }
 
-	render() {
-		return (
+    getTabs() {
+        if (this.props.eventTypes.length > 0) {
+            return (
+                this.props.eventTypes.map((eventType, key) => {
+                    return (
+						<Tab
+							label={eventType.Name}
+							onClick={this.changeEventType} />
+                    );
+                })
+            );
+        }
+        else {
+            return (
+				<Tab label="No event types" />
+            );
+        }
+    }
+
+    render() {
+        return (
 			<Tabs className={css(this.props.styles)}>
-				<Tab label="FeedbackData" onClick={this.changeEventType} />
-				<Tab label="StatusUpdate" onClick={this.changeEventType} />
+                {this.getTabs()}
 			</Tabs>
-		);
-	}
+        );
+    }
 }
 
 export default EventTabs;
