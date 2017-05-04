@@ -38,6 +38,7 @@ class GridView extends ConnectionComponent {
 				{childEntityTypes.map((childEntityType) => {
 					return(
 						<div key={`div-${childEntityType.Id}`}>
+							<h1>{childEntityType.Name}</h1>
 							<DonutChart styles={[AppStyles.elementMarginTop]} />
 							<CardGrid
 								styles={[AppStyles.elementMarginTop]}
