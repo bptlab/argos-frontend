@@ -33,7 +33,7 @@ class GridView extends ConnectionComponent {
 				<h1>{entity.Name}</h1>
 				<HierarchyStepper
 					hierarchy={hierarchy}
-					currentEntityType={entity.TypeId}/>
+					currentEntityTypeId={entity.TypeId}/>
 				<SearchBar/>
 				{childEntityTypes.map((childEntityType) => {
 					return(
