@@ -11,6 +11,17 @@ class HierarchyStepper extends Component {
 		}
 	}
 
+	componentDidMount() {
+		this.updateEntityTypes();
+	}
+
+	updateEntityTypes() {
+		this.props.hierarchy.forEach((hierarchyLayer) => {
+			hierarchyLayer.forEach((entityType) => {
+				this.entityTypes = this.entityTypes.concat([entityType]);
+			})
+		})
+	}
 	displayStepLabel(entityType, index) {
 		if(this.state.highlitedEntityTypes.includes(entityType)) {
 			return (<StepLabel key={index} completed={true}>{entityType.Name}</StepLabel>);
