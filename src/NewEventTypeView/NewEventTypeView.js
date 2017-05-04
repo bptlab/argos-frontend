@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import {Container} from "react-grid-system";
-import IconButton from "material-ui/IconButton";
+import RaisedButton from "material-ui/RaisedButton";
 import IconSave from "material-ui/svg-icons/content/save";
 import Header from './../Header';
 
@@ -18,7 +18,7 @@ class NewEventTypeView extends Component {
                     <TextField hintText="Attribute Name"/><br/>
                     <TextField hintText="Attribute Name"/><br/>
                     <TextField hintText="Attribute Name"/><br/>
-                    <IconButton tooltip="Save"><IconSave/></IconButton>
+                    <RaisedButton label="Save" icon={<IconSave/>}/>
                 </Container>
             </div>
         );
