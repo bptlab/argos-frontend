@@ -3,6 +3,14 @@ import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
 
 
 class HierarchyStepper extends Component {
+	constructor() {
+		super();
+		this.entityTypes = [];
+		this.state = {
+			highlitedEntityTypes: []
+		}
+	}
+
 	render() {
 		return (
 			<Stepper activeStep={3}>
