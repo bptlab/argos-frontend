@@ -13,6 +13,10 @@ class HierarchyStepper extends Component {
 
 	componentDidMount() {
 		this.updateEntityTypes();
+		this.setState({
+			highlitedEntityTypes: this.getHighlitedEntityTypes(this.props.currentEntityTypeId)
+		});
+
 	}
 
 	updateEntityTypes() {
@@ -22,6 +26,28 @@ class HierarchyStepper extends Component {
 			})
 		})
 	}
+
+	getEntityType(EntityTypeId) {
+		return (this.entityTypes.find((entityType) => {
+			return (entityType.Id === EntityTypeId);
+		}));
+	}
+
+	getHighlitedEntityTypes(currentEntityTypeId) {
+		const currentEntityType = this.getEntityType(currentEntityTypeId);
+
+		if (currentEntityTypeId === -1) {
+			return [];
+		}
+		else if (currentEntityType.ParentId === -1) {
+			return [currentEntityType];
+		}
+		else {
+			const parentEntityType = this.getEntityType(currentEntityType.ParentId);
+			return this.getHighlitedEntityTypes(parentEntityType.Id).concat([currentEntityType]);
+		}
+	}
+
 	displayStepLabel(entityType, index) {
 		if(this.state.highlitedEntityTypes.includes(entityType)) {
 			return (<StepLabel key={index} completed={true}>{entityType.Name}</StepLabel>);
