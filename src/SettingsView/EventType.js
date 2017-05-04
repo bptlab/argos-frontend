@@ -49,7 +49,7 @@ class EventType extends ConnectionComponent {
 					expandable={true}
 					className={css(AppStyles.dFlex)}>
 					<List className={css(AppStyles.w50)}>
-						{queries.value.forEach((query) => {
+						{queries.forEach((query) => {
 								return(<EventQueryListItem 
 									query={query}
 									deleteQuery={this.props.deleteQuery} />);
