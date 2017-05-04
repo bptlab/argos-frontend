@@ -10,14 +10,14 @@ const Hierarchy = [
 		{
 			Id: 1,
 			ParentId: 0,
-			Name: "Lines"
+			Name: "Line"
 		},
 	],
 	[
 		{
 			Id: 2,
 			ParentId: 1,
-			Name: "StopPoints"
+			Name: "StopPoint"
 		},
 	]
 ];
