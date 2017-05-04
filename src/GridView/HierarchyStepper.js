@@ -21,9 +21,7 @@ class HierarchyStepper extends Component {
 
 	updateEntityTypes() {
 		this.props.hierarchy.forEach((hierarchyLayer) => {
-			hierarchyLayer.forEach((entityType) => {
-				this.entityTypes = this.entityTypes.concat([entityType]);
-			})
+			this.entityTypes = this.entityTypes.concat(hierarchyLayer);
 		})
 	}
 
