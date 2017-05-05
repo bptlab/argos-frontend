@@ -6,6 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import LoadingAnimation from './../Utils/LoadingAnimation';
 import { Row, Col } from 'react-grid-system';
 import { css } from 'aphrodite';
+import EntityInformation from './../DetailView/EntityInformation';
 import config from './../config/config';
 
 class CardGrid extends ConnectionComponent {
@@ -28,10 +29,8 @@ class CardGrid extends ConnectionComponent {
 									title={childEntity.Name}
 									subtitle={this.props.entityType.name}/>
 								<CardText>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-									Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-									Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+									<EntityInformation
+										entity={childEntity} />
 								</CardText>
 								<CardActions>
 									<Row>
