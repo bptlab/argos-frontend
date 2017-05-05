@@ -137,7 +137,16 @@ const Entity = [
 		ParentId:	101,
 		Name:		"Green Park Station",
 		Status:		"RUNNING",
-		Attributes: []
+		Attributes: [
+			{
+				Name: "lat",
+				Value: "123",
+			},
+			{
+				Name: "long",
+				Value: "345",
+			},
+		]
 	},
 	{
 		Id: 		1012,

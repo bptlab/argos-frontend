@@ -58,6 +58,6 @@ export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props 
 	entities: {
 		url: config.backendRESTRoute + `/entitytype/${props.entityType.Id}/attributes`,
 		then: attributes =>
-			config.backendRESTRoute + `/entity/${props.currentEntity.Id}/children/type/${props.entityType.Id}/${attributes.join("+")}`,
+			config.backendRESTRoute + `/entity/${props.currentEntity.Id}/children/type/${props.entityType.Id}/${attributes.map(attribute => {return attribute.Name;}).join("+")}`,
 	}
 }))(CardGrid);

@@ -1,5 +1,9 @@
 Convention for choosing id's
 
+EntityType:
+    EntityTypes: 0-9
+    EntityTypesAttributes: 77*id of entity type*77*counter of attribute*
+
 Entity:
     Entities of rootlevel: 10, 20, 30 and so on
     Children of rootlevel entities: 101, 102, 103, 201, 202, ...
