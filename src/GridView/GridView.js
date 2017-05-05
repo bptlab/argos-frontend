@@ -71,6 +71,6 @@ class GridView extends ConnectionComponent {
 }
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
-	hierarchy: config.backendRESTRoute + `/entityType/hierarchy`,
+	hierarchy: config.backendRESTRoute + `/entitytype/hierarchy`,
 	entity: config.backendRESTRoute + `/entity/${props.match.params.entityId}`
 }))(GridView);

@@ -23,12 +23,15 @@ class Header extends Component {
     }
 
 	composeAppBar(pageLocation) {
-		let iconElementLeft = <IconButton onTouchTap={Header.goBackToGrid}><IconArrowBack/></IconButton>;;
+		let iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
 		let iconElementRight = <IconButton href="/settings"><IconSettings/></IconButton>;
 
 		if (pageLocation === "grid") {
             iconElementLeft = <IconButton href="/grid/-1"><IconHome/></IconButton>;
         }
+        if (pageLocation === "details") {
+			iconElementLeft = <IconButton onTouchTap={Header.goBackToGrid}><IconArrowBack/></IconButton>;
+		}
         if (pageLocation === "settings") {
             iconElementRight = <IconButton href="/create/eventType"><IconAdd/></IconButton>;
         }
