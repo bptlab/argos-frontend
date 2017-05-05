@@ -103,6 +103,6 @@ export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props 
 	eventTypes: config.backendRESTRoute + `/entity/${props.entityId}/eventtypes`,
 	lazyEventLoading: eventTypeId => ({
 		eventTypeAttributes: config.backendRESTRoute + `/eventtype/${eventTypeId}/attributes`,
-		events: config.backendRESTRoute + `/entity/${props.entityId}/eventtype/${eventTypeId}/events`
+		events: config.backendRESTRoute + `/entity/${props.entityId}/eventtype/${eventTypeId}/events/0/10000`
 	}),
 }))(EventTable);
