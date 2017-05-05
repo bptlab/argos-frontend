@@ -56,7 +56,7 @@ class CardGrid extends ConnectionComponent {
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
 	entities: {
-		url: config.backendRESTRoute + `/entityType/${props.entityType.Id}/attributes`,
+		url: config.backendRESTRoute + `/entitytype/${props.entityType.Id}/attributes`,
 		then: attributes =>
 			config.backendRESTRoute + `/entity/${props.currentEntity.Id}/children/type/${props.entityType.Id}/${attributes.join("+")}`,
 	}
