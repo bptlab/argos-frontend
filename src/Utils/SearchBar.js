@@ -11,7 +11,7 @@ class SearchBar extends Component {
 			primaryBorderColor: {
 				borderColor: config.colors.primaryColor,
 			}
-		}
+		};
 	}
 
 	render() {
