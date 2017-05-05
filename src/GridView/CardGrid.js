@@ -29,8 +29,7 @@ class CardGrid extends ConnectionComponent {
 									title={childEntity.Name}
 									subtitle={this.props.entityType.name}/>
 								<CardText>
-									<EntityInformation
-										entity={childEntity} />
+									<EntityInformation entity={childEntity} />
 								</CardText>
 								<CardActions>
 									<Row>
