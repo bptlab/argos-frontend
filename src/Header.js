@@ -23,42 +23,35 @@ class Header extends Component {
     }
 
 	composeAppBar(pageLocation) {
-		let iconElementLeft;
-		let iconElementRight;
+		let iconElementLeft = <IconButton onTouchTap={Header.goBackToGrid}><IconArrowBack/></IconButton>;;
+		let iconElementRight = <IconButton href="/settings"><IconSettings/></IconButton>;
 
 		if (pageLocation === "grid") {
             iconElementLeft = <IconButton href="/grid/-1"><IconHome/></IconButton>;
         }
-        if (pageLocation === "details") {
-            iconElementLeft = <IconButton onTouchTap={Header.goBackToGrid}><IconArrowBack/></IconButton>;
-        }
         if (pageLocation === "settings") {
-			iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
             iconElementRight = <IconButton href="/create/eventType"><IconAdd/></IconButton>;
         }
         if (pageLocation === "createEventType") {
-            iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
             iconElementRight = <div/>;
 		}
 
-        let className = "";
+        let appBarStyle = "";
         if(this.props.status) {
             const statusColor = StyleSheet.create({
                 color: {
                     borderColor: config.status[this.props.status]
                 }
             });
-            className = css(AppStyles.headerBorderDetail, statusColor.color);
+            appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color);
         }
 
         return (
 			<AppBar
 				title={<span>{this.props.title}</span>}
 				iconElementLeft={iconElementLeft}
-				iconElementRight={
-					iconElementRight ? iconElementRight : <IconButton href="/settings"><IconSettings/></IconButton>
-				}
-				className={className}
+				iconElementRight={iconElementRight}
+				className={appBarStyle}
 			/>
 		);
 	}
