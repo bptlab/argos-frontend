@@ -1,15 +1,15 @@
 import React from 'react';
-import {Col, Container, Row} from "react-grid-system";
 import {connect} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
+import {Col, Container, Row} from "react-grid-system";
 import Header from './../Header';
-import config from "../config/config";
-import EventTypeInformation from "./EventTypeInformation";
-import EventQueryInputArea from "./EventQueryInputArea";
 import {RaisedButton} from "material-ui";
-import { css } from 'aphrodite';
 import IconSave from "material-ui/svg-icons/content/save";
 import IconCancel from "material-ui/svg-icons/navigation/cancel";
+import EventTypeInformation from "./EventTypeInformation";
+import EventQueryInputArea from "./EventQueryInputArea";
+import config from "../config/config";
+import { css } from 'aphrodite';
 import AppStyles from "../AppStyles";
 
 class CreateEventQueryView extends ConnectionComponent {
@@ -31,7 +31,7 @@ class CreateEventQueryView extends ConnectionComponent {
                             <EventQueryInputArea/>
                         </Col>
                     </Row>
-                    <div style={{textAlign: "center"}}>
+                    <div className={css(AppStyles.textAlignCenter)}>
                         <RaisedButton
                             label="Abort"
                             icon={<IconCancel/>}

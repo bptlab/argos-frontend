@@ -17,6 +17,10 @@ const AppStyles = StyleSheet.create({
 		alignItems: 'center',
 	},
 
+	textAlignCenter: {
+		textAlign: "center",
+	},
+
 	rotate90: {
 		transform: 'rotate(90)',
 	},
