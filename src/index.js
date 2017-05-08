@@ -6,7 +6,7 @@ import GridView from './GridView/GridView';
 import DetailView from './DetailView/DetailView';
 import SettingsView from './SettingsView/SettingsView';
 import NotFound from "./Utils/NotFound";
-import NewEventTypeView from "./NewEventTypeView/NewEventTypeView";
+import NewEventTypeView from "./CreateEventTypeView/CreateEventTypeView";
 import CreateEventQueryView from "./CreateEventQueryView/CreateEventQueryView";
 
 ReactDOM.render(
