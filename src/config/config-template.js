@@ -23,6 +23,7 @@ const config = {
 	messages: {
 		notFound: "Error 404. The requested page does not exist. You found a glitch in the matrix.",
 		noEventTypes: "No event types",
+		actionRejected: "The requested action has been rejected."
 	},
 	status: {
 		"RUNNING": "green",
