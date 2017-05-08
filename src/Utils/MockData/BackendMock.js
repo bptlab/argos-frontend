@@ -19,6 +19,7 @@ class BackendMock {
 			.set(/^entity\/(-?\d+)$/i, BackendMock.getEntity)
 			.set(/^eventtype\/(-?\d+)\/delete$/i, BackendMock.deleteEventType)
             .set(/^entity\/(-?\d+)\/eventtypes$/i, BackendMock.getEventTypesOfEntity)
+            .set(/^eventtype\/(-?\d+)$/i, BackendMock.getEventType)
             .set(/^eventtype\/(-?\d+)\/attributes$/i, BackendMock.getAttributesOfEventType)
             .set(/^entity\/(-?\d+)\/eventtype\/(-?\d+)\/events/i, BackendMock.getEventsOfEventTypeAndEntity)
 			.set(/^eventquery\/(-?\d+)\/delete$/i, BackendMock.deleteEventQuery);
@@ -86,6 +87,13 @@ class BackendMock {
         });
         return associatedEventTypes;
     }
+
+    static getEventType(params) {
+		let allEventTypes = [];
+		EventType.forEach((eventTypes) => {
+			eventTypes.eventTypes.forEach((eventType) => {allEventTypes = allEventTypes.concat(eventType);});});
+		return allEventTypes.filter((eventType) => {return eventType.Id === parseInt(params[1], 10);})[0];
+	}
 
     static getAttributesOfEventType(params) {
         const eventTypeId = parseInt(params[1], 10);
