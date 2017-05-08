@@ -26,6 +26,7 @@ class CardGrid extends ConnectionComponent {
 						<Col key={index} xs={12} sm={4} md={3}>
 							<Card>
 								<CardTitle
+									style = {{backgroundColor: config.statusLight[childEntity.Status]}}
 									title={childEntity.Name}
 									subtitle={this.props.entityType.name}/>
 								<CardText>
