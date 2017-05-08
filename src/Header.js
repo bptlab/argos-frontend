@@ -35,7 +35,7 @@ class Header extends Component {
         if (pageLocation === "settings") {
             iconElementRight = <IconButton href="/create/eventType"><IconAdd/></IconButton>;
         }
-        if (pageLocation === "createEventType") {
+        if (pageLocation === "create") {
             iconElementRight = <div/>;
 		}
 
@@ -66,8 +66,9 @@ class Header extends Component {
 					<Route exact path="/" component={() => this.composeAppBar("grid")}/>
 					<Route path="/grid/:entityId" component={() => this.composeAppBar("grid")}/>
 					<Route path="/details/:parentId/:entityId" component={() => this.composeAppBar("details")}/>
-					<Route path="/settings" component={() => this.composeAppBar("settings")}/>
-					<Route path="/create/eventType" component={() => this.composeAppBar("createEventType")}/>
+					<Route exact path="/settings" component={() => this.composeAppBar("settings")}/>
+					<Route path="/create/eventType" component={() => this.composeAppBar("create")}/>
+					<Route exact path="/settings/eventQuery/create" component={() => this.composeAppBar("create")}/>
 					<Route path="*" component={() => this.composeAppBar("grid")}/>
 				</Switch>
 			</Router>
