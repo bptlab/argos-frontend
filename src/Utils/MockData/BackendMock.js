@@ -89,10 +89,16 @@ class BackendMock {
     }
 
     static getEventType(params) {
-		let allEventTypes = [];
-		EventType.forEach((eventTypes) => {
-			eventTypes.eventTypes.forEach((eventType) => {allEventTypes = allEventTypes.concat(eventType);});});
-		return allEventTypes.filter((eventType) => {return eventType.Id === parseInt(params[1], 10);})[0];
+		let requestedEventType = {};
+		EventType.forEach((association) => {
+            association.eventTypes.forEach(
+				(eventType) => {
+					if (eventType.Id === parseInt(params[1], 10)) {
+                        requestedEventType = eventType ;
+					}
+				});
+		});
+		return requestedEventType;
 	}
 
     static getAttributesOfEventType(params) {
