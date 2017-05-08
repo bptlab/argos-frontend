@@ -29,7 +29,11 @@ const config = {
 	status: {
 		"RUNNING": "green",
 		"FAILURE": "red",
-	}
+	},
+    statusLight: {
+        "RUNNING": 'rgba(0, 128, 0, 0.5)',
+        "FAILURE": 'rgba(255, 0, 0, 0.5)',
+    },
 };
 
 export default config;
