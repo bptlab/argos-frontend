@@ -33,6 +33,10 @@ const AppStyles = StyleSheet.create({
 		marginTop: '30px'
 	},
 
+    marginAllSites: {
+		margin: '30px'
+	},
+
 	headerBorderDetail: {
 		borderBottom: '10px solid',
 	},

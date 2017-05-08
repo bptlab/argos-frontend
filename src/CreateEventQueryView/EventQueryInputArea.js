@@ -9,7 +9,7 @@ class EventQueryInputArea extends Component {
                 name="event-query"
                 hintText={config.descriptions.exampleQuery}
                 multiLine={true}
-                rows={3}
+                fullWidth={true}
             />
         );
     }

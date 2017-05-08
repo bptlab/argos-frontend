@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container} from "react-grid-system";
+import {Col, Container, Row} from "react-grid-system";
 import {connect} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import Header from './../Header';
@@ -7,8 +7,10 @@ import config from "../config/config";
 import EventTypeInformation from "./EventTypeInformation";
 import EventQueryInputArea from "./EventQueryInputArea";
 import {RaisedButton} from "material-ui";
+import { css } from 'aphrodite';
 import IconSave from "material-ui/svg-icons/content/save";
 import IconCancel from "material-ui/svg-icons/navigation/cancel";
+import AppStyles from "../AppStyles";
 
 class CreateEventQueryView extends ConnectionComponent {
 
@@ -21,10 +23,28 @@ class CreateEventQueryView extends ConnectionComponent {
             <div>
                 <Header title={"Create Event Query for Test"}/>
                 <Container>
-                    <EventTypeInformation attributes={this.props.attributes.value}/>
-                    <EventQueryInputArea/>
-                    <RaisedButton label="Abort" icon={<IconCancel/>}/>
-                    <RaisedButton label="Save" icon={<IconSave/>}/>
+                    <Row>
+                        <Col md={4}>
+                            <EventTypeInformation attributes={this.props.attributes.value}/>
+                        </Col>
+                        <Col md={8}>
+                            <EventQueryInputArea/>
+                        </Col>
+                    </Row>
+                    <div style={{textAlign: "center"}}>
+                        <RaisedButton
+                            label="Abort"
+                            icon={<IconCancel/>}
+                            className={css(AppStyles.marginAllSites)}
+                            secondary={true}
+                        />
+                        <RaisedButton
+                            label="Save"
+                            icon={<IconSave/>}
+                            className={css(AppStyles.marginAllSites)}
+                            primary={true}
+                        />
+                    </div>
                 </Container>
             </div>
         );
