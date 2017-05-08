@@ -26,13 +26,9 @@ const config = {
 		noEventTypes: "No event types",
 		actionRejected: "The requested action has been rejected."
 	},
-	status: {
-		"RUNNING": "green",
-		"FAILURE": "red",
-	},
-    statusLight: {
-        "RUNNING": 'rgba(0, 128, 0, 0.5)',
-        "FAILURE": 'rgba(255, 0, 0, 0.5)',
+    status: {
+        "RUNNING": {color: "green", colorLight: 'rgba(0, 128, 0, 0.5)'},
+        "FAILURE": {color: "red", colorLight: 'rgba(255, 0, 0, 0.5)'},
     },
 };
 
