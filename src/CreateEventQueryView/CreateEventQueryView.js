@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-refetch';
+import {connect, PromiseState} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import {Col, Container, Row} from "react-grid-system";
 import Header from './../Header';
@@ -15,17 +15,20 @@ import AppStyles from "../AppStyles";
 class CreateEventQueryView extends ConnectionComponent {
 
     render() {
-        const connectionIncomplete = super.render(this.props.attributes);
+        const allFetches = PromiseState.all([this.props.eventType, this.props.attributes]);
+        const eventType = this.props.eventType.value;
+        const attributes = this.props.attributes.value;
+        const connectionIncomplete = super.render(allFetches);
         if(connectionIncomplete) {
             return connectionIncomplete;
         }
         return (
             <div>
-                <Header title={"Create Event Query for Test"}/>
+                <Header title={"Create Event Query for " + eventType.Name}/>
                 <Container>
                     <Row>
                         <Col md={4}>
-                            <EventTypeInformation attributes={this.props.attributes.value}/>
+                            <EventTypeInformation attributes={attributes}/>
                         </Col>
                         <Col md={8}>
                             <EventQueryInputArea/>
@@ -52,5 +55,6 @@ class CreateEventQueryView extends ConnectionComponent {
 }
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
-    attributes: config.backendRESTRoute + `/eventtype/99101991/attributes`,
+    eventType: config.backendRESTRoute + `/eventtype/${props.match.params.eventTypeId}`,
+    attributes: config.backendRESTRoute + `/eventtype/${props.match.params.eventTypeId}/attributes`,
 }))(CreateEventQueryView);
