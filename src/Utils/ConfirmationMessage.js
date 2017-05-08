@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { css } from 'aphrodite';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
-class DeleteDialog extends Component {
+class ConfirmationMessage extends Component {
 	
 	constructor(props) {
 		super(props);
@@ -28,7 +27,7 @@ class DeleteDialog extends Component {
 	}
 	
 	handleSubmit() {
-		this.props.
+		this.props.actionToPerform();
 		this.handleClose();
 	}
 
@@ -48,14 +47,14 @@ class DeleteDialog extends Component {
 		];
 		return (
 			<Dialog
-				title="Are you sure?"
+				title="Confirmation Prompt"
 				actions={actions}
 				modal={false}
-				open={this.state.open}
+				open={this.state.visible}
 				onRequestClose={this.handleClose}>
-				Do you really want to delete?
+				{this.props.children}
 			</Dialog>);
 	}
 }
 
-export default DeleteDialog;
+export default ConfirmationMessage;
