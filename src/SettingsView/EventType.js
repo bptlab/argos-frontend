@@ -7,6 +7,7 @@ import { css } from 'aphrodite';
 import AppStyles from '../AppStyles';
 import {connect, PromiseState} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
+import ErrorMessage from './../Utils/ErrorMessage.js';
 
 
 class EventType extends ConnectionComponent {
@@ -29,13 +30,19 @@ class EventType extends ConnectionComponent {
 
 	render() {
 		const allFetches = PromiseState.all([this.props.queries, this.props.attributes]);
+		const optionalActions =this.props.deleteQueryeResponse;
 		const queries = this.props.queries.value;
 		const attributes = this.props.attributes.value;
 		const connectionIncomplete = super.render(allFetches);
 		if(connectionIncomplete) {
 			return connectionIncomplete;
 		}
+		console.log(optionalActions);
 		return (
+			<div>
+			{optionalActions && optionalActions.rejected &&
+				<ErrorMessage message={optionalActions.value} />
+			}
 			<Card
 				expanded={this.state.expanded}
 				onExpandChange={this.handleExpandChange}>
@@ -68,6 +75,7 @@ class EventType extends ConnectionComponent {
 					</List>
 				</CardText>
 			</Card>
+			</div>
 		);
 	}
 }
@@ -76,7 +84,7 @@ export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props 
 	queries: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/queries`,
 	attributes: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/attributes`,
 	deleteQuery: query => ({
-		postLikeResponse: {
+		deleteQueryeResponse: {
 			url: config.backendRESTRoute + `/eventquery/${query.Id}/delete`,
 			method: 'DELETE',
 			body: "",
