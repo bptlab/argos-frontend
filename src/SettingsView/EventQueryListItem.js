@@ -4,6 +4,7 @@ import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 import IconDelete from 'material-ui/svg-icons/action/delete';
 import ConfirmationMessage from './../Utils/ConfirmationMessage.js'
 import {ListItem} from 'material-ui/List';
+import config from './../config/config.js';
 
 
 class EventQueryListItem extends Component {
@@ -28,13 +29,13 @@ class EventQueryListItem extends Component {
 				<ConfirmationMessage 
 					actionToPerform={this.deleteEventQuery}
 					ref={(input) => {this.confirmationMessage = input;}}>
-					Do you really want to delete this Query?
+					{config.messages.deleteQueryMessage}
 				</ConfirmationMessage>
 				<IconButton onTouchTap={this.editEventQuery}>
 					<IconEdit/>
 				</IconButton>
 				<IconButton
-					onClick={() => {this.confirmationMessage.handleOpen()}}>
+					onTouchTap={() => {this.confirmationMessage.handleOpen()}}>
 					<IconDelete/>
 				</IconButton>
 			</div>

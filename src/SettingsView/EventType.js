@@ -30,7 +30,6 @@ class EventType extends ConnectionComponent {
 	render() {
 		const allFetches = PromiseState.all([this.props.queries, this.props.attributes]);
 		const optionalActions = this.props.deleteQueryeResponse;
-		console.log(optionalActions);
 		const queries = this.props.queries.value;
 		const attributes = this.props.attributes.value;
 		const connectionIncomplete = super.render(allFetches);
