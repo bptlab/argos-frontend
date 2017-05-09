@@ -13,7 +13,12 @@ class EventTable extends ConnectionComponent {
 	constructor(props) {
 		super(props);
 
+		this.state = {
+			filter: [],
+		};
+
 		this.handleActiveEventTypeChange = this.handleActiveEventTypeChange.bind(this);
+		this.handleFilterChange = this.handleFilterChange.bind(this);
 	}
 
 	composeTableHeader(eventTypeAttributes) {
@@ -53,14 +58,59 @@ class EventTable extends ConnectionComponent {
 	composeTableBody(events) {
 		return (
 			<TableBody displayRowCheckbox={false}>
-				{events.map((event, key) =>
-					this.composeTableRow(event, key))}
+				{events.map((event, key) => {
+					if (!this.isCoveredByFilter(event)) {
+						return "";
+					}
+					return this.composeTableRow(event, key);
+					})
+				}
 			</TableBody>
 		);
 	}
 
+	isCoveredByFilter(event) {
+		// every is equivalent to logical and over an array
+		return this.state.filter.every((filter) => {
+			return this.testFilter(event, filter);
+		});
+	}
+
+	testFilter(event, filter) {
+		if (!filter.value) {
+			return true;
+		}
+		let columnsToBeSearched = this.props.eventTypeAttributes.value;
+		if(filter.column) {
+			columnsToBeSearched = columnsToBeSearched.filter((eventPropertyKey) => {
+				return EventTable.doesContain(eventPropertyKey.Name, filter.column);
+			});
+		}
+
+		return columnsToBeSearched.some((eventPropertyKey) => {
+			const splittedFilterValues = filter.value.split(",");
+			const eventAttribute = event.Attributes.find(attribute => attribute.Name === eventPropertyKey.Name);
+			return splittedFilterValues.some(filterValue => {
+				const currentFilterValue = filterValue.trim();
+				if (currentFilterValue &&  EventTable.doesContain(eventAttribute.Value, currentFilterValue)) {
+					return true;
+				}
+			});
+		});
+	}
+
+	static doesContain(baseValue, subValue) {
+		return (baseValue.toString().toLowerCase().indexOf(subValue.toString().toLowerCase()) > -1);
+	}
+
 	handleActiveEventTypeChange(eventTypeId) {
 		this.props.lazyEventLoading(eventTypeId);
+	}
+
+	handleFilterChange(filter) {
+		this.setState({
+			filter: filter,
+		});
 	}
 
 	loadTableContent() {
