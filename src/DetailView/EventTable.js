@@ -1,18 +1,24 @@
-import React from 'react';
-import {connect, PromiseState} from 'react-refetch';
-import ConnectionComponent from './../Utils/ConnectionComponent.js';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-import EventTabs from './EventTabs';
-import { css } from 'aphrodite';
-import AppStyles from './../AppStyles';
-import config from './../config/config';
+import React from "react";
+import {connect, PromiseState} from "react-refetch";
+import ConnectionComponent from "./../Utils/ConnectionComponent.js";
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "material-ui/Table";
+import EventTabs from "./EventTabs";
+import FilterBar from "./../Utils/FilterBar";
+import {css} from "aphrodite";
+import AppStyles from "./../AppStyles";
+import config from "./../config/config";
 
 class EventTable extends ConnectionComponent {
 
 	constructor(props) {
 		super(props);
 
+		this.state = {
+			filter: [],
+		};
+
 		this.handleActiveEventTypeChange = this.handleActiveEventTypeChange.bind(this);
+		this.handleFilterChange = this.handleFilterChange.bind(this);
 	}
 
 	composeTableHeader(eventTypeAttributes) {
@@ -52,14 +58,63 @@ class EventTable extends ConnectionComponent {
 	composeTableBody(events) {
 		return (
 			<TableBody displayRowCheckbox={false}>
-				{events.map((event, key) =>
-					this.composeTableRow(event, key))}
+				{events.map((event, key) => {
+					if (!this.isCoveredByFilter(event)) {
+						return "";
+					}
+					return this.composeTableRow(event, key);
+				})}
 			</TableBody>
 		);
 	}
 
+	isCoveredByFilter(event) {
+		// every is equivalent to logical and over an array
+		return this.state.filter.every((filter) => {
+			return this.testFilter(event, filter);
+		});
+	}
+
+	testFilter(event, filter) {
+		if (!filter.value) {
+			return true;
+		}
+		let columnsToBeSearched = this.props.eventTypeAttributes.value;
+		if(filter.column) {
+			columnsToBeSearched = columnsToBeSearched.filter((column) => {
+				return EventTable.doesContain(column.Name, filter.column);
+			});
+		}
+
+		return columnsToBeSearched.some((column) => {
+			return this.testColumn(column, event, filter);
+		});
+	}
+
+	testColumn(column, event, filter) {
+		const filterValues = filter.value.split(",");
+		const eventAttribute = event.Attributes.find(attribute => attribute.Name === column.Name);
+		return filterValues.some(filterValue => {
+			const currentFilterValue = filterValue.trim();
+			return (currentFilterValue &&  EventTable.doesContain(eventAttribute.Value, currentFilterValue));
+		});
+	}
+
+	static doesContain(baseValue, subValue) {
+		return (baseValue.toString().toLowerCase().indexOf(subValue.toString().toLowerCase()) > -1);
+	}
+
 	handleActiveEventTypeChange(eventTypeId) {
+		this.setState({
+			filter: [],
+		});
 		this.props.lazyEventLoading(eventTypeId);
+	}
+
+	handleFilterChange(filter) {
+		this.setState({
+			filter: filter,
+		});
 	}
 
 	loadTableContent() {
@@ -77,6 +132,15 @@ class EventTable extends ConnectionComponent {
 		);
 	}
 
+	loadFilterBar() {
+		return (
+			<FilterBar
+				styles={[AppStyles.elementMarginTop]}
+				onFiltersChange={this.handleFilterChange}
+				autoCompleteSource={this.props.eventTypeAttributes.value.map(attributeInfo => attributeInfo.Name)} />
+		);
+	}
+
 	render() {
 		const eventTypes = this.props.eventTypes.value;
 		const connectionIncomplete = super.render(this.props.eventTypes);
@@ -84,11 +148,16 @@ class EventTable extends ConnectionComponent {
 			return connectionIncomplete;
 		}
 		let tableContent = "";
+		let filterBar = "";
 		if (this.props.eventTypeAttributes && this.props.events) {
 			tableContent = this.loadTableContent();
+			if (this.props.eventTypeAttributes.value) {
+				filterBar = this.loadFilterBar();
+			}
 		}
 		return (
 			<div>
+				{filterBar}
 				<EventTabs
 					eventTypes={eventTypes}
 					eventTypeChangeHandler={this.handleActiveEventTypeChange}

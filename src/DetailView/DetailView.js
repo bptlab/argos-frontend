@@ -4,7 +4,6 @@ import {connect} from "react-refetch";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import EntityInformation from "./EntityInformation";
 import EventDiagram from "./EventDiagram";
-import SearchBar from "./../Utils/SearchBar";
 import EventTable from "./EventTable";
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
@@ -27,7 +26,6 @@ class DetailView extends ConnectionComponent {
 						<EntityInformation entity={entity} styles={[AppStyles.w50]}/>
 						<EventDiagram styles={[AppStyles.w50]}/>
 					</div>
-					<SearchBar styles={[AppStyles.elementMarginTop]}/>
 					<EventTable entityId={this.props.match.params.entityId} />
 				</Container>
 			</div>
