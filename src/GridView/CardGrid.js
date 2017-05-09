@@ -8,9 +8,18 @@ import { Row, Col } from 'react-grid-system';
 import { css } from 'aphrodite';
 import EntityInformation from './../DetailView/EntityInformation';
 import config from './../config/config';
+import AppStyles from './../AppStyles';
 
 class CardGrid extends ConnectionComponent {
-	
+
+	backgroundColor (status) {
+		return ({backgroundColor: config.status[status].color});
+	}
+
+	backgroundColorLight (status) {
+		return ({backgroundColor: config.status[status].colorLight});
+	}
+
 	render() {
 		if(!this.props.entities) {
 			return <LoadingAnimation/>;
@@ -26,13 +35,21 @@ class CardGrid extends ConnectionComponent {
 						<Col key={index} xs={12} sm={4} md={3}>
 							<Card>
 								<CardTitle
-									style = {{backgroundColor: config.status[childEntity.Status].colorLight}}
+									style={
+										this.backgroundColor(childEntity.Status)
+									}
 									title={childEntity.Name}
+									titleColor={config.colors.textAlternate}
 									subtitle={this.props.entityType.name}/>
-								<CardText>
-									<EntityInformation entity={childEntity} />
+								<CardText
+									style={
+										this.backgroundColorLight(childEntity.Status)}>
+									<EntityInformation entity={childEntity} styles={AppStyles.alternateTextColor}/>
 								</CardText>
-								<CardActions>
+								<CardActions
+									style={
+										this.backgroundColorLight(childEntity.Status)
+									}>
 									<Row>
 										<Col xs={6}>
 											<FlatButton
