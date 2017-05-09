@@ -6,6 +6,7 @@ class EventQueryInputArea extends Component {
     render() {
         return (
             <TextField
+                floatingLabelText={config.descriptions.queryInputFieldHint}
                 name="event-query"
                 hintText={config.descriptions.exampleQuery}
                 multiLine={true}
