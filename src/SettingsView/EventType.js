@@ -1,13 +1,18 @@
 import React from 'react';
-import {Card, CardHeader, CardText} from 'material-ui/Card';
+import {Card, CardHeader, CardText, CardActions} from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
 import EventQueryListItem from  './EventQueryListItem.js';
 import config from './../config/config.js';
 import { css } from 'aphrodite';
 import AppStyles from '../AppStyles';
+import { Row, Col } from 'react-grid-system';
 import {PromiseState} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import ErrorMessage from './../Utils/ErrorMessage.js';
+import IconButton from 'material-ui/IconButton';
+import IconAdd from 'material-ui/svg-icons/content/add';
+import IconDelete from 'material-ui/svg-icons/action/delete';
+import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 import ConfirmationMessage from './../Utils/ConfirmationMessage.js'
 
 class EventType extends ConnectionComponent {
@@ -26,6 +31,12 @@ class EventType extends ConnectionComponent {
 	
 	deleteEventType() {
 		this.props.deleteEventType(this.props.eventType);
+	}
+
+	getEventTypeHeaderButtons() {
+		return [
+			<IconButton><IconEdit/></IconButton>,
+			<IconButton><IconDelete/></IconButton>];
 	}
 
 	render() {
@@ -55,20 +66,11 @@ class EventType extends ConnectionComponent {
 					subtitle={`${config.descriptions.textNumberOfEvents} ${this.props.eventType.NumberOfEvents}`}
 					actAsExpander={true}
 					showExpandableButton={true}
+					children={this.getEventTypeHeaderButtons()}
 				/>
 				<CardText
 					expandable={true}
 					className={css(AppStyles.dFlex)}>
-					<List className={css(AppStyles.w50)}>
-						{queries.map((query) => {
-							return(
-							<EventQueryListItem
-								query={query}
-								deleteQuery={this.props.deleteQuery}
-								key={query.Id}/>);
-							}
-						)}
-					</List>
 					<List className={css(AppStyles.w50)}>
 						{attributes.map((attribute) => { return(
 							<ListItem 
@@ -77,7 +79,22 @@ class EventType extends ConnectionComponent {
 							/>);
 						})}
 					</List>
+					<List className={css(AppStyles.w50)}>
+                        {queries.map((query) => {
+                                return(
+									<EventQueryListItem
+										query={query}
+										deleteQuery={this.props.deleteQuery}
+										key={query.Id}/>);
+                            }
+                        )}
+					</List>
+					<IconButton href="settings/eventType/create"><IconAdd/></IconButton>
+
 				</CardText>
+				<CardActions>
+
+				</CardActions>
 			</Card>
 			</div>
 		);
