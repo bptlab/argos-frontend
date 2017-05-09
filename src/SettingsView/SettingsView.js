@@ -5,6 +5,10 @@ import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import Header from './../Header';
 import EventType from './EventType';
 import SearchBar from './../Utils/SearchBar';
+import { Row } from 'react-grid-system';
+import { css } from 'aphrodite';
+import AppStyles from "./../AppStyles";
+import { Card, CardHeader, CardText } from 'material-ui/Card';
 import config from './../config/config';
 import ErrorMessage from './../Utils/ErrorMessage.js';
 
@@ -19,18 +23,28 @@ class SettingsView extends ConnectionComponent {
 		const optionalActions = this.props.deleteEventTypeResponse;
 		return (
 			<div>
-				<Header title="Event Types"/>
-				<Container>
-					<SearchBar/>
-					{optionalActions && optionalActions.rejected &&
-						<ErrorMessage message={optionalActions.reason} />
-					}
-					{this.props.eventTypes.value.map((eventType) => {
-						return(<EventType
-							eventType={eventType}
-							key={eventType.Id}
-							deleteEventType={this.props.deleteEventType} />);
-					})}
+				<Header title="Settings"/>
+				<Container className={css(AppStyles.elementMarginTop)}>
+					<Row>
+						<Card>
+							<CardHeader
+								title="Event Types"
+								actAsExpander={true}
+								showExpandableButton={true} />
+							<CardText expandable={true}>
+								<Container>
+									<SearchBar fullWidth="true"/>
+									{this.props.eventTypes.value.map((eventType) => {
+										return(<EventType
+											eventType={eventType}
+											key={eventType.Id}
+											deleteEventType={this.props.deleteEventType}
+											fullWidth="true"/>);
+									})}
+								</Container>
+							</CardText>
+						</Card>
+					</Row>
 				</Container>
 			</div>
 		);
