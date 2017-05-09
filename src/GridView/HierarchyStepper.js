@@ -1,66 +1,61 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
+import {connect} from "react-refetch";
+import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import { css } from 'aphrodite';
 import AppStyles from "./../AppStyles";
+import config from "./../config/config";
 
-class HierarchyStepper extends Component {
+
+class HierarchyStepper extends ConnectionComponent {
 	constructor() {
 		super();
-		this.entityTypes = [];
 		this.state = {
 			activeStep: 0,
-			highlitedEntityTypes: []
-		}
+			hierarchy: [],
+		};
+		this.fetchParentEntity = this.fetchParentEntity.bind(this);
 	}
 
 	componentDidMount() {
-		this.updateEntityTypes();
-		const highlitedEntityTypes = this.getHighlitedEntityTypes(this.props.currentEntityTypeId)
 		this.setState({
-			activeStep: highlitedEntityTypes.length,
-			highlitedEntityTypes: highlitedEntityTypes
-		});
-
+			hierarchy: [this.props.getChildEntityTypes(this.props.currentEntity.TypeId, this.props.hierarchy)]
+		}, () => {this.fetchParentEntity(this.props.currentEntity)});
 	}
 
-	updateEntityTypes() {
-		this.props.hierarchy.forEach((hierarchyLayer) => {
-			this.entityTypes = this.entityTypes.concat(hierarchyLayer);
-		})
-	}
-
-	getEntityType(EntityTypeId) {
-		return (this.entityTypes.find((entityType) => {
-			return (entityType.Id === EntityTypeId);
-		}));
-	}
-
-	getHighlitedEntityTypes(currentEntityTypeId) {
-		const currentEntityType = this.getEntityType(currentEntityTypeId);
-
-		if (currentEntityTypeId === -1) {
-			return [];
+	fetchParentEntity(entity) {
+		if (entity.Id !== -1) {
+			this.setState({
+				activeStep: this.state.activeStep + 1,
+				hierarchy: [[entity]].concat(this.state.hierarchy),
+			});
 		}
-		else if (currentEntityType.ParentId === -1) {
-			return [currentEntityType];
-		}
-		else {
-			const parentEntityType = this.getEntityType(currentEntityType.ParentId);
-			return this.getHighlitedEntityTypes(parentEntityType.Id).concat([currentEntityType]);
+		if (entity.ParentId !== -1) {
+			const entityFetch = {
+				entityId: entity.ParentId,
+				successCallback: this.fetchParentEntity,
+			};
+			this.props.lazyEntityFetch(entityFetch);
 		}
 	}
 
-	displayStepLabel(entityType, index) {
-		if(this.state.highlitedEntityTypes.includes(entityType)) {
-			return (
-				<StepLabel
-					key={index}
-					completed={true}>
-					{entityType.Name}
-				</StepLabel>);
+	displayStepLabel(hierarchyLayerInstance, key) {
+		if (hierarchyLayerInstance.TypeId >= 0) {
+			const entityType = this.props.getEntityType(hierarchyLayerInstance, this.props.hierarchy);
+			return(
+				<StepLabel key={key}>
+					<a href={`/grid/${hierarchyLayerInstance.Id}`}>
+						{entityType.Name}: {hierarchyLayerInstance.Name}
+					</a>
+				</StepLabel>
+			);
 		}
 		else {
-			return (<StepLabel key={index}>{entityType.Name}</StepLabel>);
+			return(
+				<StepLabel key={key}>
+					{hierarchyLayerInstance.Name}
+				</StepLabel>
+			);
 		}
 	}
 
@@ -69,11 +64,12 @@ class HierarchyStepper extends Component {
 			<Stepper
 				activeStep={this.state.activeStep}
 				className={css(this.props.styles, AppStyles.elementMarginTop)}>
-				{this.props.hierarchy.map((hierarchyLayer, index) => {
+
+				{this.state.hierarchy.map((hierarchyLayer, index) => {
 					return (
 						<Step key={index}>
-							{hierarchyLayer.map((entityType, index) => {
-								return this.displayStepLabel(entityType, index);
+							{hierarchyLayer.map((hierarchyLayerInstance, index) => {
+								return this.displayStepLabel(hierarchyLayerInstance, index);
 							})}
 						</Step>
 					);
@@ -83,4 +79,12 @@ class HierarchyStepper extends Component {
 	}
 }
 
-export default HierarchyStepper;
+
+export default connect.defaults({fetch: ConnectionComponent.switchFetch})(() => ({
+	lazyEntityFetch: entityFetch => ({
+		entity: {
+			url: config.backendRESTRoute + `/entity/${entityFetch.entityId}`,
+			then: (entity) => {entityFetch.successCallback(entity)},
+		},
+	})
+}))(HierarchyStepper);

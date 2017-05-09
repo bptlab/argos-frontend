@@ -11,7 +11,23 @@ import config from './../config/config.js';
 import Header from "../Header";
 
 class GridView extends ConnectionComponent {
-	
+	constructor() {
+		super();
+		this.getChildEntityTypes = this.getChildEntityTypes.bind(this);
+		this.getEntityType = this.getEntityType.bind(this);
+	}
+
+	getEntityType(entity, hierarchy) {
+		const entityTypes = hierarchy.find(hierarchyArray => {
+			return hierarchyArray.find(entityType => {
+				return entityType.Id === entity.TypeId;
+			});
+		});
+		if (entityTypes) {
+			return entityTypes[0];
+		}
+	}
+
 	getChildEntityTypes(parentEntityTypeId, hierarchy) {
 		let childEntities  = [];
 		hierarchy.forEach(hierarchyLayer => {
@@ -23,17 +39,13 @@ class GridView extends ConnectionComponent {
 	}
 
 	getPageTitle(entity, hierarchy) {
-		const entityTypeInformation = hierarchy.find(hierarchyArray => {
-			return hierarchyArray.find(entityType => {
-				return entityType.Id === entity.TypeId;
-			});
-		});
-		if (entityTypeInformation) {
-			return entityTypeInformation[0].Name + ": " + entity.Name;
+		const entityType = this.getEntityType(entity, hierarchy);
+		if (entityType) {
+			return entityType.Name + ": " + entity.Name;
 		}
 		return "Home";
 	}
-	
+
 	render() {
 		const allFetches = PromiseState.all([this.props.hierarchy, this.props.entity]);
 		const hierarchy = this.props.hierarchy.value;
@@ -47,23 +59,25 @@ class GridView extends ConnectionComponent {
 			<div>
 				<Header title={this.getPageTitle(entity, hierarchy)} status={entity.Status} />
 				<Container>
-				<HierarchyStepper
-					hierarchy={hierarchy}
-					currentEntityTypeId={entity.TypeId}/>
-				<SearchBar/>
-				{childEntityTypes.map((childEntityType) => {
-					return(
-						<div key={`div-${childEntityType.Id}`}>
-							<h1>{childEntityType.Name}</h1>
-							<DonutChart styles={[AppStyles.elementMarginTop]} />
-							<CardGrid
-								styles={[AppStyles.elementMarginTop]}
-								key={childEntityType.Id}
-								currentEntity={entity}
-								entityType={childEntityType} />
-						</div>
-					);
-				})}
+					<HierarchyStepper
+						hierarchy={hierarchy}
+						currentEntity={entity}
+						getEntityType={this.getEntityType}
+						getChildEntityTypes={this.getChildEntityTypes}/>
+					<SearchBar/>
+					{childEntityTypes.map((childEntityType) => {
+						return(
+							<div key={`div-${childEntityType.Id}`}>
+								<h1>{childEntityType.Name}</h1>
+								<DonutChart styles={[AppStyles.elementMarginTop]} />
+								<CardGrid
+									styles={[AppStyles.elementMarginTop]}
+									key={childEntityType.Id}
+									currentEntity={entity}
+									entityType={childEntityType} />
+							</div>
+						);
+					})}
 				</Container>
 			</div>
 		);
