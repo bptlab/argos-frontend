@@ -17,6 +17,9 @@ const AppStyles = StyleSheet.create({
 	alignItemsCenter: {
 		alignItems: 'center',
 	},
+    extAlignCenter: {
+		textAlign: "center",
+	},
 
 	rotate90: {
 		transform: 'rotate(90)',
@@ -33,11 +36,12 @@ const AppStyles = StyleSheet.create({
 	elementMarginTop: {
 		marginTop: '30px'
 	},
-
+	marginAllSites: {
+		margin: '30px'
+	},
 	headerBorderDetail: {
 		borderBottom: '10px solid',
 	},
-
 	capitalize: {
 		textTransform: 'capitalize',
 		fontWeight: 'bold'
@@ -45,9 +49,10 @@ const AppStyles = StyleSheet.create({
 	alternateTextColor: {
 		color: config.colors.textAlternate
 	},
-    fontSize24: {
-		fontSize: '24px'
-	}
-});
-
+	fontSize24: {
+		fontSize: '24px'
+	}
+});
+
+
 export default AppStyles;
