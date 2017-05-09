@@ -41,10 +41,11 @@ class HierarchyStepper extends ConnectionComponent {
 
 	displayStepLabel(hierarchyLayerInstance, key) {
 		if (hierarchyLayerInstance.TypeId >= 0) {
+			const entityType = this.props.getEntityType(hierarchyLayerInstance, this.props.hierarchy);
 			return(
 				<StepLabel key={key}>
 					<a href={`/grid/${hierarchyLayerInstance.Id}`}>
-						{this.props.getEntityType(hierarchyLayerInstance, this.props.hierarchy).Name}: {hierarchyLayerInstance.Name}
+						{entityType.Name}: {hierarchyLayerInstance.Name}
 					</a>
 				</StepLabel>
 			);
@@ -67,14 +68,16 @@ class HierarchyStepper extends ConnectionComponent {
 				{this.state.hierarchy.map((hierarchyLayer, index) => {
 					return (
 						<Step key={index}>
-							{hierarchyLayer.map((entityType, index) => {return(
-								this.displayStepLabel(entityType, index)
-							);})}
+							{hierarchyLayer.map((hierarchyLayerInstance, index) => {
+								return(
+									this.displayStepLabel(hierarchyLayerInstance, index)
+								);
+							})}
 						</Step>
 					);
 				})}
 			</Stepper>
-		)
+		);
 	}
 }
 
