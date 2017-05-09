@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
-import {connect, PromiseState} from "react-refetch";
+import {connect} from "react-refetch";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import { css } from 'aphrodite';
 import AppStyles from "./../AppStyles";
@@ -44,7 +44,7 @@ class HierarchyStepper extends ConnectionComponent {
             return(
 				<StepLabel key={key}>
 					<a href={`/grid/${hierarchyLayerInstance.Id}`}>
-						{this.props.getEntityType(hierarchyLayerInstance, this.props.hierarchy).Name}: {hierarchyLayerInstance.Name}
+						{this.props.getEntityType(hierarchyLayerInstance, this.props.hierarchy)[0].Name}: {hierarchyLayerInstance.Name}
 					</a>
 				</StepLabel>
             );
