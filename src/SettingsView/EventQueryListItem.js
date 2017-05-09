@@ -35,7 +35,7 @@ class EventQueryListItem extends Component {
 					<IconEdit/>
 				</IconButton>
 				<IconButton
-					onTouchTap={() => {this.confirmationMessage.handleOpen()}}>
+					onTouchTap={() => {this.confirmationMessage.handleOpen();}}>
 					<IconDelete/>
 				</IconButton>
 			</div>
