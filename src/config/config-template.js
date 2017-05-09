@@ -6,8 +6,8 @@ const config = {
 		primaryDark: "#000051",
 		primary: "#1a237e",
 		primaryLight: "#534bae",
-		accent: "#ffc107",
-		accentLight: "#fff350",
+		accent: "#C99700",
+		accentLight: "#ffc107",
 		text: "#424242",
 		textAlternate: "#ffffff",
 		border: "#e0e0e0",
@@ -16,7 +16,9 @@ const config = {
 		error: "#B71C1C",
 	},
 	descriptions: {
-		textNumberOfEvents: "Number of events"
+		textNumberOfEvents: "Number of events",
+        exampleQuery: "INSERT INTO ExampleType SELECT * FROM PATTERN [[2] SimpleType]",
+		queryInputFieldHint: "Esper EPL Query"
 	},
 	messages: {
 		notFound: "Error 404. The requested page does not exist. You found a glitch in the matrix.",
