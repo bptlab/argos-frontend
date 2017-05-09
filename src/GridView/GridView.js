@@ -58,7 +58,9 @@ class GridView extends ConnectionComponent {
 				<Container>
 				<HierarchyStepper
 					hierarchy={hierarchy}
-					currentEntityTypeId={entity.TypeId}/>
+					currentEntity={entity}
+					getEntityType={this.getEntityType}
+					getChildEntityTypes={this.getChildEntityTypes}/>
 				<SearchBar/>
 				{childEntityTypes.map((childEntityType) => {
 					return(
