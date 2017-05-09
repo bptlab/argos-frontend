@@ -48,6 +48,10 @@ const AppStyles = StyleSheet.create({
 	capitalize: {
 		textTransform: 'capitalize',
 		fontWeight: 'bold'
+	},
+
+    fontSize24: {
+		fontSize: '24px'
 	}
 });
 
