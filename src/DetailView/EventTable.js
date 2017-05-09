@@ -3,6 +3,7 @@ import {connect, PromiseState} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import EventTabs from './EventTabs';
+import FilterBar from "./../Utils/FilterBar";
 import { css } from 'aphrodite';
 import AppStyles from './../AppStyles';
 import config from './../config/config';
@@ -77,6 +78,15 @@ class EventTable extends ConnectionComponent {
 		);
 	}
 
+	loadFilterBar() {
+		return (
+			<FilterBar
+			styles={[AppStyles.elementMarginTop]}
+			onFiltersChange={this.handleFilterChange}
+			autoCompleteSource={this.props.eventTypeAttributes.value.map(attributeInfo => attributeInfo.Name)} />
+		);
+	}
+
 	render() {
 		const eventTypes = this.props.eventTypes.value;
 		const connectionIncomplete = super.render(this.props.eventTypes);
@@ -84,11 +94,16 @@ class EventTable extends ConnectionComponent {
 			return connectionIncomplete;
 		}
 		let tableContent = "";
+		let filterBar = "";
 		if (this.props.eventTypeAttributes && this.props.events) {
 			tableContent = this.loadTableContent();
+			if (this.props.eventTypeAttributes.value) {
+				filterBar = this.loadFilterBar();
+			}
 		}
 		return (
 			<div>
+				{filterBar}
 				<EventTabs
 					eventTypes={eventTypes}
 					eventTypeChangeHandler={this.handleActiveEventTypeChange}
