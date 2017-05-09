@@ -1,4 +1,5 @@
 import { StyleSheet } from 'aphrodite';
+import config from './config/config';
 
 const AppStyles = StyleSheet.create({
 	dFlex: {
@@ -17,10 +18,6 @@ const AppStyles = StyleSheet.create({
 		alignItems: 'center',
 	},
 
-    textAlignCenter: {
-		textAlign: "center",
-	},
-
 	rotate90: {
 		transform: 'rotate(90)',
 	},
@@ -37,10 +34,6 @@ const AppStyles = StyleSheet.create({
 		marginTop: '30px'
 	},
 
-    marginAllSites: {
-		margin: '30px'
-	},
-
 	headerBorderDetail: {
 		borderBottom: '10px solid',
 	},
@@ -49,10 +42,12 @@ const AppStyles = StyleSheet.create({
 		textTransform: 'capitalize',
 		fontWeight: 'bold'
 	},
-
-    fontSize24: {
-		fontSize: '24px'
-	}
-});
-
+	alternateTextColor: {
+		color: config.colors.textAlternate
+	},
+    fontSize24: {
+		fontSize: '24px'
+	}
+});
+
 export default AppStyles;
