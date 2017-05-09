@@ -24,7 +24,9 @@ class CreateEventTypeView extends ConnectionComponent {
     onInputChange(event) {
         const currentAttributeId = event.target.id.toString();
         const updatedAttributes = this.state.attributes;
-        const attributeIds = updatedAttributes.map(function(attribute){return attribute.id;});
+        const attributeIds = updatedAttributes.map(attribute => {
+            return attribute.id;
+        });
         const currentAttributeIndex = attributeIds.indexOf(currentAttributeId);
 
         if (!event.target.value) {
@@ -56,24 +58,31 @@ class CreateEventTypeView extends ConnectionComponent {
                 <Container>
                     <div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>
                         <Col>
-                            <Row>
-                                <Col md={4}> Name: </Col>
-                                <Col md={8}> <TextField hintText="Event Type Name" fullWidth="true"/> </Col>
+                            <Row bottom="xs">
+                                <Col>
+                                    <TextField floatingLabelText="Event Type Name" fullWidth="true" />
+                                </Col>
                             </Row>
                             <Row>
-                                <Col md={4}> Timestamp Attribute: </Col>
-                                <Col md={8}> <TextField hintText="Attribute Name" fullWidth="true"/> </Col>
+                                <Col>
+                                    <TextField floatingLabelText="Timestamp Attribute" fullWidth="true"/>
+                                </Col>
                             </Row>
-                            <Row>
+                            <Row className={css(AppStyles.elementMarginTop)}>
                                 <Col md={4}> Attributes: </Col>
-                                <Col md={8}>{this.state.attributes.map((attribute) =>
-                                    <TextField key={attribute.id}
-                                                    id={attribute.id}
-                                                    value={attribute.value}
-                                                    hintText="Attribute Name"
-                                                    onChange={this.onInputChange.bind(this)}
-                                                    fullWidth="true"/>
-                                )}</Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    {this.state.attributes.map((attribute) =>
+                                        <TextField
+                                            key={attribute.id}
+                                            id={attribute.id}
+                                            value={attribute.value}
+                                            hintText="Attribute Name"
+                                            onChange={this.onInputChange.bind(this)}
+                                            fullWidth="true"/>
+                                    )}
+                                </Col>
                             </Row>
                         </Col>
                     </div>
