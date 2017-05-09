@@ -33,10 +33,7 @@ class FilterBar extends Component {
 
 	onFilterChange(filter) {
 		let updatedFilters = this.state.filter;
-		const filterIds = this.state.filter.map(oldFilter => {
-			return oldFilter.id;
-		});
-		const currentFilterIndex = filterIds.indexOf(filter.id);
+		const currentFilterIndex = this.getPositionOfFilterInState(filter);
 
 		updatedFilters[currentFilterIndex] = filter;
 
@@ -44,18 +41,7 @@ class FilterBar extends Component {
 			updatedFilters.splice(currentFilterIndex, 1);
 		}
 
-		const emptyFilterExists = updatedFilters.some(filter => {
-			return !filter.value && !filter.column;
-		});
-
-		if(!emptyFilterExists) {
-			const newFilterId = this.state.lastFilterId + 1;
-			const newFilter = {id: `${newFilterId}`, value: '', column: null};
-			updatedFilters = updatedFilters.concat([newFilter]);
-			this.setState({
-				lastFilterId: newFilterId,
-			});
-		}
+		updatedFilters = this.assureThatEmptyFilterExists(updatedFilters);
 
 		this.setState({
 				filter: updatedFilters
@@ -64,25 +50,47 @@ class FilterBar extends Component {
 		);
 	}
 
+	getPositionOfFilterInState(filter) {
+		const filterIds = this.state.filter.map(oldFilter => {
+			return oldFilter.id;
+		});
+		return filterIds.indexOf(filter.id);
+	}
+
+	assureThatEmptyFilterExists(filters) {
+		const emptyFilterExists = filters.some(filter => {
+			return !filter.value && !filter.column;
+		});
+
+		if(!emptyFilterExists) {
+			const newFilterId = this.state.lastFilterId + 1;
+			const newFilter = {id: `${newFilterId}`, value: '', column: null};
+			filters = filters.concat([newFilter]);
+			this.setState({
+				lastFilterId: newFilterId,
+			});
+		}
+
+		return filters;
+	}
+
 	render() {
 		return (
-			<div className={css(this.props.styles)}>
-				<Row>
-					{this.state.filter.map(filter => {
-						return(
-							<Col sm={4} key={filter.id}>
-								<SearchBar
-									id={filter.id}
-									value={filter.value}
-									column={filter.column}
-									autoCompleteSource={this.props.autoCompleteSource}
-									onInputChange={this.onFilterChange}
-								/>
-							</Col>
-						);
-					})}
-				</Row>
-			</div>
+			<Row className={css(this.props.styles)}>
+				{this.state.filter.map(filter => {
+					return(
+						<Col sm={4} key={filter.id}>
+							<SearchBar
+								id={filter.id}
+								value={filter.value}
+								column={filter.column}
+								autoCompleteSource={this.props.autoCompleteSource}
+								onInputChange={this.onFilterChange}
+							/>
+						</Col>
+					);
+				})}
+			</Row>
 		);
 	}
 }
