@@ -9,7 +9,6 @@ import {PromiseState} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import ErrorMessage from './../Utils/ErrorMessage.js';
 
-
 class EventType extends ConnectionComponent {
 	constructor(props) {
 		super(props);
