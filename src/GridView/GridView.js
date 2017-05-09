@@ -18,11 +18,12 @@ class GridView extends ConnectionComponent {
 	}
 
     getEntityType(entity, hierarchy) {
-        return hierarchy.find(hierarchyArray => {
+        const entityTypes =  hierarchy.find(hierarchyArray => {
             return hierarchyArray.find(entityType => {
                 return entityType.Id === entity.TypeId;
             });
         });
+        return entityTypes[0];
     }
 	
 	getChildEntityTypes(parentEntityTypeId, hierarchy) {
@@ -38,7 +39,7 @@ class GridView extends ConnectionComponent {
 	getPageTitle(entity, hierarchy) {
 		const entityType = this.getEntityType(entity, hierarchy);
 		if (entityType) {
-			return entityType[0].Name + ": " + entity.Name;
+			return entityType.Name + ": " + entity.Name;
 		}
 		return "Home";
 	}
