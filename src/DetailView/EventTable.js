@@ -105,7 +105,9 @@ class EventTable extends ConnectionComponent {
 	}
 
 	handleActiveEventTypeChange(eventTypeId) {
-		this.setState({filter: []});
+		this.setState({
+			filter: [],
+		});
 		this.props.lazyEventLoading(eventTypeId);
 	}
 
