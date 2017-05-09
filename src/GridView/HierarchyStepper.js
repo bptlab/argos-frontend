@@ -69,9 +69,7 @@ class HierarchyStepper extends ConnectionComponent {
 					return (
 						<Step key={index}>
 							{hierarchyLayer.map((hierarchyLayerInstance, index) => {
-								return(
-									this.displayStepLabel(hierarchyLayerInstance, index)
-								);
+								return this.displayStepLabel(hierarchyLayerInstance, index);
 							})}
 						</Step>
 					);
