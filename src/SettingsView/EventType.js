@@ -8,6 +8,7 @@ import AppStyles from '../AppStyles';
 import {PromiseState} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import ErrorMessage from './../Utils/ErrorMessage.js';
+import ConfirmationMessage from './../Utils/ConfirmationMessage.js'
 
 class EventType extends ConnectionComponent {
 	constructor(props) {
@@ -16,20 +17,20 @@ class EventType extends ConnectionComponent {
 			expanded: false,
 		};
 		this.handleExpandChange = this.handleExpandChange.bind(this);
-		this.handleEventTypeDeletion = this.handleEventTypeDeletion.bind(this);
+		this.deleteEventType = this.deleteEventType.bind(this);
 	}
 
 	handleExpandChange(expanded) {
 		this.setState({expanded: expanded});
 	}
 	
-	handleEventTypeDeletion() {
+	deleteEventType() {
 		this.props.deleteEventType(this.props.eventType);
 	}
 
 	render() {
 		const allFetches = PromiseState.all([this.props.queries, this.props.attributes]);
-		const optionalActions = this.props.deleteQueryeResponse;
+		const optionalActions = this.props.deleteQueryResponse;
 		const queries = this.props.queries.value;
 		const attributes = this.props.attributes.value;
 		const connectionIncomplete = super.render(allFetches);
@@ -41,6 +42,11 @@ class EventType extends ConnectionComponent {
 			{optionalActions && optionalActions.rejected &&
 				<ErrorMessage message={optionalActions.reason} />
 			}
+			<ConfirmationMessage
+				actionToPerform={this.deleteEventType}
+				ref={(input) => {this.confirmationMessage = input;}}>
+				{config.messages.deleteEventTypeMessage}
+			</ConfirmationMessage>
 			<Card
 				expanded={this.state.expanded}
 				onExpandChange={this.handleExpandChange}>
@@ -82,7 +88,7 @@ export default ConnectionComponent.argosConnector()(props => ({
 	queries: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/queries`,
 	attributes: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/attributes`,
 	deleteQuery: query => ({
-		deleteQueryeResponse: {
+		deleteQueryResponse: {
 			url: config.backendRESTRoute + `/eventquery/${query.Id}/delete`,
 			method: 'DELETE',
 			body: "",
