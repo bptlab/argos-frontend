@@ -10,23 +10,23 @@ import EntityInformation from './../DetailView/EntityInformation';
 import config from './../config/config';
 
 class CardGrid extends ConnectionComponent {
-    backgroundColor (status) {
+	backgroundColor (status) {
 		if (status in config.status) {
 			return ({backgroundColor: config.status[status].color});
 		}
 		else {
 			return {backgroundColor: config.status["UNDEFINED"].color};
 		}
-    }
+	}
 
 	backgroundColorLight (status) {
-    	if (status in config.status) {
-		    return ({backgroundColor: config.status[status].colorLight});
-	    }
-	    else {
-		    return {backgroundColor: config.status["UNDEFINED"].colorLight};
-	    }
-    }
+		if (status in config.status) {
+			return ({backgroundColor: config.status[status].colorLight});
+		}
+		else {
+			return {backgroundColor: config.status["UNDEFINED"].colorLight};
+		}
+	}
 
 	render() {
 		if(!this.props.entities) {
