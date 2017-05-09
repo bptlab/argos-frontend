@@ -16,14 +16,16 @@ class CreateEntityMappingView extends ConnectionComponent {
         super(props);
         this.state = {
             selectedEventTypeId: null,
-            selectedEntityTypeId: null
+            selectedEntityTypeId: null,
+            mappings: [{eventTypeAttribute: null, entityTypeAttribute: null}]
         };
         this.handleEventTypeChange = this.handleEventTypeChange.bind(this);
         this.handleEntityTypeChange = this.handleEntityTypeChange.bind(this);
+        this.handleEventTypeAttributeChange = this.handleEventTypeAttributeChange.bind(this);
+        this.handleEntityTypeAttributeChange = this.handleEntityTypeAttributeChange.bind(this);
     }
 
     getAllEntityTypes(hierarchy) {
-
         if (hierarchy) {
             let allEntities = [];
             hierarchy.forEach((hierarchyLayer) => {
@@ -38,10 +40,94 @@ class CreateEntityMappingView extends ConnectionComponent {
 
     handleEventTypeChange(event, index, value) {
         this.setState({selectedEventTypeId: value});
+        this.props.lazyEventTypeAttributeLoading(value);
     }
 
     handleEntityTypeChange(event, index, value) {
         this.setState({selectedEntityTypeId: value});
+        this.props.lazyEntityTypeAttributeLoading(value);
+    }
+
+    handleEventTypeAttributeChange(event, index, value) {
+        let mappings = this.state.mappings;
+        mappings[0].eventTypeAttribute = value;
+        this.setState({mappings});
+
+    }
+
+    handleEntityTypeAttributeChange(event, index, value) {
+        let mappings = this.state.mappings;
+        mappings[0].entityTypeAttribute = value;
+        this.setState({mappings});
+    }
+
+    loadAttributes() {
+        const attributesFetchingIncomplete = super.render(PromiseState.all(this.props.entityTypeAttributes, this.props.eventTypeAttributes));
+        const eventTypeAttributes = this.props.eventTypeAttributes.value;
+        const entityTypeAttributes = this.props.entityTypeAttributes.value;
+        if(attributesFetchingIncomplete) {
+            return attributesFetchingIncomplete;
+        }
+        return (
+            <Row>
+                <Col md={6}>
+                    <SelectField
+                        floatingLabelText="Select Event Type Attribute"
+                        fullWidth={true}
+                        value={this.state.mappings[0].eventTypeAttribute}
+                        onChange={this.handleEventTypeAttributeChange}>
+                        {eventTypeAttributes.map(
+                            (eventTypeAttribute, key) => {
+                                return <MenuItem
+                                    key={key}
+                                    value={eventTypeAttribute.Id}
+                                    primaryText={eventTypeAttribute.Name}/>;
+                            })
+                        }
+                    </SelectField>
+                </Col>
+                <Col md={6}>
+                    <SelectField
+                        floatingLabelText="Select Entity Type Attribute"
+                        fullWidth={true}
+                        value={this.state.mappings[0].entityTypeAttribute}
+                        onChange={this.handleEntityTypeAttributeChange}>
+                        {entityTypeAttributes.map(
+                            (entityTypeAttribute, key) => {
+                                return <MenuItem
+                                    key={key}
+                                    value={entityTypeAttribute.Id}
+                                    primaryText={entityTypeAttribute.Name}/>;
+                            })
+                        }
+                    </SelectField>
+                </Col>
+            </Row>
+        );
+    }
+
+    loadEntityTypeAttributes() {
+        const entityTypeAttributesFetchingIncomplete = super.render(PromiseState.all(this.props.entityTypeAttributes));
+        const entityTypeAttributes = this.props.entityTypeAttributes.value;
+        if(entityTypeAttributesFetchingIncomplete) {
+            return entityTypeAttributesFetchingIncomplete;
+        }
+        return (
+            <SelectField
+                floatingLabelText="Select Entity Type Attribute"
+                fullWidth={true}
+                value={this.state.mappings[0].entityTypeAttribute}
+                onChange={this.handleEntityTypeAttributeChange}>
+                {entityTypeAttributes.map(
+                    (entityTypeAttribute, key) => {
+                        return <MenuItem
+                            key={key}
+                            value={entityTypeAttribute.Id}
+                            primaryText={entityTypeAttribute.Name}/>;
+                    })
+                }
+            </SelectField>
+        );
     }
 
     render() {
@@ -51,6 +137,10 @@ class CreateEntityMappingView extends ConnectionComponent {
         const connectionIncomplete = super.render(allFetches);
         if(connectionIncomplete) {
             return connectionIncomplete;
+        }
+        let attributeFields = "";
+        if (this.props.eventTypeAttributes && this.props.entityTypeAttributes) {
+            attributeFields = this.loadAttributes();
         }
         return (
             <div>
@@ -91,6 +181,7 @@ class CreateEntityMappingView extends ConnectionComponent {
                                 </SelectField>
                             </Col>
                         </Row>
+                        {attributeFields}
                         <div className={css(AppStyles.textAlignCenter)}>
                             <RaisedButton
                                 label="Abort"
@@ -114,5 +205,11 @@ class CreateEntityMappingView extends ConnectionComponent {
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
     eventTypes:  config.backendRESTRoute + `/eventtypes`,
-    entityTypeHierarchy: config.backendRESTRoute + `/entitytype/hierarchy`
+    entityTypeHierarchy: config.backendRESTRoute + `/entitytype/hierarchy`,
+    lazyEventTypeAttributeLoading: eventTypeId => ({
+        eventTypeAttributes: config.backendRESTRoute + `/eventtype/${eventTypeId}/attributes`
+    }),
+    lazyEntityTypeAttributeLoading: entityTypeId => ({
+        entityTypeAttributes: config.backendRESTRoute + `/entityType/${entityTypeId}/attributes`
+    }),
 }))(CreateEntityMappingView);
