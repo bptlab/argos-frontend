@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField';
 import {Container} from "react-grid-system";
 import RaisedButton from "material-ui/RaisedButton";
 import IconSave from "material-ui/svg-icons/content/save";
-import IconAbort from "material-ui/svg-icons/navigation/cancel";
+import IconCancel from "material-ui/svg-icons/navigation/cancel";
 import {Table, TableBody} from 'material-ui/Table' ;
 import { Row, Col } from 'react-grid-system';
 import Header from './../Header';
@@ -12,7 +12,7 @@ import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
 
 
-class NewEventTypeView extends ConnectionComponent {
+class CreateEventTypeView extends ConnectionComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -80,9 +80,17 @@ class NewEventTypeView extends ConnectionComponent {
                             </TableBody>
                         </Table>
                     </div>
-                    <div>
-                        <RaisedButton label="Abort" icon={<IconAbort/>}/>
-                        <RaisedButton label="Save" icon={<IconSave/>}/>
+                    <div className={css(AppStyles.textAlignCenter)}>
+                       <RaisedButton
+                           label="Abort"
+                           icon={<IconCancel/>}
+                           className={css(AppStyles.marginAllSites)}
+                           secondary={true} />
+                        <RaisedButton
+                            label="Save"
+                            icon={<IconSave/>}
+                            className={css(AppStyles.marginAllSites)}
+                            primary={true} />
                     </div>
                 </Container>
             </div>
@@ -90,4 +98,4 @@ class NewEventTypeView extends ConnectionComponent {
     }
 }
 
-export default NewEventTypeView;
+export default CreateEventTypeView;

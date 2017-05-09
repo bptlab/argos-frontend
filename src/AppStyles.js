@@ -17,7 +17,7 @@ const AppStyles = StyleSheet.create({
 		alignItems: 'center',
 	},
 
-	textAlignCenter: {
+    textAlignCenter: {
 		textAlign: "center",
 	},
 
