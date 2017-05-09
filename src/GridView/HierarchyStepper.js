@@ -11,8 +11,8 @@ class HierarchyStepper extends ConnectionComponent {
 	constructor() {
 		super();
 		this.state = {
-            activeStep: 0,
-            hierarchy: [],
+			activeStep: 0,
+			hierarchy: [],
 		};
 		this.fetchParentEntity = this.fetchParentEntity.bind(this);
 	}
@@ -25,36 +25,36 @@ class HierarchyStepper extends ConnectionComponent {
 
 	fetchParentEntity(entity) {
 		if (entity.Id !== -1) {
-            this.setState({
-                activeStep: this.state.activeStep + 1,
-                hierarchy: [[entity]].concat(this.state.hierarchy),
-            });
+			this.setState({
+				activeStep: this.state.activeStep + 1,
+				hierarchy: [[entity]].concat(this.state.hierarchy),
+			});
 		}
-        if (entity.ParentId !== -1) {
-            const entityFetch = {
-                entityId: entity.ParentId,
-                successCallback: this.fetchParentEntity,
+		if (entity.ParentId !== -1) {
+			const entityFetch = {
+				entityId: entity.ParentId,
+				successCallback: this.fetchParentEntity,
 			};
-            this.props.lazyEntityFetch(entityFetch);
-        }
+			this.props.lazyEntityFetch(entityFetch);
+		}
 	}
 
 	displayStepLabel(hierarchyLayerInstance, key) {
 		if (hierarchyLayerInstance.TypeId >= 0) {
-            return(
+			return(
 				<StepLabel key={key}>
 					<a href={`/grid/${hierarchyLayerInstance.Id}`}>
-						{this.props.getEntityType(hierarchyLayerInstance, this.props.hierarchy)[0].Name}: {hierarchyLayerInstance.Name}
+						{this.props.getEntityType(hierarchyLayerInstance, this.props.hierarchy).Name}: {hierarchyLayerInstance.Name}
 					</a>
 				</StepLabel>
-            );
+			);
 		}
 		else {
-            return(
+			return(
 				<StepLabel key={key}>
-                    {hierarchyLayerInstance.Name}
+					{hierarchyLayerInstance.Name}
 				</StepLabel>
-            );
+			);
 		}
 	}
 
@@ -80,10 +80,10 @@ class HierarchyStepper extends ConnectionComponent {
 
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(() => ({
-    lazyEntityFetch: entityFetch => ({
-        entity: {
-            url: config.backendRESTRoute + `/entity/${entityFetch.entityId}`,
-            then: (entity) => {entityFetch.successCallback(entity)},
-        },
-    })
+	lazyEntityFetch: entityFetch => ({
+		entity: {
+			url: config.backendRESTRoute + `/entity/${entityFetch.entityId}`,
+			then: (entity) => {entityFetch.successCallback(entity)},
+		},
+	})
 }))(HierarchyStepper);
