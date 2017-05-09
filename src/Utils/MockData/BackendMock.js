@@ -94,7 +94,7 @@ class BackendMock {
             association.eventTypes.forEach(
 				(eventType) => {
 					if (eventType.Id === parseInt(params[1], 10)) {
-                        requestedEventType = eventType ;
+                        requestedEventType = eventType;
 					}
 				});
 		});
