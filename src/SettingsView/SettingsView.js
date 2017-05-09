@@ -6,6 +6,7 @@ import Header from './../Header';
 import EventType from './EventType';
 import SearchBar from './../Utils/SearchBar';
 import config from './../config/config';
+import ErrorMessage from './../Utils/ErrorMessage.js';
 
 
 class SettingsView extends ConnectionComponent {
@@ -15,11 +16,15 @@ class SettingsView extends ConnectionComponent {
 		if(connectionIncomplete) {
 			return connectionIncomplete;
 		}
+		const optionalActions = this.props.deleteEventTypeResponse;
 		return (
 			<div>
 				<Header title="Event Types"/>
 				<Container>
 					<SearchBar/>
+					{optionalActions && optionalActions.rejected &&
+						<ErrorMessage message={optionalActions.reason} />
+					}
 					{this.props.eventTypes.value.map((eventType) => {
 						return(<EventType
 							eventType={eventType}
@@ -35,7 +40,7 @@ class SettingsView extends ConnectionComponent {
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(() => ({
 	eventTypes: config.backendRESTRoute + `/eventtypes`,
 	deleteEventType: eventType => ({
-		postLikeResponse: {
+		deleteEventTypeResponse: {
 			url: config.backendRESTRoute + `/eventtype/${eventType.Id}/delete`,
 			method: 'DELETE',
 			body: "",
