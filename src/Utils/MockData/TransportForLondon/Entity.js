@@ -15,6 +15,7 @@ const Entity = [
 		ParentId:	-1,
 		Name:		"bus",
 		Status:		"FAILURE",
+		HasChildren: true,
 		Attributes: [
 			{
 				Name:	"isScheduledService",
@@ -32,6 +33,7 @@ const Entity = [
 		ParentId:	-1,
 		Name:		"tube",
 		Status:		"RUNNING",
+		HasChildren: true,
 		Attributes: [
 			{
 				Name:	"isScheduledService",
@@ -52,6 +54,7 @@ const Entity = [
 		ParentId:	10,
 		Name:		"9",
 		Status:		"RUNNING",
+		HasChildren: true,
 		Attributes: [
 			{
 				Name: 	"serviceTypes",
@@ -71,6 +74,7 @@ const Entity = [
 		ParentId:	10,
 		Name:		"39",
 		Status:		"RUNNING",
+		HasChildren: true,
 		Attributes: [
 			{
 				Name: 	"serviceTypes",
@@ -91,6 +95,7 @@ const Entity = [
 		ParentId:	20,
 		Name:		"Victoria",
 		Status:		"RUNNING",
+		HasChildren: true,
 		Attributes: [
 			{
 				Name: 	"serviceTypes",
@@ -115,6 +120,7 @@ const Entity = [
 		ParentId:	20,
 		Name:		"Waterloo & City",
 		Status:		"RUNNING",
+		HasChildren: true,
 		Attributes: [
 			{
 				Name: 	"serviceTypes",
@@ -137,6 +143,7 @@ const Entity = [
 		ParentId:	101,
 		Name:		"Green Park Station",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: [
 			{
 				Name: "lat",
@@ -154,6 +161,7 @@ const Entity = [
 		ParentId:	101,
 		Name:		"High Street Kensington Station",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: []
 	},
 	{
@@ -162,6 +170,7 @@ const Entity = [
 		ParentId:	101,
 		Name:		"Hyde Park Corner Station",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: []
 	},
 	{
@@ -170,6 +179,7 @@ const Entity = [
 		ParentId:	101,
 		Name:		"Knightsbridge Station  / Harrods",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: []
 	},
 	{
@@ -178,6 +188,7 @@ const Entity = [
 		ParentId:	101,
 		Name:		"Warwick Gardens",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: []
 	},
 		/* BUS LINE 39 */
@@ -187,6 +198,7 @@ const Entity = [
 		ParentId:	102,
 		Name:		"Putney Bridge Station",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: []
 	},
 	{
@@ -195,6 +207,7 @@ const Entity = [
 		ParentId:	102,
 		Name:		"Replingham Road",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: []
 	},
 	{
@@ -203,6 +216,7 @@ const Entity = [
 		ParentId:	102,
 		Name:		"Southfields Station",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: []
 	},
 	{
@@ -211,6 +225,7 @@ const Entity = [
 		ParentId:	102,
 		Name:		"Clapham Junction Station",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: []
 	},
 	{
@@ -219,6 +234,7 @@ const Entity = [
 		ParentId:	102,
 		Name:		"St John's Avenue",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: []
 	},
 		/* TUBE LINE Victoria */
@@ -228,6 +244,7 @@ const Entity = [
 		ParentId:	201,
 		Name:		"Blackhorse Road Underground Station",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: []
 	},
 	{
@@ -236,6 +253,7 @@ const Entity = [
 		ParentId:	201,
 		Name:		"Brixton Underground Station",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: []
 	},
 	{
@@ -244,6 +262,7 @@ const Entity = [
 		ParentId:	201,
 		Name:		"Euston Underground Station",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: []
 	},
 	{
@@ -252,6 +271,7 @@ const Entity = [
 		ParentId:	201,
 		Name:		"Finsbury Park Underground Station",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: []
 	},
 	{
@@ -260,6 +280,7 @@ const Entity = [
 		ParentId:	201,
 		Name:		"Green Park Underground Station",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: []
 	},
 	/* TUBE LINE Waterloo & City */
@@ -269,6 +290,7 @@ const Entity = [
 		ParentId:	202,
 		Name:		"Bank Underground Station",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: []
 	},
 	{
@@ -277,6 +299,7 @@ const Entity = [
 		ParentId:	202,
 		Name:		"Waterloo Underground Station",
 		Status:		"RUNNING",
+		HasChildren: false,
 		Attributes: []
 	},
 ];
