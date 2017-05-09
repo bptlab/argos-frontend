@@ -29,7 +29,8 @@ class EventType extends ConnectionComponent {
 
 	render() {
 		const allFetches = PromiseState.all([this.props.queries, this.props.attributes]);
-		const optionalActions =this.props.deleteQueryeResponse;
+		const optionalActions = this.props.deleteQueryeResponse;
+		console.log(optionalActions);
 		const queries = this.props.queries.value;
 		const attributes = this.props.attributes.value;
 		const connectionIncomplete = super.render(allFetches);
@@ -39,7 +40,7 @@ class EventType extends ConnectionComponent {
 		return (
 			<div>
 			{optionalActions && optionalActions.rejected &&
-				<ErrorMessage message={optionalActions.value} />
+				<ErrorMessage message={optionalActions.reason} />
 			}
 			<Card
 				expanded={this.state.expanded}

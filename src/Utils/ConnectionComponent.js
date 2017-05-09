@@ -31,7 +31,13 @@ class ConnectionComponent extends Component {
 			handleResponse: function (response) {
 				if(response.headers.get('content-type').includes('text/plain')
 					&& response.headers.get('content-length') !== '0') {
-					return response.text();
+					if(response.status >= 200 && response.statusCode < 300) {
+						return response.text();
+					} else {
+						return response.text().then(function (cause) {
+							return Promise.reject(cause);
+						});
+					}
 
 				} else if(response.headers.get('content-type').includes('application/json')
 					&& response.headers.get('content-length') !== '0') {
