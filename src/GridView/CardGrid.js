@@ -34,9 +34,10 @@ class CardGrid extends ConnectionComponent {
 								<CardActions>
 									<Row>
 										<Col xs={6}>
-											<FlatButton
-												label="Children"
-												href={`/grid/${childEntity.Id}`}/>
+											{childEntity.HasChildren &&
+												<FlatButton
+													label="Children"
+													href={`/grid/${childEntity.Id}`}/>}
 										</Col>
 										<Col xs={6}>
 											<FlatButton
