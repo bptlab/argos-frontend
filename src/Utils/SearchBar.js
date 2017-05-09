@@ -6,6 +6,19 @@ import config from "./../config/config";
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
 
+/**
+ * Usage:
+ *     <SearchBar
+ *         _Required_
+ *             id -> int to identify filter in callback
+ *             autoCompleteSource -> Array containing strings for autoComplete
+ *             onInputChange -> Callback when filter changes, needs to understand an object as specified in {@link #getFilterObject}
+ *         _Optional_
+ *             value -> initial search value, defaults to ""
+ *             column -> initial filter column, defaults to null
+ *             styles
+ *     />
+ */
 class SearchBar extends Component {
 	constructor (props) {
 		super(props);

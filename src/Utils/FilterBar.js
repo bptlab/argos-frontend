@@ -4,6 +4,16 @@ import {css} from "aphrodite";
 import SearchBar from "./SearchBar";
 import {Row, Col} from "react-grid-system";
 
+/**
+ * Usage:
+ *     <FilterBar
+ *         _Required_
+ *             onFiltersChange -> Callback when any filter in bar changed
+ *             autoCompleteSource -> Array containing strings for autoComplete
+ *         _Optional_
+ *             styles
+ *     />
+ */
 class FilterBar extends Component {
 	constructor () {
 		super();
