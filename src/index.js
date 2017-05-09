@@ -6,9 +6,10 @@ import GridView from './GridView/GridView';
 import DetailView from './DetailView/DetailView';
 import SettingsView from './SettingsView/SettingsView';
 import NotFound from "./Utils/NotFound";
-import NewEventTypeView from "./NewEventTypeView/NewEventTypeView";
+
 import CreateEventQueryView from "./CreateEventQueryView/CreateEventQueryView";
 import CreateEntityMappingView from "./CreateEntityMappingView/CreateEntityMappingView";
+import CreateEventTypeView from "./CreateEventTypeView/CreateEventTypeView";
 
 ReactDOM.render(
 	<Router>
@@ -22,7 +23,7 @@ ReactDOM.render(
 			    <Route exact path="/settings" component={SettingsView}/>
 				<Route path="/settings/eventType/:eventTypeId/eventQuery/create" component={CreateEventQueryView}/>
 				<Route path="/settings/entityMapping/create" component={CreateEntityMappingView}/>
-				<Route path="/settings/eventType/create" component={NewEventTypeView}/>
+				<Route path="/settings/eventType/create" component={CreateEventTypeView}/>
 				<Route path="*" component={NotFound}/>
 			</Switch>
 		</App>
