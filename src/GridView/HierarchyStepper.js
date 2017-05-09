@@ -43,7 +43,9 @@ class HierarchyStepper extends ConnectionComponent {
 		if (hierarchyLayerInstance.TypeId >= 0) {
             return(
 				<StepLabel key={key}>
-                    {this.props.getEntityType(hierarchyLayerInstance, this.props.hierarchy).Name}: {hierarchyLayerInstance.Name}
+					<a href={`/grid/${hierarchyLayerInstance.Id}`}>
+						{this.props.getEntityType(hierarchyLayerInstance, this.props.hierarchy).Name}: {hierarchyLayerInstance.Name}
+					</a>
 				</StepLabel>
             );
 		}
