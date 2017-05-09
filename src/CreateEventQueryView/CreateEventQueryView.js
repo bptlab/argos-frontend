@@ -42,17 +42,19 @@ class CreateEventQueryView extends ConnectionComponent {
         return (
             <div>
                 <Header title={"Create Event Query for " + eventType.Name}/>
-                <Container>
-                    <Row>
-                        <Col md={4}>
-                            <EventTypeInformation attributes={attributes}/>
-                        </Col>
-                        <Col md={8}>
-                            <EventQueryInputArea/>
-                        </Col>
-                    </Row>
-                    {CreateEventQueryView.getButtons()}
-                </Container>
+                <div className={AppStyles.elementMarginTop}>
+                    <Container>
+                        <Row>
+                            <Col md={4}>
+                                <EventTypeInformation attributes={attributes}/>
+                            </Col>
+                            <Col md={8}>
+                                <EventQueryInputArea/>
+                            </Col>
+                        </Row>
+                        {CreateEventQueryView.getButtons()}
+                    </Container>
+                </div>
             </div>
         );
     }
