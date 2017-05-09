@@ -8,16 +8,33 @@ import {css} from "aphrodite";
 class SearchBar extends Component {
 	constructor (props) {
 		super(props);
+
 		this.styles = {
 			primaryBorderColor: {
 				borderColor: config.colors.primaryColor,
 			}
 		};
+
+		this.autoCompleteSource = props.autoCompleteSource;
+		if (!this.autoCompleteSource) {
+			this.autoCompleteSource = [];
+		}
+		let initialFilterColumn = null;
+		if (props.column) {
+			initialFilterColumn = props.column;
+		}
+
+		let initialFilterValue = "";
+		if (props.value) {
+			initialFilterValue = props.value;
+		}
+
 		this.state = {
-			filterColumn: null,
-			filterValue: '',
-			dataSource: props.dataSource,
+			filterColumn: initialFilterColumn,
+			filterValue: initialFilterValue,
+			dataSource: this.autoCompleteSource,
 		};
+
 		this.handleUpdateInput = this.handleUpdateInput.bind(this);
 		this.handleNewRequest = this.handleNewRequest.bind(this);
 		this.resetFilter = this.resetFilter.bind(this);
@@ -25,6 +42,15 @@ class SearchBar extends Component {
 
 	handleUpdateInput(searchText) {
 		this.splitSearchText(searchText);
+		this.props.onInputChange(this.getFilterObject());
+	}
+
+	getFilterObject() {
+		return {
+			id: this.props.id,
+			value: this.state.filterValue,
+			column: this.state.filterColumn
+		};
 	}
 
 	/**
@@ -84,7 +110,7 @@ class SearchBar extends Component {
 	useAutoComplete(enabled = true) {
 		if (enabled) {
 			return this.setState({
-				dataSource: this.props.dataSource,
+				dataSource: this.autoCompleteSource,
 			});
 		}
 		return this.setState({
@@ -92,6 +118,9 @@ class SearchBar extends Component {
 		});
 	}
 
+	/**
+	 * Resets column and value of search field.
+	 */
 	resetFilter() {
 		this.setState({
 			filterColumn: null,
@@ -120,7 +149,10 @@ class SearchBar extends Component {
 		if (this.state.filterColumn) {
 			return "Search value";
 		}
-		return "ColumnName: Search value";
+		if (this.autoCompleteSource.length > 0) {
+			return "ColumnName: Search value";
+		}
+		return "Search";
 	}
 
 	render() {
