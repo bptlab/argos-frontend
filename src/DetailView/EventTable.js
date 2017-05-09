@@ -91,9 +91,7 @@ class EventTable extends ConnectionComponent {
 			const eventAttribute = event.Attributes.find(attribute => attribute.Name === eventPropertyKey.Name);
 			return splittedFilterValues.some(filterValue => {
 				const currentFilterValue = filterValue.trim();
-				if (currentFilterValue &&  EventTable.doesContain(eventAttribute.Value, currentFilterValue)) {
-					return true;
-				}
+				return (currentFilterValue &&  EventTable.doesContain(eventAttribute.Value, currentFilterValue));
 			});
 		});
 	}
