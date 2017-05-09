@@ -79,7 +79,7 @@ class HierarchyStepper extends ConnectionComponent {
 }
 
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
+export default connect.defaults({fetch: ConnectionComponent.switchFetch})(() => ({
     lazyEntityFetch: entityFetch => ({
         entity: {
             url: config.backendRESTRoute + `/entity/${entityFetch.entityId}`,
