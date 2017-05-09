@@ -33,7 +33,7 @@ class Header extends Component {
 			iconElementLeft = <IconButton onTouchTap={Header.goBackToGrid}><IconArrowBack/></IconButton>;
 		}
         if (pageLocation === "settings") {
-            iconElementRight = <IconButton href="/create/eventType"><IconAdd/></IconButton>;
+            iconElementRight = <IconButton href="settings/eventType/create"><IconAdd/></IconButton>;
         }
         //all pages for creation of eventqueries, eventtypes and mappings
         if (pageLocation === "create") {
@@ -68,7 +68,7 @@ class Header extends Component {
 					<Route path="/grid/:entityId" component={() => this.composeAppBar("grid")}/>
 					<Route path="/details/:parentId/:entityId" component={() => this.composeAppBar("details")}/>
 					<Route exact path="/settings" component={() => this.composeAppBar("settings")}/>
-					<Route path="/create/eventType" component={() => this.composeAppBar("create")}/>
+					<Route path="/settings/eventType/create" component={() => this.composeAppBar("create")}/>
 					<Route path="/settings/eventType/:eventTypeId/eventQuery/create" component={() => this.composeAppBar("create")}/>
 					<Route path="*" component={() => this.composeAppBar("grid")}/>
 				</Switch>
