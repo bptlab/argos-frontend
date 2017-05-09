@@ -3,12 +3,14 @@ import {Container} from "react-grid-system";
 import DonutChart from "./DonutChart";
 import HierarchyStepper from "./HierarchyStepper";
 import SearchBar from "./../Utils/SearchBar";
+import FilterBar from "./../Utils/FilterBar"
 import CardGrid from "./CardGrid";
 import {connect, PromiseState} from "react-refetch";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import AppStyles from "./../AppStyles";
 import config from './../config/config.js';
 import Header from "../Header";
+
 
 class GridView extends ConnectionComponent {
 	constructor() {
@@ -64,7 +66,7 @@ class GridView extends ConnectionComponent {
 						currentEntity={entity}
 						getEntityType={this.getEntityType}
 						getChildEntityTypes={this.getChildEntityTypes}/>
-					<SearchBar/>
+					<FilterBar/>
 					{childEntityTypes.map((childEntityType) => {
 						return(
 							<div key={`div-${childEntityType.Id}`}>
