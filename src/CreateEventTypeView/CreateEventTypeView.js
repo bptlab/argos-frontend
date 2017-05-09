@@ -56,29 +56,27 @@ class CreateEventTypeView extends ConnectionComponent {
                 <Header title="Create New Event Type"/>
                 <Container>
                     <div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>
-                        <Table>
-                            <TableBody displayRowCheckbox={false}>
-                                <Row>
-                                    <Col md={4}> Name: </Col>
-                                    <Col md={8}> <TextField hintText="Event Type Name" fullWidth="true"/> </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={4}> Timestamp Attribute: </Col>
-                                    <Col md={8}> <TextField hintText="Attribute Name" fullWidth="true"/> </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={4}> Attributes: </Col>
-                                    <Col md={8}>{this.state.attributes.map((attribute) =>
-                                        <TextField key={attribute.id}
-                                                        id={attribute.id}
-                                                        value={attribute.value}
-                                                        hintText="Attribute Name"
-                                                        onChange={this.onInputChange.bind(this)}
-                                                        fullWidth="true"/>
-                                    )}</Col>
-                                </Row>
-                            </TableBody>
-                        </Table>
+                        <Col>
+                            <Row>
+                                <Col md={4}> Name: </Col>
+                                <Col md={8}> <TextField hintText="Event Type Name" fullWidth="true"/> </Col>
+                            </Row>
+                            <Row>
+                                <Col md={4}> Timestamp Attribute: </Col>
+                                <Col md={8}> <TextField hintText="Attribute Name" fullWidth="true"/> </Col>
+                            </Row>
+                            <Row>
+                                <Col md={4}> Attributes: </Col>
+                                <Col md={8}>{this.state.attributes.map((attribute) =>
+                                    <TextField key={attribute.id}
+                                                    id={attribute.id}
+                                                    value={attribute.value}
+                                                    hintText="Attribute Name"
+                                                    onChange={this.onInputChange.bind(this)}
+                                                    fullWidth="true"/>
+                                )}</Col>
+                            </Row>
+                        </Col>
                     </div>
                     <div className={css(AppStyles.textAlignCenter)}>
                        <RaisedButton
