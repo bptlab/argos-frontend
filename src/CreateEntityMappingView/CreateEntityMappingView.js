@@ -5,6 +5,7 @@ import {Col, Container, Row} from "react-grid-system";
 import {MenuItem, RaisedButton, SelectField} from "material-ui";
 import IconSave from "material-ui/svg-icons/content/save";
 import IconCancel from "material-ui/svg-icons/navigation/cancel";
+import IconAdd from "material-ui/svg-icons/content/add";
 import Header from './../Header';
 import { css } from 'aphrodite';
 
@@ -17,9 +18,9 @@ class CreateEntityMappingView extends ConnectionComponent {
         this.state = {
             selectedEventTypeId: null,
             selectedEntityTypeId: null,
-            mappings: CreateEntityMappingView.getDefaultMappings()
+            mappings: CreateEntityMappingView.getDefaultMappings(),
+            numberOfMappings: 0
         };
-        this.numberOfMappings = 0;
         this.handleEventTypeChange = this.handleEventTypeChange.bind(this);
         this.handleEntityTypeChange = this.handleEntityTypeChange.bind(this);
     }
@@ -57,59 +58,71 @@ class CreateEntityMappingView extends ConnectionComponent {
         this.props.lazyEntityTypeAttributeLoading(value);
     }
 
+    getEventTypeAttributesDropdown(currentNumberOfMappings) {
+        const eventTypeAttributes = this.props.eventTypeAttributes.value;
+
+        return (<SelectField
+            floatingLabelText="Select Event Type Attribute"
+            fullWidth={true}
+            value={this.state.mappings[currentNumberOfMappings].eventTypeAttribute}
+            onChange={
+                (event, index, value) => {
+                    let mappings = this.state.mappings;
+                    mappings[currentNumberOfMappings].eventTypeAttribute = value;
+                    this.setState({mappings});
+                }}>
+            {eventTypeAttributes.map(
+                (eventTypeAttribute, key) => {
+                    return <MenuItem
+                        key={key}
+                        value={eventTypeAttribute.Id}
+                        primaryText={eventTypeAttribute.Name}/>;
+                })
+            }
+        </SelectField>);
+    }
+
+    getEntityTypeAttributesDropdown(currentNumberOfMappings) {
+        const entityTypeAttributes = this.props.entityTypeAttributes.value;
+
+        return (<SelectField
+            floatingLabelText="Select Entity Type Attribute"
+            fullWidth={true}
+            value={this.state.mappings[currentNumberOfMappings].entityTypeAttribute}
+            onChange={
+                (event, index, value) => {
+                    let mappings = this.state.mappings;
+                    mappings[currentNumberOfMappings].entityTypeAttribute = value;
+                    this.setState({mappings});
+                }
+            }>
+            {entityTypeAttributes.map(
+                (entityTypeAttribute, key) => {
+                    return <MenuItem
+                        key={key}
+                        value={entityTypeAttribute.Id}
+                        primaryText={entityTypeAttribute.Name}/>;
+                })
+            }
+        </SelectField>);
+    }
+
     loadAttributes() {
         const attributesFetchingIncomplete = super.render(PromiseState.all(this.props.entityTypeAttributes, this.props.eventTypeAttributes));
-        const eventTypeAttributes = this.props.eventTypeAttributes.value;
-        const entityTypeAttributes = this.props.entityTypeAttributes.value;
         if (attributesFetchingIncomplete) {
             return attributesFetchingIncomplete;
         }
-        let currentNumberOfMappings = this.numberOfMappings;
-        this.numberOfMappings++;
+        const currentNumberOfMappings = this.state.numberOfMappings;
         return (
             <Row>
-                <Col md={6}>
-                    <SelectField
-                        floatingLabelText="Select Event Type Attribute"
-                        fullWidth={true}
-                        value={this.state.mappings[currentNumberOfMappings].eventTypeAttribute}
-                        onChange={
-                            (event, index, value) => {
-                                let mappings = this.state.mappings;
-                                mappings[currentNumberOfMappings].eventTypeAttribute = value;
-                                this.setState({mappings});
-                            }}>
-                        {eventTypeAttributes.map(
-                            (eventTypeAttribute, key) => {
-                                return <MenuItem
-                                    key={key}
-                                    value={eventTypeAttribute.Id}
-                                    primaryText={eventTypeAttribute.Name}/>;
-                            })
-                        }
-                    </SelectField>
+                <Col md={5}>
+                    {this.getEventTypeAttributesDropdown(currentNumberOfMappings)}
                 </Col>
-                <Col md={6}>
-                    <SelectField
-                        floatingLabelText="Select Entity Type Attribute"
-                        fullWidth={true}
-                        value={this.state.mappings[currentNumberOfMappings].entityTypeAttribute}
-                        onChange={
-                            (event, index, value) => {
-                                let mappings = this.state.mappings;
-                                mappings[currentNumberOfMappings].entityTypeAttribute = value;
-                                this.setState({mappings});
-                            }
-                        }>
-                        {entityTypeAttributes.map(
-                            (entityTypeAttribute, key) => {
-                                return <MenuItem
-                                    key={key}
-                                    value={entityTypeAttribute.Id}
-                                    primaryText={entityTypeAttribute.Name}/>;
-                            })
-                        }
-                    </SelectField>
+                <Col md={5}>
+                    {this.getEntityTypeAttributesDropdown(currentNumberOfMappings)}
+                </Col>
+                <Col md={2}>
+                    <RaisedButton label="Add Mapping"><IconAdd/></RaisedButton>
                 </Col>
             </Row>
         );
