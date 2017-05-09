@@ -5,7 +5,7 @@ import EventQueryListItem from  './EventQueryListItem.js';
 import config from './../config/config.js';
 import { css } from 'aphrodite';
 import AppStyles from '../AppStyles';
-import {connect, PromiseState} from 'react-refetch';
+import {PromiseState} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import ErrorMessage from './../Utils/ErrorMessage.js';
 
@@ -37,7 +37,6 @@ class EventType extends ConnectionComponent {
 		if(connectionIncomplete) {
 			return connectionIncomplete;
 		}
-		console.log(optionalActions);
 		return (
 			<div>
 			{optionalActions && optionalActions.rejected &&
@@ -80,7 +79,7 @@ class EventType extends ConnectionComponent {
 	}
 }
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
+export default ConnectionComponent.argosConnector()(props => ({
 	queries: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/queries`,
 	attributes: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/attributes`,
 	deleteQuery: query => ({

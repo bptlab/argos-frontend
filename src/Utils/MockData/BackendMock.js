@@ -125,7 +125,9 @@ class BackendMock {
     }
 	
 	static buildResponse(value) {
-		return new Response(JSON.stringify(value));
+		const headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+		return new Response(JSON.stringify(value), {status: 200, statusText: "OK", headers: headers});
 	}
 	
 	
