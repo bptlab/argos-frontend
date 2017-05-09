@@ -4,6 +4,7 @@ import IconButton from "material-ui/IconButton";
 import ActionDelete from "material-ui/svg-icons/action/delete";
 import config from "./../config/config";
 import {css} from "aphrodite";
+import AppStyles from "./../AppStyles";
 
 class SearchBar extends Component {
 	constructor (props) {
@@ -42,7 +43,6 @@ class SearchBar extends Component {
 
 	handleUpdateInput(searchText) {
 		this.splitSearchText(searchText);
-		this.props.onInputChange(this.getFilterObject());
 	}
 
 	getFilterObject() {
@@ -67,9 +67,11 @@ class SearchBar extends Component {
 		}
 		this.useAutoComplete(false);
 		this.setState({
-			filterColumn: chosenRequest,
-			filterValue: '',
-		});
+				filterColumn: chosenRequest,
+				filterValue: '',
+			},
+			() => this.props.onInputChange(this.getFilterObject())
+		);
 	}
 
 	/**
@@ -96,10 +98,13 @@ class SearchBar extends Component {
 				this.useAutoComplete();
 			}
 		}
-		this.setState({
-			filterColumn: column,
-			filterValue: value,
-		});
+		this.setState(
+			{
+				filterColumn: column,
+				filterValue: value,
+			},
+			() => this.props.onInputChange(this.getFilterObject())
+		);
 	}
 
 	/**
@@ -122,10 +127,13 @@ class SearchBar extends Component {
 	 * Resets column and value of search field.
 	 */
 	resetFilter() {
-		this.setState({
-			filterColumn: null,
-			filterValue: "",
-		});
+		this.setState(
+			{
+				filterColumn: null,
+				filterValue: "",
+			},
+			() => this.props.onInputChange(this.getFilterObject())
+		);
 	}
 
 	/**
@@ -157,7 +165,7 @@ class SearchBar extends Component {
 
 	render() {
 		return (
-			<div className={css(this.props.styles)}>
+			<div className={css(this.props.styles, AppStyles.w100)}>
 				<AutoComplete
 					hintText={this.getHintText()}
 					floatingLabelText={this.getFloatingLabelText()}
