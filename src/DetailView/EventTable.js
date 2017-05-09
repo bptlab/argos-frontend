@@ -63,8 +63,7 @@ class EventTable extends ConnectionComponent {
 						return "";
 					}
 					return this.composeTableRow(event, key);
-					})
-				}
+				})}
 			</TableBody>
 		);
 	}
@@ -132,9 +131,9 @@ class EventTable extends ConnectionComponent {
 	loadFilterBar() {
 		return (
 			<FilterBar
-			styles={[AppStyles.elementMarginTop]}
-			onFiltersChange={this.handleFilterChange}
-			autoCompleteSource={this.props.eventTypeAttributes.value.map(attributeInfo => attributeInfo.Name)} />
+				styles={[AppStyles.elementMarginTop]}
+				onFiltersChange={this.handleFilterChange}
+				autoCompleteSource={this.props.eventTypeAttributes.value.map(attributeInfo => attributeInfo.Name)} />
 		);
 	}
 
