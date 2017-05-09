@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import IconButton from 'material-ui/IconButton';
 import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 import IconDelete from 'material-ui/svg-icons/action/delete';
+import ConfirmationMessage from './../Utils/ConfirmationMessage.js'
 import {ListItem} from 'material-ui/List';
+import config from './../config/config.js';
 
 
 class EventQueryListItem extends Component {
@@ -10,6 +12,7 @@ class EventQueryListItem extends Component {
 	constructor(props) {
 		super(props);
 		this.deleteEventQuery = this.deleteEventQuery.bind(this);
+		this.deleteEventQueryButton = this.deleteEventQueryButton.bind(this);
 	}
 	
 	deleteEventQuery() {
@@ -20,13 +23,19 @@ class EventQueryListItem extends Component {
 		// TODO: to be filled
 	}
 
-	static deleteEventQueryButton () {
+	deleteEventQueryButton () {
 		return (
 			<div>
+				<ConfirmationMessage 
+					actionToPerform={this.deleteEventQuery}
+					ref={(input) => {this.confirmationMessage = input;}}>
+					{config.messages.deleteQueryMessage}
+				</ConfirmationMessage>
 				<IconButton onTouchTap={this.editEventQuery}>
 					<IconEdit/>
 				</IconButton>
-				<IconButton onTouchTap={this.deleteEventQuery}>
+				<IconButton
+					onTouchTap={() => {this.confirmationMessage.handleOpen()}}>
 					<IconDelete/>
 				</IconButton>
 			</div>
@@ -38,7 +47,7 @@ class EventQueryListItem extends Component {
 			<ListItem
 				primaryText={this.props.query.Description}
 				secondaryText={this.props.query.Query}
-				rightIconButton={EventQueryListItem.deleteEventQueryButton()}
+				rightIconButton={this.deleteEventQueryButton()}
 			/>
 		);
 	}
