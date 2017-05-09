@@ -28,9 +28,9 @@ const config = {
 		actionRejected: "The requested action has been rejected."
 	},
 	status: {
-		"RUNNING": "green",
-		"FAILURE": "red",
-	}
+		"RUNNING": {color: "#4CAF50", colorLight: '#81C784'},
+		"FAILURE": {color: "#E53935", colorLight: "#E57373"},
+	},
 };
 
 export default config;

@@ -18,39 +18,39 @@ class Header extends Component {
 
 	static goBackToGrid() {
 		const currentPath = window.location.pathname;
-        const newPath = currentPath.replace("details", "grid");
-        window.location.href = newPath.substring(0, newPath.lastIndexOf("/") + 1);
-    }
+		const newPath = currentPath.replace("details", "grid");
+		window.location.href = newPath.substring(0, newPath.lastIndexOf("/") + 1);
+	}
 
 	composeAppBar(pageLocation) {
 		let iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
 		let iconElementRight = <IconButton href="/settings"><IconSettings/></IconButton>;
 
 		if (pageLocation === "grid") {
-            iconElementLeft = <IconButton href="/grid/-1"><IconHome/></IconButton>;
-        }
-        if (pageLocation === "details") {
+			iconElementLeft = <IconButton href="/grid/-1"><IconHome/></IconButton>;
+		}
+		if (pageLocation === "details") {
 			iconElementLeft = <IconButton onTouchTap={Header.goBackToGrid}><IconArrowBack/></IconButton>;
 		}
-        if (pageLocation === "settings") {
-            iconElementRight = <IconButton href="settings/eventType/create"><IconAdd/></IconButton>;
-        }
-        //all pages for creation of eventqueries, eventtypes and mappings
-        if (pageLocation === "create") {
-            iconElementRight = <div/>;
+		if (pageLocation === "settings") {
+			iconElementRight = <IconButton href="settings/eventType/create"><IconAdd/></IconButton>;
+		}
+		//all pages for creation of eventqueries, eventtypes and mappings
+		if (pageLocation === "create") {
+			iconElementRight = <div/>;
 		}
 
-        let appBarStyle = "";
-        if(this.props.status) {
-            const statusColor = StyleSheet.create({
-                color: {
-                    borderColor: config.status[this.props.status]
-                }
-            });
-            appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color);
-        }
+		let appBarStyle = "";
+		if(this.props.status) {
+			const statusColor = StyleSheet.create({
+				color: {
+					borderColor: config.status[this.props.status].color
+				}
+			});
+			appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color);
+		}
 
-        return (
+		return (
 			<AppBar
 				title={<span>{this.props.title}</span>}
 				iconElementLeft={iconElementLeft}
@@ -74,7 +74,7 @@ class Header extends Component {
 				</Switch>
 			</Router>
 		);
-    }
+	}
 }
 
 export default Header;
