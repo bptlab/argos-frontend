@@ -81,18 +81,22 @@ class EventTable extends ConnectionComponent {
 		}
 		let columnsToBeSearched = this.props.eventTypeAttributes.value;
 		if(filter.column) {
-			columnsToBeSearched = columnsToBeSearched.filter((eventPropertyKey) => {
-				return EventTable.doesContain(eventPropertyKey.Name, filter.column);
+			columnsToBeSearched = columnsToBeSearched.filter((column) => {
+				return EventTable.doesContain(column.Name, filter.column);
 			});
 		}
 
-		return columnsToBeSearched.some((eventPropertyKey) => {
-			const splittedFilterValues = filter.value.split(",");
-			const eventAttribute = event.Attributes.find(attribute => attribute.Name === eventPropertyKey.Name);
-			return splittedFilterValues.some(filterValue => {
-				const currentFilterValue = filterValue.trim();
-				return (currentFilterValue &&  EventTable.doesContain(eventAttribute.Value, currentFilterValue));
-			});
+		return columnsToBeSearched.some((column) => {
+			return this.testColumn(column, event, filter);
+		});
+	}
+
+	testColumn(column, event, filter) {
+		const filterValues = filter.value.split(",");
+		const eventAttribute = event.Attributes.find(attribute => attribute.Name === column.Name);
+		return filterValues.some(filterValue => {
+			const currentFilterValue = filterValue.trim();
+			return (currentFilterValue &&  EventTable.doesContain(eventAttribute.Value, currentFilterValue));
 		});
 	}
 
