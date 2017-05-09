@@ -18,7 +18,6 @@ class HierarchyStepper extends ConnectionComponent {
 	}
 
 	componentDidMount() {
-		console.log([this.props.getChildEntityTypes(this.props.currentEntity.TypeId, this.props.hierarchy)]);
 		this.setState({
 			hierarchy: [this.props.getChildEntityTypes(this.props.currentEntity.TypeId, this.props.hierarchy)]
 		}, () => {this.fetchParentEntity(this.props.currentEntity)});
@@ -40,18 +39,34 @@ class HierarchyStepper extends ConnectionComponent {
         }
 	}
 
+	displayStepLabel(hierarchyLayerInstance, key) {
+		if (hierarchyLayerInstance.TypeId >= 0) {
+            return(
+				<StepLabel key={key}>
+                    {this.props.getEntityType(hierarchyLayerInstance, this.props.hierarchy).Name}: {hierarchyLayerInstance.Name}
+				</StepLabel>
+            );
+		}
+		else {
+            return(
+				<StepLabel key={key}>
+                    {hierarchyLayerInstance.Name}
+				</StepLabel>
+            );
+		}
+	}
+
 	render() {
 		return (
 			<Stepper
 				activeStep={this.state.activeStep}
 				className={css(this.props.styles, AppStyles.elementMarginTop)}>
+
 				{this.state.hierarchy.map((hierarchyLayer, index) => {
 					return (
 						<Step key={index}>
 							{hierarchyLayer.map((entityType, index) => {return(
-								<StepLabel key={index}>
-                                    {entityType.Name}
-								</StepLabel>
+								this.displayStepLabel(entityType, index)
 							);})}
 						</Step>
 					);
