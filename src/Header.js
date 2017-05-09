@@ -44,7 +44,7 @@ class Header extends Component {
         if(this.props.status) {
             const statusColor = StyleSheet.create({
                 color: {
-                    borderColor: config.status[this.props.status]
+                    borderColor: config.status[this.props.status].color
                 }
             });
             appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color);
