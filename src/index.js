@@ -19,7 +19,7 @@ ReactDOM.render(
 				<Route path="/grid/:entityId" component={GridView}/>
 				<Route path="/details/:parentId/:entityId" component={DetailView}/>
 			    <Route exact path="/settings" component={SettingsView}/>
-				<Route path="/settings/eventQuery/create/:eventTypeId" component={CreateEventQueryView}/>
+				<Route path="/settings/eventType/:eventTypeId/eventQuery/create" component={CreateEventQueryView}/>
 				<Route path="/create/eventType" component={NewEventTypeView}/>
 				<Route path="*" component={NotFound}/>
 			</Switch>
