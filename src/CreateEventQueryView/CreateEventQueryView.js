@@ -13,24 +13,6 @@ import config from "../config/config";
 import AppStyles from "../AppStyles";
 
 class CreateEventQueryView extends ConnectionComponent {
-
-    static getButtons() {
-        return (<div className={css(AppStyles.textAlignCenter)}>
-            <RaisedButton
-                label="Abort"
-                icon={<IconCancel/>}
-                className={css(AppStyles.marginAllSites)}
-                secondary={true}
-            />
-            <RaisedButton
-                label="Save"
-                icon={<IconSave/>}
-                className={css(AppStyles.marginAllSites)}
-                primary={true}
-            />
-        </div>);
-    }
-
     render() {
         const allFetches = PromiseState.all([this.props.eventType, this.props.attributes]);
         const eventType = this.props.eventType.value;
@@ -52,7 +34,20 @@ class CreateEventQueryView extends ConnectionComponent {
                                 <EventQueryInputArea/>
                             </Col>
                         </Row>
-                        {CreateEventQueryView.getButtons()}
+                        <div className={css(AppStyles.textAlignCenter)}>
+                            <RaisedButton
+                                label="Abort"
+                                icon={<IconCancel/>}
+                                className={css(AppStyles.marginAllSites)}
+                                secondary={true}
+                            />
+                            <RaisedButton
+                                label="Save"
+                                icon={<IconSave/>}
+                                className={css(AppStyles.marginAllSites)}
+                                primary={true}
+                            />
+                        </div>
                     </Container>
                 </div>
             </div>

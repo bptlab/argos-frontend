@@ -35,6 +35,7 @@ class Header extends Component {
         if (pageLocation === "settings") {
             iconElementRight = <IconButton href="/create/eventType"><IconAdd/></IconButton>;
         }
+        //all pages for creation of eventqueries, eventtypes and mappings
         if (pageLocation === "create") {
             iconElementRight = <div/>;
 		}

@@ -88,7 +88,7 @@ class BackendMock {
         return associatedEventTypes;
     }
 
-    static getEventType(params) {
+	static getEventType(params) {
 		let requestedEventType = {};
 		EventType.forEach((association) => {
             association.eventTypes.forEach(
