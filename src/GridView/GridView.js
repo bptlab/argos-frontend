@@ -11,6 +11,19 @@ import config from './../config/config.js';
 import Header from "../Header";
 
 class GridView extends ConnectionComponent {
+	constructor() {
+		super();
+		this.getChildEntityTypes = this.getChildEntityTypes.bind(this);
+        this.getEntityType = this.getEntityType.bind(this);
+	}
+
+    getEntityType(entity, hierarchy) {
+        return hierarchy.find(hierarchyArray => {
+            return hierarchyArray.find(entityType => {
+                return entityType.Id === entity.TypeId;
+            });
+        });
+    }
 	
 	getChildEntityTypes(parentEntityTypeId, hierarchy) {
 		let childEntities  = [];
@@ -23,13 +36,9 @@ class GridView extends ConnectionComponent {
 	}
 
 	getPageTitle(entity, hierarchy) {
-		const entityTypeInformation = hierarchy.find(hierarchyArray => {
-			return hierarchyArray.find(entityType => {
-				return entityType.Id === entity.TypeId;
-			});
-		});
-		if (entityTypeInformation) {
-			return entityTypeInformation[0].Name + ": " + entity.Name;
+		const entityType = this.getEntityType(entity, hierarchy);
+		if (entityType) {
+			return entityType[0].Name + ": " + entity.Name;
 		}
 		return "Home";
 	}
