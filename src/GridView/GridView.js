@@ -30,7 +30,7 @@ class GridView extends ConnectionComponent {
 
 	getChildEntityTypes(parentEntityTypeId, hierarchy) {
 		let childEntities  = [];
-		hierarchy.forEach(hierarchyLayer => {
+		window.hierarchy.forEach(hierarchyLayer => {
 			childEntities = childEntities.concat(hierarchyLayer.filter( (entityType) => {
 				return entityType.ParentId === parentEntityTypeId;
 			}));
@@ -47,17 +47,16 @@ class GridView extends ConnectionComponent {
 	}
 
 	render() {
-		const allFetches = PromiseState.all([this.props.hierarchy, this.props.entity]);
-		const hierarchy = this.props.hierarchy.value;
+		const allFetches = PromiseState.all([this.props.entity]);
 		const entity = this.props.entity.value;
 		const connectionIncomplete = super.render(allFetches);
 		if(connectionIncomplete) {
 			return connectionIncomplete;
 		}
-		const childEntityTypes = this.getChildEntityTypes(entity.TypeId, hierarchy);
+		const childEntityTypes = this.getChildEntityTypes(entity.TypeId, window.hierarchy);
 		return (
 			<div>
-				<Header title={this.getPageTitle(entity, hierarchy)} status={entity.Status} />
+				<Header title={this.getPageTitle(entity, window.hierarchy)} status={entity.Status} />
 				<Container>
 					<HierarchyStepper
 						hierarchy={hierarchy}
@@ -85,6 +84,5 @@ class GridView extends ConnectionComponent {
 }
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
-	hierarchy: config.backendRESTRoute + `/entitytype/hierarchy`,
 	entity: config.backendRESTRoute + `/entity/${props.match.params.entityId}`
 }))(GridView);

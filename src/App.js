@@ -1,11 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
+import ConnectionComponent from './Utils/ConnectionComponent.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import ThemeStyles from './ThemeStyles';
+import {connect, PromiseState} from "react-refetch";
+import config from './config/config.js';
 
-class App extends Component {
+class App extends ConnectionComponent {
 
     render() {
+        PromiseState.all([this.props.hierarchy]);
+        if (!window.hierarchy) {
+            console.log("updating hierarchy global");
+            window.hierarchy = this.props.hierarchy.value;
+        }
+
         return (
             <MuiThemeProvider muiTheme={getMuiTheme(ThemeStyles)}>
                 {this.props.children}
@@ -14,4 +23,6 @@ class App extends Component {
     }
 }
 
-export default App;
+export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
+    hierarchy: config.backendRESTRoute + `/entitytype/hierarchy`,
+}))(App);
