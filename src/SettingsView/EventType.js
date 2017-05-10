@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, CardHeader, CardText, CardActions} from 'material-ui/Card';
+import {Card, CardHeader, CardText } from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
 import EventQueryListItem from  './EventQueryListItem.js';
 import EntityMappingListItem from  './EntityMappingListItem.js';
@@ -35,6 +35,19 @@ class EventType extends ConnectionComponent {
 		return [
 			<IconButton><IconEdit/></IconButton>,
 			<IconButton><IconDelete/></IconButton>];
+	}
+
+	getEntityTypeName(id) {
+		console.log("Obtaining entity name");
+		let searchedEntity = undefined;
+		window.hierarchy.forEach(function(layer) {
+            layer.forEach(function (entity) {
+                if (entity.Id === id) {
+                    searchedEntity = entity;
+                }
+            })
+        });
+		return searchedEntity.Name;
 	}
 
 	render() {
@@ -102,11 +115,11 @@ class EventType extends ConnectionComponent {
 									<List>
 										{entityMappings.map((mapping) => {
 											return (
-												<ListItem>
-													<EntityMappingListItem
-														mapping={mapping}
-														eventType={this.props.eventType}/>
-												</ListItem>
+												<EntityMappingListItem
+													key={mapping.Id}
+													mapping={mapping}
+													eventType={this.props.eventType}
+													getEntityTypeName={this.getEntityTypeName}/>
 											)
 										})}
 									</List>
