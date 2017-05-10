@@ -3,6 +3,7 @@ import Hierarchy from './TransportForLondon/Hierarchy.js';
 import Entity from './TransportForLondon/Entity.js';
 import EntityType from './TransportForLondon/EntityType.js';
 import Query from './TransportForLondon/Query.js';
+import EntityMapping from './TransportForLondon/EntityMapping.js';
 import Event from './TransportForLondon/Event.js';
 import EventTypeAttribute from './TransportForLondon/EventTypeAttribute.js';
 import EventType from './TransportForLondon/EventType.js';
@@ -16,6 +17,7 @@ class BackendMock {
 			.set(/^entity\/(-?\d+)\/children\/type\/(-?\d+)\/(((\w)+)\+)*(\w)*$/i, BackendMock.getChildEntitiesOfEntityType)
 			.set(/^eventtypes$/i, BackendMock.getEventTypes)
 			.set(/^eventtype\/(-?\d+)\/queries/i, BackendMock.getQueriesOfEventType)
+            .set(/^eventtype\/(-?\d+)\/entitymappings/i, BackendMock.getMappingsOfEventType)
 			.set(/^entity\/(-?\d+)$/i, BackendMock.getEntity)
 			.set(/^eventtype\/(-?\d+)\/delete$/i, BackendMock.deleteEventType)
             .set(/^entity\/(-?\d+)\/eventtypes$/i, BackendMock.getEventTypesOfEntity)
@@ -55,6 +57,16 @@ class BackendMock {
 	static getQueriesOfEventType() {
 		return Query;
 	}
+
+    static getMappingsOfEventType(params) {
+        const mappingInformation = EntityMapping.find((mapping) => {
+        	return mapping.Id === parseInt(params[1], 10);
+		});
+        if (!mappingInformation) {
+        	return [];
+		}
+        return mappingInformation.EntityMappings;
+    }
 	
 	static getEntity(params) {
 		return Entity.find((entity) => {
