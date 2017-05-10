@@ -18,13 +18,19 @@ class EventType extends ConnectionComponent {
 		super(props);
 		this.state = {
 			expanded: false,
+			mappingExpanded: false,
 		};
 		this.handleExpandChange = this.handleExpandChange.bind(this);
+		this.handleMappingsExpandChange = this.handleMappingsExpandChange.bind(this);
 		this.handleEventTypeDeletion = this.handleEventTypeDeletion.bind(this);
 	}
 
 	handleExpandChange(expanded) {
 		this.setState({expanded: expanded});
+	}
+
+    handleMappingsExpandChange(expanded) {
+		this.setState({mappingExpanded: expanded});
 	}
 	
 	handleEventTypeDeletion() {
@@ -38,7 +44,6 @@ class EventType extends ConnectionComponent {
 	}
 
 	getEntityTypeName(id) {
-		console.log("Obtaining entity name");
 		let searchedEntity = undefined;
 		window.hierarchy.forEach(function(layer) {
             layer.forEach(function (entity) {
@@ -106,12 +111,14 @@ class EventType extends ConnectionComponent {
 							</Col>
 						</Container>
 						<Container>
-							<Card>
+							<Card
+								expanded={this.state.mappingExpanded}
+								onExpandChange={this.handleMappingsExpandChange}>
 								<CardHeader
-									title="EntityMappings"
+									title="Entity Mappings"
 									actAsExpander={true}
 									showExpandableButton={true}/>
-								<CardText>
+								<CardText expandable={true}>
 									<List>
 										{entityMappings.map((mapping) => {
 											return (
