@@ -78,19 +78,19 @@ class CreateEntityMappingView extends ConnectionComponent {
     }
 
     handleAddNewMappingCondition() {
-        let mappings = this.state.mappings;
+        const mappings = this.state.mappings;
         mappings[this.state.mappings.length] = {entityTypeAttribute: null, eventTypeAttribute: null};
         this.setState({mappings});
     }
 
     handleEventTypeAttributeChange(key, eventTypeAttribute) {
-        let mappings = this.state.mappings;
+        const mappings = this.state.mappings;
         mappings[key].eventTypeAttribute = eventTypeAttribute;
         this.setState({mappings});
     }
 
     handleEntityTypeAttributeChange(key, entityTypeAttribute) {
-        let mappings = this.state.mappings;
+        const mappings = this.state.mappings;
         mappings[key].entityTypeAttribute = entityTypeAttribute;
         this.setState({mappings});
     }
@@ -112,7 +112,7 @@ class CreateEntityMappingView extends ConnectionComponent {
     prepareMappingsForSending() {
         //must be called before saving the data
         let mappings = this.state.mappings;
-        let cleanedMappings = [];
+        const cleanedMappings = [];
         mappings.forEach((mapping) => {
             if (mapping.eventTypeAttribute && mapping.entityTypeAttribute) {
                 cleanedMappings.push(mapping);
@@ -143,7 +143,7 @@ class CreateEntityMappingView extends ConnectionComponent {
         if (attributesFetchingIncomplete) {
             return attributesFetchingIncomplete;
         }
-        let content = [];
+        const content = [];
         this.state.mappings.forEach((mapping, key) => {
                 content.push(
                     <Row key={key}>
@@ -246,7 +246,7 @@ class CreateEntityMappingView extends ConnectionComponent {
     }
 }
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
+export default connect.defaults({fetch: ConnectionComponent.switchFetch})(() => ({
     eventTypes:  config.backendRESTRoute + `/eventtypes`,
     entityTypeHierarchy: config.backendRESTRoute + `/entitytype/hierarchy`,
     lazyEventTypeAttributeLoading: eventTypeId => ({
