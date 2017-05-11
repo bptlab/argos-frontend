@@ -3,7 +3,6 @@ import AppBar from "material-ui/AppBar";
 import IconButton from "material-ui/IconButton";
 import IconHome from "material-ui/svg-icons/action/home";
 import IconSettings from "material-ui/svg-icons/action/settings";
-import IconAdd from 'material-ui/svg-icons/content/add';
 import IconArrowBack from "material-ui/svg-icons/navigation/arrow-back";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import config from "./config/config";
@@ -32,11 +31,8 @@ class Header extends Component {
         if (pageLocation === "details") {
 			iconElementLeft = <IconButton onTouchTap={Header.goBackToGrid}><IconArrowBack/></IconButton>;
 		}
-        if (pageLocation === "settings") {
-            iconElementRight = <IconButton href="settings/eventType/create"><IconAdd/></IconButton>;
-        }
         //all pages for creation of eventqueries, eventtypes and mappings
-        if (pageLocation === "create") {
+        if (pageLocation === "create" || pageLocation === "settings") {
             iconElementRight = <div/>;
 		}
 

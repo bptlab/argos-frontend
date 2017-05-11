@@ -5,32 +5,48 @@ import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import Header from './../Header';
 import EventType from './EventType';
 import SearchBar from './../Utils/SearchBar';
+import {Row} from 'react-grid-system';
+import {css} from 'aphrodite';
+import AppStyles from "./../AppStyles";
+import {Card, CardHeader, CardText, CardActions} from 'material-ui/Card';
+import IconButton from 'material-ui/IconButton';
+import IconAdd from 'material-ui/svg-icons/content/add';
 import config from './../config/config';
-import ErrorMessage from './../Utils/ErrorMessage.js';
-
 
 class SettingsView extends ConnectionComponent {
 
 	render() {
 		const connectionIncomplete = super.render(this.props.eventTypes);
-		if(connectionIncomplete) {
+		if (connectionIncomplete) {
 			return connectionIncomplete;
 		}
-		const optionalActions = this.props.deleteEventTypeResponse;
 		return (
 			<div>
-				<Header title="Event Types"/>
-				<Container>
-					<SearchBar/>
-					{optionalActions && optionalActions.rejected &&
-						<ErrorMessage message={optionalActions.reason} />
-					}
-					{this.props.eventTypes.value.map((eventType) => {
-						return(<EventType
-							eventType={eventType}
-							key={eventType.Id}
-							deleteEventType={this.props.deleteEventType} />);
-					})}
+				<Header title="Settings"/>
+				<Container className={css(AppStyles.elementMarginTop)}>
+					<Row>
+						<Card initiallyExpanded={true}>
+							<CardHeader
+								title="Event Types"
+								actAsExpander={true}
+								showExpandableButton={true}/>
+							<CardText expandable={true}>
+								<Container>
+									<SearchBar fullWidth={true}/>
+									{this.props.eventTypes.value.map((eventType) => {
+										return (<EventType
+											eventType={eventType}
+											key={eventType.Id}
+											deleteEventType={this.props.deleteEventType}
+											fullWidth="true"/>);
+									})}
+								</Container>
+							</CardText>
+							<CardActions>
+								<IconButton href="settings/eventType/create"><IconAdd/></IconButton>
+							</CardActions>
+						</Card>
+					</Row>
 				</Container>
 			</div>
 		);
@@ -40,7 +56,7 @@ class SettingsView extends ConnectionComponent {
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(() => ({
 	eventTypes: config.backendRESTRoute + `/eventtypes`,
 	deleteEventType: eventType => ({
-		deleteEventTypeResponse: {
+		postLikeResponse: {
 			url: config.backendRESTRoute + `/eventtype/${eventType.Id}/delete`,
 			method: 'DELETE',
 			body: "",

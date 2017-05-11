@@ -178,7 +178,7 @@ class SearchBar extends Component {
 
 	render() {
 		return (
-			<div className={css(this.props.styles, AppStyles.w100)}>
+			<div className={css(this.props.styles, AppStyles.w100, AppStyles.dFlex, AppStyles.alignItemsFlexEnd)}>
 				<AutoComplete
 					hintText={this.getHintText()}
 					floatingLabelText={this.getFloatingLabelText()}
@@ -188,6 +188,7 @@ class SearchBar extends Component {
 					dataSource={this.state.dataSource}
 					filter={AutoComplete.caseInsensitiveFilter}
 					openOnFocus={true}
+					fullWidth={true}
 				/>
 				<IconButton
 					onTouchTap={this.resetFilter}
