@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { css } from 'aphrodite';
 import plotly from 'plotly.js/dist/plotly';
+import config from '../config/config';
 
 class DonutChart extends Component {
 	componentDidMount() {
@@ -40,8 +41,16 @@ class DonutChart extends Component {
 
 	forgeChartData() {
 		let data = [];
-		
-		const dataSet = this.forgeDataSet({percentage: 70, name: 'RUNNING'});
+		// let status = config.status;
+		//
+		// this.props.entities.forEach((entity) => {
+		// 	if(entity.Status in status) {
+		//
+		// 	}
+		// });
+
+		const status = {percentage: 70, name: 'RUNNING'};
+		const dataSet = this.forgeDataSet(status);
 		data = data.concat([dataSet]);
 
 		return data;
@@ -54,7 +63,10 @@ class DonutChart extends Component {
 			name: status.name,
 			type: 'bar',
 			orientation: 'h',
-			width: 50
+			width: 50,
+			marker:{
+				color: ['#000000']
+			},
 		};
 	}
 
