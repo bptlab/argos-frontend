@@ -31,21 +31,17 @@ class CreateEventTypeView extends ConnectionComponent {
 	}
 
 	handleChangeEventTypeName(event) {
-		if(event.target.value) {
-			this.setState({
-				eventTypeName: event.target.value,
-				eventTypeNameErrorText: '',
-			});
-		}
+		this.setState({
+			eventTypeName: event.target.value,
+			eventTypeNameErrorText: '',
+		});
 	}
 
 	handleChangeEventTypeTimestampAttribute(event) {
-		if(event.target.value) {
-			this.setState({
-				eventTypeTimestampAttribute: event.target.value,
-				eventTypeTimestampAttributeErrorText: ''
-			});
-		}
+		this.setState({
+			eventTypeTimestampAttribute: event.target.value,
+			eventTypeTimestampAttributeErrorText: ''
+		});
 	}
 
 	submitForm() {
