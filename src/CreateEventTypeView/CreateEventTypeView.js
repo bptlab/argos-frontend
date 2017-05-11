@@ -59,15 +59,18 @@ class CreateEventTypeView extends ConnectionComponent {
 		if(Object.keys(errorState).length > 0) {
 			this.setState(errorState);
 		} else {
-			this.props.createEventType({
+			const attributes = this.state.attributes;
+			attributes.pop(); //remove last empty attribute
+			const body = {
 				Name: this.state.eventTypeName,
 				TimestampAttributeName: this.state.eventTypeTimestampAttribute,
-				TypeAttributes: this.state.attributes.map((attribute) => {
+				TypeAttributes: attributes.map((attribute) => {
 					return {
 						name: attribute.value
 					};
 				})
-			});
+			};
+			this.props.createEventType(body);
 		}
 	}
 
@@ -178,13 +181,11 @@ class CreateEventTypeView extends ConnectionComponent {
 }
 
 export default ConnectionComponent.argosConnector()(() => ({
-	createEventType: state => ({
+	createEventType: body => ({
 		createEventTypeResponse: {
 			url: config.backendRESTRoute + `/eventtype/create`,
 			method: 'POST',
-			body: JSON.stringify({
-				Name: state.eventTypeName
-			})
+			body: JSON.stringify(body)
 		}
 	})
 }))(CreateEventTypeView);
