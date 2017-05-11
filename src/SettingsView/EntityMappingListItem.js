@@ -1,7 +1,7 @@
 import React from 'react';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import config from './../config/config.js';
-import { Row, Col } from 'react-grid-system';
+import {Row, Col} from 'react-grid-system';
 import IconButton from 'material-ui/IconButton';
 import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 import IconDelete from 'material-ui/svg-icons/action/delete';
@@ -10,76 +10,74 @@ import {PromiseState} from 'react-refetch';
 
 class EntityMappingListItem extends ConnectionComponent {
 
-    constructor() {
-        super();
-        this.getEntityTypeName = this.getEntityTypeName.bind(this);
-        this.getEntityTypeAttributeName = this.getEntityTypeAttributeName.bind(this);
-        this.getEventTypeAttributeName = this.getEventTypeAttributeName.bind(this);
-    }
+	constructor() {
+		super();
+		this.getEntityTypeName = this.getEntityTypeName.bind(this);
+		this.getEntityTypeAttributeName = this.getEntityTypeAttributeName.bind(this);
+		this.getEventTypeAttributeName = this.getEventTypeAttributeName.bind(this);
+	}
 
-    getEntityTypeName(entityTypeId) {
-        let searchedEntityType = undefined;
-        window.hierarchy.forEach(function(layer) {
-            layer.forEach(function (entityType) {
-                if (entityType.Id === entityTypeId) {
-                    searchedEntityType = entityType;
-                }
-            })
-        });
-        return searchedEntityType.Name;
-    }
+	getEntityTypeName(entityTypeId) {
+		let searchedEntityType = undefined;
+		window.hierarchy.forEach(function (layer) {
+			layer.forEach(function (entityType) {
+				if (entityType.Id === entityTypeId) {
+					searchedEntityType = entityType;
+				}
+			});
+		});
+		return searchedEntityType.Name;
+	}
 
-    getEntityTypeAttributeName(attributeId) {
-        const searchedAttribute = this.props.entityTypeAttributes.value.find(attribute => {
-            return attribute.Id === attributeId;
-        });
-        return searchedAttribute.Name;
-    }
+	getEntityTypeAttributeName(attributeId) {
+		return this.props.entityTypeAttributes.value.find(attribute => {
+			return attribute.Id === attributeId;
+		}).Name;
+	}
 
-    getEventTypeAttributeName(attributeId) {
-        const searchedAttribute = this.props.eventTypeAttributes.find(attribute => {
-            return attribute.Id === attributeId;
-        });
-        return searchedAttribute.Name;
-    }
+	getEventTypeAttributeName(attributeId) {
+		return this.props.eventTypeAttributes.find(attribute => {
+			return attribute.Id === attributeId;
+		}).Name;
+	}
 
-    render() {
-        const allFetches = PromiseState.all([this.props.entityTypeAttributes]);
-        const connectionIncomplete = super.render(allFetches);
-        if(connectionIncomplete) {
-            return connectionIncomplete;
-        }
+	render() {
+		const allFetches = PromiseState.all([this.props.entityTypeAttributes]);
+		const connectionIncomplete = super.render(allFetches);
+		if (connectionIncomplete) {
+			return connectionIncomplete;
+		}
 
-        return (
-            <ListItem>
-                <Row>
-                    <Col md={10}>
-                        {this.props.eventType.Name} - {this.getEntityTypeName(this.props.mapping.EntityTypeId)}
-                    </Col>
-                    <Col md={2}>
-                        {/*TODO add functionality*/}
-                        <IconButton><IconEdit/></IconButton>
-                        <IconButton><IconDelete/></IconButton>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col offset={{md: 1}}>
-                        {this.props.mapping.EventEntityMappingConditions.map((condition) => {
-                            return(
-                                <div key={condition.EntityTypeAttributeId}>
-                                    {this.getEventTypeAttributeName(condition.EventTypeAttributeId)}
-                                     -
-                                    {this.getEntityTypeAttributeName(condition.EntityTypeAttributeId)}
-                                </div>
-                            );
-                        })}
-                    </Col>
-                </Row>
-            </ListItem>
-        )
-    }
+		return (
+			<ListItem>
+				<Row>
+					<Col md={10}>
+						{this.props.eventType.Name} - {this.getEntityTypeName(this.props.mapping.EntityTypeId)}
+					</Col>
+					<Col md={2}>
+						{/*TODO add functionality*/}
+						<IconButton><IconEdit/></IconButton>
+						<IconButton><IconDelete/></IconButton>
+					</Col>
+				</Row>
+				<Row>
+					<Col offset={{md: 1}}>
+						{this.props.mapping.EventEntityMappingConditions.map((condition) => {
+							return (
+								<div key={condition.EntityTypeAttributeId}>
+									{this.getEventTypeAttributeName(condition.EventTypeAttributeId)}
+									&nbsp;-&nbsp;
+									{this.getEntityTypeAttributeName(condition.EntityTypeAttributeId)}
+								</div>
+							);
+						})}
+					</Col>
+				</Row>
+			</ListItem>
+		);
+	}
 }
 
 export default ConnectionComponent.argosConnector()(props => ({
-    entityTypeAttributes: config.backendRESTRoute + `/entitytype/${props.mapping.EntityTypeId}/attributes`
+	entityTypeAttributes: config.backendRESTRoute + `/entitytype/${props.mapping.EntityTypeId}/attributes`
 }))(EntityMappingListItem);
