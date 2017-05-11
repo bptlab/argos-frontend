@@ -47,11 +47,11 @@ class EventType extends ConnectionComponent {
 
 
 	render() {
-		const allFetches = PromiseState.all([this.props.entityMappingss, this.props.queries, this.props.attributes]);
+		const allFetches = PromiseState.all([this.props.entityMappings, this.props.queries, this.props.attributes]);
         const optionalActions = this.props.deleteQueryeResponse;
         const queries = this.props.queries.value;
         const attributes = this.props.attributes.value;
-        const entityMappings = this.props.entityMappingss.value;
+        const entityMappings = this.props.entityMappings.value;
         const connectionIncomplete = super.render(allFetches);
         if(connectionIncomplete) {
             return connectionIncomplete;
@@ -59,9 +59,9 @@ class EventType extends ConnectionComponent {
 
 		return (
 			<div>
-			{optionalActions && optionalActions.rejected &&
-				<ErrorMessage message={optionalActions.reason} />
-			}
+				{optionalActions && optionalActions.rejected &&
+					<ErrorMessage message={optionalActions.reason} />
+				}
 				<Card
 					expanded={this.state.expanded}
 					onExpandChange={this.handleExpandChange}>
@@ -70,8 +70,7 @@ class EventType extends ConnectionComponent {
 						subtitle={`${config.descriptions.textNumberOfEvents} ${this.props.eventType.NumberOfEvents}`}
 						actAsExpander={true}
 						showExpandableButton={true}
-						children={this.getEventTypeHeaderButtons()}
-					/>
+						children={this.getEventTypeHeaderButtons()}/>
 					<CardText
 						expandable={true}>
 						<Container fluid={true}>
@@ -134,7 +133,7 @@ class EventType extends ConnectionComponent {
 export default ConnectionComponent.argosConnector()(props => ({
 	queries: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/queries`,
 	attributes: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/attributes`,
-    entityMappingss: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/entitymappings`,
+    entityMappings: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/entitymappings`,
 	deleteQuery: query => ({
 		deleteQueryeResponse: {
 			url: config.backendRESTRoute + `/eventquery/${query.Id}/delete`,

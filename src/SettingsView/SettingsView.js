@@ -73,3 +73,64 @@ export default connect.defaults({fetch: ConnectionComponent.switchFetch})(() => 
 		}
 	})
 }))(SettingsView);
+
+
+class SettingsView extends ConnectionComponent {
+
+	getCreateButton() {
+		return <IconButton href="settings/eventType/create"><IconAdd/></IconButton>
+	}
+	render() {
+		const connectionIncomplete = super.render(this.props.eventTypes);
+		if(connectionIncomplete) {
+			return connectionIncomplete;
+		}
+		return (
+			<div>
+				<Header title="Settings"/>
+				<Container className={css(AppStyles.elementMarginTop)}>
+					<Row>
+						<Card initiallyExpanded={true}>
+							<CardHeader
+								title="Event Types"
+								actAsExpander={true}
+								showExpandableButton={true}/>
+							<CardText expandable={true}>
+								<Container>
+									<SearchBar fullWidth="true"/>
+									{this.props.eventTypes.value.map((eventType) => {
+										return(<EventType
+											eventType={eventType}
+											key={eventType.Id}
+											deleteEventType={this.props.deleteEventType}
+											fullWidth="true"/>);
+									})}
+								</Container>
+							</CardText>
+							<CardActions>
+								<IconButton href="settings/eventType/create"><IconAdd/></IconButton>
+							</CardActions>
+						</Card>
+					</Row>
+				</Container>
+			</div>
+		);
+	}
+}
+
+export default connect.defaults({fetch: ConnectionComponent.switchFetch})(() => ({
+	eventTypes: config.backendRESTRoute + `/eventtypes`,
+	deleteEventType: eventType => ({
+		postLikeResponse: {
+			url: config.backendRESTRoute + `/eventtype/${eventType.Id}/delete`,
+			method: 'DELETE',
+			body: "",
+			andThen: () => ({
+				eventTypes: {
+					url: config.backendRESTRoute + `/eventtypes`,
+					refreshing: true
+				}
+			})
+		}
+	})
+}))(SettingsView);

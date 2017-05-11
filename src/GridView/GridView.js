@@ -86,3 +86,68 @@ class GridView extends ConnectionComponent {
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
 	entity: config.backendRESTRoute + `/entity/${props.match.params.entityId}`
 }))(GridView);
+
+class GridView extends ConnectionComponent {
+
+	var
+	
+	getChildEntityTypes(parentEntityTypeId) {
+		let childEntities  = [];
+		window.hierarchy.forEach(hierarchyLayer => {
+			childEntities = childEntities.concat(hierarchyLayer.filter( (entityType) => {
+				return entityType.ParentId === parentEntityTypeId;
+			}));
+		});
+		return childEntities;
+	}
+
+	getPageTitle(entity) {
+		const entityTypeInformation = window.hierarchy.find(hierarchyArray => {
+			return hierarchyArray.find(entityType => {
+				return entityType.Id === entity.TypeId;
+			});
+		});
+		if (entityTypeInformation) {
+			return entityTypeInformation[0].Name + ": " + entity.Name;
+		}
+		return "Home";
+	}
+
+	render() {
+		const allFetches = PromiseState.all([this.props.entity]);
+		const entity = this.props.entity.value;
+		const connectionIncomplete = super.render(allFetches);
+		if(connectionIncomplete) {
+			return connectionIncomplete;
+		}
+		const childEntityTypes = this.getChildEntityTypes(entity.TypeId, window.hierarchy);
+		return (
+			<div>
+				<Header title={this.getPageTitle(entity, window.hierarchy)} status={entity.Status} />
+				<Container>
+				<HierarchyStepper
+					hierarchy={window.hierarchy}
+					currentEntityTypeId={entity.TypeId}/>
+				<SearchBar/>
+				{childEntityTypes.map((childEntityType) => {
+					return(
+						<div key={`div-${childEntityType.Id}`}>
+							<h1>{childEntityType.Name}</h1>
+							<DonutChart styles={[AppStyles.elementMarginTop]} />
+							<CardGrid
+								styles={[AppStyles.elementMarginTop]}
+								key={childEntityType.Id}
+								currentEntity={entity}
+								entityType={childEntityType} />
+						</div>
+					);
+				})}
+				</Container>
+			</div>
+		);
+	}
+}
+
+export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
+	entity: config.backendRESTRoute + `/entity/${props.match.params.entityId}`
+}))(GridView);

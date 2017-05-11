@@ -11,7 +11,6 @@ class App extends ConnectionComponent {
     render() {
         PromiseState.all([this.props.hierarchy]);
         if (!window.hierarchy) {
-            console.log("updating hierarchy global");
             window.hierarchy = this.props.hierarchy.value;
         }
 
