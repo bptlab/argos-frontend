@@ -5,22 +5,19 @@ import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import Header from './../Header';
 import EventType from './EventType';
 import SearchBar from './../Utils/SearchBar';
-import { Row } from 'react-grid-system';
-import { css } from 'aphrodite';
+import {Row} from 'react-grid-system';
+import {css} from 'aphrodite';
 import AppStyles from "./../AppStyles";
-import { Card, CardHeader, CardText, CardActions } from 'material-ui/Card';
+import {Card, CardHeader, CardText, CardActions} from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import IconAdd from 'material-ui/svg-icons/content/add';
 import config from './../config/config';
 
 class SettingsView extends ConnectionComponent {
 
-	getCreateButton() {
-		return <IconButton href="settings/eventType/create"><IconAdd/></IconButton>
-	}
 	render() {
 		const connectionIncomplete = super.render(this.props.eventTypes);
-		if(connectionIncomplete) {
+		if (connectionIncomplete) {
 			return connectionIncomplete;
 		}
 		return (
@@ -37,7 +34,7 @@ class SettingsView extends ConnectionComponent {
 								<Container>
 									<SearchBar fullWidth={true}/>
 									{this.props.eventTypes.value.map((eventType) => {
-										return(<EventType
+										return (<EventType
 											eventType={eventType}
 											key={eventType.Id}
 											deleteEventType={this.props.deleteEventType}
