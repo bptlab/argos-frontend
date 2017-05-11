@@ -2,7 +2,6 @@ import React from "react";
 import {connect, PromiseState} from "react-refetch";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "material-ui/Table";
-import EventTabs from "./EventTabs";
 import FilterBar from "./../Utils/FilterBar";
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
@@ -17,8 +16,17 @@ class EventTable extends ConnectionComponent {
 			filter: [],
 		};
 
-		this.handleActiveEventTypeChange = this.handleActiveEventTypeChange.bind(this);
 		this.handleFilterChange = this.handleFilterChange.bind(this);
+	}
+
+	componentWillReceiveProps(props) {
+		if (props.eventType && this.props.eventType !== props.eventType) {
+			this.setState({
+				filter: []
+			});
+			this.props.lazyEventLoading(props.eventType.Id);
+
+		}
 	}
 
 	composeTableHeader(eventTypeAttributes) {
@@ -56,16 +64,20 @@ class EventTable extends ConnectionComponent {
 	}
 
 	composeTableBody(events) {
+		const filteredEvents = this.getFilteredEvents(events);
+		this.props.onEventsChange(filteredEvents);
 		return (
 			<TableBody displayRowCheckbox={false}>
-				{events.map((event, key) => {
-					if (!this.isCoveredByFilter(event)) {
-						return "";
-					}
+				{filteredEvents.map((event, key) => {
 					return this.composeTableRow(event, key);
 				})}
 			</TableBody>
 		);
+	}
+
+	getFilteredEvents(events) {
+		return events.filter(event =>
+			this.isCoveredByFilter(event));
 	}
 
 	isCoveredByFilter(event) {
@@ -104,74 +116,46 @@ class EventTable extends ConnectionComponent {
 		return (baseValue.toString().toLowerCase().indexOf(subValue.toString().toLowerCase()) > -1);
 	}
 
-	handleActiveEventTypeChange(eventTypeId) {
-		this.setState({
-			filter: [],
-		});
-		this.props.lazyEventLoading(eventTypeId);
-	}
-
 	handleFilterChange(filter) {
 		this.setState({
 			filter: filter,
 		});
 	}
 
-	loadTableContent() {
+	render() {
+		if (!this.props.eventTypeAttributes || !this.props.events) {
+			return <div />;
+		}
 		const eventFetchingIncomplete = super.render(PromiseState.all([
 			this.props.eventTypeAttributes,
 			this.props.events]));
 		if(eventFetchingIncomplete) {
 			return eventFetchingIncomplete;
 		}
-		return (
-			<Table>
-				{this.composeTableHeader(this.props.eventTypeAttributes.value)}
-				{this.composeTableBody(this.props.events.value)}
-			</Table>
-		);
-	}
 
-	loadFilterBar() {
-		return (
-			<FilterBar
-				styles={[AppStyles.elementMarginTop]}
-				onFiltersChange={this.handleFilterChange}
-				autoCompleteSource={this.props.eventTypeAttributes.value.map(attributeInfo => attributeInfo.Name)} />
-		);
-	}
-
-	render() {
-		const eventTypes = this.props.eventTypes.value;
-		const connectionIncomplete = super.render(this.props.eventTypes);
-		if(connectionIncomplete) {
-			return connectionIncomplete;
-		}
 		let tableContent = "";
 		let filterBar = "";
-		if (this.props.eventTypeAttributes && this.props.events) {
-			tableContent = this.loadTableContent();
-			if (this.props.eventTypeAttributes.value) {
-				filterBar = this.loadFilterBar();
-			}
+		if (this.props.eventTypeAttributes.value && this.props.events.value) {
+			return (
+				<div>
+					<FilterBar
+						styles={[AppStyles.elementMarginTop]}
+						onFiltersChange={this.handleFilterChange}
+						autoCompleteSource={this.props.eventTypeAttributes.value.map(attributeInfo => attributeInfo.Name)} />
+					<Table>
+						{this.composeTableHeader(this.props.eventTypeAttributes.value)}
+						{this.composeTableBody(this.props.events.value)}
+					</Table>
+				</div>
+			);
 		}
-		return (
-			<div>
-				{filterBar}
-				<EventTabs
-					eventTypes={eventTypes}
-					eventTypeChangeHandler={this.handleActiveEventTypeChange}
-					styles={[AppStyles.elementMarginTop]} />
-				{tableContent}
-			</div>
-		);
+		return <div />;
 	}
 }
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
-	eventTypes: config.backendRESTRoute + `/entity/${props.entityId}/eventtypes`,
 	lazyEventLoading: eventTypeId => ({
 		eventTypeAttributes: config.backendRESTRoute + `/eventtype/${eventTypeId}/attributes`,
 		events: config.backendRESTRoute + `/entity/${props.entityId}/eventtype/${eventTypeId}/events/0/10000`
-	}),
+	})
 }))(EventTable);
