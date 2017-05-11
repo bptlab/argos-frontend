@@ -19,6 +19,9 @@ const config = {
 		textNumberOfEvents: "Number of events",
         exampleQuery: "INSERT INTO ExampleType SELECT * FROM PATTERN [[2] SimpleType]",
 		queryInputFieldHint: "Esper EPL Query",
+		queryDescriptionInputFieldHint: 'Description for query',
+		deleteQueryMessage: "Do you really want to delete this Query?",
+		deleteEventTypeMessage: "Do you really want to delete this EventType?"
 	},
 	messages: {
 		notFound: "Error 404. The requested page does not exist. You found a glitch in the matrix.",
