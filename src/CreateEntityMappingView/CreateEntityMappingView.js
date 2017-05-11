@@ -12,7 +12,6 @@ import {css} from 'aphrodite';
 
 import config from "../config/config";
 import AppStyles from "../AppStyles";
-import LoadingAnimation from "../Utils/LoadingAnimation";
 
 class CreateEntityMappingView extends ConnectionComponent {
 	constructor(props) {
@@ -123,7 +122,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 
 	prepareMappingsForSending() {
 		//must be called before saving the data
-		let mappings = this.state.mappings;
+		const mappings = this.state.mappings;
 		const cleanedMappings = [];
 		mappings.forEach((mapping) => {
 			if (mapping.eventTypeAttribute && mapping.entityTypeAttribute) {
