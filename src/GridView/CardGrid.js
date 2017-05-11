@@ -10,29 +10,25 @@ import AppStyles from "./../AppStyles";
 import EntityInformation from './../DetailView/EntityInformation';
 import StatusDiagram from "./StatusDiagram";
 import config from './../config/config';
+import Utils from './../Utils/Utils';
 
 class CardGrid extends ConnectionComponent {
-	getStatus(currentStatus) {
-		return config.statuses.find((status) => {
-			return status.name === currentStatus;
-		})
-	}
 
 	backgroundColor (status) {
-		if (this.getStatus(status)) {
-			return ({backgroundColor: this.getStatus(status).color});
+		if (Utils.getStatus(status)) {
+			return ({backgroundColor: Utils.getStatus(status).color});
 		}
 		else {
-			return {backgroundColor: this.getStatus("UNDEFINED").color};
+			return {backgroundColor: Utils.getStatus("UNDEFINED").color};
 		}
 	}
 
 	backgroundColorLight (status) {
-		if (this.getStatus(status)) {
-			return ({backgroundColor: this.getStatus(status).colorLight});
+		if (Utils.getStatus(status)) {
+			return ({backgroundColor: Utils.getStatus(status).colorLight});
 		}
 		else {
-			return {backgroundColor: this.getStatus("UNDEFINED").colorLight};
+			return {backgroundColor: Utils.getStatus("UNDEFINED").colorLight};
 		}
 	}
 
