@@ -3,6 +3,7 @@ import {Container} from "react-grid-system";
 import DonutChart from "./DonutChart";
 import HierarchyStepper from "./HierarchyStepper";
 import SearchBar from "./../Utils/SearchBar";
+import FilterBar from "./../Utils/FilterBar"
 import CardGrid from "./CardGrid";
 import {connect, PromiseState} from "react-refetch";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
@@ -10,11 +11,17 @@ import AppStyles from "./../AppStyles";
 import config from './../config/config.js';
 import Header from "../Header";
 
+
 class GridView extends ConnectionComponent {
 	constructor() {
 		super();
 		this.getChildEntityTypes = this.getChildEntityTypes.bind(this);
 		this.getEntityType = this.getEntityType.bind(this);
+		this.handleFilterChange = this.handleFilterChange.bind(this);
+
+		this.state = {
+			filter: [],
+		};
 	}
 
 	getEntityType(entity, hierarchy) {
@@ -46,6 +53,21 @@ class GridView extends ConnectionComponent {
 		return "Home";
 	}
 
+	handleFilterChange(filter) {
+		this.setState({
+			filter: filter,
+		});
+	}
+
+	loadFilterBar() {
+		return (
+			<FilterBar
+				styles={[AppStyles.elementMarginTop]}
+				onFiltersChange={this.handleFilterChange}
+				autoCompleteSource={[]}/>
+		);
+	}
+
 	render() {
 		const allFetches = PromiseState.all([this.props.hierarchy, this.props.entity]);
 		const hierarchy = this.props.hierarchy.value;
@@ -55,6 +77,9 @@ class GridView extends ConnectionComponent {
 			return connectionIncomplete;
 		}
 		const childEntityTypes = this.getChildEntityTypes(entity.TypeId, hierarchy);
+
+		const filterBar = this.loadFilterBar();
+
 		return (
 			<div>
 				<Header title={this.getPageTitle(entity, hierarchy)} status={entity.Status} />
@@ -64,17 +89,18 @@ class GridView extends ConnectionComponent {
 						currentEntity={entity}
 						getEntityType={this.getEntityType}
 						getChildEntityTypes={this.getChildEntityTypes}/>
-					<SearchBar/>
+					{filterBar}
 					{childEntityTypes.map((childEntityType) => {
 						return(
 							<div key={`div-${childEntityType.Id}`}>
 								<h1>{childEntityType.Name}</h1>
 								<DonutChart styles={[AppStyles.elementMarginTop]} />
 								<CardGrid
+									filter={this.state.filter}
 									styles={[AppStyles.elementMarginTop]}
 									key={childEntityType.Id}
 									currentEntity={entity}
-									entityType={childEntityType} />
+									entityType={childEntityType}/>
 							</div>
 						);
 					})}
