@@ -37,19 +37,31 @@ class DonutChart extends Component {
 		plotly.plot('status-diagram', data, layout, modeBar);
 	}
 
-
+	getStatusIndex(status, statuses) {
+		return statuses.findIndex((currentStatus) => {
+			return currentStatus.name === status;
+		})
+	}
 
 	forgeChartData() {
 		let data = [];
-		// let status = config.status;
-		//
-		// this.props.entities.forEach((entity) => {
-		// 	if(entity.Status in status) {
-		//
-		// 	}
-		// });
+		let statuses = config.statuses;
+		statuses.forEach((status) => {
+			status.entityCounter = 0;
+		});
 
-		const status = {percentage: 70, name: 'RUNNING'};
+		this.props.entities.value.forEach((entity) => {
+			const currentStatusIndex = this.getStatusIndex(entity.Status, statuses);
+			if(currentStatusIndex) {
+				statuses[currentStatusIndex].entityCounter++;
+			}
+			else {
+				const undefinedStatusIndex = this.getStatusIndex('UNDEFINED', statuses);
+				statuses[undefinedStatusIndex].entityCounter++;
+			}
+		});
+
+		// const status = {percentage: 70, name: 'RUNNING'};
 		const dataSet = this.forgeDataSet(status);
 		data = data.concat([dataSet]);
 
