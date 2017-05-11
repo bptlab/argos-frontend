@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {List, ListItem} from "material-ui/List";
 import {css} from "aphrodite";
-import {Card, CardHeader, CardText, CardTitle} from "material-ui";
+import {Card, CardText, CardTitle} from "material-ui";
 import AppStyles from "../AppStyles";
 
 class EventTypeInformation extends Component {
