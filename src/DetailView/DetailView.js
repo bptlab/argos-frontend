@@ -71,6 +71,7 @@ class DetailView extends ConnectionComponent {
 					events={this.state.events}
 					eventType={this.state.currentEventType}
 					eventTypeAttributes={this.props.eventTypeAttributes.value}
+					entity={this.props.entity.value}
 					styles={[AppStyles.w50]} />
 			);
 		}
