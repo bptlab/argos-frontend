@@ -39,6 +39,7 @@ class EventType extends ConnectionComponent {
 
 	getEventTypeHeaderButtons() {
 		return [
+			// TODO add functionality
 			<IconButton><IconEdit/></IconButton>,
 			<IconButton><IconDelete/></IconButton>];
 	}
@@ -126,6 +127,7 @@ class EventType extends ConnectionComponent {
 													key={mapping.Id}
 													mapping={mapping}
 													eventType={this.props.eventType}
+													eventTypeAttributes={attributes}
 													getEntityTypeName={this.getEntityTypeName}/>
 											)
 										})}
