@@ -10,7 +10,6 @@ import {css, StyleSheet} from "aphrodite";
 import AppStyles from "./AppStyles";
 
 class Header extends Component {
-
 	static goBackInHistory() {
 		window.history.back();
 	}
@@ -20,6 +19,12 @@ class Header extends Component {
         const newPath = currentPath.replace("details", "grid");
         window.location.href = newPath.substring(0, newPath.lastIndexOf("/") + 1);
     }
+
+	getStatus(currentStatus) {
+		return config.status.find((status) => {
+			return status.name == currentStatus;
+		})
+	}
 
 	composeAppBar(pageLocation) {
 		let iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
@@ -40,7 +45,7 @@ class Header extends Component {
         if(this.props.status) {
             const statusColor = StyleSheet.create({
                 color: {
-                    borderColor: config.status[this.props.status].color
+                    borderColor: this.getStatus(this.props.status).color
                 }
             });
             appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color);

@@ -12,21 +12,27 @@ import StatusDiagram from "./StatusDiagram";
 import config from './../config/config';
 
 class CardGrid extends ConnectionComponent {
+	getStatus(currentStatus) {
+		return config.status.find((status) => {
+			return status.name == currentStatus;
+		})
+	}
+
 	backgroundColor (status) {
-		if (status in config.status) {
-			return ({backgroundColor: config.status[status].color});
+		if (this.getStatus(status)) {
+			return ({backgroundColor: this.getStatus(status).color});
 		}
 		else {
-			return {backgroundColor: config.status["UNDEFINED"].color};
+			return {backgroundColor: this.getStatus("UNDEFINED").color};
 		}
 	}
 
 	backgroundColorLight (status) {
-		if (status in config.status) {
-			return ({backgroundColor: config.status[status].colorLight});
+		if (this.getStatus(status)) {
+			return ({backgroundColor: this.getStatus(status).colorLight});
 		}
 		else {
-			return {backgroundColor: config.status["UNDEFINED"].colorLight};
+			return {backgroundColor: this.getStatus("UNDEFINED").colorLight};
 		}
 	}
 
