@@ -98,7 +98,7 @@ class CreateEventTypeView extends ConnectionComponent {
 	}
 
 	render() {
-		const optionalActions = this.props.deleteQueryResponse;
+		const optionalActions = this.props.createEventTypeResponse;
 		if(optionalActions && optionalActions.fulfilled) {
 			window.history.back();
 			return null;
@@ -174,7 +174,7 @@ class CreateEventTypeView extends ConnectionComponent {
 
 export default ConnectionComponent.argosConnector()(() => ({
 	createEventType: state => ({
-		deleteQueryResponse: {
+		createEventTypeResponse: {
 			url: config.backendRESTRoute + `/eventtype/create`,
 			method: 'POST',
 			body: JSON.stringify({
