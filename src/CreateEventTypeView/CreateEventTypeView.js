@@ -36,6 +36,10 @@ class CreateEventTypeView extends ConnectionComponent {
 			eventTypeNameErrorText: '',
 		});
 	}
+	
+	abort() {
+		window.history.back();
+	}
 
 	handleChangeEventTypeTimestampAttribute(event) {
 		this.setState({
@@ -158,6 +162,7 @@ class CreateEventTypeView extends ConnectionComponent {
 							label="Abort"
 							icon={<IconCancel/>}
 							className={css(AppStyles.marginAllSites)}
+							onClick={this.abort}
 							secondary={true}/>
 						<RaisedButton
 							label="Save"
