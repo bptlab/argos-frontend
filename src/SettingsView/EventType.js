@@ -40,8 +40,8 @@ class EventType extends ConnectionComponent {
 	getEventTypeHeaderButtons() {
 		return [
 			// TODO add functionality
-			<IconButton><IconEdit/></IconButton>,
-			<IconButton><IconDelete/></IconButton>];
+			<IconButton key="edit-button"><IconEdit/></IconButton>,
+			<IconButton key="delete-button"><IconDelete/></IconButton>];
 	}
 
 
