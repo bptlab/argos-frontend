@@ -22,6 +22,6 @@ class App extends ConnectionComponent {
     }
 }
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
+export default connect.defaults({fetch: ConnectionComponent.switchFetch})(() => ({
     hierarchy: config.backendRESTRoute + `/entitytype/hierarchy`,
 }))(App);

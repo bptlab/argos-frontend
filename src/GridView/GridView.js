@@ -53,7 +53,7 @@ class GridView extends ConnectionComponent {
 		if(connectionIncomplete) {
 			return connectionIncomplete;
 		}
-		const childEntityTypes = this.getChildEntityTypes(entity.TypeId, window.hierarchy);
+		const childEntityTypes = this.getChildEntityTypes(entity.TypeId);
 		return (
 			<div>
 				<Header title={this.getPageTitle(entity)} status={entity.Status} />
