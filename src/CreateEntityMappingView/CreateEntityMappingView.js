@@ -164,7 +164,7 @@ class CreateEntityMappingView extends ConnectionComponent {
             });
             isValid = false;
 		}
-		let mappings = [];
+		const mappings = [];
         this.state.mappings.forEach((mapping) => {
 			if (!mapping.eventTypeAttribute.value) {
 				mapping.eventTypeAttribute.errorMessage = config.messages.requiredFieldMessage;
@@ -179,7 +179,7 @@ class CreateEntityMappingView extends ConnectionComponent {
         this.setState({
             mappings: mappings
         });
-		console.log(isValid);
+		return isValid;
 	}
 	
 	handleMappingConditionDelete(key) {
