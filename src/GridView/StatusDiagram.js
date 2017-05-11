@@ -5,6 +5,8 @@ import config from '../config/config';
 
 class DonutChart extends Component {
 	componentDidMount() {
+		const data = this.forgeChartData();
+		const chartRangeMaximum = this.getChartRangeMaximum(data);
 		const layout = {
 			barmode: 'stack',
 			showlegend: false,
@@ -20,21 +22,28 @@ class DonutChart extends Component {
 			xaxis: {
 				visible: false,
 				fixedrange: true,
-				range: [0, 100]
+				range: [0, chartRangeMaximum]
 			},
 			yaxis: {
 				visible: false,
 				fixedrange: true
 			},
 		};
-
 		const modeBar = {
 			displayModeBar: false
 		};
 
-		const data = this.forgeChartData();
-
 		plotly.plot('status-diagram', data, layout, modeBar);
+	}
+
+	getChartRangeMaximum(data) {
+		let chartRangeMaximum = 0;
+		data.forEach((dataSet) => {
+			dataSet.x.forEach((xValue) => {
+				chartRangeMaximum += xValue;
+			})
+		});
+		return chartRangeMaximum;
 	}
 
 	getStatusIndex(status, statuses) {
@@ -44,7 +53,6 @@ class DonutChart extends Component {
 	}
 
 	forgeChartData() {
-		let data = [];
 		let statuses = config.statuses;
 		statuses.forEach((status) => {
 			status.entityCounter = 0;
@@ -52,7 +60,7 @@ class DonutChart extends Component {
 
 		this.props.entities.value.forEach((entity) => {
 			const currentStatusIndex = this.getStatusIndex(entity.Status, statuses);
-			if(currentStatusIndex) {
+			if(currentStatusIndex >= 0) {
 				statuses[currentStatusIndex].entityCounter++;
 			}
 			else {
@@ -61,9 +69,10 @@ class DonutChart extends Component {
 			}
 		});
 
-		// const status = {percentage: 70, name: 'RUNNING'};
-		const dataSet = this.forgeDataSet(status);
-		data = data.concat([dataSet]);
+		let data = [];
+		statuses.forEach((status) => {
+			data.push(this.forgeDataSet(status));
+		});
 
 		return data;
 	}
@@ -71,13 +80,13 @@ class DonutChart extends Component {
 	forgeDataSet(status) {
 		return {
 			y: ['status'],
-			x: [status.percentage],
+			x: [status.entityCounter],
 			name: status.name,
 			type: 'bar',
 			orientation: 'h',
 			width: 50,
 			marker:{
-				color: ['#000000']
+				color: [status.color]
 			},
 		};
 	}
