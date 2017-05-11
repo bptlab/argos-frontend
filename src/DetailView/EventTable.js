@@ -1,5 +1,5 @@
 import React from "react";
-import {connect, PromiseState} from "react-refetch";
+import {connect} from "react-refetch";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "material-ui/Table";
 import FilterBar from "./../Utils/FilterBar";
@@ -19,13 +19,12 @@ class EventTable extends ConnectionComponent {
 		this.handleFilterChange = this.handleFilterChange.bind(this);
 	}
 
-	componentWillReceiveProps(props) {
-		if (props.eventType && this.props.eventType !== props.eventType) {
+	componentWillMount() {
+		if (this.props.eventTypeId) {
 			this.setState({
 				filter: []
 			});
-			this.props.lazyEventLoading(props.eventType.Id);
-
+			this.props.lazyEventLoading(this.props.eventTypeId);
 		}
 	}
 
@@ -91,7 +90,7 @@ class EventTable extends ConnectionComponent {
 		if (!filter.value) {
 			return true;
 		}
-		let columnsToBeSearched = this.props.eventTypeAttributes.value;
+		let columnsToBeSearched = this.props.eventTypeAttributes;
 		if(filter.column) {
 			columnsToBeSearched = columnsToBeSearched.filter((column) => {
 				return EventTable.doesContain(column.Name, filter.column);
@@ -123,39 +122,31 @@ class EventTable extends ConnectionComponent {
 	}
 
 	render() {
-		if (!this.props.eventTypeAttributes || !this.props.events) {
+		if (!this.props.events) {
 			return <div />;
 		}
-		const eventFetchingIncomplete = super.render(PromiseState.all([
-			this.props.eventTypeAttributes,
-			this.props.events]));
+		const eventFetchingIncomplete = super.render(this.props.events);
 		if(eventFetchingIncomplete) {
 			return eventFetchingIncomplete;
 		}
 
-		let tableContent = "";
-		let filterBar = "";
-		if (this.props.eventTypeAttributes.value && this.props.events.value) {
-			return (
-				<div>
-					<FilterBar
-						styles={[AppStyles.elementMarginTop]}
-						onFiltersChange={this.handleFilterChange}
-						autoCompleteSource={this.props.eventTypeAttributes.value.map(attributeInfo => attributeInfo.Name)} />
-					<Table>
-						{this.composeTableHeader(this.props.eventTypeAttributes.value)}
-						{this.composeTableBody(this.props.events.value)}
-					</Table>
-				</div>
-			);
-		}
-		return <div />;
+		return (
+			<div>
+				<FilterBar
+					styles={[AppStyles.elementMarginTop]}
+					onFiltersChange={this.handleFilterChange}
+					autoCompleteSource={this.props.eventTypeAttributes.map(attributeInfo => attributeInfo.Name)} />
+				<Table>
+					{this.composeTableHeader(this.props.eventTypeAttributes)}
+					{this.composeTableBody(this.props.events.value)}
+				</Table>
+			</div>
+		);
 	}
 }
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
 	lazyEventLoading: eventTypeId => ({
-		eventTypeAttributes: config.backendRESTRoute + `/eventtype/${eventTypeId}/attributes`,
 		events: config.backendRESTRoute + `/entity/${props.entityId}/eventtype/${eventTypeId}/events/0/10000`
 	})
 }))(EventTable);

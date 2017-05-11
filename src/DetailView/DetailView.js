@@ -33,6 +33,47 @@ class DetailView extends ConnectionComponent {
 		this.setState({
 			currentEventType: eventType,
 		});
+		this.props.lazyAttributeLoading(eventType.Id);
+	}
+
+	getEventTable() {
+		if (!this.props.eventTypeAttributes) {
+			return "";
+		}
+
+		const eventTypeAttributeConnection = super.render(this.props.eventTypeAttributes);
+		if (eventTypeAttributeConnection) {
+			return eventTypeAttributeConnection;
+		}
+		else if(this.props.eventTypeAttributes.value) {
+			return (
+				<EventTable
+					entityId={this.props.match.params.entityId}
+					eventTypeId={this.state.currentEventType.Id}
+					eventTypeAttributes={this.props.eventTypeAttributes.value}
+					onEventsChange={this.handleEventsChange} />
+			);
+		}
+	}
+
+	getEventDiagram() {
+		if (!this.props.eventTypeAttributes) {
+			return "";
+		}
+
+		const eventTypeAttributeConnection = super.render(this.props.eventTypeAttributes);
+		if (eventTypeAttributeConnection) {
+			return eventTypeAttributeConnection;
+		}
+		else if(this.props.eventTypeAttributes.value) {
+			return (
+				<EventDiagram
+					events={this.state.events}
+					eventType={this.state.currentEventType}
+					eventTypeAttributes={this.props.eventTypeAttributes.value}
+					styles={[AppStyles.w50]} />
+			);
+		}
 	}
 
 	render() {
@@ -50,6 +91,8 @@ class DetailView extends ConnectionComponent {
 			this.handleEventTypeChange(currentEventType);
 		}
 
+
+
 		return (
 			<div>
 				<Header
@@ -60,19 +103,13 @@ class DetailView extends ConnectionComponent {
 						<EntityInformation
 							entity={entity}
 							styles={[AppStyles.w50]}/>
-						<EventDiagram
-							events={this.state.events}
-							eventType={this.state.currentEventType}
-							styles={[AppStyles.w50]} />
+						{this.getEventDiagram()}
 					</div>
 					<EventTabs
 						eventTypes={eventTypes}
 						onEventTypeChange={this.handleEventTypeChange}
 						styles={[AppStyles.elementMarginTop]} />
-					<EventTable
-						entityId={this.props.match.params.entityId}
-						eventType={this.state.currentEventType}
-						onEventsChange={this.handleEventsChange} />
+					{this.getEventTable()}
 				</Container>
 			</div>
 		);
@@ -82,4 +119,7 @@ class DetailView extends ConnectionComponent {
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
 	entity: config.backendRESTRoute + `/entity/${props.match.params.entityId}`,
 	eventTypes: config.backendRESTRoute + `/entity/${props.match.params.entityId}/eventtypes`,
+	lazyAttributeLoading: eventTypeId => ({
+		eventTypeAttributes: config.backendRESTRoute + `/eventtype/${eventTypeId}/attributes`,
+	})
 }))(DetailView);
