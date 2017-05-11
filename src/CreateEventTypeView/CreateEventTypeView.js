@@ -66,7 +66,6 @@ class CreateEventTypeView extends ConnectionComponent {
 				TimestampAttributeName: this.state.eventTypeTimestampAttribute,
 				TypeAttributes: attributes.map((attribute) => {
 					return {
-						name: attribute.value
 						Name: attribute.value
 					};
 				})
