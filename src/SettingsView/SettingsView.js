@@ -15,7 +15,28 @@ import ErrorMessage from './../Utils/ErrorMessage.js';
 import config from './../config/config';
 
 class SettingsView extends ConnectionComponent {
+    constructor() {
+        super();
+        this.state = {
+            searchText: ''
+        };
+        this.handleSearchInput = this.handleSearchInput.bind(this);
+        this.searchMatches = this.searchMatches.bind(this);
+    }
 
+    handleSearchInput(value) {
+        this.setState({
+            searchText: value
+        });
+    }
+
+    searchMatches(eventType, searchText) {
+        if (!searchText || !searchText.value) {
+            return true;
+        }
+
+        return (eventType.Name.toLowerCase().indexOf(searchText.value) > -1);
+    }
 	render() {
 		const connectionIncomplete = super.render(this.props.eventTypes);
 		if (connectionIncomplete) {
@@ -34,17 +55,21 @@ class SettingsView extends ConnectionComponent {
 								showExpandableButton={true}/>
 							<CardText expandable={true}>
 								<Container>
-									<SearchBar fullWidth={true}/>
+									<SearchBar onInputChange={this.handleSearchInput}/>
 									{optionalActions && optionalActions.rejected &&
 										<ErrorMessage message={optionalActions.reason} />
 									}
 									{this.props.eventTypes.value.map((eventType) => {
-										return (<EventType
-											eventType={eventType}
-											key={eventType.Id}
-											deleteEventType={this.props.deleteEventType}
-											fullWidth="true"/>);
-									})}
+                                        if(this.searchMatches(eventType, this.state.searchText)) {
+                                            return (<EventType
+												eventType={eventType}
+												key={eventType.Id}
+												deleteEventType={this.props.deleteEventType}
+												fullWidth={true}/>);
+                                        } else {
+                                            return false;
+                                        }})
+									}
 								</Container>
 							</CardText>
 							<CardActions>
