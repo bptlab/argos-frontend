@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "dependencies": {
     "aphrodite": "^1.2.0",
-    "chart.js": "^2.5.0",
     "material-ui": "^0.17.3",
+    "plotly.js": "^1.27.0",
     "react": "^15.5.3",
     "react-dom": "^15.5.3",
     "react-grid-system": "^2.9.0",
