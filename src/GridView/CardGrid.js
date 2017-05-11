@@ -75,7 +75,6 @@ class CardGrid extends ConnectionComponent {
 					if (!this.isCoveredByFilter(childEntity)) {
 						return "";
 					}
-
 					return (
 						<Col key={index} xs={12} sm={4} md={3}>
 							<Card>
