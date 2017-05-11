@@ -23,6 +23,7 @@ class EventType extends ConnectionComponent {
 		this.handleExpandChange = this.handleExpandChange.bind(this);
 		this.handleMappingsExpandChange = this.handleMappingsExpandChange.bind(this);
 		this.handleEventTypeDeletion = this.handleEventTypeDeletion.bind(this);
+		this.getCreateEventQueryURI = this.getCreateEventQueryURI.bind(this);
 	}
 
 	handleExpandChange(expanded) {
@@ -44,7 +45,9 @@ class EventType extends ConnectionComponent {
 			<IconButton key="delete-button"><IconDelete/></IconButton>];
 	}
 
-
+	getCreateEventQueryURI() {
+		return "settings/eventType/" + this.props.eventType.Id + "/eventQuery/create";
+    }
 
 	render() {
 		const allFetches = PromiseState.all([this.props.entityMappings, this.props.queries, this.props.attributes]);
@@ -97,7 +100,7 @@ class EventType extends ConnectionComponent {
 								</List>
 							</Col>
 							<Col md={1}>
-								<IconButton href="settings/eventType/create"><IconAdd/></IconButton>
+								<IconButton href={this.getCreateEventQueryURI()} ><IconAdd/></IconButton>
 							</Col>
 						</Container>
 						<Container>
