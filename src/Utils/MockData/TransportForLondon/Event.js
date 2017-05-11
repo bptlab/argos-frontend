@@ -10,7 +10,7 @@ const Event = [
                         Attributes: [
                             {
                                 Name: "timestamp",
-                                Value: "2017/05/02T12:00"
+                                Value: "2017-05-02T12:00"
                             },
                             {
                                 Name: "load",
@@ -26,7 +26,7 @@ const Event = [
                         Attributes: [
                             {
                                 Name: "timestamp",
-                                Value: "2017/04/28T11:50"
+                                Value: "2017-04-28T11:50"
                             },
                             {
                                 Name: "load",
@@ -47,7 +47,7 @@ const Event = [
                         Attributes: [
                             {
                                 Name: "timestamp",
-                                Value: "2017/05/01T11:23"
+                                Value: "2017-05-01T11:23"
                             },
                             {
                                 Name: "load",
@@ -63,7 +63,7 @@ const Event = [
                         Attributes: [
                             {
                                 Name: "timestamp",
-                                Value: "2017/04/27T17:19"
+                                Value: "2017-04-27T17:19"
                             },
                             {
                                 Name: "load",
@@ -79,7 +79,7 @@ const Event = [
                         Attributes: [
                             {
                                 Name: "timestamp",
-                                Value: "2017/04/12T09:36"
+                                Value: "2017-04-12T09:36"
                             },
                             {
                                 Name: "load",
@@ -107,7 +107,7 @@ const Event = [
                         Attributes: [
                             {
                                 Name: "timestamp",
-                                Value: "2017/05/02T15:06"
+                                Value: "2017-05-02T15:06"
                             },
                             {
                                 Name: "WagonsPerTrain",
@@ -123,7 +123,7 @@ const Event = [
                         Attributes: [
                             {
                                 Name: "timestamp",
-                                Value: "2017/05/01T14:06"
+                                Value: "2017-05-01T14:06"
                             },
                             {
                                 Name: "WagonsPerTrain",
@@ -144,7 +144,7 @@ const Event = [
                         Attributes: [
                             {
                                 Name: "timestamp",
-                                Value: "2017/05/02T15:06"
+                                Value: "2017-05-02T15:06"
                             },
                             {
                                 Name: "WagonsPerTrain",
@@ -160,7 +160,7 @@ const Event = [
                         Attributes: [
                             {
                                 Name: "timestamp",
-                                Value: "2017/05/01T17:46"
+                                Value: "2017-05-01T17:46"
                             },
                             {
                                 Name: "WagonsPerTrain",
@@ -188,7 +188,7 @@ const Event = [
                         Attributes: [
                             {
                                 Name: "timestamp",
-                                Value: "2017/05/01T11:11"
+                                Value: "2017-05-01T11:11"
                             },
                             {
                                 Name: "isOperating",
@@ -204,7 +204,7 @@ const Event = [
                         Attributes: [
                             {
                                 Name: "timestamp",
-                                Value: "2017/04/28T10:51"
+                                Value: "2017-05-01T10:51"
                             },
                             {
                                 Name: "isOperating",
@@ -220,7 +220,7 @@ const Event = [
                         Attributes: [
                             {
                                 Name: "timestamp",
-                                Value: "2017/04/25T13:39"
+                                Value: "2017-04-25T13:39"
                             },
                             {
                                 Name: "isOperating",
@@ -252,7 +252,7 @@ const Event = [
                         Attributes: [
                             {
                                 Name: "timestamp",
-                                Value: "2017/05/01T12:12"
+                                Value: "2017-05-01T12:12"
                             },
                             {
                                 Name: "crowded",
@@ -280,7 +280,7 @@ const Event = [
                         Attributes: [
                             {
                                 Name: "timestamp",
-                                Value: "2017/04/18T19:12"
+                                Value: "2017-04-18T19:12"
                             },
                             {
                                 Name: "interrupted",
