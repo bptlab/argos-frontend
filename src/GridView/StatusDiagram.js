@@ -4,26 +4,6 @@ import plotly from 'plotly.js/dist/plotly';
 
 class DonutChart extends Component {
 	componentDidMount() {
-		const trace1 = {
-			y: ['giraffes'],
-			x: [20],
-			name: 'SF Zoo',
-			type: 'bar',
-			orientation: 'h',
-			width: 50
-		};
-
-		const trace2 = {
-			y: ['giraffes'],
-			x: [80],
-			name: 'LA Zoo',
-			type: 'bar',
-			orientation: 'h',
-			width: 50
-		};
-
-		const data = [trace1, trace2];
-
 		const layout = {
 			barmode: 'stack',
 			showlegend: false,
@@ -45,15 +25,37 @@ class DonutChart extends Component {
 				visible: false,
 				fixedrange: true
 			},
-			paper_bgcolor: '#7f7f7f',
-			plot_bgcolor: '#c7c7c7'
 		};
 
 		const modeBar = {
 			displayModeBar: false
 		};
 
+		const data = this.forgeChartData();
+
 		plotly.plot('status-diagram', data, layout, modeBar);
+	}
+
+
+
+	forgeChartData() {
+		let data = [];
+		
+		const dataSet = this.forgeDataSet({percentage: 70, name: 'RUNNING'});
+		data = data.concat([dataSet]);
+
+		return data;
+	}
+
+	forgeDataSet(status) {
+		return {
+			y: ['status'],
+			x: [status.percentage],
+			name: status.name,
+			type: 'bar',
+			orientation: 'h',
+			width: 50
+		};
 	}
 
 	render() {
