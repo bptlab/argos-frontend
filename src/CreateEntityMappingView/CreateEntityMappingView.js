@@ -25,6 +25,8 @@ class CreateEntityMappingView extends ConnectionComponent {
         this.handleEventTypeChange = this.handleEventTypeChange.bind(this);
         this.handleEntityTypeChange = this.handleEntityTypeChange.bind(this);
         this.handleAddNewMappingCondition = this.handleAddNewMappingCondition.bind(this);
+        this.handleEventTypeAttributeChange = this.handleEventTypeAttributeChange.bind(this);
+        this.handleEntityTypeAttributeChange = this.handleEntityTypeAttributeChange.bind(this);
     }
 
     static getDefaultMappings() {
@@ -66,6 +68,18 @@ class CreateEntityMappingView extends ConnectionComponent {
         this.setState({mappings});
     }
 
+    handleEventTypeAttributeChange(key, value) {
+        let mappings = this.state.mappings;
+        mappings[key].eventTypeAttribute = value;
+        this.setState({mappings});
+    }
+
+    handleEntityTypeAttributeChange(key, value) {
+        let mappings = this.state.mappings;
+        mappings[key].entityTypeAttribute = value;
+        this.setState({mappings});
+    }
+
     getEventTypeAttributesDropdown(key, value) {
         const eventTypeAttributes = this.props.eventTypeAttributes.value;
         if (eventTypeAttributes) {
@@ -73,12 +87,7 @@ class CreateEntityMappingView extends ConnectionComponent {
                 floatingLabelText="Select Event Type Attribute"
                 fullWidth={true}
                 value={value}
-                onChange={
-                    (event, index, value) => {
-                        let mappings = this.state.mappings;
-                        mappings[key].eventTypeAttribute = value;
-                        this.setState({mappings});
-                    }}>
+                onChange={(event, index, value) => {this.handleEventTypeAttributeChange(key, value);}}>
                 {eventTypeAttributes.map(
                     (eventTypeAttribute, key) => {
                         return <MenuItem
@@ -99,13 +108,7 @@ class CreateEntityMappingView extends ConnectionComponent {
                 floatingLabelText="Select Entity Type Attribute"
                 fullWidth={true}
                 value={value}
-                onChange={
-                    (event, index, value) => {
-                        let mappings = this.state.mappings;
-                        mappings[key].entityTypeAttribute = value;
-                        this.setState({mappings});
-                    }
-                }>
+                onChange={(event, index, value) => {this.handleEntityTypeAttributeChange(key, value);}}>
                 {entityTypeAttributes.map(
                     (entityTypeAttribute, key) => {
                         return <MenuItem
