@@ -19,13 +19,14 @@ const config = {
 		textNumberOfEvents: "Number of events",
         exampleQuery: "INSERT INTO ExampleType SELECT * FROM PATTERN [[2] SimpleType]",
 		queryInputFieldHint: "Esper EPL Query",
-		deleteQueryMessage: "Do you really want to delete this Query?",
-		deleteEventTypeMessage: "Do you really want to delete this EventType?"
 	},
 	messages: {
 		notFound: "Error 404. The requested page does not exist. You found a glitch in the matrix.",
 		noEventTypes: "No event types",
-		actionRejected: "The requested action has been rejected."
+		actionRejected: "The requested action has been rejected.",
+		deleteQueryMessage: "Do you really want to delete this Query?",
+		deleteEventTypeMessage: "Do you really want to delete this EventType?",
+		requiredFieldMessage: 'Please fill out this field'
 	},
 	status: {
 		"RUNNING": {color: "#4CAF50", colorLight: '#81C784'},
