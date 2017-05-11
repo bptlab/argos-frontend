@@ -5,7 +5,7 @@ import { Row, Col } from 'react-grid-system';
 import IconButton from 'material-ui/IconButton';
 import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 import IconDelete from 'material-ui/svg-icons/action/delete';
-import { ListItem } from 'material-ui/List';
+import ListItem from 'material-ui/List';
 import {PromiseState} from 'react-refetch';
 
 class EntityMappingListItem extends ConnectionComponent {
@@ -14,11 +14,19 @@ class EntityMappingListItem extends ConnectionComponent {
         super();
         this.getEntityTypeName = this.getEntityTypeName.bind(this);
         this.getEntityTypeAttributeName = this.getEntityTypeAttributeName.bind(this);
+        this.getEventTypeAttributeName = this.getEventTypeAttributeName.bind(this);
     }
 
-
-    getEntityTypeName() {
-        return this.props.getEntityTypeName(this.props.mapping.EntityTypeId);
+    getEntityTypeName(entityTypeId) {
+        let searchedEntityType = undefined;
+        window.hierarchy.forEach(function(layer) {
+            layer.forEach(function (entityType) {
+                if (entityType.Id === entityTypeId) {
+                    searchedEntityType = entityType;
+                }
+            })
+        });
+        return searchedEntityType.Name;
     }
 
     getEntityTypeAttributeName(attributeId) {
@@ -46,11 +54,12 @@ class EntityMappingListItem extends ConnectionComponent {
             <ListItem>
                 <Row>
                     <Col md={10}>
-                {this.props.eventType.Name} - {this.getEntityTypeName()}
+                        {this.props.eventType.Name} - {this.getEntityTypeName(this.props.mapping.EntityTypeId)}
                     </Col>
                     <Col md={2}>
-                    <IconButton><IconEdit/></IconButton>
-                    <IconButton><IconDelete/></IconButton>
+                        {/*TODO add functionality*/}
+                        <IconButton><IconEdit/></IconButton>
+                        <IconButton><IconDelete/></IconButton>
                     </Col>
                 </Row>
                 <Row>

@@ -5,7 +5,7 @@ import EventQueryListItem from  './EventQueryListItem.js';
 import EntityMappingListItem from  './EntityMappingListItem.js';
 import config from './../config/config.js';
 import { Col, Container } from 'react-grid-system';
-import {PromiseState} from 'react-refetch';
+import { PromiseState } from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import ErrorMessage from './../Utils/ErrorMessage.js';
 import IconButton from 'material-ui/IconButton';
@@ -44,17 +44,7 @@ class EventType extends ConnectionComponent {
 			<IconButton><IconDelete/></IconButton>];
 	}
 
-	getEntityTypeName(id) {
-		let searchedEntity = undefined;
-		window.hierarchy.forEach(function(layer) {
-            layer.forEach(function (entity) {
-                if (entity.Id === id) {
-                    searchedEntity = entity;
-                }
-            })
-        });
-		return searchedEntity.Name;
-	}
+
 
 	render() {
 		const allFetches = PromiseState.all([this.props.entityMappingss, this.props.queries, this.props.attributes]);
@@ -127,8 +117,7 @@ class EventType extends ConnectionComponent {
 													key={mapping.Id}
 													mapping={mapping}
 													eventType={this.props.eventType}
-													eventTypeAttributes={attributes}
-													getEntityTypeName={this.getEntityTypeName}/>
+													eventTypeAttributes={attributes}/>
 											)
 										})}
 									</List>
