@@ -1,6 +1,6 @@
 import config from './../config/config';
 
-class Header {
+class Utils {
 	static getStatus(currentStatus) {
 		return config.statuses.find((status) => {
 			return status.name === currentStatus;
@@ -8,4 +8,4 @@ class Header {
 	}
 }
 
-export default Header;
+export default Utils;
