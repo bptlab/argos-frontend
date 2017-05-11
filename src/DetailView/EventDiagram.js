@@ -21,16 +21,16 @@ class EventDiagram extends Component {
 			.split("T")[0];
 	}
 
-	componentDidMount() {
-		this.buildChartDataset(this.props);
-	}
-
 	componentWillReceiveProps(props) {
 		this.buildChartDataset(props);
 	}
 
 	buildChartDataset(props) {
 		const {events, eventType, eventTypeAttributes} = props;
+		if (!events) {
+			return;
+		}
+
 		const x = [];
 		const y = [];
 		const dateCounter = {};
@@ -38,16 +38,7 @@ class EventDiagram extends Component {
 		const timeStampAttributeName = eventTypeAttributes.find(attribute =>
 			attribute.Id === eventType.TimestampAttributeId).Name;
 
-		let counter = 0;
 		const sortedEvents = events;
-		if (!events) {
-			return;
-		}
-
-		var layout = {
-			width: 500,
-			height: 500
-		};
 
 		sortedEvents.sort((eventA, eventB) => {
 			return EventDiagram.sortEventsByTime(eventA, eventB, timeStampAttributeName);
@@ -71,29 +62,29 @@ class EventDiagram extends Component {
 		x.forEach(date =>
 			y.push(dateCounter[date]));
 
-		console.log(x);
-		console.log(y);
+		const layout = {
+			yaxis: {
+				nticks: eventCounter + 2,
+			},
+			xaxis: {
+				showgrid: false,
+			},
+			height: 400
+		};
 
 		plotly.newPlot(
 			"eventDiagram",
-			[{x: x, y: y }],
+			[{
+				x: x, y: y,
+				fill: 'tozeroy',
+				fillcolor: '#4CAF5080',
+				type: 'line',
+				line: {
+					color: '#4CAF50'
+				}
+			}],
 			layout
 		);
-
-		//
-		// return({
-		// 	label: eventType.name,
-		// 	fill: true,
-		// 	lineTension: 0.1,
-		// 	backgroundColor: this.backgroundColor,
-		// 	borderColor: this.borderColor,
-		// 	pointBorderWidth: 5,
-		// 	pointHoverRadius: 8,
-		// 	pointRadius: 1,
-		// 	pointHitRadius: 10,
-		// 	data: dataContainer
-		// });
-
 	}
 
 	render() {
