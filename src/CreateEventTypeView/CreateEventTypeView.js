@@ -47,10 +47,10 @@ class CreateEventTypeView extends ConnectionComponent {
 	submitForm() {
 		const errorState = {};
 		if(!this.state.eventTypeName) {
-			errorState['eventTypeNameErrorText'] = 'Please fill out this field';
+			errorState['eventTypeNameErrorText'] = config.messages.requiredFieldMessage;
 		}
 		if(!this.state.eventTypeTimestampAttribute) {
-			errorState['eventTypeTimestampAttributeErrorText'] = 'Please fill out this field';
+			errorState['eventTypeTimestampAttributeErrorText'] = config.messages.requiredFieldMessage;
 		}
 		if(Object.keys(errorState).length > 0) {
 			this.setState(errorState);
