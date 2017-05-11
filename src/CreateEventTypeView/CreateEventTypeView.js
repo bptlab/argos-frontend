@@ -176,7 +176,7 @@ class CreateEventTypeView extends ConnectionComponent {
 	}
 }
 
-export default ConnectionComponent.argosConnector()(props => ({
+export default ConnectionComponent.argosConnector()(() => ({
 	createEventType: state => ({
 		deleteQueryResponse: {
 			url: config.backendRESTRoute + `/eventtype/create`,
