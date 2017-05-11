@@ -13,8 +13,8 @@ import config from './../config/config';
 
 class CardGrid extends ConnectionComponent {
 	getStatus(currentStatus) {
-		return config.status.find((status) => {
-			return status.name == currentStatus;
+		return config.statuses.find((status) => {
+			return status.name === currentStatus;
 		})
 	}
 

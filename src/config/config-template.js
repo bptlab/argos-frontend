@@ -31,7 +31,7 @@ const config = {
 		deleteEventTypeMessage: "Do you really want to delete this EventType?",
 		requiredFieldMessage: 'Please fill out this field'
 	},
-	status: [
+	statuses: [
 		{
 			name:"RUNNING",
 			color: "#4CAF50",

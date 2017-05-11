@@ -21,8 +21,8 @@ class Header extends Component {
     }
 
 	getStatus(currentStatus) {
-		return config.status.find((status) => {
-			return status.name == currentStatus;
+		return config.statuses.find((status) => {
+			return status.name === currentStatus;
 		})
 	}
 
