@@ -6,6 +6,7 @@ import {MenuItem, RaisedButton, SelectField} from "material-ui";
 import IconSave from "material-ui/svg-icons/content/save";
 import IconCancel from "material-ui/svg-icons/navigation/cancel";
 import IconAdd from "material-ui/svg-icons/content/add";
+import IconDelete from "material-ui/svg-icons/action/delete";
 import Header from './../Header';
 import { css } from 'aphrodite';
 
@@ -18,8 +19,7 @@ class CreateEntityMappingView extends ConnectionComponent {
         this.state = {
             selectedEventTypeId: null,
             selectedEntityTypeId: null,
-            mappings: CreateEntityMappingView.getDefaultMappings(),
-            numberOfMappings: 0
+            mappings: CreateEntityMappingView.getDefaultMappings()
         };
         this.handleEventTypeChange = this.handleEventTypeChange.bind(this);
         this.handleEntityTypeChange = this.handleEntityTypeChange.bind(this);
@@ -58,17 +58,17 @@ class CreateEntityMappingView extends ConnectionComponent {
         this.props.lazyEntityTypeAttributeLoading(value);
     }
 
-    getEventTypeAttributesDropdown(currentNumberOfMappings) {
+    getEventTypeAttributesDropdown(key, value) {
         const eventTypeAttributes = this.props.eventTypeAttributes.value;
 
         return (<SelectField
             floatingLabelText="Select Event Type Attribute"
             fullWidth={true}
-            value={this.state.mappings[currentNumberOfMappings].eventTypeAttribute}
+            value={value}
             onChange={
                 (event, index, value) => {
                     let mappings = this.state.mappings;
-                    mappings[currentNumberOfMappings].eventTypeAttribute = value;
+                    mappings[key].eventTypeAttribute = value;
                     this.setState({mappings});
                 }}>
             {eventTypeAttributes.map(
@@ -82,17 +82,17 @@ class CreateEntityMappingView extends ConnectionComponent {
         </SelectField>);
     }
 
-    getEntityTypeAttributesDropdown(currentNumberOfMappings) {
+    getEntityTypeAttributesDropdown(key, value) {
         const entityTypeAttributes = this.props.entityTypeAttributes.value;
 
         return (<SelectField
             floatingLabelText="Select Entity Type Attribute"
             fullWidth={true}
-            value={this.state.mappings[currentNumberOfMappings].entityTypeAttribute}
+            value={value}
             onChange={
                 (event, index, value) => {
                     let mappings = this.state.mappings;
-                    mappings[currentNumberOfMappings].entityTypeAttribute = value;
+                    mappings[key].entityTypeAttribute = value;
                     this.setState({mappings});
                 }
             }>
@@ -112,20 +112,49 @@ class CreateEntityMappingView extends ConnectionComponent {
         if (attributesFetchingIncomplete) {
             return attributesFetchingIncomplete;
         }
-        const currentNumberOfMappings = this.state.numberOfMappings;
+        let content = [];
+        this.state.mappings.forEach((mapping, key) => {
+                content.push(
+                    <Row key={key}>
+                        <Col md={5}>
+                            {this.getEventTypeAttributesDropdown(key, mapping.eventTypeAttribute)}
+                        </Col>
+                        <Col md={5}>
+                            {this.getEntityTypeAttributesDropdown(key, mapping.entityTypeAttribute)}
+                        </Col>
+                        <Col md={2}>
+                            <RaisedButton
+                                label="Delete Mapping"
+                                onTouchTap={
+                                    () => {
+                                        let mappings = this.state.mappings;
+                                        if (key === 0) {
+                                            mappings = CreateEntityMappingView.getDefaultMappings();
+                                        } else {
+                                            mappings.splice(key, 1);
+                                        }
+                                        this.setState({mappings});
+                                    }
+                                }
+                            ><IconDelete/></RaisedButton>
+                        </Col>
+                    </Row>);
+        });
         return (
-            <Row>
-                <Col md={5}>
-                    {this.getEventTypeAttributesDropdown(currentNumberOfMappings)}
-                </Col>
-                <Col md={5}>
-                    {this.getEntityTypeAttributesDropdown(currentNumberOfMappings)}
-                </Col>
-                <Col md={2}>
-                    <RaisedButton label="Add Mapping"><IconAdd/></RaisedButton>
-                </Col>
-            </Row>
-        );
+            <div>
+                {content}
+                <RaisedButton
+                    label="Add Mapping"
+                    onTouchTap={
+                    () => {
+                        let mappings = this.state.mappings;
+                        mappings[this.state.mappings.length] = {entityTypeAttribute: null, eventTypeAttribute: null};
+                        this.setState({mappings});
+                        }
+                    }>
+                    <IconAdd/>
+                </RaisedButton>
+            </div>);
     }
 
     render() {
