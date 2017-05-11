@@ -27,13 +27,25 @@ class CreateEntityMappingView extends ConnectionComponent {
         this.handleAddNewMappingCondition = this.handleAddNewMappingCondition.bind(this);
         this.handleEventTypeAttributeChange = this.handleEventTypeAttributeChange.bind(this);
         this.handleEntityTypeAttributeChange = this.handleEntityTypeAttributeChange.bind(this);
+        this.prepareMappingsForSending = this.prepareMappingsForSending.bind(this);
     }
 
     static getDefaultMappings() {
         return [{eventTypeAttribute: null, entityTypeAttribute: null}];
     }
 
-    getAllEntityTypes(hierarchy) {
+    static getMenuItems(items) {
+        return items.map(
+            (item, key) => {
+                return <MenuItem
+                    key={key}
+                    value={item.Id}
+                    primaryText={item.Name}/>;
+            });
+    }
+
+    transformHierarchy(hierarchy) {
+        //takes hierarchy and returns a list of all entities in this hierarchy ordered by name
         if (hierarchy) {
             let allEntities = [];
             hierarchy.forEach((hierarchyLayer) => {
@@ -41,25 +53,28 @@ class CreateEntityMappingView extends ConnectionComponent {
                     allEntities = allEntities.concat(entityType);
                 });
             });
+            allEntities.sort((a,b) => {
+                return a.Name > b.Name;
+            });
             return allEntities;
         }
         return [];
     }
 
-    handleEventTypeChange(event, index, value) {
+    handleEventTypeChange(selectedEventTypeId) {
         this.setState({
-            selectedEventTypeId: value,
+            selectedEventTypeId: selectedEventTypeId,
             mappings: CreateEntityMappingView.getDefaultMappings()
         });
-        this.props.lazyEventTypeAttributeLoading(value);
+        this.props.lazyEventTypeAttributeLoading(selectedEventTypeId);
     }
 
-    handleEntityTypeChange(event, index, value) {
+    handleEntityTypeChange(selectedEntityTypeId) {
         this.setState({
-            selectedEntityTypeId: value,
+            selectedEntityTypeId: selectedEntityTypeId,
             mappings: CreateEntityMappingView.getDefaultMappings()
         });
-        this.props.lazyEntityTypeAttributeLoading(value);
+        this.props.lazyEntityTypeAttributeLoading(selectedEntityTypeId);
     }
 
     handleAddNewMappingCondition() {
@@ -68,62 +83,63 @@ class CreateEntityMappingView extends ConnectionComponent {
         this.setState({mappings});
     }
 
-    handleEventTypeAttributeChange(key, value) {
+    handleEventTypeAttributeChange(key, eventTypeAttribute) {
         let mappings = this.state.mappings;
-        mappings[key].eventTypeAttribute = value;
+        mappings[key].eventTypeAttribute = eventTypeAttribute;
         this.setState({mappings});
     }
 
-    handleEntityTypeAttributeChange(key, value) {
+    handleEntityTypeAttributeChange(key, entityTypeAttribute) {
         let mappings = this.state.mappings;
-        mappings[key].entityTypeAttribute = value;
+        mappings[key].entityTypeAttribute = entityTypeAttribute;
         this.setState({mappings});
     }
 
-    getEventTypeAttributesDropdown(key, value) {
+    getEventTypeAttributesDropDown(key, selectedEventTypeAttribute) {
         const eventTypeAttributes = this.props.eventTypeAttributes.value;
         if (eventTypeAttributes) {
             return (<SelectField
                 floatingLabelText="Select Event Type Attribute"
                 fullWidth={true}
-                value={value}
+                value={selectedEventTypeAttribute}
                 onChange={(event, index, value) => {this.handleEventTypeAttributeChange(key, value);}}>
-                {eventTypeAttributes.map(
-                    (eventTypeAttribute, key) => {
-                        return <MenuItem
-                            key={key}
-                            value={eventTypeAttribute.Id}
-                            primaryText={eventTypeAttribute.Name}/>;
-                    })
-                }
+                {CreateEntityMappingView.getMenuItems(eventTypeAttributes)}
             </SelectField>);
         }
         return <LoadingAnimation/>;
     }
 
-    getEntityTypeAttributesDropdown(key, value) {
+    prepareMappingsForSending() {
+        //must be called before saving the data
+        let mappings = this.state.mappings;
+        let cleanedMappings = [];
+        mappings.forEach((mapping) => {
+            if (mapping.eventTypeAttribute && mapping.entityTypeAttribute) {
+                cleanedMappings.push(mapping);
+            }
+        });
+        console.log(cleanedMappings);
+        return cleanedMappings;
+    }
+
+
+    getEntityTypeAttributesDropDown(key, selectedEntityTypeAttribute) {
         const entityTypeAttributes = this.props.entityTypeAttributes.value;
         if (entityTypeAttributes) {
             return (<SelectField
                 floatingLabelText="Select Entity Type Attribute"
                 fullWidth={true}
-                value={value}
+                value={selectedEntityTypeAttribute}
                 onChange={(event, index, value) => {this.handleEntityTypeAttributeChange(key, value);}}>
-                {entityTypeAttributes.map(
-                    (entityTypeAttribute, key) => {
-                        return <MenuItem
-                            key={key}
-                            value={entityTypeAttribute.Id}
-                            primaryText={entityTypeAttribute.Name}/>;
-                    })
-                }
+                {CreateEntityMappingView.getMenuItems(entityTypeAttributes)}
             </SelectField>);
         }
         return <LoadingAnimation/>;
     }
 
     loadAttributes() {
-        const attributesFetchingIncomplete = super.render(PromiseState.all(this.props.entityTypeAttributes, this.props.eventTypeAttributes));
+        const attributesFetchingIncomplete = super.render(
+            PromiseState.all(this.props.entityTypeAttributes, this.props.eventTypeAttributes));
         if (attributesFetchingIncomplete) {
             return attributesFetchingIncomplete;
         }
@@ -132,27 +148,25 @@ class CreateEntityMappingView extends ConnectionComponent {
                 content.push(
                     <Row key={key}>
                         <Col md={6}>
-                            {this.getEventTypeAttributesDropdown(key, mapping.eventTypeAttribute)}
+                            {this.getEventTypeAttributesDropDown(key, mapping.eventTypeAttribute)}
                         </Col>
                         <Col md={5}>
-                            {this.getEntityTypeAttributesDropdown(key, mapping.entityTypeAttribute)}
+                            {this.getEntityTypeAttributesDropDown(key, mapping.entityTypeAttribute)}
                         </Col>
                         <Col md={1}>
                             <IconButton
                                 children={<IconDelete/>}
                                 tooltip={<span>Delete Mapping</span>}
-                                onTouchTap={
-                                    () => {
-                                        let mappings = this.state.mappings;
-                                        if (key === 0 && this.state.mappings.length === 1) {
-                                            mappings = CreateEntityMappingView.getDefaultMappings();
-                                        } else {
-                                            mappings.splice(key, 1);
-                                        }
-                                        this.setState({mappings});
+                                onTouchTap={() => {
+                                    // this callback cannot be put into a separate method because of the key
+                                    let mappings = this.state.mappings;
+                                    if (key === 0 && this.state.mappings.length === 1) {
+                                        mappings = CreateEntityMappingView.getDefaultMappings();
+                                    } else {
+                                        mappings.splice(key, 1);
                                     }
-                                }
-                            />
+                                    this.setState({mappings});
+                                }}/>
                         </Col>
                     </Row>);
         });
@@ -169,7 +183,7 @@ class CreateEntityMappingView extends ConnectionComponent {
     render() {
         const allFetches = PromiseState.all([this.props.eventTypes, this.props.entityTypeHierarchy]);
         const eventTypes = this.props.eventTypes.value;
-        const entityTypes = this.getAllEntityTypes(this.props.entityTypeHierarchy.value);
+        const entityTypes = this.transformHierarchy(this.props.entityTypeHierarchy.value);
         const connectionIncomplete = super.render(allFetches);
         if(connectionIncomplete) {
             return connectionIncomplete;
@@ -187,33 +201,25 @@ class CreateEntityMappingView extends ConnectionComponent {
                             <Col md={6}>
                                 <SelectField
                                     value={this.state.selectedEventTypeId}
-                                    onChange={this.handleEventTypeChange}
+                                    onChange={
+                                        (event, index, selectedEventTypeId) =>
+                                            this.handleEventTypeChange(selectedEventTypeId)
+                                    }
                                     floatingLabelText="Select Event Type"
                                     fullWidth={true}>
-                                    {eventTypes.map(
-                                        (eventType, key) => {
-                                            return <MenuItem
-                                                        key={key}
-                                                        value={eventType.Id}
-                                                        primaryText={eventType.Name}/>;
-                                        })
-                                    }
+                                    {CreateEntityMappingView.getMenuItems(eventTypes)}
                                 </SelectField>
                             </Col>
                             <Col md={6}>
                                 <SelectField
                                     value={this.state.selectedEntityTypeId}
-                                    onChange={this.handleEntityTypeChange}
+                                    onChange={
+                                        (event, index, selectedEntityTypeId) =>
+                                            this.handleEntityTypeChange(selectedEntityTypeId)
+                                    }
                                     floatingLabelText="Select Entity Type"
                                     fullWidth={true}>
-                                    {entityTypes.map(
-                                        (entityType, key) => {
-                                            return <MenuItem
-                                                key={key}
-                                                value={entityType.Id}
-                                                primaryText={entityType.Name}/>;
-                                        })
-                                    }
+                                    {CreateEntityMappingView.getMenuItems(entityTypes)}
                                 </SelectField>
                             </Col>
                         </Row>
@@ -228,6 +234,7 @@ class CreateEntityMappingView extends ConnectionComponent {
                             <RaisedButton
                                 label="Save"
                                 icon={<IconSave/>}
+                                onTouchTap={this.prepareMappingsForSending}
                                 className={css(AppStyles.marginAllSites)}
                                 primary={true}
                             />
