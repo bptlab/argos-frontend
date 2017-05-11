@@ -28,6 +28,43 @@ class CardGrid extends ConnectionComponent {
 		}
 	}
 
+	isCoveredByFilter(childEntity) {
+		// every is equivalent to logical and over an array
+		return this.props.filter.every((filter) => {
+			return this.testFilter(childEntity, filter);
+		});
+	}
+
+	testFilter(childEntity, filter) {
+		if (!filter.value) {
+		 	return true;
+		 }
+		 const attributeValues = this.getAttributeValues(childEntity);
+
+		if (this.doesContain(childEntity.Name, filter.value)){
+			return true;
+		}
+		else if (this.doesContain(attributeValues, filter.value)){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	doesContain(baseValue, subValue) {
+		return (baseValue.toString().toLowerCase().indexOf(subValue.toString().toLowerCase()) > -1);
+	}
+
+	getAttributeValues(childEntity){
+		let attributeArray = [];
+		childEntity.Attributes.forEach((attribute) => {
+			attributeArray.push(attribute.Value)
+		});
+		console.log(attributeArray);
+		return 	attributeArray;
+	}
+
 	render() {
 		if(!this.props.entities) {
 			return <LoadingAnimation/>;
@@ -39,6 +76,10 @@ class CardGrid extends ConnectionComponent {
 		return (
 			<Row className={css(this.props.styles)}>
 				{this.props.entities.value.map((childEntity, index) => {
+					if (!this.isCoveredByFilter(childEntity)) {
+						return "";
+					}
+
 					return (
 						<Col key={index} xs={12} sm={4} md={3}>
 							<Card>
