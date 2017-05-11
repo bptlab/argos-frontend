@@ -45,7 +45,7 @@ class CardGrid extends ConnectionComponent {
 			return true;
 		}
 		else {
-			return this.doesContain(attributeValues, filter.value;
+			return this.doesContain(attributeValues, filter.value);
 		}
 	}
 
