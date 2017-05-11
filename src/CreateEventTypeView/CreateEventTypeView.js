@@ -67,6 +67,7 @@ class CreateEventTypeView extends ConnectionComponent {
 				TypeAttributes: attributes.map((attribute) => {
 					return {
 						name: attribute.value
+						Name: attribute.value
 					};
 				})
 			};
