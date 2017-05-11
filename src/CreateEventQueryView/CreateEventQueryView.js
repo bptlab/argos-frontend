@@ -65,7 +65,7 @@ class CreateEventQueryView extends ConnectionComponent {
 
 	render() {
 		const allFetches = PromiseState.all([this.props.eventType, this.props.attributes]);
-		const optionalActions = this.props.createEventTypeResponse;
+		const optionalActions = this.props.createEventQueryReponse;
 		if(optionalActions && optionalActions.fulfilled) {
 			window.history.back();
 			return null;
