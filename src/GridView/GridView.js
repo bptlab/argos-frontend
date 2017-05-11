@@ -17,6 +17,11 @@ class GridView extends ConnectionComponent {
 		super();
 		this.getChildEntityTypes = this.getChildEntityTypes.bind(this);
 		this.getEntityType = this.getEntityType.bind(this);
+		this.handleFilterChange = this.handleFilterChange.bind(this);
+
+		this.state = {
+			filter: [],
+		};
 	}
 
 	getEntityType(entity, hierarchy) {
@@ -48,6 +53,21 @@ class GridView extends ConnectionComponent {
 		return "Home";
 	}
 
+	handleFilterChange(filter) {
+		this.setState({
+			filter: filter,
+		});
+	}
+
+	loadFilterBar() {
+		return (
+			<FilterBar
+				styles={[AppStyles.elementMarginTop]}
+				onFiltersChange={this.handleFilterChange}
+				autoCompleteSource={[]}/>
+		);
+	}
+
 	render() {
 		const allFetches = PromiseState.all([this.props.hierarchy, this.props.entity]);
 		const hierarchy = this.props.hierarchy.value;
@@ -57,6 +77,9 @@ class GridView extends ConnectionComponent {
 			return connectionIncomplete;
 		}
 		const childEntityTypes = this.getChildEntityTypes(entity.TypeId, hierarchy);
+
+		let filterBar = this.loadFilterBar();
+
 		return (
 			<div>
 				<Header title={this.getPageTitle(entity, hierarchy)} status={entity.Status} />
@@ -66,17 +89,18 @@ class GridView extends ConnectionComponent {
 						currentEntity={entity}
 						getEntityType={this.getEntityType}
 						getChildEntityTypes={this.getChildEntityTypes}/>
-					<FilterBar/>
+					{filterBar}
 					{childEntityTypes.map((childEntityType) => {
 						return(
 							<div key={`div-${childEntityType.Id}`}>
 								<h1>{childEntityType.Name}</h1>
 								<DonutChart styles={[AppStyles.elementMarginTop]} />
 								<CardGrid
+									filter={this.state.filter}
 									styles={[AppStyles.elementMarginTop]}
 									key={childEntityType.Id}
 									currentEntity={entity}
-									entityType={childEntityType} />
+									entityType={childEntityType}/>
 							</div>
 						);
 					})}
