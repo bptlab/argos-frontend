@@ -6,7 +6,7 @@ const EventType = [
                 Id: 99101991,
                 Name: "BusStatus",
                 NumberOfEvents: 0,
-                TimestampAttributeId: 0
+                TimestampAttributeId: 99101991991
             },
         ]
     },
@@ -17,7 +17,7 @@ const EventType = [
                 Id: 99201991,
                 Name: "TubeStatus",
                 NumberOfEvents: 0,
-                TimestampAttributeId: 0
+                TimestampAttributeId: 99201991991
             },
         ],
     },
@@ -28,7 +28,7 @@ const EventType = [
                 Id: 99101992,
                 Name: "LineStatus",
                 NumberOfEvents: 0,
-                TimestampAttributeId: 0
+                TimestampAttributeId: 99101992991
             },
         ],
     },
@@ -42,7 +42,7 @@ const EventType = [
                 Id: 991011991,
                 Name: "StopPointInformation",
                 NumberOfEvents: 0,
-                TimestampAttributeId: 0
+                TimestampAttributeId: 991011991991
             },
         ],
     },
@@ -56,7 +56,7 @@ const EventType = [
                 Id: 991011992,
                 Name: "StopPointInterruption",
                 NumberOfEvents: 0,
-                TimestampAttributeId: 0
+                TimestampAttributeId: 991011992991
             },
         ],
     },

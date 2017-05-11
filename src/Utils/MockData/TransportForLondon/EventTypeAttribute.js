@@ -1,4 +1,5 @@
 const EventTypeAttribute = [
+    /* ### BusStatus ### */
     {
         Id: 99101991,
         TypeAttributes: [
@@ -16,6 +17,7 @@ const EventTypeAttribute = [
             }
         ]
     },
+	/* ### TubeStatus ### */
     {
         Id: 99201991,
         TypeAttributes: [
@@ -32,7 +34,9 @@ const EventTypeAttribute = [
                 Name: "NrOfTrains"
             }
         ]
-    },    {
+    },
+	/* ### LineStatus ### */
+	{
         Id: 99101992,
         TypeAttributes: [
             {
@@ -48,7 +52,9 @@ const EventTypeAttribute = [
                 Name: "loadPrediction"
             }
         ]
-    },    {
+    },
+	/* ### StopPointInformation ### */
+	{
         Id: 991011991,
         TypeAttributes: [
             {
@@ -60,7 +66,9 @@ const EventTypeAttribute = [
                 Name: "crowded"
             }
         ]
-    },    {
+    },
+	/* ### StopPointInterruption ### */
+	{
         Id: 991011992,
         TypeAttributes: [
             {
