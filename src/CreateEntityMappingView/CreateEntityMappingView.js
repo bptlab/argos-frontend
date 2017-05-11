@@ -118,8 +118,8 @@ class CreateEntityMappingView extends ConnectionComponent {
                 cleanedMappings.push(mapping);
             }
         });
-        console.log(cleanedMappings);
-        return cleanedMappings;
+        this.setState({mappings: mappings});
+        //this.setState({mappings: cleanedMappings}); use this line for real functionality
     }
 
 
