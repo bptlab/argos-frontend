@@ -17,6 +17,10 @@ const AppStyles = StyleSheet.create({
 		alignItems: 'center',
 	},
 
+    alignItemsFlexEnd: {
+        alignItems: 'flex-end',
+    },
+
     textAlignCenter: {
 		textAlign: "center",
 	},
