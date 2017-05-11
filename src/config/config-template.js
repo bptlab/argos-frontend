@@ -22,6 +22,7 @@ const config = {
 		queryDescriptionInputFieldHint: 'Description for query',
 		deleteQueryMessage: "Do you really want to delete this Query?",
 		deleteEventTypeMessage: "Do you really want to delete this EventType?"
+		addMapping: "Add Mapping Condition",
 	},
 	messages: {
 		notFound: "Error 404. The requested page does not exist. You found a glitch in the matrix.",
