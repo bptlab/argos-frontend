@@ -3,11 +3,9 @@ import { css } from 'aphrodite';
 import plotly from 'plotly.js/dist/plotly';
 import config from '../config/config';
 
-class DonutChart extends Component {
-	componentDidMount() {
-		const data = this.forgeChartData();
-		const chartRangeMaximum = this.getChartRangeMaximum(data);
-		const layout = {
+class StatusDiagram extends Component {
+	static getChartLayout(chartRangeMaximum) {
+		return {
 			barmode: 'stack',
 			showlegend: false,
 			autosize: true,
@@ -29,14 +27,9 @@ class DonutChart extends Component {
 				fixedrange: true
 			},
 		};
-		const modeBar = {
-			displayModeBar: false
-		};
-
-		plotly.plot('status-diagram', data, layout, modeBar);
 	}
 
-	getChartRangeMaximum(data) {
+	static getChartRangeMaximum(data) {
 		let chartRangeMaximum = 0;
 		data.forEach((dataSet) => {
 			dataSet.x.forEach((xValue) => {
@@ -46,10 +39,18 @@ class DonutChart extends Component {
 		return chartRangeMaximum;
 	}
 
-	getStatusIndex(status, statuses) {
+	static getStatusIndex(status, statuses) {
 		return statuses.findIndex((currentStatus) => {
 			return currentStatus.name === status;
 		})
+	}
+
+	componentDidMount() {
+		const data = this.forgeChartData();
+		const chartRangeMaximum = StatusDiagram.getChartRangeMaximum(data);
+		const layout = StatusDiagram.getChartLayout(chartRangeMaximum);
+		const modeBar = { displayModeBar: false };
+		plotly.plot('status-diagram', data, layout, modeBar);
 	}
 
 	forgeChartData() {
@@ -59,14 +60,11 @@ class DonutChart extends Component {
 		});
 
 		this.props.entities.value.forEach((entity) => {
-			const currentStatusIndex = this.getStatusIndex(entity.Status, statuses);
-			if(currentStatusIndex >= 0) {
-				statuses[currentStatusIndex].entityCounter++;
+			let currentStatusIndex = StatusDiagram.getStatusIndex(entity.Status, statuses);
+			if(currentStatusIndex < 0) {
+				currentStatusIndex = StatusDiagram.getStatusIndex('UNDEFINED', statuses);
 			}
-			else {
-				const undefinedStatusIndex = this.getStatusIndex('UNDEFINED', statuses);
-				statuses[undefinedStatusIndex].entityCounter++;
-			}
+			statuses[currentStatusIndex].entityCounter++;
 		});
 
 		let data = [];
@@ -100,4 +98,4 @@ class DonutChart extends Component {
 	}
 }
 
-export default DonutChart;
+export default StatusDiagram;
