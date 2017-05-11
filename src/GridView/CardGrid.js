@@ -44,11 +44,8 @@ class CardGrid extends ConnectionComponent {
 		if (this.doesContain(childEntity.Name, filter.value)){
 			return true;
 		}
-		else if (this.doesContain(attributeValues, filter.value)){
-			return true;
-		}
 		else {
-			return false;
+			return this.doesContain(attributeValues, filter.value;
 		}
 	}
 
@@ -57,11 +54,10 @@ class CardGrid extends ConnectionComponent {
 	}
 
 	getAttributeValues(childEntity){
-		let attributeArray = [];
+		const attributeArray = [];
 		childEntity.Attributes.forEach((attribute) => {
 			attributeArray.push(attribute.Value)
 		});
-		console.log(attributeArray);
 		return 	attributeArray;
 	}
 

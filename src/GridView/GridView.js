@@ -78,7 +78,7 @@ class GridView extends ConnectionComponent {
 		}
 		const childEntityTypes = this.getChildEntityTypes(entity.TypeId, hierarchy);
 
-		let filterBar = this.loadFilterBar();
+		const filterBar = this.loadFilterBar();
 
 		return (
 			<div>
