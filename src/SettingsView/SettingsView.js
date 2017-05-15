@@ -11,6 +11,7 @@ import AppStyles from "./../AppStyles";
 import {Card, CardHeader, CardText, CardActions} from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import IconAdd from 'material-ui/svg-icons/content/add';
+import ErrorMessage from './../Utils/ErrorMessage.js';
 import config from './../config/config';
 
 class SettingsView extends ConnectionComponent {
@@ -20,6 +21,7 @@ class SettingsView extends ConnectionComponent {
 		if (connectionIncomplete) {
 			return connectionIncomplete;
 		}
+		const optionalActions = this.props.deleteEventTypeResponse;
 		return (
 			<div>
 				<Header title="Settings"/>
@@ -33,6 +35,9 @@ class SettingsView extends ConnectionComponent {
 							<CardText expandable={true}>
 								<Container>
 									<SearchBar fullWidth={true}/>
+									{optionalActions && optionalActions.rejected &&
+										<ErrorMessage message={optionalActions.reason} />
+									}
 									{this.props.eventTypes.value.map((eventType) => {
 										return (<EventType
 											eventType={eventType}

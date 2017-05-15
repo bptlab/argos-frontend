@@ -14,6 +14,7 @@ import IconDelete from 'material-ui/svg-icons/action/delete';
 import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 
 class EventType extends ConnectionComponent {
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -24,11 +25,11 @@ class EventType extends ConnectionComponent {
 		this.handleMappingsExpandChange = this.handleMappingsExpandChange.bind(this);
 		this.handleEventTypeDeletion = this.handleEventTypeDeletion.bind(this);
 	}
-
+	
 	handleExpandChange(expanded) {
 		this.setState({expanded: expanded});
 	}
-
+	
     handleMappingsExpandChange(expanded) {
 		this.setState({mappingExpanded: expanded});
 	}
@@ -36,14 +37,14 @@ class EventType extends ConnectionComponent {
 	handleEventTypeDeletion() {
 		this.props.deleteEventType(this.props.eventType);
 	}
-
+	
 	getEventTypeHeaderButtons() {
 		return [
 			// TODO add functionality
 			<IconButton key="edit-button"><IconEdit/></IconButton>,
 			<IconButton key="delete-button"><IconDelete/></IconButton>];
 	}
-
+	
 	render() {
 		const allFetches = PromiseState.all([this.props.entityMappings, this.props.queries, this.props.attributes]);
         const optionalActions = this.props.deleteQueryeResponse;
@@ -54,7 +55,7 @@ class EventType extends ConnectionComponent {
         if(connectionIncomplete) {
             return connectionIncomplete;
 		}
-
+		
 		return (
 			<div>
 				{optionalActions && optionalActions.rejected &&
@@ -95,7 +96,7 @@ class EventType extends ConnectionComponent {
 								</List>
 							</Col>
 							<Col md={1}>
-								<IconButton 
+								<IconButton
 									href={`settings/eventType/${this.props.eventType.Id}/eventQuery/create`}>
 									<IconAdd/>
 								</IconButton>
@@ -118,7 +119,7 @@ class EventType extends ConnectionComponent {
 													mapping={mapping}
 													eventType={this.props.eventType}
 													eventTypeAttributes={attributes}/>
-											)
+											);
 										})}
 									</List>
 								</CardText>
@@ -129,9 +130,7 @@ class EventType extends ConnectionComponent {
 			</div>
 		);
 	}
-}
-
-export default ConnectionComponent.argosConnector()(props => ({
+} export default ConnectionComponent.argosConnector()(props => ({
 	queries: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/queries`,
 	attributes: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/attributes`,
     entityMappings: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/entitymappings`,
