@@ -9,8 +9,7 @@ class EventTabs extends Component {
 
 	componentWillMount() {
 		if (this.props.eventTypes.length > 0) {
-			const firstEventTypeId = this.props.eventTypes[0].Id;
-			this.props.eventTypeChangeHandler(firstEventTypeId);
+			this.props.onEventTypeChange(this.props.eventTypes[0]);
 		}
 	}
 
@@ -21,7 +20,7 @@ class EventTabs extends Component {
 					return (
 						<Tab
 							label={eventType.Name}
-							onClick={() => this.props.eventTypeChangeHandler((eventType.Id))}
+							onClick={() => this.props.onEventTypeChange((eventType))}
 							key={key} />
 					);
 				})
