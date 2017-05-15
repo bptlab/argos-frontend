@@ -7,6 +7,12 @@ injectTapEventPlugin();
 
 class EventTabs extends Component {
 
+	componentWillMount() {
+		if (this.props.eventTypes.length > 0) {
+			this.props.onEventTypeChange(this.props.eventTypes[0]);
+		}
+	}
+
 	getTabs() {
 		if (this.props.eventTypes.length > 0) {
 			return (
