@@ -12,10 +12,10 @@ import Header from "../Header";
 class GridView extends ConnectionComponent {
 	constructor() {
 		super();
-        this.state = {
-            filterValue: "",
-        };
-        this.getChildEntityTypes = this.getChildEntityTypes.bind(this);
+		this.state = {
+			filterValue: "",
+		};
+		this.getChildEntityTypes = this.getChildEntityTypes.bind(this);
 		this.getEntityType = this.getEntityType.bind(this);
 		this.handleFilterChange = this.handleFilterChange.bind(this);
 	}
@@ -49,13 +49,13 @@ class GridView extends ConnectionComponent {
 		return "Home";
 	}
 
-    handleFilterChange(filterValue) {
-        this.setState({
-            filterValue: filterValue,
-        });
-    }
+	handleFilterChange(filterValue) {
+		this.setState({
+			filterValue: filterValue,
+		});
+	}
 
-    render() {
+	render() {
 		const allFetches = PromiseState.all([this.props.entity]);
 		const entity = this.props.entity.value;
 		const connectionIncomplete = super.render(allFetches);
