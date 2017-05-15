@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect, PromiseState} from 'react-refetch';
+import {PromiseState} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import {Col, Container, Row} from "react-grid-system";
 import {FlatButton, IconButton, MenuItem, RaisedButton, SelectField} from "material-ui";
@@ -9,6 +9,7 @@ import IconAdd from "material-ui/svg-icons/content/add";
 import IconDelete from "material-ui/svg-icons/action/delete";
 import Header from './../Header';
 import {css} from 'aphrodite';
+import ErrorMessage from './../Utils/ErrorMessage.js';
 
 import config from "../config/config";
 import AppStyles from "../AppStyles";
@@ -28,6 +29,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		this.handleEventTypeAttributeChange = this.handleEventTypeAttributeChange.bind(this);
 		this.handleEntityTypeAttributeChange = this.handleEntityTypeAttributeChange.bind(this);
         this.handleTargetStatusChange = this.handleTargetStatusChange.bind(this);
+        this.submitMapping = this.submitMapping.bind(this);
 	}
 
 	static getDefaultMappings() {
@@ -55,6 +57,27 @@ class CreateEntityMappingView extends ConnectionComponent {
             this.props.lazyEntityTypeAttributeLoading(this.state.selectedEntityTypeId.value);
         }
     }
+    
+    submitMapping() {
+		if(this.isValidInput()) {
+			const  entityMappingConditions = this.state.mappings.map((mappingStatement) => {
+				return ({
+					EventTypeAttributeId: mappingStatement.eventTypeAttribute.value,
+					EntityTypeAttributeId: mappingStatement.entityTypeAttribute.value
+				});
+			});
+			this.props.createEntityMapping({
+				EventTypeId: this.state.selectedEventTypeId.value,
+				EntityTypeId: this.state.selectedEntityTypeId.value,
+				TargetStatus: this.state.targetStatus,
+				EventEntityMappingConditions: entityMappingConditions
+			});
+		}
+	}
+	
+	abort() {
+		window.history.back();
+	}
 
 	transformHierarchy(hierarchy) {
 		//takes hierarchy and returns a list of all entities in this hierarchy ordered by name
@@ -229,6 +252,11 @@ class CreateEntityMappingView extends ConnectionComponent {
 	render() {
 		const allFetches = PromiseState.all([this.props.eventTypes, this.props.entityTypeHierarchy]);
 		const eventTypes = this.props.eventTypes.value;
+		const optionalActions = this.props.createEntityMappingResponse;
+		if(optionalActions && optionalActions.fulfilled) {
+			window.history.back();
+			return null;
+		}
 		const entityTypes = this.transformHierarchy(this.props.entityTypeHierarchy.value);
 		const connectionIncomplete = super.render(allFetches);
 		if (connectionIncomplete) {
@@ -244,6 +272,9 @@ class CreateEntityMappingView extends ConnectionComponent {
 				<Header title={"Create Entity Mapping"}/>
 				<div className={AppStyles.elementMarginTop}>
 					<Container>
+						{optionalActions && optionalActions.rejected &&
+							<ErrorMessage message={optionalActions.reason} />
+						}
 						<Row>
 							<Col md={12}>
 								<SelectField
@@ -292,11 +323,12 @@ class CreateEntityMappingView extends ConnectionComponent {
 								icon={<IconCancel/>}
 								className={css(AppStyles.marginAllSites)}
 								secondary={true}
+								onTouchTap={this.abort}
 							/>
 							<RaisedButton
 								label="Save"
 								icon={<IconSave/>}
-								onTouchTap={this.isValidInput.bind(this)}
+								onTouchTap={this.submitMapping}
 								className={css(AppStyles.marginAllSites)}
 								primary={true}
 							/>
@@ -308,13 +340,20 @@ class CreateEntityMappingView extends ConnectionComponent {
 	}
 }
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(() => ({
+export default ConnectionComponent.argosConnector()(() => ({
 	eventTypes: config.backendRESTRoute + `/eventtypes`,
 	entityTypeHierarchy: config.backendRESTRoute + `/entitytype/hierarchy`,
 	lazyEventTypeAttributeLoading: eventTypeId => ({
 		eventTypeAttributes: config.backendRESTRoute + `/eventtype/${eventTypeId}/attributes`
 	}),
 	lazyEntityTypeAttributeLoading: entityTypeId => ({
-		entityTypeAttributes: config.backendRESTRoute + `/entityType/${entityTypeId}/attributes`
+		entityTypeAttributes: config.backendRESTRoute + `/entitytype/${entityTypeId}/attributes`
 	}),
+	createEntityMapping: (body) => ({
+		createEntityMappingResponse: {
+			url: config.backendRESTRoute + `/entitymapping/create`,
+			method: 'POST',
+			body: JSON.stringify(body)
+		}
+	})
 }))(CreateEntityMappingView);

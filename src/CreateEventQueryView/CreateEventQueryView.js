@@ -70,7 +70,7 @@ class CreateEventQueryView extends ConnectionComponent {
 
 	render() {
 		const allFetches = PromiseState.all([this.props.eventType, this.props.attributes]);
-		const optionalActions = this.props.createEventQueryReponse;
+		const optionalActions = this.props.createEventQueryResponse;
 		if(optionalActions && optionalActions.fulfilled) {
 			window.history.back();
 			return null;
@@ -126,7 +126,7 @@ export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props 
 	eventType: config.backendRESTRoute + `/eventtype/${props.match.params.eventTypeId}`,
 	attributes: config.backendRESTRoute + `/eventtype/${props.match.params.eventTypeId}/attributes`,
 	createEventQuery: (body) => ({
-		createEventQueryReponse: {
+		createEventQueryResponse: {
 			url: config.backendRESTRoute + `/eventquery/create`,
 			method: 'POST',
 			body: JSON.stringify(body)
