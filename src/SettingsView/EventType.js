@@ -97,6 +97,7 @@ class EventType extends ConnectionComponent {
 							</Col>
 							<Col md={1}>
 								<IconButton
+									tooltip={<span>create new event query</span>}
 									href={`settings/eventType/${this.props.eventType.Id}/eventQuery/create`}>
 									<IconAdd/>
 								</IconButton>
@@ -126,7 +127,8 @@ class EventType extends ConnectionComponent {
 									</List>
 								</CardText>
 								<CardActions>
-									<IconButton>
+									<IconButton
+										tooltip={<span>create new event entity mapping</span>}>
 										<IconAdd/>
 									</IconButton>
 								</CardActions>
