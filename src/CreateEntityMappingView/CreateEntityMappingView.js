@@ -258,6 +258,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 												value={status.name}
 												primaryText={status.name}/>;
                                         }
+                                        return <div key={key}/>;
 									})}
 								</SelectField>
 							</Col>

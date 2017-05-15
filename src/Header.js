@@ -6,7 +6,6 @@ import IconSettings from "material-ui/svg-icons/action/settings";
 import IconAdd from 'material-ui/svg-icons/content/add';
 import IconArrowBack from "material-ui/svg-icons/navigation/arrow-back";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import config from "./config/config";
 import {css, StyleSheet} from "aphrodite";
 import AppStyles from "./AppStyles";
 import Utils from "./Utils/Utils";
