@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect, PromiseState} from 'react-refetch';
+import {PromiseState} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import {Col, Container, Row} from "react-grid-system";
 import {FlatButton, IconButton, MenuItem, RaisedButton, SelectField} from "material-ui";
@@ -308,7 +308,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 	}
 }
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(() => ({
+export default ConnectionComponent.argosConnector()(() => ({
 	eventTypes: config.backendRESTRoute + `/eventtypes`,
 	entityTypeHierarchy: config.backendRESTRoute + `/entitytype/hierarchy`,
 	lazyEventTypeAttributeLoading: eventTypeId => ({
