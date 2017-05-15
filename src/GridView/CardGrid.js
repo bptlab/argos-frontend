@@ -22,6 +22,35 @@ class CardGrid extends ConnectionComponent {
 		return {backgroundColor: Utils.getLightColorForStatus(status)};
 	}
 
+    isCoveredByFilter(childEntity) {
+        return this.testFilter(childEntity, this.props.filterValue);
+    }
+
+    testFilter(childEntity, filter) {
+        if (!filter.value) {
+            return true;
+        }
+        const attributeValues = this.getAttributeValues(childEntity);
+        attributeValues.push(childEntity.Name);
+
+        return this.doesContain(attributeValues, filter.value);
+    }
+
+    doesContain(baseValueArray, subValue) {
+        return baseValueArray.some((baseValue) => {
+            return (baseValue.toString().toLowerCase().indexOf(subValue.toString().toLowerCase()) > -1);
+        });
+    }
+
+    getAttributeValues(childEntity) {
+        const attributeArray = [];
+        childEntity.Attributes.forEach((attribute) => {
+            attributeArray.push(attribute.Name);
+            attributeArray.push(attribute.Value)
+        });
+        return attributeArray;
+    }
+
 	render() {
 		if(!this.props.entities) {
 			return <LoadingAnimation/>;
@@ -37,35 +66,39 @@ class CardGrid extends ConnectionComponent {
 					styles={[AppStyles.elementMarginTop]} />
 				<Row className={css(this.props.styles)}>
 					{this.props.entities.value.map((childEntity, index) => {
-						return (
-							<Col key={index} xs={12} sm={4} md={3}>
-								<Card>
-									<CardTitle
-										style={this.backgroundColor(childEntity.Status)}
-										title={childEntity.Name}
-										titleColor={config.colors.textAlternate}
-										subtitle={this.props.entityType.name}/>
-									<CardText style={this.backgroundColorLight(childEntity.Status)}>
-										<EntityInformation entity={childEntity} />
-									</CardText>
-									<CardActions style={this.backgroundColorLight(childEntity.Status)}>
-										<Row>
-											<Col xs={6}>
-												{childEntity.HasChildren &&
+						if (this.isCoveredByFilter(childEntity)) {
+							return (
+								<Col key={index} xs={12} sm={4} md={3}>
+									<Card>
+										<CardTitle
+											style={this.backgroundColor(childEntity.Status)}
+											title={childEntity.Name}
+											titleColor={config.colors.textAlternate}
+											subtitle={this.props.entityType.name}/>
+										<CardText style={this.backgroundColorLight(childEntity.Status)}>
+											<EntityInformation entity={childEntity}/>
+										</CardText>
+										<CardActions style={this.backgroundColorLight(childEntity.Status)}>
+											<Row>
+												<Col xs={6}>
+													{childEntity.HasChildren &&
 													<FlatButton
 														label="Children"
 														href={`/grid/${childEntity.Id}`}/>}
-											</Col>
-											<Col xs={6}>
-												<FlatButton
-													label="Inspect"
-													href={`/details/${this.props.currentEntity.Id}/${childEntity.Id}`}/>
-											</Col>
-										</Row>
-									</CardActions>
-								</Card>
-							</Col>
-						);
+												</Col>
+												<Col xs={6}>
+													<FlatButton
+														label="Inspect"
+														href={`/details/${this.props.currentEntity.Id}/${childEntity.Id}`}/>
+												</Col>
+											</Row>
+										</CardActions>
+									</Card>
+								</Col>
+							);
+						} else {
+							return "";
+						}
 					})}
 				</Row>
 			</div>

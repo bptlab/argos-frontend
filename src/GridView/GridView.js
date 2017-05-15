@@ -12,8 +12,12 @@ import Header from "../Header";
 class GridView extends ConnectionComponent {
 	constructor() {
 		super();
-		this.getChildEntityTypes = this.getChildEntityTypes.bind(this);
+        this.state = {
+            filterValue: "",
+        };
+        this.getChildEntityTypes = this.getChildEntityTypes.bind(this);
 		this.getEntityType = this.getEntityType.bind(this);
+		this.handleFilterChange = this.handleFilterChange.bind(this);
 	}
 
 	getEntityType(entity) {
@@ -45,7 +49,13 @@ class GridView extends ConnectionComponent {
 		return "Home";
 	}
 
-	render() {
+    handleFilterChange(filterValue) {
+        this.setState({
+            filterValue: filterValue,
+        });
+    }
+
+    render() {
 		const allFetches = PromiseState.all([this.props.entity]);
 		const entity = this.props.entity.value;
 		const connectionIncomplete = super.render(allFetches);
@@ -62,12 +72,13 @@ class GridView extends ConnectionComponent {
 						currentEntity={entity}
 						getEntityType={this.getEntityType}
 						getChildEntityTypes={this.getChildEntityTypes}/>
-					<SearchBar/>
+					<SearchBar onInputChange={this.handleFilterChange}/>
 					{childEntityTypes.map((childEntityType) => {
 						return (
 							<div key={`div-${childEntityType.Id}`}>
 								<h1>{childEntityType.Name}</h1>
 								<CardGrid
+									filterValue={this.state.filterValue}
 									styles={[AppStyles.elementMarginTop]}
 									key={childEntityType.Id}
 									currentEntity={entity}
