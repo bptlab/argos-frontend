@@ -52,11 +52,14 @@ class StatusDiagram extends Component {
 	}
 
 	componentDidMount() {
+		this.componentDidUpdate();
+	}
+	componentDidUpdate() {
 		const data = this.forgeChartData();
 		const chartRangeMaximum = StatusDiagram.getChartRangeMaximum(data);
 		const layout = StatusDiagram.getChartLayout(chartRangeMaximum);
 		const modeBar = { displayModeBar: false };
-		plotly.plot('status-diagram', data, layout, modeBar);
+		plotly.newPlot('status-diagram', data, layout, modeBar);
 	}
 
 	forgeChartData() {
@@ -65,7 +68,7 @@ class StatusDiagram extends Component {
 			status.entityCounter = 0;
 		});
 
-		this.props.entities.value.forEach((entity) => {
+		this.props.entities.forEach((entity) => {
 			const currentStatusIndex = StatusDiagram.getStatusIndex(entity.Status, statuses);
 			statuses[currentStatusIndex].entityCounter++;
 		});
