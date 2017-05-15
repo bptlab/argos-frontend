@@ -65,7 +65,7 @@ class StatusDiagram extends Component {
 			status.entityCounter = 0;
 		});
 
-		this.props.entities.value.forEach((entity) => {
+		this.props.entities.forEach((entity) => {
 			const currentStatusIndex = StatusDiagram.getStatusIndex(entity.Status, statuses);
 			statuses[currentStatusIndex].entityCounter++;
 		});
