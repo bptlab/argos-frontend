@@ -30,12 +30,12 @@ class SettingsView extends ConnectionComponent {
         });
     }
 
-    searchMatches(eventType, searchText) {
-        if (!searchText || !searchText.value) {
+    searchMatches(eventType) {
+        if (!this.state.searchText.value) {
             return true;
         }
 
-        return (eventType.Name.toLowerCase().indexOf(searchText.value) > -1);
+        return (eventType.Name.toLowerCase().indexOf(this.state.searchText.value) > -1);
     }
 	render() {
 		const connectionIncomplete = super.render(this.props.eventTypes);
@@ -60,12 +60,11 @@ class SettingsView extends ConnectionComponent {
 										<ErrorMessage message={optionalActions.reason} />
 									}
 									{this.props.eventTypes.value.map((eventType) => {
-                                        if(this.searchMatches(eventType, this.state.searchText)) {
+                                        if(this.searchMatches(eventType)) {
                                             return (<EventType
 												eventType={eventType}
 												key={eventType.Id}
-												deleteEventType={this.props.deleteEventType}
-												fullWidth={true}/>);
+												deleteEventType={this.props.deleteEventType}/>);
                                         } else {
                                             return false;
                                         }})
