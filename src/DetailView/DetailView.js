@@ -2,7 +2,7 @@ import React from "react";
 import {Container} from "react-grid-system";
 import {connect} from "react-refetch";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
-import EntityInformation from "./EntityInformation";
+import EntityInformation from "../Utils/EntityInformation";
 import EventDiagram from "./EventDiagram";
 import EventTable from "./EventTable";
 import {css} from "aphrodite";

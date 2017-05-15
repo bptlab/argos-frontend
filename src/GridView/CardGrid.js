@@ -7,7 +7,7 @@ import LoadingAnimation from './../Utils/LoadingAnimation';
 import { Row, Col } from 'react-grid-system';
 import { css } from 'aphrodite';
 import AppStyles from "./../AppStyles";
-import EntityInformation from './../DetailView/EntityInformation';
+import EntityInformation from '../Utils/EntityInformation';
 import StatusDiagram from "./StatusDiagram";
 import config from './../config/config';
 import Utils from './../Utils/Utils';
@@ -15,11 +15,11 @@ import Utils from './../Utils/Utils';
 class CardGrid extends ConnectionComponent {
 
 	backgroundColor (status) {
-		return {backgroundColor: Utils.getStatus(status).color};
+		return {backgroundColor: Utils.getColorForStatus(status)};
 	}
 
 	backgroundColorLight (status) {
-		return {backgroundColor: Utils.getStatus(status).colorLight};
+		return {backgroundColor: Utils.getLightColorForStatus(status)};
 	}
 
 	render() {
