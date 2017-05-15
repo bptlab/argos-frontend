@@ -42,8 +42,9 @@ class EventType extends ConnectionComponent {
 	getEventTypeHeaderButtons() {
 		return [
 			<IconButton key="edit-button"><IconEdit/></IconButton>,
-			<IconButton key="delete-button" 
-						onTouchTap={() => {this.confirmationMessage.handleOpen();}}>
+			<IconButton
+				key="delete-button"
+				onTouchTap={() => {this.confirmationMessage.handleOpen();}}>
 				<IconDelete/>
 			</IconButton>];
 	}
