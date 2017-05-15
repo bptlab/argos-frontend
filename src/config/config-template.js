@@ -21,7 +21,7 @@ const config = {
 		queryInputFieldHint: "Esper EPL Query",
 		queryDescriptionInputFieldHint: 'Description for query',
 		deleteQueryMessage: "Do you really want to delete this Query?",
-		deleteEventTypeMessage: "Do you really want to delete this EventType?"
+		deleteEventTypeMessage: "Do you really want to delete this EventType?",
 		addMapping: "Add Mapping Condition",
 	},
 	messages: {
