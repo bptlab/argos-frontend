@@ -60,7 +60,7 @@ class CreateEntityMappingView extends ConnectionComponent {
     
     submitMapping() {
 		if(this.isValidInput()) {
-			const  entityMappings = this.state.mappings.map((mappingStatement) => {
+			const  entityMappingConditions = this.state.mappings.map((mappingStatement) => {
 				return ({
 					EventTypeAttributeId: mappingStatement.eventTypeAttribute.value,
 					EntityTypeAttributeId: mappingStatement.entityTypeAttribute.value
@@ -70,7 +70,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 				EventTypeId: this.state.selectedEventTypeId.value,
 				EntityTypeId: this.state.selectedEntityTypeId.value,
 				TargetStatus: this.state.targetStatus,
-				EventEntityMappingConditions: entityMappings
+				EventEntityMappingConditions: entityMappingConditions
 			});
 		}
 	}
