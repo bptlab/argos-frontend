@@ -112,6 +112,7 @@ class EventType extends ConnectionComponent {
 									showExpandableButton={true}/>
 								<CardText expandable={true}>
 									<List>
+										{entityMappings.length === 0 && <div> There are no event entity mappings yet. </div>}
 										{entityMappings.map((mapping) => {
 											return (
 												<EntityMappingListItem
