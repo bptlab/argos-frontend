@@ -48,10 +48,44 @@ class EventType extends ConnectionComponent {
 				<IconDelete/>
 			</IconButton>];
 	}
+
+    showEntityMappings(entityMappings, attributes) {
+		return (<Card
+			expanded={this.state.mappingExpanded}
+			onExpandChange={this.handleMappingsExpandChange}>
+			<CardHeader
+				title="Entity Mappings"
+				actAsExpander={true}
+				showExpandableButton={true}/>
+			<CardText expandable={true}>
+				<List>
+                    {entityMappings.length === 0 &&
+					<div> There are no event entity mappings yet. </div>}
+                    {entityMappings.map((mapping) => {
+                        return (
+							<EntityMappingListItem
+								key={mapping.Id}
+								mapping={mapping}
+								deleteMapping={this.props.deleteMapping}
+								eventType={this.props.eventType}
+								eventTypeAttributes={attributes}/>
+                        );
+                    })}
+				</List>
+			</CardText>
+			<CardActions>
+				<IconButton
+					href="settings/entityMapping/create"
+					tooltip={<span>create new event entity mapping</span>}>
+					<IconAdd/>
+				</IconButton>
+			</CardActions>
+		</Card>);
+	}
 	
 	render() {
 		const allFetches = PromiseState.all([this.props.entityMappings, this.props.queries, this.props.attributes]);
-        const optionalActions = this.props.deleteQueryeResponse;
+        const optionalActions = this.props.deleteQueryResponse || this.props.deleteMappingResponse;
         const queries = this.props.queries.value;
         const attributes = this.props.attributes.value;
         const entityMappings = this.props.entityMappings.value;
@@ -113,36 +147,7 @@ class EventType extends ConnectionComponent {
 							</Col>
 						</Container>
 						<Container>
-							<Card
-								expanded={this.state.mappingExpanded}
-								onExpandChange={this.handleMappingsExpandChange}>
-								<CardHeader
-									title="Entity Mappings"
-									actAsExpander={true}
-									showExpandableButton={true}/>
-								<CardText expandable={true}>
-									<List>
-										{entityMappings.length === 0 &&
-										<div> There are no event entity mappings yet. </div>}
-										{entityMappings.map((mapping) => {
-											return (
-												<EntityMappingListItem
-													key={mapping.Id}
-													mapping={mapping}
-													eventType={this.props.eventType}
-													eventTypeAttributes={attributes}/>
-											);
-										})}
-									</List>
-								</CardText>
-								<CardActions>
-									<IconButton
-										href="settings/entityMapping/create"
-										tooltip={<span>create new event entity mapping</span>}>
-										<IconAdd/>
-									</IconButton>
-								</CardActions>
-							</Card>
+							{this.showEntityMappings(entityMappings, attributes)}
 						</Container>
 					</CardText>
 				</Card>
@@ -154,10 +159,9 @@ class EventType extends ConnectionComponent {
 	attributes: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/attributes`,
     entityMappings: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/entitymappings`,
 	deleteQuery: query => ({
-		deleteQueryeResponse: {
+		deleteQueryResponse: {
 			url: config.backendRESTRoute + `/eventquery/${query.Id}/delete`,
 			method: 'DELETE',
-			body: "",
 			andThen: () => ({
 				queries: {
 					url: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/queries`,
@@ -166,5 +170,18 @@ class EventType extends ConnectionComponent {
 				}
 			})
 		}
-	})
+	}),
+    deleteMapping: mapping => ({
+        deleteMappingResponse: {
+            url: config.backendRESTRoute + `/entitymapping/${mapping.Id}/delete`,
+            method: 'DELETE',
+            andThen: () => ({
+                entityMappings: {
+                    url: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/entitymappings`,
+                    refreshing: true,
+                    force: true
+                }
+            })
+        }
+    })
 }))(EventType);
