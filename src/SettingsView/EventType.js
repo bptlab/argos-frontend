@@ -162,7 +162,6 @@ class EventType extends ConnectionComponent {
 		deleteQueryResponse: {
 			url: config.backendRESTRoute + `/eventquery/${query.Id}/delete`,
 			method: 'DELETE',
-			body: "",
 			andThen: () => ({
 				queries: {
 					url: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/queries`,
@@ -176,7 +175,6 @@ class EventType extends ConnectionComponent {
         deleteMappingResponse: {
             url: config.backendRESTRoute + `/entitymapping/${mapping.Id}/delete`,
             method: 'DELETE',
-            body: "",
             andThen: () => ({
                 entityMappings: {
                     url: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/entitymappings`,
