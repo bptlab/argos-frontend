@@ -9,24 +9,23 @@ import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
 import Header from "../Header";
 import EventTabs from "./EventTabs";
-import config from './../config/config.js';
+import config from "./../config/config.js";
+import FilterBar from "./../Utils/FilterBar";
 
 class DetailView extends ConnectionComponent {
 
 	constructor() {
 		super();
 		this.state = {
-			events: null,
+			filteredEvents: [],
 			currentEventType: null,
+			filter: [],
 		};
-		this.handleEventsChange = this.handleEventsChange.bind(this);
-		this.handleEventTypeChange = this.handleEventTypeChange.bind(this);
-	}
+		this.events = [];
 
-	handleEventsChange(events) {
-		this.setState({
-			events: events,
-		});
+		this.handleEventTypeChange = this.handleEventTypeChange.bind(this);
+		this.handleFilterChange = this.handleFilterChange.bind(this);
+		this.handleEventChange = this.handleEventChange.bind(this);
 	}
 
 	handleEventTypeChange(eventType) {
@@ -34,46 +33,125 @@ class DetailView extends ConnectionComponent {
 			currentEventType: eventType,
 		});
 		this.props.lazyAttributeLoading(eventType.Id);
+		this.props.lazyEventLoading(eventType.Id, this.handleEventChange);
+	}
+
+	handleEventChange(events) {
+		this.events = events;
+		const filteredEvents = this.getFilteredEvents(events);
+		this.setState({
+			filteredEvents: filteredEvents,
+		});
+	}
+
+	handleFilterChange(filter) {
+		this.setState(
+			{
+				filter: filter,
+			},
+			() => this.handleEventChange(this.events)
+		);
+	}
+
+	getFilteredEvents(events) {
+		return events.filter(event =>
+			this.isCoveredByFilter(event));
+	}
+
+	isCoveredByFilter(event) {
+		// every is equivalent to logical and over an array
+		return this.state.filter.every((filter) => {
+			return this.testFilter(event, filter);
+		});
+	}
+
+	testFilter(event, filter) {
+		if (!filter.value) {
+			return true;
+		}
+		let columnsToBeSearched = this.props.eventTypeAttributes.value;
+		if(filter.column) {
+			columnsToBeSearched = columnsToBeSearched.filter((column) => {
+				return DetailView.doesContain(column.Name, filter.column);
+			});
+		}
+
+		return columnsToBeSearched.some((column) => {
+			return this.testColumn(column, event, filter);
+		});
+	}
+
+	testColumn(column, event, filter) {
+		const filterValues = filter.value.split(",");
+		const eventAttribute = event.Attributes.find(attribute => attribute.Name === column.Name);
+		return filterValues.some(filterValue => {
+			const currentFilterValue = filterValue.trim();
+			return (currentFilterValue &&  DetailView.doesContain(eventAttribute.Value, currentFilterValue));
+		});
+	}
+
+	static doesContain(baseValue, subValue) {
+		return (baseValue.toString().toLowerCase().indexOf(subValue.toString().toLowerCase()) > -1);
 	}
 
 	getEventTable() {
-		if (!this.props.eventTypeAttributes) {
+		if (!this.props.eventTypeAttributes || !this.props.events) {
 			return "";
 		}
-
-		const eventTypeAttributeConnection = super.render(this.props.eventTypeAttributes);
-		if (eventTypeAttributeConnection) {
-			return eventTypeAttributeConnection;
+		const allFetches = PromiseState.all([this.props.eventTypeAttributes, this.props.events]);
+		const eventsAndAttributeConnection = super.render(allFetches);
+		if (eventsAndAttributeConnection) {
+			return eventsAndAttributeConnection;
 		}
-		else if(this.props.eventTypeAttributes.value) {
+		else if(this.props.eventTypeAttributes.value && this.props.events.value) {
 			return (
 				<EventTable
-					entityId={this.props.match.params.entityId}
-					eventTypeId={this.state.currentEventType.Id}
-					eventTypeAttributes={this.props.eventTypeAttributes.value}
-					onEventsChange={this.handleEventsChange} />
+					events={this.state.filteredEvents}
+					eventTypeAttributes={this.props.eventTypeAttributes.value} />
 			);
 		}
 	}
 
-	getEventDiagram() {
+	eventTypeAttributesPending() {
 		if (!this.props.eventTypeAttributes) {
-			return "";
+			return <div />;
 		}
 		const eventTypeAttributeConnection = super.render(this.props.eventTypeAttributes);
 		if (eventTypeAttributeConnection) {
 			return eventTypeAttributeConnection;
 		}
-		else if(this.props.eventTypeAttributes.value) {
-			return (
-				<EventDiagram
-					events={this.state.events}
-					eventType={this.state.currentEventType}
-					eventTypeAttributes={this.props.eventTypeAttributes.value}
-					entity={this.props.entity.value}
-					styles={[AppStyles.w50]} />
-			);
+		if (!this.props.eventTypeAttributes.value) {
+			return <div />;
 		}
+		return null;
+	}
+
+	getEventDiagram() {
+		const eventTypeAttributesPending = this.eventTypeAttributesPending();
+		if (eventTypeAttributesPending) {
+			return eventTypeAttributesPending;
+		}
+		return (
+			<EventDiagram
+				events={this.state.filteredEvents}
+				eventType={this.state.currentEventType}
+				eventTypeAttributes={this.props.eventTypeAttributes.value}
+				entity={this.props.entity.value}
+				styles={[AppStyles.w50]} />
+		);
+	}
+
+	getFilterBar() {
+		const eventTypeAttributesPending = this.eventTypeAttributesPending();
+		if (eventTypeAttributesPending) {
+			return eventTypeAttributesPending;
+		}
+		return (
+			<FilterBar
+			 styles={[AppStyles.elementMarginTop]}
+			 onFiltersChange={this.handleFilterChange}
+			 autoCompleteSource={this.props.eventTypeAttributes.value.map(attributeInfo => attributeInfo.Name)}/>
+		);
 	}
 
 	render() {
@@ -97,6 +175,7 @@ class DetailView extends ConnectionComponent {
 							styles={[AppStyles.w50]}/>
 						{this.getEventDiagram()}
 					</div>
+					{this.getFilterBar()}
 					<EventTabs
 						eventTypes={eventTypes}
 						onEventTypeChange={this.handleEventTypeChange}
@@ -113,5 +192,11 @@ export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props 
 	eventTypes: config.backendRESTRoute + `/entity/${props.match.params.entityId}/eventtypes`,
 	lazyAttributeLoading: eventTypeId => ({
 		eventTypeAttributes: config.backendRESTRoute + `/eventtype/${eventTypeId}/attributes`,
-	})
+	}),
+	lazyEventLoading: (eventTypeId, eventHandler) => ({
+		events: {
+			url: config.backendRESTRoute + `/entity/${props.match.params.entityId}/eventtype/${eventTypeId}/events/0/10000`,
+			then: events => eventHandler(events),
+		},
+	}),
 }))(DetailView);
