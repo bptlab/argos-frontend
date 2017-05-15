@@ -1,6 +1,5 @@
 import React from 'react';
 import {Container} from "react-grid-system";
-import {connect} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import Header from './../Header';
 import EventType from './EventType';
@@ -59,7 +58,7 @@ class SettingsView extends ConnectionComponent {
 								<Container>
 									<SearchBar onInputChange={this.handleSearchInput}/>
 									{optionalActions && optionalActions.rejected &&
-									<ErrorMessage message={optionalActions.reason}/>
+										<ErrorMessage message={optionalActions.reason}/>
 									}
 									{this.props.eventTypes.value.map((eventType) => {
 										if (this.searchMatches(eventType)) {
@@ -89,9 +88,8 @@ class SettingsView extends ConnectionComponent {
 	}
 }
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(() => {
+export default ConnectionComponent.argosConnector()(() => {
 	const eventTypeUrl = config.backendRESTRoute + `/eventtypes`;
-
 	return {
 		eventTypes: eventTypeUrl,
 		deleteEventType: eventType => ({

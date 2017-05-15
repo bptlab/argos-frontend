@@ -10,7 +10,7 @@ class ErrorMessage extends Component {
 		return (
 			<div className={css(AppStyles.dFlex, AppStyles.alignItemsCenter, AppStyles.flexDirectionColumn)}>
 				<IconWarning className={css(AppStyles.errorColor, ErrorMessageStyles.iconSize)}/>
-				<p>{this.props.message}</p>
+				<p>{this.props.message.toString()}</p>
 			</div>
 		);
 	}
