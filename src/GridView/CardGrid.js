@@ -30,9 +30,7 @@ class CardGrid extends ConnectionComponent {
 
 	isCoveredByFilter(childEntity) {
 		// every is equivalent to logical and over an array
-		return this.props.filter.every((filter) => {
-			return this.testFilter(childEntity, filter);
-		});
+		return this.testFilter(childEntity, this.props.filter);
 	}
 
 	testFilter(childEntity, filter) {

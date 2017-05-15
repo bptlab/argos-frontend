@@ -9,6 +9,7 @@ import AppStyles from "./../AppStyles";
 import config from './../config/config.js';
 import Header from "../Header";
 import FilterBar from "../Utils/FilterBar";
+import SearchBar from "../Utils/SearchBar";
 
 
 class GridView extends ConnectionComponent {
@@ -58,15 +59,6 @@ class GridView extends ConnectionComponent {
 		});
 	}
 
-	loadFilterBar() {
-		return (
-			<FilterBar
-				styles={[AppStyles.elementMarginTop]}
-				onFiltersChange={this.handleFilterChange}
-				autoCompleteSource={[]}/>
-		);
-	}
-
 	render() {
 		const allFetches = PromiseState.all([this.props.hierarchy, this.props.entity]);
 		const hierarchy = this.props.hierarchy.value;
@@ -86,7 +78,8 @@ class GridView extends ConnectionComponent {
 						currentEntity={entity}
 						getEntityType={this.getEntityType}
 						getChildEntityTypes={this.getChildEntityTypes}/>
-					{this.loadFilterBar()}
+					<SearchBar
+						onInputChange={this.handleFilterChange}/>
 					{childEntityTypes.map((childEntityType) => {
 						return(
 							<div key={`div-${childEntityType.Id}`}>
