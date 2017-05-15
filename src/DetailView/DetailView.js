@@ -28,7 +28,7 @@ class DetailView extends ConnectionComponent {
 			events: events,
 		});
 	}
-	
+
 	handleEventTypeChange(eventType) {
 		this.setState({
 			currentEventType: eventType,
@@ -60,7 +60,6 @@ class DetailView extends ConnectionComponent {
 		if (!this.props.eventTypeAttributes) {
 			return "";
 		}
-
 		const eventTypeAttributeConnection = super.render(this.props.eventTypeAttributes);
 		if (eventTypeAttributeConnection) {
 			return eventTypeAttributeConnection;
@@ -85,14 +84,6 @@ class DetailView extends ConnectionComponent {
 		if(connectionIncomplete) {
 			return connectionIncomplete;
 		}
-
-		// let currentEventType = this.state.currentEventType;
-		if (!this.state.currentEventType && eventTypes.length > 0) {
-			let currentEventType = eventTypes[0];
-			this.handleEventTypeChange(currentEventType);
-		}
-
-
 
 		return (
 			<div>
