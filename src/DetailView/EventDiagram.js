@@ -73,7 +73,7 @@ class EventDiagram extends Component {
 			height: 400
 		};
 
-		const statusColor = Utils.getStatus(entity.Status).color;
+		const statusColor = Utils.getColorForStatus(entity.Status);
 
 		const diagramData = {
 			x: x,
