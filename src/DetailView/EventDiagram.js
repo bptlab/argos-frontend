@@ -75,7 +75,7 @@ class EventDiagram extends Component {
 
 		const statusColor = Utils.getStatus(entity.Status).color;
 
-		let diagramData = {
+		const diagramData = {
 			x: x,
 			y: y,
 			type: 'line',
