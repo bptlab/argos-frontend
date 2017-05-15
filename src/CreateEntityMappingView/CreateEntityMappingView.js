@@ -74,6 +74,10 @@ class CreateEntityMappingView extends ConnectionComponent {
 			});
 		}
 	}
+	
+	abort() {
+		window.history.back();
+	}
 
 	transformHierarchy(hierarchy) {
 		//takes hierarchy and returns a list of all entities in this hierarchy ordered by name
@@ -319,6 +323,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 								icon={<IconCancel/>}
 								className={css(AppStyles.marginAllSites)}
 								secondary={true}
+								onTouchTap={this.abort}
 							/>
 							<RaisedButton
 								label="Save"
