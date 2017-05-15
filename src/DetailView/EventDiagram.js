@@ -74,6 +74,7 @@ class EventDiagram extends Component {
 		};
 
 		const statusColor = Utils.getColorForStatus(entity.Status);
+		const opacityFactor = '80';
 
 		const diagramData = {
 			x: x,
@@ -86,7 +87,7 @@ class EventDiagram extends Component {
 
 		if (eventCounter !== 1) {
 			diagramData.fill = 'tozeroy';
-			diagramData.fillcolor = statusColor + '80';
+			diagramData.fillcolor = statusColor + opacityFactor;
 		}
 
 		plotly.newPlot(
