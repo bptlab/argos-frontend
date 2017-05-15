@@ -2,26 +2,25 @@ import React from "react";
 import {Container} from "react-grid-system";
 import DonutChart from "./DonutChart";
 import HierarchyStepper from "./HierarchyStepper";
-import SearchBar from "./../Utils/SearchBar";
-import FilterBar from "./../Utils/FilterBar"
 import CardGrid from "./CardGrid";
 import {connect, PromiseState} from "react-refetch";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import AppStyles from "./../AppStyles";
 import config from './../config/config.js';
 import Header from "../Header";
+import FilterBar from "../Utils/FilterBar";
 
 
 class GridView extends ConnectionComponent {
 	constructor() {
 		super();
-		this.getChildEntityTypes = this.getChildEntityTypes.bind(this);
-		this.getEntityType = this.getEntityType.bind(this);
-		this.handleFilterChange = this.handleFilterChange.bind(this);
-
 		this.state = {
 			filter: [],
 		};
+
+        this.getChildEntityTypes = this.getChildEntityTypes.bind(this);
+        this.getEntityType = this.getEntityType.bind(this);
+        this.handleFilterChange = this.handleFilterChange.bind(this);
 	}
 
 	getEntityType(entity, hierarchy) {
@@ -78,8 +77,6 @@ class GridView extends ConnectionComponent {
 		}
 		const childEntityTypes = this.getChildEntityTypes(entity.TypeId, hierarchy);
 
-		const filterBar = this.loadFilterBar();
-
 		return (
 			<div>
 				<Header title={this.getPageTitle(entity, hierarchy)} status={entity.Status} />
@@ -89,7 +86,7 @@ class GridView extends ConnectionComponent {
 						currentEntity={entity}
 						getEntityType={this.getEntityType}
 						getChildEntityTypes={this.getChildEntityTypes}/>
-					{filterBar}
+					{this.loadFilterBar()}
 					{childEntityTypes.map((childEntityType) => {
 						return(
 							<div key={`div-${childEntityType.Id}`}>
