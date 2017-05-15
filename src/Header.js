@@ -9,6 +9,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import config from "./config/config";
 import {css, StyleSheet} from "aphrodite";
 import AppStyles from "./AppStyles";
+import Utils from "./Utils/Utils";
 
 class Header extends Component {
 
@@ -47,7 +48,7 @@ class Header extends Component {
         if(this.props.status) {
             const statusColor = StyleSheet.create({
                 color: {
-                    borderColor: config.status[this.props.status].color
+					borderColor: Utils.getStatus(this.props.status).color
                 }
             });
             appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color);
