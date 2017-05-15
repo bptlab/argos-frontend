@@ -128,6 +128,7 @@ class EventType extends ConnectionComponent {
 								</CardText>
 								<CardActions>
 									<IconButton
+										href="settings/entityMapping/create"
 										tooltip={<span>create new event entity mapping</span>}>
 										<IconAdd/>
 									</IconButton>
