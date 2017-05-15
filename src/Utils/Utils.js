@@ -1,16 +1,19 @@
 import config from './../config/config';
 
 class Utils {
-	static getStatus(currentStatus) {
-		let status = config.statuses.find((status) => {
-			return status.name === currentStatus;
-		});
-		if (!status) {
-			status = config.statuses.find((status) => {
-				return status.name === 'UNDEFINED';
-			});
+	static getStatus(status) {
+		let statusConfiguration = config.statuses.find(statusConfig => statusConfig.name === status);
+		if (!statusConfiguration) {
+			return config.statuses.find(statusConfig => statusConfig.name === 'UNDEFINED');
 		}
-		return status;
+		return statusConfiguration;
+	}
+
+	static getColorForStatus(status) {
+		return Utils.getStatus(status).color;
+	}
+	static getLightColorForStatus(status) {
+		return Utils.getStatus(status).colorLight;
 	}
 
 	static getFilteredEvents(events, filters) {

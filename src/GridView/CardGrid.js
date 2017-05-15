@@ -15,11 +15,11 @@ import Utils from './../Utils/Utils';
 class CardGrid extends ConnectionComponent {
 
 	backgroundColor (status) {
-		return {backgroundColor: Utils.getStatus(status).color};
+		return {backgroundColor: Utils.getColorForStatus(status)};
 	}
 
 	backgroundColorLight (status) {
-		return {backgroundColor: Utils.getStatus(status).colorLight};
+		return {backgroundColor: Utils.getLightColorForStatus(status)};
 	}
 
 	render() {
