@@ -75,7 +75,11 @@ class SettingsView extends ConnectionComponent {
 								</Container>
 							</CardText>
 							<CardActions>
-								<IconButton href="settings/eventType/create"><IconAdd/></IconButton>
+								<IconButton
+									tooltip={<span>create new event type</span>}
+									href="settings/eventType/create">
+									<IconAdd/>
+								</IconButton>
 							</CardActions>
 						</Card>
 					</Row>

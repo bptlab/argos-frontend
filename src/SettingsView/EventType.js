@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, CardHeader, CardText } from 'material-ui/Card';
+import {Card, CardHeader, CardText, CardActions } from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
 import EventQueryListItem from  './EventQueryListItem.js';
 import EntityMappingListItem from  './EntityMappingListItem.js';
@@ -97,6 +97,7 @@ class EventType extends ConnectionComponent {
 							</Col>
 							<Col md={1}>
 								<IconButton
+									tooltip={<span>create new event query</span>}
 									href={`settings/eventType/${this.props.eventType.Id}/eventQuery/create`}>
 									<IconAdd/>
 								</IconButton>
@@ -112,6 +113,8 @@ class EventType extends ConnectionComponent {
 									showExpandableButton={true}/>
 								<CardText expandable={true}>
 									<List>
+										{entityMappings.length === 0 &&
+										<div> There are no event entity mappings yet. </div>}
 										{entityMappings.map((mapping) => {
 											return (
 												<EntityMappingListItem
@@ -123,6 +126,13 @@ class EventType extends ConnectionComponent {
 										})}
 									</List>
 								</CardText>
+								<CardActions>
+									<IconButton
+										href="settings/entityMapping/create"
+										tooltip={<span>create new event entity mapping</span>}>
+										<IconAdd/>
+									</IconButton>
+								</CardActions>
 							</Card>
 						</Container>
 					</CardText>
