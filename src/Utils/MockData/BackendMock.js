@@ -26,7 +26,7 @@ class BackendMock {
 			.set(/^entity\/(-?\d+)\/eventtype\/(-?\d+)\/events/i, BackendMock.getEventsOfEventTypeAndEntity)
 			.set(/^eventquery\/(-?\d+)\/delete$/i, BackendMock.deleteEventQuery)
 			.set(/^eventtype\/create$/, BackendMock.createEventType)
-			.set(/^eventquery\/create$/, BackendMock.createEventQueryType);
+			.set(/^eventquery\/create$/, BackendMock.createEventQuery);
 	}
 
 	static handleRequest(request) {
@@ -43,7 +43,7 @@ class BackendMock {
 		return Hierarchy;
 	}
 	
-	static createEventQueryType() {
+	static createEventQuery() {
 		return "Success";
 	}
 
