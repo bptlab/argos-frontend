@@ -27,6 +27,12 @@ class EventDiagram extends Component {
 			.split("T")[0];
 	}
 
+	static sortEvents(events, timeStampAttributeName) {
+		return events.sort((eventA, eventB) => {
+			return EventDiagram.sortEventsByTime(eventA, eventB, timeStampAttributeName);
+		});
+	}
+
 	static getDiagramLayout(eventCounter) {
 		return {
 			yaxis: {
@@ -74,11 +80,7 @@ class EventDiagram extends Component {
 		const timeStampAttributeName = eventTypeAttributes.find(attribute =>
 			attribute.Id === eventType.TimestampAttributeId).Name;
 
-		const sortedEvents = events;
-
-		sortedEvents.sort((eventA, eventB) => {
-			return EventDiagram.sortEventsByTime(eventA, eventB, timeStampAttributeName);
-		});
+		const sortedEvents = EventDiagram.sortEvents(events, timeStampAttributeName);
 
 		//build x-axis
 		sortedEvents.forEach(event => {
@@ -97,8 +99,6 @@ class EventDiagram extends Component {
 		//build y-axis
 		x.forEach(date =>
 			y.push(dateCounter[date]));
-
-		console.log(EventDiagram.getTrace(x, y, entity, eventCounter));
 
 		plotly.newPlot(
 			this.diagramId,
