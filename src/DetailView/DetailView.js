@@ -11,6 +11,7 @@ import Header from "../Header";
 import EventTabs from "./EventTabs";
 import config from "./../config/config.js";
 import FilterBar from "./../Utils/FilterBar";
+import Utils from "./../Utils/Utils";
 
 class DetailView extends ConnectionComponent {
 
@@ -38,7 +39,7 @@ class DetailView extends ConnectionComponent {
 
 	handleEventChange(events) {
 		this.events = events;
-		const filteredEvents = this.getFilteredEvents(events);
+		const filteredEvents = Utils.getFilteredEvents(events, this.state.filter);
 		this.setState({
 			filteredEvents: filteredEvents,
 		});
@@ -51,47 +52,6 @@ class DetailView extends ConnectionComponent {
 			},
 			() => this.handleEventChange(this.events)
 		);
-	}
-
-	getFilteredEvents(events) {
-		return events.filter(event =>
-			this.isCoveredByFilter(event));
-	}
-
-	isCoveredByFilter(event) {
-		// every is equivalent to logical and over an array
-		return this.state.filter.every((filter) => {
-			return this.testFilter(event, filter);
-		});
-	}
-
-	testFilter(event, filter) {
-		if (!filter.value) {
-			return true;
-		}
-		let columnsToBeSearched = this.props.eventTypeAttributes.value;
-		if(filter.column) {
-			columnsToBeSearched = columnsToBeSearched.filter((column) => {
-				return DetailView.doesContain(column.Name, filter.column);
-			});
-		}
-
-		return columnsToBeSearched.some((column) => {
-			return this.testColumn(column, event, filter);
-		});
-	}
-
-	testColumn(column, event, filter) {
-		const filterValues = filter.value.split(",");
-		const eventAttribute = event.Attributes.find(attribute => attribute.Name === column.Name);
-		return filterValues.some(filterValue => {
-			const currentFilterValue = filterValue.trim();
-			return (currentFilterValue &&  DetailView.doesContain(eventAttribute.Value, currentFilterValue));
-		});
-	}
-
-	static doesContain(baseValue, subValue) {
-		return (baseValue.toString().toLowerCase().indexOf(subValue.toString().toLowerCase()) > -1);
 	}
 
 	getEventTable() {
