@@ -13,9 +13,8 @@ import config from './../config/config';
 import Utils from './../Utils/Utils';
 
 class CardGrid extends ConnectionComponent {
-	constructor(props) {
+	constructor() {
 		super();
-
 		this.isCoveredByFilter = this.isCoveredByFilter.bind(this);
 	}
 
