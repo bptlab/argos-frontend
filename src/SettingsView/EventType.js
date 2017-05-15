@@ -48,6 +48,40 @@ class EventType extends ConnectionComponent {
 				<IconDelete/>
 			</IconButton>];
 	}
+
+    showEntityMappings(entityMappings, attributes) {
+		return (<Card
+			expanded={this.state.mappingExpanded}
+			onExpandChange={this.handleMappingsExpandChange}>
+			<CardHeader
+				title="Entity Mappings"
+				actAsExpander={true}
+				showExpandableButton={true}/>
+			<CardText expandable={true}>
+				<List>
+                    {entityMappings.length === 0 &&
+					<div> There are no event entity mappings yet. </div>}
+                    {entityMappings.map((mapping) => {
+                        return (
+							<EntityMappingListItem
+								key={mapping.Id}
+								mapping={mapping}
+								deleteMapping={this.props.deleteMapping}
+								eventType={this.props.eventType}
+								eventTypeAttributes={attributes}/>
+                        );
+                    })}
+				</List>
+			</CardText>
+			<CardActions>
+				<IconButton
+					href="settings/entityMapping/create"
+					tooltip={<span>create new event entity mapping</span>}>
+					<IconAdd/>
+				</IconButton>
+			</CardActions>
+		</Card>);
+	}
 	
 	render() {
 		const allFetches = PromiseState.all([this.props.entityMappings, this.props.queries, this.props.attributes]);
@@ -113,37 +147,7 @@ class EventType extends ConnectionComponent {
 							</Col>
 						</Container>
 						<Container>
-							<Card
-								expanded={this.state.mappingExpanded}
-								onExpandChange={this.handleMappingsExpandChange}>
-								<CardHeader
-									title="Entity Mappings"
-									actAsExpander={true}
-									showExpandableButton={true}/>
-								<CardText expandable={true}>
-									<List>
-										{entityMappings.length === 0 &&
-										<div> There are no event entity mappings yet. </div>}
-										{entityMappings.map((mapping) => {
-											return (
-												<EntityMappingListItem
-													key={mapping.Id}
-													mapping={mapping}
-													deleteMapping={this.props.deleteMapping}
-													eventType={this.props.eventType}
-													eventTypeAttributes={attributes}/>
-											);
-										})}
-									</List>
-								</CardText>
-								<CardActions>
-									<IconButton
-										href="settings/entityMapping/create"
-										tooltip={<span>create new event entity mapping</span>}>
-										<IconAdd/>
-									</IconButton>
-								</CardActions>
-							</Card>
+							{this.showEntityMappings(entityMappings, attributes)}
 						</Container>
 					</CardText>
 				</Card>
