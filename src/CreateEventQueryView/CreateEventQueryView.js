@@ -42,21 +42,26 @@ class CreateEventQueryView extends ConnectionComponent {
 	}
 	
 	submitQuery() {
+		let noValidationError = true;
 		if(!this.state.queryDescription) {
 			this.setState({
 				descriptionErrorMessage: config.messages.requiredFieldMessage
 			});
+			noValidationError = false;
 		}
 		if(!this.state.query) {
 			this.setState({
 				queryErrorMessage: config.messages.requiredFieldMessage
 			});
+			noValidationError = false;
 		}
-		this.props.createEventQuery({
-			EventTypeId: this.props.match.params.eventTypeId,
-			Description: this.state.queryDescription,
-			Query: this.state.query
-		});
+		if(noValidationError) {
+			this.props.createEventQuery({
+				EventTypeId: this.props.match.params.eventTypeId,
+				Description: this.state.queryDescription,
+				Query: this.state.query
+			});
+		}
 	}
 	
 	abort() {
