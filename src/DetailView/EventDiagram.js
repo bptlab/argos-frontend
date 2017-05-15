@@ -72,17 +72,23 @@ class EventDiagram extends Component {
 			height: 400
 		};
 
+		let diagramData = {
+			x: x,
+			y: y,
+			type: 'line',
+			line: {
+				color: '#4CAF50'
+			}
+		};
+
+		if (eventCounter !== 1) {
+			diagramData.fill = 'tozeroy';
+			diagramData.fillcolor = '#4CAF5080';
+		}
+
 		plotly.newPlot(
 			"eventDiagram",
-			[{
-				x: x, y: y,
-				fill: 'tozeroy',
-				fillcolor: '#4CAF5080',
-				type: 'line',
-				line: {
-					color: '#4CAF50'
-				}
-			}],
+			[diagramData],
 			layout
 		);
 	}
