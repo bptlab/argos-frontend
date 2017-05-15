@@ -1,6 +1,5 @@
 import React from "react";
 import {Container} from "react-grid-system";
-import DonutChart from "./DonutChart";
 import HierarchyStepper from "./HierarchyStepper";
 import SearchBar from "./../Utils/SearchBar";
 import CardGrid from "./CardGrid";
@@ -68,7 +67,6 @@ class GridView extends ConnectionComponent {
 						return (
 							<div key={`div-${childEntityType.Id}`}>
 								<h1>{childEntityType.Name}</h1>
-								<DonutChart styles={[AppStyles.elementMarginTop]}/>
 								<CardGrid
 									styles={[AppStyles.elementMarginTop]}
 									key={childEntityType.Id}

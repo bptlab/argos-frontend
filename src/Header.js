@@ -4,13 +4,13 @@ import IconButton from "material-ui/IconButton";
 import IconHome from "material-ui/svg-icons/action/home";
 import IconSettings from "material-ui/svg-icons/action/settings";
 import IconArrowBack from "material-ui/svg-icons/navigation/arrow-back";
+import Utils from './Utils/Utils';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import config from "./config/config";
 import {css, StyleSheet} from "aphrodite";
 import AppStyles from "./AppStyles";
 
 class Header extends Component {
-
 	static goBackInHistory() {
 		window.history.back();
 	}
@@ -40,7 +40,7 @@ class Header extends Component {
         if(this.props.status) {
             const statusColor = StyleSheet.create({
                 color: {
-                    borderColor: config.status[this.props.status].color
+                    borderColor: Utils.getStatus(this.props.status).color
                 }
             });
             appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color);
