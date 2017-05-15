@@ -2,7 +2,7 @@ import config from './../config/config';
 
 class Utils {
 	static getStatus(status) {
-		let statusConfiguration = config.statuses.find(statusConfig => statusConfig.name === status);
+		const statusConfiguration = config.statuses.find(statusConfig => statusConfig.name === status);
 		if (!statusConfiguration) {
 			return config.statuses.find(statusConfig => statusConfig.name === 'UNDEFINED');
 		}
