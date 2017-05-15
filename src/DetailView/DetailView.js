@@ -149,13 +149,14 @@ class DetailView extends ConnectionComponent {
 
 export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
 	entity: config.backendRESTRoute + `/entity/${props.match.params.entityId}`,
-	eventTypes: config.backendRESTRoute + `/entity/${props.match.params.entityId}/eventtypes`,
+	eventTypes: config.backendRESTRoute + `/entity/${props.match.params.entityId}/eventtypes/false`,
 	lazyAttributeLoading: eventTypeId => ({
 		eventTypeAttributes: config.backendRESTRoute + `/eventtype/${eventTypeId}/attributes`,
 	}),
 	lazyEventLoading: (eventTypeId, eventHandler) => ({
 		events: {
-			url: config.backendRESTRoute + `/entity/${props.match.params.entityId}/eventtype/${eventTypeId}/events/0/10000`,
+			url: config.backendRESTRoute
+					+ `/entity/${props.match.params.entityId}/eventtype/${eventTypeId}/events/false/0/10000`,
 			then: events => eventHandler(events),
 		},
 	}),

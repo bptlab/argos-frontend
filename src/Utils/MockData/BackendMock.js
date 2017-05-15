@@ -20,10 +20,10 @@ class BackendMock {
 			.set(/^eventtype\/(-?\d+)\/entitymappings$/i, BackendMock.getMappingsOfEventType)
 			.set(/^entity\/(-?\d+)$/i, BackendMock.getEntity)
 			.set(/^eventtype\/(-?\d+)\/delete$/i, BackendMock.deleteEventType)
-			.set(/^entity\/(-?\d+)\/eventtypes$/i, BackendMock.getEventTypesOfEntity)
+			.set(/^entity\/(-?\d+)\/eventtypes\/false$/i, BackendMock.getEventTypesOfEntity)
 			.set(/^eventtype\/(-?\d+)$/i, BackendMock.getEventType)
 			.set(/^eventtype\/(-?\d+)\/attributes$/i, BackendMock.getAttributesOfEventType)
-			.set(/^entity\/(-?\d+)\/eventtype\/(-?\d+)\/events/i, BackendMock.getEventsOfEventTypeAndEntity)
+			.set(/^entity\/(-?\d+)\/eventtype\/(-?\d+)\/events\/false/i, BackendMock.getEventsOfEventTypeAndEntity)
 			.set(/^eventquery\/(-?\d+)\/delete$/i, BackendMock.deleteEventQuery)
 			.set(/^eventtype\/create$/, BackendMock.createEventType)
 			.set(/^eventquery\/create$/, BackendMock.createEventQuery);
