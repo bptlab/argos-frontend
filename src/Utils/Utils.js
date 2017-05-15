@@ -35,7 +35,7 @@ class Utils {
 		let columnsToBeSearched = event.Attributes.map(attribute => attribute.Name);
 		if(filter.column) {
 			columnsToBeSearched = columnsToBeSearched.filter((column) => {
-				return Utils.doesContain(column.Name, filter.column);
+				return Utils.doesContain(column, filter.column);
 			});
 		}
 
@@ -46,7 +46,7 @@ class Utils {
 
 	static testColumn(column, event, filter) {
 		const filterValues = filter.value.split(",");
-		const eventAttribute = event.Attributes.find(attribute => attribute.Name === column.Name);
+		const eventAttribute = event.Attributes.find(attribute => attribute.Name === column);
 		return filterValues.some(filterValue => {
 			const currentFilterValue = filterValue.trim();
 			return (currentFilterValue &&  Utils.doesContain(eventAttribute.Value, currentFilterValue));
