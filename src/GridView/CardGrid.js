@@ -13,8 +13,7 @@ class CardGrid extends ConnectionComponent {
 	backgroundColor (status) {
 		if (status in config.status) {
 			return ({backgroundColor: config.status[status].color});
-		}
-		else {
+		} else {
 			return {backgroundColor: config.status["UNDEFINED"].color};
 		}
 	}
@@ -22,38 +21,38 @@ class CardGrid extends ConnectionComponent {
 	backgroundColorLight (status) {
 		if (status in config.status) {
 			return ({backgroundColor: config.status[status].colorLight});
-		}
-		else {
+		} else {
 			return {backgroundColor: config.status["UNDEFINED"].colorLight};
 		}
 	}
 
 	isCoveredByFilter(childEntity) {
 		// every is equivalent to logical and over an array
-		return this.testFilter(childEntity, this.props.filter);
+		return this.testFilter(childEntity, this.props.filterValue);
 	}
 
 	testFilter(childEntity, filter) {
 		if (!filter.value) {
-		 	return true;
-		 }
-		 const attributeValues = this.getAttributeValues(childEntity);
-
-		if (this.doesContain(childEntity.Name, filter.value)){
 			return true;
 		}
-		else {
-			return this.doesContain(attributeValues, filter.value);
-		}
+
+		const attributeValues = this.getAttributeValues(childEntity);
+		attributeValues.push(childEntity.Name);
+
+		return this.doesContain(attributeValues, filter.value);
+
 	}
 
-	doesContain(baseValue, subValue) {
-		return (baseValue.toString().toLowerCase().indexOf(subValue.toString().toLowerCase()) > -1);
+	doesContain(baseValueArray, subValue) {
+		return baseValueArray.some((baseValue) => {
+            return (baseValue.toString().toLowerCase().indexOf(subValue.toString().toLowerCase()) > -1);
+		});
 	}
 
 	getAttributeValues(childEntity){
 		const attributeArray = [];
 		childEntity.Attributes.forEach((attribute) => {
+			attributeArray.push(attribute.Name);
 			attributeArray.push(attribute.Value)
 		});
 		return 	attributeArray;
@@ -70,38 +69,37 @@ class CardGrid extends ConnectionComponent {
 		return (
 			<Row className={css(this.props.styles)}>
 				{this.props.entities.value.map((childEntity, index) => {
-					if (!this.isCoveredByFilter(childEntity)) {
-						return "";
-					}
-					return (
-						<Col key={index} xs={12} sm={4} md={3}>
-							<Card>
-								<CardTitle
-									style={this.backgroundColor(childEntity.Status)}
-									title={childEntity.Name}
-									titleColor={config.colors.textAlternate}
-									subtitle={this.props.entityType.name}/>
-								<CardText style={this.backgroundColorLight(childEntity.Status)}>
-									<EntityInformation entity={childEntity} />
-								</CardText>
-								<CardActions style={this.backgroundColorLight(childEntity.Status)}>
-									<Row>
-										<Col xs={6}>
-											{childEntity.HasChildren &&
+					if (this.isCoveredByFilter(childEntity)) {
+                        return (
+							<Col key={index} xs={12} sm={4} md={3}>
+								<Card>
+									<CardTitle
+										style={this.backgroundColor(childEntity.Status)}
+										title={childEntity.Name}
+										titleColor={config.colors.textAlternate}
+										subtitle={this.props.entityType.name}/>
+									<CardText style={this.backgroundColorLight(childEntity.Status)}>
+										<EntityInformation entity={childEntity}/>
+									</CardText>
+									<CardActions style={this.backgroundColorLight(childEntity.Status)}>
+										<Row>
+											<Col xs={6}>
+                                                {childEntity.HasChildren &&
 												<FlatButton
 													label="Children"
 													href={`/grid/${childEntity.Id}`}/>}
-										</Col>
-										<Col xs={6}>
-											<FlatButton
-												label="Inspect"
-												href={`/details/${this.props.currentEntity.Id}/${childEntity.Id}`}/>
-										</Col>
-									</Row>
-								</CardActions>
-							</Card>
-						</Col>
-					);
+											</Col>
+											<Col xs={6}>
+												<FlatButton
+													label="Inspect"
+													href={`/details/${this.props.currentEntity.Id}/${childEntity.Id}`}/>
+											</Col>
+										</Row>
+									</CardActions>
+								</Card>
+							</Col>
+                        );
+                    }
 				})}
 			</Row>
 		);

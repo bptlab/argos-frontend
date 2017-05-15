@@ -8,7 +8,6 @@ import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import AppStyles from "./../AppStyles";
 import config from './../config/config.js';
 import Header from "../Header";
-import FilterBar from "../Utils/FilterBar";
 import SearchBar from "../Utils/SearchBar";
 
 
@@ -16,7 +15,7 @@ class GridView extends ConnectionComponent {
 	constructor() {
 		super();
 		this.state = {
-			filter: [],
+            filterValue: "",
 		};
 
         this.getChildEntityTypes = this.getChildEntityTypes.bind(this);
@@ -53,9 +52,9 @@ class GridView extends ConnectionComponent {
 		return "Home";
 	}
 
-	handleFilterChange(filter) {
+	handleFilterChange(filterValue) {
 		this.setState({
-			filter: filter,
+            filterValue: filterValue,
 		});
 	}
 
@@ -86,7 +85,7 @@ class GridView extends ConnectionComponent {
 								<h1>{childEntityType.Name}</h1>
 								<DonutChart styles={[AppStyles.elementMarginTop]} />
 								<CardGrid
-									filter={this.state.filter}
+									filterValue={this.state.filterValue}
 									styles={[AppStyles.elementMarginTop]}
 									key={childEntityType.Id}
 									currentEntity={entity}
