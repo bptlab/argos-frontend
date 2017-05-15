@@ -12,6 +12,7 @@ import IconButton from 'material-ui/IconButton';
 import IconAdd from 'material-ui/svg-icons/content/add';
 import IconDelete from 'material-ui/svg-icons/action/delete';
 import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
+import ConfirmationMessage from './../Utils/ConfirmationMessage.js'
 
 class EventType extends ConnectionComponent {
 
@@ -40,9 +41,12 @@ class EventType extends ConnectionComponent {
 	
 	getEventTypeHeaderButtons() {
 		return [
-			// TODO add functionality
 			<IconButton key="edit-button"><IconEdit/></IconButton>,
-			<IconButton key="delete-button" onClick={this.handleEventTypeDeletion}><IconDelete/></IconButton>];
+			<IconButton
+				key="delete-button"
+				onTouchTap={() => {this.confirmationMessage.handleOpen();}}>
+				<IconDelete/>
+			</IconButton>];
 	}
 	
 	render() {
@@ -61,6 +65,11 @@ class EventType extends ConnectionComponent {
 				{optionalActions && optionalActions.rejected &&
 					<ErrorMessage message={optionalActions.reason} />
 				}
+				<ConfirmationMessage
+					actionToPerform={this.handleEventTypeDeletion}
+					ref={(input) => {this.confirmationMessage = input;}}>
+					{config.messages.deleteEventTypeMessage}
+				</ConfirmationMessage>
 				<Card
 					expanded={this.state.expanded}
 					onExpandChange={this.handleExpandChange}>
