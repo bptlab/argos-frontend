@@ -42,7 +42,7 @@ class EventType extends ConnectionComponent {
 		return [
 			// TODO add functionality
 			<IconButton key="edit-button"><IconEdit/></IconButton>,
-			<IconButton key="delete-button"><IconDelete/></IconButton>];
+			<IconButton key="delete-button" onClick={this.handleEventTypeDeletion}><IconDelete/></IconButton>];
 	}
 	
 	render() {
@@ -142,7 +142,8 @@ class EventType extends ConnectionComponent {
 			andThen: () => ({
 				queries: {
 					url: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/queries`,
-					refreshing: true
+					refreshing: true,
+					force: true
 				}
 			})
 		}
