@@ -3,14 +3,15 @@ import AppBar from "material-ui/AppBar";
 import IconButton from "material-ui/IconButton";
 import IconHome from "material-ui/svg-icons/action/home";
 import IconSettings from "material-ui/svg-icons/action/settings";
+import IconAdd from 'material-ui/svg-icons/content/add';
 import IconArrowBack from "material-ui/svg-icons/navigation/arrow-back";
-import Utils from './Utils/Utils';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import config from "./config/config";
 import {css, StyleSheet} from "aphrodite";
 import AppStyles from "./AppStyles";
 
 class Header extends Component {
+
 	static goBackInHistory() {
 		window.history.back();
 	}
@@ -28,11 +29,17 @@ class Header extends Component {
 		if (pageLocation === "grid") {
             iconElementLeft = <IconButton href="/grid/-1"><IconHome/></IconButton>;
         }
+
         if (pageLocation === "details") {
 			iconElementLeft = <IconButton onTouchTap={Header.goBackToGrid}><IconArrowBack/></IconButton>;
 		}
+
+        if (pageLocation === "settings") {
+            iconElementRight = <IconButton href="settings/eventType/create"><IconAdd/></IconButton>;
+        }
+
         //all pages for creation of eventqueries, eventtypes and mappings
-        if (pageLocation === "create" || pageLocation === "settings") {
+        if (pageLocation === "create") {
             iconElementRight = <div/>;
 		}
 
@@ -40,7 +47,7 @@ class Header extends Component {
         if(this.props.status) {
             const statusColor = StyleSheet.create({
                 color: {
-                    borderColor: Utils.getStatus(this.props.status).color
+                    borderColor: config.status[this.props.status].color
                 }
             });
             appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color);
@@ -66,6 +73,7 @@ class Header extends Component {
 					<Route exact path="/settings" component={() => this.composeAppBar("settings")}/>
 					<Route path="/settings/eventType/create" component={() => this.composeAppBar("create")}/>
 					<Route path="/settings/eventType/:eventTypeId/eventQuery/create" component={() => this.composeAppBar("create")}/>
+					<Route path="/settings/entityMapping/create" component={() => this.composeAppBar("create")}/>
 					<Route path="*" component={() => this.composeAppBar("grid")}/>
 				</Switch>
 			</Router>
