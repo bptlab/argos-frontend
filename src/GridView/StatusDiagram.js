@@ -40,9 +40,15 @@ class StatusDiagram extends Component {
 	}
 
 	static getStatusIndex(status, statuses) {
-		return statuses.findIndex((currentStatus) => {
+		let statusIndex = statuses.findIndex((currentStatus) => {
 			return currentStatus.name === status;
-		})
+		});
+		if (statusIndex < 0) {
+			statusIndex = statuses.findIndex((currentStatus) => {
+				return currentStatus.name === 'UNDEFINED';
+			});
+		}
+		return statusIndex;
 	}
 
 	componentDidMount() {
@@ -54,20 +60,17 @@ class StatusDiagram extends Component {
 	}
 
 	forgeChartData() {
-		let statuses = config.statuses;
+		const statuses = config.statuses;
 		statuses.forEach((status) => {
 			status.entityCounter = 0;
 		});
 
 		this.props.entities.value.forEach((entity) => {
-			let currentStatusIndex = StatusDiagram.getStatusIndex(entity.Status, statuses);
-			if(currentStatusIndex < 0) {
-				currentStatusIndex = StatusDiagram.getStatusIndex('UNDEFINED', statuses);
-			}
+			const currentStatusIndex = StatusDiagram.getStatusIndex(entity.Status, statuses);
 			statuses[currentStatusIndex].entityCounter++;
 		});
 
-		let data = [];
+		const data = [];
 		statuses.forEach((status) => {
 			data.push(this.forgeDataSet(status));
 		});
