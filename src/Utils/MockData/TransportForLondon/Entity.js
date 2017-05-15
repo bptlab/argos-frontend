@@ -54,7 +54,7 @@ const Entity = [
 		TypeId:			1,
 		ParentId:		10,
 		Name:			"9",
-		Status:			"RUNNING",
+		Status:			"FAILURE",
 		HasChildren: 	true,
 		Attributes: [
 			{

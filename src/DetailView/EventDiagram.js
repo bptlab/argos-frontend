@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { css } from 'aphrodite';
 import plotly from 'plotly.js/dist/plotly.min';
+import Utils from './../Utils/Utils';
 
 class EventDiagram extends Component {
 
@@ -26,7 +27,7 @@ class EventDiagram extends Component {
 	}
 
 	buildChartDataset(props) {
-		const {events, eventType, eventTypeAttributes} = props;
+		const {events, eventType, eventTypeAttributes, entity} = props;
 		if (!events) {
 			return;
 		}
@@ -72,18 +73,20 @@ class EventDiagram extends Component {
 			height: 400
 		};
 
+		const statusColor = Utils.getStatus(entity.Status).color;
+
 		let diagramData = {
 			x: x,
 			y: y,
 			type: 'line',
 			line: {
-				color: '#4CAF50'
+				color: statusColor
 			}
 		};
 
 		if (eventCounter !== 1) {
 			diagramData.fill = 'tozeroy';
-			diagramData.fillcolor = '#4CAF5080';
+			diagramData.fillcolor = statusColor + '80';
 		}
 
 		plotly.newPlot(
