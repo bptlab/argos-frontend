@@ -5,6 +5,11 @@ import Utils from './../Utils/Utils';
 
 class EventDiagram extends Component {
 
+	constructor(props) {
+		super(props);
+		this.diagramId = "eventDiagram";
+	}
+
 	static sortEventsByTime(eventA, eventB, timeStampAttributeName) {
 		const dateA = new Date(EventDiagram.getTimeStampAsStringFromEvent(eventA, timeStampAttributeName));
 		const dateB = new Date(EventDiagram.getTimeStampAsStringFromEvent(eventB, timeStampAttributeName));
@@ -20,6 +25,36 @@ class EventDiagram extends Component {
 		return EventDiagram
 			.getTimeStampAsStringFromEvent(event, timeStampAttributeName)
 			.split("T")[0];
+	}
+
+	static getDiagramLayout(eventCounter) {
+		return {
+			yaxis: {
+				nticks: eventCounter + 2,
+			},
+			xaxis: {
+				showgrid: false,
+			},
+			height: 400
+		};
+	}
+
+	static getTrace(x, y, entity, eventCounter) {
+		const statusColor = Utils.getColorForStatus(entity.Status);
+		const opacityFactor = '80';
+		const traceData = {
+			x: x,
+			y: y,
+			type: 'line',
+			line: {
+				color: statusColor
+			}
+		};
+		if (eventCounter !== 1) {
+			traceData.fill = 'tozeroy';
+			traceData.fillcolor = statusColor + opacityFactor;
+		}
+		return [traceData];
 	}
 
 	componentWillReceiveProps(props) {
@@ -63,43 +98,20 @@ class EventDiagram extends Component {
 		x.forEach(date =>
 			y.push(dateCounter[date]));
 
-		const layout = {
-			yaxis: {
-				nticks: eventCounter + 2,
-			},
-			xaxis: {
-				showgrid: false,
-			},
-			height: 400
-		};
-
-		const statusColor = Utils.getColorForStatus(entity.Status);
-		const opacityFactor = '80';
-
-		const diagramData = {
-			x: x,
-			y: y,
-			type: 'line',
-			line: {
-				color: statusColor
-			}
-		};
-
-		if (eventCounter !== 1) {
-			diagramData.fill = 'tozeroy';
-			diagramData.fillcolor = statusColor + opacityFactor;
-		}
+		console.log(EventDiagram.getTrace(x, y, entity, eventCounter));
 
 		plotly.newPlot(
-			"eventDiagram",
-			[diagramData],
-			layout
+			this.diagramId,
+			EventDiagram.getTrace(x, y, entity, eventCounter),
+			EventDiagram.getDiagramLayout(eventCounter)
 		);
 	}
 
+
+
 	render() {
 		return (
-			<div id="eventDiagram" className={css(this.props.styles)} />
+			<div id={this.diagramId} className={css(this.props.styles)} />
 		);
 	}
 }
