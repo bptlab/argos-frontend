@@ -51,7 +51,7 @@ class EventType extends ConnectionComponent {
 	
 	render() {
 		const allFetches = PromiseState.all([this.props.entityMappings, this.props.queries, this.props.attributes]);
-        const optionalActions = this.props.deleteQueryeResponse;
+        const optionalActions = this.props.deleteQueryResponse || this.props.deleteMappingResponse;
         const queries = this.props.queries.value;
         const attributes = this.props.attributes.value;
         const entityMappings = this.props.entityMappings.value;
@@ -129,6 +129,7 @@ class EventType extends ConnectionComponent {
 												<EntityMappingListItem
 													key={mapping.Id}
 													mapping={mapping}
+													deleteMapping={this.props.deleteMapping}
 													eventType={this.props.eventType}
 													eventTypeAttributes={attributes}/>
 											);
@@ -154,7 +155,7 @@ class EventType extends ConnectionComponent {
 	attributes: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/attributes`,
     entityMappings: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/entitymappings`,
 	deleteQuery: query => ({
-		deleteQueryeResponse: {
+		deleteQueryResponse: {
 			url: config.backendRESTRoute + `/eventquery/${query.Id}/delete`,
 			method: 'DELETE',
 			body: "",
@@ -166,5 +167,19 @@ class EventType extends ConnectionComponent {
 				}
 			})
 		}
-	})
+	}),
+    deleteMapping: mapping => ({
+        deleteMappingResponse: {
+            url: config.backendRESTRoute + `/entitymapping/${mapping.Id}/delete`,
+            method: 'DELETE',
+            body: "",
+            andThen: () => ({
+                entityMappings: {
+                    url: config.backendRESTRoute + `/eventtype/${props.eventType.Id}/entitymappings`,
+                    refreshing: true,
+                    force: true
+                }
+            })
+        }
+    })
 }))(EventType);
