@@ -7,15 +7,17 @@ import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
 
 /**
+ * @fileOverview
  * Usage:
  *     <SearchBar
  *         _Required_
- *             id -> int to identify filter in callback
- *             autoCompleteSource -> Array containing strings for autoComplete
- *             onInputChange -> Callback when filter changes, needs to understand an object as specified in {@link #getFilterObject}
+ *             id                   {integer}       -> Identifies filter in callback
+ *             onInputChange        {callback}      -> Called when filter changes, needs to understand an object as specified in {@link #getFilterObject}
  *         _Optional_
- *             value -> initial search value, defaults to ""
- *             column -> initial filter column, defaults to null
+ *             value                {string}=""     -> Initial search value
+ *             column               {string}=null   -> initial filter column, defaults to null
+ *             autoCompleteSource   {array}=[]      -> contains strings for autoComplete, defaults to []
+ *             useColumns           {bool}=true     -> defines, if ':' logic is used, this will also disable autoComplete
  *             styles
  *     />
  */
@@ -29,10 +31,6 @@ class SearchBar extends Component {
 			}
 		};
 
-		this.autoCompleteSource = props.autoCompleteSource;
-		if (!this.autoCompleteSource) {
-			this.autoCompleteSource = [];
-		}
 		let initialFilterColumn = null;
 		if (props.column) {
 			initialFilterColumn = props.column;
@@ -41,6 +39,16 @@ class SearchBar extends Component {
 		let initialFilterValue = "";
 		if (props.value) {
 			initialFilterValue = props.value;
+		}
+
+		this.useColumnLogic = this.props.useColumns;
+		if (this.useColumnLogic === undefined) {
+			this.useColumnLogic = true;
+		}
+
+		this.autoCompleteSource = props.autoCompleteSource;
+		if (!this.autoCompleteSource || !this.useColumnLogic) {
+			this.autoCompleteSource = [];
 		}
 
 		this.state = {
@@ -55,7 +63,15 @@ class SearchBar extends Component {
 	}
 
 	handleUpdateInput(searchText) {
-		this.splitSearchText(searchText);
+		if (this.useColumnLogic) {
+			this.splitSearchText(searchText);
+		}
+		else {
+			this.setState({
+					filterValue: searchText},
+				() => this.props.onInputChange(this.getFilterObject())
+			);
+		}
 	}
 
 	getFilterObject() {
