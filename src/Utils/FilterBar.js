@@ -5,12 +5,14 @@ import SearchBar from "./SearchBar";
 import {Row, Col} from "react-grid-system";
 
 /**
+ * @fileOverview
  * Usage:
  *     <FilterBar
  *         _Required_
- *             onFiltersChange -> Callback when any filter in bar changed
- *             autoCompleteSource -> Array containing strings for autoComplete
+ *             onFiltersChange      {callback}  -> Called if any filter in bar changed
  *         _Optional_
+ *             autoCompleteSource   {array}     -> Passed down, please refer {@link SearchBar}
+ *             useColumns           {bool}      -> Passed down, please refer {@link SearchBar}
  *             styles
  *     />
  */
@@ -86,6 +88,7 @@ class FilterBar extends Component {
 								column={filter.column}
 								autoCompleteSource={this.props.autoCompleteSource}
 								onInputChange={this.onFilterChange}
+							    useColumns={this.props.useColumns}
 							/>
 						</Col>
 					);
