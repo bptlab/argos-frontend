@@ -32,6 +32,7 @@ class DetailView extends ConnectionComponent {
 	handleEventTypeChange(eventType) {
 		this.setState({
 			currentEventType: eventType,
+			filter: [],
 		});
 		this.props.lazyAttributeLoading(eventType.Id);
 		this.props.lazyEventLoading(eventType.Id, this.handleEventChange);

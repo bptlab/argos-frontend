@@ -10,29 +10,6 @@ class EventDiagram extends Component {
 		this.diagramId = "eventDiagram";
 	}
 
-	static sortEventsByTime(eventA, eventB, timeStampAttributeName) {
-		const dateA = new Date(EventDiagram.getTimeStampAsStringFromEvent(eventA, timeStampAttributeName));
-		const dateB = new Date(EventDiagram.getTimeStampAsStringFromEvent(eventB, timeStampAttributeName));
-		return dateA - dateB;
-	}
-
-	static getTimeStampAsStringFromEvent(event, timeStampAttributeName) {
-		return event.Attributes.find(attribute =>
-			attribute.Name === timeStampAttributeName).Value;
-	}
-
-	static getDateAsStringFromEvent(event, timeStampAttributeName) {
-		return EventDiagram
-			.getTimeStampAsStringFromEvent(event, timeStampAttributeName)
-			.split("T")[0];
-	}
-
-	static sortEvents(events, timeStampAttributeName) {
-		return events.sort((eventA, eventB) => {
-			return EventDiagram.sortEventsByTime(eventA, eventB, timeStampAttributeName);
-		});
-	}
-
 	static getDiagramLayout(eventCounter) {
 		return {
 			yaxis: {
@@ -77,15 +54,14 @@ class EventDiagram extends Component {
 		const y = [];
 		const dateCounter = {};
 		let eventCounter = 0;
-		const timeStampAttributeName = eventTypeAttributes.find(attribute =>
-			attribute.Id === eventType.TimestampAttributeId).Name;
+		const timeStampAttributeName = Utils.getTimeStampAttributeName(eventType, eventTypeAttributes);
 
-		const sortedEvents = EventDiagram.sortEvents(events, timeStampAttributeName);
+		const sortedEvents = Utils.sortEvents(events, timeStampAttributeName);
 
 		//build x-axis
 		sortedEvents.forEach(event => {
 			eventCounter += 1;
-			const eventDate = EventDiagram.getDateAsStringFromEvent(event, timeStampAttributeName);
+			const eventDate = Utils.getDateAsStringFromEvent(event, timeStampAttributeName);
 			const currentDateCount = dateCounter[eventDate];
 			if (!currentDateCount) {
 				dateCounter[eventDate] = eventCounter;
@@ -106,8 +82,6 @@ class EventDiagram extends Component {
 			EventDiagram.getDiagramLayout(eventCounter)
 		);
 	}
-
-
 
 	render() {
 		return (
