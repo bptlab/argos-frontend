@@ -46,7 +46,7 @@ class GridView extends ConnectionComponent {
 		if (entityType) {
 			return entityType.Name + ": " + entity.Name;
 		}
-		return "Home";
+		return config.projectName;
 	}
 
 	handleFilterChange(filterObject) {
