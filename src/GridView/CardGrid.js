@@ -27,17 +27,29 @@ class CardGrid extends ConnectionComponent {
 	}
 
 	isCoveredByFilter(childEntity) {
-		return this.testFilter(childEntity, this.props.filterValue);
+		return this.testFilter(childEntity, this.props.filterObject);
 	}
 
 	testFilter(childEntity, filter) {
 		if (!filter.value) {
 			return true;
 		}
-		const attributeValues = this.getAttributeValues(childEntity);
-		attributeValues.push(childEntity.Name);
 
-		return this.doesContain(attributeValues, filter.value);
+		if (!filter.column) {
+			const attributeValues = this.getAttributeValues(childEntity);
+			attributeValues.push(childEntity.Name);
+			return this.doesContain(attributeValues, filter.value);
+		} else {
+			const columnAttribute = childEntity.Attributes.find((attribute) => {
+				return attribute.Name === filter.column;
+			});
+
+			if (!columnAttribute) {
+				return false;
+			} else {
+				return this.doesContain([columnAttribute.Value], filter.value);
+			}
+		}
 	}
 
 	doesContain(baseValueArray, subValue) {
