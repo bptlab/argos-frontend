@@ -67,8 +67,7 @@ class SearchBar extends Component {
 			this.splitSearchText(searchText);
 		}
 		else {
-			this.setState({
-					filterValue: searchText},
+			this.setState({filterValue: searchText},
 				() => this.props.onInputChange(this.getFilterObject())
 			);
 		}
