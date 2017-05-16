@@ -74,9 +74,9 @@ class EntityMappingListItem extends ConnectionComponent {
 				</Row>
 				<Row>
 					<Col offset={{md: 1}}>
-						{this.props.mapping.EventEntityMappingConditions.map((condition) => {
+						{this.props.mapping.EventEntityMappingConditions.map((condition, key) => {
 							return (
-								<div key={condition.EntityTypeAttributeId}>
+								<div key={key}>
 									{this.getEventTypeAttributeName(condition.EventTypeAttributeId)}
 									&nbsp;-&nbsp;
 									{this.getEntityTypeAttributeName(condition.EntityTypeAttributeId)}
