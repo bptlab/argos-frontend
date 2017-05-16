@@ -13,7 +13,7 @@ class GridView extends ConnectionComponent {
 	constructor() {
 		super();
 		this.state = {
-			filterValue: "",
+			filterObject: {},
 		};
 		this.getChildEntityTypes = this.getChildEntityTypes.bind(this);
 		this.getEntityType = this.getEntityType.bind(this);
@@ -49,9 +49,9 @@ class GridView extends ConnectionComponent {
 		return "Home";
 	}
 
-	handleFilterChange(filterValue) {
+	handleFilterChange(filterObject) {
 		this.setState({
-			filterValue: filterValue,
+			filterObject: filterObject,
 		});
 	}
 
@@ -78,7 +78,7 @@ class GridView extends ConnectionComponent {
 							<div key={`div-${childEntityType.Id}`}>
 								<h1>{childEntityType.Name}</h1>
 								<CardGrid
-									filterValue={this.state.filterValue}
+									filterObject={this.state.filterObject}
 									styles={[AppStyles.elementMarginTop]}
 									key={childEntityType.Id}
 									currentEntity={entity}
