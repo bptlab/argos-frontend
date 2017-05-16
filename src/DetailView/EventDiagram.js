@@ -77,8 +77,7 @@ class EventDiagram extends Component {
 		const y = [];
 		const dateCounter = {};
 		let eventCounter = 0;
-		const timeStampAttributeName = eventTypeAttributes.find(attribute =>
-			attribute.Id === eventType.TimestampAttributeId).Name;
+		const timeStampAttributeName = Utils.getTimeStampAttributeName(eventType, eventTypeAttributes);
 
 		const sortedEvents = EventDiagram.sortEvents(events, timeStampAttributeName);
 

@@ -16,6 +16,11 @@ class Utils {
 		return Utils.getStatus(status).colorLight;
 	}
 
+	static getTimeStampAttributeName(eventType, eventTypeAttributes) {
+		return eventTypeAttributes.find(attribute =>
+			attribute.Id === eventType.TimestampAttributeId).Name;
+	}
+
 	static getFilteredEvents(events, filters) {
 		return events.filter(event =>
 			Utils.isCoveredByFilters(event, filters));
