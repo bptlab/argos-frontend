@@ -9,4 +9,4 @@ RUN npm install
 
 EXPOSE 5000
 
-CMD npm run build && npm run serve
+CMD npm run deploy
