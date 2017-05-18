@@ -27,7 +27,7 @@ class SearchBar extends Component {
 
 		this.styles = {
 			primaryBorderColor: {
-				borderColor: config.colors.primaryColor,
+				borderColor: config.colors.primary,
 			}
 		};
 

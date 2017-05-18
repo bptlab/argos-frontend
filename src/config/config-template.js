@@ -11,8 +11,6 @@ const config = {
 		text: "#424242",
 		textAlternate: "#ffffff",
 		border: "#e0e0e0",
-		diagramLine: '#9E9E9E',
-		diagramBackground: "rgba(224, 224, 224, 0.6)",
 		error: "#B71C1C",
 	},
 	descriptions: {
@@ -20,16 +18,14 @@ const config = {
 		exampleQuery: "INSERT INTO ExampleType SELECT * FROM PATTERN [[2] SimpleType]",
 		queryInputFieldHint: "Esper EPL Query",
 		queryDescriptionInputFieldHint: 'Description for query',
-		deleteQueryMessage: "Do you really want to delete this Query?",
-		deleteEventTypeMessage: "Do you really want to delete this EventType?",
 		addMapping: "Add Mapping Condition",
 	},
 	messages: {
 		notFound: "Error 404. The requested page does not exist. You found a glitch in the matrix.",
 		noEventTypes: "No event types",
-		actionRejected: "The requested action has been rejected.",
 		deleteQueryMessage: "Do you really want to delete this Query?",
 		deleteEventTypeMessage: "Do you really want to delete this EventType?",
+		deleteEntityMappingMessage: "Do you really want to delete this EntityMapping?",
 		requiredFieldMessage: 'Please fill out this field'
 	},
 	statuses: [

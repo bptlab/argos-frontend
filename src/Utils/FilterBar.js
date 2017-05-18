@@ -21,7 +21,7 @@ class FilterBar extends Component {
 		super();
 		this.styles = {
 			primaryBorderColor: {
-				borderColor: config.colors.primaryColor,
+				borderColor: config.colors.primary,
 			}
 		};
 
