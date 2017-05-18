@@ -5,6 +5,7 @@ import config from './../config/config.js';
 import BackendMock from './MockData/BackendMock.js';
 import {connect} from 'react-refetch';
 import ChangeNotifier from './ChangeNotifier.js';
+import ConnectionCache from './ConnectionCache';
 
 class ConnectionComponent extends Component {
 
@@ -36,16 +37,29 @@ class ConnectionComponent extends Component {
 		if (config.useBackendMock) {
 			const response = BackendMock.handleRequest(input, init);
 			return new Promise(resolve => resolve(response));
-		} else {
-			const req = new Request(input, init);
-			return fetch(req);
 		}
+		if (config.enableCaching) {
+			const data = ConnectionCache.get(input.url);
+			if (data) {
+				const response = BackendMock.buildResponse(data);
+				console.log("Cached: " + input.url);
+				return new Promise(resolve => resolve(response));
+			}
+		}
+		const req = new Request(input, init);
+		return fetch(req);
 	}
 
 	static argosConnector() {
 		return connect.defaults({
 			handleResponse: function (response) {
-				if (response.headers.get('content-type').includes('text/plain')
+				/* Save response to cache */
+				if (config.enableCaching && response.status >= 200 && response.status < 300) {
+					const cacheResponse = response.clone();
+					ConnectionCache.add(cacheResponse);
+				}
+
+				if(response.headers.get('content-type').includes('text/plain')
 					&& response.headers.get('content-length') !== '0') {
 					if (response.status >= 200 && response.statusCode < 300) {
 						return response.text();

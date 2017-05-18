@@ -3,14 +3,19 @@ const cacheVariableName = "cache";
 class ConnectionCache {
 
 	static add(cache) {
+		const url = cache.url;
+		cache.json().then(data => ConnectionCache.addResolvedRequest(url, data));
+	}
+
+	static addResolvedRequest(url, data) {
 		let currentCache = ConnectionCache.getStorageCache();
 		if (!currentCache) {
 			currentCache = new Map();
 		}
-		currentCache.set(cache.url, cache);
-		console.log(currentCache.body);
+		currentCache.set(url, data);
 		ConnectionCache.writeStorageCache(currentCache);
 	}
+
 
 	static get(url) {
 		const currentCache = ConnectionCache.getStorageCache();
@@ -40,7 +45,6 @@ class ConnectionCache {
 	static getStorageCache() {
 		const storedString = JSON.parse(sessionStorage.getItem(cacheVariableName));
 		if (storedString) {
-			// console.log(storedString);
 			return new Map(storedString);
 		}
 		else {
