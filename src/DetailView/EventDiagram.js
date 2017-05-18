@@ -22,7 +22,7 @@ class EventDiagram extends Component {
 		};
 	}
 
-	static getTrace(x, y, entity, eventCounter) {
+	static getTrace(x, y, entity) {
 		const statusColor = Utils.getColorForStatus(entity.Status);
 		const opacityFactor = '80';
 		const traceData = {
@@ -33,7 +33,7 @@ class EventDiagram extends Component {
 				color: statusColor
 			}
 		};
-		if (eventCounter !== 1) {
+		if (x.length !== 1) {
 			traceData.fill = 'tozeroy';
 			traceData.fillcolor = statusColor + opacityFactor;
 		}
