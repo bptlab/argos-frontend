@@ -19,7 +19,10 @@ class ConnectionCache {
 
 	static get(url) {
 		const currentCache = ConnectionCache.getStorageCache();
-		return currentCache.get(url);
+		if (currentCache.has(url)) {
+			return currentCache.get(url);
+		}
+		return null;
 	}
 
 	static getAll() {
@@ -47,9 +50,7 @@ class ConnectionCache {
 		if (storedString) {
 			return new Map(storedString);
 		}
-		else {
-			return storedString;
-		}
+		return new Map();
 	}
 
 	static writeStorageCache(cache) {
