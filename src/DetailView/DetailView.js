@@ -27,11 +27,12 @@ class DetailView extends ConnectionComponent {
 		this.handleEventTypeChange = this.handleEventTypeChange.bind(this);
 		this.handleFilterChange = this.handleFilterChange.bind(this);
 		this.handleEventChange = this.handleEventChange.bind(this);
+		this.handleServerSideEventsChanged = this.handleServerSideEventsChanged.bind(this);
 	}
 	
 	componentDidMount() {
-		this.registerNotification("Event", this.props.match.params.entityId, this.handleServerSideEventsChanged);
-		this.registerNotification("Entity", this.props.match.params.entityId, this.props.refreshEntity);
+		this.registerNotification("Event", parseInt(this.props.match.params.entityId, 10), this.handleServerSideEventsChanged);
+		this.registerNotification("Entity", parseInt(this.props.match.params.entityId, 10), this.props.refreshEntity);
 	}
 
 	componentWillUnmount() {
@@ -39,7 +40,11 @@ class DetailView extends ConnectionComponent {
 	}
 	
 	handleServerSideEventsChanged() {
-		this.props.lazyEventLoading(this.state.currentEventType, this.handleEventChange);
+		if (this.props.eventTypes.value.length) {
+            this.props.lazyEventLoading(this.state.currentEventType.Id, this.handleEventChange);
+		} else {
+			this.props.refreshEventTypes(this.handleEventTypeChange);
+		}
 	}
 
 	handleEventTypeChange(eventType) {
@@ -130,7 +135,7 @@ class DetailView extends ConnectionComponent {
 
 	render() {
 		const entity = this.props.entity.value;
-		const eventTypes = this.props.eventTypes.value;
+		this.eventTypes = this.props.eventTypes.value;
 		const allFetches = PromiseState.all([this.props.entity, this.props.eventTypes]);
 		const connectionIncomplete = super.render(allFetches);
 		if(connectionIncomplete) {
@@ -151,7 +156,7 @@ class DetailView extends ConnectionComponent {
 					</div>
 					{this.getFilterBar()}
 					<EventTabs
-						eventTypes={eventTypes}
+						eventTypes={this.eventTypes}
 						onEventTypeChange={this.handleEventTypeChange}
 						styles={[AppStyles.elementMarginTop]} />
 					{this.getEventTable()}
@@ -163,23 +168,34 @@ class DetailView extends ConnectionComponent {
 
 export default ConnectionComponent.argosConnector()(props => {
 	const entityUrl = config.backendRESTRoute + `/entity/${props.match.params.entityId}`;
+	const eventTypesUrl = config.backendRESTRoute + `/entity/${props.match.params.entityId}/eventtypes/false`;
 	return {
 		entity: entityUrl,
 		refreshEntity: () => ({
 			entity: {
-				entityUrl,
+				url: entityUrl,
 				force: true,
 				refreshing: true
 			}
 		}),
-		eventTypes: config.backendRESTRoute + `/entity/${props.match.params.entityId}/eventtypes/false`,
-		lazyAttributeLoading: eventTypeId => ({
+		eventTypes: eventTypesUrl,
+		refreshEventTypes: (handleEventTypeChange) => ({
+			eventTypes: {
+				url: eventTypesUrl,
+				force: true,
+				refreshing: true,
+				then: eventTypes => handleEventTypeChange(eventTypes[0])
+			}
+		}),
+        lazyAttributeLoading: eventTypeId => ({
 			eventTypeAttributes: config.backendRESTRoute + `/eventtype/${eventTypeId}/attributes`,
 		}),
 		lazyEventLoading: (eventTypeId, eventHandler) => ({
 			events: {
 				url: config.backendRESTRoute
 						+ `/entity/${props.match.params.entityId}/eventtype/${eventTypeId}/events/false/0/10000`,
+				force: true,
+				refreshing: true,
 				then: events => eventHandler(events),
 			},
 		})
