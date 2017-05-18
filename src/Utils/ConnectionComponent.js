@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import LoadingAnimation from './../Utils/LoadingAnimation';
 import ErrorMessage from './../Utils/ErrorMessage';
 import config from './../config/config.js';
-import BackendMock from './MockData/BackendMock.js';
+import RestRoutesManager from './RestRoutesManager';
 import {connect} from 'react-refetch';
 import ChangeNotifier from './ChangeNotifier.js';
 import ConnectionCache from './ConnectionCache';
@@ -33,17 +33,42 @@ class ConnectionComponent extends Component {
 		return null;
 	}
 
+	static handleMockRequest(request) {
+		const mockData = RestRoutesManager.executeMockFunction(request);
+		return ConnectionComponent.buildResponse(mockData);
+	}
+
+	static cacheResponse(response) {
+		if (!response.url ||
+			response.status < 200 || response.status >= 300 ||
+			!config.enableCaching ||
+			!RestRoutesManager.shouldBeCached(response.url)) {
+			return;
+		}
+		const cacheResponse = response.clone();
+		ConnectionCache.add(cacheResponse);
+	}
+
+	static buildResponse(value) {
+		const headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+		return new Response(JSON.stringify(value), {status: 200, statusText: "OK", headers: headers});
+	}
+
+	static buildPromise(response) {
+		return new Promise(resolve => resolve(response));
+	}
+	
 	static switchFetch(input, init) {
-		if (config.useBackendMock) {
-			const response = BackendMock.handleRequest(input, init);
-			return new Promise(resolve => resolve(response));
+		if(config.useBackendMock) {
+			return ConnectionComponent.buildPromise(
+				ConnectionComponent.handleMockRequest(input, init));
 		}
 		if (config.enableCaching) {
 			const data = ConnectionCache.get(input.url);
 			if (data) {
-				const response = BackendMock.buildResponse(data);
-				console.log("Cached: " + input.url);
-				return new Promise(resolve => resolve(response));
+				return ConnectionComponent.buildPromise(
+					ConnectionComponent.buildResponse(data));
 			}
 		}
 		const req = new Request(input, init);
@@ -54,10 +79,7 @@ class ConnectionComponent extends Component {
 		return connect.defaults({
 			handleResponse: function (response) {
 				/* Save response to cache */
-				if (config.enableCaching && response.status >= 200 && response.status < 300) {
-					const cacheResponse = response.clone();
-					ConnectionCache.add(cacheResponse);
-				}
+				ConnectionComponent.cacheResponse(response);
 
 				if(response.headers.get('content-type').includes('text/plain')
 					&& response.headers.get('content-length') !== '0') {

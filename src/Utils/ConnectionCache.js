@@ -9,9 +9,6 @@ class ConnectionCache {
 
 	static addResolvedRequest(url, data) {
 		let currentCache = ConnectionCache.getStorageCache();
-		if (!currentCache) {
-			currentCache = new Map();
-		}
 		currentCache.set(url, data);
 		ConnectionCache.writeStorageCache(currentCache);
 	}
