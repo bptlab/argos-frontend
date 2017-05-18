@@ -8,6 +8,7 @@ class EntityInformation extends Component {
 			key={key}
 			primaryText={attribute.Name}
 			secondaryText={attribute.Value}
+			disabled={true}
 		/>;
     }
 
