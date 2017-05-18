@@ -2,7 +2,7 @@ import React from 'react';
 import {Container} from "react-grid-system";
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import Header from './../Header';
-import EventType from './EventType';
+import EventTypeCard from './EventTypeCard';
 import SearchBar from './../Utils/SearchBar';
 import {Row} from 'react-grid-system';
 import {css} from 'aphrodite';
@@ -62,7 +62,7 @@ class SettingsView extends ConnectionComponent {
 									}
 									{this.props.eventTypes.value.map((eventType) => {
 										if (this.searchMatches(eventType)) {
-											return (<EventType
+											return (<EventTypeCard
 												eventType={eventType}
 												key={eventType.Id}
 												deleteEventType={this.props.deleteEventType}/>);
