@@ -16,7 +16,6 @@ class ConnectionCache {
 		ConnectionCache.writeStorageCache(currentCache);
 	}
 
-
 	static get(url) {
 		const currentCache = ConnectionCache.getStorageCache();
 		if (currentCache.has(url)) {
@@ -31,26 +30,20 @@ class ConnectionCache {
 
 	static invalidate(url) {
 		const currentCache = ConnectionCache.getStorageCache();
-		const newCache = {};
-		currentCache.forEach((cacheObject, cacheUrl) => {
-			if (url !== cacheUrl) {
-				newCache.set(cacheUrl, cacheObject);
-			}
-		});
+		const newCache = currentCache.delete(url);
 		ConnectionCache.writeStorageCache(newCache);
-
 	}
 
 	static clear() {
-		ConnectionCache.writeStorageCache({});
+		ConnectionCache.writeStorageCache(new Map());
 	}
 
 	static getStorageCache() {
 		const storedString = JSON.parse(sessionStorage.getItem(cacheVariableName));
-		if (storedString) {
-			return new Map(storedString);
+		if (!storedString) {
+			return new Map();
 		}
-		return new Map();
+		return new Map(storedString);
 	}
 
 	static writeStorageCache(cache) {
