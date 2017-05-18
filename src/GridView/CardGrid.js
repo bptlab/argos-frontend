@@ -95,7 +95,7 @@ class CardGrid extends ConnectionComponent {
 										<EntityInformation entity={childEntity}/>
 									</CardText>
 									<CardActions style={this.backgroundColorLight(childEntity.Status)}>
-										<Row>
+										<Row className={css(AppStyles.noMargin)}>
 											<Col xs={6}>
 												{childEntity.HasChildren &&
 												<FlatButton

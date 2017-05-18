@@ -46,6 +46,10 @@ const AppStyles = StyleSheet.create({
 		margin: '30px'
 	},
 
+	noMargin: {
+		margin: '0px'
+	},
+
 	headerBorderDetail: {
 		borderBottom: '10px solid',
 	},
