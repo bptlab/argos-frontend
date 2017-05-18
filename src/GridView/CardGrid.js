@@ -119,7 +119,7 @@ class CardGrid extends ConnectionComponent {
 	}
 }
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
+export default ConnectionComponent.argosConnector({fetch: ConnectionComponent.switchFetch})(props => ({
 	entities: {
 		url: config.backendRESTRoute + `/entitytype/${props.entityType.Id}/attributes`,
 		then: attributes =>

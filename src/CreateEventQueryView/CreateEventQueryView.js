@@ -122,7 +122,7 @@ class CreateEventQueryView extends ConnectionComponent {
 	}
 }
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
+export default ConnectionComponent.argosConnector({fetch: ConnectionComponent.switchFetch})(props => ({
 	eventType: config.backendRESTRoute + `/eventtype/${props.match.params.eventTypeId}`,
 	attributes: config.backendRESTRoute + `/eventtype/${props.match.params.eventTypeId}/attributes`,
 	createEventQuery: (body) => ({
