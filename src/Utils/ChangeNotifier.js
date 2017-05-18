@@ -16,16 +16,26 @@ class ChangeNotifier  {
 		this.unregisterAll = this.unregisterAll.bind(this);
 	}
 
-	static isRelevantNotification(subscription, notification) {
-		return ChangeNotifier.isRelevantNotificationForGridView(subscription, notification);
-        /*return (subscription.artifactType === notification.ArtifactType &&
-        ((notification.ArtifactType === "Event" && subscription.artifactId === notification.EntityId)
-        || subscription.artifactId === notification.ArtifactId));*/
+	static handleNotification(subscription, notification) {
+		ChangeNotifier.handleNotificationForGridView(subscription, notification);
+		ChangeNotifier.handleNotificationForDetailView(subscription, notification);
     }
 
-    static isRelevantNotificationForGridView(subscription, notification) {
-        return notification.ArtifactType === "Entity" && subscription.artifactId === notification.ArtifactId;
+    static handleNotificationForGridView(subscription, notification) {
+        if (notification.ArtifactType === "Entity" && subscription.artifactId === notification.ArtifactId) {
+			subscription.notificationCallback();
+        }
     }
+
+    static handleNotificationForDetailView(subscription, notification) {
+		if (
+			(notification.ArtifactType === "Entity" && subscription.artifactId === notification.ArtifactId)
+			||
+			(notification.ArtifactType === "Event" && subscription.artifactId === parseInt(notification.EventTypeId, 10))
+		) {
+			subscription.notificationCallback();
+		}
+	}
 
 	handleNewConnection() {
 		console.log("[WEBSOCKET] Established a new connection! Connection is open.");
@@ -39,8 +49,7 @@ class ChangeNotifier  {
 		const serverNotifications = JSON.parse(event.data);
 		serverNotifications.forEach((notification) => {
 			this.subscribers.forEach((subscription) => {
-				console.log(subscription);
-				if (ChangeNotifier.isRelevantNotification(subscription, notification)) {
+				if (ChangeNotifier.handleNotification(subscription, notification)) {
                     subscription.notificationCallback();
 				}
 			});
