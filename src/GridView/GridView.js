@@ -22,7 +22,7 @@ class GridView extends ConnectionComponent {
 
 
     componentDidMount() {
-        this.registerNotification("Entity", parseInt(this.props.match.params.entityId), this.props.refreshEntity);
+        this.registerNotification("Entity", parseInt(this.props.match.params.entityId, 10), this.props.refreshEntity);
     }
 
     componentWillUnmount() {
