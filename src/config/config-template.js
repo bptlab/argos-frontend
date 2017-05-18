@@ -11,6 +11,7 @@ const config = {
 		text: "#424242",
 		textAlternate: "#ffffff",
 		border: "#e0e0e0",
+		error: "#B71C1C",
 	},
 	descriptions: {
 		textNumberOfEvents: "Number of events",

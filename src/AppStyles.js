@@ -1,4 +1,5 @@
 import { StyleSheet } from 'aphrodite';
+import config from './config/config';
 
 const AppStyles = StyleSheet.create({
 	dFlex: {
@@ -56,6 +57,10 @@ const AppStyles = StyleSheet.create({
 
     fontSize24: {
 		fontSize: '24px'
+	},
+
+	errorColor: {
+		color: config.colors.error
 	}
 });
 
