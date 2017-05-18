@@ -191,6 +191,17 @@ class SearchBar extends Component {
 		return "Search";
 	}
 
+	getDeleteButton() {
+		const buttonIsDisabled = this.state.filterValue === "" && this.state.filterColumn === null;
+		return (<IconButton
+			onTouchTap={this.resetFilter}
+			tooltip="delete filter"
+			tooltipPosition="bottom-right"
+			disabled={buttonIsDisabled}>
+			<ActionDelete/>
+		</IconButton>);
+	}
+
 	render() {
 		return (
 			<div className={css(this.props.styles, AppStyles.w100, AppStyles.dFlex, AppStyles.alignItemsFlexEnd)}>
@@ -205,12 +216,8 @@ class SearchBar extends Component {
 					openOnFocus={true}
 					fullWidth={true}
 				/>
-				<IconButton
-					onTouchTap={this.resetFilter}
-					tooltip="delete filter"
-					tooltipPosition="bottom-right">
-					<ActionDelete/>
-				</IconButton>
+				{this.getDeleteButton()}
+
 			</div>
 		);
 	}
