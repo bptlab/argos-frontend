@@ -1,16 +1,15 @@
-import React from 'react';
-import {connect} from 'react-refetch';
-import ConnectionComponent from './../Utils/ConnectionComponent.js';
-import {Card, CardTitle, CardText, CardActions} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import LoadingAnimation from './../Utils/LoadingAnimation';
-import {Row, Col} from 'react-grid-system';
-import {css} from 'aphrodite';
+import React from "react";
+import ConnectionComponent from "./../Utils/ConnectionComponent.js";
+import {Card, CardActions, CardText, CardTitle} from "material-ui/Card";
+import FlatButton from "material-ui/FlatButton";
+import LoadingAnimation from "./../Utils/LoadingAnimation";
+import {Col, Row} from "react-grid-system";
+import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
-import EntityInformation from '../Utils/EntityInformation';
+import EntityInformation from "../Utils/EntityInformation";
 import StatusDiagram from "./StatusDiagram";
-import config from './../config/config';
-import Utils from './../Utils/Utils';
+import config from "./../config/config";
+import Utils from "./../Utils/Utils";
 
 class CardGrid extends ConnectionComponent {
 	constructor() {

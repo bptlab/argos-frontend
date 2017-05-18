@@ -1,8 +1,7 @@
-import React from 'react';
-import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
-import {connect} from "react-refetch";
+import React from "react";
+import {Step, StepLabel, Stepper} from "material-ui/Stepper";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
-import { css } from 'aphrodite';
+import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
 import config from "./../config/config";
 
