@@ -26,6 +26,6 @@
     "coveralls": "react-scripts test --env=jsdom --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "serve": "serve -s build",
     "envsub": "envsub src/config/config.js",
-    "deploy": "npm run envsub && npm run build && npm run serve"
+    "deploy": "npm run envsub && npm start"
   }
 }
