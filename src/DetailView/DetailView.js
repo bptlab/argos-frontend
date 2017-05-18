@@ -127,7 +127,6 @@ class DetailView extends ConnectionComponent {
 		}
 		return (
 			<FilterBar
-			 styles={[AppStyles.elementMarginTop]}
 			 onFiltersChange={this.handleFilterChange}
 			 autoCompleteSource={this.props.eventTypeAttributes.value.map(attributeInfo => attributeInfo.Name)}/>
 		);
