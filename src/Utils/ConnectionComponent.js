@@ -16,7 +16,7 @@ class ConnectionComponent extends Component {
 	}
 	
 	registerNotification(artifactType, artifactId, notificationCallback) {
-		window.changeNotifier.register(artifactType, artifactId, notificationCallback)
+		window.changeNotifier.register(artifactType, artifactId, notificationCallback);
 	}
 	
 	unregisterAllNotifications() {

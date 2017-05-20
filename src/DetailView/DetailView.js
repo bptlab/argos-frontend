@@ -41,7 +41,7 @@ class DetailView extends ConnectionComponent {
 	
 	handleServerSideEventsChanged() {
 		if (this.props.eventTypes.value.length) {
-            this.props.lazyEventLoading(this.state.currentEventType.Id, this.handleEventChange);
+			this.props.lazyEventLoading(this.state.currentEventType.Id, this.handleEventChange);
 		} else {
 			this.props.refreshEventTypes(this.handleEventTypeChange);
 		}

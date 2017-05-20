@@ -50,7 +50,7 @@ class ChangeNotifier  {
 		serverNotifications.forEach((notification) => {
 			this.subscribers.forEach((subscription) => {
 				if (ChangeNotifier.handleNotification(subscription, notification)) {
-                    subscription.notificationCallback();
+					subscription.notificationCallback();
 				}
 			});
 		});
