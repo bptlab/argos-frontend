@@ -135,7 +135,7 @@ class DetailView extends ConnectionComponent {
 
 	render() {
 		const entity = this.props.entity.value;
-		this.eventTypes = this.props.eventTypes.value;
+		const eventTypes = this.props.eventTypes.value;
 		const allFetches = PromiseState.all([this.props.entity, this.props.eventTypes]);
 		const connectionIncomplete = super.render(allFetches);
 		if(connectionIncomplete) {
@@ -156,7 +156,7 @@ class DetailView extends ConnectionComponent {
 					</div>
 					{this.getFilterBar()}
 					<EventTabs
-						eventTypes={this.eventTypes}
+						eventTypes={eventTypes}
 						onEventTypeChange={this.handleEventTypeChange}
 						styles={[AppStyles.elementMarginTop]} />
 					{this.getEventTable()}
