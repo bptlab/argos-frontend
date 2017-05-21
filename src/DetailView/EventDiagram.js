@@ -18,7 +18,8 @@ class EventDiagram extends Component {
 			xaxis: {
 				showgrid: false,
 			},
-			height: 400
+			height: 400,
+			margin: {pad: 10}
 		};
 	}
 
