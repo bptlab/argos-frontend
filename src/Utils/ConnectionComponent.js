@@ -4,8 +4,24 @@ import ErrorMessage from './../Utils/ErrorMessage';
 import config from './../config/config.js';
 import BackendMock from './MockData/BackendMock.js';
 import {connect} from 'react-refetch';
+import ChangeNotifier from './ChangeNotifier.js';
 
 class ConnectionComponent extends Component {
+
+	constructor(props) {
+		super(props);
+		if(!window.changeNotifier) {
+			window.changeNotifier = new ChangeNotifier();
+		}
+	}
+	
+	registerNotification(artifactType, artifactId, notificationCallback) {
+		window.changeNotifier.register(artifactType, artifactId, notificationCallback);
+	}
+	
+	unregisterAllNotifications() {
+		window.changeNotifier.unregisterAll();
+	}
 
 	render(promiseState) {
 		if (promiseState.pending) {
@@ -15,9 +31,9 @@ class ConnectionComponent extends Component {
 		}
 		return null;
 	}
-	
+
 	static switchFetch(input, init) {
-		if(config.useBackendMock) {
+		if (config.useBackendMock) {
 			const response = BackendMock.handleRequest(input, init);
 			return new Promise(resolve => resolve(response));
 		} else {
@@ -29,9 +45,9 @@ class ConnectionComponent extends Component {
 	static argosConnector() {
 		return connect.defaults({
 			handleResponse: function (response) {
-				if(response.headers.get('content-type').includes('text/plain')
+				if (response.headers.get('content-type').includes('text/plain')
 					&& response.headers.get('content-length') !== '0') {
-					if(response.status >= 200 && response.statusCode < 300) {
+					if (response.status >= 200 && response.statusCode < 300) {
 						return response.text();
 					} else {
 						return response.text().then(function (cause) {
@@ -39,7 +55,7 @@ class ConnectionComponent extends Component {
 						});
 					}
 
-				} else if(response.headers.get('content-type').includes('application/json')
+				} else if (response.headers.get('content-type').includes('application/json')
 					&& response.headers.get('content-length') !== '0') {
 					const json = response.json();
 
@@ -55,5 +71,6 @@ class ConnectionComponent extends Component {
 			fetch: ConnectionComponent.switchFetch
 		});
 	}
-	
-} export default ConnectionComponent;
+
+}
+export default ConnectionComponent;

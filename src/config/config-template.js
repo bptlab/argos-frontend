@@ -2,6 +2,7 @@ const config = {
 	projectName: "Argos",
 	useBackendMock: false,
 	backendRESTRoute: "http://localhost:3000/",
+	backendWebSocketURL: "ws://localhost:8989/argos/notifications",
 	colors: {
 		primaryDark: "#000051",
 		primary: "#1a237e",

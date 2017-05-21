@@ -3,7 +3,7 @@ import {Container} from "react-grid-system";
 import HierarchyStepper from "./HierarchyStepper";
 import SearchBar from "./../Utils/SearchBar";
 import CardGrid from "./CardGrid";
-import {connect, PromiseState} from "react-refetch";
+import {PromiseState} from "react-refetch";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import AppStyles from "./../AppStyles";
 import config from './../config/config.js';
@@ -19,6 +19,15 @@ class GridView extends ConnectionComponent {
 		this.getEntityType = this.getEntityType.bind(this);
 		this.handleFilterChange = this.handleFilterChange.bind(this);
 	}
+
+
+    componentDidMount() {
+        this.registerNotification("Entity", parseInt(this.props.match.params.entityId, 10), this.props.refreshEntity);
+    }
+
+    componentWillUnmount() {
+        this.unregisterAllNotifications();
+    }
 
 	getEntityType(entity) {
 		const entityTypes = window.hierarchy.find(hierarchyArray => {
@@ -92,6 +101,16 @@ class GridView extends ConnectionComponent {
 	}
 }
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
-	entity: config.backendRESTRoute + `/entity/${props.match.params.entityId}`
-}))(GridView);
+export default ConnectionComponent.argosConnector()(props => {
+	const entityUrl = config.backendRESTRoute + `/entity/${props.match.params.entityId}`;
+	return {
+		entity: entityUrl,
+		refreshEntity: () => ({
+			entity: {
+				url: entityUrl,
+				force: true,
+				refreshing: true
+			}
+		})
+    };
+})(GridView);
