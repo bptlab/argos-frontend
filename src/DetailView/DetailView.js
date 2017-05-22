@@ -43,9 +43,8 @@ class DetailView extends ConnectionComponent {
 		if (this.props.eventTypes.value.length) {
 			this.props.lazyEventLoading(this.state.currentEventType.Id, this.handleEventChange);
 		}
-		if(eventTypeId && this.props.eventTypes && 
-			this.props.eventTypes.value.find((eventType) => {
-			return eventType.Id === eventTypeId;
+		if(eventTypeId && this.props.eventTypes.value.find((eventType) => {
+				return eventType.Id === eventTypeId;
 			}) === undefined) {
 			this.props.refreshEventTypes(this.handleEventTypeChange);
 		}
