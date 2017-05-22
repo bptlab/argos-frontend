@@ -31,7 +31,7 @@ class ChangeNotifier  {
 		if (
 			(notification.ArtifactType === "Entity" && subscription.artifactId === notification.ArtifactId)
 			||
-			(notification.ArtifactType === "Event" && subscription.artifactId === parseInt(notification.EventTypeId, 10))
+			(notification.ArtifactType === "Event" && subscription.artifactId === parseInt(notification.EntityId, 10))
 		) {
 			subscription.notificationCallback(notification.EventTypeId);
 		}
