@@ -35,7 +35,7 @@ class SettingsView extends ConnectionComponent {
 			return true;
 		}
 
-		return (eventType.Name.toLowerCase().indexOf(this.state.searchText.value) > -1);
+		return (eventType.Name.toLowerCase().indexOf(this.state.searchText.value.toLowerCase()) > -1);
 	}
 
 	render() {
