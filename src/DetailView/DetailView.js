@@ -39,10 +39,13 @@ class DetailView extends ConnectionComponent {
 		this.unregisterAllNotifications();
 	}
 	
-	handleServerSideEventsChanged() {
+	handleServerSideEventsChanged(eventTypeId) {
 		if (this.props.eventTypes.value.length) {
 			this.props.lazyEventLoading(this.state.currentEventType.Id, this.handleEventChange);
-		} else {
+		}
+		if(eventTypeId && this.props.eventTypes.value.find((eventType) => {
+				return eventType.Id === eventTypeId;
+			}) === undefined) {
 			this.props.refreshEventTypes(this.handleEventTypeChange);
 		}
 	}

@@ -31,9 +31,9 @@ class ChangeNotifier  {
 		if (
 			(notification.ArtifactType === "Entity" && subscription.artifactId === notification.ArtifactId)
 			||
-			(notification.ArtifactType === "Event" && subscription.artifactId === parseInt(notification.EventTypeId, 10))
+			(notification.ArtifactType === "Event" && subscription.artifactId === parseInt(notification.EntityId, 10))
 		) {
-			subscription.notificationCallback();
+			subscription.notificationCallback(notification.EventTypeId);
 		}
 	}
 
@@ -49,9 +49,7 @@ class ChangeNotifier  {
 		const serverNotifications = JSON.parse(event.data);
 		serverNotifications.forEach((notification) => {
 			this.subscribers.forEach((subscription) => {
-				if (ChangeNotifier.handleNotification(subscription, notification)) {
-					subscription.notificationCallback();
-				}
+				ChangeNotifier.handleNotification(subscription, notification);
 			});
 		});
 	}
