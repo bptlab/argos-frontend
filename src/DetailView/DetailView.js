@@ -12,6 +12,7 @@ import EventTabs from "./EventTabs";
 import config from "./../config/config.js";
 import FilterBar from "./../Utils/FilterBar";
 import Utils from "./../Utils/Utils";
+import {Toggle} from "material-ui";
 
 class DetailView extends ConnectionComponent {
 
@@ -150,6 +151,18 @@ class DetailView extends ConnectionComponent {
 					title={entity.Name}
 					status={entity.Status}/>
 				<Container>
+					<Toggle
+						label={config.descriptions.toggleChildrenEvents}
+						defaultToggled={false}
+						thumbStyle={{
+							backgroundColor: config.colors.diagramLine,
+						}}
+						onToggle={this.props.refreshEventTypes.bind(this, this.handleEventTypeChange)}
+						thumbSwitchedStyle={AppStyles.thumbSwitchedColor}
+						className={css(AppStyles.elementMarginTop)}
+						disabled={this.props.entity.HasChildren}
+						style={AppStyles.toggle}
+					/>
 					<div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>
 						<EntityInformation
 							entity={entity}

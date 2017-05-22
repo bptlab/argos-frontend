@@ -29,6 +29,14 @@ const AppStyles = StyleSheet.create({
 	rotate90: {
 		transform: 'rotate(90)',
 	},
+	
+	thumbOffColor: {
+		backgroundColor: config.colors.diagramLine,	
+	},
+	
+	thumbSwitchedColor: {
+		backgroundColor: config.colors.error
+	},
 
 	w50: {
 		width: '50%',
