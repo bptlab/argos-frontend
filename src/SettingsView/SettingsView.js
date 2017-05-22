@@ -1,70 +1,109 @@
-import React, { Component } from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import React from 'react';
+import {Container} from "react-grid-system";
+import ConnectionComponent from './../Utils/ConnectionComponent.js';
+import Header from './../Header';
+import EventTypeCard from './EventTypeCard';
+import SearchBar from './../Utils/SearchBar';
+import {Row} from 'react-grid-system';
+import {css} from 'aphrodite';
+import AppStyles from "./../AppStyles";
+import {Card, CardHeader, CardText, CardActions} from 'material-ui/Card';
+import IconButton from 'material-ui/IconButton';
+import IconAdd from 'material-ui/svg-icons/content/add';
+import ErrorMessage from './../Utils/ErrorMessage.js';
+import config from './../config/config';
 
+class SettingsView extends ConnectionComponent {
 
-class SettingsView extends Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 		this.state = {
-			expanded: false,
+			searchText: ''
 		};
+		this.handleSearchInput = this.handleSearchInput.bind(this);
+		this.searchMatches = this.searchMatches.bind(this);
 	}
 
-	handleExpandChange = (expanded) => {
-		this.setState({expanded: expanded});
-	};
+	handleSearchInput(value) {
+		this.setState({
+			searchText: value
+		});
+	}
 
-	handleReduce = () => {
-		this.setState({expanded: false});
-	};
+	searchMatches(eventType) {
+		if (!this.state.searchText.value) {
+			return true;
+		}
+
+		return (eventType.Name.toLowerCase().indexOf(this.state.searchText.value.toLowerCase()) > -1);
+	}
+
 	render() {
+		const connectionIncomplete = super.render(this.props.eventTypes);
+		if (connectionIncomplete) {
+			return connectionIncomplete;
+		}
+		const optionalActions = this.props.deleteEventTypeResponse;
 		return (
 			<div>
-				<Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
-					<CardHeader
-						title="Event type title"
-						subtitle="Event type description?"
-						actAsExpander={true}
-						showExpandableButton={true}
-					/>
-					<CardText expandable={true}>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-						Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-						Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-					</CardText>
-					<CardActions expandable={true}>
-						<FlatButton
-							label="Save"
-							onTouchTap={this.handleReduce} />
-						<FlatButton label="Abort" onTouchTap={this.handleReduce} />
-					</CardActions>
-				</Card>
-
-				<Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
-					<CardHeader
-						title="Event type title"
-						subtitle="Event type description?"
-						actAsExpander={true}
-						showExpandableButton={true}
-					/>
-					<CardText expandable={true}>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-						Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-						Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-					</CardText>
-					<CardActions expandable={true}>
-						<FlatButton
-							label="Save"
-							onTouchTap={this.handleReduce} />
-						<FlatButton label="Abort" onTouchTap={this.handleReduce} />
-					</CardActions>
-				</Card>
+				<Header title="Settings"/>
+				<Container className={css(AppStyles.elementMarginTop)}>
+					<Row>
+						<Card initiallyExpanded={true}>
+							<CardHeader
+								title="Event Types"
+								actAsExpander={true}
+								showExpandableButton={true}/>
+							<CardText expandable={true}>
+								<Container>
+									<SearchBar onInputChange={this.handleSearchInput}/>
+									{optionalActions && optionalActions.rejected &&
+										<ErrorMessage message={optionalActions.reason}/>
+									}
+									{this.props.eventTypes.value.map((eventType) => {
+										if (this.searchMatches(eventType)) {
+											return (<EventTypeCard
+												eventType={eventType}
+												key={eventType.Id}
+												deleteEventType={this.props.deleteEventType}/>);
+										} else {
+											return false;
+										}
+									})
+									}
+								</Container>
+							</CardText>
+							<CardActions>
+								<IconButton
+									tooltip={<span>create new event type</span>}
+									href="settings/eventType/create">
+									<IconAdd/>
+								</IconButton>
+							</CardActions>
+						</Card>
+					</Row>
+				</Container>
 			</div>
 		);
 	}
 }
 
-export default SettingsView;
+export default ConnectionComponent.argosConnector()(() => {
+	const eventTypeUrl = config.backendRESTRoute + `/eventtypes`;
+	return {
+		eventTypes: eventTypeUrl,
+		deleteEventType: eventType => ({
+			deleteEventTypeResponse: {
+				url: config.backendRESTRoute + `/eventtype/${eventType.Id}/delete`,
+				method: 'DELETE',
+				andThen: () => ({
+					eventTypes: {
+						url: eventTypeUrl,
+						refreshing: true,
+						force: true
+					}
+				})
+			}
+		})
+	};
+})(SettingsView);

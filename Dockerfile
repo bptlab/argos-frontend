@@ -3,10 +3,8 @@ FROM node:latest
 WORKDIR /argos-frontend
 
 COPY . .
+RUN npm install
 
-RUN npm install && \
-    npm run build
+EXPOSE 3000
 
-EXPOSE 5000
-
-CMD npm run serve
+CMD npm run deploy

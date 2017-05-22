@@ -1,40 +1,62 @@
-import React, { Component } from 'react';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import React, {Component} from "react";
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "material-ui/Table";
+import {css} from "aphrodite";
+import AppStyles from "./../AppStyles";
 
 class EventTable extends Component {
+
+	composeTableHeader(eventTypeAttributes) {
+		return (
+			<TableHeader
+				displaySelectAll={false}
+				adjustForCheckbox={false}>
+				<TableRow>
+					{eventTypeAttributes.map(
+						(attribute, key) => {
+							return (
+								<TableHeaderColumn
+									className={css(AppStyles.capitalize)}
+									key={key}>
+									{attribute.Name}
+								</TableHeaderColumn>
+							);
+						})
+					}
+				</TableRow>
+			</TableHeader>
+		);
+	}
+
+	composeTableRow(event, key) {
+		const row = event.Attributes.map(
+			(eventAttribute, attributeKey) => {
+				return (
+					<TableRowColumn key={attributeKey}>
+						{eventAttribute.Value}
+					</TableRowColumn>
+				);
+			});
+		return (<TableRow key={key}>{row}</TableRow>);
+	}
+
+	composeTableBody(events) {
+		return (
+			<TableBody displayRowCheckbox={false}>
+				{events.map((event, key) => {
+					return this.composeTableRow(event, key);
+				})}
+			</TableBody>
+		);
+	}
+
 	render() {
 		return (
-			<Table>
-				<TableHeader>
-					<TableRow>
-						<TableHeaderColumn>ID</TableHeaderColumn>
-						<TableHeaderColumn>Name</TableHeaderColumn>
-						<TableHeaderColumn>Status</TableHeaderColumn>
-					</TableRow>
-				</TableHeader>
-				<TableBody>
-					<TableRow>
-						<TableRowColumn>1</TableRowColumn>
-						<TableRowColumn>John Smith</TableRowColumn>
-						<TableRowColumn>Employed</TableRowColumn>
-					</TableRow>
-					<TableRow>
-						<TableRowColumn>2</TableRowColumn>
-						<TableRowColumn>Randal White</TableRowColumn>
-						<TableRowColumn>Unemployed</TableRowColumn>
-					</TableRow>
-					<TableRow>
-						<TableRowColumn>3</TableRowColumn>
-						<TableRowColumn>Stephanie Sanders</TableRowColumn>
-						<TableRowColumn>Employed</TableRowColumn>
-					</TableRow>
-					<TableRow>
-						<TableRowColumn>4</TableRowColumn>
-						<TableRowColumn>Steve Brown</TableRowColumn>
-						<TableRowColumn>Employed</TableRowColumn>
-					</TableRow>
-				</TableBody>
-			</Table>
+			<div>
+				<Table>
+					{this.composeTableHeader(this.props.eventTypeAttributes)}
+					{this.composeTableBody(this.props.events)}
+				</Table>
+			</div>
 		);
 	}
 }

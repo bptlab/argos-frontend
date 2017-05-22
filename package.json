@@ -1,12 +1,18 @@
 {
   "name": "argos-frontend",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "dependencies": {
+    "aphrodite": "^1.2.0",
+    "envsub": "^3.1.0",
     "material-ui": "^0.17.3",
+    "plotly.js": "^1.27.0",
     "react": "^15.5.3",
     "react-dom": "^15.5.3",
+    "react-grid-system": "^2.9.0",
+    "react-refetch": "^1.0.0",
     "react-router-dom": "^4.1.1",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-tap-event-plugin": "^2.0.1",
+    "serve": "^5.1.4"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
@@ -17,6 +23,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "coverage": "react-scripts test --env=jsdom --coverage",
-    "coveralls": "react-scripts test --env=jsdom --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "coveralls": "react-scripts test --env=jsdom --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "serve": "serve -s build",
+    "envsub": "envsub src/config/config-template.js src/config/config.js",
+    "deploy": "npm run envsub && npm start"
   }
 }
