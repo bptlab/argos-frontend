@@ -42,11 +42,17 @@ class CreateEventQueryView extends ConnectionComponent {
 
 	handleEditQueryInput(event) {
 		const oldQuery = this.state.query;
-		const viewQuery = Utils.splitStringBeforeSubString(oldQuery, "FROM ");
-		this.setState({
-			query: viewQuery + "FROM " + event.target.value,
-			queryErrorMessage: ''
-		});
+		if (oldQuery !== "") {
+            const uneditableQueryPart = Utils.splitStringBeforeSubString(oldQuery, "FROM ");
+            this.setState({
+                query: uneditableQueryPart + "FROM " + event.target.value,
+                queryErrorMessage: ''
+            });
+        } else {
+            this.setState({
+                query: this.props.eventQuery.value.Query
+            });
+        }
 	}
 
 	handleDescriptionInput(event) {
