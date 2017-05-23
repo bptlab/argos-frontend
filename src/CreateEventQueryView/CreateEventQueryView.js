@@ -132,7 +132,7 @@ class CreateEventQueryView extends ConnectionComponent {
 							</Col>
 							<Col md={8}>
 								<EventQueryInputArea
-									handleQueryInputChange={this.handleEditQueryInput}
+									handleQueryInputChange={this.handleCreateQueryInput}
 									queryErrorMessage={this.state.queryErrorMessage}
 									handleDescriptionInputChange={this.handleDescriptionInput}
 									descriptionErrorMessage={this.state.descriptionErrorMessage}
