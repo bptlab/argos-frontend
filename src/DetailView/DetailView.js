@@ -32,7 +32,7 @@ class DetailView extends ConnectionComponent {
 		this.handleServerSideEventsChanged = this.handleServerSideEventsChanged.bind(this);
 		this.handleEventChildrenSwitch = this.handleEventChildrenSwitch.bind(this);
 	}
-	
+
 	componentDidMount() {
 		this.registerNotification("Event", parseInt(this.props.match.params.entityId, 10), this.handleServerSideEventsChanged);
 		this.registerNotification("Entity", parseInt(this.props.match.params.entityId, 10), this.props.refreshEntity);
@@ -49,9 +49,13 @@ class DetailView extends ConnectionComponent {
 	
 	handleServerSideEventsChanged(eventTypeId) {
 		if (this.props.eventTypes.value.length) {
-			this.props.lazyEventLoading(this.state.currentEventType.Id, this.handleEventChange);
+			this.props.lazyEventLoading(
+				this.state.currentEventType.Id,
+				this.handleEventChange,
+				this.includeEventChildren
+			);
 		}
-		if(eventTypeId && this.props.eventTypes.value.find((eventType) => {
+		if (eventTypeId && this.props.eventTypes.value.find((eventType) => {
 				return eventType.Id === eventTypeId;
 			}) === undefined) {
 			this.props.refreshEventTypes(this.handleEventTypeChange, this.includeEventChildren);
@@ -59,13 +63,13 @@ class DetailView extends ConnectionComponent {
 	}
 
 	handleEventTypeChange(eventTypes) {
-		if(eventTypes && eventTypes.length > 0) {
+		if (eventTypes && eventTypes.length > 0) {
 			this.setState({
 				currentEventType: eventTypes[0],
 				filter: [],
 			});
 			this.props.lazyAttributeLoading(eventTypes[0].Id);
-			this.props.lazyEventLoading(eventTypes[0].Id, this.handleEventChange);
+			this.props.lazyEventLoading(eventTypes[0].Id, this.handleEventChange, this.includeEventChildren);
 		}
 	}
 
@@ -95,11 +99,11 @@ class DetailView extends ConnectionComponent {
 		if (eventsAndAttributeConnection) {
 			return eventsAndAttributeConnection;
 		}
-		else if(this.props.eventTypeAttributes.value && this.props.events.value) {
+		else if (this.props.eventTypeAttributes.value && this.props.events.value) {
 			return (
 				<EventTable
 					events={this.state.filteredEvents}
-					eventTypeAttributes={this.props.eventTypeAttributes.value} />
+					eventTypeAttributes={this.props.eventTypeAttributes.value}/>
 			);
 		}
 	}
@@ -129,7 +133,7 @@ class DetailView extends ConnectionComponent {
 				eventType={this.state.currentEventType}
 				eventTypeAttributes={this.props.eventTypeAttributes.value}
 				entity={this.props.entity.value}
-				styles={[AppStyles.w50]} />
+				styles={[AppStyles.w50]}/>
 		);
 	}
 
@@ -140,8 +144,8 @@ class DetailView extends ConnectionComponent {
 		}
 		return (
 			<FilterBar
-			 onFiltersChange={this.handleFilterChange}
-			 autoCompleteSource={this.props.eventTypeAttributes.value.map(attributeInfo => attributeInfo.Name)}/>
+				onFiltersChange={this.handleFilterChange}
+				autoCompleteSource={this.props.eventTypeAttributes.value.map(attributeInfo => attributeInfo.Name)}/>
 		);
 	}
 
@@ -150,7 +154,7 @@ class DetailView extends ConnectionComponent {
 		const eventTypes = this.props.eventTypes.value;
 		const allFetches = PromiseState.all([this.props.entity, this.props.eventTypes]);
 		const connectionIncomplete = super.render(allFetches);
-		if(connectionIncomplete) {
+		if (connectionIncomplete) {
 			return connectionIncomplete;
 		}
 
@@ -182,7 +186,7 @@ class DetailView extends ConnectionComponent {
 					<EventTabs
 						eventTypes={eventTypes}
 						onEventTypeChange={this.handleEventTypeChange}
-						styles={[AppStyles.elementMarginTop]} />
+						styles={[AppStyles.elementMarginTop]}/>
 					{this.getEventTable()}
 				</Container>
 			</div>
@@ -211,18 +215,19 @@ export default ConnectionComponent.argosConnector()(props => {
 				then: eventTypes => handleEventTypeChange(eventTypes)
 			}
 		}),
-        lazyAttributeLoading: eventTypeId => ({
+		lazyAttributeLoading: eventTypeId => ({
 			eventTypeAttributes: config.backendRESTRoute + `/eventtype/${eventTypeId}/attributes`,
 		}),
-		lazyEventLoading: (eventTypeId, eventHandler) => ({
+		lazyEventLoading: (eventTypeId, eventHandler, includeChildren) => ({
 			events: {
 				url: config.backendRESTRoute
-						+ `/entity/${props.match.params.entityId}/eventtype/${eventTypeId}/events/false/0/10000`,
+				+ `/entity/${props.match.params.entityId}/eventtype/${eventTypeId}
+						/events/${includeChildren.toString()}/0/10000`,
 				force: true,
 				refreshing: true,
 				then: events => eventHandler(events),
 			},
 		})
 	};
-	
+
 })(DetailView);
