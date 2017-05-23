@@ -76,7 +76,7 @@ const availableRoutes = new Map()
 	})
 	.set(/^eventquery\/(-?\d+)\/edit$/i, {
 		mockFunction: BackendMock.updateEventQuery,
-        isCachable: false
+		isCachable: false
 	});
 
 class RestRoutesManager {
