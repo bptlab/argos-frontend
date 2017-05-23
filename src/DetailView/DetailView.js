@@ -202,10 +202,10 @@ export default ConnectionComponent.argosConnector()(props => {
 				refreshing: true
 			}
 		}),
-		eventTypes: eventTypesUrl+"false/",
+		eventTypes: eventTypesUrl + "false",
 		refreshEventTypes: (handleEventTypeChange, includeChildren) => ({
 			eventTypes: {
-				url: eventTypesUrl+includeChildren.toString()+"/",
+				url: eventTypesUrl + includeChildren.toString(),
 				force: true,
 				refreshing: true,
 				then: eventTypes => handleEventTypeChange(eventTypes)
