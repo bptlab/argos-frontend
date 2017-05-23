@@ -123,5 +123,12 @@ class BackendMock {
 		});
 		return associatedEvents;
 	}
+
+	static getEventQueryById(params) {
+        return Query.find((eventQuery) => {
+            return eventQuery.Id === parseInt(params[1], 10);
+        });
+	}
+
 }
 export default BackendMock;
