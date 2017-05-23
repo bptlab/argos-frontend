@@ -1,4 +1,5 @@
 import config from './../config/config.js';
+import ConnectionCache from './ConnectionCache';
 
 class ChangeNotifier  {
 	
@@ -17,6 +18,7 @@ class ChangeNotifier  {
 	}
 
 	static handleNotification(subscription, notification) {
+		ConnectionCache.invalidateFromNotification(notification.ArtifactType, notification.ArtifactId);
 		ChangeNotifier.handleNotificationForGridView(subscription, notification);
 		ChangeNotifier.handleNotificationForDetailView(subscription, notification);
     }

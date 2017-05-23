@@ -3,6 +3,7 @@ const config = {
 	useBackendMock: false,
 	backendRESTRoute: "http://localhost:3000/",
 	backendWebSocketURL: "ws://localhost:8989/argos/notifications",
+	enableCaching: true,
 	colors: {
 		primaryDark: "#000051",
 		primary: "#1a237e",

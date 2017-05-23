@@ -1,10 +1,10 @@
-import React from 'react';
-import ConnectionComponent from './Utils/ConnectionComponent.js';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import ThemeStyles from './ThemeStyles';
-import {connect, PromiseState} from "react-refetch";
-import config from './config/config.js';
+import React from "react";
+import ConnectionComponent from "./Utils/ConnectionComponent.js";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+import ThemeStyles from "./ThemeStyles";
+import {PromiseState} from "react-refetch";
+import config from "./config/config.js";
 
 class App extends ConnectionComponent {
 
@@ -22,6 +22,6 @@ class App extends ConnectionComponent {
     }
 }
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(() => ({
+export default ConnectionComponent.argosConnector({fetch: ConnectionComponent.switchFetch})(() => ({
     hierarchy: config.backendRESTRoute + `/entitytype/hierarchy`,
 }))(App);

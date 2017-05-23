@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import LoadingAnimation from './../Utils/LoadingAnimation';
 import ErrorMessage from './../Utils/ErrorMessage';
 import config from './../config/config.js';
-import BackendMock from './MockData/BackendMock.js';
+import RestRoutesManager from './RestRoutesManager';
 import {connect} from 'react-refetch';
 import ChangeNotifier from './ChangeNotifier.js';
+import ConnectionCache from './ConnectionCache';
 
 class ConnectionComponent extends Component {
 
@@ -32,20 +33,55 @@ class ConnectionComponent extends Component {
 		return null;
 	}
 
-	static switchFetch(input, init) {
-		if (config.useBackendMock) {
-			const response = BackendMock.handleRequest(input, init);
-			return new Promise(resolve => resolve(response));
-		} else {
-			const req = new Request(input, init);
-			return fetch(req);
+	static handleMockRequest(request) {
+		const mockData = RestRoutesManager.executeMockFunction(request);
+		return ConnectionComponent.buildResponse(mockData);
+	}
+
+	static cacheResponse(response) {
+		if (!response.url || !config.enableCaching || !RestRoutesManager.shouldBeCached(response.url)) {
+			return;
 		}
+		if (response.status < 200 || response.status >= 300) {
+			return;
+		}
+		const cacheResponse = response.clone();
+		ConnectionCache.add(cacheResponse);
+	}
+
+	static buildResponse(value) {
+		const headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+		return new Response(JSON.stringify(value), {status: 200, statusText: "OK", headers: headers});
+	}
+
+	static buildPromise(response) {
+		return new Promise(resolve => resolve(response));
+	}
+	
+	static switchFetch(input, init) {
+		if(config.useBackendMock) {
+			return ConnectionComponent.buildPromise(
+				ConnectionComponent.handleMockRequest(input, init));
+		}
+		if (config.enableCaching) {
+			const data = ConnectionCache.get(input.url);
+			if (data) {
+				return ConnectionComponent.buildPromise(
+					ConnectionComponent.buildResponse(data));
+			}
+		}
+		const req = new Request(input, init);
+		return fetch(req);
 	}
 
 	static argosConnector() {
 		return connect.defaults({
 			handleResponse: function (response) {
-				if (response.headers.get('content-type').includes('text/plain')
+				/* Save response to cache */
+				ConnectionComponent.cacheResponse(response);
+
+				if(response.headers.get('content-type').includes('text/plain')
 					&& response.headers.get('content-length') !== '0') {
 					if (response.status >= 200 && response.statusCode < 300) {
 						return response.text();

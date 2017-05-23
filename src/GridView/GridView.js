@@ -6,7 +6,7 @@ import CardGrid from "./CardGrid";
 import {PromiseState} from "react-refetch";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import AppStyles from "./../AppStyles";
-import config from './../config/config.js';
+import config from "./../config/config.js";
 import Header from "../Header";
 
 class GridView extends ConnectionComponent {

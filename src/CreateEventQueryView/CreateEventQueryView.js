@@ -1,12 +1,12 @@
-import React from 'react';
-import {connect, PromiseState} from 'react-refetch';
-import ConnectionComponent from './../Utils/ConnectionComponent.js';
+import React from "react";
+import {PromiseState} from "react-refetch";
+import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import {Col, Container, Row} from "react-grid-system";
 import {RaisedButton} from "material-ui";
 import IconSave from "material-ui/svg-icons/content/save";
 import IconCancel from "material-ui/svg-icons/navigation/cancel";
-import Header from './../Header';
-import {css} from 'aphrodite';
+import Header from "./../Header";
+import {css} from "aphrodite";
 import EventTypeInformation from "./EventTypeInformation";
 import EventQueryInputArea from "./EventQueryInputArea";
 import config from "../config/config";
@@ -122,7 +122,7 @@ class CreateEventQueryView extends ConnectionComponent {
 	}
 }
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
+export default ConnectionComponent.argosConnector({fetch: ConnectionComponent.switchFetch})(props => ({
 	eventType: config.backendRESTRoute + `/eventtype/${props.match.params.eventTypeId}`,
 	attributes: config.backendRESTRoute + `/eventtype/${props.match.params.eventTypeId}/attributes`,
 	createEventQuery: (body) => ({
