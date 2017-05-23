@@ -13,6 +13,7 @@ import config from "../config/config";
 import AppStyles from "../AppStyles";
 import Utils from "../Utils/Utils";
 import LoadingAnimation from "../Utils/LoadingAnimation";
+import ErrorMessage from "../Utils/ErrorMessage";
 
 class CreateEventQueryView extends ConnectionComponent {
 
@@ -131,6 +132,9 @@ class CreateEventQueryView extends ConnectionComponent {
 								<EventTypeInformation attributes={attributes}/>
 							</Col>
 							<Col md={8}>
+								{optionalActions && optionalActions.rejected &&
+									<ErrorMessage message={optionalActions.reason} />
+								}
 								<EventQueryInputArea
 									handleQueryInputChange={this.handleCreateQueryInput}
 									queryErrorMessage={this.state.queryErrorMessage}

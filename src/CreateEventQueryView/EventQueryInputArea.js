@@ -28,6 +28,7 @@ class EventQueryInputArea extends Component {
 		if (this.eventQuery) {
 			return ": " + Utils.splitStringBeforeSubString(this.eventQuery.Query, "FROM ") + "FROM ";
 		}
+		return "";
 	}
 
 	componentWillMount() {
