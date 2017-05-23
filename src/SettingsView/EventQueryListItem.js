@@ -12,18 +12,14 @@ class EventQueryListItem extends Component {
 	constructor(props) {
 		super(props);
 		this.deleteEventQuery = this.deleteEventQuery.bind(this);
-		this.deleteEventQueryButton = this.deleteEventQueryButton.bind(this);
+		this.eventQueryActionButtons = this.eventQueryActionButtons.bind(this);
 	}
 	
 	deleteEventQuery() {
 		this.props.deleteQuery(this.props.query);
 	}
 
-	editEventQuery() {
-		// TODO: to be filled
-	}
-
-	deleteEventQueryButton () {
+	eventQueryActionButtons () {
 		return (
 			<div>
 				<ConfirmationMessage 
@@ -31,7 +27,7 @@ class EventQueryListItem extends Component {
 					ref={(input) => {this.confirmationMessage = input;}}>
 					{config.messages.deleteQueryMessage}
 				</ConfirmationMessage>
-				<IconButton onTouchTap={this.editEventQuery}>
+				<IconButton href={`/settings/eventType/99101991/eventQuery/${this.props.query.Id}/false/edit`}>
 					<IconEdit/>
 				</IconButton>
 				<IconButton onTouchTap={() => {this.confirmationMessage.handleOpen();}}>
@@ -46,7 +42,7 @@ class EventQueryListItem extends Component {
 			<ListItem
 				primaryText={this.props.query.Description}
 				secondaryText={this.props.query.Query}
-				rightIconButton={this.deleteEventQueryButton()}
+				rightIconButton={this.eventQueryActionButtons()}
 			/>
 		);
 	}
