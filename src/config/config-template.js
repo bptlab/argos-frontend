@@ -21,6 +21,7 @@ const config = {
 		queryInputFieldHint: "Esper EPL Query",
 		queryDescriptionInputFieldHint: 'Description for query',
 		addMapping: "Add Mapping Condition",
+		toggleChildrenEvents: "Show events of children?"
 	},
 	messages: {
 		notFound: "Error 404. The requested page does not exist. You found a glitch in the matrix.",
