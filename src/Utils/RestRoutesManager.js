@@ -38,7 +38,7 @@ const availableRoutes = new Map()
 		mockFunction: BackendMock.deleteEventType,
 		isCachable: true,
 	})
-	.set(/^entity\/(-?\d+)\/eventtypes\/false$/i, {
+	.set(/^entity\/(-?\d+)\/eventtypes\/(false|true)/i, {
 		mockFunction: BackendMock.getEventTypesOfEntity,
 		isCachable: true,
 	})
@@ -50,7 +50,7 @@ const availableRoutes = new Map()
 		mockFunction: BackendMock.getAttributesOfEventType,
 		isCachable: true,
 	})
-	.set(/^entity\/(-?\d+)\/eventtype\/(-?\d+)\/events\/false/i, {
+	.set(/^entity\/(-?\d+)\/eventtype\/(-?\d+)\/events\/(false|true)/i, {
 		mockFunction: BackendMock.getEventsOfEventTypeAndEntity,
 		isCachable: true,
 	})

@@ -31,6 +31,14 @@ class ConnectionCache {
 		ConnectionCache.writeStorageCache(newCache);
 	}
 
+	static invalidateFromNotification(artifactType, artifactId) {
+		let currentCache = ConnectionCache.getStorageCache();
+		const affectedUrls = currentCache.keys().filter(url =>
+			url.includes(artifactType.toLowerCase() + "/" + artifactId.toLowerCase()));
+		affectedUrls.forEach(url => currentCache.delete(url));
+		ConnectionCache.writeStorageCache(currentCache);
+	}
+
 	static clear() {
 		ConnectionCache.writeStorageCache(new Map());
 	}
