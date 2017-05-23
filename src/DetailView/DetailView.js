@@ -43,7 +43,7 @@ class DetailView extends ConnectionComponent {
 	}
 
 	handleEventChildrenSwitch(event, isInputChecked) {
-		this.setState({includeEventChildren: isInputChecked});
+		this.includeEventChildren = isInputChecked;
 		this.props.refreshEventTypes(this.handleEventTypeChange, isInputChecked);
 	}
 	
@@ -54,7 +54,7 @@ class DetailView extends ConnectionComponent {
 		if(eventTypeId && this.props.eventTypes.value.find((eventType) => {
 				return eventType.Id === eventTypeId;
 			}) === undefined) {
-			this.props.refreshEventTypes(this.handleEventTypeChange, this.state.includeEventChildren);
+			this.props.refreshEventTypes(this.handleEventTypeChange, this.includeEventChildren);
 		}
 	}
 
