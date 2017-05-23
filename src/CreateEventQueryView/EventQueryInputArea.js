@@ -9,34 +9,34 @@ class EventQueryInputArea extends Component {
 		this.getLoadedDescriptionValue = this.getLoadedDescriptionValue.bind(this);
 		this.getEditablePartOfEventQuery = this.getEditablePartOfEventQuery.bind(this);
 		this.getNotEditablePartOfEventQuery = this.getNotEditablePartOfEventQuery.bind(this);
-        this.eventQuery = this.props.eventQuery;
+		this.eventQuery = this.props.eventQuery;
 	}
 
 	getLoadedDescriptionValue() {
-        if (this.eventQuery) {
+		if (this.eventQuery) {
 			return this.eventQuery.Description;
 		}
 	}
 
-    getEditablePartOfEventQuery() {
-        if (this.eventQuery) {
+	getEditablePartOfEventQuery() {
+		if (this.eventQuery) {
 			return Utils.splitStringAfterSubString(this.eventQuery.Query, "FROM ");
-        }
-    }
+		}
+	}
 
-    getNotEditablePartOfEventQuery() {
-        if (this.eventQuery) {
-            return ": " + Utils.splitStringBeforeSubString(this.eventQuery.Query, "FROM ") + "FROM ";
-        }
+	getNotEditablePartOfEventQuery() {
+		if (this.eventQuery) {
+			return ": " + Utils.splitStringBeforeSubString(this.eventQuery.Query, "FROM ") + "FROM ";
+		}
 	}
 
 	componentWillMount() {
-        if (this.eventQuery) {
+		if (this.eventQuery) {
 			const eventDescription = {target: {value: this.eventQuery.Description}};
 			this.props.handleDescriptionInputChange(eventDescription);
 			const eventQuery = {target: {value: this.eventQuery.Query}};
-            this.props.handleQueryInputChange(eventQuery);
-        }
+			this.props.handleQueryInputChange(eventQuery);
+		}
 	}
 
 	render() {
