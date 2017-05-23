@@ -206,6 +206,9 @@ class CreateEventQueryView extends ConnectionComponent {
 								<EventTypeInformation attributes={attributes}/>
 							</Col>
 							<Col md={8}>
+                                {optionalActions && optionalActions.rejected &&
+									<ErrorMessage message={optionalActions.reason} />
+                                }
 								<EventQueryInputArea
 									handleQueryInputChange={this.handleEditQueryInput}
 									queryErrorMessage={this.state.queryErrorMessage}
