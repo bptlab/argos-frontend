@@ -1,4 +1,4 @@
-FROM node:7-alpine
+FROM node:latest
 
 WORKDIR /argos-frontend
 
