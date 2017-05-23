@@ -70,6 +70,8 @@ class DetailView extends ConnectionComponent {
 			});
 			this.props.lazyAttributeLoading(eventTypes[0].Id);
 			this.props.lazyEventLoading(eventTypes[0].Id, this.handleEventChange, this.includeEventChildren);
+		} else {
+			this.state.filteredEvents = [];
 		}
 	}
 
