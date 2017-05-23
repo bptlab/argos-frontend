@@ -8,7 +8,7 @@ class ConnectionCache {
 	}
 
 	static addResolvedRequest(url, data) {
-		let currentCache = ConnectionCache.getStorageCache();
+		const currentCache = ConnectionCache.getStorageCache();
 		currentCache.set(url, data);
 		ConnectionCache.writeStorageCache(currentCache);
 	}
@@ -32,7 +32,7 @@ class ConnectionCache {
 	}
 
 	static invalidateFromNotification(artifactType, artifactId) {
-		let currentCache = ConnectionCache.getStorageCache();
+		const currentCache = ConnectionCache.getStorageCache();
 		const affectedUrls = currentCache.keys().filter(url =>
 			url.includes(artifactType.toLowerCase() + "/" + artifactId.toLowerCase()));
 		affectedUrls.forEach(url => currentCache.delete(url));
