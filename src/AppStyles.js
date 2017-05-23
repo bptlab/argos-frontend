@@ -2,6 +2,14 @@ import { StyleSheet } from 'aphrodite';
 import config from './config/config';
 
 const AppStyles = StyleSheet.create({
+	pAbsolute: {
+		position: 'absolute',
+	},
+
+	pRelative: {
+		position: 'relative',
+	},
+
 	dFlex: {
 		display: 'flex',
 	},
@@ -12,6 +20,10 @@ const AppStyles = StyleSheet.create({
 
 	justifyContentCenter: {
 		justifyContent: 'center',
+	},
+
+	r0: {
+		right: '0px',
 	},
 
 	alignItemsCenter: {
