@@ -39,10 +39,10 @@ class ConnectionComponent extends Component {
 	}
 
 	static cacheResponse(response) {
-		if (!response.url ||
-			response.status < 200 || response.status >= 300 ||
-			!config.enableCaching ||
-			!RestRoutesManager.shouldBeCached(response.url)) {
+		if (!response.url || !config.enableCaching || !RestRoutesManager.shouldBeCached(response.url)) {
+			return;
+		}
+		if (response.status < 200 || response.status >= 300) {
 			return;
 		}
 		const cacheResponse = response.clone();
