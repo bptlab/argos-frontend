@@ -11,6 +11,7 @@ import EventTypeInformation from "./EventTypeInformation";
 import EventQueryInputArea from "./EventQueryInputArea";
 import config from "../config/config";
 import AppStyles from "../AppStyles";
+import Utils from "../Utils/Utils";
 
 class CreateEventQueryView extends ConnectionComponent {
 
@@ -23,14 +24,26 @@ class CreateEventQueryView extends ConnectionComponent {
 			descriptionErrorMessage: ''
 		};
 		this.isCreateView = this.props.match.params.isNewQuery === "true";
-		this.handleQueryInput = this.handleQueryInput.bind(this);
-		this.submitQuery = this.submitQuery.bind(this);
+		this.handleCreateQueryInput = this.handleCreateQueryInput.bind(this);
+		this.handleEditQueryInput = this.handleEditQueryInput.bind(this);
+		this.isInvalidInput = this.isInvalidInput.bind(this);
 		this.handleDescriptionInput = this.handleDescriptionInput.bind(this);
+		this.submitNewQuery = this.submitNewQuery.bind(this);
+		this.submitUpdatedQuery = this.submitUpdatedQuery.bind(this);
 	}
 	
-	handleQueryInput(event) {
+	handleCreateQueryInput(event) {
 		this.setState({
 			query: event.target.value,
+			queryErrorMessage: ''
+		});
+	}
+
+	handleEditQueryInput(event) {
+		const oldQuery = this.state.query;
+		const viewQuery = Utils.splitStringBeforeSubString(oldQuery, "FROM ");
+		this.setState({
+			query: viewQuery + "FROM " + event.target.value,
 			queryErrorMessage: ''
 		});
 	}
@@ -42,7 +55,7 @@ class CreateEventQueryView extends ConnectionComponent {
 		});
 	}
 	
-	submitQuery() {
+	isInvalidInput() {
 		let validationErrorOccured = false;
 		if(!this.state.queryDescription) {
 			this.setState({
@@ -56,9 +69,22 @@ class CreateEventQueryView extends ConnectionComponent {
 			});
 			validationErrorOccured = true;
 		}
-		if(!validationErrorOccured) {
-			this.props.createEventQuery({
-				EventTypeId: this.props.match.params.eventTypeId,
+		return validationErrorOccured;
+	}
+
+	submitNewQuery() {
+        if (!this.isInvalidInput()) {
+            this.props.createEventQuery({
+                EventTypeId: this.props.match.params.eventTypeId,
+                Description: this.state.queryDescription,
+                Query: this.state.query
+            });
+        }
+	}
+
+	submitUpdatedQuery() {
+		if (!this.isInvalidInput()) {
+			this.props.editEventQuery({
 				Description: this.state.queryDescription,
 				Query: this.state.query
 			});
@@ -93,10 +119,10 @@ class CreateEventQueryView extends ConnectionComponent {
 							</Col>
 							<Col md={8}>
 								<EventQueryInputArea
-									handleQueryInputChange={this.handleQueryInput}
+									handleQueryInputChange={this.handleEditQueryInput}
 									queryErrorMessage={this.state.queryErrorMessage}
 									handleDescriptionInputChange={this.handleDescriptionInput}
-									descriptionErrorMessae={this.state.descriptionErrorMessage}
+									descriptionErrorMessage={this.state.descriptionErrorMessage}
 								/>
 							</Col>
 						</Row>
@@ -113,7 +139,7 @@ class CreateEventQueryView extends ConnectionComponent {
 								icon={<IconSave/>}
 								className={css(AppStyles.marginAllSites)}
 								primary={true}
-								onClick={this.submitQuery}
+								onClick={this.submitNewQuery}
 							/>
 						</div>
 					</Container>
@@ -164,10 +190,10 @@ class CreateEventQueryView extends ConnectionComponent {
 							</Col>
 							<Col md={8}>
 								<EventQueryInputArea
-									handleQueryInputChange={this.handleQueryInput}
+									handleQueryInputChange={this.handleCreateQueryInput}
 									queryErrorMessage={this.state.queryErrorMessage}
 									handleDescriptionInputChange={this.handleDescriptionInput}
-									descriptionErrorMessae={this.state.descriptionErrorMessage}
+									descriptionErrorMessage={this.state.descriptionErrorMessage}
 									eventQuery={this.props.eventQuery.value}
 								/>
 							</Col>
@@ -185,7 +211,7 @@ class CreateEventQueryView extends ConnectionComponent {
 								icon={<IconSave/>}
 								className={css(AppStyles.marginAllSites)}
 								primary={true}
-								onClick={this.submitQuery}
+								onClick={this.submitUpdatedQuery}
 							/>
 						</div>
 					</Container>
@@ -221,8 +247,8 @@ export default ConnectionComponent.argosConnector({fetch: ConnectionComponent.sw
 			body: JSON.stringify(body)
 		}
 	}),
-    editEventQueryResponse: (body) => ({
-        createEventQueryResponse: {
+    editEventQuery: (body) => ({
+        editEventQueryResponse: {
             url: config.backendRESTRoute + `/eventquery/${props.match.params.eventQueryId}/edit`,
             method: 'PUT',
             body: JSON.stringify(body)

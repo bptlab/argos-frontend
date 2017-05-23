@@ -6,31 +6,41 @@ import Utils from "../Utils/Utils";
 class EventQueryInputArea extends Component {
 	constructor(props) {
 		super(props);
-		this.setLoadedDescriptionValue = this.setLoadedDescriptionValue.bind(this);
-		this.setEditablePartOfEventQuery = this.setEditablePartOfEventQuery.bind(this);
-		this.setNotEditablePartOfEventQuery = this.setNotEditablePartOfEventQuery.bind(this);
+		this.getLoadedDescriptionValue = this.getLoadedDescriptionValue.bind(this);
+		this.getEditablePartOfEventQuery = this.getEditablePartOfEventQuery.bind(this);
+		this.getNotEditablePartOfEventQuery = this.getNotEditablePartOfEventQuery.bind(this);
+        this.eventQuery = this.props.eventQuery;
 	}
 
-	setLoadedDescriptionValue() {
-        if (this.props.eventQuery) {
-			return this.props.eventQuery.Description;
+	getLoadedDescriptionValue() {
+        if (this.eventQuery) {
+			return this.eventQuery.Description;
 		}
 	}
 
-    setEditablePartOfEventQuery() {
-        if (this.props.eventQuery) {
-			return Utils.splitStringAfterSubString(this.props.eventQuery.Query, "FROM ");
+    getEditablePartOfEventQuery() {
+        if (this.eventQuery) {
+			return Utils.splitStringAfterSubString(this.eventQuery.Query, "FROM ");
         }
     }
 
-    setNotEditablePartOfEventQuery() {
-        if (this.props.eventQuery) {
-            return ": " + Utils.splitStringBeforeSubString(this.props.eventQuery.Query, "FROM ") + "FROM ";
+    getNotEditablePartOfEventQuery() {
+        if (this.eventQuery) {
+            return ": " + Utils.splitStringBeforeSubString(this.eventQuery.Query, "FROM ") + "FROM ";
+        }
+	}
+
+	componentWillMount() {
+        if (this.eventQuery) {
+			const eventDescription = {target: {value: this.eventQuery.Description}};
+			this.props.handleDescriptionInputChange(eventDescription);
+			const eventQuery = {target: {value: this.eventQuery.Query}};
+            this.props.handleQueryInputChange(eventQuery);
         }
 	}
 
 	render() {
-		const loadedDescriptionValue = this.setLoadedDescriptionValue();
+		const loadedDescriptionValue = this.getLoadedDescriptionValue();
 		return (
 			<div>
 				<TextField
@@ -43,14 +53,14 @@ class EventQueryInputArea extends Component {
 					defaultValue={loadedDescriptionValue}
 				/>
 				<TextField
-					floatingLabelText={config.descriptions.queryInputFieldHint + this.setNotEditablePartOfEventQuery()}
+					floatingLabelText={config.descriptions.queryInputFieldHint + this.getNotEditablePartOfEventQuery()}
 					name="event-query"
 					hintText={config.descriptions.exampleQuery}
 					multiLine={true}
 					fullWidth={true}
 					errorText={this.props.queryErrorMessage}
 					onChange={this.props.handleQueryInputChange}
-					defaultValue={this.setEditablePartOfEventQuery()}
+					defaultValue={this.getEditablePartOfEventQuery()}
 				/>
 			</div>
 		);
