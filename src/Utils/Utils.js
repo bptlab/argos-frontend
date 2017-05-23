@@ -167,7 +167,13 @@ class Utils {
 		return (baseValue.toString().toLowerCase().indexOf(subValue.toString().toLowerCase()) > -1);
 	}
 
+	static splitStringAfterSubString(string, subString) {
+		return string.split(subString)[1];
+	}
 
+	static splitStringBeforeSubString(string, subString) {
+		return string.split(subString)[0];
+	}
 }
 
 export default Utils;
