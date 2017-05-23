@@ -22,6 +22,7 @@ class DetailView extends ConnectionComponent {
 			filteredEvents: [],
 			currentEventType: null,
 			filter: [],
+			includeEventChildren: false,
 		};
 		this.events = [];
 
@@ -29,6 +30,7 @@ class DetailView extends ConnectionComponent {
 		this.handleFilterChange = this.handleFilterChange.bind(this);
 		this.handleEventChange = this.handleEventChange.bind(this);
 		this.handleServerSideEventsChanged = this.handleServerSideEventsChanged.bind(this);
+		this.handleEventChildrenSwitch = this.handleEventChildrenSwitch.bind(this);
 	}
 	
 	componentDidMount() {
@@ -39,6 +41,11 @@ class DetailView extends ConnectionComponent {
 	componentWillUnmount() {
 		this.unregisterAllNotifications();
 	}
+
+	handleEventChildrenSwitch(event, isInputChecked) {
+		this.setState({includeEventChildren: isInputChecked});
+		this.props.refreshEventTypes(this.handleEventTypeChange, isInputChecked);
+	}
 	
 	handleServerSideEventsChanged(eventTypeId) {
 		if (this.props.eventTypes.value.length) {
@@ -47,17 +54,19 @@ class DetailView extends ConnectionComponent {
 		if(eventTypeId && this.props.eventTypes.value.find((eventType) => {
 				return eventType.Id === eventTypeId;
 			}) === undefined) {
-			this.props.refreshEventTypes(this.handleEventTypeChange);
+			this.props.refreshEventTypes(this.handleEventTypeChange, this.state.includeEventChildren);
 		}
 	}
 
-	handleEventTypeChange(eventType) {
-		this.setState({
-			currentEventType: eventType,
-			filter: [],
-		});
-		this.props.lazyAttributeLoading(eventType.Id);
-		this.props.lazyEventLoading(eventType.Id, this.handleEventChange);
+	handleEventTypeChange(eventTypes) {
+		if(eventTypes && eventTypes.length > 0) {
+			this.setState({
+				currentEventType: eventTypes[0],
+				filter: [],
+			});
+			this.props.lazyAttributeLoading(eventTypes[0].Id);
+			this.props.lazyEventLoading(eventTypes[0].Id, this.handleEventChange);
+		}
 	}
 
 	handleEventChange(events) {
@@ -157,7 +166,7 @@ class DetailView extends ConnectionComponent {
 						thumbStyle={{
 							backgroundColor: config.colors.diagramLine,
 						}}
-						onToggle={this.props.refreshEventTypes.bind(this, this.handleEventTypeChange)}
+						onToggle={this.handleEventChildrenSwitch}
 						thumbSwitchedStyle={AppStyles.thumbSwitchedColor}
 						className={css(AppStyles.elementMarginTop)}
 						disabled={this.props.entity.HasChildren}
@@ -183,7 +192,7 @@ class DetailView extends ConnectionComponent {
 
 export default ConnectionComponent.argosConnector()(props => {
 	const entityUrl = config.backendRESTRoute + `/entity/${props.match.params.entityId}`;
-	const eventTypesUrl = config.backendRESTRoute + `/entity/${props.match.params.entityId}/eventtypes/false`;
+	const eventTypesUrl = config.backendRESTRoute + `/entity/${props.match.params.entityId}/eventtypes/`;
 	return {
 		entity: entityUrl,
 		refreshEntity: () => ({
@@ -193,13 +202,13 @@ export default ConnectionComponent.argosConnector()(props => {
 				refreshing: true
 			}
 		}),
-		eventTypes: eventTypesUrl,
-		refreshEventTypes: (handleEventTypeChange) => ({
+		eventTypes: eventTypesUrl+"false/",
+		refreshEventTypes: (handleEventTypeChange, includeChildren) => ({
 			eventTypes: {
-				url: eventTypesUrl,
+				url: eventTypesUrl+includeChildren.toString()+"/",
 				force: true,
 				refreshing: true,
-				then: eventTypes => handleEventTypeChange(eventTypes[0])
+				then: eventTypes => handleEventTypeChange(eventTypes)
 			}
 		}),
         lazyAttributeLoading: eventTypeId => ({
