@@ -168,11 +168,13 @@ class Utils {
 	}
 
 	static splitStringAfterSubString(string, subString) {
-		return string.split(subString)[1];
+        const indexOfSubStringClause = string.toString().toLowerCase().indexOf(subString.toString().toLowerCase());
+        return string.slice(indexOfSubStringClause + subString.length);
 	}
 
 	static splitStringBeforeSubString(string, subString) {
-		return string.split(subString)[0];
+        const indexOfSubStringClause = string.toString().toLowerCase().indexOf(subString.toString().toLowerCase());
+        return string.slice(0, indexOfSubStringClause);
 	}
 }
 
