@@ -81,10 +81,12 @@ class CardGrid extends ConnectionComponent {
 				<StatusDiagram
 					entities={entitiesToShow}
 					styles={[AppStyles.elementMarginTop]}/>
-				<Row className={css(this.props.styles)}>
+				<Row className={css(this.props.styles, AppStyles.dFlex)}>
 					{entitiesToShow.map((childEntity, index) => {
 						return (
-							<Col key={index} xs={12} sm={4} md={3}>
+							<Col
+								key={index} xs={12} sm={4} md={3}
+								className={css(AppStyles.dFlex)}>
 								<Card>
 									<CardTitle
 										style={this.backgroundColor(childEntity.Status)}
