@@ -24,7 +24,7 @@ class CreateEventQueryView extends ConnectionComponent {
 			queryDescription: '',
 			descriptionErrorMessage: ''
 		};
-		this.isCreateView = this.props.match.params.isNewQuery === "true";
+		this.isCreateView = typeof this.props.match.params.eventQueryId === 'undefined';
 		this.handleCreateQueryInput = this.handleCreateQueryInput.bind(this);
 		this.handleEditQueryInput = this.handleEditQueryInput.bind(this);
 		this.isInvalidInput = this.isInvalidInput.bind(this);
@@ -95,6 +95,12 @@ class CreateEventQueryView extends ConnectionComponent {
 	abort() {
 		window.history.back();
 	}
+
+    componentWillMount() {
+        if (!this.isCreateView) {
+            this.props.lazyLoadEventQuery();
+        }
+    }
 
 	renderCreateEventQuery() {
         const allFetches = PromiseState.all([this.props.eventType, this.props.attributes]);
@@ -219,12 +225,6 @@ class CreateEventQueryView extends ConnectionComponent {
 				</div>
 			</div>
 		);
-	}
-
-	componentWillMount() {
-		if (!this.isCreateView) {
-			this.props.lazyLoadEventQuery();
-		}
 	}
 
 	render() {

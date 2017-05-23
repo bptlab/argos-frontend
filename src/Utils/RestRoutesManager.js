@@ -74,7 +74,7 @@ const availableRoutes = new Map()
 		mockFunction: BackendMock.getEventQueryById,
 		isCachable: false
 	})
-    .set(/^eventquery\/(-?\d+)\/edit$/i, {
+	.set(/^eventquery\/(-?\d+)\/edit$/i, {
 		mockFunction: BackendMock.updateEventQuery,
         isCachable: false
 	});
