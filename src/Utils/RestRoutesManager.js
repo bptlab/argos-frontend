@@ -16,19 +16,19 @@ const availableRoutes = new Map()
 	})
 	.set(/^eventtypes$/i, {
 		mockFunction: BackendMock.getEventTypes,
-		isCachable: true,
+		isCachable: false,
 	})
 	.set(/^eventtype\/(-?\d+)\/queries$/i, {
 		mockFunction: BackendMock.getQueriesOfEventType,
-		isCachable: true,
+		isCachable: false,
 	})
 	.set(/^eventtype\/(-?\d+)\/entitymappings$/i, {
 		mockFunction: BackendMock.getMappingsOfEventType,
-		isCachable: true,
+		isCachable: false,
 	})
 	.set(/^entitymapping\/(-?\d+)\/delete$/i, {
 		mockFunction: BackendMock.deleteMapping,
-		isCachable: true,
+		isCachable: false,
 	})
 	.set(/^entity\/(-?\d+)$/i, {
 		mockFunction: BackendMock.getEntity,
@@ -36,11 +36,11 @@ const availableRoutes = new Map()
 	})
 	.set(/^eventtype\/(-?\d+)\/delete$/i, {
 		mockFunction: BackendMock.deleteEventType,
-		isCachable: true,
+		isCachable: false,
 	})
 	.set(/^entity\/(-?\d+)\/eventtypes\/(false|true)/i, {
 		mockFunction: BackendMock.getEventTypesOfEntity,
-		isCachable: true,
+		isCachable: false,
 	})
 	.set(/^eventtype\/(-?\d+)$/i, {
 		mockFunction: BackendMock.getEventType,
@@ -52,23 +52,23 @@ const availableRoutes = new Map()
 	})
 	.set(/^entity\/(-?\d+)\/eventtype\/(-?\d+)\/events\/(false|true)/i, {
 		mockFunction: BackendMock.getEventsOfEventTypeAndEntity,
-		isCachable: true,
+		isCachable: false,
 	})
 	.set(/^eventquery\/(-?\d+)\/delete$/i, {
 		mockFunction: BackendMock.deleteEventQuery,
-		isCachable: true,
+		isCachable: false,
 	})
 	.set(/^eventtype\/create$/, {
 		mockFunction: BackendMock.createEventType,
-		isCachable: true,
+		isCachable: false,
 	})
 	.set(/^eventquery\/create$/, {
 		mockFunction: BackendMock.createEventQuery,
-		isCachable: true,
+		isCachable: false,
 	})
 	.set(/^entitymapping\/create$/, {
 		mockFunction: BackendMock.createEntityMapping,
-		isCachable: true,
+		isCachable: false,
 	});
 
 class RestRoutesManager {
