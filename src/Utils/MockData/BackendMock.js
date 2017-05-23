@@ -37,6 +37,10 @@ class BackendMock {
 		return "Success";
 	}
 
+	static updateEventQuery() {
+		return "Success";
+	}
+
 	static getQueriesOfEventType() {
 		return Query;
 	}
