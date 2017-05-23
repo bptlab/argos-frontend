@@ -27,7 +27,7 @@ class EventQueryListItem extends Component {
 					ref={(input) => {this.confirmationMessage = input;}}>
 					{config.messages.deleteQueryMessage}
 				</ConfirmationMessage>
-				<IconButton href={`/settings/eventType/${this.props.eventType.Id}/eventQuery/${this.props.query.Id}/false/edit`}>
+				<IconButton href={`/settings/eventType/${this.props.eventType.Id}/eventQuery/${this.props.query.Id}/edit`}>
 					<IconEdit/>
 				</IconButton>
 				<IconButton onTouchTap={() => {this.confirmationMessage.handleOpen();}}>

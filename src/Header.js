@@ -72,8 +72,8 @@ class Header extends Component {
 					<Route path="/details/:parentId/:entityId" component={() => this.composeAppBar("details")}/>
 					<Route exact path="/settings" component={() => this.composeAppBar("settings")}/>
 					<Route path="/settings/eventType/create" component={() => this.composeAppBar("create")}/>
-					<Route path="/settings/eventType/:eventTypeId/eventQuery/:isNewQuery/create" component={() => this.composeAppBar("create")}/>
-					<Route path="/settings/eventType/:eventTypeId/eventQuery/:eventQueryId/:isNewQuery/edit" component={() => this.composeAppBar("create")}/>
+					<Route path="/settings/eventType/:eventTypeId/eventQuery/create" component={() => this.composeAppBar("create")}/>
+					<Route path="/settings/eventType/:eventTypeId/eventQuery/:eventQueryId/edit" component={() => this.composeAppBar("create")}/>
 					<Route path="/settings/entityMapping/create" component={() => this.composeAppBar("create")}/>
 					<Route path="*" component={() => this.composeAppBar("grid")}/>
 				</Switch>
