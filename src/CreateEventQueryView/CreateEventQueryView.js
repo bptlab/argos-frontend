@@ -12,6 +12,7 @@ import EventQueryInputArea from "./EventQueryInputArea";
 import config from "../config/config";
 import AppStyles from "../AppStyles";
 import Utils from "../Utils/Utils";
+import LoadingAnimation from "../Utils/LoadingAnimation";
 
 class CreateEventQueryView extends ConnectionComponent {
 
@@ -150,14 +151,14 @@ class CreateEventQueryView extends ConnectionComponent {
 
     eventQueryPending() {
         if (!this.props.eventQuery) {
-            return <div />;
+            return <LoadingAnimation />;
         }
         const eventQueryConnection = super.render(this.props.eventQuery);
         if (eventQueryConnection) {
             return eventQueryConnection;
         }
         if (!this.props.eventQuery.value) {
-            return <div />;
+            return <LoadingAnimation />;
         }
         return null;
     }
