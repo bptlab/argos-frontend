@@ -22,8 +22,8 @@ class DetailView extends ConnectionComponent {
 			filteredEvents: [],
 			currentEventType: null,
 			filter: [],
-			includeEventChildren: false,
 		};
+		this.includeEventChildren = false;
 		this.events = [];
 
 		this.handleEventTypeChange = this.handleEventTypeChange.bind(this);
