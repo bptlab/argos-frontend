@@ -25,12 +25,32 @@ class DetailView extends ConnectionComponent {
 		};
 		this.includeEventChildren = false;
 		this.events = [];
+		this.eventChunk = [0, config.eventTableChunkSize];
 
 		this.handleEventTypeChange = this.handleEventTypeChange.bind(this);
 		this.handleFilterChange = this.handleFilterChange.bind(this);
 		this.handleEventChange = this.handleEventChange.bind(this);
 		this.handleServerSideEventsChanged = this.handleServerSideEventsChanged.bind(this);
 		this.handleEventChildrenSwitch = this.handleEventChildrenSwitch.bind(this);
+		this.scrollHandler = this.scrollHandler.bind(this);
+		this.resetEventChunk = this.resetEventChunk.bind(this);
+		window.onscroll = this.scrollHandler;
+	}
+	
+	resetEventChunk() {
+		this.eventChunk = [0, config.eventTableChunkSize];
+	}
+	
+	scrollHandler() {
+		if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+			this.eventChunk = [this.eventChunk[1]+1, this.eventChunk[1]+config.eventTableChunkSize];
+			this.props.lazyEventLoading(
+				this.state.currentEventType.Id,
+				this.handleEventChunkChange,
+				this.includeEventChildren,
+				this.eventChunk
+			);
+		}
 	}
 
 	componentDidMount() {
@@ -43,6 +63,7 @@ class DetailView extends ConnectionComponent {
 	}
 
 	handleEventChildrenSwitch(event, isInputChecked) {
+		this.resetEventChunk();
 		this.includeEventChildren = isInputChecked;
 		this.props.refreshEventTypes(this.handleEventTypeChange, isInputChecked);
 	}
@@ -52,7 +73,8 @@ class DetailView extends ConnectionComponent {
 			this.props.lazyEventLoading(
 				this.state.currentEventType.Id,
 				this.handleEventChange,
-				this.includeEventChildren
+				this.includeEventChildren,
+				this.eventChunk
 			);
 		}
 		if (eventTypeId && this.props.eventTypes.value.find((eventType) => {
@@ -70,7 +92,11 @@ class DetailView extends ConnectionComponent {
 				filter: [],
 			});
 			this.props.lazyAttributeLoading(firstEventType.Id);
-			this.props.lazyEventLoading(firstEventType.Id, this.handleEventChange, this.includeEventChildren);
+			this.props.lazyEventLoading(
+				firstEventType.Id, 
+				this.handleEventChange, 
+				this.includeEventChildren,
+				this.eventChunk);
 		} 
 		else {
 			this.setState({
@@ -87,7 +113,16 @@ class DetailView extends ConnectionComponent {
 		});
 	}
 
+	handleEventChunkChange(events) {
+		this.events = this.events.concat(events);
+		const filteredEvents = Utils.getFilteredEvents(events, this.state.filter);
+		this.setState({
+			filteredEvents: this.state.filteredEvents.concat(filteredEvents),
+		});
+	}
+
 	handleFilterChange(filter) {
+		this.resetEventChunk();
 		this.setState(
 			{
 				filter: filter,
@@ -191,7 +226,10 @@ class DetailView extends ConnectionComponent {
 					{this.getFilterBar()}
 					<EventTabs
 						eventTypes={eventTypes}
-						onEventTypeChange={this.handleEventTypeChange}
+						onEventTypeChange={(eventTypes) => {
+							this.resetEventChunk();
+							this.handleEventTypeChange(eventTypes);
+						}}
 						styles={[AppStyles.elementMarginTop]}/>
 					{this.getEventTable()}
 				</Container>
@@ -224,11 +262,11 @@ export default ConnectionComponent.argosConnector()(props => {
 		lazyAttributeLoading: eventTypeId => ({
 			eventTypeAttributes: config.backendRESTRoute + `/eventtype/${eventTypeId}/attributes`,
 		}),
-		lazyEventLoading: (eventTypeId, eventHandler, includeChildren) => ({
+		lazyEventLoading: (eventTypeId, eventHandler, includeChildren, chunk) => ({
 			events: {
 				url: config.backendRESTRoute
 				+ `/entity/${props.match.params.entityId}/eventtype/${eventTypeId}
-						/events/${includeChildren.toString()}/0/10000`,
+						/events/${includeChildren.toString()}/${chunk[0]}/${chunk[1]}`,
 				force: true,
 				refreshing: true,
 				then: events => eventHandler(events),
