@@ -67,10 +67,14 @@ class CreateEntityMappingView extends ConnectionComponent {
 					EntityTypeAttributeId: mappingStatement.entityTypeAttribute.value
 				});
 			});
+			let targetStatus = this.state.targetStatus;
+			if (targetStatus === "None") {
+				targetStatus = "";
+			}
 			this.props.createEntityMapping({
 				EventTypeId: this.state.selectedEventTypeId.value,
 				EntityTypeId: this.state.selectedEntityTypeId.value,
-				TargetStatus: this.state.targetStatus,
+				TargetStatus: targetStatus,
 				EventEntityMappingConditions: entityMappingConditions
 			});
 		}
@@ -294,7 +298,10 @@ class CreateEntityMappingView extends ConnectionComponent {
 												value={status.name}
 												primaryText={status.name}/>;
                                         }
-                                        return <div key={key}/>;
+                                        return <MenuItem
+		                                        value={"None"}
+		                                        primaryText={"None"}
+		                                        key={key}/>;
 									})}
 								</SelectField>
 							</Col>
