@@ -22,7 +22,8 @@ class SettingsView extends ConnectionComponent {
 		this.state = {
 			searchText: '',
 			snackbarOpen: false,
-			snackbarMessage: ''
+			snackbarMessage: '',
+			snackbarMode: ''
 		};
 		this.handleSearchInput = this.handleSearchInput.bind(this);
 		this.searchMatches = this.searchMatches.bind(this);
@@ -35,10 +36,11 @@ class SettingsView extends ConnectionComponent {
 		});
 	}
 
-	handleSnackbarMessage(message) {
+	handleSnackbarMessage(message, mode) {
 		this.setState({
 			snackbarOpen: true,
-			snackbarMessage: message
+			snackbarMessage: message,
+			snackbarMode: mode
 		});
 	}
 
@@ -59,7 +61,6 @@ class SettingsView extends ConnectionComponent {
 		return (
 			<div>
 				<Header title="Settings"/>
-				<Snackbar open={this.state.snackbarOpen} message={this.state.snackbarMessage}/>
 				<Container className={css(AppStyles.elementMarginTop)}>
 					<Row>
 						<Card
@@ -100,6 +101,7 @@ class SettingsView extends ConnectionComponent {
 						</Card>
 					</Row>
 				</Container>
+				<Notification open={this.state.snackbarOpen} message={this.state.snackbarMessage} mode={this.state.snackbarMode}/>
 			</div>
 		);
 	}
