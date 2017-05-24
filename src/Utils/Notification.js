@@ -4,6 +4,7 @@ import IconError from "material-ui/svg-icons/alert/error-outline";
 import IconSuccess from "material-ui/svg-icons/navigation/check";
 import {css} from 'aphrodite';
 import AppStyles from "./../AppStyles";
+import config from "./../config/config"
 
 class ConfirmationMessage extends Component {
 	
@@ -13,9 +14,11 @@ class ConfirmationMessage extends Component {
 
 	getColorForMode() {
 		if (this.props.mode === "error") {
-			return "#f44336";
+			return config.colors.error;
 		} else if (this.props.mode === "success") {
-			return "#8BC34A";
+			return config.colors.error;
+		} else {
+			return config.colors.accent;
 		}
 	}
 

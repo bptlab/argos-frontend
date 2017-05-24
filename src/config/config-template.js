@@ -18,6 +18,7 @@ const config = {
 		border: "#e0e0e0",
 		toggleOff: '#9E9E9E',
 		error: "#B71C1C",
+		success: "#558B2F"
 	},
 	descriptions: {
 		textNumberOfEvents: "Number of events",
