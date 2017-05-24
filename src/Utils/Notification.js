@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import Snackbar from 'material-ui/Snackbar';
+import IconError from "material-ui/svg-icons/alert/error-outline";
+import IconSuccess from "material-ui/svg-icons/navigation/check";
+import {css} from 'aphrodite';
+import AppStyles from "./../AppStyles";
 
 class ConfirmationMessage extends Component {
 	
@@ -15,11 +19,19 @@ class ConfirmationMessage extends Component {
 		}
 	}
 
+	getIconForMode() {
+		if (this.props.mode === "error") {
+			return <IconError className={css(AppStyles.verticalAlignMarginRight, AppStyles.colorWhite)}/>;
+		} else if (this.props.mode === "success") {
+			return <IconSuccess className={css(AppStyles.verticalAlignMarginRight, AppStyles.colorWhite)}/>;
+		}
+	}
+
 	render() {
 		return (
 			<Snackbar
 				open={this.props.open}
-				message={this.props.message}
+				message={<span className={css(AppStyles.displayTable)}>{this.getIconForMode()}{this.props.message} </span>}
 				autoHideDuration="5000"
 				bodyStyle={{backgroundColor: this.getColorForMode()}}/>);
 	}
