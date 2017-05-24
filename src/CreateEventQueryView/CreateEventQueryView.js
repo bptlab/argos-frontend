@@ -116,7 +116,9 @@ class CreateEventQueryView extends ConnectionComponent {
 	}
 
 	static displayOptionalErrorMessage(optionalActions) {
-		return optionalActions && optionalActions.rejected && <ErrorMessage message={optionalActions.reason} />;
+		if (optionalActions && optionalActions.rejected) {
+			return <ErrorMessage message={optionalActions.reason}/>;
+		}
 	}
 
 	getAbortButton() {
