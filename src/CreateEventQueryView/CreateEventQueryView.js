@@ -136,10 +136,11 @@ class CreateEventQueryView extends ConnectionComponent {
 	 * @param attributes - attributes of the event type
 	 * @param queryInputChangeHandler - handler that is called when the query input field is changed
 	 * @param submitFormHandler - handler that is called on submit of the form
+	 * @param optionalActions - optional actions to evaluate
 	 * @param eventQuery (optional) - used to fill default values in edit view
 	 * @returns {XML}
 	 */
-	getComponentBody(attributes, queryInputChangeHandler, submitFormHandler, eventQuery) {
+	getComponentBody(attributes, queryInputChangeHandler, submitFormHandler, optionalActions, eventQuery) {
 		return (
 			<div className={AppStyles.elementMarginTop}>
 				<Container>
@@ -148,7 +149,7 @@ class CreateEventQueryView extends ConnectionComponent {
 							<EventTypeInformation attributes={attributes}/>
 						</Col>
 						<Col md={8}>
-							{CreateEventQueryView.displayOptionalErrorMessage()}
+							{CreateEventQueryView.displayOptionalErrorMessage(optionalActions)}
 							<EventQueryInputArea
 								handleQueryInputChange={queryInputChangeHandler}
 								queryErrorMessage={this.state.queryErrorMessage}
@@ -193,7 +194,7 @@ class CreateEventQueryView extends ConnectionComponent {
 		return (
 			<div>
 				<Header title={"Create Event Query for " + eventType.Name}/>
-				{this.getComponentBody(attributes, this.handleCreateQueryInput, this.submitNewQuery)}
+				{this.getComponentBody(attributes, this.handleCreateQueryInput, this.submitNewQuery, optionalActions)}
 			</div>
 		);
 	}
@@ -231,7 +232,10 @@ class CreateEventQueryView extends ConnectionComponent {
 		return (
 			<div>
 				<Header title={"Edit Event Query for " + eventType.Name}/>
-				{this.getComponentBody(attributes, this.handleEditQueryInput, this.submitUpdatedQuery, this.props.eventQuery.value)}
+				{this.getComponentBody(
+					attributes, this.handleEditQueryInput,
+					this.submitUpdatedQuery, optionalActions, this.props.eventQuery.value
+				)}
 			</div>
 		);
 	}
