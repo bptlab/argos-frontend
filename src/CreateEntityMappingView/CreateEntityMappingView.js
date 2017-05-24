@@ -14,6 +14,7 @@ import ErrorMessage from './../Utils/ErrorMessage.js';
 
 import config from "../config/config";
 import AppStyles from "../AppStyles";
+import LoadingAnimation from "../Utils/LoadingAnimation";
 
 class CreateEntityMappingView extends ConnectionComponent {
 	constructor(props) {
@@ -24,13 +25,17 @@ class CreateEntityMappingView extends ConnectionComponent {
 			selectedEntityTypeId: {value: null, errorMessage: ""},
 			mappings: CreateEntityMappingView.getDefaultMappings()
 		};
+		this.isCreateView = typeof this.props.match.params.entityMappingId === 'undefined';
+		this.oldValuesWereLoaded = false;
+		this.oldValuesShouldBeLoaded = false;
 		this.handleEventTypeChange = this.handleEventTypeChange.bind(this);
 		this.handleEntityTypeChange = this.handleEntityTypeChange.bind(this);
 		this.handleAddNewMappingCondition = this.handleAddNewMappingCondition.bind(this);
 		this.handleEventTypeAttributeChange = this.handleEventTypeAttributeChange.bind(this);
 		this.handleEntityTypeAttributeChange = this.handleEntityTypeAttributeChange.bind(this);
         this.handleTargetStatusChange = this.handleTargetStatusChange.bind(this);
-        this.submitMapping = this.submitMapping.bind(this);
+        this.submitNewMapping = this.submitNewMapping.bind(this);
+		this.entityMappingPending = this.entityMappingPending.bind(this);
 	}
 
 	static getDefaultMappings() {
@@ -51,6 +56,16 @@ class CreateEntityMappingView extends ConnectionComponent {
 	}
 
     componentDidUpdate(prevProps, prevState) {
+		if (!this.isCreateView && !this.oldValuesWereLoaded && this.oldValuesShouldBeLoaded) {
+			const entityMapping = this.props.entityMapping;
+			console.log(entityMapping);
+			if (entityMapping.value) {
+				const targetStatus = entityMapping.value.targetStatus;
+				this.handleTargetStatusChange(targetStatus);
+			}
+			this.oldValuesWereLoaded = true;
+		}
+
         if(prevState.selectedEventTypeId.value !== this.state.selectedEventTypeId.value) {
             this.props.lazyEventTypeAttributeLoading(this.state.selectedEventTypeId.value);
         }
@@ -59,7 +74,7 @@ class CreateEntityMappingView extends ConnectionComponent {
         }
     }
     
-    submitMapping() {
+    submitNewMapping() {
 		if(this.isValidInput()) {
 			const  entityMappingConditions = this.state.mappings.map((mappingStatement) => {
 				return ({
@@ -84,7 +99,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		window.history.back();
 	}
 
-	transformHierarchy(hierarchy) {
+	static transformHierarchy(hierarchy) {
 		//takes hierarchy and returns a list of all entities in this hierarchy ordered by name
 		if (hierarchy) {
 			let allEntities = [];
@@ -256,7 +271,96 @@ class CreateEntityMappingView extends ConnectionComponent {
 			</div>);
 	}
 
+	// is called to load the existing entity mapping in the edit view
+	entityMappingPending() {
+		if (!this.props.entityMapping) {
+			return <LoadingAnimation/>;
+		}
+		const entityMappingConnection = super.render(this.props.entityMapping);
+		if (entityMappingConnection) {
+			return entityMappingConnection;
+		}
+		if (!this.props.entityMapping.value) {
+			return <LoadingAnimation/>;
+		}
+		return null;
+	}
+
+	componentWillMount() {
+		if (!this.isCreateView) {
+			this.props.lazyLoadEntityMapping();
+		}
+	}
+
 	render() {
+		if (!this.isCreateView) {
+			return this.renderEditView();
+		}
+		return this.renderCreateView();
+	}
+
+	renderEditView() {
+		const entityMappingPending = this.entityMappingPending();
+		if (entityMappingPending) {
+			return entityMappingPending;
+		}
+		const allFetches = PromiseState.all([this.props.eventTypes, this.props.entityTypeHierarchy]);
+		const eventTypes = this.props.eventTypes.value;
+		const entityTypes = CreateEntityMappingView.transformHierarchy(this.props.entityTypeHierarchy.value);
+		const connectionIncomplete = super.render(allFetches);
+		if (connectionIncomplete) {
+			return connectionIncomplete;
+		}
+		return (
+			<div>
+				<Header title={"Edit Entity Mapping"}/>
+				<div className={AppStyles.elementMarginTop}>
+					<Container>
+						<Row>
+							<Col md={12}>
+								<SelectField
+									value={this.state.targetStatus}
+									onChange={this.handleTargetStatusChange}
+									floatingLabelText={"Target Status, leave empty if no status update is required"}
+									fullWidth={true}>
+									{config.statuses.map((status, key) => {
+										if (status.name !== "UNDEFINED") {
+											return <MenuItem
+												key={key}
+												value={status.name}
+												primaryText={status.name}/>;
+										}
+										return <MenuItem
+											value={"None"}
+											primaryText={"None"}
+											key={key}/>;
+									})}
+								</SelectField>
+							</Col>
+						</Row>
+						<div className={css(AppStyles.textAlignCenter)}>
+							<RaisedButton
+								label="Abort"
+								icon={<IconCancel/>}
+								className={css(AppStyles.marginAllSites)}
+								secondary={true}
+								onTouchTap={this.abort}
+							/>
+							<RaisedButton
+								label="Save"
+								icon={<IconSave/>}
+								onTouchTap={this.submitNewMapping}
+								className={css(AppStyles.marginAllSites)}
+								primary={true}
+							/>
+						</div>
+					</Container>
+				</div>
+			</div>
+		);
+	}
+
+	renderCreateView() {
 		const allFetches = PromiseState.all([this.props.eventTypes, this.props.entityTypeHierarchy]);
 		const eventTypes = this.props.eventTypes.value;
 		const optionalActions = this.props.createEntityMappingResponse;
@@ -264,7 +368,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 			window.history.back();
 			return null;
 		}
-		const entityTypes = this.transformHierarchy(this.props.entityTypeHierarchy.value);
+		const entityTypes = CreateEntityMappingView.transformHierarchy(this.props.entityTypeHierarchy.value);
 		const connectionIncomplete = super.render(allFetches);
 		if (connectionIncomplete) {
 			return connectionIncomplete;
@@ -344,7 +448,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 							<RaisedButton
 								label="Save"
 								icon={<IconSave/>}
-								onTouchTap={this.submitMapping}
+								onTouchTap={this.submitNewMapping}
 								className={css(AppStyles.marginAllSites)}
 								primary={true}
 							/>
@@ -356,7 +460,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 	}
 }
 
-export default ConnectionComponent.argosConnector()(() => ({
+export default ConnectionComponent.argosConnector()((props) => ({
 	eventTypes: config.backendRESTRoute + `/eventtypes`,
 	entityTypeHierarchy: config.backendRESTRoute + `/entitytype/hierarchy`,
 	lazyEventTypeAttributeLoading: eventTypeId => ({
@@ -364,6 +468,9 @@ export default ConnectionComponent.argosConnector()(() => ({
 	}),
 	lazyEntityTypeAttributeLoading: entityTypeId => ({
 		entityTypeAttributes: config.backendRESTRoute + `/entitytype/${entityTypeId}/attributes`
+	}),
+	lazyLoadEntityMapping: () => ({
+		entityMapping: config.backendRESTRoute + `/entitymapping/${props.match.params.entityMappingId}`
 	}),
 	createEntityMapping: (body) => ({
 		createEntityMappingResponse: {
