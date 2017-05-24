@@ -81,6 +81,10 @@ const availableRoutes = new Map()
 	.set(/^entitymapping\/(-?\d+)$/i, {
 		mockFunction: BackendMock.loadEntityMappingById,
 		isCachable: false
+	})
+	.set(/^entitymapping\/(-?\d+)\/edit$/i, {
+		mockFunction: BackendMock.updateEntityMapping,
+		isCachable: false
 	});
 
 class RestRoutesManager {

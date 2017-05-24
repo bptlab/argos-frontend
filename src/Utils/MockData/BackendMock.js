@@ -41,6 +41,10 @@ class BackendMock {
 		return "Success";
 	}
 
+	static updateEntityMapping() {
+		return "Success";
+	}
+
 	static getQueriesOfEventType() {
 		return Query;
 	}
@@ -136,11 +140,18 @@ class BackendMock {
 
 
 	static loadEntityMappingById(params) {
-		EntityMapping.find((entity) => {
-			return entity.EntityMappings.find((entityMapping) => {
-				return entityMapping.Id === parseInt(params[1], 10);
+		let desiredEntityMapping;
+		EntityMapping.forEach((entity) => {
+			return entity.EntityMappings.forEach((entityMapping) => {
+				if (entityMapping.Id === parseInt(params[1], 10)) {
+					desiredEntityMapping = entityMapping;
+				}
 			});
 		});
+		if (desiredEntityMapping) {
+			return desiredEntityMapping;
+		}
+		return {};
 	}
 }
 export default BackendMock;

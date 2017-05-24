@@ -35,6 +35,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		this.handleEntityTypeAttributeChange = this.handleEntityTypeAttributeChange.bind(this);
         this.handleTargetStatusChange = this.handleTargetStatusChange.bind(this);
         this.submitNewMapping = this.submitNewMapping.bind(this);
+		this.submitUpdatedMappping = this.submitUpdatedMappping.bind(this);
 		this.entityMappingPending = this.entityMappingPending.bind(this);
 	}
 
@@ -43,6 +44,22 @@ class CreateEntityMappingView extends ConnectionComponent {
 			eventTypeAttribute: {value: null, errorMessage: ""},
 			entityTypeAttribute: {value: null, errorMessage: ""}
 		}];
+	}
+
+	static getLoadedStateFromResponse(entityMapping) {
+		let mappings = [];
+		entityMapping.EventEntityMappingConditions.forEach(mappingCondition => {
+			mappings.push({
+				eventTypeAttribute: {value: mappingCondition.EventTypeAttributeId, errorMessage: ""},
+				entityTypeAttribute: {value: mappingCondition.EntityTypeAttributeId, errorMessage: ""}
+			});
+		});
+		return {
+			targetStatus: entityMapping.TargetStatus,
+			selectedEventTypeId: {value: entityMapping.EventTypeId},
+			selectedEntityTypeId: {value: entityMapping.EntityTypeId},
+			mappings: mappings
+		};
 	}
 
 	static getMenuItems(items) {
@@ -57,12 +74,10 @@ class CreateEntityMappingView extends ConnectionComponent {
 
     componentDidUpdate(prevProps, prevState) {
 		if (!this.isCreateView && !this.oldValuesWereLoaded && this.oldValuesShouldBeLoaded) {
-			const entityMapping = this.props.entityMapping;
-			console.log(entityMapping);
-			if (entityMapping.value) {
-				const targetStatus = entityMapping.value.targetStatus;
-				this.handleTargetStatusChange(targetStatus);
-			}
+			const entityMapping = this.props.entityMapping.value;
+			this.setState(CreateEntityMappingView.getLoadedStateFromResponse(entityMapping));
+			this.props.lazyEventTypeAttributeLoading(entityMapping.EventTypeId);
+			this.props.lazyEntityTypeAttributeLoading(entityMapping.EntityTypeId);
 			this.oldValuesWereLoaded = true;
 		}
 
@@ -76,7 +91,7 @@ class CreateEntityMappingView extends ConnectionComponent {
     
     submitNewMapping() {
 		if(this.isValidInput()) {
-			const  entityMappingConditions = this.state.mappings.map((mappingStatement) => {
+			const entityMappingConditions = this.state.mappings.map((mappingStatement) => {
 				return ({
 					EventTypeAttributeId: mappingStatement.eventTypeAttribute.value,
 					EntityTypeAttributeId: mappingStatement.entityTypeAttribute.value
@@ -87,6 +102,27 @@ class CreateEntityMappingView extends ConnectionComponent {
 				targetStatus = "";
 			}
 			this.props.createEntityMapping({
+				EventTypeId: this.state.selectedEventTypeId.value,
+				EntityTypeId: this.state.selectedEntityTypeId.value,
+				TargetStatus: targetStatus,
+				EventEntityMappingConditions: entityMappingConditions
+			});
+		}
+	}
+
+	submitUpdatedMappping() {
+		if(this.isValidInput()) {
+			const entityMappingConditions = this.state.mappings.map((mappingStatement) => {
+				return ({
+					EventTypeAttributeId: mappingStatement.eventTypeAttribute.value,
+					EntityTypeAttributeId: mappingStatement.entityTypeAttribute.value
+				});
+			});
+			let targetStatus = this.state.targetStatus;
+			if (targetStatus === "None") {
+				targetStatus = "";
+			}
+			this.props.updateEntityMapping({
 				EventTypeId: this.state.selectedEventTypeId.value,
 				EntityTypeId: this.state.selectedEntityTypeId.value,
 				TargetStatus: targetStatus,
@@ -195,13 +231,13 @@ class CreateEntityMappingView extends ConnectionComponent {
 
 	isValidInput() {
 		let isValid = true;
-		if(!this.state.selectedEntityTypeId.value) {
+		if(this.state.selectedEntityTypeId.value === null) {
 			this.setState({
 				selectedEntityTypeId: {value: null, errorMessage: config.messages.requiredFieldMessage}
 			});
 			isValid = false;
         }
-        if (!this.state.selectedEventTypeId.value) {
+        if (this.state.selectedEventTypeId.value === null) {
             this.setState({
                 selectedEventTypeId: {value: null, errorMessage: config.messages.requiredFieldMessage}
             });
@@ -300,6 +336,11 @@ class CreateEntityMappingView extends ConnectionComponent {
 	}
 
 	renderEditView() {
+		const optionalActions = this.props.createEntityMappingResponse;
+		if(optionalActions && optionalActions.fulfilled) {
+			window.history.back();
+			return null;
+		}
 		const entityMappingPending = this.entityMappingPending();
 		if (entityMappingPending) {
 			return entityMappingPending;
@@ -311,11 +352,19 @@ class CreateEntityMappingView extends ConnectionComponent {
 		if (connectionIncomplete) {
 			return connectionIncomplete;
 		}
+		let attributeFields = "";
+		if (this.props.eventTypeAttributes && this.props.entityTypeAttributes
+			&& this.props.eventTypeAttributes.fulfilled && this.props.entityTypeAttributes.fulfilled) {
+			attributeFields = this.loadAttributes();
+		}
 		return (
-			<div>
+			<div ref={() => {this.oldValuesShouldBeLoaded = true;}}>
 				<Header title={"Edit Entity Mapping"}/>
 				<div className={AppStyles.elementMarginTop}>
 					<Container>
+						{optionalActions && optionalActions.rejected &&
+							<ErrorMessage message={optionalActions.reason} />
+						}
 						<Row>
 							<Col md={12}>
 								<SelectField
@@ -338,6 +387,29 @@ class CreateEntityMappingView extends ConnectionComponent {
 								</SelectField>
 							</Col>
 						</Row>
+						<Row>
+							<Col md={6}>
+								<SelectField
+									value={this.state.selectedEventTypeId.value}
+									errorText={this.state.selectedEventTypeId.errorMessage}
+									onChange={this.handleEventTypeChange}
+									floatingLabelText="Select Event Type"
+									fullWidth={true}>
+									{CreateEntityMappingView.getMenuItems(eventTypes)}
+								</SelectField>
+							</Col>
+							<Col md={6}>
+								<SelectField
+									value={this.state.selectedEntityTypeId.value}
+									errorText={this.state.selectedEntityTypeId.errorMessage}
+									onChange={this.handleEntityTypeChange}
+									floatingLabelText="Select Entity Type"
+									fullWidth={true}>
+									{CreateEntityMappingView.getMenuItems(entityTypes)}
+								</SelectField>
+							</Col>
+						</Row>
+						{attributeFields}
 						<div className={css(AppStyles.textAlignCenter)}>
 							<RaisedButton
 								label="Abort"
@@ -349,7 +421,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 							<RaisedButton
 								label="Save"
 								icon={<IconSave/>}
-								onTouchTap={this.submitNewMapping}
+								onTouchTap={this.submitUpdatedMappping}
 								className={css(AppStyles.marginAllSites)}
 								primary={true}
 							/>
@@ -476,6 +548,13 @@ export default ConnectionComponent.argosConnector()((props) => ({
 		createEntityMappingResponse: {
 			url: config.backendRESTRoute + `/entitymapping/create`,
 			method: 'POST',
+			body: JSON.stringify(body)
+		}
+	}),
+	updateEntityMapping: (body) => ({
+		updateEntityMappingResponse: {
+			url: config.backendRESTRoute + `/entitymapping/${props.match.params.entityMappingId}/edit`,
+			method: 'PUT',
 			body: JSON.stringify(body)
 		}
 	})
