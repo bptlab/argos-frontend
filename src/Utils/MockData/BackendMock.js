@@ -134,5 +134,13 @@ class BackendMock {
         });
 	}
 
+
+	static loadEntityMappingById(params) {
+		EntityMapping.find((entity) => {
+			return entity.EntityMappings.find((entityMapping) => {
+				return entityMapping.Id === parseInt(params[1], 10);
+			});
+		});
+	}
 }
 export default BackendMock;

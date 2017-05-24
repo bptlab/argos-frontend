@@ -77,6 +77,10 @@ const availableRoutes = new Map()
 	.set(/^eventquery\/(-?\d+)\/edit$/i, {
 		mockFunction: BackendMock.updateEventQuery,
 		isCachable: false
+	})
+	.set(/^entitymapping\/(-?\d+)$/i, {
+		mockFunction: BackendMock.loadEntityMappingById,
+		isCachable: false
 	});
 
 class RestRoutesManager {
