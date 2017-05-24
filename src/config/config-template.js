@@ -38,6 +38,9 @@ const config = {
 		deleteQueryMessage: "Do you really want to delete this Query?",
 		deleteEventTypeMessage: "Do you really want to delete this EventType?",
 		deleteEntityMappingMessage: "Do you really want to delete this EntityMapping?",
+		deletedQueryMessage: "Deleted event query.",
+		deletedEventTypeMessage: "Deleted event type.",
+		deletedEntityMappingMessage: "Deleted event entity mapping.",
 		requiredFieldMessage: 'Please fill out this field'
 	},
 	statuses: [

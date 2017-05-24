@@ -112,7 +112,7 @@ class EventType extends ConnectionComponent {
 					actionToPerform={this.handleEventTypeDeletion}
 					ref={(input) => {this.confirmationMessage = input;}}
 					onSnackbarMessage={this.props.onSnackbarMessage}
-					message="Event type deleted.">
+					message={config.messages.deletedEventTypeMessage}>
 					{config.messages.deleteEventTypeMessage}
 				</ConfirmationMessage>
 				<Card
