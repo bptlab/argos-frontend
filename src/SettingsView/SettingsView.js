@@ -11,6 +11,7 @@ import {Card, CardActions, CardHeader, CardText} from "material-ui/Card";
 import IconButton from "material-ui/IconButton";
 import IconAdd from "material-ui/svg-icons/content/add";
 import ErrorMessage from "./../Utils/ErrorMessage.js";
+import Snackbar from "material-ui/Snackbar"
 import config from "./../config/config";
 import help from "./../config/help";
 
@@ -19,15 +20,25 @@ class SettingsView extends ConnectionComponent {
 	constructor() {
 		super();
 		this.state = {
-			searchText: ''
+			searchText: '',
+			snackbarOpen: false,
+			snackbarMessage: ''
 		};
 		this.handleSearchInput = this.handleSearchInput.bind(this);
 		this.searchMatches = this.searchMatches.bind(this);
+		this.handleSnackbarMessage = this.handleSnackbarMessage.bind(this);
 	}
 
 	handleSearchInput(value) {
 		this.setState({
 			searchText: value
+		});
+	}
+
+	handleSnackbarMessage(message) {
+		this.setState({
+			snackbarOpen: true,
+			snackbarMessage: message
 		});
 	}
 
@@ -48,6 +59,7 @@ class SettingsView extends ConnectionComponent {
 		return (
 			<div>
 				<Header title="Settings"/>
+				<Snackbar open={this.state.snackbarOpen} message={this.state.snackbarMessage}/>
 				<Container className={css(AppStyles.elementMarginTop)}>
 					<Row>
 						<Card
