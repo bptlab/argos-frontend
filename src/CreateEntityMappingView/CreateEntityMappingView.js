@@ -336,7 +336,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 	}
 
 	renderEditView() {
-		const optionalActions = this.props.createEntityMappingResponse;
+		const optionalActions = this.props.updateEntityMappingResponse;
 		if(optionalActions && optionalActions.fulfilled) {
 			window.history.back();
 			return null;
