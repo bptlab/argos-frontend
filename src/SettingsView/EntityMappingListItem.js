@@ -69,7 +69,9 @@ class EntityMappingListItem extends ConnectionComponent {
 						</IconButton>
 						<ConfirmationMessage
 							actionToPerform={this.deleteMapping}
-							ref={(input) => {this.confirmationMessage = input;}}>
+							ref={(input) => {this.confirmationMessage = input;}}
+							onSnackbarMessage={this.props.onSnackbarMessage}
+							message="Event entity mapping deleted.">
                             {config.messages.deleteEntityMappingMessage}
 						</ConfirmationMessage>
 						<IconButton

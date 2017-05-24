@@ -81,7 +81,8 @@ class SettingsView extends ConnectionComponent {
 											return (<EventTypeCard
 												eventType={eventType}
 												key={eventType.Id}
-												deleteEventType={this.props.deleteEventType}/>);
+												deleteEventType={this.props.deleteEventType}
+												onSnackbarMessage={this.handleSnackbarMessage}/>);
 										} else {
 											return false;
 										}

@@ -51,7 +51,8 @@ class EventType extends ConnectionComponent {
 			<IconButton
 				tooltip={"Delete event type \"" + this.props.eventType.Name + "\""}
 				key="delete-button"
-				onTouchTap={() => {this.confirmationMessage.handleOpen();}}>
+				onTouchTap={() => {
+					this.confirmationMessage.handleOpen();}}>
 				<IconDelete/>
 			</IconButton>];
 	}
@@ -75,7 +76,8 @@ class EventType extends ConnectionComponent {
 								mapping={mapping}
 								deleteMapping={this.props.deleteMapping}
 								eventType={this.props.eventType}
-								eventTypeAttributes={attributes}/>
+								eventTypeAttributes={attributes}
+								onSnackbarMessage={this.props.onSnackbarMessage}/>
                         );
                     })}
 				</List>
@@ -108,7 +110,9 @@ class EventType extends ConnectionComponent {
 				}
 				<ConfirmationMessage
 					actionToPerform={this.handleEventTypeDeletion}
-					ref={(input) => {this.confirmationMessage = input;}}>
+					ref={(input) => {this.confirmationMessage = input;}}
+					onSnackbarMessage={this.props.onSnackbarMessage}
+					message="Event type deleted.">
 					{config.messages.deleteEventTypeMessage}
 				</ConfirmationMessage>
 				<Card
@@ -145,7 +149,8 @@ class EventType extends ConnectionComponent {
 												eventType={this.props.eventType}
 												query={query}
 												deleteQuery={this.props.deleteQuery}
-												key={query.Id}/>);
+												key={query.Id}
+												onSnackbarMessage={this.props.onSnackbarMessage}/>);
 										}
 									)}
 								</List>

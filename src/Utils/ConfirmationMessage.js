@@ -29,6 +29,7 @@ class ConfirmationMessage extends Component {
 	handleSubmit() {
 		this.props.actionToPerform();
 		this.handleClose();
+		this.props.onSnackbarMessage(this.props.message);
 	}
 
 	render() {
