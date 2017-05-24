@@ -8,9 +8,9 @@ import IconCancel from "material-ui/svg-icons/navigation/cancel";
 import Header from "./../Header";
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
-import config from "../config/config.js";
+import config from '../config/config.js';
 import help from "../config/help";
-import ErrorMessage from "../Utils/ErrorMessage.js";
+import Notification from '../Utils/Notification';
 
 
 class CreateEventTypeView extends ConnectionComponent {
@@ -115,7 +115,7 @@ class CreateEventTypeView extends ConnectionComponent {
 				<Header title="Create New Event Type"/>
 				<Container>
 					{optionalActions && optionalActions.rejected &&
-						<ErrorMessage message={optionalActions.reason} />
+						<Notification open={true} message={optionalActions.reason} mode="error"/>
 					}
 					<form>
 						<div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>

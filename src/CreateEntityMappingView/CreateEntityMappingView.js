@@ -9,8 +9,8 @@ import IconAdd from "material-ui/svg-icons/content/add";
 import IconDelete from "material-ui/svg-icons/action/delete";
 import Header from './../Header';
 import {css} from 'aphrodite';
+import Notification from './../Utils/Notification';
 import help from './../config/help';
-import ErrorMessage from './../Utils/ErrorMessage.js';
 import config from "../config/config";
 import AppStyles from "../AppStyles";
 

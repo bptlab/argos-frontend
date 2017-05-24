@@ -32,7 +32,7 @@ class ConfirmationMessage extends Component {
 			<Snackbar
 				open={this.props.open}
 				message={<span className={css(AppStyles.displayTable)}>{this.getIconForMode()}{this.props.message} </span>}
-				autoHideDuration="5000"
+				autoHideDuration={5000}
 				bodyStyle={{backgroundColor: this.getColorForMode()}}/>);
 	}
 }
