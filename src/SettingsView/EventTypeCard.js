@@ -9,7 +9,6 @@ import help from "./../config/help";
 import { Col, Container } from 'react-grid-system';
 import { PromiseState } from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
-import ErrorMessage from './../Utils/ErrorMessage.js';
 import IconButton from 'material-ui/IconButton';
 import IconAdd from 'material-ui/svg-icons/content/add';
 import IconDelete from 'material-ui/svg-icons/action/delete';
@@ -106,7 +105,7 @@ class EventType extends ConnectionComponent {
 		return (
 			<div>
 				{optionalActions && optionalActions.rejected &&
-					<ErrorMessage message={optionalActions.reason} />
+					<Notification open={open} message={optionalActions.reason} mode="error" />
 				}
 				<ConfirmationMessage
 					actionToPerform={this.handleEventTypeDeletion}

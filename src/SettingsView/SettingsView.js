@@ -75,7 +75,7 @@ class SettingsView extends ConnectionComponent {
 								<Container>
 									<SearchBar onInputChange={this.handleSearchInput}/>
 									{optionalActions && optionalActions.rejected &&
-										<ErrorMessage message={optionalActions.reason}/>
+										<Notification open={true} message={optionalActions.reason} mode="error"/>
 									}
 									{this.props.eventTypes.value.map((eventType) => {
 										if (this.searchMatches(eventType)) {
