@@ -157,8 +157,8 @@ class Utils {
 	/**
 	 * Checks whether a value is contained within another value and operates case insensitive.
 	 * @example
-	 *      will match:  ("ABCD", "bc"), ("ABCD", "Ab"), ("ABCD", "bCd"), ("ABCD", "abcd")
-	 *      won't match: ("ABCD", "bbcd"), ("ABCD", "yabc")
+	 *	  will match:  ("ABCD", "bc"), ("ABCD", "Ab"), ("ABCD", "bCd"), ("ABCD", "abcd")
+	 *	  won't match: ("ABCD", "bbcd"), ("ABCD", "yabc")
 	 * @param baseValue
 	 * @param subValue
 	 * @returns {boolean}
@@ -167,7 +167,27 @@ class Utils {
 		return (baseValue.toString().toLowerCase().indexOf(subValue.toString().toLowerCase()) > -1);
 	}
 
+	/**
+	 * Splits a string at a a substring and returns the part after the substring (case-insensitive)
+	 * @param string
+	 * @param subString
+	 * @returns {ArrayBuffer|Blob|Array.<T>|*}
+	 */
+	static splitStringAfterSubString(string, subString) {
+		const indexOfSubStringClause = string.toString().toLowerCase().indexOf(subString.toString().toLowerCase());
+		return string.slice(indexOfSubStringClause + subString.length);
+	}
 
+	/**
+	 * Splits a string at a a substring and returns the part before the substring (case-insensitive)
+	 * @param string
+	 * @param subString
+	 * @returns {ArrayBuffer|Blob|Array.<T>|*}
+	 */
+	static splitStringBeforeSubString(string, subString) {
+		const indexOfSubStringClause = string.toString().toLowerCase().indexOf(subString.toString().toLowerCase());
+		return string.slice(0, indexOfSubStringClause);
+	}
 }
 
 export default Utils;

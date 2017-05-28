@@ -12,7 +12,7 @@ import IconButton from 'material-ui/IconButton';
 import IconAdd from 'material-ui/svg-icons/content/add';
 import IconDelete from 'material-ui/svg-icons/action/delete';
 import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
-import ConfirmationMessage from './../Utils/ConfirmationMessage.js'
+import ConfirmationMessage from './../Utils/ConfirmationMessage.js';
 
 class EventType extends ConnectionComponent {
 
@@ -131,6 +131,7 @@ class EventType extends ConnectionComponent {
 									{queries.map((query) => {
 										return(
 											<EventQueryListItem
+												eventType={this.props.eventType}
 												query={query}
 												deleteQuery={this.props.deleteQuery}
 												key={query.Id}/>);
