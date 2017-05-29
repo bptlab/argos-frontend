@@ -104,7 +104,10 @@ class SettingsView extends ConnectionComponent {
 						</Card>
 					</Row>
 				</Container>
-				<Notification open={this.state.snackbarOpen} message={this.state.snackbarMessage} mode={this.state.snackbarMode}/>
+				<Notification
+					open={this.state.snackbarOpen}
+					message={this.state.snackbarMessage}
+					mode={this.state.snackbarMode}/>
 			</div>
 		);
 	}
