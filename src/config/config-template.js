@@ -42,6 +42,12 @@ const config = {
 		deletedQueryMessage: "Deleted event query.",
 		deletedEventTypeMessage: "Deleted event type.",
 		deletedEntityMappingMessage: "Deleted event entity mapping.",
+		createdQueryMessage: "Submitted event query.",
+		createdEventTypeMessage: "Submitted event type.",
+		createdEntityMappingMessage: "Submitted entity mapping",
+		updatedQueryMessage: "Updated event query.",
+		updatedEventTypeMessage: "Updated event type.",
+		updatedEntityMappingMessage: "Updated entity mapping",
 		requiredFieldMessage: 'Please fill out this field'
 	},
 	statuses: [
@@ -62,6 +68,7 @@ const config = {
 		},
 	],
 	eventTableChunkSize: 50,
+	notificationDisplayDuration: 5000,
 };
 
 export default config;

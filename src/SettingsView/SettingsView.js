@@ -19,22 +19,17 @@ class SettingsView extends ConnectionComponent {
 
 	constructor() {
 		super();
-		if(!window.sessionStorage.getItem('notificationMessage')) {
-			this.state = {
-				searchText: '',
-				snackbarOpen: false,
-				snackbarMessage: '',
-				snackbarMode: {}
-			};
-		} else {
-			const notificationMessage = JSON.parse(window.sessionStorage.getItem('notificationMessage'));
-			this.state = {
-				searchText: '',
-				snackbarOpen: true,
-				snackbarMessage: notificationMessage.message,
-				snackbarMode: notificationMessage.mode
-			};
+		let notificationMessage;
+		if(window.sessionStorage.getItem('notificationMessage')) {
+			notificationMessage = JSON.parse(window.sessionStorage.getItem('notificationMessage'));
 		}
+		this.state = {
+			searchText: '',
+			snackbarOpen: !!notificationMessage,
+			snackbarMessage: notificationMessage ? notificationMessage.message : '',
+			snackbarMode: notificationMessage ? notificationMessage.mode : {},
+		};
+
 		this.handleSearchInput = this.handleSearchInput.bind(this);
 		this.searchMatches = this.searchMatches.bind(this);
 		this.handleSnackbarMessage = this.handleSnackbarMessage.bind(this);

@@ -92,7 +92,7 @@ class CreateEventQueryView extends ConnectionComponent {
 				Query: this.state.query
 			});
 			window.sessionStorage.setItem('notificationMessage',
-				JSON.stringify({message: "Submitted query.", mode: Notification.ModeEnum.SUCCESS}));
+				JSON.stringify({message: config.messages.createdQueryMessage, mode: Notification.ModeEnum.SUCCESS}));
 		}
 	}
 
@@ -121,7 +121,10 @@ class CreateEventQueryView extends ConnectionComponent {
 
 	static displayOptionalErrorMessage(optionalActions) {
 		if (optionalActions && optionalActions.rejected) {
-			return <Notification open={true} message={optionalActions.reason} mode={Notification.ModeEnum.ERROR}/>;
+			return <Notification
+						open={true}
+						message={optionalActions.reason}
+						mode={Notification.ModeEnum.ERROR}/>;
 		}
 	}
 
