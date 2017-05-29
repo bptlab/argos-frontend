@@ -141,7 +141,7 @@ class DetailView extends ConnectionComponent {
 	}
 
 	getEventTable() {
-		if (!this.props.eventTypeAttributes || !this.props.events || !this.state.filteredEvents.length > 0) {
+		if (!this.props.eventTypeAttributes || !this.props.events || this.state.filteredEvents.length < 1) {
 			return "";
 		}
 		const allFetches = PromiseState.all([this.props.eventTypeAttributes, this.props.events]);
