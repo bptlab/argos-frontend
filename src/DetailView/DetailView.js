@@ -234,10 +234,7 @@ class DetailView extends ConnectionComponent {
 						disabled={this.props.entity.HasChildren}
 						style={AppStyles.toggle}
 					/>
-					<div
-						className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}
-						data-hint={config.explanations.entityAttributes}
-						data-hintPosition="top-left">
+					<div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>
 						<EntityInformation
 							entity={entity}
 							styles={[AppStyles.w50]}/>

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {List, ListItem} from "material-ui/List";
 import {css} from "aphrodite";
+import config from "./../config/config.js";
 
 class EntityInformation extends Component {
     static generateListItem(attribute, key) {
@@ -14,7 +15,10 @@ class EntityInformation extends Component {
 
     render() {
         return (
-			<List className={css(this.props.styles)}>
+			<List
+				data-hint={config.explanations.entityAttributes}
+			    data-hintPosition="middle-left"
+			    className={css(this.props.styles)}>
                 {
 	                this.props.entity.Attributes.map((attribute, key) => EntityInformation.generateListItem(attribute, key))
                 }
