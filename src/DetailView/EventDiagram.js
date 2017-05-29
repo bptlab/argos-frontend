@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { css } from 'aphrodite';
-import plotly from 'plotly.js/dist/plotly.min';
 import Utils from './../Utils/Utils';
+const plotly = require('plotly.js');
 
 class EventDiagram extends Component {
 
