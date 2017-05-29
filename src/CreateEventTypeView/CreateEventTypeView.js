@@ -71,8 +71,7 @@ class CreateEventTypeView extends ConnectionComponent {
 				})
 			};
 			this.props.createEventType(body);
-			window.sessionStorage.setItem('notificationMessage',
-				JSON.stringify({message: config.messages.createdEventTypeMessage, mode: Notification.ModeEnum.SUCCESS}));
+			super.addSnackbarNotification(config.messages.createdEventTypeMessage, Notification.ModeEnum.SUCCESS);
 		}
 	}
 

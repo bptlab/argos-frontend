@@ -91,8 +91,7 @@ class CreateEventQueryView extends ConnectionComponent {
 				Description: this.state.queryDescription,
 				Query: this.state.query
 			});
-			window.sessionStorage.setItem('notificationMessage',
-				JSON.stringify({message: config.messages.createdQueryMessage, mode: Notification.ModeEnum.SUCCESS}));
+			super.addSnackbarNotification(config.messages.createdQueryMessage, Notification.ModeEnum.SUCCESS);
 		}
 	}
 
@@ -103,8 +102,7 @@ class CreateEventQueryView extends ConnectionComponent {
 				Description: this.state.queryDescription,
 				Query: this.state.query
 			});
-			window.sessionStorage.setItem('notificationMessage',
-				JSON.stringify({message: "Updated query.", mode: Notification.ModeEnum.SUCCESS}));
+			super.addSnackbarNotification(config.messages.updatedQueryMessage, Notification.ModeEnum.SUCCESS);
 		}
 	}
 	

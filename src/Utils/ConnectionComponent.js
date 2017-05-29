@@ -24,6 +24,11 @@ class ConnectionComponent extends Component {
 		window.changeNotifier.unregisterAll();
 	}
 
+	addSnackbarNotification(message, mode) {
+		window.sessionStorage.setItem('notificationMessage',
+			JSON.stringify({message: message, mode: mode}));
+	}
+
 	render(promiseState) {
 		if (promiseState.pending) {
 			return <LoadingAnimation/>;
