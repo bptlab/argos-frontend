@@ -35,6 +35,7 @@ class DetailView extends ConnectionComponent {
 		this.scrollHandler = this.scrollHandler.bind(this);
 		this.resetEventChunk = this.resetEventChunk.bind(this);
 		window.onscroll = this.scrollHandler;
+		this.handleEventChunkChange = this.handleEventChunkChange.bind(this);
 	}
 	
 	resetEventChunk() {
