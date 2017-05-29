@@ -71,6 +71,8 @@ class CreateEventTypeView extends ConnectionComponent {
 				})
 			};
 			this.props.createEventType(body);
+			window.sessionStorage.setItem('notificationMessage',
+				JSON.stringify({message: "Submitted event type.", mode: Notification.ModeEnum.SUCCESS}));
 		}
 	}
 
