@@ -33,9 +33,9 @@ class CreateEntityMappingView extends ConnectionComponent {
 		this.handleAddNewMappingCondition = this.handleAddNewMappingCondition.bind(this);
 		this.handleEventTypeAttributeChange = this.handleEventTypeAttributeChange.bind(this);
 		this.handleEntityTypeAttributeChange = this.handleEntityTypeAttributeChange.bind(this);
-        this.handleTargetStatusChange = this.handleTargetStatusChange.bind(this);
+		this.handleTargetStatusChange = this.handleTargetStatusChange.bind(this);
 		this.prepareStateForSubmitting = this.prepareStateForSubmitting.bind(this);
-        this.submitNewMapping = this.submitNewMapping.bind(this);
+		this.submitNewMapping = this.submitNewMapping.bind(this);
 		this.submitUpdatedMapping = this.submitUpdatedMapping.bind(this);
 		this.entityMappingPending = this.entityMappingPending.bind(this);
 		this.fetchInitialData = this.fetchInitialData.bind(this);
@@ -100,27 +100,27 @@ class CreateEntityMappingView extends ConnectionComponent {
 		return isValid;
 	}
 
-    // prepares state for submitting, e.g. cleaning of the targetStatus
-    prepareStateForSubmitting() {
-	    const entityMappingConditions = this.state.mappings.map((mappingStatement) => {
-		    return ({
-			    EventTypeAttributeId: mappingStatement.eventTypeAttribute.value,
-			    EntityTypeAttributeId: mappingStatement.entityTypeAttribute.value
-		    });
-	    });
-	    let targetStatus = this.state.targetStatus;
-	    if (targetStatus === "None") {
-		    targetStatus = "";
-	    }
-	    return {
-		    EventTypeId: this.state.selectedEventTypeId.value,
-		    EntityTypeId: this.state.selectedEntityTypeId.value,
-		    TargetStatus: targetStatus,
-		    EventEntityMappingConditions: entityMappingConditions
-	    };
-    }
+	// prepares state for submitting, e.g. cleaning of the targetStatus
+	prepareStateForSubmitting() {
+		const entityMappingConditions = this.state.mappings.map((mappingStatement) => {
+			return ({
+				EventTypeAttributeId: mappingStatement.eventTypeAttribute.value,
+				EntityTypeAttributeId: mappingStatement.entityTypeAttribute.value
+			});
+		});
+		let targetStatus = this.state.targetStatus;
+		if (targetStatus === "None") {
+			targetStatus = "";
+		}
+		return {
+			EventTypeId: this.state.selectedEventTypeId.value,
+			EntityTypeId: this.state.selectedEntityTypeId.value,
+			TargetStatus: targetStatus,
+			EventEntityMappingConditions: entityMappingConditions
+		};
+	}
 
-    submitNewMapping() {
+	submitNewMapping() {
 		if(this.isValidInput()) {
 			const preparedState = this.prepareStateForSubmitting();
 			this.props.createEntityMapping(preparedState);
@@ -157,7 +157,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 
 	handleTargetStatusChange(event, index, selectedTargetStatus) {
 		this.setState({
-            targetStatus: selectedTargetStatus
+			targetStatus: selectedTargetStatus
 		});
 	}
 
@@ -178,7 +178,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 	handleEventTypeAttributeChange(key, eventTypeAttribute) {
 		const mappings = this.state.mappings;
 		mappings[key].eventTypeAttribute.value = eventTypeAttribute;
-        mappings[key].eventTypeAttribute.errorMessage = "";
+		mappings[key].eventTypeAttribute.errorMessage = "";
 		this.setState({
 			mappings: mappings
 		});
@@ -187,7 +187,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 	handleEntityTypeAttributeChange(key, entityTypeAttribute) {
 		const mappings = this.state.mappings;
 		mappings[key].entityTypeAttribute.value = entityTypeAttribute;
-        mappings[key].entityTypeAttribute.errorMessage = "";
+		mappings[key].entityTypeAttribute.errorMessage = "";
 		this.setState({
 			mappings: mappings
 		});
@@ -209,21 +209,21 @@ class CreateEntityMappingView extends ConnectionComponent {
 		);
 	}
 
-    getEntityTypeAttributesDropDown(key, selectedEntityTypeAttribute) {
-        const entityTypeAttributes = this.props.entityTypeAttributes.value;
-        return (
+	getEntityTypeAttributesDropDown(key, selectedEntityTypeAttribute) {
+		const entityTypeAttributes = this.props.entityTypeAttributes.value;
+		return (
 			<SelectField
 				floatingLabelText="Select Entity Type Attribute"
 				fullWidth={true}
 				value={selectedEntityTypeAttribute}
 				errorText={this.state.mappings[key].entityTypeAttribute.errorMessage}
 				onChange={(event, index, value) => {
-	                this.handleEntityTypeAttributeChange(key, value);
-	            }}>
-	            {CreateEntityMappingView.getMenuItems(entityTypeAttributes)}
+					this.handleEntityTypeAttributeChange(key, value);
+				}}>
+				{CreateEntityMappingView.getMenuItems(entityTypeAttributes)}
 			</SelectField>
-        );
-    }
+		);
+	}
 
 	handleAddNewMappingCondition() {
 		const mappings = this.state.mappings;
