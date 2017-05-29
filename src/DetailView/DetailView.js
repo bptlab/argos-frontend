@@ -13,7 +13,6 @@ import config from "./../config/config.js";
 import FilterBar from "./../Utils/FilterBar";
 import Utils from "./../Utils/Utils";
 import {Toggle} from "material-ui";
-import introJs from 'intro.js/minified/intro.min';
 import LoadingAnimation from "../Utils/LoadingAnimation";
 
 class DetailView extends ConnectionComponent {
@@ -62,10 +61,8 @@ class DetailView extends ConnectionComponent {
 	}
 
 	componentDidMount() {
-
 		this.registerNotification("Event", parseInt(this.props.match.params.entityId, 10), this.handleServerSideEventsChanged);
 		this.registerNotification("Entity", parseInt(this.props.match.params.entityId, 10), this.props.refreshEntity);
-		introJs.introJs().addHints();
 	}
 
 	componentWillUnmount() {
@@ -196,9 +193,14 @@ class DetailView extends ConnectionComponent {
 			return eventTypeAttributesPending;
 		}
 		return (
+			<div
+				data-hint={config.explanations.eventTableFilterBar}
+			    data-hintPosition="middle-left"
+			>
 			<FilterBar
 				onFiltersChange={this.handleFilterChange}
 				autoCompleteSource={this.props.eventTypeAttributes.value.map(attributeInfo => attributeInfo.Name)}/>
+			</div>
 		);
 	}
 
