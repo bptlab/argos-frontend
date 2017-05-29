@@ -20,7 +20,7 @@ class EventTabs extends Component {
 					return (
 						<Tab
 							label={eventType.Name}
-							onClick={() => this.props.onEventTypeChange((eventType))}
+							onClick={() => this.props.onEventTypeChange([eventType])}
 							key={key} />
 					);
 				})
