@@ -219,9 +219,10 @@ class DetailView extends ConnectionComponent {
 				<Header
 					title={entity.Name}
 					status={entity.Status}/>
-				<Container data-hint="tey">
+				<Container>
 					<Toggle
-						data-hint="Show all events from children"
+						data-hint={config.explanations.toggleChildrenEvents}
+						data-hintPosition="middle-left"
 						label={config.descriptions.toggleChildrenEvents}
 						defaultToggled={false}
 						thumbStyle={{
@@ -233,7 +234,10 @@ class DetailView extends ConnectionComponent {
 						disabled={this.props.entity.HasChildren}
 						style={AppStyles.toggle}
 					/>
-					<div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>
+					<div
+						className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}
+						data-hint={config.explanations.entityAttributes}
+						data-hintPosition="top-left">
 						<EntityInformation
 							entity={entity}
 							styles={[AppStyles.w50]}/>
