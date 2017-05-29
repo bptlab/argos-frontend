@@ -43,8 +43,9 @@ class DetailView extends ConnectionComponent {
 	}
 	
 	scrollHandler() {
-		if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-			this.eventChunk = [this.eventChunk[1]+1, this.eventChunk[1]+config.eventTableChunkSize];
+		if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight &&
+			this.eventChunk[1] < this.state.currentEventType.NumberOfEvents) {
+			this.eventChunk = [this.eventChunk[1] + 1, this.eventChunk[1] + config.eventTableChunkSize];
 			this.props.lazyEventLoading(
 				this.state.currentEventType.Id,
 				this.handleEventChunkChange,
