@@ -106,7 +106,10 @@ class EventType extends ConnectionComponent {
 		return (
 			<div>
 				{optionalActions && optionalActions.rejected &&
-					<Notification open={open} message={optionalActions.reason} mode={Notification.ModeEnum.SUCCESS} />
+					<Notification
+						open={open}
+						message={optionalActions.reason}
+						mode={Notification.ModeEnum.SUCCESS} />
 				}
 				<ConfirmationMessage
 					actionToPerform={this.handleEventTypeDeletion}

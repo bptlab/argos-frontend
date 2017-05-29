@@ -115,7 +115,10 @@ class CreateEventTypeView extends ConnectionComponent {
 				<Header title="Create New Event Type"/>
 				<Container>
 					{optionalActions && optionalActions.rejected &&
-						<Notification open={true} message={optionalActions.reason} mode={Notification.ModeEnum.ERROR}/>
+						<Notification
+							open={true}
+							message={optionalActions.reason}
+							mode={Notification.ModeEnum.ERROR}/>
 					}
 					<form>
 						<div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>
