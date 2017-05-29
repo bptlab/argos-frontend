@@ -44,6 +44,7 @@ const config = {
 		statusDiagram: "This bar gives a brief overview over the current status of child entities.",
 		entityInspect: "Click to view details and events for this entity.",
 		entityChildren: "Click to view all child entities for this entity.",
+		hierarchyStepper: "This gives an overview of the hierarchy, showing the types of parent entities and possible types of child entities.<br><br>It can also be used to navigate back to parental types.",
 	},
 	statuses: [
 		{
