@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { css } from 'aphrodite';
-import plotly from 'plotly.js/dist/plotly';
 import config from '../config/config';
+const plotly = require('plotly.js');
 
 class StatusDiagram extends Component {
 	static getChartLayout(chartRangeMaximum) {
