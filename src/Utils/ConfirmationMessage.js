@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import Notification from './Notification'
 
 class ConfirmationMessage extends Component {
 	
@@ -29,7 +30,7 @@ class ConfirmationMessage extends Component {
 	handleSubmit() {
 		this.props.actionToPerform();
 		this.handleClose();
-		this.props.onSnackbarMessage(this.props.message, "success");
+		this.props.onSnackbarMessage(this.props.message, Notification.ModeEnum.SUCCESS);
 	}
 
 	render() {

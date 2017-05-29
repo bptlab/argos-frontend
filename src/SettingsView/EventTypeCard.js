@@ -14,6 +14,7 @@ import IconAdd from 'material-ui/svg-icons/content/add';
 import IconDelete from 'material-ui/svg-icons/action/delete';
 import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 import ConfirmationMessage from './../Utils/ConfirmationMessage.js';
+import Notification from './../Utils/Notification';
 
 class EventType extends ConnectionComponent {
 
@@ -105,7 +106,7 @@ class EventType extends ConnectionComponent {
 		return (
 			<div>
 				{optionalActions && optionalActions.rejected &&
-					<Notification open={open} message={optionalActions.reason} mode="error" />
+					<Notification open={open} message={optionalActions.reason} mode={Notification.ModeEnum.SUCCESS} />
 				}
 				<ConfirmationMessage
 					actionToPerform={this.handleEventTypeDeletion}

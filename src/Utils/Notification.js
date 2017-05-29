@@ -6,26 +6,26 @@ import {css} from 'aphrodite';
 import AppStyles from "./../AppStyles";
 import config from "./../config/config"
 
-class ConfirmationMessage extends Component {
-	
-	constructor(props) {
-		super(props);
-	}
+class Notification extends Component {
+	static ModeEnum = {
+		ERROR: "error",
+		SUCCESS: "success"
+	};
 
 	getColorForMode() {
-		if (this.props.mode === "error") {
+		if (this.props.mode === Notification.ModeEnum.ERROR) {
 			return config.colors.error;
-		} else if (this.props.mode === "success") {
-			return config.colors.error;
+		} else if (this.props.mode === Notification.ModeEnum.SUCCESS) {
+			return config.colors.success;
 		} else {
 			return config.colors.accent;
 		}
 	}
 
 	getIconForMode() {
-		if (this.props.mode === "error") {
+		if (this.props.mode === Notification.ModeEnum.ERROR) {
 			return <IconError className={css(AppStyles.verticalAlignMarginRight, AppStyles.colorWhite)}/>;
-		} else if (this.props.mode === "success") {
+		} else if (this.props.mode === Notification.ModeEnum.SUCCESS) {
 			return <IconSuccess className={css(AppStyles.verticalAlignMarginRight, AppStyles.colorWhite)}/>;
 		}
 	}
@@ -40,4 +40,4 @@ class ConfirmationMessage extends Component {
 	}
 }
 
-export default ConfirmationMessage;
+export default Notification;
