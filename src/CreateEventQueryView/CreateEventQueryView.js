@@ -13,7 +13,7 @@ import config from "../config/config";
 import AppStyles from "../AppStyles";
 import Utils from "../Utils/Utils";
 import LoadingAnimation from "../Utils/LoadingAnimation";
-import ErrorMessage from "../Utils/ErrorMessage";
+import Notification from "../Utils/Notification";
 
 class CreateEventQueryView extends ConnectionComponent {
 
@@ -91,6 +91,8 @@ class CreateEventQueryView extends ConnectionComponent {
 				Description: this.state.queryDescription,
 				Query: this.state.query
 			});
+			window.sessionStorage.setItem('notificationMessage',
+				JSON.stringify({message: "Submitted query.", mode: Notification.ModeEnum.SUCCESS}));
 		}
 	}
 
@@ -101,6 +103,8 @@ class CreateEventQueryView extends ConnectionComponent {
 				Description: this.state.queryDescription,
 				Query: this.state.query
 			});
+			window.sessionStorage.setItem('notificationMessage',
+				JSON.stringify({message: "Updated query.", mode: Notification.ModeEnum.SUCCESS}));
 		}
 	}
 	
@@ -117,7 +121,7 @@ class CreateEventQueryView extends ConnectionComponent {
 
 	static displayOptionalErrorMessage(optionalActions) {
 		if (optionalActions && optionalActions.rejected) {
-			return <ErrorMessage message={optionalActions.reason}/>;
+			return <Notification open={true} message={optionalActions.reason} mode={Notification.ModeEnum.ERROR}/>;
 		}
 	}
 
