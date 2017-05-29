@@ -13,6 +13,7 @@ import config from "./../config/config.js";
 import FilterBar from "./../Utils/FilterBar";
 import Utils from "./../Utils/Utils";
 import {Toggle} from "material-ui";
+import LoadingAnimation from "../Utils/LoadingAnimation";
 
 class DetailView extends ConnectionComponent {
 
@@ -22,6 +23,7 @@ class DetailView extends ConnectionComponent {
 			filteredEvents: [],
 			currentEventType: null,
 			filter: [],
+			eventChunkLoading: false,
 		};
 		this.includeEventChildren = false;
 		this.events = [];
@@ -46,6 +48,9 @@ class DetailView extends ConnectionComponent {
 		if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight &&
 			this.eventChunk[1] < this.state.currentEventType.NumberOfEvents) {
 			this.eventChunk = [this.eventChunk[1] + 1, this.eventChunk[1] + config.eventTableChunkSize];
+			this.setState({
+				eventChunkLoading: true,
+			});
 			this.props.lazyEventLoading(
 				this.state.currentEventType.Id,
 				this.handleEventChunkChange,
@@ -120,6 +125,7 @@ class DetailView extends ConnectionComponent {
 		const filteredEvents = Utils.getFilteredEvents(events, this.state.filter);
 		this.setState({
 			filteredEvents: this.state.filteredEvents.concat(filteredEvents),
+			eventChunkLoading: false,
 		});
 	}
 
@@ -236,9 +242,13 @@ class DetailView extends ConnectionComponent {
 						styles={[AppStyles.elementMarginTop]}/>
 					{this.getEventTable()}
 					{moreEventsAvailable && 
-						<p className={css(AppStyles.textAlignCenter, AppStyles.contentBox)}>
-							Scroll down to view more Events.
-						</p>}
+						<div className={css(AppStyles.textAlignCenter, AppStyles.contentBox)}>
+							{this.state.eventChunkLoading? 
+								<LoadingAnimation 
+									size={20} 
+									thickness={5} />:
+								<span>Scroll down to view more Events.</span>}
+						</div>}
 				</Container>
 			</div>
 		);
