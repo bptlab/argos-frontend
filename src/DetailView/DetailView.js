@@ -34,9 +34,9 @@ class DetailView extends ConnectionComponent {
 		this.handleEventChange = this.handleEventChange.bind(this);
 		this.handleServerSideEventsChanged = this.handleServerSideEventsChanged.bind(this);
 		this.handleEventChildrenSwitch = this.handleEventChildrenSwitch.bind(this);
-		this.scrollHandler = this.scrollHandler.bind(this);
+		this.handleScroll = this.handleScroll.bind(this);
 		this.resetEventChunk = this.resetEventChunk.bind(this);
-		window.onscroll = this.scrollHandler;
+		window.onscroll = this.handleScroll;
 		this.handleEventChunkChange = this.handleEventChunkChange.bind(this);
 	}
 	
@@ -44,7 +44,7 @@ class DetailView extends ConnectionComponent {
 		this.eventChunk = [0, config.eventTableChunkSize];
 	}
 	
-	scrollHandler() {
+	handleScroll() {
 		if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight &&
 			this.eventChunk[1] < this.state.currentEventType.NumberOfEvents) {
 			this.eventChunk = [this.eventChunk[1] + 1, this.eventChunk[1] + config.eventTableChunkSize];
