@@ -6,6 +6,7 @@ const config = {
 	enableCaching: true,
 	colors: {
 		primaryDark: "#000051",
+		primaryDarkAlpha: "rgba(0, 0, 81, 0.2)",
 		primary: "#1a237e",
 		primaryLight: "#534bae",
 		accent: "#C99700",
@@ -13,6 +14,7 @@ const config = {
 		text: "#424242",
 		textAlternate: "#ffffff",
 		border: "#e0e0e0",
+		toggleOff: '#9E9E9E',
 		error: "#B71C1C",
 	},
 	descriptions: {

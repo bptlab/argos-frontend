@@ -218,7 +218,7 @@ class DetailView extends ConnectionComponent {
 						label={config.descriptions.toggleChildrenEvents}
 						defaultToggled={false}
 						thumbStyle={{
-							backgroundColor: config.colors.diagramLine,
+							backgroundColor: config.colors.toggleOff,
 						}}
 						onToggle={this.handleEventChildrenSwitch}
 						thumbSwitchedStyle={AppStyles.thumbSwitchedColor}
