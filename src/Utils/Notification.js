@@ -8,35 +8,23 @@ import config from "./../config/config"
 
 class Notification extends Component {
 	static ModeEnum = {
-		ERROR: "error",
-		SUCCESS: "success"
+		ERROR: {
+			color: config.colors.error,
+			icon: <IconError className={css(AppStyles.verticalAlignMarginRight, AppStyles.colorWhite)}/>
+		},
+		SUCCESS: {
+			color: config.colors.success,
+			icon: <IconSuccess className={css(AppStyles.verticalAlignMarginRight, AppStyles.colorWhite)}/>
+		}
 	};
-
-	getColorForMode() {
-		if (this.props.mode === Notification.ModeEnum.ERROR) {
-			return config.colors.error;
-		} else if (this.props.mode === Notification.ModeEnum.SUCCESS) {
-			return config.colors.success;
-		} else {
-			return config.colors.accent;
-		}
-	}
-
-	getIconForMode() {
-		if (this.props.mode === Notification.ModeEnum.ERROR) {
-			return <IconError className={css(AppStyles.verticalAlignMarginRight, AppStyles.colorWhite)}/>;
-		} else if (this.props.mode === Notification.ModeEnum.SUCCESS) {
-			return <IconSuccess className={css(AppStyles.verticalAlignMarginRight, AppStyles.colorWhite)}/>;
-		}
-	}
 
 	render() {
 		return (
 			<Snackbar
 				open={this.props.open}
-				message={<span className={css(AppStyles.displayTable)}>{this.getIconForMode()}{this.props.message} </span>}
+				message={<span className={css(AppStyles.displayTable)}>{this.props.mode.icon}{this.props.message} </span>}
 				autoHideDuration={5000}
-				bodyStyle={{backgroundColor: this.getColorForMode()}}/>);
+				bodyStyle={{backgroundColor: this.props.mode.color}}/>);
 	}
 }
 
