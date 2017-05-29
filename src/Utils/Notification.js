@@ -31,7 +31,7 @@ class Notification extends Component {
 		return (
 			<Snackbar
 				open={this.props.open}
-				message={<span className={css(AppStyles.displayTable)}>{this.getIconForMode()}{this.props.message} </span>}
+				message={<span className={css(AppStyles.dFlex, AppStyles.alignItemsCenter)}>{this.getIconForMode()}<p className={css(AppStyles.capitalizeFirstLetter, AppStyles.lineHeight25)}>{this.props.message}</p> </span>}
 				autoHideDuration={config.notificationDisplayDuration}
 				bodyStyle={{backgroundColor: this.props.mode.color}}/>);
 	}
