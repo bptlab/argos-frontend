@@ -200,7 +200,8 @@ class DetailView extends ConnectionComponent {
 		if (connectionIncomplete) {
 			return connectionIncomplete;
 		}
-
+		const moreEventsAvailable = (this.state.currentEventType &&
+										this.state.currentEventType.NumberOfEvents > this.eventChunk[1]);
 		return (
 			<div>
 				<Header
@@ -234,6 +235,10 @@ class DetailView extends ConnectionComponent {
 						}}
 						styles={[AppStyles.elementMarginTop]}/>
 					{this.getEventTable()}
+					{moreEventsAvailable && 
+						<p className={css(AppStyles.textAlignCenter, AppStyles.contentBox)}>
+							Scroll down to view more Events.
+						</p>}
 				</Container>
 			</div>
 		);
