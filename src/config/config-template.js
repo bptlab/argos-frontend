@@ -48,6 +48,7 @@ const config = {
 			colorLight: "#BDBDBD"
 		},
 	],
+	eventTableChunkSize: 50,
 };
 
 export default config;

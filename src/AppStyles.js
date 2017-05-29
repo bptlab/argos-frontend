@@ -73,6 +73,13 @@ const AppStyles = StyleSheet.create({
 
 	errorColor: {
 		color: config.colors.error
+	},
+	
+	contentBox: {
+		background: config.colors.primaryDarkAlpha,
+		padding: "10px 20px",
+		border: "1px solid "+config.colors.primaryDark,
+		color: config.colors.primaryDark
 	}
 });
 
