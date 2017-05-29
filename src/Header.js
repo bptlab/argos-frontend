@@ -39,7 +39,6 @@ class Header extends Component {
 		}
 		else {
 			introJs.introJs().showHints();
-			window.dispatchEvent(new Event('resize'));
 		}
 		this.setState({
 			hintsVisible: !hintsCurrentlyVisible
