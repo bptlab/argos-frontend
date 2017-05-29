@@ -76,10 +76,10 @@ const AppStyles = StyleSheet.create({
 	},
 	
 	contentBox: {
-		backgroundColor: config.colors.diagramLine,
+		background: config.colors.primaryDarkAlpha,
 		padding: "10px 20px",
-		border: "1px solid "+config.colors.text,
-		color: config.colors.textAlternate
+		border: "1px solid "+config.colors.primaryDark,
+		color: config.colors.primaryDark
 	}
 });
 
