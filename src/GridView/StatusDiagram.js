@@ -97,7 +97,10 @@ class StatusDiagram extends Component {
 
 	render() {
 		return (
-			<div className={css(this.props.styles)}>
+			<div
+				data-hint={config.explanations.statusDiagram}
+				data-hintPosition="middle-left"
+				className={css(this.props.styles)}>
 				<div id="status-diagram" />
 			</div>
 		);

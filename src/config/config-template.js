@@ -41,6 +41,9 @@ const config = {
 		+ "To specify in which column(s) the search should be performed, separate the column name with \":\" from the search term.<br><br>"
 		+ "Example: \"ab\" will list all events having any attribute containing this string. \"Attr1:ab\" will show all events having \"ab\" in the value of \"Attr1\".",
 		eventDiagram: "This diagram shows the timeline of occured events of the currently selected event type. This graph will also be affected by filters set below.",
+		statusDiagram: "This bar gives a brief overview over the current status of child entities.",
+		entityInspect: "Click to view details and events for this entity.",
+		entityChildren: "Click to view all child entities for this entity.",
 	},
 	statuses: [
 		{
