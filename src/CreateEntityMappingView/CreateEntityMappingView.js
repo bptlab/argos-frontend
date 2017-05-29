@@ -21,8 +21,8 @@ class CreateEntityMappingView extends ConnectionComponent {
 		super(props);
 		this.state = {
 			targetStatus: "",
-			selectedEventTypeId: {value: null, errorMessage: ""},
-			selectedEntityTypeId: {value: null, errorMessage: ""},
+			selectedEventType: {value: null, errorMessage: ""},
+			selectedEntityType: {value: null, errorMessage: ""},
 			mappings: CreateEntityMappingView.getDefaultMappings()
 		};
 		this.isCreateView = typeof this.props.match.params.entityMappingId === 'undefined';
@@ -62,23 +62,23 @@ class CreateEntityMappingView extends ConnectionComponent {
 		});
 		return {
 			targetStatus: entityMapping.TargetStatus,
-			selectedEventTypeId: {value: entityMapping.EventTypeId},
-			selectedEntityTypeId: {value: entityMapping.EntityTypeId},
+			selectedEventType: {value: entityMapping.EventTypeId},
+			selectedEntityType: {value: entityMapping.EntityTypeId},
 			mappings: mappings
 		};
 	}
 
 	isValidInput() {
 		let isValid = true;
-		if(this.state.selectedEntityTypeId.value === null) {
+		if(this.state.selectedEntityType.value === null) {
 			this.setState({
 				selectedEntityTypeId: {value: null, errorMessage: config.messages.requiredFieldMessage}
 			});
 			isValid = false;
 		}
-		if (this.state.selectedEventTypeId.value === null) {
+		if (this.state.selectedEventType.value === null) {
 			this.setState({
-				selectedEventTypeId: {value: null, errorMessage: config.messages.requiredFieldMessage}
+				selectedEventType: {value: null, errorMessage: config.messages.requiredFieldMessage}
 			});
 			isValid = false;
 		}
@@ -113,8 +113,8 @@ class CreateEntityMappingView extends ConnectionComponent {
 			targetStatus = "";
 		}
 		return {
-			EventTypeId: this.state.selectedEventTypeId.value,
-			EntityTypeId: this.state.selectedEntityTypeId.value,
+			EventTypeId: this.state.selectedEventType.value,
+			EntityTypeId: this.state.selectedEntityType.value,
 			TargetStatus: targetStatus,
 			EventEntityMappingConditions: entityMappingConditions
 		};
@@ -163,14 +163,14 @@ class CreateEntityMappingView extends ConnectionComponent {
 
 	handleEventTypeChange(event, index, selectedEventTypeId) {
 		this.setState({
-			selectedEventTypeId: {value: selectedEventTypeId, errorMessage: ""},
+			selectedEventType: {value: selectedEventTypeId, errorMessage: ""},
 			mappings: CreateEntityMappingView.getDefaultMappings()
 		});
 	}
 
 	handleEntityTypeChange(event, index, selectedEntityTypeId) {
 		this.setState({
-			selectedEntityTypeId: {value: selectedEntityTypeId, errorMessage: ""},
+			selectedEntityType: {value: selectedEntityTypeId, errorMessage: ""},
 			mappings: CreateEntityMappingView.getDefaultMappings()
 		});
 	}
@@ -323,7 +323,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 				<Row>
 					<Col md={12}>
 						<SelectField
-						   data-hint={help.input.entityMappingView.targetStatus}
+						    data-hint={help.input.entityMappingView.targetStatus}
 						    data-hintPosition="middle-middle"
 							value={this.state.targetStatus}
 							onChange={this.handleTargetStatusChange}
@@ -349,8 +349,8 @@ class CreateEntityMappingView extends ConnectionComponent {
 						<SelectField
 							data-hint={help.input.entityMappingView.eventTypeSelection}
 							data-hintPosition="middle-middle"
-							value={this.state.selectedEventTypeId.value}
-							errorText={this.state.selectedEventTypeId.errorMessage}
+							value={this.state.selectedEventType.value}
+							errorText={this.state.selectedEventType.errorMessage}
 							onChange={this.handleEventTypeChange}
 							floatingLabelText="Select Event Type"
 							fullWidth={true}>
@@ -361,8 +361,8 @@ class CreateEntityMappingView extends ConnectionComponent {
 						<SelectField
 						    data-hint={help.input.entityMappingView.entityTypeSelection}
 							data-hintPosition="middle-middle"
-							value={this.state.selectedEntityTypeId.value}
-							errorText={this.state.selectedEntityTypeId.errorMessage}
+							value={this.state.selectedEntityType.value}
+							errorText={this.state.selectedEntityType.errorMessage}
 							onChange={this.handleEntityTypeChange}
 							floatingLabelText="Select Entity Type"
 							fullWidth={true}>
@@ -463,13 +463,13 @@ class CreateEntityMappingView extends ConnectionComponent {
 			this.oldValuesWereLoaded = true;
 		}
 
-		if(prevState.selectedEventTypeId.value !== this.state.selectedEventTypeId.value) {
+		if(prevState.selectedEventType.value !== this.state.selectedEventType.value) {
 			// when selected event type changed
-			this.props.lazyEventTypeAttributeLoading(this.state.selectedEventTypeId.value);
+			this.props.lazyEventTypeAttributeLoading(this.state.selectedEventType.value);
 		}
-		if(prevState.selectedEntityTypeId.value !== this.state.selectedEntityTypeId.value) {
+		if(prevState.selectedEntityType.value !== this.state.selectedEntityType.value) {
 			// when selected entity type changed
-			this.props.lazyEntityTypeAttributeLoading(this.state.selectedEntityTypeId.value);
+			this.props.lazyEntityTypeAttributeLoading(this.state.selectedEntityType.value);
 		}
 	}
 
