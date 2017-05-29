@@ -68,36 +68,6 @@ class CreateEntityMappingView extends ConnectionComponent {
 		};
 	}
 
-	static getMenuItems(items) {
-		return items.map(
-			(item, key) => {
-				return <MenuItem
-					key={key}
-					value={item.Id}
-					primaryText={item.Name}/>;
-			});
-	}
-
-    componentDidUpdate(prevProps, prevState) {
-		if (!this.isCreateView && !this.oldValuesWereLoaded && this.oldValuesShouldBeLoaded) {
-			// in edit view, when old values should be loaded into the interface
-			const entityMapping = this.props.entityMapping.value;
-			this.setState(CreateEntityMappingView.getLoadedStateFromResponse(entityMapping));
-			this.props.lazyEventTypeAttributeLoading(entityMapping.EventTypeId);
-			this.props.lazyEntityTypeAttributeLoading(entityMapping.EntityTypeId);
-			this.oldValuesWereLoaded = true;
-		}
-
-        if(prevState.selectedEventTypeId.value !== this.state.selectedEventTypeId.value) {
-			// when selected event type changed
-            this.props.lazyEventTypeAttributeLoading(this.state.selectedEventTypeId.value);
-        }
-        if(prevState.selectedEntityTypeId.value !== this.state.selectedEntityTypeId.value) {
-			// when selected entity type changed
-            this.props.lazyEntityTypeAttributeLoading(this.state.selectedEntityTypeId.value);
-        }
-    }
-
 	isValidInput() {
 		let isValid = true;
 		if(this.state.selectedEntityTypeId.value === null) {
@@ -148,7 +118,6 @@ class CreateEntityMappingView extends ConnectionComponent {
 		    TargetStatus: targetStatus,
 		    EventEntityMappingConditions: entityMappingConditions
 	    };
-
     }
 
     submitNewMapping() {
@@ -206,17 +175,6 @@ class CreateEntityMappingView extends ConnectionComponent {
 		});
 	}
 
-	handleAddNewMappingCondition() {
-		const mappings = this.state.mappings;
-		mappings.push({
-			entityTypeAttribute: {value: null, errorMessage: ""},
-			eventTypeAttribute: {value: null, errorMessage: ""}
-		});
-		this.setState({
-			mappings: mappings
-		});
-	}
-
 	handleEventTypeAttributeChange(key, eventTypeAttribute) {
 		const mappings = this.state.mappings;
 		mappings[key].eventTypeAttribute.value = eventTypeAttribute;
@@ -266,6 +224,17 @@ class CreateEntityMappingView extends ConnectionComponent {
 			</SelectField>
         );
     }
+
+	handleAddNewMappingCondition() {
+		const mappings = this.state.mappings;
+		mappings.push({
+			entityTypeAttribute: {value: null, errorMessage: ""},
+			eventTypeAttribute: {value: null, errorMessage: ""}
+		});
+		this.setState({
+			mappings: mappings
+		});
+	}
 	
 	handleMappingConditionDelete(key) {
 		let mappings = this.state.mappings;
@@ -275,6 +244,38 @@ class CreateEntityMappingView extends ConnectionComponent {
 			mappings.splice(key, 1);
 		}
 		this.setState({mappings});
+	}
+
+	// is called to load the existing entity mapping in the edit view
+	entityMappingPending() {
+		if (!this.props.entityMapping) {
+			return <LoadingAnimation/>;
+		}
+		const entityMappingConnection = super.render(this.props.entityMapping);
+		if (entityMappingConnection) {
+			return entityMappingConnection;
+		}
+		if (!this.props.entityMapping.value) {
+			return <LoadingAnimation/>;
+		}
+		return null;
+	}
+
+	static handleOptionalActionsSuccess(optionalActions) {
+		if (optionalActions && optionalActions.fulfilled) {
+			window.history.back();
+			return null;
+		}
+	}
+
+	static getMenuItems(items) {
+		return items.map(
+			(item, key) => {
+				return <MenuItem
+					key={key}
+					value={item.Id}
+					primaryText={item.Name}/>;
+			});
 	}
 
 	loadAttributeInputFields() {
@@ -311,73 +312,6 @@ class CreateEntityMappingView extends ConnectionComponent {
 					onTouchTap={this.handleAddNewMappingCondition}
 					icon={<IconAdd/>}/>
 			</div>);
-	}
-
-	// is called to load the existing entity mapping in the edit view
-	entityMappingPending() {
-		if (!this.props.entityMapping) {
-			return <LoadingAnimation/>;
-		}
-		const entityMappingConnection = super.render(this.props.entityMapping);
-		if (entityMappingConnection) {
-			return entityMappingConnection;
-		}
-		if (!this.props.entityMapping.value) {
-			return <LoadingAnimation/>;
-		}
-		return null;
-	}
-
-	// loads entity mapping in edit view
-	componentWillMount() {
-		if (!this.isCreateView) {
-			this.props.lazyLoadEntityMapping();
-		}
-	}
-
-	renderEditView() {
-		const optionalActions = this.props.updateEntityMappingResponse;
-		CreateEntityMappingView.handleOptionalActionsSuccess(optionalActions);
-		const initialData = this.fetchInitialData();
-		if (!initialData) {
-			return <LoadingAnimation/>;
-		}
-		return (
-			<div ref={() => {this.oldValuesShouldBeLoaded = true;}}>
-				<Header title={"Edit Entity Mapping"}/>
-				<div className={AppStyles.elementMarginTop}>
-					{this.renderComponentBody(initialData, optionalActions, this.submitUpdatedMapping)}
-				</div>
-			</div>
-		);
-	}
-
-	static handleOptionalActionsSuccess(optionalActions) {
-		if (optionalActions && optionalActions.fulfilled) {
-			window.history.back();
-			return null;
-		}
-	}
-
-	fetchInitialData() {
-		const allFetches = PromiseState.all([this.props.eventTypes, this.props.entityTypeHierarchy]);
-		const eventTypes = this.props.eventTypes.value;
-		const entityTypes = CreateEntityMappingView.transformHierarchy(this.props.entityTypeHierarchy.value);
-		const connectionIncomplete = super.render(allFetches);
-		if (connectionIncomplete) {
-			return false;
-		}
-		let attributeFields = "";
-		if (this.props.eventTypeAttributes && this.props.entityTypeAttributes
-			&& this.props.eventTypeAttributes.fulfilled && this.props.entityTypeAttributes.fulfilled) {
-			attributeFields = this.loadAttributeInputFields();
-		}
-
-		return {
-			eventTypes: eventTypes,
-			entityTypes: entityTypes,
-			attributeFields: attributeFields
-		};
 	}
 
 	renderComponentBody(initialData, optionalActions, submitCallback) {
@@ -457,6 +391,44 @@ class CreateEntityMappingView extends ConnectionComponent {
 		);
 	}
 
+	fetchInitialData() {
+		const allFetches = PromiseState.all([this.props.eventTypes, this.props.entityTypeHierarchy]);
+		const eventTypes = this.props.eventTypes.value;
+		const entityTypes = CreateEntityMappingView.transformHierarchy(this.props.entityTypeHierarchy.value);
+		const connectionIncomplete = super.render(allFetches);
+		if (connectionIncomplete) {
+			return false;
+		}
+		let attributeFields = "";
+		if (this.props.eventTypeAttributes && this.props.entityTypeAttributes
+			&& this.props.eventTypeAttributes.fulfilled && this.props.entityTypeAttributes.fulfilled) {
+			attributeFields = this.loadAttributeInputFields();
+		}
+
+		return {
+			eventTypes: eventTypes,
+			entityTypes: entityTypes,
+			attributeFields: attributeFields
+		};
+	}
+
+	renderEditView() {
+		const optionalActions = this.props.updateEntityMappingResponse;
+		CreateEntityMappingView.handleOptionalActionsSuccess(optionalActions);
+		const initialData = this.fetchInitialData();
+		if (!initialData) {
+			return <LoadingAnimation/>;
+		}
+		return (
+			<div ref={() => {this.oldValuesShouldBeLoaded = true;}}>
+				<Header title={"Edit Entity Mapping"}/>
+				<div className={AppStyles.elementMarginTop}>
+					{this.renderComponentBody(initialData, optionalActions, this.submitUpdatedMapping)}
+				</div>
+			</div>
+		);
+	}
+
 	renderCreateView() {
 		const optionalActions = this.props.createEntityMappingResponse;
 		CreateEntityMappingView.handleOptionalActionsSuccess(optionalActions);
@@ -472,6 +444,33 @@ class CreateEntityMappingView extends ConnectionComponent {
 				</div>
 			</div>
 		);
+	}
+
+	// loads entity mapping in edit view
+	componentWillMount() {
+		if (!this.isCreateView) {
+			this.props.lazyLoadEntityMapping();
+		}
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if (!this.isCreateView && !this.oldValuesWereLoaded && this.oldValuesShouldBeLoaded) {
+			// in edit view, when old values should be loaded into the interface
+			const entityMapping = this.props.entityMapping.value;
+			this.setState(CreateEntityMappingView.getLoadedStateFromResponse(entityMapping));
+			this.props.lazyEventTypeAttributeLoading(entityMapping.EventTypeId);
+			this.props.lazyEntityTypeAttributeLoading(entityMapping.EntityTypeId);
+			this.oldValuesWereLoaded = true;
+		}
+
+		if(prevState.selectedEventTypeId.value !== this.state.selectedEventTypeId.value) {
+			// when selected event type changed
+			this.props.lazyEventTypeAttributeLoading(this.state.selectedEventTypeId.value);
+		}
+		if(prevState.selectedEntityTypeId.value !== this.state.selectedEntityTypeId.value) {
+			// when selected entity type changed
+			this.props.lazyEntityTypeAttributeLoading(this.state.selectedEntityTypeId.value);
+		}
 	}
 
 	render() {
