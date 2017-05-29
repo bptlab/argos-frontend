@@ -28,5 +28,5 @@
     "envsub": "envsub src/config/config-template.js src/config/config.js",
     "deploy": "npm run envsub && npm run build && npm run serve"
   },
-  "homepage": "."
+  "homepage": "${HOST}"
 }
