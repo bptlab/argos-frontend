@@ -243,10 +243,10 @@ class DetailView extends ConnectionComponent {
 					{this.getEventTable()}
 					{moreEventsAvailable && 
 						<div className={css(AppStyles.textAlignCenter, AppStyles.contentBox)}>
-							{this.state.eventChunkLoading? 
+							{this.state.eventChunkLoading ? 
 								<LoadingAnimation 
 									size={20} 
-									thickness={5} />:
+									thickness={5} /> :
 								<span>Scroll down to view more Events.</span>}
 						</div>}
 				</Container>
