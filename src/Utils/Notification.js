@@ -9,20 +9,29 @@ import config from "./../config/config"
 class Notification extends Component {
 	static ModeEnum = {
 		ERROR: {
-			color: config.colors.error,
-			icon: <IconError className={css(AppStyles.verticalAlignMarginRight, AppStyles.colorWhite)}/>
+			color: config.colors.error
 		},
 		SUCCESS: {
-			color: config.colors.success,
-			icon: <IconSuccess className={css(AppStyles.verticalAlignMarginRight, AppStyles.colorWhite)}/>
+			color: config.colors.success
 		}
 	};
 
+	getIconForMode() {
+		if(this.props.mode.color === Notification.ModeEnum.SUCCESS.color) {
+			return <IconSuccess className={css(AppStyles.verticalAlignMarginRight, AppStyles.colorWhite)}/>;
+		} else if (this.props.mode === Notification.ModeEnum.ERROR) {
+			return <IconError className={css(AppStyles.verticalAlignMarginRight, AppStyles.colorWhite)}/>;
+		}
+	}
+
 	render() {
+		if(this.props.open) {
+			window.sessionStorage.removeItem('notificationMessage');
+		}
 		return (
 			<Snackbar
 				open={this.props.open}
-				message={<span className={css(AppStyles.displayTable)}>{this.props.mode.icon}{this.props.message} </span>}
+				message={<span className={css(AppStyles.displayTable)}>{this.getIconForMode()}{this.props.message} </span>}
 				autoHideDuration={5000}
 				bodyStyle={{backgroundColor: this.props.mode.color}}/>);
 	}
