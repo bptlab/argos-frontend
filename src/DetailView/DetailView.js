@@ -107,6 +107,7 @@ class DetailView extends ConnectionComponent {
 		} 
 		else {
 			this.setState({
+				currentEventType: null,
 				filteredEvents: []
 			});
 		}
@@ -140,7 +141,7 @@ class DetailView extends ConnectionComponent {
 	}
 
 	getEventTable() {
-		if (!this.props.eventTypeAttributes || !this.props.events) {
+		if (!this.props.eventTypeAttributes || !this.props.events || !this.state.filteredEvents.length > 0) {
 			return "";
 		}
 		const allFetches = PromiseState.all([this.props.eventTypeAttributes, this.props.events]);
@@ -158,7 +159,7 @@ class DetailView extends ConnectionComponent {
 	}
 
 	eventTypeAttributesPending() {
-		if (!this.props.eventTypeAttributes) {
+		if (!this.props.eventTypeAttributes || this.state.filteredEvents.length < 1) {
 			return <div />;
 		}
 		const eventTypeAttributeConnection = super.render(this.props.eventTypeAttributes);
