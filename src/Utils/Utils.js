@@ -208,6 +208,23 @@ class Utils {
 		});
 		return necessaryAttributes;
 	}
+
+	/**
+	 * Concatenates the basename with the given absolute path
+	 * @param absolutePath
+	 * @returns {string}
+	 */
+	static getLink(absolutePath) {
+		let basename = config.basename;
+		if (basename.slice(-1) === "/") {
+			basename = basename.slice(0, basename.length - 1);
+		}
+		let path = absolutePath;
+		if (path.slice(0, 1) !== "/") {
+			path = "/" + path;
+		}
+		return basename + path;
+	}
 }
 
 export default Utils;
