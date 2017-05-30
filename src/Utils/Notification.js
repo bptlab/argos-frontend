@@ -16,6 +16,12 @@ class Notification extends Component {
 		}
 	};
 
+	static addSnackbarNotificationOnReferrer(message, mode) {
+		window.sessionStorage.setItem('notificationMessage',
+			JSON.stringify({message: message, targetPage: document.referrer, mode: mode, timestamp: new Date()}));
+	}
+	
+
 	getIconForMode() {
 		if(this.props.mode.color === Notification.ModeEnum.SUCCESS.color) {
 			return <IconSuccess className={css(AppStyles.verticalAlignMarginRight, AppStyles.colorWhite)}/>;

@@ -71,7 +71,7 @@ class CreateEventTypeView extends ConnectionComponent {
 				})
 			};
 			this.props.createEventType(body);
-			super.addSnackbarNotificationOnReferrer(config.messages.createdEventTypeMessage, Notification.ModeEnum.SUCCESS);
+			Notification.addSnackbarNotificationOnReferrer(config.messages.createdEventTypeMessage, Notification.ModeEnum.SUCCESS);
 		}
 	}
 
