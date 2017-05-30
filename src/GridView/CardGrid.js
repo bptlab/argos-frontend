@@ -71,6 +71,9 @@ class CardGrid extends ConnectionComponent {
 	static getNecessaryAttributes(entityType) {
 		const necessaryAttributes = [];
 		const attributeDefinition = attributeConfig[String(entityType.Name)];
+		if(!attributeDefinition) {
+			return null;
+		}
 		Object.entries(attributeDefinition).forEach(([attributeName, isNecessary]) => {
 			if (isNecessary === 1) {
 				necessaryAttributes.push(attributeName);
@@ -135,11 +138,22 @@ class CardGrid extends ConnectionComponent {
 }
 
 export default ConnectionComponent.argosConnector({fetch: ConnectionComponent.switchFetch})(props => {
-	console.log(props.entityType);
 	const necessaryAttributes = CardGrid.getNecessaryAttributes(props.entityType);
+	if (!necessaryAttributes) {
+		return {
+			entities: {
+				url: config.backendRESTRoute + `/entitytype/${props.entityType.Id}/attributes`,
+				then: attributes => config.backendRESTRoute + `/entity/${props.currentEntity.Id}`
+									+ `/children/type/${props.entityType.Id}`
+									+ `/${attributes.map(attribute => attribute.Name).join("+")}`,
+			}
+		};
+	}
 	return {
-		entities: config.backendRESTRoute + `/entity/${props.currentEntity.Id}`
-		+ `/children/type/${props.entityType.Id}`
-		+ `/${necessaryAttributes.map(attribute => attribute).join("+")}`
+		entities: {
+			url: config.backendRESTRoute + `/entity/${props.currentEntity.Id}`
+			+ `/children/type/${props.entityType.Id}`
+			+ `/${necessaryAttributes.map(attribute => attribute).join("+")}`
+		}
 	};
 })(CardGrid);
