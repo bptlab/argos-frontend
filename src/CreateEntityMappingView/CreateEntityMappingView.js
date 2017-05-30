@@ -11,10 +11,8 @@ import Header from './../Header';
 import {css} from 'aphrodite';
 import help from './../config/help';
 import ErrorMessage from './../Utils/ErrorMessage.js';
-
 import config from "../config/config";
 import AppStyles from "../AppStyles";
-import LoadingAnimation from "../Utils/LoadingAnimation";
 
 class CreateEntityMappingView extends ConnectionComponent {
 	constructor(props) {
