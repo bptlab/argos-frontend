@@ -5,6 +5,7 @@ import getMuiTheme from "material-ui/styles/getMuiTheme";
 import ThemeStyles from "./ThemeStyles";
 import {PromiseState} from "react-refetch";
 import config from "./config/config.js";
+import './App.css';
 
 class App extends ConnectionComponent {
 
