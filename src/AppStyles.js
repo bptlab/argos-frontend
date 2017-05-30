@@ -2,6 +2,14 @@ import { StyleSheet } from 'aphrodite';
 import config from './config/config';
 
 const AppStyles = StyleSheet.create({
+	pAbsolute: {
+		position: 'absolute',
+	},
+
+	pRelative: {
+		position: 'relative',
+	},
+
 	dFlex: {
 		display: 'flex',
 	},
@@ -12,6 +20,22 @@ const AppStyles = StyleSheet.create({
 
 	justifyContentCenter: {
 		justifyContent: 'center',
+	},
+
+	flexBasis100: {
+		flexBasis: '100%',
+	},
+
+	flexGrow1: {
+		flexGrow: '1',
+	},
+
+	flexWrap: {
+		flexWrap: 'wrap',
+	},
+
+	r0: {
+		right: '0px',
 	},
 
 	alignItemsCenter: {
@@ -77,8 +101,7 @@ const AppStyles = StyleSheet.create({
 	
 	contentBox: {
 		background: config.colors.primaryDarkAlpha,
-		padding: "10px 20px",
-		border: "1px solid "+config.colors.primaryDark,
+		borderColor: config.colors.primaryDark,
 		color: config.colors.primaryDark
 	}
 });

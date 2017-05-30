@@ -5,7 +5,6 @@ import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import EntityInformation from "../Utils/EntityInformation";
 import EventDiagram from "./EventDiagram";
 import EventTable from "./EventTable";
-import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
 import Header from "../Header";
 import EventTabs from "./EventTabs";
@@ -15,6 +14,7 @@ import FilterBar from "./../Utils/FilterBar";
 import Utils from "./../Utils/Utils";
 import {Toggle} from "material-ui";
 import LoadingAnimation from "../Utils/LoadingAnimation";
+import "./DetailView.css";
 
 class DetailView extends ConnectionComponent {
 
@@ -187,7 +187,7 @@ class DetailView extends ConnectionComponent {
 				eventType={this.state.currentEventType}
 				eventTypeAttributes={this.props.eventTypeAttributes.value}
 				entity={this.props.entity.value}
-				styles={[AppStyles.w50]}/>
+				className="w50"/>
 		);
 	}
 
@@ -234,14 +234,13 @@ class DetailView extends ConnectionComponent {
 						}}
 						onToggle={this.handleEventChildrenSwitch}
 						thumbSwitchedStyle={AppStyles.thumbSwitchedColor}
-						className={css(AppStyles.elementMarginTop)}
+						className="elementMarginTop"
 						disabled={this.props.entity.HasChildren}
-						style={AppStyles.toggle}
 					/>
-					<div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>
+					<div className="dFlex elementMarginTop">
 						<EntityInformation
 							entity={entity}
-							styles={[AppStyles.w50]}/>
+							className="w50"/>
 						{this.getEventDiagram()}
 					</div>
 					{this.getFilterBar()}
@@ -250,11 +249,10 @@ class DetailView extends ConnectionComponent {
 						onEventTypeChange={(eventTypes) => {
 							this.resetEventChunk();
 							this.handleEventTypeChange(eventTypes);
-						}}
-						styles={[AppStyles.elementMarginTop]}/>
+						}}/>
 					{this.getEventTable()}
 					{moreEventsAvailable && 
-						<div className={css(AppStyles.textAlignCenter, AppStyles.contentBox)}>
+						<div style={AppStyles.contentBox} className="textAlignCenter contentBox">
 							{this.state.eventChunkLoading ? 
 								<LoadingAnimation 
 									size={20} 

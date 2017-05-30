@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { css } from 'aphrodite';
 import config from './../config/config';
 injectTapEventPlugin();
 
@@ -35,7 +34,7 @@ class EventTabs extends Component {
 
 	render() {
 		return (
-			<Tabs className={css(this.props.styles)}>
+			<Tabs className="elementMarginTop">
 				{this.getTabs()}
 			</Tabs>
 		);

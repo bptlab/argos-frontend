@@ -194,6 +194,7 @@ class SearchBar extends Component {
 	getDeleteButton() {
 		const buttonIsDisabled = this.state.filterValue === "" && this.state.filterColumn === null;
 		return (<IconButton
+			className={css(AppStyles.pAbsolute, AppStyles.r0)}
 			onTouchTap={this.resetFilter}
 			tooltip="delete filter"
 			tooltipPosition="bottom-right"
@@ -204,7 +205,7 @@ class SearchBar extends Component {
 
 	render() {
 		return (
-			<div className={css(this.props.styles, AppStyles.w100, AppStyles.dFlex, AppStyles.alignItemsFlexEnd)}>
+			<div className={css(this.props.styles, AppStyles.dFlex, AppStyles.alignItemsFlexEnd, AppStyles.w100, AppStyles.pRelative)}>
 				<AutoComplete
 					hintText={this.getHintText()}
 					floatingLabelText={this.getFloatingLabelText()}

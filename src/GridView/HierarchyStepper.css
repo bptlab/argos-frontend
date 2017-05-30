@@ -1,0 +1,7 @@
+.hierarchy-step:first-of-type > span {
+	padding-left: 0 !important;
+}
+
+.hierarchy-step:last-of-type > span {
+	padding-right: 0 !important;
+}

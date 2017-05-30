@@ -5,7 +5,6 @@ import SearchBar from "./../Utils/SearchBar";
 import CardGrid from "./CardGrid";
 import {PromiseState} from "react-refetch";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
-import AppStyles from "./../AppStyles";
 import config from "./../config/config.js";
 import help from "./../config/help";
 import Header from "../Header";
@@ -93,7 +92,6 @@ class GridView extends ConnectionComponent {
 								<h1>{childEntityType.Name}</h1>
 								<CardGrid
 									filterObject={this.state.filterObject}
-									styles={[AppStyles.elementMarginTop]}
 									key={childEntityType.Id}
 									currentEntity={entity}
 									entityType={childEntityType}/>

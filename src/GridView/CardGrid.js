@@ -4,13 +4,12 @@ import {Card, CardActions, CardText, CardTitle} from "material-ui/Card";
 import FlatButton from "material-ui/FlatButton";
 import LoadingAnimation from "./../Utils/LoadingAnimation";
 import {Col, Row} from "react-grid-system";
-import {css} from "aphrodite";
-import AppStyles from "./../AppStyles";
 import EntityInformation from "../Utils/EntityInformation";
 import StatusDiagram from "./StatusDiagram";
 import config from "./../config/config";
 import help from "./../config/help";
 import Utils from "./../Utils/Utils";
+import './CardGrid.css';
 
 class CardGrid extends ConnectionComponent {
 	constructor() {
@@ -80,22 +79,26 @@ class CardGrid extends ConnectionComponent {
 			<div>
 				<StatusDiagram
 					entities={entitiesToShow}
-					styles={[AppStyles.elementMarginTop]}/>
-				<Row className={css(this.props.styles)}>
+					className="elementMarginTop"/>
+				<Row className="elementMarginTop dFlex flexWrap">
 					{entitiesToShow.map((childEntity, index) => {
 						return (
-							<Col key={index} xs={12} sm={4} md={3}>
-								<Card>
+							<Col
+								key={index} xs={12} sm={4} md={3}
+								className="dFlex">
+								<Card className="card">
 									<CardTitle
 										style={this.backgroundColor(childEntity.Status)}
 										title={childEntity.Name}
 										titleColor={config.colors.textAlternate}
 										subtitle={this.props.entityType.name}/>
-									<CardText style={this.backgroundColorLight(childEntity.Status)}>
+									<CardText
+										style={this.backgroundColorLight(childEntity.Status)}
+										className="flexGrow1">
 										<EntityInformation entity={childEntity}/>
 									</CardText>
 									<CardActions style={this.backgroundColorLight(childEntity.Status)}>
-										<Row className={css(AppStyles.noMargin)}>
+										<Row className="noMargin">
 											<Col xs={6}>
 												{childEntity.HasChildren &&
 												<FlatButton

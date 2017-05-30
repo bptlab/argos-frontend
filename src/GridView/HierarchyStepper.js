@@ -1,10 +1,9 @@
 import React from "react";
 import {Step, StepLabel, Stepper} from "material-ui/Stepper";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
-import {css} from "aphrodite";
-import AppStyles from "./../AppStyles";
 import config from "./../config/config";
 import help from "./../config/help";
+import './HierarchyStepper.css';
 
 class HierarchyStepper extends ConnectionComponent {
 	constructor() {
@@ -65,11 +64,11 @@ class HierarchyStepper extends ConnectionComponent {
 				data-hintPosition="bottom-middle">
 				<Stepper
 					activeStep={this.state.activeStep}
-					className={css(this.props.styles, AppStyles.elementMarginTop)}>
+					className="elementMarginTop">
 
 					{this.state.hierarchy.map((hierarchyLayer, index) => {
 						return (
-							<Step key={index}>
+						    <Step key={index} className="hierarchy-step">
 								{hierarchyLayer.map((hierarchyLayerInstance, index) => {
 									return this.displayStepLabel(hierarchyLayerInstance, index);
 								})}
