@@ -51,7 +51,8 @@ class EventType extends ConnectionComponent {
 			<IconButton
 				tooltip={"Delete event type \"" + this.props.eventType.Name + "\""}
 				key="delete-button"
-				onTouchTap={this.confirmationMessage}>
+				onTouchTap={() => {
+					this.confirmationMessage.handleOpen();}}>
 				<IconDelete/>
 			</IconButton>];
 	}
