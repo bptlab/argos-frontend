@@ -61,7 +61,11 @@ class EntityMappingListItem extends ConnectionComponent {
 						{this.props.eventType.Name} - {this.getEntityTypeName(this.props.mapping.EntityTypeId)}
 					</Col>
 					<Col md={2}>
-						<IconButton toolTip="Edit this mapping"><IconEdit/></IconButton>
+						<IconButton
+							toolTip="Edit this mapping"
+							href={`/settings/entityMapping/${this.props.mapping.Id}/edit`}>
+							<IconEdit/>
+						</IconButton>
 						<ConfirmationMessage
 							actionToPerform={this.deleteMapping}
 							ref={(input) => {this.confirmationMessage = input;}}>

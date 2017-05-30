@@ -84,7 +84,7 @@ class Header extends Component {
 		}
 
 		let appBarStyle = "";
-		if(this.props.status) {
+		if (this.props.status) {
 			const statusColor = StyleSheet.create({
 				color: {
 					borderColor: Utils.getColorForStatus(this.props.status)
@@ -114,14 +114,17 @@ class Header extends Component {
 					<Route path="/details/:parentId/:entityId" component={() => this.composeAppBar("details")}/>
 					<Route exact path="/settings" component={() => this.composeAppBar("settings")}/>
 					<Route path="/settings/eventType/create" component={() => this.composeAppBar("create")}/>
-					<Route path="/settings/eventType/:eventTypeId/eventQuery/create" component={() => this.composeAppBar("create")}/>
-					<Route path="/settings/eventType/:eventTypeId/eventQuery/:eventQueryId/edit" component={() => this.composeAppBar("create")}/>
+					<Route path="/settings/eventType/:eventTypeId/eventQuery/create"
+					       component={() => this.composeAppBar("create")}/>
+					<Route path="/settings/eventType/:eventTypeId/eventQuery/:eventQueryId/edit"
+					       component={() => this.composeAppBar("create")}/>
 					<Route path="/settings/entityMapping/create" component={() => this.composeAppBar("create")}/>
+					<Route path="/settings/entityMapping/:entityMappingId"
+					       component={() => this.composeAppBar("create")}/>
 					<Route path="*" component={() => this.composeAppBar("grid")}/>
 				</Switch>
 			</Router>
 		);
 	}
-}
-
+} 
 export default Header;
