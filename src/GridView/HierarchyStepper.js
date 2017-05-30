@@ -4,6 +4,7 @@ import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
 import config from "./../config/config";
+import help from "./../config/help";
 
 class HierarchyStepper extends ConnectionComponent {
 	constructor() {
@@ -60,7 +61,7 @@ class HierarchyStepper extends ConnectionComponent {
 	render() {
 		return (
 			<div
-				data-hint={config.explanations.hierarchyStepper}
+				data-hint={help.display.hierarchyStepper}
 				data-hintPosition="bottom-middle">
 				<Stepper
 					activeStep={this.state.activeStep}

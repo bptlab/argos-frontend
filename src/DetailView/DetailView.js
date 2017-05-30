@@ -10,6 +10,7 @@ import AppStyles from "./../AppStyles";
 import Header from "../Header";
 import EventTabs from "./EventTabs";
 import config from "./../config/config.js";
+import help from "./../config/help.js";
 import FilterBar from "./../Utils/FilterBar";
 import Utils from "./../Utils/Utils";
 import {Toggle} from "material-ui";
@@ -194,7 +195,7 @@ class DetailView extends ConnectionComponent {
 		}
 		return (
 			<div
-				data-hint={config.explanations.eventTableFilterBar}
+				data-hint={help.input.eventTableFilterBar}
 			    data-hintPosition="middle-left"
 			>
 			<FilterBar
@@ -221,7 +222,7 @@ class DetailView extends ConnectionComponent {
 					status={entity.Status}/>
 				<Container>
 					<Toggle
-						data-hint={config.explanations.toggleChildrenEvents}
+						data-hint={help.input.toggleChildrenEvents}
 						data-hintPosition="middle-left"
 						label={config.descriptions.toggleChildrenEvents}
 						defaultToggled={false}
