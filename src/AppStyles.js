@@ -70,6 +70,10 @@ const AppStyles = StyleSheet.create({
 		width: '100%',
 	},
 
+	lineHeight25: {
+		lineHeight: '25px',
+	},
+
 	elementMarginTop: {
 		marginTop: '30px'
 	},
@@ -91,12 +95,22 @@ const AppStyles = StyleSheet.create({
 		fontWeight: 'bold'
 	},
 
+	capitalizeFirstLetter: {
+		"::first-letter" : {
+			textTransform: 'capitalize'
+		}
+	},
+
     fontSize24: {
 		fontSize: '24px'
 	},
 
 	errorColor: {
 		color: config.colors.error
+	},
+
+	colorWhite: {
+		color: 'white'
 	},
 	
 	contentBox: {

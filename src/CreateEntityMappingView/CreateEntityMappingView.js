@@ -384,7 +384,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		return (
 			<Container>
 				<div>
-					{optionalActions && optionalActions.rejected && <ErrorMessage message={optionalActions.reason} />}
+					{optionalActions && optionalActions.rejected && <Notification message={optionalActions.reason} />}
 					{this.renderSelectTargetStatus()}
 					{this.renderSelectTypes(initialData)}
 					{initialData.attributeFields}

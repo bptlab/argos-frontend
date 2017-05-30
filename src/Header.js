@@ -16,14 +16,13 @@ import config from "./config/config";
 const introJs = require('intro.js/minified/intro.min.js');
 
 class Header extends Component {
+	static lastNotificationTimestamp;
 
 	constructor(props) {
 		super(props);
 		this.state = {
 			hintsVisible: false
 		};
-	static lastNotificationTimestamp;
-
 		Header.lastNotificationTimestamp = new Date();
 	}
 

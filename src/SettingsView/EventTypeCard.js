@@ -151,8 +151,7 @@ class EventType extends ConnectionComponent {
 												eventType={this.props.eventType}
 												query={query}
 												deleteQuery={this.props.deleteQuery}
-												key={query.Id}
-												onSnackbarMessage={this.props.onSnackbarMessage}/>);
+												key={query.Id}/>);
 										}
 									)}
 								</List>
