@@ -9,6 +9,7 @@ import IconAdd from "material-ui/svg-icons/content/add";
 import IconDelete from "material-ui/svg-icons/action/delete";
 import Header from './../Header';
 import {css} from 'aphrodite';
+import help from './../config/help';
 import ErrorMessage from './../Utils/ErrorMessage.js';
 
 import config from "../config/config";
@@ -240,7 +241,9 @@ class CreateEntityMappingView extends ConnectionComponent {
 				</Row>);
 		});
 		return (
-			<div>
+			<div
+				data-hint={help.input.entityMappingView.attributesSelection}
+				data-hintPosition="top-middle">
 				{content}
 				<FlatButton
 					label={config.descriptions.addMapping}
@@ -278,6 +281,8 @@ class CreateEntityMappingView extends ConnectionComponent {
 						<Row>
 							<Col md={12}>
 								<SelectField
+									data-hint={help.input.entityMappingView.targetStatus}
+									data-hintPosition="middle-middle"
 									value={this.state.targetStatus}
 									onChange={this.handleTargetStatusChange}
 									floatingLabelText={"Target Status, leave empty if no status update is required"}
@@ -297,6 +302,8 @@ class CreateEntityMappingView extends ConnectionComponent {
 						<Row>
 							<Col md={6}>
 								<SelectField
+									data-hint={help.input.entityMappingView.eventTypeSelection}
+									data-hintPosition="middle-middle"
 									value={this.state.selectedEventTypeId.value}
 									errorText={this.state.selectedEventTypeId.errorMessage}
 									onChange={this.handleEventTypeChange}
@@ -307,6 +314,8 @@ class CreateEntityMappingView extends ConnectionComponent {
 							</Col>
 							<Col md={6}>
 								<SelectField
+									data-hint={help.input.entityMappingView.entityTypeSelection}
+									data-hintPosition="middle-middle"
 									value={this.state.selectedEntityTypeId.value}
 									errorText={this.state.selectedEntityTypeId.errorMessage}
 									onChange={this.handleEntityTypeChange}

@@ -1,16 +1,16 @@
-import React from 'react';
-import ConnectionComponent from './../Utils/ConnectionComponent.js';
-import TextField from 'material-ui/TextField';
-import {Container} from "react-grid-system";
+import React from "react";
+import ConnectionComponent from "./../Utils/ConnectionComponent.js";
+import TextField from "material-ui/TextField";
+import {Col, Container, Row} from "react-grid-system";
 import RaisedButton from "material-ui/RaisedButton";
 import IconSave from "material-ui/svg-icons/content/save";
 import IconCancel from "material-ui/svg-icons/navigation/cancel";
-import {Row, Col} from 'react-grid-system';
-import Header from './../Header';
+import Header from "./../Header";
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
-import config from '../config/config.js';
-import ErrorMessage from '../Utils/ErrorMessage.js';
+import config from "../config/config.js";
+import help from "../config/help";
+import ErrorMessage from "../Utils/ErrorMessage.js";
 
 
 class CreateEventTypeView extends ConnectionComponent {
@@ -123,6 +123,8 @@ class CreateEventTypeView extends ConnectionComponent {
 								<Row>
 									<Col>
 										<TextField
+											data-hint={help.input.eventTypeView.name}
+											data-hintPosition="middle-right"
 											floatingLabelText="Event Type Name"
 											fullWidth={true}
 											value={this.state.eventTypeName}
@@ -134,6 +136,8 @@ class CreateEventTypeView extends ConnectionComponent {
 								<Row>
 									<Col>
 										<TextField
+											data-hint={help.input.eventTypeView.timestamp}
+											data-hintPosition="middle-right"
 											floatingLabelText="Timestamp Attribute"
 											fullWidth={true}
 											value={this.state.eventTypeTimestampAttribute}
@@ -144,7 +148,9 @@ class CreateEventTypeView extends ConnectionComponent {
 								<Row className={css(AppStyles.elementMarginTop)}>
 									<Col md={4}> Attributes: </Col>
 								</Row>
-								<Row>
+								<Row
+									data-hint={help.input.eventTypeView.attributes}
+									data-hintPosition="top-middle">
 									<Col>
 										{this.state.attributes.map((attribute) =>
 											<TextField

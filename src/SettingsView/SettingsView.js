@@ -1,17 +1,17 @@
-import React from 'react';
-import {Container} from "react-grid-system";
-import ConnectionComponent from './../Utils/ConnectionComponent.js';
-import Header from './../Header';
-import EventTypeCard from './EventTypeCard';
-import SearchBar from './../Utils/SearchBar';
-import {Row} from 'react-grid-system';
-import {css} from 'aphrodite';
+import React from "react";
+import {Container, Row} from "react-grid-system";
+import ConnectionComponent from "./../Utils/ConnectionComponent.js";
+import Header from "./../Header";
+import EventTypeCard from "./EventTypeCard";
+import SearchBar from "./../Utils/SearchBar";
+import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
-import {Card, CardHeader, CardText, CardActions} from 'material-ui/Card';
-import IconButton from 'material-ui/IconButton';
-import IconAdd from 'material-ui/svg-icons/content/add';
-import ErrorMessage from './../Utils/ErrorMessage.js';
-import config from './../config/config';
+import {Card, CardActions, CardHeader, CardText} from "material-ui/Card";
+import IconButton from "material-ui/IconButton";
+import IconAdd from "material-ui/svg-icons/content/add";
+import ErrorMessage from "./../Utils/ErrorMessage.js";
+import config from "./../config/config";
+import help from "./../config/help";
 
 class SettingsView extends ConnectionComponent {
 
@@ -49,7 +49,10 @@ class SettingsView extends ConnectionComponent {
 				<Header title="Settings"/>
 				<Container className={css(AppStyles.elementMarginTop)}>
 					<Row>
-						<Card initiallyExpanded={true}>
+						<Card
+							data-hint={help.display.settingsView.eventTypes}
+							data-hintPosition="top-middle"
+							initiallyExpanded={true}>
 							<CardHeader
 								title="Event Types"
 								actAsExpander={true}

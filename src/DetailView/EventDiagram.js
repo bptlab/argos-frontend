@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { css } from 'aphrodite';
-import Utils from './../Utils/Utils';
+import React, {Component} from "react";
+import {css} from "aphrodite";
+import Utils from "./../Utils/Utils";
+import help from "./../config/help";
 const plotly = require('plotly.js');
 
 class EventDiagram extends Component {
@@ -86,7 +87,11 @@ class EventDiagram extends Component {
 
 	render() {
 		return (
-			<div id={this.diagramId} className={css(this.props.styles)} />
+			<div
+				id={this.diagramId}
+				className={css(this.props.styles)}
+				data-hint={help.diagram.eventsOverTime}
+				data-hintPosition="middle-right" />
 		);
 	}
 }

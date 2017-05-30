@@ -9,6 +9,7 @@ import AppStyles from "./../AppStyles";
 import EntityInformation from "../Utils/EntityInformation";
 import StatusDiagram from "./StatusDiagram";
 import config from "./../config/config";
+import help from "./../config/help";
 import Utils from "./../Utils/Utils";
 
 class CardGrid extends ConnectionComponent {
@@ -98,11 +99,15 @@ class CardGrid extends ConnectionComponent {
 											<Col xs={6}>
 												{childEntity.HasChildren &&
 												<FlatButton
+													data-hint={help.button.showChildrenOfEntity}
+													data-hintPosition="top-right"
 													label="Children"
 													href={`/grid/${childEntity.Id}`}/>}
 											</Col>
 											<Col xs={6}>
 												<FlatButton
+													data-hint={help.button.inspectEntity}
+													data-hintPosition="top-right"
 													label="Inspect"
 													href={`/details/${this.props.currentEntity.Id}/${childEntity.Id}`}/>
 											</Col>

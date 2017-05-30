@@ -3,14 +3,24 @@ import AppBar from "material-ui/AppBar";
 import IconButton from "material-ui/IconButton";
 import IconHome from "material-ui/svg-icons/action/home";
 import IconSettings from "material-ui/svg-icons/action/settings";
+import IconHelpInactive from "material-ui/svg-icons/action/help-outline";
+import IconHelp from "material-ui/svg-icons/action/help";
 import IconAdd from 'material-ui/svg-icons/content/add';
 import IconArrowBack from "material-ui/svg-icons/navigation/arrow-back";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {css, StyleSheet} from "aphrodite";
 import AppStyles from "./AppStyles";
 import Utils from "./Utils/Utils";
+const introJs = require('intro.js/minified/intro.min.js');
 
 class Header extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			hintsVisible: false
+		};
+	}
 
 	static goBackInHistory() {
 		window.history.back();
@@ -20,6 +30,36 @@ class Header extends Component {
 		const currentPath = window.location.pathname;
 		const newPath = currentPath.replace("details", "grid");
 		window.location.href = newPath.substring(0, newPath.lastIndexOf("/") + 1);
+	}
+
+	toggleHintsOnPage() {
+		const hintsCurrentlyVisible = this.state.hintsVisible;
+		if (hintsCurrentlyVisible) {
+			introJs.introJs().hideHints();
+		}
+		else {
+			introJs.introJs().showHints();
+			introJs.introJs().addHints();
+		}
+		this.setState({
+			hintsVisible: !hintsCurrentlyVisible
+		});
+	}
+
+	getHelpButton() {
+		let hintButton = <IconHelpInactive/>;
+		let buttonTooltip = "Show help bullets on page";
+		if (this.state.hintsVisible) {
+			hintButton = <IconHelp/>;
+			buttonTooltip = "Hide help bullets on page";
+		}
+		return (
+			<IconButton
+				tooltip={buttonTooltip}
+				onTouchTap={() => this.toggleHintsOnPage()}>
+				{hintButton}
+			</IconButton>
+		);
 	}
 
 	composeAppBar(pageLocation) {
@@ -52,6 +92,8 @@ class Header extends Component {
 			});
 			appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color);
 		}
+
+		iconElementRight = <div>{this.getHelpButton()}{iconElementRight}</div>;
 
 		return (
 			<AppBar

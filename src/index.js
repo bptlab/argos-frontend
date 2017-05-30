@@ -7,6 +7,8 @@ import DetailView from './DetailView/DetailView';
 import SettingsView from './SettingsView/SettingsView';
 import NotFound from "./Utils/NotFound";
 
+import "intro.js/minified/introjs.min.css";
+
 import CreateEventQueryView from "./CreateEventQueryView/CreateEventQueryView";
 import CreateEntityMappingView from "./CreateEntityMappingView/CreateEntityMappingView";
 import CreateEventTypeView from "./CreateEventTypeView/CreateEventTypeView";

@@ -4,7 +4,7 @@ import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
 import config from "./../config/config";
-
+import help from "./../config/help";
 
 class HierarchyStepper extends ConnectionComponent {
 	constructor() {
@@ -60,20 +60,24 @@ class HierarchyStepper extends ConnectionComponent {
 
 	render() {
 		return (
-			<Stepper
-				activeStep={this.state.activeStep}
-				className={css(this.props.styles, AppStyles.elementMarginTop)}>
+			<div
+				data-hint={help.display.hierarchyStepper}
+				data-hintPosition="bottom-middle">
+				<Stepper
+					activeStep={this.state.activeStep}
+					className={css(this.props.styles, AppStyles.elementMarginTop)}>
 
-				{this.state.hierarchy.map((hierarchyLayer, index) => {
-					return (
-						<Step key={index}>
-							{hierarchyLayer.map((hierarchyLayerInstance, index) => {
-								return this.displayStepLabel(hierarchyLayerInstance, index);
-							})}
-						</Step>
-					);
-				})}
-			</Stepper>
+					{this.state.hierarchy.map((hierarchyLayer, index) => {
+						return (
+							<Step key={index}>
+								{hierarchyLayer.map((hierarchyLayerInstance, index) => {
+									return this.displayStepLabel(hierarchyLayerInstance, index);
+								})}
+							</Step>
+						);
+					})}
+				</Stepper>
+			</div>
 		);
 	}
 }
