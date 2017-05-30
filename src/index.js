@@ -14,7 +14,7 @@ import CreateEntityMappingView from "./CreateEntityMappingView/CreateEntityMappi
 import CreateEventTypeView from "./CreateEventTypeView/CreateEventTypeView";
 
 ReactDOM.render(
-	<Router>
+	<Router basename="/argos">
 		<App>
 			<Switch>
 				<Route exact path="/" render={() => {
