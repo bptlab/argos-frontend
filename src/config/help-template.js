@@ -20,7 +20,7 @@ const help = {
 		eventQueryView: {
 			description: "Provide a short description for this query.",
 			query: "Define the query when events for the current event type should be triggered. For the queries, only EPL is accepted."
-			+ " You may find an extensive EPL documentation <a href=\"http://www.espertech.com/esper/release-5.3.0/esper-reference/html/epl_clauses.html#epl-intro\">here.</a><br><br>"
+			+ " You may find an extensive EPL documentation <a target=\"_blank\" href=\"http://www.espertech.com/esper/release-5.3.0/esper-reference/html/epl_clauses.html#epl-intro\">here.</a><br><br>"
 			+ "Example:<br>"
 			+ "INSERT INTO newEventType SELECT * FROM eventType1 WHERE attribute1=\"alert\"<br><br>"
 			+ "Explanation:<br>"
