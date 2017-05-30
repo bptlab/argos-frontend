@@ -51,7 +51,7 @@ class SettingsView extends ConnectionComponent {
 					<Row>
 						<Card
 							data-hint={help.display.settingsView.eventTypes}
-							data-hintPosition="middle-left"
+							data-hintPosition="top-middle"
 							initiallyExpanded={true}>
 							<CardHeader
 								title="Event Types"
