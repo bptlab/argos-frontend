@@ -22,6 +22,18 @@ const AppStyles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 
+	flexBasis100: {
+		flexBasis: '100%',
+	},
+
+	flexGrow1: {
+		flexGrow: '1',
+	},
+
+	flexWrap: {
+		flexWrap: 'wrap',
+	},
+
 	r0: {
 		right: '0px',
 	},

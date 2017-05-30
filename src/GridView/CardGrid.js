@@ -11,6 +11,7 @@ import StatusDiagram from "./StatusDiagram";
 import config from "./../config/config";
 import help from "./../config/help";
 import Utils from "./../Utils/Utils";
+import './CardGrid.css';
 
 class CardGrid extends ConnectionComponent {
 	constructor() {
@@ -81,19 +82,21 @@ class CardGrid extends ConnectionComponent {
 				<StatusDiagram
 					entities={entitiesToShow}
 					styles={[AppStyles.elementMarginTop]}/>
-				<Row className={css(this.props.styles, AppStyles.dFlex)}>
+				<Row className={css(this.props.styles, AppStyles.dFlex, AppStyles.flexWrap)}>
 					{entitiesToShow.map((childEntity, index) => {
 						return (
 							<Col
 								key={index} xs={12} sm={4} md={3}
 								className={css(AppStyles.dFlex)}>
-								<Card>
+								<Card className="card">
 									<CardTitle
 										style={this.backgroundColor(childEntity.Status)}
 										title={childEntity.Name}
 										titleColor={config.colors.textAlternate}
 										subtitle={this.props.entityType.name}/>
-									<CardText style={this.backgroundColorLight(childEntity.Status)}>
+									<CardText
+										style={this.backgroundColorLight(childEntity.Status)}
+										className={css(AppStyles.flexGrow1)}>
 										<EntityInformation entity={childEntity}/>
 									</CardText>
 									<CardActions style={this.backgroundColorLight(childEntity.Status)}>
