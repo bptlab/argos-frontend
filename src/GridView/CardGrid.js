@@ -105,7 +105,7 @@ class CardGrid extends ConnectionComponent {
 									<CardTitle
 										style={this.backgroundColor(childEntity.Status)}
 										title={childEntity.Name}
-										titleColor={config.colors.textAlternate}
+										titleColor={config.colors.textAlternate} />
 									<CardText
 										style={this.backgroundColorLight(childEntity.Status)}
 										className="flexGrow1">
