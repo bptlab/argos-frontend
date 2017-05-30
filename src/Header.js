@@ -12,6 +12,7 @@ import AppStyles from "./AppStyles";
 import Utils from "./Utils/Utils";
 import Notification from "./Utils/Notification"
 import config from "./config/config";
+import "./Header.css";
 const introJs = require('intro.js/minified/intro.min.js');
 
 class Header extends Component {
@@ -78,7 +79,8 @@ class Header extends Component {
 		return (
 			<IconButton
 				tooltip={buttonTooltip}
-				onTouchTap={() => this.toggleHintsOnPage()}>
+				onTouchTap={() => this.toggleHintsOnPage()}
+				className="whiteIcon">
 				{hintButton}
 			</IconButton>
 		);
@@ -95,7 +97,7 @@ class Header extends Component {
 
 	composeAppBar(pageLocation) {
 		let iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
-		let iconElementRight = <IconButton href={Utils.getLink('/settings')}><IconSettings/></IconButton>;
+		let iconElementRight = <IconButton className="whiteIcon verticalAlignTop" href={Utils.getLink('/settings')}><IconSettings/></IconButton>;
 
 		if (pageLocation === "grid") {
 			iconElementLeft = <IconButton href={Utils.getLink('/grid/-1')}><IconHome/></IconButton>;
@@ -106,6 +108,11 @@ class Header extends Component {
 		}
 
 		if (pageLocation === "settings") {
+			iconElementRight = <IconButton className="whiteIcon verticalAlignTop" href="settings/eventType/create"><IconAdd/></IconButton>;
+		}
+
+		//all pages for creation of eventqueries, eventtypes and mappings
+		if (pageLocation === "create") {
 			iconElementRight = <div/>;
 		}
 
