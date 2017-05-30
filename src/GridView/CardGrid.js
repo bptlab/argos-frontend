@@ -11,10 +11,11 @@ import StatusDiagram from "./StatusDiagram";
 import config from "./../config/config";
 import help from "./../config/help";
 import Utils from "./../Utils/Utils";
+import attributeConfig from "../config/attributeConfig/attributeConfig";
 
 class CardGrid extends ConnectionComponent {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.isCoveredByFilter = this.isCoveredByFilter.bind(this);
 	}
 
@@ -62,9 +63,23 @@ class CardGrid extends ConnectionComponent {
 		const attributeArray = [];
 		childEntity.Attributes.forEach((attribute) => {
 			attributeArray.push(attribute.Name);
-			attributeArray.push(attribute.Value)
+			attributeArray.push(attribute.Value);
 		});
 		return attributeArray;
+	}
+
+	static getNecessaryAttributes(entityType) {
+		const necessaryAttributes = [];
+		const attributeDefinition = attributeConfig[String(entityType.Name)];
+		if(!attributeDefinition) {
+			return null;
+		}
+		Object.entries(attributeDefinition).forEach(([attributeName, isNecessary]) => {
+			if (isNecessary === 1) {
+				necessaryAttributes.push(attributeName);
+			}
+		});
+		return necessaryAttributes;
 	}
 
 	render() {
@@ -89,8 +104,7 @@ class CardGrid extends ConnectionComponent {
 									<CardTitle
 										style={this.backgroundColor(childEntity.Status)}
 										title={childEntity.Name}
-										titleColor={config.colors.textAlternate}
-										subtitle={this.props.entityType.name}/>
+										titleColor={config.colors.textAlternate}/>
 									<CardText style={this.backgroundColorLight(childEntity.Status)}>
 										<EntityInformation entity={childEntity}/>
 									</CardText>
@@ -123,12 +137,23 @@ class CardGrid extends ConnectionComponent {
 	}
 }
 
-export default ConnectionComponent.argosConnector({fetch: ConnectionComponent.switchFetch})(props => ({
-	entities: {
-		url: config.backendRESTRoute + `/entitytype/${props.entityType.Id}/attributes`,
-		then: attributes =>
-			config.backendRESTRoute + `/entity/${props.currentEntity.Id}`
-				+ `/children/type/${props.entityType.Id}`
-				+ `/${attributes.map(attribute => attribute.Name).join("+")}`,
+export default ConnectionComponent.argosConnector({fetch: ConnectionComponent.switchFetch})(props => {
+	const necessaryAttributes = CardGrid.getNecessaryAttributes(props.entityType);
+	if (!necessaryAttributes) {
+		return {
+			entities: {
+				url: config.backendRESTRoute + `/entitytype/${props.entityType.Id}/attributes`,
+				then: attributes => config.backendRESTRoute + `/entity/${props.currentEntity.Id}`
+									+ `/children/type/${props.entityType.Id}`
+									+ `/${attributes.map(attribute => attribute.Name).join("+")}`,
+			}
+		};
 	}
-}))(CardGrid);
+	return {
+		entities: {
+			url: config.backendRESTRoute + `/entity/${props.currentEntity.Id}`
+			+ `/children/type/${props.entityType.Id}`
+			+ `/${necessaryAttributes.map(attribute => attribute).join("+")}`
+		}
+	};
+})(CardGrid);
