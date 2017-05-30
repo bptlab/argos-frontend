@@ -10,7 +10,6 @@
 /build
 /src/config/config.js
 /src/config/attributeConfig/attributeConfig.js
-/src/config/help.js
 
 # misc
 .DS_Store
