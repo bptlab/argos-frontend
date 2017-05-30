@@ -20,7 +20,11 @@ class Notification extends Component {
 		window.sessionStorage.setItem('notificationMessage',
 			JSON.stringify({message: message, targetPage: document.referrer, mode: mode, timestamp: new Date()}));
 	}
-	
+
+	static addSnackbarNotificationOnSelf(message, mode) {
+		window.sessionStorage.setItem('notificationMessage',
+			JSON.stringify({message: message, targetPage: window.location.href, mode: mode, timestamp: new Date()}));
+	}
 
 	getIconForMode() {
 		if(this.props.mode.color === Notification.ModeEnum.SUCCESS.color) {

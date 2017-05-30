@@ -76,8 +76,7 @@ class EventType extends ConnectionComponent {
 								mapping={mapping}
 								deleteMapping={this.props.deleteMapping}
 								eventType={this.props.eventType}
-								eventTypeAttributes={attributes}
-								onSnackbarMessage={this.props.onSnackbarMessage}/>
+								eventTypeAttributes={attributes}/>
                         );
                     })}
 				</List>

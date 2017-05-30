@@ -26,7 +26,6 @@ class EventQueryListItem extends Component {
 				<ConfirmationMessage 
 					actionToPerform={this.deleteEventQuery}
 					ref={(input) => {this.confirmationMessage = input;}}
-					onSnackbarMessage={this.props.onSnackbarMessage}
 					message={config.messages.deletedQueryMessage}>
 					{config.messages.deleteQueryMessage}
 				</ConfirmationMessage>
