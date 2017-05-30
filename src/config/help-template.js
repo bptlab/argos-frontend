@@ -33,6 +33,16 @@ const help = {
 			name: "Provide a name for the new event type.<br>You can use lower and upper case letters, digits (not at the beginning), underscore and minus.",
 			timestamp: "Set a name for the timestamp attribute. This attribute is independent from value attributes defined below and will contain the timestamp of occurrence.",
 			attributes: "Define names for all attributes belonging to the new event type."
+		},
+		entityMappingView: {
+			targetStatus: "If an status is selected here, each event fitting a mapping will trigger a status-change on the mapped entity.",
+			eventTypeSelection: "Select the event type where a mapping should be defined on.",
+			entityTypeSelection: "Select an entity type where the mapping should point to.",
+			attributesSelection: "Connect attributes from an event type to attributes of an entity type."
+			+ " An event will be mapped to an entity if their values match for all defined attributes.<br><br>"
+			+ "Example:<br>Given the mapping \"EventType1 > entityName to EntityType1 > name\".<br>"
+			+ "For each event of EventType1 the value of 'entityName' will be checked against each entity of EntityType1."
+			+ " If the value matches the 'name' attribute, the event will be assigned to this entity.",
 		}
 	},
 	button: {
