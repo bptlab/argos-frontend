@@ -125,7 +125,7 @@ class EventType extends ConnectionComponent {
 							<Col md={4}>
 								<List
 									data-hint={help.display.settingsView.eventTypeAttributes}
-								    data-hintPosition="middle-middle">
+									data-hintPosition="middle-middle">
 									{attributes.map((attribute) => { return(
 										<ListItem
 											primaryText={attribute.Name}

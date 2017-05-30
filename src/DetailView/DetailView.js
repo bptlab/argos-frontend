@@ -196,7 +196,7 @@ class DetailView extends ConnectionComponent {
 		return (
 			<div
 				data-hint={help.input.eventTableFilterBar}
-			    data-hintPosition="middle-left"
+				data-hintPosition="middle-left"
 			>
 			<FilterBar
 				onFiltersChange={this.handleFilterChange}
