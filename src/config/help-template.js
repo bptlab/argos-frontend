@@ -9,6 +9,7 @@ const help = {
 		+ "By default, your search term will be evaluated on all columns. "
 		+ "To specify in which column(s) the search should be performed, separate the column name with \":\" from the search term.<br><br>"
 		+ "Example: \"ab\" will list all events having any attribute containing this string. \"Attr1:ab\" will show all events having \"ab\" in the value of \"Attr1\".",
+		gridViewFilterBar: "Filter all childentities by their name or attribute values.",
 	},
 	button: {
 		inspectEntity: "Click to view details and events for this entity.",

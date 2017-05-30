@@ -7,6 +7,7 @@ import {PromiseState} from "react-refetch";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import AppStyles from "./../AppStyles";
 import config from "./../config/config.js";
+import help from "./../config/help";
 import Header from "../Header";
 
 class GridView extends ConnectionComponent {
@@ -81,7 +82,11 @@ class GridView extends ConnectionComponent {
 						currentEntity={entity}
 						getEntityType={this.getEntityType}
 						getChildEntityTypes={this.getChildEntityTypes}/>
-					<SearchBar onInputChange={this.handleFilterChange}/>
+					<div
+						data-hint={help.input.gridViewFilterBar}
+						data-hintPosition="middle-left">
+						<SearchBar onInputChange={this.handleFilterChange}/>
+					</div>
 					{childEntityTypes.map((childEntityType) => {
 						return (
 							<div key={`div-${childEntityType.Id}`}>
