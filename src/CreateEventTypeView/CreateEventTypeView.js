@@ -25,6 +25,7 @@ class CreateEventTypeView extends ConnectionComponent {
 			eventTypeTimestampAttributeErrorText: ''
 		};
 		this.nextAttributeId = 1;
+		this.newestNotificationShown = false;
 		this.handleChangeEventTypeName = this.handleChangeEventTypeName.bind(this);
 		this.handleChangeEventTypeTimestampAttribute = this.handleChangeEventTypeTimestampAttribute.bind(this);
 		this.submitForm = this.submitForm.bind(this);
@@ -73,6 +74,7 @@ class CreateEventTypeView extends ConnectionComponent {
 			this.props.createEventType(body);
 			Notification.addSnackbarNotificationOnReferrer(config.messages.createdEventTypeMessage, Notification.ModeEnum.SUCCESS);
 		}
+		this.newestNotificationShown = false;
 	}
 
 	onInputChange(event) {
@@ -111,16 +113,14 @@ class CreateEventTypeView extends ConnectionComponent {
 			window.history.back();
 			return null;
 		}
+		if (optionalActions && optionalActions.rejected && !this.newestNotificationShown) {
+			Notification.addSnackbarNotificationOnSelf(optionalActions.reason, Notification.ModeEnum.ERROR);
+			this.newestNotificationShown = true;
+		}
 		return (
 			<div>
 				<Header title="Create New Event Type"/>
 				<Container>
-					{optionalActions && optionalActions.rejected &&
-						<Notification
-							open={true}
-							message={optionalActions.reason}
-							mode={Notification.ModeEnum.ERROR}/>
-					}
 					<form>
 						<div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>
 							<Col>

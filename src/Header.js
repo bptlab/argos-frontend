@@ -22,6 +22,22 @@ class Header extends Component {
 		this.state = {
 			hintsVisible: false
 		};
+	static lastNotificationTimestamp;
+
+		Header.lastNotificationTimestamp = new Date();
+	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		if (window.sessionStorage.getItem('notificationMessage')) {
+			if (nextProps.title === this.props.title &&
+				JSON.parse(window.sessionStorage.getItem('notificationMessage')).timestamp === Header.lastNotificationTimestamp) {
+				return false
+			}
+			Header.lastNotificationTimestamp = JSON.parse(window.sessionStorage.getItem('notificationMessage')).timestamp;
+		} else if (nextProps.title === this.props.title) {
+			return false
+		}
+		return true;
 	}
 
 	static goBackInHistory() {
