@@ -1,6 +1,5 @@
-import React, {Component} from "react";
-import {css} from "aphrodite";
-import config from "../config/config";
+import React, { Component } from 'react';
+import config from '../config/config';
 import help from "../config/help";
 const plotly = require('plotly.js');
 
@@ -100,8 +99,7 @@ class StatusDiagram extends Component {
 		return (
 			<div
 				data-hint={help.diagram.childEntitiesStatus}
-				data-hintPosition="middle-left"
-				className={css(this.props.styles)}>
+				data-hintPosition="middle-left">
 				<div id="status-diagram" />
 			</div>
 		);

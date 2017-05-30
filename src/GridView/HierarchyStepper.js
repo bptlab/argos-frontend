@@ -1,7 +1,6 @@
 import React from "react";
 import {Step, StepLabel, Stepper} from "material-ui/Stepper";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
-import {css} from "aphrodite";
 import config from "./../config/config";
 import help from "./../config/help";
 import './HierarchyStepper.css';
