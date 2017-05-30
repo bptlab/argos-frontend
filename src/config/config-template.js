@@ -4,6 +4,7 @@ const config = {
 	backendRESTRoute: "http://localhost:3000/",
 	backendWebSocketURL: "ws://localhost:8989/argos/notifications",
 	enableCaching: true,
+	language: "en",
 	colors: {
 		primaryDark: "#000051",
 		primaryDarkAlpha: "rgba(0, 0, 81, 0.2)",
