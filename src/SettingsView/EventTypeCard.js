@@ -4,6 +4,7 @@ import {List, ListItem} from 'material-ui/List';
 import EventQueryListItem from  './EventQueryListItem.js';
 import EntityMappingListItem from  './EntityMappingListItem.js';
 import config from './../config/config.js';
+import help from "./../config/help";
 import { Col, Container } from 'react-grid-system';
 import { PromiseState } from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
@@ -41,8 +42,13 @@ class EventType extends ConnectionComponent {
 	
 	getEventTypeHeaderButtons() {
 		return [
-			<IconButton key="edit-button"><IconEdit/></IconButton>,
 			<IconButton
+				tooltip={"Edit mappings or queries for event type \"" + this.props.eventType.Name + "\""}
+				key="edit-button">
+				<IconEdit/>
+			</IconButton>,
+			<IconButton
+				tooltip={"Delete event type \"" + this.props.eventType.Name + "\""}
 				key="delete-button"
 				onTouchTap={() => {this.confirmationMessage.handleOpen();}}>
 				<IconDelete/>
@@ -117,7 +123,9 @@ class EventType extends ConnectionComponent {
 						expandable={true}>
 						<Container fluid={true}>
 							<Col md={4}>
-								<List >
+								<List
+									data-hint={help.display.settingsView.eventTypeAttributes}
+								    data-hintPosition="middle-middle">
 									{attributes.map((attribute) => { return(
 										<ListItem
 											primaryText={attribute.Name}
@@ -127,7 +135,9 @@ class EventType extends ConnectionComponent {
 								</List>
 							</Col>
 							<Col md={7}>
-								<List>
+								<List
+									data-hint={help.display.settingsView.eventTypeQueries}
+									data-hintPosition="middle-middle">
 									{queries.map((query) => {
 										return(
 											<EventQueryListItem
@@ -147,7 +157,9 @@ class EventType extends ConnectionComponent {
 								</IconButton>
 							</Col>
 						</Container>
-						<Container>
+						<Container
+							data-hint={help.display.settingsView.entityMappings}
+							data-hintPosition="top-middle">
 							{this.showEntityMappings(entityMappings, attributes)}
 						</Container>
 					</CardText>
