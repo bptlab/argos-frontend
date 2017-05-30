@@ -11,6 +11,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {css, StyleSheet} from "aphrodite";
 import AppStyles from "./AppStyles";
 import Utils from "./Utils/Utils";
+import Notification from "./Utils/Notification"
 import config from "./config/config";
 const introJs = require('intro.js/minified/intro.min.js');
 
@@ -93,16 +94,28 @@ class Header extends Component {
 			});
 			appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color);
 		}
+		let notificationMessage;
+		if(window.sessionStorage.getItem('notificationMessage')) {
+			const storageNotificationMessage = window.sessionStorage.getItem('notificationMessage');
+			if (storageNotificationMessage && window.location.href.toString() === JSON.parse(storageNotificationMessage).targetPage.toString()) {
+				notificationMessage = JSON.parse(storageNotificationMessage);
+			}
+		}
 
 		iconElementRight = <div>{this.getHelpButton()}{iconElementRight}</div>;
 
 		return (
-			<AppBar
-				title={<span>{this.props.title}</span>}
-				iconElementLeft={iconElementLeft}
-				iconElementRight={iconElementRight}
-				className={appBarStyle}
-			/>
+			<div>
+				<AppBar
+					title={<span>{this.props.title}</span>}
+					iconElementLeft={iconElementLeft}
+					iconElementRight={iconElementRight}
+					className={appBarStyle}/>
+				<Notification
+					open={!!notificationMessage}
+					message={notificationMessage ? notificationMessage.message : ''}
+					mode={notificationMessage ? notificationMessage.mode : {}}/>
+			</div>
 		);
 	}
 

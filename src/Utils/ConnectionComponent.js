@@ -24,9 +24,9 @@ class ConnectionComponent extends Component {
 		window.changeNotifier.unregisterAll();
 	}
 
-	addSnackbarNotification(message, mode) {
+	addSnackbarNotificationOnReferrer(message, mode) {
 		window.sessionStorage.setItem('notificationMessage',
-			JSON.stringify({message: message, mode: mode}));
+			JSON.stringify({message: message, targetPage: document.referrer, mode: mode}));
 	}
 
 	render(promiseState) {

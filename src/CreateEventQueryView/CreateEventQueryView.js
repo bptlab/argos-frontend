@@ -91,7 +91,7 @@ class CreateEventQueryView extends ConnectionComponent {
 				Description: this.state.queryDescription,
 				Query: this.state.query
 			});
-			super.addSnackbarNotification(config.messages.createdQueryMessage, Notification.ModeEnum.SUCCESS);
+			super.addSnackbarNotificationOnReferrer(config.messages.createdQueryMessage, Notification.ModeEnum.SUCCESS);
 		}
 	}
 
@@ -102,7 +102,7 @@ class CreateEventQueryView extends ConnectionComponent {
 				Description: this.state.queryDescription,
 				Query: this.state.query
 			});
-			super.addSnackbarNotification(config.messages.updatedQueryMessage, Notification.ModeEnum.SUCCESS);
+			super.addSnackbarNotificationOnReferrer(config.messages.updatedQueryMessage, Notification.ModeEnum.SUCCESS);
 		}
 	}
 	
