@@ -47,9 +47,9 @@ class Notification extends Component {
 
 	getIconForMode() {
 		if(this.state.mode.color === Notification.ModeEnum.SUCCESS.color) {
-			return <IconSuccess className={css(AppStyles.verticalAlignMarginRight, AppStyles.colorWhite)}/>;
-		} else if (this.state.mode === Notification.ModeEnum.ERROR) {
-			return <IconError className={css(AppStyles.verticalAlignMarginRight, AppStyles.colorWhite)}/>;
+			return <IconSuccess className={css(AppStyles.marginRight, AppStyles.colorWhite)}/>;
+		} else if (this.state.mode.color === Notification.ModeEnum.ERROR.color) {
+			return <IconError className={css(AppStyles.marginRight, AppStyles.colorWhite)}/>;
 		}
 	}
 
@@ -60,7 +60,13 @@ class Notification extends Component {
 		return (
 			<Snackbar
 				open={this.props.open}
-				message={<span className={css(AppStyles.dFlex, AppStyles.alignItemsCenter)}>{this.getIconForMode()}<p className={css(AppStyles.capitalizeFirstLetter, AppStyles.lineHeight25)}>{this.state.message}</p> </span>}
+				message={
+					<span className={css(AppStyles.dFlex, AppStyles.alignItemsCenter)}>
+						{this.getIconForMode()}
+						<p className={css(AppStyles.capitalizeFirstLetter, AppStyles.lineHeight25)}>
+							{this.state.message}
+						</p>
+					</span>}
 				autoHideDuration={config.notificationDisplayDuration}
 				bodyStyle={{backgroundColor: this.props.mode.color}}/>);
 	}
