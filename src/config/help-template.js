@@ -28,6 +28,11 @@ const help = {
 			+ "'SELECT *' selects all attributes from eventType1 to be included into events of the current event type.<br>"
 			+ "'FROM eventType1' defines that this query should be evaluated for each event occurring for eventType1.<br>"
 			+ "'WHERE attribute1=\"alert\"' filters all events so the query will only match if the event has \"alert\" in its value for attribute1."
+		},
+		eventTypeView: {
+			name: "Provide a name for the new event type.<br>You can use lower and upper case letters, digits (not at the beginning), underscore and minus.",
+			timestamp: "Set a name for the timestamp attribute. This attribute is independent from value attributes defined below and will contain the timestamp of occurrence.",
+			attributes: "Define names for all attributes belonging to the new event type."
 		}
 	},
 	button: {
