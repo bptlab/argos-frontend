@@ -9,11 +9,12 @@ import StatusDiagram from "./StatusDiagram";
 import config from "./../config/config";
 import help from "./../config/help";
 import Utils from "./../Utils/Utils";
+import attributeConfig from "../config/attributeConfig/attributeConfig";
 import './CardGrid.css';
 
 class CardGrid extends ConnectionComponent {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.isCoveredByFilter = this.isCoveredByFilter.bind(this);
 	}
 
@@ -61,9 +62,20 @@ class CardGrid extends ConnectionComponent {
 		const attributeArray = [];
 		childEntity.Attributes.forEach((attribute) => {
 			attributeArray.push(attribute.Name);
-			attributeArray.push(attribute.Value)
+			attributeArray.push(attribute.Value);
 		});
 		return attributeArray;
+	}
+
+	static getNecessaryAttributes(entityType) {
+		const necessaryAttributes = [];
+		const attributeDefinition = attributeConfig[String(entityType.Name)];
+		Object.entries(attributeDefinition).forEach(([attributeName, isNecessary]) => {
+			if (isNecessary === 1) {
+				necessaryAttributes.push(attributeName);
+			}
+		});
+		return necessaryAttributes;
 	}
 
 	render() {
@@ -91,7 +103,6 @@ class CardGrid extends ConnectionComponent {
 										style={this.backgroundColor(childEntity.Status)}
 										title={childEntity.Name}
 										titleColor={config.colors.textAlternate}
-										subtitle={this.props.entityType.name}/>
 									<CardText
 										style={this.backgroundColorLight(childEntity.Status)}
 										className="flexGrow1">
@@ -126,12 +137,12 @@ class CardGrid extends ConnectionComponent {
 	}
 }
 
-export default ConnectionComponent.argosConnector({fetch: ConnectionComponent.switchFetch})(props => ({
-	entities: {
-		url: config.backendRESTRoute + `/entitytype/${props.entityType.Id}/attributes`,
-		then: attributes =>
-			config.backendRESTRoute + `/entity/${props.currentEntity.Id}`
-				+ `/children/type/${props.entityType.Id}`
-				+ `/${attributes.map(attribute => attribute.Name).join("+")}`,
-	}
-}))(CardGrid);
+export default ConnectionComponent.argosConnector({fetch: ConnectionComponent.switchFetch})(props => {
+	console.log(props.entityType);
+	const necessaryAttributes = CardGrid.getNecessaryAttributes(props.entityType);
+	return {
+		entities: config.backendRESTRoute + `/entity/${props.currentEntity.Id}`
+		+ `/children/type/${props.entityType.Id}`
+		+ `/${necessaryAttributes.map(attribute => attribute).join("+")}`
+	};
+})(CardGrid);
