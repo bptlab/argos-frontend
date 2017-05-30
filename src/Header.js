@@ -11,6 +11,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {css, StyleSheet} from "aphrodite";
 import AppStyles from "./AppStyles";
 import Utils from "./Utils/Utils";
+import config from "./config/config";
 const introJs = require('intro.js/minified/intro.min.js');
 
 class Header extends Component {
@@ -64,10 +65,10 @@ class Header extends Component {
 
 	composeAppBar(pageLocation) {
 		let iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
-		let iconElementRight = <IconButton href="/settings"><IconSettings/></IconButton>;
+		let iconElementRight = <IconButton href={Utils.getLink('/settings')}><IconSettings/></IconButton>;
 
 		if (pageLocation === "grid") {
-			iconElementLeft = <IconButton href="/grid/-1"><IconHome/></IconButton>;
+			iconElementLeft = <IconButton href={Utils.getLink('/grid/-1')}><IconHome/></IconButton>;
 		}
 
 		if (pageLocation === "details") {
@@ -75,7 +76,7 @@ class Header extends Component {
 		}
 
 		if (pageLocation === "settings") {
-			iconElementRight = <IconButton href="settings/eventType/create"><IconAdd/></IconButton>;
+			iconElementRight = <IconButton href={Utils.getLink('settings/eventType/create')}><IconAdd/></IconButton>;
 		}
 
 		//all pages for creation of eventqueries, eventtypes and mappings
@@ -107,7 +108,7 @@ class Header extends Component {
 
 	render() {
 		return (
-			<Router>
+			<Router basename={config.basename}>
 				<Switch>
 					<Route exact path="/" component={() => this.composeAppBar("grid")}/>
 					<Route path="/grid/:entityId" component={() => this.composeAppBar("grid")}/>

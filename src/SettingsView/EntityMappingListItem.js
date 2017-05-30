@@ -1,4 +1,5 @@
 import React from 'react';
+import Utils from '../Utils/Utils';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import config from './../config/config.js';
 import {Row, Col} from 'react-grid-system';
@@ -63,7 +64,7 @@ class EntityMappingListItem extends ConnectionComponent {
 					<Col md={2}>
 						<IconButton
 							toolTip="Edit this mapping"
-							href={`/settings/entityMapping/${this.props.mapping.Id}/edit`}>
+							href={Utils.getLink(`/settings/entityMapping/${this.props.mapping.Id}/edit`)} >
 							<IconEdit/>
 						</IconButton>
 						<ConfirmationMessage

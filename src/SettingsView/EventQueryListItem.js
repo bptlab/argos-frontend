@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import IconButton from 'material-ui/IconButton';
 import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 import IconDelete from 'material-ui/svg-icons/action/delete';
+import Utils from '../Utils/Utils';
 import ConfirmationMessage from './../Utils/ConfirmationMessage.js'
 import {ListItem} from 'material-ui/List';
 import config from './../config/config.js';
@@ -29,7 +30,7 @@ class EventQueryListItem extends Component {
 				</ConfirmationMessage>
 				<IconButton
 					tooltip="Edit this query"
-					href={`/settings/eventType/${this.props.eventType.Id}/eventQuery/${this.props.query.Id}/edit`}>
+					href={Utils.getLink(`/settings/eventType/${this.props.eventType.Id}/eventQuery/${this.props.query.Id}/edit`)} >
 					<IconEdit/>
 				</IconButton>
 				<IconButton

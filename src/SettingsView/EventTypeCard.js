@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, CardHeader, CardText, CardActions } from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
+import Utils from '../Utils/Utils';
 import EventQueryListItem from  './EventQueryListItem.js';
 import EntityMappingListItem from  './EntityMappingListItem.js';
 import config from './../config/config.js';
@@ -81,7 +82,7 @@ class EventType extends ConnectionComponent {
 			</CardText>
 			<CardActions>
 				<IconButton
-					href="settings/entityMapping/create"
+					href={Utils.getLink('/settings/entityMapping/create')}
 					tooltip={<span>create new event entity mapping</span>}>
 					<IconAdd/>
 				</IconButton>
@@ -152,7 +153,7 @@ class EventType extends ConnectionComponent {
 							<Col md={1}>
 								<IconButton
 									tooltip={<span>create new event query</span>}
-									href={`settings/eventType/${this.props.eventType.Id}/eventQuery/create`}>
+									href={Utils.getLink(`settings/eventType/${this.props.eventType.Id}/eventQuery/create`)} >
 									<IconAdd/>
 								</IconButton>
 							</Col>

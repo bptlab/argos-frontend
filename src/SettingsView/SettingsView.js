@@ -1,5 +1,6 @@
 import React from "react";
 import {Container, Row} from "react-grid-system";
+import Utils from '../Utils/Utils';
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import Header from "./../Header";
 import EventTypeCard from "./EventTypeCard";
@@ -79,7 +80,7 @@ class SettingsView extends ConnectionComponent {
 							<CardActions>
 								<IconButton
 									tooltip={<span>create new event type</span>}
-									href="settings/eventType/create">
+									href={Utils.getLink('/settings/eventType/create')} >
 									<IconAdd/>
 								</IconButton>
 							</CardActions>

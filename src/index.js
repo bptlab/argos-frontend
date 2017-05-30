@@ -6,6 +6,7 @@ import GridView from './GridView/GridView';
 import DetailView from './DetailView/DetailView';
 import SettingsView from './SettingsView/SettingsView';
 import NotFound from "./Utils/NotFound";
+import config from './config/config';
 
 import "intro.js/minified/introjs.min.css";
 
@@ -14,7 +15,7 @@ import CreateEntityMappingView from "./CreateEntityMappingView/CreateEntityMappi
 import CreateEventTypeView from "./CreateEventTypeView/CreateEventTypeView";
 
 ReactDOM.render(
-	<Router>
+	<Router basename={config.basename}>
 		<App>
 			<Switch>
 				<Route exact path="/" render={() => {
