@@ -11,6 +11,14 @@ class EventDiagram extends Component {
 		this.diagramId = "eventDiagram";
 	}
 
+	componentWillReceiveProps(props) {
+		this.buildChartDataset(props);
+	}
+
+	componentDidMount() {
+		this.buildChartDataset(this.props);
+	}
+
 	static getDiagramLayout(eventCounter) {
 		return {
 			yaxis: {
@@ -40,10 +48,6 @@ class EventDiagram extends Component {
 			traceData.fillcolor = statusColor + opacityFactor;
 		}
 		return [traceData];
-	}
-
-	componentWillReceiveProps(props) {
-		this.buildChartDataset(props);
 	}
 
 	buildChartDataset(props) {
