@@ -1,4 +1,5 @@
 import config from './../config/config';
+import attributeConfig from "../config/attributeConfig/attributeConfig";
 
 class Utils {
 	/**
@@ -187,6 +188,25 @@ class Utils {
 	static splitStringBeforeSubString(string, subString) {
 		const indexOfSubStringClause = string.toString().toLowerCase().indexOf(subString.toString().toLowerCase());
 		return string.slice(0, indexOfSubStringClause);
+	}
+
+	/**
+	 * Loads the necessary attributes from an EntityType.
+	 * @param entityType
+	 * @returns {null|Array}
+	 */
+	static getNecessaryAttributes(entityType) {
+		const necessaryAttributes = [];
+		const attributeDefinition = attributeConfig[String(entityType.Name)];
+		if(!attributeDefinition) {
+			return null;
+		}
+		Object.entries(attributeDefinition).forEach(([attributeName, isNecessary]) => {
+			if (isNecessary === 1) {
+				necessaryAttributes.push(attributeName);
+			}
+		});
+		return necessaryAttributes;
 	}
 }
 

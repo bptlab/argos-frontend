@@ -9,7 +9,6 @@ import StatusDiagram from "./StatusDiagram";
 import config from "./../config/config";
 import help from "./../config/help";
 import Utils from "./../Utils/Utils";
-import attributeConfig from "../config/attributeConfig/attributeConfig";
 import './CardGrid.css';
 
 class CardGrid extends ConnectionComponent {
@@ -65,20 +64,6 @@ class CardGrid extends ConnectionComponent {
 			attributeArray.push(attribute.Value);
 		});
 		return attributeArray;
-	}
-
-	static getNecessaryAttributes(entityType) {
-		const necessaryAttributes = [];
-		const attributeDefinition = attributeConfig[String(entityType.Name)];
-		if(!attributeDefinition) {
-			return null;
-		}
-		Object.entries(attributeDefinition).forEach(([attributeName, isNecessary]) => {
-			if (isNecessary === 1) {
-				necessaryAttributes.push(attributeName);
-			}
-		});
-		return necessaryAttributes;
 	}
 
 	render() {
@@ -141,7 +126,7 @@ class CardGrid extends ConnectionComponent {
 }
 
 export default ConnectionComponent.argosConnector({fetch: ConnectionComponent.switchFetch})(props => {
-	const necessaryAttributes = CardGrid.getNecessaryAttributes(props.entityType);
+	const necessaryAttributes = Utils.getNecessaryAttributes(props.entityType);
 	if (!necessaryAttributes) {
 		return {
 			entities: {
