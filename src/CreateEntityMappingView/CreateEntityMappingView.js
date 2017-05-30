@@ -53,7 +53,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 
 	// returns the state loaded from a response
 	static getLoadedStateFromResponse(entityMapping) {
-		let mappings = [];
+		const mappings = [];
 		entityMapping.EventEntityMappingConditions.forEach(mappingCondition => {
 			mappings.push({
 				eventTypeAttribute: {value: mappingCondition.EventTypeAttributeId, errorMessage: ""},
@@ -458,15 +458,13 @@ class CreateEntityMappingView extends ConnectionComponent {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		if (!this.isCreateView && !this.oldValuesWereLoaded && this.oldValuesShouldBeLoaded) {
+		if (!this.isCreateView && !this.oldValuesWereLoaded && this.oldValuesShouldBeLoaded && this.props.entityMapping.fulfilled) {
 			// in edit view, when old values should be loaded into the interface
-			if (this.props.entityMapping.fulfilled) {
-				const entityMapping = this.props.entityMapping.value;
-				this.setState(CreateEntityMappingView.getLoadedStateFromResponse(entityMapping));
-				this.props.lazyEventTypeAttributeLoading(entityMapping.EventTypeId);
-				this.props.lazyEntityTypeAttributeLoading(entityMapping.EntityTypeId);
-				this.oldValuesWereLoaded = true;
-			}
+			const entityMapping = this.props.entityMapping.value;
+			this.setState(CreateEntityMappingView.getLoadedStateFromResponse(entityMapping));
+			this.props.lazyEventTypeAttributeLoading(entityMapping.EventTypeId);
+			this.props.lazyEntityTypeAttributeLoading(entityMapping.EntityTypeId);
+			this.oldValuesWereLoaded = true;
 		}
 
 		if(prevState.selectedEventType.value !== this.state.selectedEventType.value) {
