@@ -26,6 +26,7 @@ class CreateEventQueryView extends ConnectionComponent {
 			descriptionErrorMessage: ''
 		};
 		this.isCreateView = typeof this.props.match.params.eventQueryId === 'undefined';
+		this.newestNotificationShowns = false;
 		this.handleCreateQueryInput = this.handleCreateQueryInput.bind(this);
 		this.handleEditQueryInput = this.handleEditQueryInput.bind(this);
 		this.isInvalidInput = this.isInvalidInput.bind(this);
@@ -93,6 +94,7 @@ class CreateEventQueryView extends ConnectionComponent {
 			});
 			Notification.addSnackbarNotificationOnReferrer(config.messages.createdQueryMessage, Notification.ModeEnum.SUCCESS);
 		}
+		this.newestNotificationShowns = false;
 	}
 
 	// submit handler for the edit view
@@ -104,6 +106,7 @@ class CreateEventQueryView extends ConnectionComponent {
 			});
 			Notification.addSnackbarNotificationOnReferrer(config.messages.updatedQueryMessage, Notification.ModeEnum.SUCCESS);
 		}
+		this.newestNotificationShowns = false;
 	}
 	
 	abort() {
@@ -117,12 +120,10 @@ class CreateEventQueryView extends ConnectionComponent {
 		}
 	}
 
-	static displayOptionalErrorMessage(optionalActions) {
-		if (optionalActions && optionalActions.rejected) {
-			return <Notification
-						open={true}
-						message={optionalActions.reason}
-						mode={Notification.ModeEnum.ERROR}/>;
+	displayOptionalErrorMessage(optionalActions) {
+		if (optionalActions && optionalActions.rejected && !this.newestNotificationShowns) {
+			Notification.addSnackbarNotificationOnSelf(optionalActions.reason, Notification.ModeEnum.ERROR);
+			this.newestNotificationShowns = true;
 		}
 	}
 
@@ -146,6 +147,7 @@ class CreateEventQueryView extends ConnectionComponent {
 	 * @returns {XML}
 	 */
 	getComponentBody(attributes, queryInputChangeHandler, submitFormHandler, optionalActions, eventQuery) {
+		this.displayOptionalErrorMessage(optionalActions);
 		return (
 			<div className={AppStyles.elementMarginTop}>
 				<Container>
@@ -154,7 +156,6 @@ class CreateEventQueryView extends ConnectionComponent {
 							<EventTypeInformation attributes={attributes}/>
 						</Col>
 						<Col md={8}>
-							{CreateEventQueryView.displayOptionalErrorMessage(optionalActions)}
 							<EventQueryInputArea
 								handleQueryInputChange={queryInputChangeHandler}
 								queryErrorMessage={this.state.queryErrorMessage}
