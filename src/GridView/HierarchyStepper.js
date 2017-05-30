@@ -3,6 +3,7 @@ import {Step, StepLabel, Stepper} from "material-ui/Stepper";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import config from "./../config/config";
 import help from "./../config/help";
+import Utils from "./../Utils/Utils";
 import './HierarchyStepper.css';
 
 class HierarchyStepper extends ConnectionComponent {
@@ -42,7 +43,7 @@ class HierarchyStepper extends ConnectionComponent {
 			const entityType = this.props.getEntityType(hierarchyLayerInstance, this.props.hierarchy);
 			return(
 				<StepLabel key={key}>
-					<a href={`/grid/${hierarchyLayerInstance.Id}`}>
+					<a href={Utils.getLink(`/grid/${hierarchyLayerInstance.Id}`)}>
 						{entityType.Name}: {hierarchyLayerInstance.Name}
 					</a>
 				</StepLabel>
