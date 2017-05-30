@@ -39,6 +39,7 @@ class Header extends Component {
 		}
 		else {
 			introJs.introJs().showHints();
+			introJs.introJs().addHints();
 		}
 		this.setState({
 			hintsVisible: !hintsCurrentlyVisible
@@ -47,11 +48,15 @@ class Header extends Component {
 
 	showHelpButton() {
 		let hintButton = <IconHelpInactive/>;
+		let buttonTooltip = "Show help bullets on page";
 		if (this.state.hintsVisible) {
 			hintButton = <IconHelp/>;
+			buttonTooltip = "Hide help bullets on page";
 		}
 		return (
-			<IconButton onTouchTap={() => this.toggleHintsOnPage()}>{hintButton}</IconButton>
+			<IconButton
+				tooltip={buttonTooltip}
+				onTouchTap={() => this.toggleHintsOnPage()}>{hintButton}</IconButton>
 		);
 	}
 
