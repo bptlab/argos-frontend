@@ -1,7 +1,5 @@
 import React, {Component} from "react";
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "material-ui/Table";
-import {css} from "aphrodite";
-import AppStyles from "./../AppStyles";
 
 class EventTable extends Component {
 
@@ -15,7 +13,7 @@ class EventTable extends Component {
 						(attribute, key) => {
 							return (
 								<TableHeaderColumn
-									className={css(AppStyles.capitalize)}
+									className="capitalize"
 									key={key}>
 									{attribute.Name}
 								</TableHeaderColumn>

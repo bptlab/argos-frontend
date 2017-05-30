@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {List, ListItem} from "material-ui/List";
-import {css} from "aphrodite";
 import help from "./../config/help.js";
 
 class EntityInformation extends Component {
@@ -18,7 +17,7 @@ class EntityInformation extends Component {
 			<List
 				data-hint={help.display.entityAttributes}
 				data-hintPosition="middle-left"
-				className={css(this.props.styles)}>
+				className={this.props.className}>
 				{
 					this.props.entity.Attributes.map((attribute, key) => EntityInformation.generateListItem(attribute, key))
 				}
