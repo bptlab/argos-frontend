@@ -46,7 +46,7 @@ class Header extends Component {
 		});
 	}
 
-	showHelpButton() {
+	getHelpButton() {
 		let hintButton = <IconHelpInactive/>;
 		let buttonTooltip = "Show help bullets on page";
 		if (this.state.hintsVisible) {
@@ -56,7 +56,9 @@ class Header extends Component {
 		return (
 			<IconButton
 				tooltip={buttonTooltip}
-				onTouchTap={() => this.toggleHintsOnPage()}>{hintButton}</IconButton>
+				onTouchTap={() => this.toggleHintsOnPage()}>
+				{hintButton}
+			</IconButton>
 		);
 	}
 
@@ -91,7 +93,7 @@ class Header extends Component {
 			appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color);
 		}
 
-		iconElementRight = <div>{this.showHelpButton()}{iconElementRight}</div>;
+		iconElementRight = <div>{this.getHelpButton()}{iconElementRight}</div>;
 
 		return (
 			<AppBar
