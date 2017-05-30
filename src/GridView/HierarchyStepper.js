@@ -64,7 +64,7 @@ class HierarchyStepper extends ConnectionComponent {
 				data-hintPosition="bottom-middle">
 				<Stepper
 					activeStep={this.state.activeStep}
-					className={css(this.props.styles, AppStyles.elementMarginTop)}>
+					className="elementMarginTop">
 
 					{this.state.hierarchy.map((hierarchyLayer, index) => {
 						return (
