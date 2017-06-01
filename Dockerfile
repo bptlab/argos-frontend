@@ -1,9 +1,9 @@
-FROM node:latest
+FROM node:6
 
 WORKDIR /argos-frontend
 
 COPY . .
-RUN npm cache clean --force && npm install
+RUN npm install
 
 EXPOSE 3000
 
