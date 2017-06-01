@@ -90,6 +90,10 @@ const AppStyles = StyleSheet.create({
 		marginRight: '5px'
 	},
 
+	marginBottom: {
+		marginBottom: '30px'
+	},
+
 	headerBorderDetail: {
 		borderBottom: '10px solid',
 	},
