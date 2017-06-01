@@ -5,7 +5,6 @@ import IconHome from "material-ui/svg-icons/action/home";
 import IconSettings from "material-ui/svg-icons/action/settings";
 import IconHelpInactive from "material-ui/svg-icons/action/help-outline";
 import IconHelp from "material-ui/svg-icons/action/help";
-import IconAdd from 'material-ui/svg-icons/content/add';
 import IconArrowBack from "material-ui/svg-icons/navigation/arrow-back";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {css, StyleSheet} from "aphrodite";
@@ -107,11 +106,6 @@ class Header extends Component {
 		}
 
 		if (pageLocation === "settings") {
-			iconElementRight = <IconButton href={Utils.getLink('settings/eventType/create')}><IconAdd/></IconButton>;
-		}
-
-		//all pages for creation of eventqueries, eventtypes and mappings
-		if (pageLocation === "create") {
 			iconElementRight = <div/>;
 		}
 
@@ -151,14 +145,14 @@ class Header extends Component {
 					<Route path="/grid/:entityId" component={() => this.composeAppBar("grid")}/>
 					<Route path="/details/:parentId/:entityId" component={() => this.composeAppBar("details")}/>
 					<Route exact path="/settings" component={() => this.composeAppBar("settings")}/>
-					<Route path="/settings/eventType/create" component={() => this.composeAppBar("create")}/>
+					<Route path="/settings/eventType/create" component={() => this.composeAppBar("settings")}/>
 					<Route path="/settings/eventType/:eventTypeId/eventQuery/create"
-					       component={() => this.composeAppBar("create")}/>
+					       component={() => this.composeAppBar("settings")}/>
 					<Route path="/settings/eventType/:eventTypeId/eventQuery/:eventQueryId/edit"
-					       component={() => this.composeAppBar("create")}/>
-					<Route path="/settings/entityMapping/create" component={() => this.composeAppBar("create")}/>
+					       component={() => this.composeAppBar("settings")}/>
+					<Route path="/settings/entityMapping/create" component={() => this.composeAppBar("settings")}/>
 					<Route path="/settings/entityMapping/:entityMappingId"
-					       component={() => this.composeAppBar("create")}/>
+					       component={() => this.composeAppBar("settings")}/>
 					<Route path="*" component={() => this.composeAppBar("grid")}/>
 				</Switch>
 			</Router>
