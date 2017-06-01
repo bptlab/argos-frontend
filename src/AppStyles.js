@@ -18,8 +18,16 @@ const AppStyles = StyleSheet.create({
 		flexDirection: 'column',
 	},
 
+	flexDirectionRow: {
+		flexDirection: 'row',
+	},
+
 	justifyContentCenter: {
 		justifyContent: 'center',
+	},
+
+	justifyContentSpace: {
+		justifyContent: 'space-between',
 	},
 
 	flexBasis100: {
@@ -88,6 +96,14 @@ const AppStyles = StyleSheet.create({
 
 	marginRight: {
 		marginRight: '5px'
+	},
+
+	marginRightBig: {
+		marginRight: '20px'
+	},
+
+	marginBottom: {
+		marginBottom: '30px'
 	},
 
 	headerBorderDetail: {
