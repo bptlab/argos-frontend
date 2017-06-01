@@ -145,10 +145,21 @@ const AppStyles = StyleSheet.create({
 		color: 'white'
 	},
 	
+	textLabel: {
+		color: 'red'
+	},
+	
 	contentBox: {
 		background: config.colors.primaryDarkAlpha,
 		borderColor: config.colors.primaryDark,
 		color: config.colors.primaryDark
+	},
+
+	subHeadline: {
+		color: config.colors.primaryDark,
+		fontSize: '20px',
+		fontWeight: "normal",
+		marginBottom: '-10px'
 	}
 });
 
