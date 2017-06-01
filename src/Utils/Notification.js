@@ -51,7 +51,7 @@ class Notification extends Component {
 						</p>
 					</span>}
 				autoHideDuration={config.notificationDisplayDuration}
-				bodyStyle={{backgroundColor: this.props.mode.color}}/>);
+				bodyStyle={{backgroundColor: this.props.mode.color, display: 'table'}}/>);
 	}
 }
 
