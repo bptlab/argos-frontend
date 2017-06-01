@@ -104,9 +104,9 @@ class EventType extends ConnectionComponent {
 		if (optionalActions && optionalActions.rejected) {
 			Notification.addSnackbarNotificationOnSelf(optionalActions.reason, Notification.ModeEnum.ERROR);
 		} else if (optionalActions && optionalActions.fulfilled && optionalActions === this.props.deleteQueryResponse) {
-			Notification.addSnackbarNotificationOnSelf(config.messages.deletedQueryMessage, Notification.ModeEnum.ERROR);
+			Notification.addSnackbarNotificationOnSelf(config.messages.deletedQueryMessage, Notification.ModeEnum.SUCCESS);
 		} else if (optionalActions && optionalActions.fulfilled && optionalActions === this.props.deleteMappingResponse) {
-			Notification.addSnackbarNotificationOnSelf(config.messages.deletedEntityMappingMessage, Notification.ModeEnum.ERROR);
+			Notification.addSnackbarNotificationOnSelf(config.messages.deletedEntityMappingMessage, Notification.ModeEnum.SUCCESS);
 		}
 		return (
 			<div>
