@@ -101,15 +101,11 @@ class EventType extends ConnectionComponent {
         if(connectionIncomplete) {
             return connectionIncomplete;
 		}
-		
+		if (optionalActions && optionalActions.rejected) {
+			Notification.addSnackbarNotificationOnSelf(optionalActions.reason, Notification.ModeEnum.ERROR);
+		}
 		return (
 			<div>
-				{optionalActions && optionalActions.rejected &&
-					<Notification
-						open={open}
-						message={optionalActions.reason}
-						mode={Notification.ModeEnum.SUCCESS} />
-				}
 				<ConfirmationMessage
 					actionToPerform={this.handleEventTypeDeletion}
 					ref={(input) => {this.confirmationMessage = input;}}
