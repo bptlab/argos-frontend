@@ -42,6 +42,10 @@ const AppStyles = StyleSheet.create({
 		flexWrap: 'wrap',
 	},
 
+	floatRight: {
+		float: 'right',
+	},
+
 	r0: {
 		right: '0px',
 	},

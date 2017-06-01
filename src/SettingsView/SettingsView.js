@@ -4,6 +4,9 @@ import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import Header from "./../Header";
 import EventTypeCard from "./EventTypeCard";
 import SearchBar from "./../Utils/SearchBar";
+import FloatingActionButton from "material-ui/FloatingActionButton"
+import IconAdd from "material-ui/svg-icons/content/add";
+import Utils from '../Utils/Utils';
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
 import Notification from "./../Utils/Notification"
@@ -71,6 +74,11 @@ class SettingsView extends ConnectionComponent {
 						})}
 					</Container>
 				</Container>
+				<FloatingActionButton
+					backgroundColor={config.colors.primaryDark}
+					className={css(AppStyles.floatRight, AppStyles.marginAllSites)}
+					href={Utils.getLink('/settings/eventType/create')}
+					children={<IconAdd/>} />
 			</div>
 		);
 	}
