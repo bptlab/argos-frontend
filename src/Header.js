@@ -107,11 +107,6 @@ class Header extends Component {
 			iconElementLeft = <IconButton onTouchTap={Header.goBackToGrid}><IconArrowBack/></IconButton>;
 		}
 
-		if (pageLocation === "settings") {
-			iconElementRight = <IconButton className="whiteIcon verticalAlignTop" href="settings/eventType/create"><IconAdd/></IconButton>;
-		}
-
-		//all pages for creation of eventqueries, eventtypes and mappings
 		if (pageLocation === "create") {
 			iconElementRight = <div/>;
 		}
