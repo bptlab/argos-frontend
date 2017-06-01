@@ -124,7 +124,7 @@ class Header extends Component {
 			});
 			appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color);
 		}
-		let notificationMessage = this.getNotificationMessage();
+		const notificationMessage = this.getNotificationMessage();
 
 		iconElementRight = <div>{this.getHelpButton()}{iconElementRight}</div>;
 

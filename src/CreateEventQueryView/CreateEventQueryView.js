@@ -26,7 +26,7 @@ class CreateEventQueryView extends ConnectionComponent {
 			descriptionErrorMessage: ''
 		};
 		this.isCreateView = typeof this.props.match.params.eventQueryId === 'undefined';
-		this.newestNotificationShowns = false;
+		this.latestNotificationShown = false;
 		this.handleCreateQueryInput = this.handleCreateQueryInput.bind(this);
 		this.handleEditQueryInput = this.handleEditQueryInput.bind(this);
 		this.isInvalidInput = this.isInvalidInput.bind(this);
@@ -95,7 +95,7 @@ class CreateEventQueryView extends ConnectionComponent {
 			Notification.addSnackbarNotificationOnReferrer(config.messages.createdQueryMessage,
 				Notification.ModeEnum.SUCCESS);
 		}
-		this.newestNotificationShowns = false;
+		this.latestNotificationShown = false;
 	}
 
 	// submit handler for the edit view
@@ -108,7 +108,7 @@ class CreateEventQueryView extends ConnectionComponent {
 			Notification.addSnackbarNotificationOnReferrer(config.messages.updatedQueryMessage,
 				Notification.ModeEnum.SUCCESS);
 		}
-		this.newestNotificationShowns = false;
+		this.latestNotificationShown = false;
 	}
 	
 	abort() {
@@ -123,10 +123,10 @@ class CreateEventQueryView extends ConnectionComponent {
 	}
 
 	displayOptionalErrorMessage(optionalActions) {
-		if (optionalActions && optionalActions.rejected && !this.newestNotificationShowns) {
+		if (optionalActions && optionalActions.rejected && !this.latestNotificationShown) {
 			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
 				Notification.ModeEnum.ERROR);
-			this.newestNotificationShowns = true;
+			this.latestNotificationShown = true;
 		}
 	}
 

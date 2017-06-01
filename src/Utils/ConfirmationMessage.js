@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import Notification from './Notification'
 
 class ConfirmationMessage extends Component {
 	
