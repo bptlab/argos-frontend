@@ -2,7 +2,7 @@ import React from 'react';
 import {PromiseState} from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import {Col, Container, Row} from "react-grid-system";
-import {FlatButton, IconButton, MenuItem, RaisedButton, SelectField} from "material-ui";
+import {FlatButton, IconButton, MenuItem, Paper, RaisedButton, SelectField} from "material-ui";
 import IconSave from "material-ui/svg-icons/content/save";
 import IconCancel from "material-ui/svg-icons/navigation/cancel";
 import IconAdd from "material-ui/svg-icons/content/add";
@@ -198,6 +198,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		return (
 			<SelectField
 				floatingLabelText={config.descriptions.selectEventTypeAttributeHint}
+				floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
 				fullWidth={true}
 				errorText={this.state.mappings[key].eventTypeAttribute.errorMessage}
 				value={selectedEventTypeAttribute}
@@ -214,6 +215,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		return (
 			<SelectField
 				floatingLabelText={config.descriptions.selectEntityTypeAttributeHint}
+				floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
 				fullWidth={true}
 				value={selectedEntityTypeAttribute}
 				errorText={this.state.mappings[key].entityTypeAttribute.errorMessage}
@@ -313,6 +315,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 						value={this.state.targetStatus}
 						onChange={this.handleTargetStatusChange}
 						floatingLabelText={config.descriptions.selectTargetStatusHint}
+						floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
 						fullWidth={true}>
 						{config.statuses.map((status, key) => {
 							if (status.name !== "UNDEFINED") {
@@ -343,6 +346,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 						errorText={this.state.selectedEventType.errorMessage}
 						onChange={this.handleEventTypeChange}
 						floatingLabelText={config.descriptions.selectEventTypeHint}
+						floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
 						fullWidth={true}>
 						{CreateEntityMappingView.getMenuItems(initialData.eventTypes)}
 					</SelectField>
@@ -355,6 +359,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 						errorText={this.state.selectedEntityType.errorMessage}
 						onChange={this.handleEntityTypeChange}
 						floatingLabelText={config.descriptions.selectEntityTypeHint}
+						floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
 						fullWidth={true}>
 						{CreateEntityMappingView.getMenuItems(initialData.entityTypes)}
 					</SelectField>
@@ -391,12 +396,14 @@ class CreateEntityMappingView extends ConnectionComponent {
 		}
 		return (
 			<Container>
+				<Paper style={{paddingLeft: 20, paddingRight: 20, marginTop: 40, paddingTop: 20}} zDepth={2}>
 				<div>
 					{this.renderSelectTargetStatus()}
 					{this.renderSelectTypes(initialData)}
 					{initialData.attributeFields}
 					{CreateEntityMappingView.renderButtons(submitCallback)}
 				</div>
+				</Paper>
 			</Container>
 		);
 	}
