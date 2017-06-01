@@ -25,7 +25,7 @@ class CreateEventTypeView extends ConnectionComponent {
 			eventTypeTimestampAttributeErrorText: ''
 		};
 		this.nextAttributeId = 1;
-		this.newestNotificationShown = false;
+		this.latestNotificationShown = false;
 		this.handleChangeEventTypeName = this.handleChangeEventTypeName.bind(this);
 		this.handleChangeEventTypeTimestampAttribute = this.handleChangeEventTypeTimestampAttribute.bind(this);
 		this.submitForm = this.submitForm.bind(this);
@@ -72,9 +72,10 @@ class CreateEventTypeView extends ConnectionComponent {
 				})
 			};
 			this.props.createEventType(body);
-			Notification.addSnackbarNotificationOnReferrer(config.messages.createdEventTypeMessage, Notification.ModeEnum.SUCCESS);
+			Notification.addSnackbarNotificationOnReferrer(config.messages.createdEventTypeMessage,
+				Notification.ModeEnum.SUCCESS);
 		}
-		this.newestNotificationShown = false;
+		this.latestNotificationShown = false;
 	}
 
 	onInputChange(event) {
@@ -113,10 +114,10 @@ class CreateEventTypeView extends ConnectionComponent {
 			window.history.back();
 			return null;
 		}
-		if (optionalActions && optionalActions.rejected && !this.newestNotificationShown) {
+		if (optionalActions && optionalActions.rejected && !this.latestNotificationShown) {
 			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
 				Notification.ModeEnum.ERROR);
-			this.newestNotificationShown = true;
+			this.latestNotificationShown = true;
 		}
 		return (
 			<div>
