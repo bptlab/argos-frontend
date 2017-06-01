@@ -15,6 +15,8 @@ import IconDelete from 'material-ui/svg-icons/action/delete';
 import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 import ConfirmationMessage from './../Utils/ConfirmationMessage.js';
 import Notification from './../Utils/Notification';
+import {css} from "aphrodite";
+import AppStyles from "./../AppStyles";
 
 class EventType extends ConnectionComponent {
 
@@ -60,7 +62,8 @@ class EventType extends ConnectionComponent {
 				tooltip={"Delete event type \"" + this.props.eventType.Name + "\""}
 				key="delete-button"
 				onTouchTap={() => {
-					this.confirmationMessage.handleOpen();}}>
+					this.confirmationMessage.handleOpen();}}
+				className={css(AppStyles.marginRightBig)}>
 				<IconDelete/>
 			</IconButton>];
 	}
@@ -127,7 +130,8 @@ class EventType extends ConnectionComponent {
 						subtitle={`${config.descriptions.textNumberOfEvents} ${this.props.eventType.NumberOfEvents}`}
 						actAsExpander={true}
 						showExpandableButton={true}
-						children={this.getEventTypeHeaderButtons()}/>
+						children={this.getEventTypeHeaderButtons()}
+						className={css(AppStyles.dFlex, AppStyles.flexDirectionRow, AppStyles.justifyContentSpace)}/>
 					<CardText
 						expandable={true}>
 						<Container fluid={true}>
