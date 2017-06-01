@@ -12,7 +12,7 @@ const attributeConfig = {
 	},
 	"StopPoint": {
 		"lat": 1,
-		"long": 1
+		"lon": 1
 	}
 };
 
