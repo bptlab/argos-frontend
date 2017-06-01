@@ -8,7 +8,6 @@ import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 import IconDelete from 'material-ui/svg-icons/action/delete';
 import {PromiseState} from 'react-refetch';
 import ConfirmationMessage from "../Utils/ConfirmationMessage";
-import AppStyles from "../AppStyles";
 import "./EntityMappingListItem.css";
 
 class EntityMappingListItem extends ConnectionComponent {

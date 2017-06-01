@@ -1,18 +1,13 @@
 import React from "react";
-import {Container, Row} from "react-grid-system";
-import Utils from '../Utils/Utils';
+import {Container} from "react-grid-system";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import Header from "./../Header";
 import EventTypeCard from "./EventTypeCard";
 import SearchBar from "./../Utils/SearchBar";
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
-import {Card, CardActions, CardHeader, CardText} from "material-ui/Card";
-import IconButton from "material-ui/IconButton";
-import IconAdd from "material-ui/svg-icons/content/add";
 import Notification from "./../Utils/Notification"
 import config from "./../config/config";
-import help from "./../config/help";
 
 class SettingsView extends ConnectionComponent {
 
@@ -73,8 +68,7 @@ class SettingsView extends ConnectionComponent {
 							} else {
 								return false;
 							}
-						})
-						}
+						})}
 					</Container>
 				</Container>
 			</div>

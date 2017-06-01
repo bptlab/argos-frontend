@@ -1,8 +1,7 @@
 import React from 'react';
-import {Card, CardHeader, CardText, CardActions } from 'material-ui/Card';
+import {Card, CardHeader, CardText } from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
 import {Tabs, Tab} from 'material-ui/Tabs'
-import Utils from '../Utils/Utils';
 import EventQueryListItem from  './EventQueryListItem.js';
 import EntityMappingListItem from  './EntityMappingListItem.js';
 import config from './../config/config.js';
@@ -10,7 +9,6 @@ import help from "./../config/help";
 import { PromiseState } from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import IconButton from 'material-ui/IconButton';
-import IconAdd from 'material-ui/svg-icons/content/add';
 import IconDelete from 'material-ui/svg-icons/action/delete';
 import ConfirmationMessage from './../Utils/ConfirmationMessage.js';
 import Notification from './../Utils/Notification';
@@ -67,40 +65,6 @@ class EventType extends ConnectionComponent {
 				<IconDelete/>
 			</IconButton>];
 	}
-
-    showEntityMappings(entityMappings, attributes) {
-		return (<Card
-			expanded={this.state.mappingExpanded}
-			onExpandChange={this.handleMappingsExpandChange}>
-			<CardHeader
-				title="Entity Mappings"
-				actAsExpander={true}
-				showExpandableButton={true}/>
-			<CardText expandable={true}>
-				<List>
-                    {entityMappings.length === 0 &&
-					<div> There are no event entity mappings yet. </div>}
-                    {entityMappings.map((mapping) => {
-                        return (
-							<EntityMappingListItem
-								key={mapping.Id}
-								mapping={mapping}
-								deleteMapping={this.props.deleteMapping}
-								eventType={this.props.eventType}
-								eventTypeAttributes={attributes}/>
-                        );
-                    })}
-				</List>
-			</CardText>
-			<CardActions>
-				<IconButton
-					href={Utils.getLink('/settings/entityMapping/create')}
-					tooltip={<span>create new event entity mapping</span>}>
-					<IconAdd/>
-				</IconButton>
-			</CardActions>
-		</Card>);
-	}
 	
 	render() {
 		const allFetches = PromiseState.all([this.props.entityMappings, this.props.queries, this.props.attributes]);
@@ -135,7 +99,7 @@ class EventType extends ConnectionComponent {
 					<CardText
 						expandable={true}>
 						<Tabs>
-							<Tab label = "Attributes">
+							<Tab label="Attributes">
 								<List
 									data-hint={help.display.settingsView.eventTypeAttributes}
 									data-hintPosition="middle-middle">
@@ -149,7 +113,7 @@ class EventType extends ConnectionComponent {
 									)}
 								</List>
 							</Tab>
-							<Tab label = "Event Queries">
+							<Tab label="Event Queries">
 								<List
 									data-hint={help.display.settingsView.eventTypeQueries}
 									data-hintPosition="middle-middle">
@@ -164,13 +128,13 @@ class EventType extends ConnectionComponent {
 									)}
 								</List>
 							</Tab>
-							<Tab label = "Entity Mappings">
+							<Tab label="Entity Mappings">
 								<List
 									data-hint={help.display.settingsView.entityMappings}
 									data-hintPosition="top-middle">
 									{entityMappings.length === 0 &&
 									<div> There are no event entity mappings yet. </div>}
-									{entityMappings.map((mapping, key) => {
+									{entityMappings.map((mapping, index) => {
 										return (
 											<div>
 												<EntityMappingListItem
@@ -179,15 +143,14 @@ class EventType extends ConnectionComponent {
 													deleteMapping={this.props.deleteMapping}
 													eventType={this.props.eventType}
 													eventTypeAttributes={attributes}/>
-												{key !== (entityMappings.length - 1) &&
-													<Divider style={{backgroundColor: config.colors.accent, marginTop: '20px', marginBottom: '20px'}} />}
+												{index !== (entityMappings.length - 1) &&
+													<Divider key={index} style={{backgroundColor: config.colors.accent, marginTop: '20px', marginBottom: '20px'}} />}
 											</div>
 										);
 									})}
 								</List>
 							</Tab>
 						</Tabs>
-
 					</CardText>
 				</Card>
 			</div>
