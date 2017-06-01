@@ -9,8 +9,8 @@ import IconAdd from "material-ui/svg-icons/content/add";
 import IconDelete from "material-ui/svg-icons/action/delete";
 import Header from './../Header';
 import {css} from 'aphrodite';
+import Notification from './../Utils/Notification';
 import help from './../config/help';
-import ErrorMessage from './../Utils/ErrorMessage.js';
 import config from "../config/config";
 import AppStyles from "../AppStyles";
 
@@ -124,6 +124,8 @@ class CreateEntityMappingView extends ConnectionComponent {
 		if(this.isValidInput()) {
 			const preparedState = this.prepareStateForSubmitting();
 			this.props.createEntityMapping(preparedState);
+			Notification.addSnackbarNotificationOnReferrer(config.messages.createdEntityMappingMessage,
+				Notification.ModeEnum.SUCCESS);
 		}
 	}
 
@@ -131,6 +133,8 @@ class CreateEntityMappingView extends ConnectionComponent {
 		if(this.isValidInput()) {
 			const preparedState = this.prepareStateForSubmitting();
 			this.props.updateEntityMapping(preparedState);
+			Notification.addSnackbarNotificationOnReferrer(config.messages.updatedEntityMappingMessage,
+				Notification.ModeEnum.SUCCESS);
 		}
 	}
 
@@ -381,10 +385,13 @@ class CreateEntityMappingView extends ConnectionComponent {
 	}
 
 	renderMappingForm(initialData, optionalActions, submitCallback) {
+		if (optionalActions && optionalActions.rejected) {
+			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
+				Notification.ModeEnum.ERROR);
+		}
 		return (
 			<Container>
 				<div>
-					{optionalActions && optionalActions.rejected && <ErrorMessage message={optionalActions.reason} />}
 					{this.renderSelectTargetStatus()}
 					{this.renderSelectTypes(initialData)}
 					{initialData.attributeFields}

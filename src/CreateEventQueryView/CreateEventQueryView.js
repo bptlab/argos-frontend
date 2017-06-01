@@ -13,7 +13,7 @@ import config from "../config/config";
 import AppStyles from "../AppStyles";
 import Utils from "../Utils/Utils";
 import LoadingAnimation from "../Utils/LoadingAnimation";
-import ErrorMessage from "../Utils/ErrorMessage";
+import Notification from "../Utils/Notification";
 
 class CreateEventQueryView extends ConnectionComponent {
 
@@ -26,6 +26,7 @@ class CreateEventQueryView extends ConnectionComponent {
 			descriptionErrorMessage: ''
 		};
 		this.isCreateView = typeof this.props.match.params.eventQueryId === 'undefined';
+		this.latestNotificationShown = false;
 		this.handleCreateQueryInput = this.handleCreateQueryInput.bind(this);
 		this.handleEditQueryInput = this.handleEditQueryInput.bind(this);
 		this.isInvalidInput = this.isInvalidInput.bind(this);
@@ -91,7 +92,10 @@ class CreateEventQueryView extends ConnectionComponent {
 				Description: this.state.queryDescription,
 				Query: this.state.query
 			});
+			Notification.addSnackbarNotificationOnReferrer(config.messages.createdQueryMessage,
+				Notification.ModeEnum.SUCCESS);
 		}
+		this.latestNotificationShown = false;
 	}
 
 	// submit handler for the edit view
@@ -101,7 +105,10 @@ class CreateEventQueryView extends ConnectionComponent {
 				Description: this.state.queryDescription,
 				Query: this.state.query
 			});
+			Notification.addSnackbarNotificationOnReferrer(config.messages.updatedQueryMessage,
+				Notification.ModeEnum.SUCCESS);
 		}
+		this.latestNotificationShown = false;
 	}
 	
 	abort() {
@@ -115,9 +122,11 @@ class CreateEventQueryView extends ConnectionComponent {
 		}
 	}
 
-	static displayOptionalErrorMessage(optionalActions) {
-		if (optionalActions && optionalActions.rejected) {
-			return <ErrorMessage message={optionalActions.reason}/>;
+	displayOptionalErrorMessage(optionalActions) {
+		if (optionalActions && optionalActions.rejected && !this.latestNotificationShown) {
+			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
+				Notification.ModeEnum.ERROR);
+			this.latestNotificationShown = true;
 		}
 	}
 
@@ -141,6 +150,7 @@ class CreateEventQueryView extends ConnectionComponent {
 	 * @returns {XML}
 	 */
 	getComponentBody(attributes, queryInputChangeHandler, submitFormHandler, optionalActions, eventQuery) {
+		this.displayOptionalErrorMessage(optionalActions);
 		return (
 			<div className={AppStyles.elementMarginTop}>
 				<Container>
@@ -149,7 +159,6 @@ class CreateEventQueryView extends ConnectionComponent {
 							<EventTypeInformation attributes={attributes}/>
 						</Col>
 						<Col md={8}>
-							{CreateEventQueryView.displayOptionalErrorMessage(optionalActions)}
 							<EventQueryInputArea
 								handleQueryInputChange={queryInputChangeHandler}
 								queryErrorMessage={this.state.queryErrorMessage}

@@ -63,7 +63,7 @@ class EntityMappingListItem extends ConnectionComponent {
 					</Col>
 					<Col md={2}>
 						<IconButton
-							toolTip="Edit this mapping"
+							tooltip="Edit this mapping"
 							href={Utils.getLink(`/settings/entityMapping/${this.props.mapping.Id}/edit`)} >
 							<IconEdit/>
 						</IconButton>

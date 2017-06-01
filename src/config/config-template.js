@@ -18,6 +18,7 @@ const config = {
 		border: "#e0e0e0",
 		toggleOff: '#9E9E9E',
 		error: "#B71C1C",
+		success: "#558B2F"
 	},
 	descriptions: {
 		textNumberOfEvents: "Number of events",
@@ -38,6 +39,15 @@ const config = {
 		deleteQueryMessage: "Do you really want to delete this Query?",
 		deleteEventTypeMessage: "Do you really want to delete this EventType?",
 		deleteEntityMappingMessage: "Do you really want to delete this EntityMapping?",
+		deletedQueryMessage: "Deleted event query.",
+		deletedEventTypeMessage: "Deleted event type.",
+		deletedEntityMappingMessage: "Deleted event entity mapping.",
+		createdQueryMessage: "Submitted event query.",
+		createdEventTypeMessage: "Submitted event type.",
+		createdEntityMappingMessage: "Submitted entity mapping",
+		updatedQueryMessage: "Updated event query.",
+		updatedEventTypeMessage: "Updated event type.",
+		updatedEntityMappingMessage: "Updated entity mapping",
 		requiredFieldMessage: 'Please fill out this field'
 	},
 	statuses: [
@@ -58,6 +68,7 @@ const config = {
 		},
 	],
 	eventTableChunkSize: 50,
+	notificationDisplayDuration: 5000,
 };
 
 export default config;

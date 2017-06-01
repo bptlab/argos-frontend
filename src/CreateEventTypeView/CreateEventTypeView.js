@@ -8,9 +8,9 @@ import IconCancel from "material-ui/svg-icons/navigation/cancel";
 import Header from "./../Header";
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
-import config from "../config/config.js";
+import config from '../config/config.js';
 import help from "../config/help";
-import ErrorMessage from "../Utils/ErrorMessage.js";
+import Notification from '../Utils/Notification';
 
 
 class CreateEventTypeView extends ConnectionComponent {
@@ -25,6 +25,7 @@ class CreateEventTypeView extends ConnectionComponent {
 			eventTypeTimestampAttributeErrorText: ''
 		};
 		this.nextAttributeId = 1;
+		this.latestNotificationShown = false;
 		this.handleChangeEventTypeName = this.handleChangeEventTypeName.bind(this);
 		this.handleChangeEventTypeTimestampAttribute = this.handleChangeEventTypeTimestampAttribute.bind(this);
 		this.submitForm = this.submitForm.bind(this);
@@ -71,7 +72,10 @@ class CreateEventTypeView extends ConnectionComponent {
 				})
 			};
 			this.props.createEventType(body);
+			Notification.addSnackbarNotificationOnReferrer(config.messages.createdEventTypeMessage,
+				Notification.ModeEnum.SUCCESS);
 		}
+		this.latestNotificationShown = false;
 	}
 
 	onInputChange(event) {
@@ -110,13 +114,15 @@ class CreateEventTypeView extends ConnectionComponent {
 			window.history.back();
 			return null;
 		}
+		if (optionalActions && optionalActions.rejected && !this.latestNotificationShown) {
+			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
+				Notification.ModeEnum.ERROR);
+			this.latestNotificationShown = true;
+		}
 		return (
 			<div>
 				<Header title="Create New Event Type"/>
 				<Container>
-					{optionalActions && optionalActions.rejected &&
-						<ErrorMessage message={optionalActions.reason} />
-					}
 					<form>
 						<div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>
 							<Col>

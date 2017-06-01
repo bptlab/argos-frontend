@@ -10,7 +10,7 @@ import AppStyles from "./../AppStyles";
 import {Card, CardActions, CardHeader, CardText} from "material-ui/Card";
 import IconButton from "material-ui/IconButton";
 import IconAdd from "material-ui/svg-icons/content/add";
-import ErrorMessage from "./../Utils/ErrorMessage.js";
+import Notification from "./../Utils/Notification"
 import config from "./../config/config";
 import help from "./../config/help";
 
@@ -18,9 +18,14 @@ class SettingsView extends ConnectionComponent {
 
 	constructor() {
 		super();
+
 		this.state = {
-			searchText: ''
+			searchText: '',
+			snackbarOpen: false,
+			snackbarMessage: '',
+			snackbarMode: {},
 		};
+
 		this.handleSearchInput = this.handleSearchInput.bind(this);
 		this.searchMatches = this.searchMatches.bind(this);
 	}
@@ -45,6 +50,13 @@ class SettingsView extends ConnectionComponent {
 			return connectionIncomplete;
 		}
 		const optionalActions = this.props.deleteEventTypeResponse;
+		if (optionalActions && optionalActions.rejected) {
+			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
+				Notification.ModeEnum.ERROR);
+		} else if(optionalActions && optionalActions.fulfilled && optionalActions === this.props.deleteEventTypeResponse) {
+			Notification.addSnackbarNotificationOnSelf(config.messages.deletedEventTypeMessage,
+				Notification.ModeEnum.SUCCESS);
+		}
 		return (
 			<div>
 				<Header title="Settings"/>
@@ -61,9 +73,6 @@ class SettingsView extends ConnectionComponent {
 							<CardText expandable={true}>
 								<Container>
 									<SearchBar onInputChange={this.handleSearchInput}/>
-									{optionalActions && optionalActions.rejected &&
-										<ErrorMessage message={optionalActions.reason}/>
-									}
 									{this.props.eventTypes.value.map((eventType) => {
 										if (this.searchMatches(eventType)) {
 											return (<EventTypeCard

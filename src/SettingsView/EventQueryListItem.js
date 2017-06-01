@@ -25,7 +25,8 @@ class EventQueryListItem extends Component {
 			<div>
 				<ConfirmationMessage 
 					actionToPerform={this.deleteEventQuery}
-					ref={(input) => {this.confirmationMessage = input;}}>
+					ref={(input) => {this.confirmationMessage = input;}}
+					message={config.messages.deletedQueryMessage}>
 					{config.messages.deleteQueryMessage}
 				</ConfirmationMessage>
 				<IconButton

@@ -9,12 +9,12 @@ import help from "./../config/help";
 import { Col, Container } from 'react-grid-system';
 import { PromiseState } from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
-import ErrorMessage from './../Utils/ErrorMessage.js';
 import IconButton from 'material-ui/IconButton';
 import IconAdd from 'material-ui/svg-icons/content/add';
 import IconDelete from 'material-ui/svg-icons/action/delete';
 import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 import ConfirmationMessage from './../Utils/ConfirmationMessage.js';
+import Notification from './../Utils/Notification';
 
 class EventType extends ConnectionComponent {
 
@@ -40,6 +40,19 @@ class EventType extends ConnectionComponent {
 	handleEventTypeDeletion() {
 		this.props.deleteEventType(this.props.eventType);
 	}
+
+	determineNotification(optionalActions) {
+		if (optionalActions && optionalActions.rejected) {
+			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
+				Notification.ModeEnum.ERROR);
+		} else if (optionalActions && optionalActions.fulfilled && optionalActions === this.props.deleteQueryResponse) {
+			Notification.addSnackbarNotificationOnSelf(config.messages.deletedQueryMessage,
+				Notification.ModeEnum.SUCCESS);
+		} else if (optionalActions && optionalActions.fulfilled && optionalActions === this.props.deleteMappingResponse) {
+			Notification.addSnackbarNotificationOnSelf(config.messages.deletedEntityMappingMessage,
+				Notification.ModeEnum.SUCCESS);
+		}
+	}
 	
 	getEventTypeHeaderButtons() {
 		return [
@@ -51,7 +64,8 @@ class EventType extends ConnectionComponent {
 			<IconButton
 				tooltip={"Delete event type \"" + this.props.eventType.Name + "\""}
 				key="delete-button"
-				onTouchTap={() => {this.confirmationMessage.handleOpen();}}>
+				onTouchTap={() => {
+					this.confirmationMessage.handleOpen();}}>
 				<IconDelete/>
 			</IconButton>];
 	}
@@ -100,15 +114,14 @@ class EventType extends ConnectionComponent {
         if(connectionIncomplete) {
             return connectionIncomplete;
 		}
-		
+		this.determineNotification(optionalActions);
+
 		return (
 			<div>
-				{optionalActions && optionalActions.rejected &&
-					<ErrorMessage message={optionalActions.reason} />
-				}
 				<ConfirmationMessage
 					actionToPerform={this.handleEventTypeDeletion}
-					ref={(input) => {this.confirmationMessage = input;}}>
+					ref={(input) => {this.confirmationMessage = input;}}
+					onSnackbarMessage={this.props.onSnackbarMessage}>
 					{config.messages.deleteEventTypeMessage}
 				</ConfirmationMessage>
 				<Card
