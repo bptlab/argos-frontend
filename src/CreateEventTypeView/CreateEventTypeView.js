@@ -11,9 +11,7 @@ import AppStyles from "./../AppStyles";
 import config from '../config/config.js';
 import help from "../config/help";
 import Notification from '../Utils/Notification';
-import {List, ListItem, Paper, Subheader} from "material-ui";
 import {Paper} from "material-ui";
-
 
 class CreateEventTypeView extends ConnectionComponent {
 	constructor(props) {
@@ -126,8 +124,8 @@ class CreateEventTypeView extends ConnectionComponent {
 				<Header title="Create New Event Type"/>
 				<Container>
 					<Paper style={{paddingLeft: 20, paddingRight: 20, marginTop: 20}} zDepth={2}>
-					<form>
-						<div className={css(AppStyles.elementMarginTop)}>
+						<form>
+							<div className={css(AppStyles.elementMarginTop)}>
 								<TextField
 									data-hint={help.input.eventTypeView.name}
 									data-hintPosition="middle-right"
