@@ -57,11 +57,6 @@ class EventType extends ConnectionComponent {
 	getEventTypeHeaderButtons() {
 		return [
 			<IconButton
-				tooltip={"Edit mappings or queries for event type \"" + this.props.eventType.Name + "\""}
-				key="edit-button">
-				<IconEdit/>
-			</IconButton>,
-			<IconButton
 				tooltip={"Delete event type \"" + this.props.eventType.Name + "\""}
 				key="delete-button"
 				onTouchTap={() => {
