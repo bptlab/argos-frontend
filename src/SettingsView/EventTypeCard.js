@@ -14,6 +14,7 @@ import IconAdd from 'material-ui/svg-icons/content/add';
 import IconDelete from 'material-ui/svg-icons/action/delete';
 import ConfirmationMessage from './../Utils/ConfirmationMessage.js';
 import Notification from './../Utils/Notification';
+import Divider from 'material-ui/Divider'
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
 
@@ -169,14 +170,18 @@ class EventType extends ConnectionComponent {
 									data-hintPosition="top-middle">
 									{entityMappings.length === 0 &&
 									<div> There are no event entity mappings yet. </div>}
-									{entityMappings.map((mapping) => {
+									{entityMappings.map((mapping, key) => {
 										return (
-											<EntityMappingListItem
-												key={mapping.Id}
-												mapping={mapping}
-												deleteMapping={this.props.deleteMapping}
-												eventType={this.props.eventType}
-												eventTypeAttributes={attributes}/>
+											<div>
+												<EntityMappingListItem
+													key={mapping.Id}
+													mapping={mapping}
+													deleteMapping={this.props.deleteMapping}
+													eventType={this.props.eventType}
+													eventTypeAttributes={attributes}/>
+												{key !== (entityMappings.length - 1) &&
+													<Divider style={{backgroundColor: config.colors.accent, marginTop: '20px', marginBottom: '20px'}} />}
+											</div>
 										);
 									})}
 								</List>

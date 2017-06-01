@@ -2,15 +2,14 @@ import React from 'react';
 import Utils from '../Utils/Utils';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import config from './../config/config.js';
-import {Row, Col} from 'react-grid-system';
 import {Table, TableHeader, TableBody, TableRow, TableHeaderColumn, TableRowColumn} from 'material-ui/Table'
-import Divider from 'material-ui/Divider'
 import IconButton from 'material-ui/IconButton';
 import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 import IconDelete from 'material-ui/svg-icons/action/delete';
-import ListItem from 'material-ui/List';
 import {PromiseState} from 'react-refetch';
 import ConfirmationMessage from "../Utils/ConfirmationMessage";
+import AppStyles from "../AppStyles";
+import "./EntityMappingListItem.css";
 
 class EntityMappingListItem extends ConnectionComponent {
 
@@ -80,29 +79,26 @@ class EntityMappingListItem extends ConnectionComponent {
 		}
 
 		return (
-			<div>
 			<Table selectable={false}>
 				<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
 					<TableRow>
-						<TableHeaderColumn>{this.props.eventType.Name}</TableHeaderColumn>
-						<TableHeaderColumn>{this.getEntityTypeName(this.props.mapping.EntityTypeId)}</TableHeaderColumn>
-						<TableHeaderColumn>{this.getMappingActionButtons()}</TableHeaderColumn>
+						<TableHeaderColumn className="mapping-headline">{this.props.eventType.Name}</TableHeaderColumn>
+						<TableHeaderColumn className="mapping-headline">{this.getEntityTypeName(this.props.mapping.EntityTypeId)}</TableHeaderColumn>
+						<TableHeaderColumn className="smallWidth">{this.getMappingActionButtons()}</TableHeaderColumn>
 					</TableRow>
 				</TableHeader>
 				<TableBody displayRowCheckbox={false}>
 					{this.props.mapping.EventEntityMappingConditions.map((condition, key) => {
 						return (
-							<TableRow>
-								<TableRowColumn>{this.getEventTypeAttributeName(condition.EventTypeAttributeId)}</TableRowColumn>
-								<TableRowColumn>{this.getEntityTypeAttributeName(condition.EntityTypeAttributeId)}</TableRowColumn>
-								<TableRowColumn></TableRowColumn>
+							<TableRow key={key}>
+								<TableRowColumn className="mapping-condition" key={key + "EventTypeName"}>{this.getEventTypeAttributeName(condition.EventTypeAttributeId)}</TableRowColumn>
+								<TableRowColumn className="mapping-condition" key={key + "EntityName"}>{this.getEntityTypeAttributeName(condition.EntityTypeAttributeId)}</TableRowColumn>
+								<TableRowColumn className="smallWidth" key={key + "Buttons"}></TableRowColumn>
 							</TableRow>
 						);
 					})}
 				</TableBody>
 			</Table>
-				<Divider style={{backgroundColor: config.colors.accent}} />
-				</div>
 		);
 	}
 }
