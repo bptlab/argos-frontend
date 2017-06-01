@@ -107,7 +107,7 @@ class Header extends Component {
 			iconElementLeft = <IconButton onTouchTap={Header.goBackToGrid}><IconArrowBack/></IconButton>;
 		}
 
-		if (pageLocation === "create") {
+		if (pageLocation === "settings") {
 			iconElementRight = <div/>;
 		}
 
