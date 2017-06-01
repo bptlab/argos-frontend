@@ -92,7 +92,8 @@ class CreateEventQueryView extends ConnectionComponent {
 				Description: this.state.queryDescription,
 				Query: this.state.query
 			});
-			Notification.addSnackbarNotificationOnReferrer(config.messages.createdQueryMessage, Notification.ModeEnum.SUCCESS);
+			Notification.addSnackbarNotificationOnReferrer(config.messages.createdQueryMessage,
+				Notification.ModeEnum.SUCCESS);
 		}
 		this.newestNotificationShowns = false;
 	}
@@ -104,7 +105,8 @@ class CreateEventQueryView extends ConnectionComponent {
 				Description: this.state.queryDescription,
 				Query: this.state.query
 			});
-			Notification.addSnackbarNotificationOnReferrer(config.messages.updatedQueryMessage, Notification.ModeEnum.SUCCESS);
+			Notification.addSnackbarNotificationOnReferrer(config.messages.updatedQueryMessage,
+				Notification.ModeEnum.SUCCESS);
 		}
 		this.newestNotificationShowns = false;
 	}
@@ -122,7 +124,8 @@ class CreateEventQueryView extends ConnectionComponent {
 
 	displayOptionalErrorMessage(optionalActions) {
 		if (optionalActions && optionalActions.rejected && !this.newestNotificationShowns) {
-			Notification.addSnackbarNotificationOnSelf(optionalActions.reason, Notification.ModeEnum.ERROR);
+			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
+				Notification.ModeEnum.ERROR);
 			this.newestNotificationShowns = true;
 		}
 	}

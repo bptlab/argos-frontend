@@ -40,6 +40,19 @@ class EventType extends ConnectionComponent {
 	handleEventTypeDeletion() {
 		this.props.deleteEventType(this.props.eventType);
 	}
+
+	determineNotification(optionalActions) {
+		if (optionalActions && optionalActions.rejected) {
+			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
+				Notification.ModeEnum.ERROR);
+		} else if (optionalActions && optionalActions.fulfilled && optionalActions === this.props.deleteQueryResponse) {
+			Notification.addSnackbarNotificationOnSelf(config.messages.deletedQueryMessage,
+				Notification.ModeEnum.SUCCESS);
+		} else if (optionalActions && optionalActions.fulfilled && optionalActions === this.props.deleteMappingResponse) {
+			Notification.addSnackbarNotificationOnSelf(config.messages.deletedEntityMappingMessage,
+				Notification.ModeEnum.SUCCESS);
+		}
+	}
 	
 	getEventTypeHeaderButtons() {
 		return [
@@ -101,13 +114,8 @@ class EventType extends ConnectionComponent {
         if(connectionIncomplete) {
             return connectionIncomplete;
 		}
-		if (optionalActions && optionalActions.rejected) {
-			Notification.addSnackbarNotificationOnSelf(optionalActions.reason, Notification.ModeEnum.ERROR);
-		} else if (optionalActions && optionalActions.fulfilled && optionalActions === this.props.deleteQueryResponse) {
-			Notification.addSnackbarNotificationOnSelf(config.messages.deletedQueryMessage, Notification.ModeEnum.SUCCESS);
-		} else if (optionalActions && optionalActions.fulfilled && optionalActions === this.props.deleteMappingResponse) {
-			Notification.addSnackbarNotificationOnSelf(config.messages.deletedEntityMappingMessage, Notification.ModeEnum.SUCCESS);
-		}
+		this.determineNotification(optionalActions);
+
 		return (
 			<div>
 				<ConfirmationMessage

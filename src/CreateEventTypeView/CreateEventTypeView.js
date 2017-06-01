@@ -114,7 +114,8 @@ class CreateEventTypeView extends ConnectionComponent {
 			return null;
 		}
 		if (optionalActions && optionalActions.rejected && !this.newestNotificationShown) {
-			Notification.addSnackbarNotificationOnSelf(optionalActions.reason, Notification.ModeEnum.ERROR);
+			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
+				Notification.ModeEnum.ERROR);
 			this.newestNotificationShown = true;
 		}
 		return (

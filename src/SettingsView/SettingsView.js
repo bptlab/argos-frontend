@@ -51,9 +51,11 @@ class SettingsView extends ConnectionComponent {
 		}
 		const optionalActions = this.props.deleteEventTypeResponse;
 		if (optionalActions && optionalActions.rejected) {
-			Notification.addSnackbarNotificationOnSelf(optionalActions.reason, Notification.ModeEnum.ERROR);
+			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
+				Notification.ModeEnum.ERROR);
 		} else if(optionalActions && optionalActions.fulfilled && optionalActions === this.props.deleteEventTypeResponse) {
-			Notification.addSnackbarNotificationOnSelf(config.messages.deletedEventTypeMessage, Notification.ModeEnum.SUCCESS);
+			Notification.addSnackbarNotificationOnSelf(config.messages.deletedEventTypeMessage,
+				Notification.ModeEnum.SUCCESS);
 		}
 		return (
 			<div>
