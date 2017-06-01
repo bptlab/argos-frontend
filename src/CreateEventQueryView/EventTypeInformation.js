@@ -3,13 +3,13 @@ import {List, ListItem} from "material-ui/List";
 import {css} from "aphrodite";
 import {Card, CardText, CardTitle} from "material-ui";
 import AppStyles from "../AppStyles";
-import FilterList from 'material-ui/svg-icons/device/widgets';
+import FilterListIcon from 'material-ui/svg-icons/device/widgets';
 
 class EventTypeInformation extends Component {
     static generateListItem(attribute, key) {
         return <ListItem
             key={key}
-            leftIcon={<FilterList />}
+            leftIcon={<FilterListIcon />}
             primaryText={attribute.Name}
         />;
     }

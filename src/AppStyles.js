@@ -145,10 +145,6 @@ const AppStyles = StyleSheet.create({
 		color: 'white'
 	},
 	
-	textLabel: {
-		color: 'red'
-	},
-	
 	contentBox: {
 		background: config.colors.primaryDarkAlpha,
 		borderColor: config.colors.primaryDark,

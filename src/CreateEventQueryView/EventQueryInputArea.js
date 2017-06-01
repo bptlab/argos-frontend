@@ -65,7 +65,7 @@ class EventQueryInputArea extends Component {
 					name="event-query"
 					hintText={config.descriptions.exampleQuery}
 					multiLine={true}
-					rows={5}
+					rows={3}
 					fullWidth={true}
 					errorText={this.props.queryErrorMessage}
 					onChange={this.props.handleQueryInputChange}
