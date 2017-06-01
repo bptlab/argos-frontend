@@ -24,6 +24,8 @@ class Header extends Component {
 			hintsVisible: false
 		};
 		Header.lastNotificationTimestamp = new Date();
+		this.handleTriggeredNotification = this.handleTriggeredNotification.bind(this);
+		window.addEventListener('notificationTriggered', this.handleTriggeredNotification, false);
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
@@ -47,6 +49,10 @@ class Header extends Component {
 		const currentPath = window.location.pathname;
 		const newPath = currentPath.replace("details", "grid");
 		window.location.href = newPath.substring(0, newPath.lastIndexOf("/") + 1);
+	}
+
+	handleTriggeredNotification() {
+		this.forceUpdate();
 	}
 
 	toggleHintsOnPage() {

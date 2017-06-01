@@ -16,23 +16,6 @@ class Notification extends Component {
 		}
 	};
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			message: props.message,
-			mode: props.mode
-		};
-		this.handleTriggeredNotification = this.handleTriggeredNotification.bind(this);
-		window.addEventListener('notificationTriggered', this.handleTriggeredNotification, false);
-	}
-
-	handleTriggeredNotification() {
-		this.setState({
-			message: JSON.parse(window.sessionStorage.getItem('notificationMessage')).message,
-			mode: JSON.parse(window.sessionStorage.getItem('notificationMessage')).mode
-		});
-	}
-
 	static addSnackbarNotificationOnReferrer(message, mode) {
 		window.sessionStorage.setItem('notificationMessage',
 			JSON.stringify({message: message, targetPage: document.referrer, mode: mode, timestamp: new Date()}));
@@ -46,9 +29,9 @@ class Notification extends Component {
 	}
 
 	getIconForMode() {
-		if(this.state.mode.color === Notification.ModeEnum.SUCCESS.color) {
+		if(this.props.mode.color === Notification.ModeEnum.SUCCESS.color) {
 			return <IconSuccess className={css(AppStyles.marginRight, AppStyles.colorWhite)}/>;
-		} else if (this.state.mode.color === Notification.ModeEnum.ERROR.color) {
+		} else if (this.props.mode.color === Notification.ModeEnum.ERROR.color) {
 			return <IconError className={css(AppStyles.marginRight, AppStyles.colorWhite)}/>;
 		}
 	}
@@ -64,7 +47,7 @@ class Notification extends Component {
 					<span className={css(AppStyles.dFlex, AppStyles.alignItemsCenter)}>
 						{this.getIconForMode()}
 						<p className={css(AppStyles.capitalizeFirstLetter, AppStyles.lineHeight25)}>
-							{this.state.message}
+							{this.props.message}
 						</p>
 					</span>}
 				autoHideDuration={config.notificationDisplayDuration}
