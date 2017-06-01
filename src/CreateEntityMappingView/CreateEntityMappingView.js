@@ -124,6 +124,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		if(this.isValidInput()) {
 			const preparedState = this.prepareStateForSubmitting();
 			this.props.createEntityMapping(preparedState);
+			Notification.addSnackbarNotificationOnReferrer(config.messages.createdEntityMappingMessage, Notification.ModeEnum.SUCCESS);
 		}
 	}
 
@@ -131,6 +132,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		if(this.isValidInput()) {
 			const preparedState = this.prepareStateForSubmitting();
 			this.props.updateEntityMapping(preparedState);
+			Notification.addSnackbarNotificationOnReferrer(config.messages.updatedEntityMappingMessage, Notification.ModeEnum.SUCCESS);
 		}
 	}
 
@@ -381,10 +383,12 @@ class CreateEntityMappingView extends ConnectionComponent {
 	}
 
 	renderMappingForm(initialData, optionalActions, submitCallback) {
+		if (optionalActions && optionalActions.rejected) {
+			Notification.addSnackbarNotificationOnSelf(optionalActions.reason, Notification.ModeEnum.ERROR);
+		}
 		return (
 			<Container>
 				<div>
-					{optionalActions && optionalActions.rejected && <Notification message={optionalActions.reason} />}
 					{this.renderSelectTargetStatus()}
 					{this.renderSelectTypes(initialData)}
 					{initialData.attributeFields}
