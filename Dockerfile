@@ -3,7 +3,7 @@ FROM node:latest
 WORKDIR /argos-frontend
 
 COPY . .
-RUN npm install
+RUN npm install -no-cache
 
 EXPOSE 3000
 
