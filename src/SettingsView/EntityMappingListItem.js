@@ -3,6 +3,8 @@ import Utils from '../Utils/Utils';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import config from './../config/config.js';
 import {Row, Col} from 'react-grid-system';
+import {Table, TableHeader, TableBody, TableRow, TableHeaderColumn, TableRowColumn} from 'material-ui/Table'
+import Divider from 'material-ui/Divider'
 import IconButton from 'material-ui/IconButton';
 import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 import IconDelete from 'material-ui/svg-icons/action/delete';
@@ -48,6 +50,28 @@ class EntityMappingListItem extends ConnectionComponent {
         this.props.deleteMapping(this.props.mapping);
     }
 
+    getMappingActionButtons() {
+		return (
+			<div>
+				<ConfirmationMessage
+					actionToPerform={this.deleteMapping}
+					ref={(input) => {this.confirmationMessage = input;}}>
+					{config.messages.deleteEntityMappingMessage}
+				</ConfirmationMessage>
+				<IconButton
+					tooltip="Edit this mapping"
+					href={Utils.getLink(`/settings/entityMapping/${this.props.mapping.Id}/edit`)}
+					className="verticalAlignTop">
+					<IconEdit/>
+				</IconButton>
+				<IconButton
+					tooltip="Delete this mapping"
+					onTouchTap={() => {this.confirmationMessage.handleOpen();}}>
+					<IconDelete/>
+				</IconButton>
+			</div>);
+	}
+
 	render() {
 		const allFetches = PromiseState.all([this.props.entityTypeAttributes]);
 		const connectionIncomplete = super.render(allFetches);
@@ -56,43 +80,29 @@ class EntityMappingListItem extends ConnectionComponent {
 		}
 
 		return (
-			<ListItem>
-				<Row>
-					<Col md={10}>
-						{this.props.eventType.Name} - {this.getEntityTypeName(this.props.mapping.EntityTypeId)}
-					</Col>
-					<Col md={2}>
-						<IconButton
-							tooltip="Edit this mapping"
-							href={Utils.getLink(`/settings/entityMapping/${this.props.mapping.Id}/edit`)} >
-							<IconEdit/>
-						</IconButton>
-						<ConfirmationMessage
-							actionToPerform={this.deleteMapping}
-							ref={(input) => {this.confirmationMessage = input;}}>
-                            {config.messages.deleteEntityMappingMessage}
-						</ConfirmationMessage>
-						<IconButton
-							tooltip="Delete this mapping"
-							onTouchTap={() => {this.confirmationMessage.handleOpen();}}>
-							<IconDelete/>
-						</IconButton>
-					</Col>
-				</Row>
-				<Row>
-					<Col offset={{md: 1}}>
-						{this.props.mapping.EventEntityMappingConditions.map((condition, key) => {
-							return (
-								<div key={key}>
-									{this.getEventTypeAttributeName(condition.EventTypeAttributeId)}
-									&nbsp;-&nbsp;
-									{this.getEntityTypeAttributeName(condition.EntityTypeAttributeId)}
-								</div>
-							);
-						})}
-					</Col>
-				</Row>
-			</ListItem>
+			<div>
+			<Table selectable={false}>
+				<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+					<TableRow>
+						<TableHeaderColumn>{this.props.eventType.Name}</TableHeaderColumn>
+						<TableHeaderColumn>{this.getEntityTypeName(this.props.mapping.EntityTypeId)}</TableHeaderColumn>
+						<TableHeaderColumn>{this.getMappingActionButtons()}</TableHeaderColumn>
+					</TableRow>
+				</TableHeader>
+				<TableBody displayRowCheckbox={false}>
+					{this.props.mapping.EventEntityMappingConditions.map((condition, key) => {
+						return (
+							<TableRow>
+								<TableRowColumn>{this.getEventTypeAttributeName(condition.EventTypeAttributeId)}</TableRowColumn>
+								<TableRowColumn>{this.getEntityTypeAttributeName(condition.EntityTypeAttributeId)}</TableRowColumn>
+								<TableRowColumn></TableRowColumn>
+							</TableRow>
+						);
+					})}
+				</TableBody>
+			</Table>
+				<Divider style={{backgroundColor: config.colors.accent}} />
+				</div>
 		);
 	}
 }
