@@ -28,7 +28,7 @@ class Header extends Component {
 		window.addEventListener('notificationTriggered', this.handleTriggeredNotification, false);
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
+	shouldComponentUpdate(nextProps) {
 		if (window.sessionStorage.getItem('notificationMessage')) {
 			if (nextProps.title === this.props.title &&
 				JSON.parse(window.sessionStorage.getItem('notificationMessage')).timestamp === Header.lastNotificationTimestamp) {
@@ -85,6 +85,15 @@ class Header extends Component {
 		);
 	}
 
+	getNotificationMessage() {
+		if(window.sessionStorage.getItem('notificationMessage')) {
+			const storageNotificationMessage = window.sessionStorage.getItem('notificationMessage');
+			if (storageNotificationMessage && window.location.href.toString() === JSON.parse(storageNotificationMessage).targetPage.toString()) {
+				return JSON.parse(storageNotificationMessage);
+			}
+		}
+	}
+
 	composeAppBar(pageLocation) {
 		let iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
 		let iconElementRight = <IconButton href={Utils.getLink('/settings')}><IconSettings/></IconButton>;
@@ -115,13 +124,7 @@ class Header extends Component {
 			});
 			appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color);
 		}
-		let notificationMessage;
-		if(window.sessionStorage.getItem('notificationMessage')) {
-			const storageNotificationMessage = window.sessionStorage.getItem('notificationMessage');
-			if (storageNotificationMessage && window.location.href.toString() === JSON.parse(storageNotificationMessage).targetPage.toString()) {
-				notificationMessage = JSON.parse(storageNotificationMessage);
-			}
-		}
+		let notificationMessage = this.getNotificationMessage();
 
 		iconElementRight = <div>{this.getHelpButton()}{iconElementRight}</div>;
 
