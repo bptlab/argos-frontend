@@ -103,14 +103,17 @@ class EventType extends ConnectionComponent {
 		}
 		if (optionalActions && optionalActions.rejected) {
 			Notification.addSnackbarNotificationOnSelf(optionalActions.reason, Notification.ModeEnum.ERROR);
+		} else if (optionalActions && optionalActions.fulfilled && optionalActions === this.props.deleteQueryResponse) {
+			Notification.addSnackbarNotificationOnSelf(config.messages.deletedQueryMessage, Notification.ModeEnum.ERROR);
+		} else if (optionalActions && optionalActions.fulfilled && optionalActions === this.props.deleteMappingResponse) {
+			Notification.addSnackbarNotificationOnSelf(config.messages.deletedEntityMappingMessage, Notification.ModeEnum.ERROR);
 		}
 		return (
 			<div>
 				<ConfirmationMessage
 					actionToPerform={this.handleEventTypeDeletion}
 					ref={(input) => {this.confirmationMessage = input;}}
-					onSnackbarMessage={this.props.onSnackbarMessage}
-					message={config.messages.deletedEventTypeMessage}>
+					onSnackbarMessage={this.props.onSnackbarMessage}>
 					{config.messages.deleteEventTypeMessage}
 				</ConfirmationMessage>
 				<Card
