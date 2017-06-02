@@ -112,6 +112,7 @@ class EventTypeCard extends ConnectionComponent {
 					className={css(AppStyles.floatRight)}
 					href={Utils.getLink(`settings/eventType/${this.props.eventType.Id}/eventQuery/create`)}
 					children={<IconAdd/>}
+					title={help.button.createEventQuery}
 					mini={true} />
 			</Tab>
 		);
@@ -151,6 +152,7 @@ class EventTypeCard extends ConnectionComponent {
 						className={css(AppStyles.floatRight, AppStyles.marginBottomSmall)}
 						href={Utils.getLink('settings/entityMapping/create')}
 						children={<IconAdd/>}
+						title={help.button.createEntityMapping}
 						mini={true} />
 				</div>
 			</Tab>
