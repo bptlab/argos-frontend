@@ -23,19 +23,6 @@ class Header extends Component {
 		window.addEventListener('notificationTriggered', this.handleTriggeredNotification, false);
 	}
 
-	shouldComponentUpdate(nextProps) {
-		if (window.sessionStorage.getItem('notificationMessage')) {
-			if (nextProps.title === this.props.title &&
-				JSON.parse(window.sessionStorage.getItem('notificationMessage')).timestamp === Header.lastNotificationTimestamp) {
-				return false
-			}
-			Header.lastNotificationTimestamp = JSON.parse(window.sessionStorage.getItem('notificationMessage')).timestamp;
-		} else if (nextProps.title === this.props.title) {
-			return false
-		}
-		return true;
-	}
-
 	static goBackInHistory() {
 		window.history.back();
 	}
