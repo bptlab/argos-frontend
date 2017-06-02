@@ -116,14 +116,14 @@ class Header extends Component {
 			iconElementRight = <div/>;
 		}
 
-		let appBarStyle = "";
+		let appBarStyle = css(AppStyles.positionFixedTop);
 		if (this.props.status) {
 			const statusColor = StyleSheet.create({
 				color: {
 					borderColor: Utils.getColorForStatus(this.props.status)
 				}
 			});
-			appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color);
+			appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color, AppStyles.positionFixedTop);
 		}
 		const notificationMessage = this.getNotificationMessage();
 
@@ -135,7 +135,6 @@ class Header extends Component {
 					title={<span>{this.props.title}</span>}
 					iconElementLeft={iconElementLeft}
 					iconElementRight={iconElementRight}
-					style={{position: "fixed", top: "0px"}}
 					className={appBarStyle}/>
 				<Notification
 					open={!!notificationMessage}

@@ -396,7 +396,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		}
 		return (
 			<Container className={css(AppStyles.containerMarginTop)}>
-				<Paper style={{paddingLeft: 20, paddingRight: 20, marginTop: 84, paddingTop: 20}} zDepth={2}>
+				<Paper className={css(AppStyles.paperPadding)} zDepth={2}>
 				<div>
 					{this.renderSelectTargetStatus()}
 					{this.renderSelectTypes(initialData)}

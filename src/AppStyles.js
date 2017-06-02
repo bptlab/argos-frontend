@@ -168,9 +168,16 @@ const AppStyles = StyleSheet.create({
 		bottom: "30px"
 	},
 
-	positionFixed: {
+	positionFixedTop: {
 		position: "fixed",
 		top: "0px"
+	},
+
+	paperPadding: {
+		paddingLeft: 20,
+		paddingRight: 20,
+		marginTop: 84,
+		paddingTop: 20
 	},
 
 	fixMarginRight: {
