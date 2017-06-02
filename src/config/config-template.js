@@ -36,6 +36,8 @@ const config = {
 	messages: {
 		notFound: "Error 404. The requested page does not exist. You found a glitch in the matrix.",
 		noEventTypes: "No event types",
+		noEventQueries: "There are no event queries yet.",
+		noEntityMappings: "There are no event entity mappings yet.",
 		deleteQueryMessage: "Do you really want to delete this Query?",
 		deleteEventTypeMessage: "Do you really want to delete this EventType?",
 		deleteEntityMappingMessage: "Do you really want to delete this EntityMapping?",

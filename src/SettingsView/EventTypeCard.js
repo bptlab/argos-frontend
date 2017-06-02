@@ -120,6 +120,8 @@ class EventType extends ConnectionComponent {
 								<List
 									data-hint={help.display.settingsView.eventTypeQueries}
 									data-hintPosition="middle-middle">
+									{queries.length === 0 &&
+									<div> {config.messages.noEventQueries} </div>}
 									{queries.map((query) => {
 										return(
 											<EventQueryListItem
@@ -143,7 +145,7 @@ class EventType extends ConnectionComponent {
 										data-hint={help.display.settingsView.entityMappings}
 										data-hintPosition="top-middle">
 										{entityMappings.length === 0 &&
-										<div> There are no event entity mappings yet. </div>}
+										<div> {config.messages.noEntityMappings} </div>}
 										{entityMappings.map((mapping, index) => {
 											return (
 												<div>
