@@ -1,18 +1,16 @@
 import React from "react";
-import {Container, Row} from "react-grid-system";
-import Utils from '../Utils/Utils';
+import {Container} from "react-grid-system";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import Header from "./../Header";
 import EventTypeCard from "./EventTypeCard";
 import SearchBar from "./../Utils/SearchBar";
+import FloatingActionButton from "material-ui/FloatingActionButton"
+import IconAdd from "material-ui/svg-icons/content/add";
+import Utils from '../Utils/Utils';
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
-import {Card, CardActions, CardHeader, CardText} from "material-ui/Card";
-import IconButton from "material-ui/IconButton";
-import IconAdd from "material-ui/svg-icons/content/add";
 import Notification from "./../Utils/Notification"
 import config from "./../config/config";
-import help from "./../config/help";
 
 class SettingsView extends ConnectionComponent {
 
@@ -59,43 +57,25 @@ class SettingsView extends ConnectionComponent {
 		}
 		return (
 			<div>
-				<Header title="Settings"/>
+				<Header title="Event Types"/>
 				<Container className={css(AppStyles.elementMarginTop)}>
-					<Row>
-						<Card
-							data-hint={help.display.settingsView.eventTypes}
-							data-hintPosition="top-middle"
-							initiallyExpanded={true}>
-							<CardHeader
-								title="Event Types"
-								actAsExpander={true}
-								showExpandableButton={true}/>
-							<CardText expandable={true}>
-								<Container>
-									<SearchBar onInputChange={this.handleSearchInput}/>
-									{this.props.eventTypes.value.map((eventType) => {
-										if (this.searchMatches(eventType)) {
-											return (<EventTypeCard
-												eventType={eventType}
-												key={eventType.Id}
-												deleteEventType={this.props.deleteEventType}/>);
-										} else {
-											return false;
-										}
-									})
-									}
-								</Container>
-							</CardText>
-							<CardActions>
-								<IconButton
-									tooltip={<span>create new event type</span>}
-									href={Utils.getLink('/settings/eventType/create')} >
-									<IconAdd/>
-								</IconButton>
-							</CardActions>
-						</Card>
-					</Row>
+					<SearchBar onInputChange={this.handleSearchInput} styles={AppStyles.marginBottom}/>
+					{this.props.eventTypes.value.map((eventType) => {
+						if (this.searchMatches(eventType)) {
+							return (<EventTypeCard
+								eventType={eventType}
+								key={eventType.Id}
+								deleteEventType={this.props.deleteEventType}/>);
+						} else {
+							return false;
+						}
+					})}
 				</Container>
+				<FloatingActionButton
+					backgroundColor={config.colors.primaryDark}
+					className={css(AppStyles.floatRight, AppStyles.marginAllSites)}
+					href={Utils.getLink('/settings/eventType/create')}
+					children={<IconAdd/>} />
 			</div>
 		);
 	}

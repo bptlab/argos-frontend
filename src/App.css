@@ -42,6 +42,10 @@
 	align-items: flex-end;
 }
 
+.verticalAlignTop {
+	vertical-align: top !important;
+}
+
 .textAlignCenter {
 	text-align: center;
 }

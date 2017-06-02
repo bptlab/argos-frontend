@@ -18,8 +18,16 @@ const AppStyles = StyleSheet.create({
 		flexDirection: 'column',
 	},
 
+	flexDirectionRow: {
+		flexDirection: 'row',
+	},
+
 	justifyContentCenter: {
 		justifyContent: 'center',
+	},
+
+	justifyContentSpace: {
+		justifyContent: 'space-between',
 	},
 
 	flexBasis100: {
@@ -32,6 +40,14 @@ const AppStyles = StyleSheet.create({
 
 	flexWrap: {
 		flexWrap: 'wrap',
+	},
+
+	floatRight: {
+		float: 'right',
+	},
+
+	autoOverFlow: {
+		overflow: 'auto',
 	},
 
 	r0: {
@@ -88,6 +104,18 @@ const AppStyles = StyleSheet.create({
 
 	marginRight: {
 		marginRight: '5px'
+	},
+
+	marginRightBig: {
+		marginRight: '20px'
+	},
+
+	marginBottom: {
+		marginBottom: '30px'
+	},
+
+	marginBottomSmall: {
+		marginBottom: '5px'
 	},
 
 	headerBorderDetail: {

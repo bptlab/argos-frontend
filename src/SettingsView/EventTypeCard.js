@@ -1,20 +1,23 @@
 import React from 'react';
-import {Card, CardHeader, CardText, CardActions } from 'material-ui/Card';
+import {Card, CardHeader, CardText } from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
-import Utils from '../Utils/Utils';
+import {Tabs, Tab} from 'material-ui/Tabs'
 import EventQueryListItem from  './EventQueryListItem.js';
 import EntityMappingListItem from  './EntityMappingListItem.js';
 import config from './../config/config.js';
 import help from "./../config/help";
-import { Col, Container } from 'react-grid-system';
 import { PromiseState } from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import IconButton from 'material-ui/IconButton';
-import IconAdd from 'material-ui/svg-icons/content/add';
 import IconDelete from 'material-ui/svg-icons/action/delete';
-import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
+import IconAdd from "material-ui/svg-icons/content/add";
 import ConfirmationMessage from './../Utils/ConfirmationMessage.js';
 import Notification from './../Utils/Notification';
+import Divider from 'material-ui/Divider'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import Utils from './../Utils/Utils'
+import {css} from "aphrodite";
+import AppStyles from "./../AppStyles";
 
 class EventType extends ConnectionComponent {
 
@@ -60,43 +63,95 @@ class EventType extends ConnectionComponent {
 				tooltip={"Delete event type \"" + this.props.eventType.Name + "\""}
 				key="delete-button"
 				onTouchTap={() => {
-					this.confirmationMessage.handleOpen();}}>
+					this.confirmationMessage.handleOpen();}}
+				className={css(AppStyles.marginRightBig)}>
 				<IconDelete/>
 			</IconButton>];
 	}
 
-    showEntityMappings(entityMappings, attributes) {
-		return (<Card
-			expanded={this.state.mappingExpanded}
-			onExpandChange={this.handleMappingsExpandChange}>
-			<CardHeader
-				title="Entity Mappings"
-				actAsExpander={true}
-				showExpandableButton={true}/>
-			<CardText expandable={true}>
-				<List>
-                    {entityMappings.length === 0 &&
-					<div> There are no event entity mappings yet. </div>}
-                    {entityMappings.map((mapping) => {
-                        return (
-							<EntityMappingListItem
-								key={mapping.Id}
-								mapping={mapping}
-								deleteMapping={this.props.deleteMapping}
-								eventType={this.props.eventType}
-								eventTypeAttributes={attributes}/>
-                        );
-                    })}
+	getAttributesTab(attributes) {
+		return(
+			<Tab label="Attributes">
+				<List
+					data-hint={help.display.settingsView.eventTypeAttributes}
+					data-hintPosition="middle-middle">
+					{attributes.map((attribute) => {
+							return(
+								<ListItem
+									primaryText={attribute.Name}
+									key={attribute.Id}
+								/>);
+						}
+					)}
 				</List>
-			</CardText>
-			<CardActions>
-				<IconButton
-					href={Utils.getLink('/settings/entityMapping/create')}
-					tooltip={<span>create new event entity mapping</span>}>
-					<IconAdd/>
-				</IconButton>
-			</CardActions>
-		</Card>);
+			</Tab>
+		);
+	}
+	getEventQueriesTab(queries) {
+		return(
+			<Tab label="Event Queries">
+				<List
+					data-hint={help.display.settingsView.eventTypeQueries}
+					data-hintPosition="middle-middle">
+					{queries.length === 0 &&
+					<div> {config.messages.noEventQueries} </div>}
+					{queries.map((query) => {
+							return(
+								<EventQueryListItem
+									eventType={this.props.eventType}
+									query={query}
+									deleteQuery={this.props.deleteQuery}
+									key={query.Id}/>);
+						}
+					)}
+				</List>
+				<FloatingActionButton
+					backgroundColor={config.colors.primaryDark}
+					className={css(AppStyles.floatRight)}
+					href={Utils.getLink(`settings/eventType/${this.props.eventType.Id}/eventQuery/create`)}
+					children={<IconAdd/>}
+					mini={true} />
+			</Tab>
+		);
+	}
+
+	getEntityMappingsTab(entityMappings, attributes) {
+		return(
+			<Tab label="Entity Mappings">
+				<div className={css(AppStyles.autoOverFlow)}>
+					<List
+						data-hint={help.display.settingsView.entityMappings}
+						data-hintPosition="top-middle">
+						{entityMappings.length === 0 &&
+						<div> {config.messages.noEntityMappings} </div>}
+						{entityMappings.map((mapping, index) => {
+							return (
+								<div>
+									<EntityMappingListItem
+										key={mapping.Id}
+										mapping={mapping}
+										deleteMapping={this.props.deleteMapping}
+										eventType={this.props.eventType}
+										eventTypeAttributes={attributes}/>
+									{index !== (entityMappings.length - 1) &&
+									<Divider
+										key={index}
+										style={{backgroundColor: config.colors.accent,
+											marginTop: '20px',
+											marginBottom: '20px'}} />}
+								</div>
+							);
+						})}
+					</List>
+					<FloatingActionButton
+						backgroundColor={config.colors.primaryDark}
+						className={css(AppStyles.floatRight, AppStyles.marginBottomSmall)}
+						href={Utils.getLink('settings/entityMapping/create')}
+						children={<IconAdd/>}
+						mini={true} />
+				</div>
+			</Tab>
+		);
 	}
 	
 	render() {
@@ -127,50 +182,16 @@ class EventType extends ConnectionComponent {
 						subtitle={`${config.descriptions.textNumberOfEvents} ${this.props.eventType.NumberOfEvents}`}
 						actAsExpander={true}
 						showExpandableButton={true}
-						children={this.getEventTypeHeaderButtons()}/>
+						children={this.getEventTypeHeaderButtons()}
+						className={css(AppStyles.dFlex, AppStyles.flexDirectionRow, AppStyles.justifyContentSpace)}/>
 					<CardText
 						expandable={true}>
-						<Container fluid={true}>
-							<Col md={4}>
-								<List
-									data-hint={help.display.settingsView.eventTypeAttributes}
-									data-hintPosition="middle-middle">
-									{attributes.map((attribute) => { return(
-										<ListItem
-											primaryText={attribute.Name}
-											key={attribute.Id}
-										/>);
-									})}
-								</List>
-							</Col>
-							<Col md={7}>
-								<List
-									data-hint={help.display.settingsView.eventTypeQueries}
-									data-hintPosition="middle-middle">
-									{queries.map((query) => {
-										return(
-											<EventQueryListItem
-												eventType={this.props.eventType}
-												query={query}
-												deleteQuery={this.props.deleteQuery}
-												key={query.Id}/>);
-										}
-									)}
-								</List>
-							</Col>
-							<Col md={1}>
-								<IconButton
-									tooltip={<span>create new event query</span>}
-									href={Utils.getLink(`settings/eventType/${this.props.eventType.Id}/eventQuery/create`)} >
-									<IconAdd/>
-								</IconButton>
-							</Col>
-						</Container>
-						<Container
-							data-hint={help.display.settingsView.entityMappings}
-							data-hintPosition="top-middle">
-							{this.showEntityMappings(entityMappings, attributes)}
-						</Container>
+						<Tabs>
+							{this.getAttributesTab(attributes)}
+							{this.getEventQueriesTab(queries)}
+							{this.getEntityMappingsTab(entityMappings, attributes)}
+
+						</Tabs>
 					</CardText>
 				</Card>
 			</div>
