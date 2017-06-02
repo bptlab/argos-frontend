@@ -1,7 +1,7 @@
 import React from "react";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import TextField from "material-ui/TextField";
-import {Col, Container, Row} from "react-grid-system";
+import {Container} from "react-grid-system";
 import RaisedButton from "material-ui/RaisedButton";
 import IconSave from "material-ui/svg-icons/content/save";
 import IconCancel from "material-ui/svg-icons/navigation/cancel";
@@ -11,7 +11,7 @@ import AppStyles from "./../AppStyles";
 import config from '../config/config.js';
 import help from "../config/help";
 import Notification from '../Utils/Notification';
-
+import {Paper} from "material-ui";
 
 class CreateEventTypeView extends ConnectionComponent {
 	constructor(props) {
@@ -37,7 +37,7 @@ class CreateEventTypeView extends ConnectionComponent {
 			eventTypeNameErrorText: '',
 		});
 	}
-	
+
 	abort() {
 		window.history.back();
 	}
@@ -51,13 +51,13 @@ class CreateEventTypeView extends ConnectionComponent {
 
 	submitForm() {
 		const errorState = {};
-		if(!this.state.eventTypeName) {
+		if (!this.state.eventTypeName) {
 			errorState['eventTypeNameErrorText'] = config.messages.requiredFieldMessage;
 		}
-		if(!this.state.eventTypeTimestampAttribute) {
+		if (!this.state.eventTypeTimestampAttribute) {
 			errorState['eventTypeTimestampAttributeErrorText'] = config.messages.requiredFieldMessage;
 		}
-		if(Object.keys(errorState).length > 0) {
+		if (Object.keys(errorState).length > 0) {
 			this.setState(errorState);
 		} else {
 			const attributes = this.state.attributes;
@@ -110,7 +110,7 @@ class CreateEventTypeView extends ConnectionComponent {
 
 	render() {
 		const optionalActions = this.props.createEventTypeResponse;
-		if(optionalActions && optionalActions.fulfilled) {
+		if (optionalActions && optionalActions.fulfilled) {
 			window.history.back();
 			return null;
 		}
@@ -123,69 +123,58 @@ class CreateEventTypeView extends ConnectionComponent {
 			<div>
 				<Header title="Create New Event Type"/>
 				<Container>
-					<form>
-						<div className={css(AppStyles.dFlex, AppStyles.elementMarginTop)}>
-							<Col>
-								<Row>
-									<Col>
-										<TextField
-											data-hint={help.input.eventTypeView.name}
-											data-hintPosition="middle-right"
-											floatingLabelText="Event Type Name"
-											fullWidth={true}
-											value={this.state.eventTypeName}
-											onChange={this.handleChangeEventTypeName}
-											required={true}
-											errorText={this.state.eventTypeNameErrorText}/>
-									</Col>
-								</Row>
-								<Row>
-									<Col>
-										<TextField
-											data-hint={help.input.eventTypeView.timestamp}
-											data-hintPosition="middle-right"
-											floatingLabelText="Timestamp Attribute"
-											fullWidth={true}
-											value={this.state.eventTypeTimestampAttribute}
-											onChange={this.handleChangeEventTypeTimestampAttribute}
-											errorText={this.state.eventTypeTimestampAttributeErrorText}/>
-									</Col>
-								</Row>
-								<Row className={css(AppStyles.elementMarginTop)}>
-									<Col md={4}> Attributes: </Col>
-								</Row>
-								<Row
-									data-hint={help.input.eventTypeView.attributes}
-									data-hintPosition="top-middle">
-									<Col>
-										{this.state.attributes.map((attribute) =>
-											<TextField
-												key={attribute.id}
-												id={attribute.id}
-												value={attribute.value}
-												hintText="Attribute Name"
-												onChange={this.onInputChange.bind(this)}
-												fullWidth={true}/>
-										)}
-									</Col>
-								</Row>
-							</Col>
+					<Paper style={{paddingLeft: 20, paddingRight: 20, marginTop: 20}} zDepth={2}>
+						<form>
+							<div className={css(AppStyles.elementMarginTop)}>
+								<TextField
+									data-hint={help.input.eventTypeView.name}
+									data-hintPosition="middle-right"
+									floatingLabelText="Event Type Name"
+									fullWidth={true}
+									floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
+									value={this.state.eventTypeName}
+									onChange={this.handleChangeEventTypeName}
+									required={true}
+									errorText={this.state.eventTypeNameErrorText}/>
+								<TextField
+									data-hint={help.input.eventTypeView.timestamp}
+									data-hintPosition="middle-right"
+									floatingLabelText="Timestamp Attribute"
+									floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
+									fullWidth={true}
+									value={this.state.eventTypeTimestampAttribute}
+									onChange={this.handleChangeEventTypeTimestampAttribute}
+									errorText={this.state.eventTypeTimestampAttributeErrorText}/>
+								<h3 className={css(AppStyles.subHeadline)}>Attributes:</h3>
+								{this.state.attributes.map((attribute) =>
+									<TextField
+										key={attribute.id}
+										data-hint={help.input.eventTypeView.attributes}
+										data-hintPosition="middle-right"
+										id={attribute.id}
+										value={attribute.value}
+										floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
+										floatingLabelText="Attribute Name"
+										onChange={this.onInputChange.bind(this)}
+										fullWidth={true}/>
+								)}
+							</div>
+						</form>
+						<div className={css(AppStyles.textAlignCenter)}>
+							<RaisedButton
+								label="Abort"
+								icon={<IconCancel/>}
+								className={css(AppStyles.marginAllSites)}
+								onClick={this.abort}
+								secondary={true}/>
+							<RaisedButton
+								label="Save"
+								icon={<IconSave/>}
+								onClick={this.submitForm}
+								className={css(AppStyles.marginAllSites)}
+								primary={true}/>
 						</div>
-					</form>
-					<div className={css(AppStyles.textAlignCenter)}>
-						<RaisedButton
-							label="Abort"
-							icon={<IconCancel/>}
-							className={css(AppStyles.marginAllSites)}
-							onClick={this.abort}
-							secondary={true}/>
-						<RaisedButton
-							label="Save"
-							icon={<IconSave/>}
-							onClick={this.submitForm}
-							className={css(AppStyles.marginAllSites)}
-							primary={true}/>
-					</div>
+					</Paper>
 				</Container>
 			</div>
 		);

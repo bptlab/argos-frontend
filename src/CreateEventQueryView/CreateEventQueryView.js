@@ -2,7 +2,7 @@ import React from "react";
 import {PromiseState} from "react-refetch";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import {Col, Container, Row} from "react-grid-system";
-import {RaisedButton} from "material-ui";
+import {Paper, RaisedButton} from "material-ui";
 import IconSave from "material-ui/svg-icons/content/save";
 import IconCancel from "material-ui/svg-icons/navigation/cancel";
 import Header from "./../Header";
@@ -154,30 +154,36 @@ class CreateEventQueryView extends ConnectionComponent {
 		return (
 			<div className={AppStyles.elementMarginTop}>
 				<Container>
-					<Row>
-						<Col md={4}>
-							<EventTypeInformation attributes={attributes}/>
-						</Col>
-						<Col md={8}>
-							<EventQueryInputArea
-								handleQueryInputChange={queryInputChangeHandler}
-								queryErrorMessage={this.state.queryErrorMessage}
-								handleDescriptionInputChange={this.handleDescriptionInput}
-								descriptionErrorMessage={this.state.descriptionErrorMessage}
-								eventQuery={eventQuery}
-							/>
-						</Col>
-					</Row>
-					<div className={css(AppStyles.textAlignCenter)}>
-						{this.getAbortButton()}
-						<RaisedButton
-							label="Save"
-							icon={<IconSave/>}
-							className={css(AppStyles.marginAllSites)}
-							primary={true}
-							onClick={submitFormHandler}
-						/>
-					</div>
+					<Paper style={{paddingLeft: 20, paddingRight: 20, marginTop: 20}} zDepth={2}>
+						<Row>
+							<Col md={8}>
+								<EventQueryInputArea
+									handleQueryInputChange={queryInputChangeHandler}
+									queryErrorMessage={this.state.queryErrorMessage}
+									handleDescriptionInputChange={this.handleDescriptionInput}
+									descriptionErrorMessage={this.state.descriptionErrorMessage}
+									eventQuery={eventQuery}
+								/>
+							</Col>
+							<Col md={4} style={{paddingTop: 20}}>
+								<EventTypeInformation attributes={attributes}/>
+							</Col>
+						</Row>
+						<Row>
+							<Col md={8}>
+								<div className={css(AppStyles.textAlignCenter)}>
+									{this.getAbortButton()}
+									<RaisedButton
+										label="Save"
+										icon={<IconSave/>}
+										className={css(AppStyles.marginAllSites)}
+										primary={true}
+										onClick={submitFormHandler}
+									/>
+								</div>
+							</Col>
+						</Row>
+					</Paper>
 				</Container>
 			</div>
 		);

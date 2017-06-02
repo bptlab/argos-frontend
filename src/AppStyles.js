@@ -149,6 +149,17 @@ const AppStyles = StyleSheet.create({
 		background: config.colors.primaryDarkAlpha,
 		borderColor: config.colors.primaryDark,
 		color: config.colors.primaryDark
+	},
+
+	subHeadline: {
+		color: config.colors.primaryDark,
+		fontSize: '20px',
+		fontWeight: "normal",
+		marginBottom: '-10px'
+	},
+
+	fixMarginRight: {
+		marginLeft: '25px !important',
 	}
 });
 
