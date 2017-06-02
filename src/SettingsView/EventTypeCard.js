@@ -95,7 +95,7 @@ class EventType extends ConnectionComponent {
 					data-hint={help.display.settingsView.eventTypeQueries}
 					data-hintPosition="middle-middle">
 					{queries.length === 0 &&
-					<p className="mapping-headline"> {config.messages.noEventQueries} </p>}
+					<div className="mapping-headline"> {config.messages.noEventQueries} </div>}
 					{queries.map((query) => {
 							return(
 								<EventQueryListItem
@@ -124,7 +124,7 @@ class EventType extends ConnectionComponent {
 						data-hint={help.display.settingsView.entityMappings}
 						data-hintPosition="top-middle">
 						{entityMappings.length === 0 &&
-						<p className="mapping-headline"> {config.messages.noEntityMappings} </p>}
+						<div className="mapping-headline"> {config.messages.noEntityMappings} </div>}
 						{entityMappings.map((mapping, index) => {
 							return (
 								<div>
