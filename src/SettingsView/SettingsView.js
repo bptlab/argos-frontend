@@ -57,22 +57,19 @@ class SettingsView extends ConnectionComponent {
 		}
 		return (
 			<div>
-				<Header title="Settings"/>
+				<Header title="Event Types"/>
 				<Container className={css(AppStyles.elementMarginTop)}>
-					<h2>Event Types</h2>
-					<Container>
-						<SearchBar onInputChange={this.handleSearchInput} styles={AppStyles.marginBottom}/>
-						{this.props.eventTypes.value.map((eventType) => {
-							if (this.searchMatches(eventType)) {
-								return (<EventTypeCard
-									eventType={eventType}
-									key={eventType.Id}
-									deleteEventType={this.props.deleteEventType}/>);
-							} else {
-								return false;
-							}
-						})}
-					</Container>
+					<SearchBar onInputChange={this.handleSearchInput} styles={AppStyles.marginBottom}/>
+					{this.props.eventTypes.value.map((eventType) => {
+						if (this.searchMatches(eventType)) {
+							return (<EventTypeCard
+								eventType={eventType}
+								key={eventType.Id}
+								deleteEventType={this.props.deleteEventType}/>);
+						} else {
+							return false;
+						}
+					})}
 				</Container>
 				<FloatingActionButton
 					backgroundColor={config.colors.primaryDark}
