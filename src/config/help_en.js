@@ -48,9 +48,9 @@ const help_en = {
 	button: {
 		inspectEntity: "Click to view details and events for this entity.",
 		showChildrenOfEntity: "Click to view all child entities for this entity.",
-		createEventQuery: "Klicken Sie hier, um eine neue Ereignisabfrage anzulegen.",
-		createEventType: "Klicken Sie hier, um einen neuen Ereignistypen anzulegen.",
-		createEntityMapping: "Klicken Sie hier, um ein neues Mapping zwischen einen Ereignistypen und einem Entitätstypen anzulegen."
+		createEventQuery: "Click here to create a new event query.",
+		createEventType: "Click here to create a new event type.",
+		createEntityMapping: "Click here to create a new mapping between an entity type and an event type."
 	},
 	diagram: {
 		eventsOverTime: "This diagram shows the timeline of occured events of the currently selected event type. This graph will also be affected by filters set below.",
