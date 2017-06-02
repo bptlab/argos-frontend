@@ -94,6 +94,10 @@ const AppStyles = StyleSheet.create({
 		marginTop: '30px'
 	},
 
+	containerMarginTop: {
+		marginTop: '64px'
+	},
+
     marginAllSites: {
 		margin: '30px'
 	},
@@ -156,6 +160,24 @@ const AppStyles = StyleSheet.create({
 		fontSize: '20px',
 		fontWeight: "normal",
 		marginBottom: '-10px'
+	},
+
+	floatingActionButton: {
+		position: "fixed",
+		right: "30px",
+		bottom: "30px"
+	},
+
+	positionFixedTop: {
+		position: "fixed",
+		top: "0px"
+	},
+
+	paperPadding: {
+		paddingLeft: 20,
+		paddingRight: 20,
+		marginTop: 84,
+		paddingTop: 20
 	},
 
 	fixMarginRight: {

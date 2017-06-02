@@ -1,7 +1,7 @@
 import React from "react";
 import {Container} from "react-grid-system";
 import {PromiseState} from "react-refetch";
-import ConnectionComponent from "./../Utils/ConnectionComponent.js";
+import ConnectionComponent from "./../Utils/ConnectionComponent";
 import EntityInformation from "../Utils/EntityInformation";
 import EventDiagram from "./EventDiagram";
 import EventTable from "./EventTable";
@@ -14,6 +14,7 @@ import FilterBar from "./../Utils/FilterBar";
 import Utils from "./../Utils/Utils";
 import {Toggle} from "material-ui";
 import LoadingAnimation from "../Utils/LoadingAnimation";
+import { css } from 'aphrodite';
 import "./DetailView.css";
 
 class DetailView extends ConnectionComponent {
@@ -223,20 +224,22 @@ class DetailView extends ConnectionComponent {
 				<Header
 					title={entity.Name}
 					status={entity.Status}/>
-				<Container>
-					<Toggle
-						data-hint={help.input.toggleChildrenEvents}
-						data-hintPosition="middle-left"
-						label={config.descriptions.toggleChildrenEvents}
-						defaultToggled={false}
-						thumbStyle={{
-							backgroundColor: config.colors.toggleOff,
-						}}
-						onToggle={this.handleEventChildrenSwitch}
-						thumbSwitchedStyle={AppStyles.thumbSwitchedColor}
-						className="elementMarginTop"
-						disabled={this.props.entity.HasChildren}
-					/>
+				<Container className={css(AppStyles.containerMarginTop)}>
+					<div className="dFlex elementMarginTop">
+						<Toggle
+							data-hint={help.input.toggleChildrenEvents}
+							data-hintPosition="middle-left"
+							label={config.descriptions.toggleChildrenEvents}
+							defaultToggled={false}
+							thumbStyle={{
+								backgroundColor: config.colors.toggleOff,
+							}}
+							onToggle={this.handleEventChildrenSwitch}
+							thumbSwitchedStyle={AppStyles.thumbSwitchedColor}
+							className="elementMarginTop"
+							disabled={this.props.entity.HasChildren}
+						/>
+					</div>
 					<div className="dFlex elementMarginTop">
 						<EntityInformation
 							entity={entity}

@@ -122,8 +122,8 @@ class CreateEventTypeView extends ConnectionComponent {
 		return (
 			<div>
 				<Header title="Create New Event Type"/>
-				<Container>
-					<Paper style={{paddingLeft: 20, paddingRight: 20, marginTop: 20}} zDepth={2}>
+				<Container className={css(AppStyles.containerMarginTop)}>
+					<Paper className={css(AppStyles.paperPadding)} zDepth={2}>
 						<form>
 							<div className={css(AppStyles.elementMarginTop)}>
 								<TextField

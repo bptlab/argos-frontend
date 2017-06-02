@@ -58,7 +58,7 @@ class SettingsView extends ConnectionComponent {
 		return (
 			<div>
 				<Header title="Event Types"/>
-				<Container className={css(AppStyles.elementMarginTop)}>
+				<Container className={css(AppStyles.containerMarginTop)}>
 					<SearchBar onInputChange={this.handleSearchInput} styles={AppStyles.marginBottom}/>
 					{this.props.eventTypes.value.map((eventType) => {
 						if (this.searchMatches(eventType)) {
@@ -73,7 +73,7 @@ class SettingsView extends ConnectionComponent {
 				</Container>
 				<FloatingActionButton
 					backgroundColor={config.colors.primaryDark}
-					className={css(AppStyles.floatRight, AppStyles.marginAllSites)}
+					className={css(AppStyles.floatingActionButton)}
 					href={Utils.getLink('/settings/eventType/create')}
 					children={<IconAdd/>} />
 			</div>

@@ -395,8 +395,8 @@ class CreateEntityMappingView extends ConnectionComponent {
 				Notification.ModeEnum.ERROR);
 		}
 		return (
-			<Container>
-				<Paper style={{paddingLeft: 20, paddingRight: 20, marginTop: 40, paddingTop: 20}} zDepth={2}>
+			<Container className={css(AppStyles.containerMarginTop)}>
+				<Paper className={css(AppStyles.paperPadding)} zDepth={2}>
 				<div>
 					{this.renderSelectTargetStatus()}
 					{this.renderSelectTypes(initialData)}

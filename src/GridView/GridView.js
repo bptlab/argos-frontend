@@ -8,6 +8,8 @@ import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import config from "./../config/config.js";
 import help from "./../config/help";
 import Header from "../Header";
+import AppStyles from "../AppStyles";
+import { css } from 'aphrodite';
 
 class GridView extends ConnectionComponent {
 	constructor() {
@@ -75,12 +77,14 @@ class GridView extends ConnectionComponent {
 		return (
 			<div>
 				<Header title={this.getPageTitle(entity)} status={entity.Status}/>
-				<Container>
+				<Container className={css(AppStyles.containerMarginTop)}>
 					<HierarchyStepper
 						hierarchy={window.hierarchy}
 						currentEntity={entity}
 						getEntityType={this.getEntityType}
-						getChildEntityTypes={this.getChildEntityTypes}/>
+						getChildEntityTypes={this.getChildEntityTypes}
+					    className="elementMarginTop"
+					/>
 					<div
 						data-hint={help.input.gridViewFilterBar}
 						data-hintPosition="middle-left">
