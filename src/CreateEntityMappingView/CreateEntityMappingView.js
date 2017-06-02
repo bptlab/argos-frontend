@@ -148,7 +148,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 				});
 			});
 			allEntities.sort((a, b) => {
-				return a.Name > b.Name;
+				return (a.Name.toLowerCase() > b.Name.toLowerCase());
 			});
 			return allEntities;
 		}
@@ -256,6 +256,9 @@ class CreateEntityMappingView extends ConnectionComponent {
 	}
 
 	static getMenuItems(items) {
+		items.sort((a, b) => {
+			return a.Name.toLowerCase() > b.Name.toLowerCase();
+		});
 		return items.map(
 			(item, key) => {
 				return <MenuItem
