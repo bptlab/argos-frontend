@@ -194,7 +194,7 @@ const AppStyles = StyleSheet.create({
 		textAlign: 'left',
 		padding: '5px 15px',
 		fontSize: '13px',
-		borderTop: '1px solid '+config.colors.border
+		borderTop: '1px solid ' + config.colors.border
 	},
 	
 	tableRow: {
