@@ -138,32 +138,34 @@ class EventType extends ConnectionComponent {
 									mini={true} />
 							</Tab>
 							<Tab label="Entity Mappings">
-								<List
-									data-hint={help.display.settingsView.entityMappings}
-									data-hintPosition="top-middle">
-									{entityMappings.length === 0 &&
-									<div> There are no event entity mappings yet. </div>}
-									{entityMappings.map((mapping, index) => {
-										return (
-											<div>
-												<EntityMappingListItem
-													key={mapping.Id}
-													mapping={mapping}
-													deleteMapping={this.props.deleteMapping}
-													eventType={this.props.eventType}
-													eventTypeAttributes={attributes}/>
-												{index !== (entityMappings.length - 1) &&
-													<Divider key={index} style={{backgroundColor: config.colors.accent, marginTop: '20px', marginBottom: '20px'}} />}
-											</div>
-										);
-									})}
-								</List>
-								<FloatingActionButton
-									backgroundColor={config.colors.primaryDark}
-									className={css(AppStyles.floatRight)}
-									href={Utils.getLink('settings/entityMapping/create')}
-									children={<IconAdd/>}
-									mini={true} />
+								<div className={css(AppStyles.autoOverFlow)}>
+									<List
+										data-hint={help.display.settingsView.entityMappings}
+										data-hintPosition="top-middle">
+										{entityMappings.length === 0 &&
+										<div> There are no event entity mappings yet. </div>}
+										{entityMappings.map((mapping, index) => {
+											return (
+												<div>
+													<EntityMappingListItem
+														key={mapping.Id}
+														mapping={mapping}
+														deleteMapping={this.props.deleteMapping}
+														eventType={this.props.eventType}
+														eventTypeAttributes={attributes}/>
+													{index !== (entityMappings.length - 1) &&
+														<Divider key={index} style={{backgroundColor: config.colors.accent, marginTop: '20px', marginBottom: '20px'}} />}
+												</div>
+											);
+										})}
+									</List>
+									<FloatingActionButton
+										backgroundColor={config.colors.primaryDark}
+										className={css(AppStyles.floatRight)}
+										href={Utils.getLink('settings/entityMapping/create')}
+										children={<IconAdd/>}
+										mini={true} />
+								</div>
 							</Tab>
 						</Tabs>
 					</CardText>

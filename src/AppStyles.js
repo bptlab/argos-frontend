@@ -46,6 +46,10 @@ const AppStyles = StyleSheet.create({
 		float: 'right',
 	},
 
+	autoOverFlow: {
+		overflow: 'auto',
+	},
+
 	r0: {
 		right: '0px',
 	},
