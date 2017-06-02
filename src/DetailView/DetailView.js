@@ -223,7 +223,7 @@ class DetailView extends ConnectionComponent {
 				<Header
 					title={entity.Name}
 					status={entity.Status}/>
-				<Container>
+				<Container style={{marginTop: "104px"}}>
 					<Toggle
 						data-hint={help.input.toggleChildrenEvents}
 						data-hintPosition="middle-left"

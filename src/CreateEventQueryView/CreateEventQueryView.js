@@ -153,8 +153,8 @@ class CreateEventQueryView extends ConnectionComponent {
 		this.displayOptionalErrorMessage(optionalActions);
 		return (
 			<div className={AppStyles.elementMarginTop}>
-				<Container>
-					<Paper style={{paddingLeft: 20, paddingRight: 20, marginTop: 20}} zDepth={2}>
+				<Container className={css(AppStyles.containerMarginTop)}>
+					<Paper style={{paddingLeft: 20, paddingRight: 20, marginTop: 84}} zDepth={2}>
 						<Row>
 							<Col md={8}>
 								<EventQueryInputArea

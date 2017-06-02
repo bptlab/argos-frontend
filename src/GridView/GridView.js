@@ -75,7 +75,7 @@ class GridView extends ConnectionComponent {
 		return (
 			<div>
 				<Header title={this.getPageTitle(entity)} status={entity.Status}/>
-				<Container>
+				<Container style={{marginTop: "94px"}}>
 					<HierarchyStepper
 						hierarchy={window.hierarchy}
 						currentEntity={entity}
