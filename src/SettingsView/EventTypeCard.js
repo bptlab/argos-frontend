@@ -19,7 +19,7 @@ import Utils from './../Utils/Utils'
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
 
-class EventType extends ConnectionComponent {
+class EventTypeCard extends ConnectionComponent {
 
 	constructor(props) {
 		super(props);
@@ -126,19 +126,19 @@ class EventType extends ConnectionComponent {
 						<div> {config.messages.noEntityMappings} </div>}
 						{entityMappings.map((mapping, index) => {
 							return (
-								<div>
+								<div key={index}>
 									<EntityMappingListItem
-										key={mapping.Id}
 										mapping={mapping}
 										deleteMapping={this.props.deleteMapping}
 										eventType={this.props.eventType}
 										eventTypeAttributes={attributes}/>
 									{index !== (entityMappings.length - 1) &&
-									<Divider
-										key={index}
-										style={{backgroundColor: config.colors.accent,
+										<Divider style={{
+											backgroundColor: config.colors.accent,
 											marginTop: '20px',
-											marginBottom: '20px'}} />}
+											marginBottom: '20px'}}
+										/>
+									}
 								</div>
 							);
 						})}
@@ -227,4 +227,4 @@ class EventType extends ConnectionComponent {
             })
         }
     })
-}))(EventType);
+}))(EventTypeCard);
