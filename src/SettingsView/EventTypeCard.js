@@ -18,6 +18,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import Utils from './../Utils/Utils'
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
+import "./EntityMappingListItem.css"
 
 class EventType extends ConnectionComponent {
 
@@ -94,7 +95,7 @@ class EventType extends ConnectionComponent {
 					data-hint={help.display.settingsView.eventTypeQueries}
 					data-hintPosition="middle-middle">
 					{queries.length === 0 &&
-					<div> {config.messages.noEventQueries} </div>}
+					<p className="mapping-headline"> {config.messages.noEventQueries} </p>}
 					{queries.map((query) => {
 							return(
 								<EventQueryListItem
@@ -123,7 +124,7 @@ class EventType extends ConnectionComponent {
 						data-hint={help.display.settingsView.entityMappings}
 						data-hintPosition="top-middle">
 						{entityMappings.length === 0 &&
-						<div> {config.messages.noEntityMappings} </div>}
+						<p className="mapping-headline"> {config.messages.noEntityMappings} </p>}
 						{entityMappings.map((mapping, index) => {
 							return (
 								<div>
