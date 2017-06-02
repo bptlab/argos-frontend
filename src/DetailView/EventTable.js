@@ -10,7 +10,8 @@ class EventTable extends Component {
 			{eventTypeAttributes.map(
 				(attribute, key) => {
 					return (
-						<th key={key} className={css(AppStyles.tableCell, AppStyles.tableHeaderCell)}>
+						<th key={key} 
+							className={css(AppStyles.tableCell, AppStyles.tableHeaderCell)}>
 							{attribute.Name}
 						</th>
 					);
@@ -24,7 +25,8 @@ class EventTable extends Component {
 		const row = event.Attributes.map(
 			(eventAttribute, attributeKey) => {
 				return (
-					<td key={attributeKey} className={css(AppStyles.tableCell)}>
+					<td key={attributeKey} 
+						className={css(AppStyles.tableCell)}>
 						{eventAttribute.Value}
 					</td>
 				);
