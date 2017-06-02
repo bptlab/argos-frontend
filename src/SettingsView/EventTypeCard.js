@@ -10,9 +10,12 @@ import { PromiseState } from 'react-refetch';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import IconButton from 'material-ui/IconButton';
 import IconDelete from 'material-ui/svg-icons/action/delete';
+import IconAdd from "material-ui/svg-icons/content/add";
 import ConfirmationMessage from './../Utils/ConfirmationMessage.js';
 import Notification from './../Utils/Notification';
 import Divider from 'material-ui/Divider'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import Utils from './../Utils/Utils'
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
 
@@ -127,6 +130,12 @@ class EventType extends ConnectionComponent {
 										}
 									)}
 								</List>
+								<FloatingActionButton
+									backgroundColor={config.colors.primaryDark}
+									className={css(AppStyles.floatRight)}
+									href={Utils.getLink(`settings/eventType/${this.props.eventType.Id}/eventQuery/create`)}
+									children={<IconAdd/>}
+									mini={true} />
 							</Tab>
 							<Tab label="Entity Mappings">
 								<List
@@ -149,6 +158,12 @@ class EventType extends ConnectionComponent {
 										);
 									})}
 								</List>
+								<FloatingActionButton
+									backgroundColor={config.colors.primaryDark}
+									className={css(AppStyles.floatRight)}
+									href={Utils.getLink('settings/entityMapping/create')}
+									children={<IconAdd/>}
+									mini={true} />
 							</Tab>
 						</Tabs>
 					</CardText>
