@@ -156,6 +156,10 @@ const AppStyles = StyleSheet.create({
 		fontSize: '20px',
 		fontWeight: "normal",
 		marginBottom: '-10px'
+	},
+
+	fixMarginRight: {
+		marginLeft: '25px !important',
 	}
 });
 

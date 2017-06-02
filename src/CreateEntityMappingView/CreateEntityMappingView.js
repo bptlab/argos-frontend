@@ -374,7 +374,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 				<RaisedButton
 					label="Abort"
 					icon={<IconCancel/>}
-					className={css(AppStyles.marginAllSites)}
+					className={css(AppStyles.marginAllSites, AppStyles.fixMarginRight)}
 					secondary={true}
 					onTouchTap={CreateEntityMappingView.abort}
 				/>
