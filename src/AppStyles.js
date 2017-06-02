@@ -192,7 +192,7 @@ const AppStyles = StyleSheet.create({
 	
 	tableCell: {
 		textAlign: 'left',
-		padding: '5px 15px',
+		padding: '15px 20px',
 		fontSize: '13px',
 		borderTop: '1px solid ' + config.colors.border
 	},
@@ -207,12 +207,13 @@ const AppStyles = StyleSheet.create({
 	},
 	
 	tableHeaderCell: {
-		padding: '20px 15px',
+		padding: '20px 20px',
 		color: config.colors.primaryDark,
 		textTransform: 'capitalize'
 	},
 	
 	eventTable: {
+		width: '100%',
 		borderSpacing: '0px',
 	}
 });
