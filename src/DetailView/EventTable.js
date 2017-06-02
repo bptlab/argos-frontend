@@ -1,27 +1,22 @@
 import React, {Component} from "react";
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "material-ui/Table";
+import AppStyles from "./../AppStyles";
+import { css } from 'aphrodite';
 
 class EventTable extends Component {
 
 	composeTableHeader(eventTypeAttributes) {
 		return (
-			<TableHeader
-				displaySelectAll={false}
-				adjustForCheckbox={false}>
-				<TableRow>
-					{eventTypeAttributes.map(
-						(attribute, key) => {
-							return (
-								<TableHeaderColumn
-									className="capitalize"
-									key={key}>
-									{attribute.Name}
-								</TableHeaderColumn>
-							);
-						})
-					}
-				</TableRow>
-			</TableHeader>
+			<tr>
+			{eventTypeAttributes.map(
+				(attribute, key) => {
+					return (
+						<th key={key} className={css(AppStyles.tableCell, AppStyles.tableHeaderCell)}>
+							{attribute.Name}
+						</th>
+					);
+				})
+			}
+			</tr>
 		);
 	}
 
@@ -29,31 +24,33 @@ class EventTable extends Component {
 		const row = event.Attributes.map(
 			(eventAttribute, attributeKey) => {
 				return (
-					<TableRowColumn key={attributeKey}>
+					<td key={attributeKey} className={css(AppStyles.tableCell)}>
 						{eventAttribute.Value}
-					</TableRowColumn>
+					</td>
 				);
 			});
-		return (<TableRow key={key}>{row}</TableRow>);
+		return (<tr className={css(AppStyles.tableRow)} key={key}>{row}</tr>);
 	}
 
 	composeTableBody(events) {
 		return (
-			<TableBody displayRowCheckbox={false}>
+			<tbody>
 				{events.map((event, key) => {
 					return this.composeTableRow(event, key);
 				})}
-			</TableBody>
+			</tbody>
 		);
 	}
 
 	render() {
 		return (
-			<div>
-				<Table>
+			<div className={css(AppStyles.tableWrapper)}>
+			<table className={css(AppStyles.eventTable)}>
+				<thead>
 					{this.composeTableHeader(this.props.eventTypeAttributes)}
-					{this.composeTableBody(this.props.events)}
-				</Table>
+				</thead>
+				{this.composeTableBody(this.props.events)}
+			</table>
 			</div>
 		);
 	}

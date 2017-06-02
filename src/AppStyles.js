@@ -182,6 +182,38 @@ const AppStyles = StyleSheet.create({
 
 	fixMarginRight: {
 		marginLeft: '25px !important',
+	},
+
+	tableWrapper: {
+		width: '100%',
+		overflow: 'auto',
+		marginBottom: '20px'
+	},
+	
+	tableCell: {
+		textAlign: 'left',
+		padding: '5px 15px',
+		fontSize: '13px',
+		borderTop: '1px solid '+config.colors.border
+	},
+	
+	tableRow: {
+		":nth-child(odd)": {
+			background: config.colors.border,
+		},
+		":nth-child(even)": {
+			background: config.colors.textAlternate,
+		},
+	},
+	
+	tableHeaderCell: {
+		padding: '20px 15px',
+		color: config.colors.primaryDark,
+		textTransform: 'capitalize'
+	},
+	
+	eventTable: {
+		borderSpacing: '0px',
 	}
 });
 
