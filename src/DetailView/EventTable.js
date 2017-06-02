@@ -6,18 +6,20 @@ class EventTable extends Component {
 
 	composeTableHeader(eventTypeAttributes) {
 		return (
-			<tr>
-			{eventTypeAttributes.map(
-				(attribute, key) => {
-					return (
-						<th key={key} 
-							className={css(AppStyles.tableCell, AppStyles.tableHeaderCell)}>
-							{attribute.Name}
-						</th>
-					);
-				})
-			}
-			</tr>
+			<thead>
+				<tr>
+				{eventTypeAttributes.map(
+					(attribute, key) => {
+						return (
+							<th key={key} 
+								className={css(AppStyles.tableCell, AppStyles.tableHeaderCell)}>
+								{attribute.Name}
+							</th>
+						);
+					})
+				}
+				</tr>
+			</thead>
 		);
 	}
 
@@ -48,9 +50,7 @@ class EventTable extends Component {
 		return (
 			<div className={css(AppStyles.tableWrapper)}>
 			<table className={css(AppStyles.eventTable)}>
-				<thead>
-					{this.composeTableHeader(this.props.eventTypeAttributes)}
-				</thead>
+				{this.composeTableHeader(this.props.eventTypeAttributes)}
 				{this.composeTableBody(this.props.events)}
 			</table>
 			</div>
