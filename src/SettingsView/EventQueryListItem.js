@@ -32,7 +32,7 @@ class EventQueryListItem extends Component {
 				<IconButton
 					tooltip="Edit this query"
 					href={Utils.getLink(`/settings/eventType/${this.props.eventType.Id}/eventQuery/${this.props.query.Id}/edit`)}
-				className="verticalAlignTop">
+					className="verticalAlignTop">
 					<IconEdit/>
 				</IconButton>
 				<IconButton

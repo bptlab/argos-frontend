@@ -134,7 +134,11 @@ class EventType extends ConnectionComponent {
 										eventType={this.props.eventType}
 										eventTypeAttributes={attributes}/>
 									{index !== (entityMappings.length - 1) &&
-									<Divider key={index} style={{backgroundColor: config.colors.accent, marginTop: '20px', marginBottom: '20px'}} />}
+									<Divider
+										key={index}
+										style={{backgroundColor: config.colors.accent,
+											marginTop: '20px',
+											marginBottom: '20px'}} />}
 								</div>
 							);
 						})}

@@ -82,7 +82,9 @@ class EntityMappingListItem extends ConnectionComponent {
 				<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
 					<TableRow>
 						<TableHeaderColumn className="mapping-headline">{this.props.eventType.Name}</TableHeaderColumn>
-						<TableHeaderColumn className="mapping-headline">{this.getEntityTypeName(this.props.mapping.EntityTypeId)}</TableHeaderColumn>
+						<TableHeaderColumn className="mapping-headline">
+							{this.getEntityTypeName(this.props.mapping.EntityTypeId)}
+							</TableHeaderColumn>
 						<TableHeaderColumn className="smallWidth">{this.getMappingActionButtons()}</TableHeaderColumn>
 					</TableRow>
 				</TableHeader>
@@ -90,8 +92,16 @@ class EntityMappingListItem extends ConnectionComponent {
 					{this.props.mapping.EventEntityMappingConditions.map((condition, key) => {
 						return (
 							<TableRow key={key}>
-								<TableRowColumn className="mapping-condition" key={key + "EventTypeName"}>{this.getEventTypeAttributeName(condition.EventTypeAttributeId)}</TableRowColumn>
-								<TableRowColumn className="mapping-condition" key={key + "EntityName"}>{this.getEntityTypeAttributeName(condition.EntityTypeAttributeId)}</TableRowColumn>
+								<TableRowColumn
+									className="mapping-condition"
+									key={key + "EventTypeName"}>
+									{this.getEventTypeAttributeName(condition.EventTypeAttributeId)}
+								</TableRowColumn>
+								<TableRowColumn
+									className="mapping-condition"
+									key={key + "EntityName"}>
+									{this.getEntityTypeAttributeName(condition.EntityTypeAttributeId)}
+								</TableRowColumn>
 								<TableRowColumn className="smallWidth" key={key + "Buttons"}></TableRowColumn>
 							</TableRow>
 						);
