@@ -71,10 +71,11 @@ class EventTypeCard extends ConnectionComponent {
 
 	getAttributesTab(attributes) {
 		return(
-			<Tab label="Attributes">
-				<List
-					data-hint={help.display.settingsView.eventTypeAttributes}
-					data-hintPosition="middle-middle">
+			<Tab
+				label="Attributes"
+				data-hint={help.display.settingsView.eventTypeAttributes}
+				data-hintPosition="top-middle">
+				<List>
 					{attributes.map((attribute) => {
 							return(
 								<ListItem
@@ -89,10 +90,11 @@ class EventTypeCard extends ConnectionComponent {
 	}
 	getEventQueriesTab(queries) {
 		return(
-			<Tab label="Event Queries">
-				<List
-					data-hint={help.display.settingsView.eventTypeQueries}
-					data-hintPosition="middle-middle">
+			<Tab
+				label="Event Queries"
+			    data-hint={help.display.settingsView.eventTypeQueries}
+			    data-hintPosition="top-middle">
+				<List>
 					{queries.length === 0 &&
 					<div> {config.messages.noEventQueries} </div>}
 					{queries.map((query) => {
@@ -117,11 +119,12 @@ class EventTypeCard extends ConnectionComponent {
 
 	getEntityMappingsTab(entityMappings, attributes) {
 		return(
-			<Tab label="Entity Mappings">
+			<Tab
+				label="Entity Mappings"
+			    data-hint={help.display.settingsView.entityMappings}
+			    data-hintPosition="top-middle">
 				<div className={css(AppStyles.autoOverFlow)}>
-					<List
-						data-hint={help.display.settingsView.entityMappings}
-						data-hintPosition="top-middle">
+					<List>
 						{entityMappings.length === 0 &&
 						<div> {config.messages.noEntityMappings} </div>}
 						{entityMappings.map((mapping, index) => {
