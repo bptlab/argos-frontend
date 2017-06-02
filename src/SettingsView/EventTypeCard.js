@@ -68,6 +68,87 @@ class EventType extends ConnectionComponent {
 				<IconDelete/>
 			</IconButton>];
 	}
+
+	getAttributesTab(attributes) {
+		return(
+			<Tab label="Attributes">
+				<List
+					data-hint={help.display.settingsView.eventTypeAttributes}
+					data-hintPosition="middle-middle">
+					{attributes.map((attribute) => {
+							return(
+								<ListItem
+									primaryText={attribute.Name}
+									key={attribute.Id}
+								/>);
+						}
+					)}
+				</List>
+			</Tab>
+		);
+	}
+	getEventQueriesTab(queries) {
+		return(
+			<Tab label="Event Queries">
+				<List
+					data-hint={help.display.settingsView.eventTypeQueries}
+					data-hintPosition="middle-middle">
+					{queries.length === 0 &&
+					<div> {config.messages.noEventQueries} </div>}
+					{queries.map((query) => {
+							return(
+								<EventQueryListItem
+									eventType={this.props.eventType}
+									query={query}
+									deleteQuery={this.props.deleteQuery}
+									key={query.Id}/>);
+						}
+					)}
+				</List>
+				<FloatingActionButton
+					backgroundColor={config.colors.primaryDark}
+					className={css(AppStyles.floatRight)}
+					href={Utils.getLink(`settings/eventType/${this.props.eventType.Id}/eventQuery/create`)}
+					children={<IconAdd/>}
+					mini={true} />
+			</Tab>
+		);
+	}
+
+	getEntityMappingsTab(entityMappings, attributes) {
+		return(
+			<Tab label="Entity Mappings">
+				<div className={css(AppStyles.autoOverFlow)}>
+					<List
+						data-hint={help.display.settingsView.entityMappings}
+						data-hintPosition="top-middle">
+						{entityMappings.length === 0 &&
+						<div> {config.messages.noEntityMappings} </div>}
+						{entityMappings.map((mapping, index) => {
+							return (
+								<div>
+									<EntityMappingListItem
+										key={mapping.Id}
+										mapping={mapping}
+										deleteMapping={this.props.deleteMapping}
+										eventType={this.props.eventType}
+										eventTypeAttributes={attributes}/>
+									{index !== (entityMappings.length - 1) &&
+									<Divider key={index} style={{backgroundColor: config.colors.accent, marginTop: '20px', marginBottom: '20px'}} />}
+								</div>
+							);
+						})}
+					</List>
+					<FloatingActionButton
+						backgroundColor={config.colors.primaryDark}
+						className={css(AppStyles.floatRight, AppStyles.marginBottomSmall)}
+						href={Utils.getLink('settings/entityMapping/create')}
+						children={<IconAdd/>}
+						mini={true} />
+				</div>
+			</Tab>
+		);
+	}
 	
 	render() {
 		const allFetches = PromiseState.all([this.props.entityMappings, this.props.queries, this.props.attributes]);
@@ -102,73 +183,10 @@ class EventType extends ConnectionComponent {
 					<CardText
 						expandable={true}>
 						<Tabs>
-							<Tab label="Attributes">
-								<List
-									data-hint={help.display.settingsView.eventTypeAttributes}
-									data-hintPosition="middle-middle">
-									{attributes.map((attribute) => {
-										return(
-											<ListItem
-												primaryText={attribute.Name}
-												key={attribute.Id}
-											/>);
-										}
-									)}
-								</List>
-							</Tab>
-							<Tab label="Event Queries">
-								<List
-									data-hint={help.display.settingsView.eventTypeQueries}
-									data-hintPosition="middle-middle">
-									{queries.length === 0 &&
-									<div> {config.messages.noEventQueries} </div>}
-									{queries.map((query) => {
-										return(
-											<EventQueryListItem
-												eventType={this.props.eventType}
-												query={query}
-												deleteQuery={this.props.deleteQuery}
-												key={query.Id}/>);
-										}
-									)}
-								</List>
-								<FloatingActionButton
-									backgroundColor={config.colors.primaryDark}
-									className={css(AppStyles.floatRight)}
-									href={Utils.getLink(`settings/eventType/${this.props.eventType.Id}/eventQuery/create`)}
-									children={<IconAdd/>}
-									mini={true} />
-							</Tab>
-							<Tab label="Entity Mappings">
-								<div className={css(AppStyles.autoOverFlow)}>
-									<List
-										data-hint={help.display.settingsView.entityMappings}
-										data-hintPosition="top-middle">
-										{entityMappings.length === 0 &&
-										<div> {config.messages.noEntityMappings} </div>}
-										{entityMappings.map((mapping, index) => {
-											return (
-												<div>
-													<EntityMappingListItem
-														key={mapping.Id}
-														mapping={mapping}
-														deleteMapping={this.props.deleteMapping}
-														eventType={this.props.eventType}
-														eventTypeAttributes={attributes}/>
-													{index !== (entityMappings.length - 1) &&
-														<Divider key={index} style={{backgroundColor: config.colors.accent, marginTop: '20px', marginBottom: '20px'}} />}
-												</div>
-											);
-										})}
-									</List>
-									<FloatingActionButton
-										backgroundColor={config.colors.primaryDark}
-										className={css(AppStyles.floatRight, AppStyles.marginBottomSmall)}
-										href={Utils.getLink('settings/entityMapping/create')}
-										children={<IconAdd/>}
-										mini={true} />
-								</div>
-							</Tab>
+							{this.getAttributesTab(attributes)}
+							{this.getEventQueriesTab(queries)}
+							{this.getEntityMappingsTab(entityMappings, attributes)}
+
 						</Tabs>
 					</CardText>
 				</Card>
