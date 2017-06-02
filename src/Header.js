@@ -79,6 +79,7 @@ class Header extends Component {
 		return (
 			<IconButton
 				tooltip={buttonTooltip}
+				tooltipPosition={'bottom-left'}
 				onTouchTap={() => this.toggleHintsOnPage()}
 				className="whiteIcon">
 				{hintButton}
@@ -97,7 +98,11 @@ class Header extends Component {
 
 	composeAppBar(pageLocation) {
 		let iconElementLeft = <IconButton onTouchTap={Header.goBackInHistory}><IconArrowBack/></IconButton>;
-		let iconElementRight = <IconButton className="whiteIcon verticalAlignTop" href={Utils.getLink('/settings')}><IconSettings/></IconButton>;
+		let iconElementRight = <IconButton
+									className="whiteIcon verticalAlignTop"
+									href={Utils.getLink('/settings')}>
+									<IconSettings/>
+								</IconButton>;
 
 		if (pageLocation === "grid") {
 			iconElementLeft = <IconButton href={Utils.getLink('/grid/-1')}><IconHome/></IconButton>;
@@ -130,6 +135,7 @@ class Header extends Component {
 					title={<span>{this.props.title}</span>}
 					iconElementLeft={iconElementLeft}
 					iconElementRight={iconElementRight}
+					style={{position: "fixed", top: "0px"}}
 					className={appBarStyle}/>
 				<Notification
 					open={!!notificationMessage}
