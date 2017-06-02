@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import IconHelpInactive from "material-ui/svg-icons/action/help-outline";
 import IconHelp from "material-ui/svg-icons/action/help";
 import IconButton from "material-ui/IconButton";
-import {css, StyleSheet} from "aphrodite";
 import "./../Header.css";
 const introJs = require('intro.js/minified/intro.min.js');
 
