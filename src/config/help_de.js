@@ -48,7 +48,10 @@ const help_de = {
 	},
 	button: {
 		inspectEntity: "Klicken Sie hier, um sich Details und Events für diese Entität anzusehen.",
-		showChildrenOfEntity: "Klicken Sie hier, um sich alle Kinder-Entitäten dieser Entität anzusehen."
+		showChildrenOfEntity: "Klicken Sie hier, um sich alle Kinder-Entitäten dieser Entität anzusehen.",
+		createEventQuery: "Klicken Sie hier, um eine neue Ereignisabfrage anzulegen.",
+		createEventType: "Klicken Sie hier, um einen neuen Ereignistypen anzulegen.",
+		createEntityMapping: "Klicken Sie hier, um ein neues Mapping zwischen einen Ereignistypen und einem Entitätstypen anzulegen."
 	},
 	diagram: {
 		eventsOverTime: "Dieses Diagramm zeigt Ihnen eine Übersicht über alle Events des ausgewählten Typen in zeitlicher Abhängigkeit. Filter-Optionen beeinflussen dieses Diagramm.",
