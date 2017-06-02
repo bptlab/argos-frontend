@@ -163,7 +163,7 @@ class EventType extends ConnectionComponent {
 									</List>
 									<FloatingActionButton
 										backgroundColor={config.colors.primaryDark}
-										className={css(AppStyles.floatRight)}
+										className={css(AppStyles.floatRight, AppStyles.marginBottomSmall)}
 										href={Utils.getLink('settings/entityMapping/create')}
 										children={<IconAdd/>}
 										mini={true} />
