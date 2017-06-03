@@ -3,6 +3,7 @@ import IconHelpInactive from "material-ui/svg-icons/action/help-outline";
 import IconHelp from "material-ui/svg-icons/action/help";
 import IconButton from "material-ui/IconButton";
 import "./../Header.css";
+import help from "./../config/help";
 const introJs = require('intro.js/minified/intro.min.js');
 
 class HelpButton extends Component {
@@ -30,14 +31,15 @@ class HelpButton extends Component {
 
 	getHelpButton() {
 		let hintButton = <IconHelpInactive/>;
-		let buttonTooltip = "Show help bullets on page";
+		let buttonTooltip = help.button.showHelpBullets;
 		if (this.state.hintsVisible) {
 			hintButton = <IconHelp/>;
-			buttonTooltip = "Hide help bullets on page";
+			buttonTooltip = help.button.hideHelpBullets;
 		}
 		return (
 			<IconButton
 				tooltip={buttonTooltip}
+				tooltipPosition="bottom-left"
 				onTouchTap={() => this.toggleHintsOnPage()}
 				className="whiteIcon">
 				{hintButton}

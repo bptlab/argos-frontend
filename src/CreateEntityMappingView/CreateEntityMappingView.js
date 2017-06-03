@@ -291,7 +291,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 					<Col md={1}>
 						<IconButton
 							children={<IconDelete/>}
-							tooltip={<span>Delete Mapping</span>}
+							tooltip={help.button.deleteEntityMappingCondition}
 							onTouchTap={this.handleMappingConditionDelete.bind(this, key)}/>
 					</Col>
 				</Row>);

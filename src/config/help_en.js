@@ -48,9 +48,18 @@ const help_en = {
 	button: {
 		inspectEntity: "Click to view details and events for this entity.",
 		showChildrenOfEntity: "Click to view all child entities for this entity.",
+		showHelpBullets: "Click to show help bullets",
+		hideHelpBullets: "Click to hide help bullets",
+		deleteFilter: "Click here to delete this filter.",
 		createEventQuery: "Click here to create a new event query.",
 		createEventType: "Click here to create a new event type.",
-		createEntityMapping: "Click here to create a new mapping between an entity type and an event type."
+		createEntityMapping: "Click here to create a new mapping between an entity type and an event type.",
+		deleteEventQuery: "Click here to delete this event query.",
+		deleteEventType: "Click here to delete this event type.",
+		deleteEntityMapping: "Click here to delete this mapping between an entity type and an event type.",
+		deleteEntityMappingCondition: "Click here to delete this mapping condition between an entity type attribute and an event type attribute.",
+		editEventQuery: "Click here to edit this event query.",
+		editEntityMapping: "Click here to edit this mapping between an entity type and an event type."				
 	},
 	diagram: {
 		eventsOverTime: "This diagram shows the timeline of occured events of the currently selected event type. This graph will also be affected by filters set below.",

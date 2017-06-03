@@ -49,9 +49,18 @@ const help_de = {
 	button: {
 		inspectEntity: "Klicken Sie hier, um sich Details und Events für diese Entität anzusehen.",
 		showChildrenOfEntity: "Klicken Sie hier, um sich alle Kinder-Entitäten dieser Entität anzusehen.",
+		showHelpBullets: "Klicken Sie hier, um Hilfekreise angezeigt zu bekommen.",
+		hideHelpBullets: "Klicken Sie hier, um Hilfekreise nicht mehr angezeigt zu bekommen.",
+		deleteFilter: "Klicken Sie hier, um diesen Filter zu löschen.",
 		createEventQuery: "Klicken Sie hier, um eine neue Ereignisabfrage anzulegen.",
 		createEventType: "Klicken Sie hier, um einen neuen Ereignistypen anzulegen.",
-		createEntityMapping: "Klicken Sie hier, um ein neues Mapping zwischen einen Ereignistypen und einem Entitätstypen anzulegen."
+		createEntityMapping: "Klicken Sie hier, um ein neues Mapping zwischen einem Ereignistypen und einem Entitätstypen anzulegen.",
+		deleteEventQuery: "Klicken Sie hier, um diese Ereignisabfrage zu löschen.",
+		deleteEventType: "Klicken Sie hier, um diesen Ereignistypen zu löschen.",
+		deleteEntityMapping: "Klicken Sie hier, um dieses Mapping zwischen einem Ereignistypen und einem Entitätstypen zu löschen.",
+		deleteEntityMappingCondition: "Klicken Sie hier, um diese Mapping Bedingung zwischen den zwei Attributen zu löschen.",
+		editEventQuery: "Klicken Sie hier, um diese Ereignisabfrage zu bearbeiten.",
+		editEntityMapping: "Klicken Sie hier, um dieses Mapping zwischen einem Ereignistypen und einem Entitätstypen zu bearbeiten."
 	},
 	diagram: {
 		eventsOverTime: "Dieses Diagramm zeigt Ihnen eine Übersicht über alle Events des ausgewählten Typen in zeitlicher Abhängigkeit. Filter-Optionen beeinflussen dieses Diagramm.",
