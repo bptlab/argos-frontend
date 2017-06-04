@@ -3,6 +3,7 @@ import AutoComplete from "material-ui/AutoComplete";
 import IconButton from "material-ui/IconButton";
 import ActionDelete from "material-ui/svg-icons/action/delete";
 import config from "./../config/config";
+import help from "./../config/help";
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
 
@@ -196,8 +197,8 @@ class SearchBar extends Component {
 		return (<IconButton
 			className={css(AppStyles.pAbsolute, AppStyles.r0)}
 			onTouchTap={this.resetFilter}
-			tooltip="delete filter"
-			tooltipPosition="bottom-right"
+			tooltip={help.button.deleteFilter}
+			tooltipPosition="bottom-left"
 			disabled={buttonIsDisabled}>
 			<ActionDelete/>
 		</IconButton>);

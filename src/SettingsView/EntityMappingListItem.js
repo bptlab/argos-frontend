@@ -2,6 +2,7 @@ import React from 'react';
 import Utils from '../Utils/Utils';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import config from './../config/config.js';
+import help from './../config/help.js';
 import {Table, TableHeader, TableBody, TableRow, TableHeaderColumn, TableRowColumn} from 'material-ui/Table'
 import IconButton from 'material-ui/IconButton';
 import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
@@ -57,13 +58,15 @@ class EntityMappingListItem extends ConnectionComponent {
 					{config.messages.deleteEntityMappingMessage}
 				</ConfirmationMessage>
 				<IconButton
-					tooltip="Edit this mapping"
+					tooltip={help.button.editEntityMapping}
+					tooltipPosition="bottom-left"
 					href={Utils.getLink(`/settings/entityMapping/${this.props.mapping.Id}/edit`)}
 					className="verticalAlignTop">
 					<IconEdit/>
 				</IconButton>
 				<IconButton
-					tooltip="Delete this mapping"
+					tooltip={help.button.deleteEntityMapping}
+					tooltipPosition="bottom-left"
 					onTouchTap={() => {this.confirmationMessage.handleOpen();}}>
 					<IconDelete/>
 				</IconButton>
