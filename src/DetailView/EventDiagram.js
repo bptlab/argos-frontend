@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
-import { css } from 'aphrodite';
-import plotly from 'plotly.js/dist/plotly.min';
 import Utils from './../Utils/Utils';
+import help from "./../config/help";
+const plotly = require('plotly.js');
 
 class EventDiagram extends Component {
 
 	constructor(props) {
 		super(props);
 		this.diagramId = "eventDiagram";
+	}
+
+	componentWillReceiveProps(props) {
+		this.buildChartDataset(props);
+	}
+
+	componentDidMount() {
+		this.buildChartDataset(this.props);
 	}
 
 	static getDiagramLayout(eventCounter) {
@@ -39,10 +47,6 @@ class EventDiagram extends Component {
 			traceData.fillcolor = statusColor + opacityFactor;
 		}
 		return [traceData];
-	}
-
-	componentWillReceiveProps(props) {
-		this.buildChartDataset(props);
 	}
 
 	buildChartDataset(props) {
@@ -86,7 +90,11 @@ class EventDiagram extends Component {
 
 	render() {
 		return (
-			<div id={this.diagramId} className={css(this.props.styles)} />
+			<div
+				id={this.diagramId}
+				className={this.props.className}
+				data-hint={help.diagram.eventsOverTime}
+				data-hintPosition="middle-right" />
 		);
 	}
 }

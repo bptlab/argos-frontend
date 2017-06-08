@@ -5,9 +5,11 @@ import SearchBar from "./../Utils/SearchBar";
 import CardGrid from "./CardGrid";
 import {PromiseState} from "react-refetch";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
-import AppStyles from "./../AppStyles";
-import config from './../config/config.js';
+import config from "./../config/config.js";
+import help from "./../config/help";
 import Header from "../Header";
+import AppStyles from "../AppStyles";
+import { css } from 'aphrodite';
 
 class GridView extends ConnectionComponent {
 	constructor() {
@@ -75,20 +77,25 @@ class GridView extends ConnectionComponent {
 		return (
 			<div>
 				<Header title={this.getPageTitle(entity)} status={entity.Status}/>
-				<Container>
+				<Container className={css(AppStyles.containerMarginTop)}>
 					<HierarchyStepper
 						hierarchy={window.hierarchy}
 						currentEntity={entity}
 						getEntityType={this.getEntityType}
-						getChildEntityTypes={this.getChildEntityTypes}/>
-					<SearchBar onInputChange={this.handleFilterChange}/>
+						getChildEntityTypes={this.getChildEntityTypes}
+					    className="elementMarginTop"
+					/>
+					<div
+						data-hint={help.input.gridViewFilterBar}
+						data-hintPosition="middle-left">
+						<SearchBar onInputChange={this.handleFilterChange}/>
+					</div>
 					{childEntityTypes.map((childEntityType) => {
 						return (
 							<div key={`div-${childEntityType.Id}`}>
 								<h1>{childEntityType.Name}</h1>
 								<CardGrid
 									filterObject={this.state.filterObject}
-									styles={[AppStyles.elementMarginTop]}
 									key={childEntityType.Id}
 									currentEntity={entity}
 									entityType={childEntityType}/>

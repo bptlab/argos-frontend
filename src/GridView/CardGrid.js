@@ -1,20 +1,19 @@
-import React from 'react';
-import {connect} from 'react-refetch';
-import ConnectionComponent from './../Utils/ConnectionComponent.js';
-import {Card, CardTitle, CardText, CardActions} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import LoadingAnimation from './../Utils/LoadingAnimation';
-import {Row, Col} from 'react-grid-system';
-import {css} from 'aphrodite';
-import AppStyles from "./../AppStyles";
-import EntityInformation from '../Utils/EntityInformation';
+import React from "react";
+import ConnectionComponent from "./../Utils/ConnectionComponent.js";
+import {Card, CardActions, CardText, CardTitle} from "material-ui/Card";
+import FlatButton from "material-ui/FlatButton";
+import LoadingAnimation from "./../Utils/LoadingAnimation";
+import {Col, Row} from "react-grid-system";
+import EntityInformation from "../Utils/EntityInformation";
 import StatusDiagram from "./StatusDiagram";
-import config from './../config/config';
-import Utils from './../Utils/Utils';
+import config from "./../config/config";
+import help from "./../config/help";
+import Utils from "./../Utils/Utils";
+import './CardGrid.css';
 
 class CardGrid extends ConnectionComponent {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.isCoveredByFilter = this.isCoveredByFilter.bind(this);
 	}
 
@@ -62,7 +61,7 @@ class CardGrid extends ConnectionComponent {
 		const attributeArray = [];
 		childEntity.Attributes.forEach((attribute) => {
 			attributeArray.push(attribute.Name);
-			attributeArray.push(attribute.Value)
+			attributeArray.push(attribute.Value);
 		});
 		return attributeArray;
 	}
@@ -80,32 +79,39 @@ class CardGrid extends ConnectionComponent {
 			<div>
 				<StatusDiagram
 					entities={entitiesToShow}
-					styles={[AppStyles.elementMarginTop]}/>
-				<Row className={css(this.props.styles)}>
+					className="elementMarginTop"/>
+				<Row className="elementMarginTop dFlex flexWrap">
 					{entitiesToShow.map((childEntity, index) => {
 						return (
-							<Col key={index} xs={12} sm={4} md={3}>
-								<Card>
+							<Col
+								key={index} xs={12} sm={4} md={3}
+								className="dFlex">
+								<Card className="card">
 									<CardTitle
 										style={this.backgroundColor(childEntity.Status)}
 										title={childEntity.Name}
-										titleColor={config.colors.textAlternate}
-										subtitle={this.props.entityType.name}/>
-									<CardText style={this.backgroundColorLight(childEntity.Status)}>
+										titleColor={config.colors.textAlternate} />
+									<CardText
+										style={this.backgroundColorLight(childEntity.Status)}
+										className="flexGrow1">
 										<EntityInformation entity={childEntity}/>
 									</CardText>
 									<CardActions style={this.backgroundColorLight(childEntity.Status)}>
-										<Row className={css(AppStyles.noMargin)}>
+										<Row className="noMargin">
 											<Col xs={6}>
 												{childEntity.HasChildren &&
 												<FlatButton
+													data-hint={help.button.showChildrenOfEntity}
+													data-hintPosition="top-right"
 													label="Children"
-													href={`/grid/${childEntity.Id}`}/>}
+													href={Utils.getLink(`/grid/${childEntity.Id}`)} />}
 											</Col>
 											<Col xs={6}>
 												<FlatButton
+													data-hint={help.button.inspectEntity}
+													data-hintPosition="top-right"
 													label="Inspect"
-													href={`/details/${this.props.currentEntity.Id}/${childEntity.Id}`}/>
+													href={Utils.getLink(`/details/${this.props.currentEntity.Id}/${childEntity.Id}`)} />
 											</Col>
 										</Row>
 									</CardActions>
@@ -119,12 +125,23 @@ class CardGrid extends ConnectionComponent {
 	}
 }
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(props => ({
-	entities: {
-		url: config.backendRESTRoute + `/entitytype/${props.entityType.Id}/attributes`,
-		then: attributes =>
-			config.backendRESTRoute + `/entity/${props.currentEntity.Id}`
+export default ConnectionComponent.argosConnector({fetch: ConnectionComponent.switchFetch})(props => {
+	const necessaryAttributes = Utils.getNecessaryAttributes(props.entityType);
+	if (!necessaryAttributes) {
+		return {
+			entities: {
+				url: config.backendRESTRoute + `/entitytype/${props.entityType.Id}/attributes`,
+				then: attributes => config.backendRESTRoute + `/entity/${props.currentEntity.Id}`
 				+ `/children/type/${props.entityType.Id}`
 				+ `/${attributes.map(attribute => attribute.Name).join("+")}`,
+			}
+		};
 	}
-}))(CardGrid);
+	return {
+		entities: {
+			url: config.backendRESTRoute + `/entity/${props.currentEntity.Id}`
+			+ `/children/type/${props.entityType.Id}`
+			+ `/${necessaryAttributes.map(attribute => attribute).join("+")}`
+		}
+	};
+})(CardGrid);

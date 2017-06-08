@@ -3,6 +3,7 @@ import AutoComplete from "material-ui/AutoComplete";
 import IconButton from "material-ui/IconButton";
 import ActionDelete from "material-ui/svg-icons/action/delete";
 import config from "./../config/config";
+import help from "./../config/help";
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
 
@@ -194,9 +195,10 @@ class SearchBar extends Component {
 	getDeleteButton() {
 		const buttonIsDisabled = this.state.filterValue === "" && this.state.filterColumn === null;
 		return (<IconButton
+			className={css(AppStyles.pAbsolute, AppStyles.r0)}
 			onTouchTap={this.resetFilter}
-			tooltip="delete filter"
-			tooltipPosition="bottom-right"
+			tooltip={help.button.deleteFilter}
+			tooltipPosition="bottom-left"
 			disabled={buttonIsDisabled}>
 			<ActionDelete/>
 		</IconButton>);
@@ -204,7 +206,7 @@ class SearchBar extends Component {
 
 	render() {
 		return (
-			<div className={css(this.props.styles, AppStyles.w100, AppStyles.dFlex, AppStyles.alignItemsFlexEnd)}>
+			<div className={css(this.props.styles, AppStyles.dFlex, AppStyles.alignItemsFlexEnd, AppStyles.w100, AppStyles.pRelative)}>
 				<AutoComplete
 					hintText={this.getHintText()}
 					floatingLabelText={this.getFloatingLabelText()}

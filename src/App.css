@@ -1,0 +1,88 @@
+.pAbsolute {
+	position: absolute;
+}
+
+.pRelative {
+	position: relative;
+}
+
+.dFlex {
+	display: flex;
+}
+
+.flexDirectionColumn {
+	flex-direction: column;
+}
+
+.justifyContentCenter {
+	justify-content: center;
+}
+
+.flexBasis100 {
+	flex-basis: 100%;
+}
+
+.flexGrow1 {
+	flex-grow: 1;
+}
+
+.flexWrap {
+	flex-wrap: wrap;
+}
+
+.r0 {
+	right: 0;
+}
+
+.alignItemsCenter {
+	align-items: center;
+}
+
+.alignItemsFlexEnd {
+	align-items: flex-end;
+}
+
+.verticalAlignTop {
+	vertical-align: top !important;
+}
+
+.textAlignCenter {
+	text-align: center;
+}
+
+.rotate90 {
+	transform: rotate(90);
+}
+
+.w50 {
+	width: 50%;
+}
+
+.w100 {
+	width: 100%;
+}
+
+.elementMarginTop {
+	margin-top: 30px;
+}
+
+.marginAllSites {
+	margin: 30px;
+}
+
+.noMargin {
+	margin: 0;
+}
+
+.headerBorderDetail {
+	border-bottom: 10px solid;
+}
+
+.capitalize {
+	text-transform: capitalize;
+	font-weight: bold;
+}
+
+.fontSize24 {
+	font-size: 24px;
+}

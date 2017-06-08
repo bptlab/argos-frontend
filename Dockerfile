@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:6
 
 WORKDIR /argos-frontend
 

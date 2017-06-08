@@ -1,11 +1,10 @@
-import React from 'react';
-import { Step, Stepper, StepLabel } from 'material-ui/Stepper';
-import {connect} from "react-refetch";
+import React from "react";
+import {Step, StepLabel, Stepper} from "material-ui/Stepper";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
-import { css } from 'aphrodite';
-import AppStyles from "./../AppStyles";
 import config from "./../config/config";
-
+import help from "./../config/help";
+import Utils from "./../Utils/Utils";
+import './HierarchyStepper.css';
 
 class HierarchyStepper extends ConnectionComponent {
 	constructor() {
@@ -44,7 +43,7 @@ class HierarchyStepper extends ConnectionComponent {
 			const entityType = this.props.getEntityType(hierarchyLayerInstance, this.props.hierarchy);
 			return(
 				<StepLabel key={key}>
-					<a href={`/grid/${hierarchyLayerInstance.Id}`}>
+					<a href={Utils.getLink(`/grid/${hierarchyLayerInstance.Id}`)}>
 						{entityType.Name}: {hierarchyLayerInstance.Name}
 					</a>
 				</StepLabel>
@@ -61,26 +60,30 @@ class HierarchyStepper extends ConnectionComponent {
 
 	render() {
 		return (
-			<Stepper
-				activeStep={this.state.activeStep}
-				className={css(this.props.styles, AppStyles.elementMarginTop)}>
+			<div
+				data-hint={help.display.hierarchyStepper}
+				data-hintPosition="bottom-middle">
+				<Stepper
+					activeStep={this.state.activeStep}
+					className="elementMarginTop">
 
-				{this.state.hierarchy.map((hierarchyLayer, index) => {
-					return (
-						<Step key={index}>
-							{hierarchyLayer.map((hierarchyLayerInstance, index) => {
-								return this.displayStepLabel(hierarchyLayerInstance, index);
-							})}
-						</Step>
-					);
-				})}
-			</Stepper>
+					{this.state.hierarchy.map((hierarchyLayer, index) => {
+						return (
+						    <Step key={index} className="hierarchy-step">
+								{hierarchyLayer.map((hierarchyLayerInstance, index) => {
+									return this.displayStepLabel(hierarchyLayerInstance, index);
+								})}
+							</Step>
+						);
+					})}
+				</Stepper>
+			</div>
 		);
 	}
 }
 
 
-export default connect.defaults({fetch: ConnectionComponent.switchFetch})(() => ({
+export default ConnectionComponent.argosConnector({fetch: ConnectionComponent.switchFetch})(() => ({
 	lazyEntityFetch: entityFetch => ({
 		entity: {
 			url: config.backendRESTRoute + `/entity/${entityFetch.entityId}`,

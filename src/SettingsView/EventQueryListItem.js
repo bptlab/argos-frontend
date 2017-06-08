@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import IconButton from 'material-ui/IconButton';
 import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 import IconDelete from 'material-ui/svg-icons/action/delete';
+import Utils from '../Utils/Utils';
 import ConfirmationMessage from './../Utils/ConfirmationMessage.js'
 import {ListItem} from 'material-ui/List';
 import config from './../config/config.js';
+import help from './../config/help.js';
 
 
 class EventQueryListItem extends Component {
@@ -12,29 +14,31 @@ class EventQueryListItem extends Component {
 	constructor(props) {
 		super(props);
 		this.deleteEventQuery = this.deleteEventQuery.bind(this);
-		this.deleteEventQueryButton = this.deleteEventQueryButton.bind(this);
+		this.eventQueryActionButtons = this.eventQueryActionButtons.bind(this);
 	}
 	
 	deleteEventQuery() {
 		this.props.deleteQuery(this.props.query);
 	}
 
-	editEventQuery() {
-		// TODO: to be filled
-	}
-
-	deleteEventQueryButton () {
+	eventQueryActionButtons () {
 		return (
 			<div>
 				<ConfirmationMessage 
 					actionToPerform={this.deleteEventQuery}
-					ref={(input) => {this.confirmationMessage = input;}}>
+					ref={(input) => {this.confirmationMessage = input;}}
+					message={config.messages.deletedQueryMessage}>
 					{config.messages.deleteQueryMessage}
 				</ConfirmationMessage>
-				<IconButton onTouchTap={this.editEventQuery}>
+				<IconButton
+					tooltip={help.button.editEventQuery}
+					href={Utils.getLink(`/settings/eventType/${this.props.eventType.Id}/eventQuery/${this.props.query.Id}/edit`)}
+					className="verticalAlignTop">
 					<IconEdit/>
 				</IconButton>
-				<IconButton onTouchTap={() => {this.confirmationMessage.handleOpen();}}>
+				<IconButton
+					tooltip={help.button.deleteEventQuery}
+					onTouchTap={() => {this.confirmationMessage.handleOpen();}}>
 					<IconDelete/>
 				</IconButton>
 			</div>
@@ -46,7 +50,7 @@ class EventQueryListItem extends Component {
 			<ListItem
 				primaryText={this.props.query.Description}
 				secondaryText={this.props.query.Query}
-				rightIconButton={this.deleteEventQueryButton()}
+				rightIconButton={this.eventQueryActionButtons()}
 			/>
 		);
 	}

@@ -1,9 +1,10 @@
 {
   "name": "argos-frontend",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "dependencies": {
     "aphrodite": "^1.2.0",
     "envsub": "^3.1.0",
+    "intro.js": "^2.5.0",
     "material-ui": "^0.17.3",
     "plotly.js": "^1.27.0",
     "react": "^15.5.3",
@@ -25,7 +26,8 @@
     "coverage": "react-scripts test --env=jsdom --coverage",
     "coveralls": "react-scripts test --env=jsdom --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "serve": "serve -s build",
-    "envsub": "envsub src/config/config-template.js src/config/config.js",
-    "deploy": "npm run envsub && npm start"
-  }
+    "envsub": "envsub src/config/config-template.js src/config/config.js && envsub package.json",
+    "deploy": "npm run envsub && npm run build && npm run serve"
+  },
+  "homepage": "${HOST}"
 }

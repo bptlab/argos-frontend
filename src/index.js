@@ -6,13 +6,16 @@ import GridView from './GridView/GridView';
 import DetailView from './DetailView/DetailView';
 import SettingsView from './SettingsView/SettingsView';
 import NotFound from "./Utils/NotFound";
+import config from './config/config';
+
+import "intro.js/minified/introjs.min.css";
 
 import CreateEventQueryView from "./CreateEventQueryView/CreateEventQueryView";
 import CreateEntityMappingView from "./CreateEntityMappingView/CreateEntityMappingView";
 import CreateEventTypeView from "./CreateEventTypeView/CreateEventTypeView";
 
 ReactDOM.render(
-	<Router>
+	<Router basename={config.basename}>
 		<App>
 			<Switch>
 				<Route exact path="/" render={() => {
@@ -20,9 +23,11 @@ ReactDOM.render(
 				}} />
 				<Route path="/grid/:entityId" component={GridView}/>
 				<Route path="/details/:parentId/:entityId" component={DetailView}/>
-			    <Route exact path="/settings" component={SettingsView}/>
-				<Route path="/settings/eventType/:eventTypeId/eventQuery/create" component={CreateEventQueryView}/>
-				<Route path="/settings/entityMapping/create" component={CreateEntityMappingView}/>
+				<Route exact path="/settings" component={SettingsView}/>
+				<Route exact path="/settings/eventType/:eventTypeId/eventQuery/create" component={CreateEventQueryView}/>
+				<Route exact path="/settings/eventType/:eventTypeId/eventQuery/:eventQueryId/edit" component={CreateEventQueryView}/>
+				<Route exact path="/settings/entityMapping/create" component={CreateEntityMappingView}/>
+				<Route path="/settings/entityMapping/:entityMappingId/edit" component={CreateEntityMappingView}/>
 				<Route path="/settings/eventType/create" component={CreateEventTypeView}/>
 				<Route path="*" component={NotFound}/>
 			</Switch>

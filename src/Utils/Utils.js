@@ -1,4 +1,5 @@
 import config from './../config/config';
+import attributeConfig from "../config/attributeConfig/attributeConfig";
 
 class Utils {
 	/**
@@ -157,8 +158,8 @@ class Utils {
 	/**
 	 * Checks whether a value is contained within another value and operates case insensitive.
 	 * @example
-	 *      will match:  ("ABCD", "bc"), ("ABCD", "Ab"), ("ABCD", "bCd"), ("ABCD", "abcd")
-	 *      won't match: ("ABCD", "bbcd"), ("ABCD", "yabc")
+	 *	  will match:  ("ABCD", "bc"), ("ABCD", "Ab"), ("ABCD", "bCd"), ("ABCD", "abcd")
+	 *	  won't match: ("ABCD", "bbcd"), ("ABCD", "yabc")
 	 * @param baseValue
 	 * @param subValue
 	 * @returns {boolean}
@@ -167,7 +168,63 @@ class Utils {
 		return (baseValue.toString().toLowerCase().indexOf(subValue.toString().toLowerCase()) > -1);
 	}
 
+	/**
+	 * Splits a string at a a substring and returns the part after the substring (case-insensitive)
+	 * @param string
+	 * @param subString
+	 * @returns {ArrayBuffer|Blob|Array.<T>|*}
+	 */
+	static splitStringAfterSubString(string, subString) {
+		const indexOfSubStringClause = string.toString().toLowerCase().indexOf(subString.toString().toLowerCase());
+		return string.slice(indexOfSubStringClause + subString.length);
+	}
 
+	/**
+	 * Splits a string at a a substring and returns the part before the substring (case-insensitive)
+	 * @param string
+	 * @param subString
+	 * @returns {ArrayBuffer|Blob|Array.<T>|*}
+	 */
+	static splitStringBeforeSubString(string, subString) {
+		const indexOfSubStringClause = string.toString().toLowerCase().indexOf(subString.toString().toLowerCase());
+		return string.slice(0, indexOfSubStringClause);
+	}
+
+	/**
+	 * Loads the necessary attributes from an EntityType.
+	 * @param entityType
+	 * @returns {null|Array}
+	 */
+	static getNecessaryAttributes(entityType) {
+		const necessaryAttributes = [];
+		const attributeDefinition = attributeConfig[String(entityType.Name)];
+		if(!attributeDefinition) {
+			return null;
+		}
+		Object.entries(attributeDefinition).forEach(([attributeName, isNecessary]) => {
+			if (isNecessary === 1) {
+				necessaryAttributes.push(attributeName);
+			}
+		});
+		return necessaryAttributes;
+	}
+
+	/**
+	 * Concatenates the basename with the given absolute path
+	 * @param absolutePath
+	 * @returns {string}
+	 */
+	static getLink(absolutePath) {
+		let basename = config.basename;
+		if (basename.slice(-1) === "/") {
+			basename = basename.slice(0, basename.length - 1);
+		}
+		let path = absolutePath;
+		if (path.slice(0, 1) !== "/") {
+			path = "/" + path;
+		}
+		return basename + path;
+	}
 }
 
 export default Utils;

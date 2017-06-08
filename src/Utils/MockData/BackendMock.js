@@ -1,45 +1,13 @@
-import Config from './../../config/config.js';
-import Hierarchy from './TransportForLondon/Hierarchy.js';
-import Entity from './TransportForLondon/Entity.js';
-import EntityType from './TransportForLondon/EntityType.js';
-import Query from './TransportForLondon/Query.js';
-import EntityMapping from './TransportForLondon/EntityMapping.js';
-import Event from './TransportForLondon/Event.js';
-import EventTypeAttribute from './TransportForLondon/EventTypeAttribute.js';
-import EventType from './TransportForLondon/EventType.js';
+import Hierarchy from "./TransportForLondon/Hierarchy.js";
+import Entity from "./TransportForLondon/Entity.js";
+import EntityType from "./TransportForLondon/EntityType.js";
+import Query from "./TransportForLondon/Query.js";
+import EntityMapping from "./TransportForLondon/EntityMapping.js";
+import Event from "./TransportForLondon/Event.js";
+import EventTypeAttribute from "./TransportForLondon/EventTypeAttribute.js";
+import EventType from "./TransportForLondon/EventType.js";
 
 class BackendMock {
-
-	static getRouteMapper() {
-		return new Map()
-			.set(/^entitytype\/hierarchy$/i, BackendMock.getEntityTypeHierarchy)
-			.set(/^entitytype\/(-?\d+)\/attributes$/i, BackendMock.getEntityTypeAttributes)
-			.set(/^entity\/(-?\d+)\/children\/type\/(-?\d+)\/(((\w)+)\+)*(\w)*$/i, BackendMock.getChildEntitiesOfEntityType)
-			.set(/^eventtypes$/i, BackendMock.getEventTypes)
-			.set(/^eventtype\/(-?\d+)\/queries$/i, BackendMock.getQueriesOfEventType)
-			.set(/^eventtype\/(-?\d+)\/entitymappings$/i, BackendMock.getMappingsOfEventType)
-			.set(/^entitymapping\/(-?\d+)\/delete$/i, BackendMock.deleteMapping)
-			.set(/^entity\/(-?\d+)$/i, BackendMock.getEntity)
-			.set(/^eventtype\/(-?\d+)\/delete$/i, BackendMock.deleteEventType)
-			.set(/^entity\/(-?\d+)\/eventtypes\/false$/i, BackendMock.getEventTypesOfEntity)
-			.set(/^eventtype\/(-?\d+)$/i, BackendMock.getEventType)
-			.set(/^eventtype\/(-?\d+)\/attributes$/i, BackendMock.getAttributesOfEventType)
-			.set(/^entity\/(-?\d+)\/eventtype\/(-?\d+)\/events\/false/i, BackendMock.getEventsOfEventTypeAndEntity)
-			.set(/^eventquery\/(-?\d+)\/delete$/i, BackendMock.deleteEventQuery)
-			.set(/^eventtype\/create$/, BackendMock.createEventType)
-			.set(/^eventquery\/create$/, BackendMock.createEventQuery)
-			.set(/^entitymapping\/create$/, BackendMock.createEntityMapping);
-	}
-
-	static handleRequest(request) {
-		const RouteMapper = BackendMock.getRouteMapper();
-		const cleanedRoute = request.url.replace(Config.backendRESTRoute + "/", "").toLowerCase();
-		const targetRoute = [...RouteMapper.keys()].find((route) => {
-			return route.exec(cleanedRoute);
-		});
-		const responseValue = RouteMapper.get(targetRoute)(targetRoute.exec(cleanedRoute));
-		return BackendMock.buildResponse(responseValue);
-	}
 
 	static getEntityTypeHierarchy() {
 		return Hierarchy;
@@ -66,6 +34,14 @@ class BackendMock {
 	}
 
 	static deleteMapping() {
+		return "Success";
+	}
+
+	static updateEventQuery() {
+		return "Success";
+	}
+
+	static updateEntityMapping() {
 		return "Success";
 	}
 
@@ -156,12 +132,26 @@ class BackendMock {
 		return associatedEvents;
 	}
 
-	static buildResponse(value) {
-		const headers = new Headers();
-		headers.append('Content-Type', 'application/json');
-		return new Response(JSON.stringify(value), {status: 200, statusText: "OK", headers: headers});
+	static getEventQueryById(params) {
+		return Query.find((eventQuery) => {
+			return eventQuery.Id === parseInt(params[1], 10);
+        });
 	}
 
 
+	static loadEntityMappingById(params) {
+		let desiredEntityMapping;
+		EntityMapping.forEach((entity) => {
+			return entity.EntityMappings.forEach((entityMapping) => {
+				if (entityMapping.Id === parseInt(params[1], 10)) {
+					desiredEntityMapping = entityMapping;
+				}
+			});
+		});
+		if (desiredEntityMapping) {
+			return desiredEntityMapping;
+		}
+		return {};
+	}
 }
 export default BackendMock;

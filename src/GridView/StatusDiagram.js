@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { css } from 'aphrodite';
-import plotly from 'plotly.js/dist/plotly';
 import config from '../config/config';
+import help from "../config/help";
+const plotly = require('plotly.js');
 
 class StatusDiagram extends Component {
 	static getChartLayout(chartRangeMaximum) {
@@ -97,7 +97,9 @@ class StatusDiagram extends Component {
 
 	render() {
 		return (
-			<div className={css(this.props.styles)}>
+			<div
+				data-hint={help.diagram.childEntitiesStatus}
+				data-hintPosition="middle-left">
 				<div id="status-diagram" />
 			</div>
 		);
