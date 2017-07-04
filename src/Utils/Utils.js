@@ -225,6 +225,34 @@ class Utils {
 		}
 		return basename + path;
 	}
+
+	static getListOfAttributeValues(events, attributeName) {
+		const attributeValues = [];
+		events.forEach((event) => {
+			event.Attributes.forEach((attribute) => {
+				if (attribute.Name === attributeName) {
+					attributeValues.push(attribute.Value);
+				}
+			});
+		});
+		return attributeValues;
+	}
+
+	/**
+	 * Generates the distribution of attribute values from a list of attribute values.
+	 * @param attributeValues
+	 */
+	static getAttributeValueDistribution(attributeValues) {
+		let distribution = {};
+		attributeValues.forEach((value) => {
+			if (value in distribution) {
+				distribution[value] += 1;
+			} else {
+				distribution[value] = 1;
+			}
+		});
+		return distribution;
+	}
 }
 
 export default Utils;
