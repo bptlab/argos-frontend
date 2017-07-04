@@ -54,7 +54,8 @@ const config = {
 		availableAttributes: "Available Attributes",
 		eventTypeName: "Event Type Name",
 		attributeName: "Attribute Name",
-		timestampName: "Timestamp Attribute Name"
+		timestampName: "Timestamp Attribute Name",
+		attributeDistributionDiagram: "Distribution of Attribute Values"
 	},
 	messages: {
 		notFound: "Error 404. The requested page does not exist. You found a glitch in the matrix.",
