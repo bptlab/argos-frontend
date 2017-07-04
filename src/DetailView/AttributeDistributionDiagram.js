@@ -32,6 +32,7 @@ class AttributeDistributionDiagram extends Component {
 		return {
 			xaxis: {
 				showgrid: false,
+				type: 'category'
 			},
 			height: 400,
 			margin: {pad: 10}
