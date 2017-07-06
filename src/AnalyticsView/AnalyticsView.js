@@ -22,7 +22,6 @@ class AnalyticsView extends ConnectionComponent {
 					if (connectionIncomplete) {
 						diagrams.push(<div key={key} />);
 					} else {
-						console.log(this.props.events.value);
 						const attributeDistribution = Utils.getAttributeValueDistribution(Utils.getListOfAttributeValues(this.props.events.value, information.attributeName));
 						diagrams.push(<Col key={key} md={6}><Card><CardTitle
 							title="Attribute Distribution"/><CardText><AttributeDistributionDiagram
