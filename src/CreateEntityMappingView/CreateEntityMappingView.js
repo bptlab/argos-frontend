@@ -19,7 +19,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		super(props);
 		this.state = {
 			targetStatus: "",
-			selectedEventType: {value: null, errorMessage: ""},
+			selectedEventType: {value: parseInt(this.props.match.params.eventTypeId), errorMessage: ""},
 			selectedEntityType: {value: null, errorMessage: ""},
 			mappings: CreateEntityMappingView.getDefaultMappings()
 		};

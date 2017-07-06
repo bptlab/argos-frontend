@@ -151,7 +151,7 @@ class EventTypeCard extends ConnectionComponent {
 					<FloatingActionButton
 						backgroundColor={config.colors.primaryDark}
 						className={css(AppStyles.floatRight, AppStyles.marginBottomSmall)}
-						href={Utils.getLink('settings/entityMapping/create')}
+						href={Utils.getLink('settings/entityMapping/' + this.props.eventType.Id + '/create')}
 						children={<IconAdd/>}
 						title={help.button.createEntityMapping}
 						mini={true} />
