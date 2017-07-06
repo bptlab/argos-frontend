@@ -21,6 +21,7 @@ class EventDiagram extends Component {
 	static getDiagramLayout(eventCounter) {
 		return {
 			yaxis: {
+				dtick: eventCounter.toString().slice(0,-1),
 				nticks: eventCounter + 2,
 			},
 			xaxis: {
