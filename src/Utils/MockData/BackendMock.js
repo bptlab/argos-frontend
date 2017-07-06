@@ -1,11 +1,19 @@
-import Hierarchy from "./TransportForLondon/Hierarchy.js";
+/*import Hierarchy from "./TransportForLondon/Hierarchy.js";
 import Entity from "./TransportForLondon/Entity.js";
 import EntityType from "./TransportForLondon/EntityType.js";
 import Query from "./TransportForLondon/Query.js";
 import EntityMapping from "./TransportForLondon/EntityMapping.js";
 import Event from "./TransportForLondon/Event.js";
 import EventTypeAttribute from "./TransportForLondon/EventTypeAttribute.js";
-import EventType from "./TransportForLondon/EventType.js";
+import EventType from "./TransportForLondon/EventType.js";*/
+import Hierarchy from "./BoschTT/Hierarchy.js";
+import Entity from "./BoschTT/Entity.js";
+import EntityType from "./BoschTT/EntityType.js";
+import Query from "./BoschTT/Query.js";
+import EntityMapping from "./BoschTT/EntityMapping.js";
+import Event from "./BoschTT/Event.js";
+import EventTypeAttribute from "./BoschTT/EventTypeAttribute.js";
+import EventType from "./BoschTT/EventType.js";
 
 class BackendMock {
 
