@@ -37,6 +37,10 @@ const Entity = [
 			{
 				Name: 	"ProductionStartDate",
 				Value:	"03.01.2017"
+			},
+			{
+				Name: "ProductId",
+				Value: "101"
 			}
 		]
 	},
@@ -55,6 +59,10 @@ const Entity = [
 			{
 				Name: 	"ProductionStartDate",
 				Value:	"13.02.2017"
+			},
+			{
+				Name: "ProductId",
+				Value: "102"
 			}
 		]
 	},
@@ -73,6 +81,10 @@ const Entity = [
 			{
 				Name: 	"ProductionStartDate",
 				Value:	"20.02.2017"
+			},
+			{
+				Name: "ProductId",
+				Value: "103"
 			}
 		]
 	},
@@ -91,6 +103,10 @@ const Entity = [
 			{
 				Name: 	"ProductionStartDate",
 				Value:	"11.04.2017"
+			},
+			{
+				Name: "ProductId",
+				Value: "104"
 			}
 		]
 	},
@@ -109,6 +125,10 @@ const Entity = [
 			{
 				Name: 	"ProductionStartDate",
 				Value:	"11.04.2017"
+			},
+			{
+				Name: "ProductId",
+				Value: "105"
 			}
 		]
 	},
@@ -127,6 +147,10 @@ const Entity = [
 			{
 				Name: 	"ProductionStartDate",
 				Value:	"16.05.2017"
+			},
+			{
+				Name: "ProductId",
+				Value: "106"
 			}
 		]
 	},
@@ -145,6 +169,10 @@ const Entity = [
 			{
 				Name: 	"ProductionStartDate",
 				Value:	"07.01.2017"
+			},
+			{
+				Name: "ProductId",
+				Value: "107"
 			}
 		]
 	},
@@ -163,11 +191,14 @@ const Entity = [
 			{
 				Name: 	"ProductionStartDate",
 				Value:	"13.03.2017"
+			},
+			{
+				Name: "ProductId",
+				Value: "108"
 			}
 		]
 	},
-	/* ### StopPoints ### */
-		/* BUS LINE 9 */
+	/* ### Konfiguration ### */
 	{
 		Id: 			1011,
 		TypeId:			2,
@@ -181,8 +212,12 @@ const Entity = [
 				Value: 	"4,05",
 			},
 			{
-				Name: 	"CodingPLug",
+				Name: 	"CodingPlug",
 				Value: 	"154",
+			},
+			{
+				Name: 	"ConfigId",
+				Value: 	"1011",
 			},
 		]
 	},
@@ -199,8 +234,11 @@ const Entity = [
 				Value: 	"4,05",
 			},
 			{
-				Name: 	"CodingPLug",
+				Name: 	"CodingPlug",
 				Value: 	"154",
+			},{
+				Name: 	"CodingPlug",
+				Value: 	"1021",
 			},
 		]
 	},
@@ -217,8 +255,11 @@ const Entity = [
 				Value: 	"4,05",
 			},
 			{
-				Name: 	"CodingPLug",
+				Name: 	"CodingPlug",
 				Value: 	"154",
+			},{
+				Name: 	"CodingPlug",
+				Value: 	"1031",
 			},
 		]
 	},
@@ -235,8 +276,11 @@ const Entity = [
 				Value: 	"4,05",
 			},
 			{
-				Name: 	"CodingPLug",
+				Name: 	"CodingPlug",
 				Value: 	"154",
+			},{
+				Name: 	"CodingPlug",
+				Value: 	"1041",
 			},
 		]
 	},
@@ -253,8 +297,11 @@ const Entity = [
 				Value: 	"4,05",
 			},
 			{
-				Name: 	"CodingPLug",
+				Name: 	"CodingPlug",
 				Value: 	"154",
+			},{
+				Name: 	"CodingPlug",
+				Value: 	"1051",
 			},
 		]
 	},

@@ -1,39 +1,42 @@
 const EntityType =
 	{
-        /* ### TransportationMode ### */
+        /* ### Product Family ### */
 		0: {
-			attributes: [
-				{
-					Id: 770771,
-					Name: "isScheduledService",
-				},
-				{
-					Id: 770772,
-					Name: "isFarePaying",
-				}
-			],
+			attributes: [],
 			entitymappings: [],
 		},
-        /* ### Line ### */
+        /* ### Product ### */
 		1: {
 			attributes: [
 				{
 					Id: 771771,
-					Name: "serviceTypes",
+					Name: "NumberOfDevices",
+				},
+				{
+					Id: 771772,
+					Name: "ProductionStartDate",
+				},
+				{
+					Id: 771773,
+					Name: "ProductId",
 				}
 			],
 			entitymappings: [],
 		},
-        /* ### StopPoint ### */
+        /* ### Configurations ### */
 		2: {
 			attributes: [
 				{
 					Id: 772771,
-					Name: "lat",
+					Name: "SoftwareVersion",
 				},
 				{
 					Id: 772772,
-					Name: "long"
+					Name: "CodingPlug"
+				},
+				{
+					Id: 772773,
+					Name: "ConfigId"
 				}
 			],
 			entitymappings: [],
