@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Utils from './../Utils/Utils';
 import help from "./../config/help";
+import "./../App.css";
 const plotly = require('plotly.js');
 
 class EventDiagram extends Component {
@@ -93,7 +94,7 @@ class EventDiagram extends Component {
 		return (
 			<div
 				id={this.diagramId}
-				className={this.props.className}
+				className={this.props.className + " h400"}
 				data-hint={help.diagram.eventsOverTime}
 				data-hintPosition="middle-right" />
 		);
