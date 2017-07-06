@@ -122,7 +122,7 @@ class EventTypeCard extends ConnectionComponent {
 	getEntityMappingsTab(entityMappings, attributes) {
 		return(
 			<Tab
-				label={config.descriptions.entityMapping}
+				label={config.descriptions.entityMappings}
 			    data-hint={help.display.settingsView.entityMappings}
 			    data-hintPosition="top-middle">
 				<div className={css(AppStyles.autoOverFlow)}>
