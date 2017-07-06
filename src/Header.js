@@ -101,6 +101,7 @@ class Header extends Component {
 					<Route exact path="/" component={() => this.composeAppBar("grid")}/>
 					<Route path="/grid/:entityId" component={() => this.composeAppBar("grid")}/>
 					<Route path="/details/:parentId/:entityId" component={() => this.composeAppBar("details")}/>
+					<Route path="/analytics" component={() => this.composeAppBar("settings")} />
 					<Route exact path="/settings" component={() => this.composeAppBar("settings")}/>
 					<Route path="/settings/eventType/create" component={() => this.composeAppBar("settings")}/>
 					<Route path="/settings/eventType/:eventTypeId/eventQuery/create"

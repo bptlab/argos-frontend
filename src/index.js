@@ -13,6 +13,7 @@ import "intro.js/minified/introjs.min.css";
 import CreateEventQueryView from "./CreateEventQueryView/CreateEventQueryView";
 import CreateEntityMappingView from "./CreateEntityMappingView/CreateEntityMappingView";
 import CreateEventTypeView from "./CreateEventTypeView/CreateEventTypeView";
+import AnalyticsView from "./AnalyticsView/AnalyticsView";
 
 ReactDOM.render(
 	<Router basename={config.basename}>
@@ -23,6 +24,7 @@ ReactDOM.render(
 				}} />
 				<Route path="/grid/:entityId" component={GridView}/>
 				<Route path="/details/:parentId/:entityId" component={DetailView}/>
+				<Route path="/analytics" component={AnalyticsView} />
 				<Route exact path="/settings" component={SettingsView}/>
 				<Route exact path="/settings/eventType/:eventTypeId/eventQuery/create" component={CreateEventQueryView}/>
 				<Route exact path="/settings/eventType/:eventTypeId/eventQuery/:eventQueryId/edit" component={CreateEventQueryView}/>

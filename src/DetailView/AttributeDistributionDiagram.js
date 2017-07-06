@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import config from "../config/config";
-import {Dialog, FlatButton} from "material-ui";
+import "./../App.css";
 const plotly = require('plotly.js');
 
 class AttributeDistributionDiagram extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			isDiagramOpen: true
-		};
 		this.diagramId = "attributeDistributionDiagram";
-		this.handleClose = this.handleClose.bind(this);
 	}
 
 	componentWillReceiveProps(props) {
@@ -20,12 +16,6 @@ class AttributeDistributionDiagram extends Component {
 
 	componentDidMount() {
 		AttributeDistributionDiagram.buildChartDataset(this.props);
-	}
-
-	handleClose() {
-		this.setState({
-			isDiagramOpen: false
-		});
 	}
 
 	static getDiagramLayout() {
@@ -71,22 +61,11 @@ class AttributeDistributionDiagram extends Component {
 
 	render() {
 		return (
-			<Dialog
-				title={config.descriptions.attributeDistributionDiagram}
-				modal={false}
-				open={this.state.isDiagramOpen}
-				actions={[<FlatButton
-					label="Close"
-					primary={true}
-					onTouchTap={this.handleClose}
-				/>]}
-				onRequestClose={this.handleClose}
-				>
-				<div
-					id={this.diagramId}
-					className={this.props.className}
-				/>
-			</Dialog>
+
+					<div
+						id={this.diagramId}
+						className={this.props.className}
+					/>
 		);
 	}
 }

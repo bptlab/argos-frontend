@@ -153,9 +153,12 @@ class DetailView extends ConnectionComponent {
 		}
 		else if (this.props.eventTypeAttributes.value && this.props.events.value) {
 			return (
-				<EventTable
-					events={this.state.filteredEvents}
-					eventTypeAttributes={this.props.eventTypeAttributes.value}/>
+				<div>
+					<a href={config.basename + "analytics?eventTypeId=" + this.state.currentEventType.Id + "&entityTypeId=" + this.props.entity.value.Id + "&attributeName=nrOfBusses" + '&types=["attribute-distribution"]'}>Analytics</a>
+						<EventTable
+							events={this.state.filteredEvents}
+							eventTypeAttributes={this.props.eventTypeAttributes.value}/>
+				</div>
 			);
 		}
 	}
@@ -182,6 +185,7 @@ class DetailView extends ConnectionComponent {
 		if (eventTypeAttributesPending) {
 			return eventTypeAttributesPending;
 		}
+
 		return (
 			<EventDiagram
 				events={this.state.filteredEvents}
