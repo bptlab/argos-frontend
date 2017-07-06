@@ -132,7 +132,7 @@ class CreateEventQueryView extends ConnectionComponent {
 
 	getAbortButton() {
 		return <RaisedButton
-			label="Abort"
+			label={config.descriptions.abort}
 			icon={<IconCancel/>}
 			className={css(AppStyles.marginAllSites)}
 			secondary={true}
@@ -174,7 +174,7 @@ class CreateEventQueryView extends ConnectionComponent {
 								<div className={css(AppStyles.textAlignCenter)}>
 									{this.getAbortButton()}
 									<RaisedButton
-										label="Save"
+										label={config.descriptions.save}
 										icon={<IconSave/>}
 										className={css(AppStyles.marginAllSites)}
 										primary={true}
@@ -208,7 +208,7 @@ class CreateEventQueryView extends ConnectionComponent {
 		const attributes = this.props.attributes.value;
 		return (
 			<div>
-				<Header title={"Create Event Query for " + eventType.Name}/>
+				<Header title={config.descriptions.createEventQueryView + " " + eventType.Name}/>
 				{this.getComponentBody(attributes, this.handleCreateQueryInput, this.submitNewQuery, optionalActions)}
 			</div>
 		);
@@ -246,7 +246,7 @@ class CreateEventQueryView extends ConnectionComponent {
 		const attributes = this.props.attributes.value;
 		return (
 			<div>
-				<Header title={"Edit Event Query for " + eventType.Name}/>
+				<Header title={config.descriptions.editEventQueryView + " " + eventType.Name}/>
 				{this.getComponentBody(
 					attributes, this.handleEditQueryInput,
 					this.submitUpdatedQuery, optionalActions, this.props.eventQuery.value

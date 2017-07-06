@@ -375,14 +375,14 @@ class CreateEntityMappingView extends ConnectionComponent {
 		return (
 			<div className={css(AppStyles.textAlignCenter)}>
 				<RaisedButton
-					label="Abort"
+					label={config.descriptions.abort}
 					icon={<IconCancel/>}
 					className={css(AppStyles.marginAllSites, AppStyles.fixMarginRight)}
 					secondary={true}
 					onTouchTap={CreateEntityMappingView.abort}
 				/>
 				<RaisedButton
-					label="Save"
+					label={config.descriptions.save}
 					icon={<IconSave/>}
 					onTouchTap={submitCallback}
 					className={css(AppStyles.marginAllSites)}
@@ -442,7 +442,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		this.oldValuesShouldBeLoaded = true;
 		return (
 			<div>
-				<Header title={"Edit Entity Mapping"}/>
+				<Header title={config.descriptions.editEntityMappingView}/>
 				<div className={AppStyles.elementMarginTop}>
 					{this.renderMappingForm(initialDataLoaded, optionalActions, this.submitUpdatedMapping)}
 				</div>
@@ -459,7 +459,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		}
 		return (
 			<div>
-				<Header title={"Create Entity Mapping"}/>
+				<Header title={config.descriptions.createEntityMappingView}/>
 				<div className={AppStyles.elementMarginTop}>
 					{this.renderMappingForm(initialDataLoaded, optionalActions, this.submitNewMapping)}
 				</div>

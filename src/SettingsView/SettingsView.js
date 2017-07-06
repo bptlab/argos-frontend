@@ -58,7 +58,7 @@ class SettingsView extends ConnectionComponent {
 		}
 		return (
 			<div>
-				<Header title="Event Types"/>
+				<Header title={config.descriptions.eventTypesView} />
 				<Container className={css(AppStyles.containerMarginTop)}>
 					<SearchBar onInputChange={this.handleSearchInput} styles={AppStyles.marginBottom}/>
 					{this.props.eventTypes.value.map((eventType) => {

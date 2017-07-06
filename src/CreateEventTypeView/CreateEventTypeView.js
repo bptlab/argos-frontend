@@ -121,7 +121,7 @@ class CreateEventTypeView extends ConnectionComponent {
 		}
 		return (
 			<div>
-				<Header title="Create New Event Type"/>
+				<Header title={config.descriptions.createEventTypeView} />
 				<Container className={css(AppStyles.containerMarginTop)}>
 					<Paper className={css(AppStyles.paperPadding)} zDepth={2}>
 						<form>
@@ -129,7 +129,7 @@ class CreateEventTypeView extends ConnectionComponent {
 								<TextField
 									data-hint={help.input.eventTypeView.name}
 									data-hintPosition="middle-right"
-									floatingLabelText="Event Type Name"
+									floatingLabelText={config.descriptions.eventTypeName}
 									fullWidth={true}
 									floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
 									value={this.state.eventTypeName}
@@ -139,13 +139,13 @@ class CreateEventTypeView extends ConnectionComponent {
 								<TextField
 									data-hint={help.input.eventTypeView.timestamp}
 									data-hintPosition="middle-right"
-									floatingLabelText="Timestamp Attribute"
+									floatingLabelText={config.descriptions.timestampName}
 									floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
 									fullWidth={true}
 									value={this.state.eventTypeTimestampAttribute}
 									onChange={this.handleChangeEventTypeTimestampAttribute}
 									errorText={this.state.eventTypeTimestampAttributeErrorText}/>
-								<h3 className={css(AppStyles.subHeadline)}>Attributes:</h3>
+								<h3 className={css(AppStyles.subHeadline)}>{config.descriptions.attributes}:</h3>
 								{this.state.attributes.map((attribute) =>
 									<TextField
 										key={attribute.id}
@@ -154,7 +154,7 @@ class CreateEventTypeView extends ConnectionComponent {
 										id={attribute.id}
 										value={attribute.value}
 										floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
-										floatingLabelText="Attribute Name"
+										floatingLabelText={config.descriptions.attributeName}
 										onChange={this.onInputChange.bind(this)}
 										fullWidth={true}/>
 								)}
@@ -162,13 +162,13 @@ class CreateEventTypeView extends ConnectionComponent {
 						</form>
 						<div className={css(AppStyles.textAlignCenter)}>
 							<RaisedButton
-								label="Abort"
+								label={config.descriptions.abort}
 								icon={<IconCancel/>}
 								className={css(AppStyles.marginAllSites)}
 								onClick={this.abort}
 								secondary={true}/>
 							<RaisedButton
-								label="Save"
+								label={config.descriptions.save}
 								icon={<IconSave/>}
 								onClick={this.submitForm}
 								className={css(AppStyles.marginAllSites)}

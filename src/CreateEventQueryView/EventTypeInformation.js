@@ -4,6 +4,7 @@ import {css} from "aphrodite";
 import {Card, CardText, CardTitle} from "material-ui";
 import AppStyles from "../AppStyles";
 import FilterListIcon from 'material-ui/svg-icons/device/widgets';
+import config from "../config/config";
 
 class EventTypeInformation extends Component {
     static generateListItem(attribute, key) {
@@ -18,7 +19,7 @@ class EventTypeInformation extends Component {
         return (
             <Card>
                 <CardTitle className={css(AppStyles.textAlignCenter, AppStyles.fontSize24)}>
-                    Available Attributes
+                    {config.descriptions.availableAttributes}
                 </CardTitle>
                 <CardText>
                     <List>
