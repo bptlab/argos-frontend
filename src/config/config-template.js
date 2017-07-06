@@ -40,7 +40,7 @@ const config = {
 		inspect: "Inspect",
 		attributes: "Attributes",
 		queries: "Event Queries",
-		entityMapping: "Entity Mappings",
+		entityMappings: "Entity Mappings",
 		eventTypesView: "Event Types",
 		confirm: "Confirm",
 		abort: "Abort",

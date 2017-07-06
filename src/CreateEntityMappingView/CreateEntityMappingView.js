@@ -19,7 +19,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		super(props);
 		this.state = {
 			targetStatus: "",
-			selectedEventType: {value: null, errorMessage: ""},
+			selectedEventType: {value: parseInt(this.props.match.params.eventTypeId), errorMessage: ""},
 			selectedEntityType: {value: null, errorMessage: ""},
 			mappings: CreateEntityMappingView.getDefaultMappings()
 		};
@@ -492,6 +492,11 @@ class CreateEntityMappingView extends ConnectionComponent {
 			// when selected entity type changed
 			this.props.lazyEntityTypeAttributeLoading(this.state.selectedEntityType.value);
 		}
+	}
+
+	componentDidMount() {
+		// load attributes for pre-selected event type
+		this.props.lazyEventTypeAttributeLoading(this.state.selectedEventType.value);
 	}
 
 	render() {
