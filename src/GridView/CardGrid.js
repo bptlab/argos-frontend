@@ -119,14 +119,14 @@ class CardGrid extends ConnectionComponent {
 												<FlatButton
 													data-hint={help.button.showChildrenOfEntity}
 													data-hintPosition="top-right"
-													label="Children"
+													label={config.descriptions.children}
 													href={Utils.getLink(`/grid/${childEntity.Id}`)} />}
 											</Col>
 											<Col xs={6}>
 												<FlatButton
 													data-hint={help.button.inspectEntity}
 													data-hintPosition="top-right"
-													label="Inspect"
+													label={config.descriptions.inspect}
 													href={Utils.getLink(`/details/${this.props.currentEntity.Id}/${childEntity.Id}`)} />
 											</Col>
 										</Row>

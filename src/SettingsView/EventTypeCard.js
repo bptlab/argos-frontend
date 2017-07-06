@@ -73,7 +73,7 @@ class EventTypeCard extends ConnectionComponent {
 	getAttributesTab(attributes) {
 		return(
 			<Tab
-				label="Attributes"
+				label={config.descriptions.attributes}
 				data-hint={help.display.settingsView.eventTypeAttributes}
 				data-hintPosition="top-middle">
 				<List>
@@ -92,7 +92,7 @@ class EventTypeCard extends ConnectionComponent {
 	getEventQueriesTab(queries) {
 		return(
 			<Tab
-				label="Event Queries"
+				label={config.descriptions.queries}
 			    data-hint={help.display.settingsView.eventTypeQueries}
 			    data-hintPosition="top-middle">
 				<List>
@@ -122,7 +122,7 @@ class EventTypeCard extends ConnectionComponent {
 	getEntityMappingsTab(entityMappings, attributes) {
 		return(
 			<Tab
-				label="Entity Mappings"
+				label={config.descriptions.entityMapping}
 			    data-hint={help.display.settingsView.entityMappings}
 			    data-hintPosition="top-middle">
 				<div className={css(AppStyles.autoOverFlow)}>
