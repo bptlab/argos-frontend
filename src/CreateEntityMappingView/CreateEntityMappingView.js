@@ -494,6 +494,11 @@ class CreateEntityMappingView extends ConnectionComponent {
 		}
 	}
 
+	componentDidMount() {
+		// load attributes for pre-selected event type
+		this.props.lazyEventTypeAttributeLoading(this.state.selectedEventType.value);
+	}
+
 	render() {
 		if (!this.isCreateView) {
 			return this.renderEditView();

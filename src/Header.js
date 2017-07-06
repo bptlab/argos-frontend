@@ -107,7 +107,7 @@ class Header extends Component {
 					       component={() => this.composeAppBar("settings")}/>
 					<Route path="/settings/eventType/:eventTypeId/eventQuery/:eventQueryId/edit"
 					       component={() => this.composeAppBar("settings")}/>
-					<Route path="/settings/entityMapping/create" component={() => this.composeAppBar("settings")}/>
+					<Route path="/settings/entityMapping/:eventTypeId/create" component={() => this.composeAppBar("settings")}/>
 					<Route path="/settings/entityMapping/:entityMappingId"
 					       component={() => this.composeAppBar("settings")}/>
 					<Route path="*" component={() => this.composeAppBar("grid")}/>
