@@ -66,6 +66,22 @@ class CardGrid extends ConnectionComponent {
 		return attributeArray;
 	}
 
+	getEntitiesToShow() {
+		const entities = this.props.entities.value.filter(this.isCoveredByFilter);
+		entities.sort((entityA, entityB) => {
+			const entityAStatus = this.getIndexOfEntityStatus(entityA);
+			const entityBStatus = this.getIndexOfEntityStatus(entityB);
+			return entityAStatus - entityBStatus;
+		});
+		return entities;
+	}
+
+	getIndexOfEntityStatus(entity) {
+		return config.statuses.findIndex((status) => {
+			return status.name === entity.Status;
+		});
+	}
+
 	render() {
 		if (!this.props.entities) {
 			return <LoadingAnimation/>;
@@ -74,7 +90,7 @@ class CardGrid extends ConnectionComponent {
 		if (connectionIncomplete) {
 			return connectionIncomplete;
 		}
-		const entitiesToShow = this.props.entities.value.filter(this.isCoveredByFilter);
+		const entitiesToShow = this.getEntitiesToShow();
 		return (
 			<div>
 				<StatusDiagram
