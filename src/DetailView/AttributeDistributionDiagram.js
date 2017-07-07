@@ -61,11 +61,10 @@ class AttributeDistributionDiagram extends Component {
 
 	render() {
 		return (
-
-					<div
-						id={this.diagramId}
-						className={this.props.className}
-					/>
+			<div
+				id={this.diagramId}
+				className={this.props.className}
+			/>
 		);
 	}
 }

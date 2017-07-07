@@ -226,7 +226,12 @@ class Utils {
 		return basename + path;
 	}
 
-	static getListOfAttributeValues(events, attributeName) {
+	/**
+	 * Generates the distribution of attribute values from a list of events and the name of the attribute.
+	 * @param events
+	 * @param attributeName
+	 */
+	static getAttributeValueDistribution(events, attributeName) {
 		const attributeValues = [];
 		events.forEach((event) => {
 			event.Attributes.forEach((attribute) => {
@@ -235,14 +240,6 @@ class Utils {
 				}
 			});
 		});
-		return attributeValues;
-	}
-
-	/**
-	 * Generates the distribution of attribute values from a list of attribute values.
-	 * @param attributeValues
-	 */
-	static getAttributeValueDistribution(attributeValues) {
 		let distribution = {};
 		attributeValues.forEach((value) => {
 			if (value in distribution) {

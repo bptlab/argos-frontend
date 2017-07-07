@@ -154,10 +154,11 @@ class DetailView extends ConnectionComponent {
 		else if (this.props.eventTypeAttributes.value && this.props.events.value) {
 			return (
 				<div>
-					<a href={config.basename + "analytics?eventTypeId=" + this.state.currentEventType.Id + "&entityTypeId=" + this.props.entity.value.Id + "&attributeName=nrOfBusses" + '&types=["attribute-distribution"]'}>Analytics</a>
-						<EventTable
-							events={this.state.filteredEvents}
-							eventTypeAttributes={this.props.eventTypeAttributes.value}/>
+					<EventTable
+						currentEventTypeId={this.state.currentEventType.Id}
+						entityId={this.props.entity.value.Id}
+						events={this.state.filteredEvents}
+						eventTypeAttributes={this.props.eventTypeAttributes.value}/>
 				</div>
 			);
 		}
