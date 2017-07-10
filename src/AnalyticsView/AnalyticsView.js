@@ -35,7 +35,7 @@ class AnalyticsView extends ConnectionComponent {
 				&& information.entityId && information.attributeName) {
 					const connectionIncomplete = super.render(this.props.events);
 					if (connectionIncomplete) {
-						diagrams.push(<div key={key} />);
+						diagrams.push(<div key={key}>{connectionIncomplete}</div>);
 					} else {
 						const attributeDistribution = Utils.getAttributeValueDistribution(
 							this.props.events.value, information.attributeName);
