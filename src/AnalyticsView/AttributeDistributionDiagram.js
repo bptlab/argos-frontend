@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import config from "../config/config";
-import "./../App.css";
+import "../App.css";
 const plotly = require('plotly.js');
 
 class AttributeDistributionDiagram extends Component {
@@ -8,14 +8,15 @@ class AttributeDistributionDiagram extends Component {
 	constructor(props) {
 		super(props);
 		this.diagramId = "attributeDistributionDiagram";
+		this.buildChartDataset = this.buildChartDataset.bind(this);
 	}
 
 	componentWillReceiveProps(props) {
-		AttributeDistributionDiagram.buildChartDataset(props);
+		this.buildChartDataset(props);
 	}
 
 	componentDidMount() {
-		AttributeDistributionDiagram.buildChartDataset(this.props);
+		this.buildChartDataset(this.props);
 	}
 
 	static getDiagramLayout() {
@@ -48,11 +49,11 @@ class AttributeDistributionDiagram extends Component {
 		}];
 	}
 
-	static buildChartDataset(props) {
+	buildChartDataset(props) {
 		const {attributeValues, numberOfOccurrences} = props;
 
 		plotly.newPlot(
-			'attributeDistributionDiagram',
+			this.diagramId,
 			AttributeDistributionDiagram.getTrace(attributeValues, numberOfOccurrences),
 			AttributeDistributionDiagram.getDiagramLayout(),
 			{displayModeBar: false}

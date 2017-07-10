@@ -1,11 +1,11 @@
 import Header from "../Header";
 import React from "react";
 import Utils from "../Utils/Utils";
-import {Col, Container, Row} from "react-grid-system";
+import {Col, Container} from "react-grid-system";
 import {css} from 'aphrodite';
 import queryString from "query-string";
 import AppStyles from "../AppStyles";
-import AttributeDistributionDiagram from "../DetailView/AttributeDistributionDiagram";
+import AttributeDistributionDiagram from "./AttributeDistributionDiagram";
 import {Card, CardText, CardTitle} from "material-ui";
 import ConnectionComponent from "../Utils/ConnectionComponent";
 import config from "../config/config";
@@ -15,7 +15,7 @@ class AnalyticsView extends ConnectionComponent {
 		return (
 			<Col key={key} md={6}>
 				<Card>
-					<CardTitle title={"Attribute Distribution for " + attributeName}/>
+					<CardTitle title={config.descriptions.attributeDistributionDiagramName + attributeName}/>
 					<CardText>
 						<AttributeDistributionDiagram
 							attributeValues={Object.keys(attributeDistribution)}
@@ -44,17 +44,15 @@ class AnalyticsView extends ConnectionComponent {
 								key, attributeDistribution, information.attributeName));
 					}
 				} else {
-					diagrams.push(<div>The requested diagram cannot be displayed due to lack of data.</div>);
+					diagrams.push(<div>{config.messages.missingData}</div>);
 				}
 			}
 		);
 		return (
 			<div>
-				<Header title={"Analytics"}/>
+				<Header title={config.descriptions.analyticsView}/>
 				<Container className={css(AppStyles.containerMarginTop)}>
-					<Row>
-						{diagrams}
-					</Row>
+					{diagrams}
 				</Container>
 			</div>
 		);

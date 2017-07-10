@@ -240,7 +240,7 @@ class Utils {
 				}
 			});
 		});
-		let distribution = {};
+		const distribution = {};
 		attributeValues.forEach((value) => {
 			if (value in distribution) {
 				distribution[value] += 1;
