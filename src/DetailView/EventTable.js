@@ -8,7 +8,7 @@ import "./../App.css";
 class EventTable extends Component {
 
 	composeTableHeader(eventTypeAttributes) {
-		let eventTypeIsValid = this.props.currentEventType !== null;
+		const eventTypeIsValid = this.props.currentEventType !== null;
 		return (
 			<thead>
 			{eventTypeIsValid && <tr>
