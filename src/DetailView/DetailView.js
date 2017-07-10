@@ -17,6 +17,8 @@ import LoadingAnimation from "../Utils/LoadingAnimation";
 import { css } from 'aphrodite';
 import "./DetailView.css";
 
+const FILTER_RENDER_TIMEOUT = 700;
+
 class DetailView extends ConnectionComponent {
 
 	constructor() {
@@ -138,11 +140,27 @@ class DetailView extends ConnectionComponent {
 			{
 				filter: filter,
 			},
-			() => this.handleEventChange(this.events)
+			() => {
+				if (this.inputTimer) {
+					window.clearInterval(this.inputTimer);
+				}
+				const thisBinding = this;
+				this.preventRender = true;
+				this.inputTimer = window.setTimeout(() => thisBinding.preventRendering(), FILTER_RENDER_TIMEOUT);
+				this.handleEventChange(this.events);
+			}
 		);
 	}
 
+	preventRendering() {
+		this.preventRender = false;
+		this.forceUpdate();
+	}
+
 	getEventTable() {
+		if (this.preventRender) {
+			return <LoadingAnimation/>;
+		}
 		if (!this.props.eventTypeAttributes || !this.props.events) {
 			return "";
 		}
@@ -179,6 +197,9 @@ class DetailView extends ConnectionComponent {
 	}
 
 	getEventDiagram() {
+		if (this.preventRender) {
+			return <LoadingAnimation/>;
+		}
 		if (this.state.filteredEvents.length < 1) {
 			return <div />;
 		}
