@@ -55,7 +55,9 @@ const config = {
 		eventTypeName: "Event Type Name",
 		attributeName: "Attribute Name",
 		timestampName: "Timestamp Attribute Name",
-		attributeDistributionDiagram: "Distribution of Attribute Values"
+		attributeDistributionDiagram: "Distribution of Attribute Values",
+		attributeDistributionDiagramName: "Attribute Distribution for ",
+		analyticsView: "Analytics",
 	},
 	messages: {
 		notFound: "Error 404. The requested page does not exist. You found a glitch in the matrix.",
@@ -74,7 +76,8 @@ const config = {
 		updatedQueryMessage: "Updated event query.",
 		updatedEventTypeMessage: "Updated event type.",
 		updatedEntityMappingMessage: "Updated entity mapping",
-		requiredFieldMessage: 'Please fill out this field'
+		requiredFieldMessage: 'Please fill out this field',
+		missingData: "The requested diagram cannot be displayed due to lack of data."
 	},
 	statuses: [
 		{
