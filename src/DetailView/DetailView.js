@@ -138,11 +138,27 @@ class DetailView extends ConnectionComponent {
 			{
 				filter: filter,
 			},
-			() => this.handleEventChange(this.events)
+			() => {
+				if (this.inputTimer) {
+					window.clearInterval(this.inputTimer);
+				}
+				const that = this;
+				this.preventRender = true;
+				this.inputTimer = window.setTimeout(() => that.preventRendering(), 700);
+				this.handleEventChange(this.events);
+			}
 		);
 	}
 
+	preventRendering() {
+		this.preventRender = false;
+		this.forceUpdate();
+	}
+
 	getEventTable() {
+		if (this.preventRender) {
+			return <LoadingAnimation/>;
+		}
 		if (!this.props.eventTypeAttributes || !this.props.events) {
 			return "";
 		}
@@ -179,6 +195,9 @@ class DetailView extends ConnectionComponent {
 	}
 
 	getEventDiagram() {
+		if (this.preventRender) {
+			return <LoadingAnimation/>;
+		}
 		if (this.state.filteredEvents.length < 1) {
 			return <div />;
 		}
