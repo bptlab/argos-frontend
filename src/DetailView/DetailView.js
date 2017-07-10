@@ -16,6 +16,7 @@ import {Toggle} from "material-ui";
 import LoadingAnimation from "../Utils/LoadingAnimation";
 import { css } from 'aphrodite';
 import "./DetailView.css";
+import "./../App.css";
 
 const FILTER_RENDER_TIMEOUT = 700;
 
@@ -198,10 +199,14 @@ class DetailView extends ConnectionComponent {
 
 	getEventDiagram() {
 		if (this.preventRender) {
-			return <LoadingAnimation/>;
+			return (
+				<div className="h400 w50 dFlex justifyContentCenter flexDirectionColumn alignContentCenter">
+					<LoadingAnimation/>
+				</div>
+			);
 		}
 		if (this.state.filteredEvents.length < 1) {
-			return <div />;
+			return <div className="h400 w50"/>;
 		}
 		const eventTypeAttributesPending = this.eventTypeAttributesPending();
 		if (eventTypeAttributesPending) {
