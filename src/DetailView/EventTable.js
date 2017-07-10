@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import AppStyles from "./../AppStyles";
 import { css } from 'aphrodite';
+import Utils from "../Utils/Utils";
+import InsertChartButton from "material-ui/svg-icons/editor/insert-chart";
+import "./../App.css";
 
 class EventTable extends Component {
 
@@ -14,6 +17,13 @@ class EventTable extends Component {
 							<th key={key} 
 								className={css(AppStyles.tableCell, AppStyles.tableHeaderCell)}>
 								{attribute.Name}
+								<a className="showOnHover"
+									href={Utils.getLink(
+										"analytics?eventTypeId=" + this.props.currentEventTypeId + "&entityId="
+										+ this.props.entityId + "&attributeName=" + attribute.Name
+										+ '&types=["attribute-distribution"]')}>
+									<InsertChartButton style={{height: "16px", width: "16px"}}/>
+								</a>
 							</th>
 						);
 					})

@@ -34,6 +34,10 @@
 	right: 0;
 }
 
+.t {
+	top: 0;
+}
+
 .alignItemsCenter {
 	align-items: center;
 }
@@ -89,4 +93,12 @@
 
 .h400 {
 	height: 400px
+}
+
+.showOnHover {
+	opacity: 0;
+}
+
+.showOnHover:hover {
+	opacity: 1;
 }
