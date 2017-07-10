@@ -8,9 +8,10 @@ import "./../App.css";
 class EventTable extends Component {
 
 	composeTableHeader(eventTypeAttributes) {
+		const eventTypeIsValid = this.props.currentEventType !== null;
 		return (
 			<thead>
-				<tr>
+			{eventTypeIsValid && <tr>
 				{eventTypeAttributes.map(
 					(attribute, key) => {
 						return (
@@ -19,7 +20,7 @@ class EventTable extends Component {
 								{attribute.Name}
 								<a className="showOnHover"
 									href={Utils.getLink(
-										"analytics?eventTypeId=" + this.props.currentEventTypeId + "&entityId="
+										"analytics?eventTypeId=" + this.props.currentEventType.Id + "&entityId="
 										+ this.props.entityId + "&attributeName=" + attribute.Name
 										+ '&types=["attribute-distribution"]')}>
 									<InsertChartButton style={{height: "16px", width: "16px"}}/>
@@ -28,7 +29,7 @@ class EventTable extends Component {
 						);
 					})
 				}
-				</tr>
+				</tr>}
 			</thead>
 		);
 	}
