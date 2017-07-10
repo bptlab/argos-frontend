@@ -95,6 +95,10 @@
 	height: 400px
 }
 
+.alignContentCenter {
+	align-content: center;
+}
+
 .showOnHover {
 	opacity: 0;
 }
