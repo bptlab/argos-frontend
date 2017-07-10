@@ -17,6 +17,8 @@ import LoadingAnimation from "../Utils/LoadingAnimation";
 import { css } from 'aphrodite';
 import "./DetailView.css";
 
+const FILTER_RENDER_TIMEOUT = 700;
+
 class DetailView extends ConnectionComponent {
 
 	constructor() {
@@ -142,9 +144,9 @@ class DetailView extends ConnectionComponent {
 				if (this.inputTimer) {
 					window.clearInterval(this.inputTimer);
 				}
-				const that = this;
+				const thisBinding = this;
 				this.preventRender = true;
-				this.inputTimer = window.setTimeout(() => that.preventRendering(), 700);
+				this.inputTimer = window.setTimeout(() => thisBinding.preventRendering(), FILTER_RENDER_TIMEOUT);
 				this.handleEventChange(this.events);
 			}
 		);
