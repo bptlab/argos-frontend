@@ -155,7 +155,7 @@ class DetailView extends ConnectionComponent {
 			return (
 				<div>
 					<EventTable
-						currentEventTypeId={this.state.currentEventType.Id}
+						currentEventType={this.state.currentEventType}
 						entityId={this.props.entity.value.Id}
 						events={this.state.filteredEvents}
 						eventTypeAttributes={this.props.eventTypeAttributes.value}/>
