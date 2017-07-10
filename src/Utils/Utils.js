@@ -248,6 +248,9 @@ class Utils {
 				distribution[value] = 1;
 			}
 		});
+		Object.keys(distribution).forEach((value) => {
+			distribution[value] /= attributeValues.length;
+		});
 		return distribution;
 	}
 }

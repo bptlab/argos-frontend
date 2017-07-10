@@ -23,7 +23,11 @@ class AttributeDistributionDiagram extends Component {
 		return {
 			xaxis: {
 				showgrid: false,
-				type: 'category'
+				type: 'category',
+			},
+			yaxis: {
+				tickformat: ',.0%',
+				range: [0,1]
 			},
 			height: 400,
 			margin: {pad: 10}
@@ -31,11 +35,15 @@ class AttributeDistributionDiagram extends Component {
 	}
 
 	static getTrace(x, y) {
+		const columnDescription = [];
+		y.forEach((y) => {
+			columnDescription.push(y*100 + "%");
+		});
 		return [{
 			x: x,
 			y: y,
 			type: 'bar',
-			text: y,
+			text: columnDescription,
 			textposition: 'auto',
 			hoverinfo: 'none',
 			marker: {
