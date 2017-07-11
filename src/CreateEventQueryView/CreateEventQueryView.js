@@ -101,7 +101,9 @@ class CreateEventQueryView extends ConnectionComponent {
 			Notification.addSnackbarNotificationOnReferrer(help.messages.createdQueryMessage,
 				Notification.ModeEnum.SUCCESS);
 		}
-		this.latestNotificationShown = false;
+		if (!this.queryWasDeclaredInvalid) {
+			this.latestNotificationShown = false;
+		}
 	}
 
 	// submit handler for the edit view
