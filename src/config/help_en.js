@@ -67,8 +67,6 @@ const help_en = {
 	},
 	button: {
 		addMapping: "Add Mapping Condition",
-		children: "Children",
-		inspect: "Inspect",
 		inspectEntity: "Click to view details and events for this entity.",
 		showChildrenOfEntity: "Click to view all child entities for this entity.",
 		showHelpBullets: "Click to show help bullets",
@@ -89,6 +87,8 @@ const help_en = {
 		childEntitiesStatus: "This bar gives a brief overview over the current status of child entities.",
 	},
 	descriptions: {
+		children: "Children",
+		inspect: "Inspect",
 		attributes: "Attributes",
 		queries: "Event Queries",
 		entityMappings: "Entity Mappings",
