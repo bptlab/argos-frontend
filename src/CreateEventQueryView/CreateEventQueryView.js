@@ -113,7 +113,11 @@ class CreateEventQueryView extends ConnectionComponent {
 	}
 	
 	abort() {
-		window.location =  Utils.getParentPageURL(window.location.href, 4);
+		if (this.isCreateView) {
+			window.location = Utils.getParentPageURL(window.location.href, 4);
+		} else {
+			window.location = Utils.getParentPageURL(window.location.href, 5);
+		}
 	}
 
 	static handleOptionalActions(optionalActions) {
