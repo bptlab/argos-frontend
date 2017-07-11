@@ -270,11 +270,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 	}
 
 	static abort() {
-		if (this.isCreateView) {
-			window.location = Utils.getParentPageURL(window.location.href, 3);
-		} else {
-			window.location = Utils.getParentPageURL(window.location.href, 4);
-		}
+		window.location = Utils.getParentPageURL(window.location.href, 3);
 	}
 
 	loadAttributeInputFields() {

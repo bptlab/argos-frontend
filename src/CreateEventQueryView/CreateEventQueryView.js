@@ -111,8 +111,8 @@ class CreateEventQueryView extends ConnectionComponent {
 		}
 		this.latestNotificationShown = false;
 	}
-	
-	abort() {
+
+	setTargetPage() {
 		if (this.isCreateView) {
 			window.location = Utils.getParentPageURL(window.location.href, 4);
 		} else {
@@ -120,9 +120,13 @@ class CreateEventQueryView extends ConnectionComponent {
 		}
 	}
 
-	static handleOptionalActions(optionalActions) {
+	abort() {
+		this.setTargetPage();
+	}
+
+	handleOptionalActions(optionalActions) {
 		if(optionalActions && optionalActions.fulfilled) {
-			window.location =  Utils.getParentPageURL(window.location.href, 4);
+			this.setTargetPage();
 			return null;
 		}
 	}
@@ -203,7 +207,7 @@ class CreateEventQueryView extends ConnectionComponent {
 	// render method for the create event query view
 	renderCreateEventQuery() {
 		const optionalActions = this.props.createEventQueryResponse;
-		CreateEventQueryView.handleOptionalActions(optionalActions);
+		this.handleOptionalActions(optionalActions);
 		const allFetches = PromiseState.all([this.props.eventType, this.props.attributes]);
 		const connectionIncomplete = super.render(allFetches);
 		if (connectionIncomplete) {
@@ -237,7 +241,7 @@ class CreateEventQueryView extends ConnectionComponent {
 	// render method for the edit event query view
 	renderEditEventQuery() {
 		const optionalActions = this.props.editEventQueryResponse;
-		CreateEventQueryView.handleOptionalActions(optionalActions);
+		this.handleOptionalActions(optionalActions);
 		const eventQueryPending = this.eventQueryPending();
 		if (eventQueryPending) {
 			return eventQueryPending;
