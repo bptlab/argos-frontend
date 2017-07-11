@@ -12,7 +12,7 @@ const availableRoutes = new Map()
 	})
 	.set(/^entity\/(-?\d+)\/children\/type\/(-?\d+)\/(((\w)+)\+)*(\w)*$/i, {
 		mockFunction: BackendMock.getChildEntitiesOfEntityType,
-		isCachable: true,
+		isCachable: false,
 	})
 	.set(/^eventtypes$/i, {
 		mockFunction: BackendMock.getEventTypes,
