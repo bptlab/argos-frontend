@@ -20,13 +20,12 @@ const help_en = {
 			+ "By default, your search term will be evaluated on all columns. "
 			+ "To specify in which column(s) the search should be performed, separate the column name with \":\" from the search term.<br><br>"
 			+ "Example: \"ab\" will list all events having any attribute containing this string. \"Attr1:ab\" will show all events having \"ab\" in the value of \"Attr1\".",
-
 		},
 		gridViewFilterBar: "Filter all childentities by their name or attribute values.",
 		eventQueryView: {
 			exampleQuery: "INSERT INTO ExampleType SELECT * FROM PATTERN [[2] SimpleType]",
-			queryInputFieldHint: "Esper EPL Query",
-			queryDescriptionInputFieldHint: 'Description for query',
+			queryHint: "Esper EPL Query",
+			descriptionHint: 'Description for query',
 			description: "Provide a short description for this query.",
 			query: "Define the query when events for the current event type should be triggered. For the queries, only EPL is accepted."
 				+ " You may find an extensive EPL documentation <a target=\"_blank\" href=\"http://www.espertech.com/esper/release-5.3.0/esper-reference/html/epl_clauses.html#epl-intro\">here</a>.<br><br>"
