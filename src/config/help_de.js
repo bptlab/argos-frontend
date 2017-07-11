@@ -129,7 +129,7 @@ const help_de = {
 		updatedEntityMappingMessage: "Entitätsverknüpfung aktualisiert.",
 		requiredFieldMessage: 'Bitte füllen Sie dieses Feld aus.',
 		missingData: "Das Diagramm kann wegen fehlender Daten nicht angezeigt werden.",
-		noSpaceInInput: "Diese Eingabe darf keine Leerzeilen beinhalten."
+		noSpaceInInput: "Diese Eingabe darf keine Leerzeichen beinhalten."
 	},
 };
 
