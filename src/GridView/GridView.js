@@ -109,16 +109,17 @@ class GridView extends ConnectionComponent {
 						data-hintPosition="middle-left">
 						<SearchBar onInputChange={this.handleFilterChange}/>
 					</div>
-					{this.state.preventRender && <LoadingAnimation/>}
-					{!this.state.preventRender && childEntityTypes.map((childEntityType) => {
+
+					{childEntityTypes.map((childEntityType) => {
 						return (
 							<div key={`div-${childEntityType.Id}`}>
 								<h1>{childEntityType.Name}</h1>
-								<CardGrid
+								{this.state.preventRender && <LoadingAnimation/>}
+								{!this.state.preventRender && <CardGrid
 									filterObject={this.state.filterObject}
 									key={childEntityType.Id}
 									currentEntity={entity}
-									entityType={childEntityType}/>
+									entityType={childEntityType}/>}
 							</div>
 						);
 					})}
