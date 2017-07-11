@@ -28,6 +28,7 @@ class CreateEventQueryView extends ConnectionComponent {
 		};
 		this.isCreateView = typeof this.props.match.params.eventQueryId === 'undefined';
 		this.latestNotificationShown = false;
+		this.queryWasDeclaredInvalid = false;
 		this.handleCreateQueryInput = this.handleCreateQueryInput.bind(this);
 		this.handleEditQueryInput = this.handleEditQueryInput.bind(this);
 		this.isInvalidInput = this.isInvalidInput.bind(this);
@@ -43,6 +44,7 @@ class CreateEventQueryView extends ConnectionComponent {
 			query: event.target.value,
 			queryErrorMessage: ''
 		});
+		this.queryWasDeclaredInvalid = false;
 	}
 
 	// handles query changes in edit view, does a little string manipulation
@@ -80,6 +82,9 @@ class CreateEventQueryView extends ConnectionComponent {
 			this.setState({
 				queryErrorMessage: help.messages.requiredFieldMessage
 			});
+			validationErrorOccured = true;
+		}
+		if(this.queryWasDeclaredInvalid) {
 			validationErrorOccured = true;
 		}
 		return validationErrorOccured;
@@ -132,6 +137,7 @@ class CreateEventQueryView extends ConnectionComponent {
 			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
 				Notification.ModeEnum.ERROR);
 			this.latestNotificationShown = true;
+			this.queryWasDeclaredInvalid = true;
 		}
 	}
 
