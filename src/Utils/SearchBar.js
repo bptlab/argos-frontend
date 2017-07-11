@@ -181,9 +181,9 @@ class SearchBar extends Component {
 	 */
 	getFloatingLabelText() {
 		if (this.state.filterColumn) {
-			return config.descriptions.searchFor + ": " + this.state.filterColumn;
+			return help.input.search.for + ": " + this.state.filterColumn;
 		}
-		return config.descriptions.search;
+		return help.input.search.hint;
 	}
 
 	/**
@@ -193,12 +193,12 @@ class SearchBar extends Component {
 	 */
 	getHintText() {
 		if (this.state.filterColumn) {
-			return config.descriptions.searchValue;
+			return help.input.search.value;
 		}
 		if (this.autoCompleteSource.length > 0) {
-			return config.descriptions.columnNameSearchValue;
+			return help.input.search.columnNameSearch;
 		}
-		return config.descriptions.search;
+		return help.input.search.hint;
 	}
 
 	getDeleteButton() {

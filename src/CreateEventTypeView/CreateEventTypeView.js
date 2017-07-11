@@ -52,10 +52,10 @@ class CreateEventTypeView extends ConnectionComponent {
 	submitForm() {
 		const errorState = {};
 		if (!this.state.eventTypeName) {
-			errorState['eventTypeNameErrorText'] = config.messages.requiredFieldMessage;
+			errorState['eventTypeNameErrorText'] = help.messages.requiredFieldMessage;
 		}
 		if (!this.state.eventTypeTimestampAttribute) {
-			errorState['eventTypeTimestampAttributeErrorText'] = config.messages.requiredFieldMessage;
+			errorState['eventTypeTimestampAttributeErrorText'] = help.messages.requiredFieldMessage;
 		}
 		if (Object.keys(errorState).length > 0) {
 			this.setState(errorState);
@@ -72,7 +72,7 @@ class CreateEventTypeView extends ConnectionComponent {
 				})
 			};
 			this.props.createEventType(body);
-			Notification.addSnackbarNotificationOnReferrer(config.messages.createdEventTypeMessage,
+			Notification.addSnackbarNotificationOnReferrer(help.messages.createdEventTypeMessage,
 				Notification.ModeEnum.SUCCESS);
 		}
 		this.latestNotificationShown = false;
@@ -121,7 +121,7 @@ class CreateEventTypeView extends ConnectionComponent {
 		}
 		return (
 			<div>
-				<Header title={config.descriptions.createEventTypeView} />
+				<Header title={help.descriptions.createEventTypeView} />
 				<Container className={css(AppStyles.containerMarginTop)}>
 					<Paper className={css(AppStyles.paperPadding)} zDepth={2}>
 						<form>
@@ -129,7 +129,7 @@ class CreateEventTypeView extends ConnectionComponent {
 								<TextField
 									data-hint={help.input.eventTypeView.name}
 									data-hintPosition="middle-right"
-									floatingLabelText={config.descriptions.eventTypeName}
+									floatingLabelText={help.descriptions.eventTypeName}
 									fullWidth={true}
 									floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
 									value={this.state.eventTypeName}
@@ -139,13 +139,13 @@ class CreateEventTypeView extends ConnectionComponent {
 								<TextField
 									data-hint={help.input.eventTypeView.timestamp}
 									data-hintPosition="middle-right"
-									floatingLabelText={config.descriptions.timestampName}
+									floatingLabelText={help.descriptions.timestampName}
 									floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
 									fullWidth={true}
 									value={this.state.eventTypeTimestampAttribute}
 									onChange={this.handleChangeEventTypeTimestampAttribute}
 									errorText={this.state.eventTypeTimestampAttributeErrorText}/>
-								<h3 className={css(AppStyles.subHeadline)}>{config.descriptions.attributes}:</h3>
+								<h3 className={css(AppStyles.subHeadline)}>{help.descriptions.attributes}:</h3>
 								{this.state.attributes.map((attribute) =>
 									<TextField
 										key={attribute.id}
@@ -154,7 +154,7 @@ class CreateEventTypeView extends ConnectionComponent {
 										id={attribute.id}
 										value={attribute.value}
 										floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
-										floatingLabelText={config.descriptions.attributeName}
+										floatingLabelText={help.descriptions.attributeName}
 										onChange={this.onInputChange.bind(this)}
 										fullWidth={true}/>
 								)}
@@ -162,13 +162,13 @@ class CreateEventTypeView extends ConnectionComponent {
 						</form>
 						<div className={css(AppStyles.textAlignCenter)}>
 							<RaisedButton
-								label={config.descriptions.abort}
+								label={help.descriptions.abort}
 								icon={<IconCancel/>}
 								className={css(AppStyles.marginAllSites)}
 								onClick={this.abort}
 								secondary={true}/>
 							<RaisedButton
-								label={config.descriptions.save}
+								label={help.descriptions.save}
 								icon={<IconSave/>}
 								onClick={this.submitForm}
 								className={css(AppStyles.marginAllSites)}

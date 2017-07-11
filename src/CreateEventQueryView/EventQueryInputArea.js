@@ -48,7 +48,7 @@ class EventQueryInputArea extends Component {
 				<TextField
 					data-hint={help.input.eventQueryView.description}
 					data-hintPosition="middle-right"
-					floatingLabelText={config.descriptions.queryDescriptionInputFieldHint}
+					floatingLabelText={help.input.eventQueryView.descriptionHint}
 					floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
 					name="event-query-description"
 					multiLine={false}
@@ -60,10 +60,10 @@ class EventQueryInputArea extends Component {
 				<TextField
 					data-hint={help.input.eventQueryView.query}
 					data-hintPosition="middle-right"
-					floatingLabelText={config.descriptions.queryInputFieldHint + this.getNotEditablePartOfEventQuery()}
+					floatingLabelText={help.input.eventQueryView.queryHint + this.getNotEditablePartOfEventQuery()}
 					floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
 					name="event-query"
-					hintText={config.descriptions.exampleQuery}
+					hintText={help.input.eventQueryView.exampleQuery}
 					multiLine={true}
 					rows={3}
 					fullWidth={true}

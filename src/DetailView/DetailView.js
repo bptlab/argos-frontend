@@ -230,7 +230,7 @@ class DetailView extends ConnectionComponent {
 		}
 		return (
 			<div
-				data-hint={help.input.eventTableFilterBar}
+				data-hint={help.input.detailView.eventTableFilterBar}
 				data-hintPosition="middle-left"
 			>
 			<FilterBar
@@ -258,9 +258,9 @@ class DetailView extends ConnectionComponent {
 				<Container className={css(AppStyles.containerMarginTop)}>
 					<div className="dFlex elementMarginTop">
 						<Toggle
-							data-hint={help.input.toggleChildrenEvents}
+							data-hint={help.input.detailView.toggleChildrenEventsHelp}
 							data-hintPosition="middle-left"
-							label={config.descriptions.toggleChildrenEvents}
+							label={help.input.detailView.toggleChildrenEvents}
 							defaultToggled={false}
 							thumbStyle={{
 								backgroundColor: config.colors.toggleOff,
