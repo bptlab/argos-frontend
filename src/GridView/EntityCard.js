@@ -40,7 +40,7 @@ class EntityCard extends Component {
 							data-hintPosition="top-right"
 							className="card-button"
 							style={{color: config.colors.text}}>
-							<span>{config.descriptions.children}</span>
+							<span>{help.descriptions.children}</span>
 						</a>}
 					</Col>
 					<Col xs={6}>
@@ -50,7 +50,7 @@ class EntityCard extends Component {
 							data-hintPosition="top-right"
 							className="card-button"
 							style={{color: config.colors.text}}>
-							<span>{config.descriptions.inspect}</span>
+							<span>{help.descriptions.inspect}</span>
 						</a>
 					</Col>
 				</Row>
