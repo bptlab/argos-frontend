@@ -61,6 +61,7 @@ class CreateEventQueryView extends ConnectionComponent {
 				query: this.props.eventQuery.value.Query
 			});
 		}
+		this.queryWasDeclaredInvalid = false;
 	}
 
 	handleDescriptionInput(event) {
@@ -116,7 +117,9 @@ class CreateEventQueryView extends ConnectionComponent {
 			Notification.addSnackbarNotificationOnReferrer(help.messages.updatedQueryMessage,
 				Notification.ModeEnum.SUCCESS);
 		}
-		this.latestNotificationShown = false;
+		if (!this.queryWasDeclaredInvalid) {
+			this.latestNotificationShown = false;
+		}
 	}
 
 	setTargetPage() {
