@@ -12,6 +12,7 @@ import config from '../config/config.js';
 import help from "../config/help";
 import Notification from '../Utils/Notification';
 import {Paper} from "material-ui";
+import Utils from '../Utils/Utils.js';
 
 class CreateEventTypeView extends ConnectionComponent {
 	constructor(props) {
@@ -39,7 +40,7 @@ class CreateEventTypeView extends ConnectionComponent {
 	}
 
 	abort() {
-		window.history.back();
+		window.location =  Utils.getParentPageURL(window.location.href, 2);
 	}
 
 	handleChangeEventTypeTimestampAttribute(event) {
@@ -111,7 +112,7 @@ class CreateEventTypeView extends ConnectionComponent {
 	render() {
 		const optionalActions = this.props.createEventTypeResponse;
 		if (optionalActions && optionalActions.fulfilled) {
-			window.history.back();
+			window.location = Utils.getParentPageURL(window.location.href, 2);
 			return null;
 		}
 		if (optionalActions && optionalActions.rejected && !this.latestNotificationShown) {
