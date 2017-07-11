@@ -10,9 +10,7 @@ const help_en = {
 				+ "Explanation: A query defines the rules when a new event is triggered and how the attributes are composed.",
 			entityMappings: "All defined entity mappings are displayed here. New mappings can be added and existing ones edited or deleted."
 		},
-		entityMappingView: {
-
-		}
+		scrollDown: "Scroll down to view more Events.",
 	},
 	input: {
 		detailView: {

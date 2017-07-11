@@ -291,7 +291,7 @@ class DetailView extends ConnectionComponent {
 								<LoadingAnimation 
 									size={20} 
 									thickness={5} /> :
-								<span>Scroll down to view more Events.</span>}
+								<span>{help.display.scrollDown}</span>}
 						</div>}
 				</Container>
 			</div>

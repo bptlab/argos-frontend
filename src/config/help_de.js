@@ -10,6 +10,7 @@ const help_de = {
 			+ "Erklärung: Eine Anfrage (query) definiert die Regeln, wonach ein neues Event und seine Attribute erzeugt werden.",
 			entityMappings: "Alle gespeicherten Entitätsverknüpfungen (entity mappings) werden hier angezeigt. Verknüpfungen können neu angelegt, bearbeitet oder gelöscht werden.",
 		},
+		scrollDown: "Herunterscrollen um mehr Events zu laden.",
 	},
 	input: {
 		detailView: {
