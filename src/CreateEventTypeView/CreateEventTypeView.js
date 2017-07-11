@@ -55,6 +55,9 @@ class CreateEventTypeView extends ConnectionComponent {
 		if (!this.state.eventTypeName) {
 			errorState['eventTypeNameErrorText'] = help.messages.requiredFieldMessage;
 		}
+		if (this.state.eventTypeName.indexOf(' ') >= 0) {
+			errorState['eventTypeNameErrorText'] = help.messages.noSpaceInInput;
+		}
 		if (!this.state.eventTypeTimestampAttribute) {
 			errorState['eventTypeTimestampAttributeErrorText'] = help.messages.requiredFieldMessage;
 		}

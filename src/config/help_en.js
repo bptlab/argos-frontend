@@ -128,7 +128,8 @@ const help_en = {
 		updatedEventTypeMessage: "Updated event type.",
 		updatedEntityMappingMessage: "Updated entity mapping",
 		requiredFieldMessage: 'Please fill out this field',
-		missingData: "The requested diagram cannot be displayed due to lack of data."
+		missingData: "The requested diagram cannot be displayed due to lack of data.",
+		noSpaceInInput: "This input field does not allow spaces."
 	},
 };
 
