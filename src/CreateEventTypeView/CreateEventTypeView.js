@@ -112,7 +112,7 @@ class CreateEventTypeView extends ConnectionComponent {
 	render() {
 		const optionalActions = this.props.createEventTypeResponse;
 		if (optionalActions && optionalActions.fulfilled) {
-			window.location =  Utils.getParentPageURL(window.location.href, 2);
+			window.location = Utils.getParentPageURL(window.location.href, 2);
 			return null;
 		}
 		if (optionalActions && optionalActions.rejected && !this.latestNotificationShown) {

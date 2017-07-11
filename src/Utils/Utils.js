@@ -259,7 +259,7 @@ class Utils {
 	 */
 	static getParentPageURL(url, numberOfSteps = 1) {
 		const urlSegments = url.split('/');
-		for(let i=0; i < numberOfSteps; i++) {
+		for (let i=0; i < numberOfSteps; i++) {
 			urlSegments.pop();
 		}
 		return urlSegments.join('/');
