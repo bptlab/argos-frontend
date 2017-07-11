@@ -29,6 +29,7 @@ class DetailView extends ConnectionComponent {
 			currentEventType: null,
 			filter: [],
 			eventChunkLoading: false,
+			preventRender: false
 		};
 		this.includeEventChildren = false;
 		this.events = [];
@@ -146,20 +147,21 @@ class DetailView extends ConnectionComponent {
 					window.clearInterval(this.inputTimer);
 				}
 				const thisBinding = this;
-				this.preventRender = true;
-				this.inputTimer = window.setTimeout(() => thisBinding.preventRendering(), FILTER_RENDER_TIMEOUT);
+				this.setState({
+					preventRender: true
+				});
+				this.inputTimer = window.setTimeout(
+					() => thisBinding.setState({
+						preventRender: false,
+					}),
+					FILTER_RENDER_TIMEOUT);
 				this.handleEventChange(this.events);
 			}
 		);
 	}
 
-	preventRendering() {
-		this.preventRender = false;
-		this.forceUpdate();
-	}
-
 	getEventTable() {
-		if (this.preventRender) {
+		if (this.state.preventRender) {
 			return <LoadingAnimation/>;
 		}
 		if (!this.props.eventTypeAttributes || !this.props.events) {
@@ -198,7 +200,7 @@ class DetailView extends ConnectionComponent {
 	}
 
 	getEventDiagram() {
-		if (this.preventRender) {
+		if (this.state.preventRender) {
 			return (
 				<div className="h400 w50 dFlex justifyContentCenter flexDirectionColumn alignContentCenter">
 					<LoadingAnimation/>
