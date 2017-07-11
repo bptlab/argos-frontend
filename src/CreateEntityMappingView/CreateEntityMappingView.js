@@ -13,6 +13,7 @@ import Notification from './../Utils/Notification';
 import help from './../config/help';
 import config from "../config/config";
 import AppStyles from "../AppStyles";
+import Utils from '../Utils/Utils.js';
 
 class CreateEntityMappingView extends ConnectionComponent {
 	constructor(props) {
@@ -250,7 +251,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 
 	static handleOptionalActionsSuccess(optionalActions) {
 		if (optionalActions && optionalActions.fulfilled) {
-			window.history.back();
+			window.location =  Utils.getParentPageURL(window.location.href, 3);
 			return null;
 		}
 	}
@@ -269,7 +270,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 	}
 
 	static abort() {
-		window.history.back();
+		window.location =  Utils.getParentPageURL(window.location.href, 3);
 	}
 
 	loadAttributeInputFields() {

@@ -253,6 +253,17 @@ class Utils {
 		});
 		return distribution;
 	}
+	/**
+	 * Returns URL of parent page for a given page url.
+	 * @param url
+	 */
+	static getParentPageURL(url, numberOfSteps = 1) {
+		const urlSegments = url.split('/');
+		for(let i=0; i < numberOfSteps; i++) {
+			urlSegments.pop();
+		}
+		return urlSegments.join('/');
+	}
 }
 
 export default Utils;
