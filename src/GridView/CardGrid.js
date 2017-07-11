@@ -1,15 +1,12 @@
 import React from "react";
 import ConnectionComponent from "./../Utils/ConnectionComponent.js";
-import {Card, CardActions, CardText, CardTitle} from "material-ui/Card";
-import FlatButton from "material-ui/FlatButton";
 import LoadingAnimation from "./../Utils/LoadingAnimation";
 import {Col, Row} from "react-grid-system";
-import EntityInformation from "../Utils/EntityInformation";
 import StatusDiagram from "./StatusDiagram";
 import config from "./../config/config";
-import help from "./../config/help";
 import Utils from "./../Utils/Utils";
 import './CardGrid.css';
+import EntityCard from "./EntityCard";
 
 class CardGrid extends ConnectionComponent {
 	constructor(props) {
@@ -17,13 +14,7 @@ class CardGrid extends ConnectionComponent {
 		this.isCoveredByFilter = this.isCoveredByFilter.bind(this);
 	}
 
-	backgroundColor(status) {
-		return {backgroundColor: Utils.getColorForStatus(status)};
-	}
 
-	backgroundColorLight(status) {
-		return {backgroundColor: Utils.getLightColorForStatus(status)};
-	}
 
 	isCoveredByFilter(childEntity) {
 		return this.testFilter(childEntity, this.props.filterObject);
@@ -102,36 +93,9 @@ class CardGrid extends ConnectionComponent {
 							<Col
 								key={index} xs={12} sm={4} md={3}
 								className="dFlex">
-								<Card className="card">
-									<CardTitle
-										style={this.backgroundColor(childEntity.Status)}
-										title={childEntity.Name}
-										titleColor={config.colors.textAlternate} />
-									<CardText
-										style={this.backgroundColorLight(childEntity.Status)}
-										className="flexGrow1">
-										<EntityInformation entity={childEntity}/>
-									</CardText>
-									<CardActions style={this.backgroundColorLight(childEntity.Status)}>
-										<Row className="noMargin">
-											<Col xs={6}>
-												{childEntity.HasChildren &&
-												<FlatButton
-													data-hint={help.button.showChildrenOfEntity}
-													data-hintPosition="top-right"
-													label={config.descriptions.children}
-													href={Utils.getLink(`/grid/${childEntity.Id}`)} />}
-											</Col>
-											<Col xs={6}>
-												<FlatButton
-													data-hint={help.button.inspectEntity}
-													data-hintPosition="top-right"
-													label={config.descriptions.inspect}
-													href={Utils.getLink(`/details/${this.props.currentEntity.Id}/${childEntity.Id}`)} />
-											</Col>
-										</Row>
-									</CardActions>
-								</Card>
+								<EntityCard
+									entity={childEntity}
+									parentEntityId={this.props.currentEntity.Id}/>
 							</Col>
 						);
 					})}
