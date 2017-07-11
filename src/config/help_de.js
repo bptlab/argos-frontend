@@ -128,7 +128,8 @@ const help_de = {
 		updatedEventTypeMessage: "Ereignistyp aktualisiert.",
 		updatedEntityMappingMessage: "Entitätsverknüpfung aktualisiert.",
 		requiredFieldMessage: 'Bitte füllen Sie dieses Feld aus.',
-		missingData: "Das Diagramm kann wegen fehlender Daten nicht angezeigt werden."
+		missingData: "Das Diagramm kann wegen fehlender Daten nicht angezeigt werden.",
+		noSpaceInInput: "Diese Eingabe darf keine Leerzeichen beinhalten."
 	},
 };
 
