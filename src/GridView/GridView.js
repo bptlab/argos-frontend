@@ -109,7 +109,6 @@ class GridView extends ConnectionComponent {
 						data-hintPosition="middle-left">
 						<SearchBar onInputChange={this.handleFilterChange}/>
 					</div>
-
 					{childEntityTypes.map((childEntityType) => {
 						return (
 							<div key={`div-${childEntityType.Id}`}>
