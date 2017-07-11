@@ -18,7 +18,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import Utils from './../Utils/Utils'
 import {css} from "aphrodite";
 import AppStyles from "./../AppStyles";
-import "./EntityMappingListItem.css"
+import "./EntityMappingListItem.css";
 
 class EventTypeCard extends ConnectionComponent {
 
@@ -50,10 +50,10 @@ class EventTypeCard extends ConnectionComponent {
 			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
 				Notification.ModeEnum.ERROR);
 		} else if (optionalActions && optionalActions.fulfilled && optionalActions === this.props.deleteQueryResponse) {
-			Notification.addSnackbarNotificationOnSelf(config.messages.deletedQueryMessage,
+			Notification.addSnackbarNotificationOnSelf(help.messages.deletedQueryMessage,
 				Notification.ModeEnum.SUCCESS);
 		} else if (optionalActions && optionalActions.fulfilled && optionalActions === this.props.deleteMappingResponse) {
-			Notification.addSnackbarNotificationOnSelf(config.messages.deletedEntityMappingMessage,
+			Notification.addSnackbarNotificationOnSelf(help.messages.deletedEntityMappingMessage,
 				Notification.ModeEnum.SUCCESS);
 		}
 	}
@@ -73,7 +73,7 @@ class EventTypeCard extends ConnectionComponent {
 	getAttributesTab(attributes) {
 		return(
 			<Tab
-				label={config.descriptions.attributes}
+				label={help.descriptions.attributes}
 				data-hint={help.display.settingsView.eventTypeAttributes}
 				data-hintPosition="top-middle">
 				<List>
@@ -92,12 +92,12 @@ class EventTypeCard extends ConnectionComponent {
 	getEventQueriesTab(queries) {
 		return(
 			<Tab
-				label={config.descriptions.queries}
+				label={help.descriptions.queries}
 			    data-hint={help.display.settingsView.eventTypeQueries}
 			    data-hintPosition="top-middle">
 				<List>
 					{queries.length === 0 &&
-					<div className="mapping-headline"> {config.messages.noEventQueries} </div>}
+					<div className="mapping-headline"> {help.messages.noEventQueries} </div>}
 					{queries.map((query) => {
 							return(
 								<EventQueryListItem
@@ -122,13 +122,13 @@ class EventTypeCard extends ConnectionComponent {
 	getEntityMappingsTab(entityMappings, attributes) {
 		return(
 			<Tab
-				label={config.descriptions.entityMappings}
+				label={help.descriptions.entityMappings}
 			    data-hint={help.display.settingsView.entityMappings}
 			    data-hintPosition="top-middle">
 				<div className={css(AppStyles.autoOverFlow)}>
 					<List>
 						{entityMappings.length === 0 &&
-						<div className="mapping-headline"> {config.messages.noEntityMappings} </div>}
+						<div className="mapping-headline"> {help.messages.noEntityMappings} </div>}
 						{entityMappings.map((mapping, index) => {
 							return (
 								<div key={index}>
@@ -178,14 +178,14 @@ class EventTypeCard extends ConnectionComponent {
 					actionToPerform={this.handleEventTypeDeletion}
 					ref={(input) => {this.confirmationMessage = input;}}
 					onSnackbarMessage={this.props.onSnackbarMessage}>
-					{config.messages.deleteEventTypeMessage}
+					{help.messages.deleteEventTypeMessage}
 				</ConfirmationMessage>
 				<Card
 					expanded={this.state.expanded}
 					onExpandChange={this.handleExpandChange}>
 					<CardHeader
 						title={this.props.eventType.Name}
-						subtitle={`${config.descriptions.textNumberOfEvents} ${this.props.eventType.NumberOfEvents}`}
+						subtitle={`${help.display.settingsView.textNumberOfEvents} ${this.props.eventType.NumberOfEvents}`}
 						actAsExpander={true}
 						showExpandableButton={true}
 						children={this.getEventTypeHeaderButtons()}

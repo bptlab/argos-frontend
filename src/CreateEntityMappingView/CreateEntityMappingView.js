@@ -72,24 +72,24 @@ class CreateEntityMappingView extends ConnectionComponent {
 		let isValid = true;
 		if(this.state.selectedEntityType.value === null) {
 			this.setState({
-				selectedEntityType: {value: null, errorMessage: config.messages.requiredFieldMessage}
+				selectedEntityType: {value: null, errorMessage: help.messages.requiredFieldMessage}
 			});
 			isValid = false;
 		}
 		if (this.state.selectedEventType.value === null) {
 			this.setState({
-				selectedEventType: {value: null, errorMessage: config.messages.requiredFieldMessage}
+				selectedEventType: {value: null, errorMessage: help.messages.requiredFieldMessage}
 			});
 			isValid = false;
 		}
 		const mappings = [];
 		this.state.mappings.forEach((mapping) => {
 			if (!mapping.eventTypeAttribute.value) {
-				mapping.eventTypeAttribute.errorMessage = config.messages.requiredFieldMessage;
+				mapping.eventTypeAttribute.errorMessage = help.messages.requiredFieldMessage;
 				isValid = false;
 			}
 			if (!mapping.entityTypeAttribute.value) {
-				mapping.entityTypeAttribute.errorMessage = config.messages.requiredFieldMessage;
+				mapping.entityTypeAttribute.errorMessage = help.messages.requiredFieldMessage;
 				isValid = false;
 			}
 			mappings.push(mapping);
@@ -124,7 +124,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		if(this.isValidInput()) {
 			const preparedState = this.prepareStateForSubmitting();
 			this.props.createEntityMapping(preparedState);
-			Notification.addSnackbarNotificationOnReferrer(config.messages.createdEntityMappingMessage,
+			Notification.addSnackbarNotificationOnReferrer(help.messages.createdEntityMappingMessage,
 				Notification.ModeEnum.SUCCESS);
 		}
 	}
@@ -133,7 +133,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		if(this.isValidInput()) {
 			const preparedState = this.prepareStateForSubmitting();
 			this.props.updateEntityMapping(preparedState);
-			Notification.addSnackbarNotificationOnReferrer(config.messages.updatedEntityMappingMessage,
+			Notification.addSnackbarNotificationOnReferrer(help.messages.updatedEntityMappingMessage,
 				Notification.ModeEnum.SUCCESS);
 		}
 	}
@@ -197,7 +197,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		const eventTypeAttributes = this.props.eventTypeAttributes.value;
 		return (
 			<SelectField
-				floatingLabelText={config.descriptions.selectEventTypeAttributeHint}
+				floatingLabelText={help.input.entityMappingView.selectEventTypeAttributeHint}
 				floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
 				fullWidth={true}
 				errorText={this.state.mappings[key].eventTypeAttribute.errorMessage}
@@ -214,7 +214,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		const entityTypeAttributes = this.props.entityTypeAttributes.value;
 		return (
 			<SelectField
-				floatingLabelText={config.descriptions.selectEntityTypeAttributeHint}
+				floatingLabelText={help.input.entityMappingView.selectEntityTypeAttributeHint}
 				floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
 				fullWidth={true}
 				value={selectedEntityTypeAttribute}
@@ -302,7 +302,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 				data-hintPosition="top-middle">
 				{content}
 				<FlatButton
-					label={config.descriptions.addMapping}
+					label={help.button.addMapping}
 					onTouchTap={this.handleAddNewMappingCondition}
 					icon={<IconAdd/>}/>
 			</div>);
@@ -317,7 +317,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 						data-hintPosition="middle-middle"
 						value={this.state.targetStatus}
 						onChange={this.handleTargetStatusChange}
-						floatingLabelText={config.descriptions.selectTargetStatusHint}
+						floatingLabelText={help.input.entityMappingView.selectTargetStatusHint}
 						floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
 						fullWidth={true}>
 						{config.statuses.map((status, key) => {
@@ -348,7 +348,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 						value={this.state.selectedEventType.value}
 						errorText={this.state.selectedEventType.errorMessage}
 						onChange={this.handleEventTypeChange}
-						floatingLabelText={config.descriptions.selectEventTypeHint}
+						floatingLabelText={help.input.entityMappingView.selectEventTypeHint}
 						floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
 						fullWidth={true}>
 						{CreateEntityMappingView.getMenuItems(initialData.eventTypes)}
@@ -361,7 +361,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 						value={this.state.selectedEntityType.value}
 						errorText={this.state.selectedEntityType.errorMessage}
 						onChange={this.handleEntityTypeChange}
-						floatingLabelText={config.descriptions.selectEntityTypeHint}
+						floatingLabelText={help.input.entityMappingView.selectEntityTypeHint}
 						floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
 						fullWidth={true}>
 						{CreateEntityMappingView.getMenuItems(initialData.entityTypes)}
@@ -375,14 +375,14 @@ class CreateEntityMappingView extends ConnectionComponent {
 		return (
 			<div className={css(AppStyles.textAlignCenter)}>
 				<RaisedButton
-					label={config.descriptions.abort}
+					label={help.descriptions.abort}
 					icon={<IconCancel/>}
 					className={css(AppStyles.marginAllSites, AppStyles.fixMarginRight)}
 					secondary={true}
 					onTouchTap={CreateEntityMappingView.abort}
 				/>
 				<RaisedButton
-					label={config.descriptions.save}
+					label={help.descriptions.save}
 					icon={<IconSave/>}
 					onTouchTap={submitCallback}
 					className={css(AppStyles.marginAllSites)}
@@ -442,7 +442,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		this.oldValuesShouldBeLoaded = true;
 		return (
 			<div>
-				<Header title={config.descriptions.editEntityMappingView}/>
+				<Header title={help.descriptions.editEntityMappingView}/>
 				<div className={AppStyles.elementMarginTop}>
 					{this.renderMappingForm(initialDataLoaded, optionalActions, this.submitUpdatedMapping)}
 				</div>
@@ -459,7 +459,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		}
 		return (
 			<div>
-				<Header title={config.descriptions.createEntityMappingView}/>
+				<Header title={help.descriptions.createEntityMappingView}/>
 				<div className={AppStyles.elementMarginTop}>
 					{this.renderMappingForm(initialDataLoaded, optionalActions, this.submitNewMapping)}
 				</div>

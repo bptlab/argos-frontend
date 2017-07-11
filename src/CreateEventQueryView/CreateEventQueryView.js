@@ -10,6 +10,7 @@ import {css} from "aphrodite";
 import EventTypeInformation from "./EventTypeInformation";
 import EventQueryInputArea from "./EventQueryInputArea";
 import config from "../config/config";
+import help from "../config/help";
 import AppStyles from "../AppStyles";
 import Utils from "../Utils/Utils";
 import LoadingAnimation from "../Utils/LoadingAnimation";
@@ -71,13 +72,13 @@ class CreateEventQueryView extends ConnectionComponent {
 		let validationErrorOccured = false;
 		if(!this.state.queryDescription) {
 			this.setState({
-				descriptionErrorMessage: config.messages.requiredFieldMessage
+				descriptionErrorMessage: help.messages.requiredFieldMessage
 			});
 			validationErrorOccured = true;
 		}
 		if(!this.state.query) {
 			this.setState({
-				queryErrorMessage: config.messages.requiredFieldMessage
+				queryErrorMessage: help.messages.requiredFieldMessage
 			});
 			validationErrorOccured = true;
 		}
@@ -92,7 +93,7 @@ class CreateEventQueryView extends ConnectionComponent {
 				Description: this.state.queryDescription,
 				Query: this.state.query
 			});
-			Notification.addSnackbarNotificationOnReferrer(config.messages.createdQueryMessage,
+			Notification.addSnackbarNotificationOnReferrer(help.messages.createdQueryMessage,
 				Notification.ModeEnum.SUCCESS);
 		}
 		this.latestNotificationShown = false;
@@ -105,7 +106,7 @@ class CreateEventQueryView extends ConnectionComponent {
 				Description: this.state.queryDescription,
 				Query: this.state.query
 			});
-			Notification.addSnackbarNotificationOnReferrer(config.messages.updatedQueryMessage,
+			Notification.addSnackbarNotificationOnReferrer(help.messages.updatedQueryMessage,
 				Notification.ModeEnum.SUCCESS);
 		}
 		this.latestNotificationShown = false;
@@ -132,7 +133,7 @@ class CreateEventQueryView extends ConnectionComponent {
 
 	getAbortButton() {
 		return <RaisedButton
-			label={config.descriptions.abort}
+			label={help.descriptions.abort}
 			icon={<IconCancel/>}
 			className={css(AppStyles.marginAllSites)}
 			secondary={true}
@@ -174,7 +175,7 @@ class CreateEventQueryView extends ConnectionComponent {
 								<div className={css(AppStyles.textAlignCenter)}>
 									{this.getAbortButton()}
 									<RaisedButton
-										label={config.descriptions.save}
+										label={help.descriptions.save}
 										icon={<IconSave/>}
 										className={css(AppStyles.marginAllSites)}
 										primary={true}
@@ -208,7 +209,7 @@ class CreateEventQueryView extends ConnectionComponent {
 		const attributes = this.props.attributes.value;
 		return (
 			<div>
-				<Header title={config.descriptions.createEventQueryView + " " + eventType.Name}/>
+				<Header title={help.descriptions.createEventQueryView + " " + eventType.Name}/>
 				{this.getComponentBody(attributes, this.handleCreateQueryInput, this.submitNewQuery, optionalActions)}
 			</div>
 		);
@@ -246,7 +247,7 @@ class CreateEventQueryView extends ConnectionComponent {
 		const attributes = this.props.attributes.value;
 		return (
 			<div>
-				<Header title={config.descriptions.editEventQueryView + " " + eventType.Name}/>
+				<Header title={help.descriptions.editEventQueryView + " " + eventType.Name}/>
 				{this.getComponentBody(
 					attributes, this.handleEditQueryInput,
 					this.submitUpdatedQuery, optionalActions, this.props.eventQuery.value

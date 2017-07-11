@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import config from './../config/config';
+import help from './../config/help';
 injectTapEventPlugin();
 
 class EventTabs extends Component {
@@ -27,7 +27,7 @@ class EventTabs extends Component {
 		}
 		else {
 			return (
-				<Tab label={config.messages.noEventTypes} />
+				<Tab label={help.messages.noEventTypes} />
 			);
 		}
 	}

@@ -53,12 +53,12 @@ class SettingsView extends ConnectionComponent {
 			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
 				Notification.ModeEnum.ERROR);
 		} else if(optionalActions && optionalActions.fulfilled && optionalActions === this.props.deleteEventTypeResponse) {
-			Notification.addSnackbarNotificationOnSelf(config.messages.deletedEventTypeMessage,
+			Notification.addSnackbarNotificationOnSelf(help.messages.deletedEventTypeMessage,
 				Notification.ModeEnum.SUCCESS);
 		}
 		return (
 			<div>
-				<Header title={config.descriptions.eventTypesView} />
+				<Header title={help.descriptions.eventTypes} />
 				<Container className={css(AppStyles.containerMarginTop)}>
 					<SearchBar onInputChange={this.handleSearchInput} styles={AppStyles.marginBottom}/>
 					{this.props.eventTypes.value.map((eventType) => {

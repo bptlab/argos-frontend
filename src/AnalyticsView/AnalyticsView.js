@@ -9,13 +9,14 @@ import AttributeDistributionDiagram from "./AttributeDistributionDiagram";
 import {Card, CardText, CardTitle} from "material-ui";
 import ConnectionComponent from "../Utils/ConnectionComponent";
 import config from "../config/config";
+import help from "../config/help";
 
 class AnalyticsView extends ConnectionComponent {
 	static renderAttributeDistributionDiagram(key, attributeDistribution, attributeName) {
 		return (
 			<Col key={key} md={6}>
 				<Card>
-					<CardTitle title={config.descriptions.attributeDistributionDiagramName + attributeName}/>
+					<CardTitle title={help.descriptions.attributeDistributionDiagramName + attributeName}/>
 					<CardText>
 						<AttributeDistributionDiagram
 							attributeValues={Object.keys(attributeDistribution)}
@@ -44,13 +45,13 @@ class AnalyticsView extends ConnectionComponent {
 								key, attributeDistribution, information.attributeName));
 					}
 				} else {
-					diagrams.push(<div>{config.messages.missingData}</div>);
+					diagrams.push(<div>{help.messages.missingData}</div>);
 				}
 			}
 		);
 		return (
 			<div>
-				<Header title={config.descriptions.analyticsView}/>
+				<Header title={help.descriptions.analyticsView}/>
 				<Container className={css(AppStyles.containerMarginTop)}>
 					{diagrams}
 				</Container>

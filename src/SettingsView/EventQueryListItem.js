@@ -5,7 +5,6 @@ import IconDelete from 'material-ui/svg-icons/action/delete';
 import Utils from '../Utils/Utils';
 import ConfirmationMessage from './../Utils/ConfirmationMessage.js'
 import {ListItem} from 'material-ui/List';
-import config from './../config/config.js';
 import help from './../config/help.js';
 
 
@@ -27,8 +26,8 @@ class EventQueryListItem extends Component {
 				<ConfirmationMessage 
 					actionToPerform={this.deleteEventQuery}
 					ref={(input) => {this.confirmationMessage = input;}}
-					message={config.messages.deletedQueryMessage}>
-					{config.messages.deleteQueryMessage}
+					message={help.messages.deletedQueryMessage}>
+					{help.messages.deleteQueryMessage}
 				</ConfirmationMessage>
 				<IconButton
 					tooltip={help.button.editEventQuery}
