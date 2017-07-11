@@ -10,12 +10,16 @@ import help from "./../config/help";
 import Header from "../Header";
 import AppStyles from "../AppStyles";
 import { css } from 'aphrodite';
+import LoadingAnimation from "../Utils/LoadingAnimation";
+
+const FILTER_RENDER_TIMEOUT = 700;
 
 class GridView extends ConnectionComponent {
 	constructor() {
 		super();
 		this.state = {
 			filterObject: {},
+			preventRender: false,
 		};
 		this.getChildEntityTypes = this.getChildEntityTypes.bind(this);
 		this.getEntityType = this.getEntityType.bind(this);
@@ -63,7 +67,22 @@ class GridView extends ConnectionComponent {
 	handleFilterChange(filterObject) {
 		this.setState({
 			filterObject: filterObject,
-		});
+		},
+			() => {
+				if (this.inputTimer) {
+					window.clearInterval(this.inputTimer);
+				}
+				const thisBinding = this;
+				this.setState({
+					preventRender: true,
+				});
+				this.inputTimer = window.setTimeout(
+					() => thisBinding.setState({
+						preventRender: false,
+					}),
+					FILTER_RENDER_TIMEOUT);
+			}
+		);
 	}
 
 	render() {
@@ -90,7 +109,8 @@ class GridView extends ConnectionComponent {
 						data-hintPosition="middle-left">
 						<SearchBar onInputChange={this.handleFilterChange}/>
 					</div>
-					{childEntityTypes.map((childEntityType) => {
+					{this.state.preventRender && <LoadingAnimation/>}
+					{!this.state.preventRender && childEntityTypes.map((childEntityType) => {
 						return (
 							<div key={`div-${childEntityType.Id}`}>
 								<h1>{childEntityType.Name}</h1>
