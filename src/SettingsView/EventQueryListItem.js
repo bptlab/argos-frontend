@@ -6,7 +6,7 @@ import Utils from '../Utils/Utils';
 import ConfirmationMessage from './../Utils/ConfirmationMessage.js'
 import {ListItem} from 'material-ui/List';
 import help from './../config/help.js';
-
+import './../App.css';
 
 class EventQueryListItem extends Component {
 	
@@ -32,12 +32,13 @@ class EventQueryListItem extends Component {
 				<IconButton
 					tooltip={help.button.editEventQuery}
 					href={Utils.getLink(`/settings/eventType/${this.props.eventType.Id}/eventQuery/${this.props.query.Id}/edit`)}
-					className="verticalAlignTop">
+					className="queryButton">
 					<IconEdit/>
 				</IconButton>
 				<IconButton
 					tooltip={help.button.deleteEventQuery}
-					onTouchTap={() => {this.confirmationMessage.handleOpen();}}>
+					onTouchTap={() => {this.confirmationMessage.handleOpen();}}
+					className="queryButton">
 					<IconDelete/>
 				</IconButton>
 			</div>
