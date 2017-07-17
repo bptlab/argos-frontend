@@ -12,6 +12,8 @@ import help from "../config/help";
 import Notification from '../Utils/Notification';
 import {Paper} from "material-ui";
 import Utils from '../Utils/Utils.js';
+import AppStyles from "../AppStyles";
+import {css} from "aphrodite";
 
 class CreateEventTypeView extends ConnectionComponent {
 	constructor(props) {
@@ -148,7 +150,7 @@ class CreateEventTypeView extends ConnectionComponent {
 									value={this.state.eventTypeTimestampAttribute}
 									onChange={this.handleChangeEventTypeTimestampAttribute}
 									errorText={this.state.eventTypeTimestampAttributeErrorText}/>
-								<h3 className="subHeadline">{help.descriptions.attributes}:</h3>
+								<h3 className={css(AppStyles.subHeadline)}>{help.descriptions.attributes}:</h3>
 								{this.state.attributes.map((attribute) =>
 									<TextField
 										key={attribute.id}
