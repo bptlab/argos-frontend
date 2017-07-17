@@ -215,6 +215,12 @@ const AppStyles = StyleSheet.create({
 	eventTable: {
 		width: '100%',
 		borderSpacing: '0px',
+	},
+
+	queryButton: {
+		padding: '0px',
+		height: '24px',
+		verticalAlign: 'middle'
 	}
 });
 
