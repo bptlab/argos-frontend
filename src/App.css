@@ -247,7 +247,7 @@
 }
 
 .positionFixedTop {
-	position: fixed;
+	position: fixed !important;
 	top: 0
 }
 
@@ -276,8 +276,11 @@
 .iconSize100 {
 	width: 100px;
 	height: 100px;
-}.queryButton {
+}
+
+.queryButton {
 	padding: 0 !important;
 	height: 24px !important;
 	vertical-align: middle !important;
+	text-align: center;
 }

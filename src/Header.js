@@ -6,12 +6,12 @@ import IconSettings from "material-ui/svg-icons/action/settings";
 import IconArrowBack from "material-ui/svg-icons/navigation/arrow-back";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {css, StyleSheet} from "aphrodite";
-import AppStyles from "./AppStyles";
 import Utils from "./Utils/Utils";
 import Notification from "./Utils/Notification";
 import config from "./config/config";
 import HelpButton from "./Utils/HelpButton";
 import "./Header.css";
+import "./App.css";
 
 class Header extends Component {
 	static lastNotificationTimestamp;
@@ -66,14 +66,14 @@ class Header extends Component {
 			iconElementRight = <div/>;
 		}
 
-		let appBarStyle = css(AppStyles.positionFixedTop);
+		let appBarStyle = "positionFixedTop";
 		if (this.props.status) {
 			const statusColor = StyleSheet.create({
 				color: {
 					borderColor: Utils.getColorForStatus(this.props.status)
 				}
 			});
-			appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color, AppStyles.positionFixedTop);
+			appBarStyle = "headerBorderDetail positionFixedTop" + css(statusColor.color);
 		}
 		const notificationMessage = this.getNotificationMessage();
 
