@@ -28,6 +28,7 @@ class CreateEventQueryView extends ConnectionComponent {
 		};
 		this.isCreateView = typeof this.props.match.params.eventQueryId === 'undefined';
 		this.latestNotificationShown = false;
+		this.queryWasDeclaredInvalid = false;
 		this.handleCreateQueryInput = this.handleCreateQueryInput.bind(this);
 		this.handleEditQueryInput = this.handleEditQueryInput.bind(this);
 		this.isInvalidInput = this.isInvalidInput.bind(this);
@@ -43,6 +44,7 @@ class CreateEventQueryView extends ConnectionComponent {
 			query: event.target.value,
 			queryErrorMessage: ''
 		});
+		this.queryWasDeclaredInvalid = false;
 	}
 
 	// handles query changes in edit view, does a little string manipulation
@@ -59,6 +61,7 @@ class CreateEventQueryView extends ConnectionComponent {
 				query: this.props.eventQuery.value.Query
 			});
 		}
+		this.queryWasDeclaredInvalid = false;
 	}
 
 	handleDescriptionInput(event) {
@@ -82,6 +85,9 @@ class CreateEventQueryView extends ConnectionComponent {
 			});
 			validationErrorOccured = true;
 		}
+		if(this.queryWasDeclaredInvalid) {
+			validationErrorOccured = true;
+		}
 		return validationErrorOccured;
 	}
 
@@ -96,7 +102,9 @@ class CreateEventQueryView extends ConnectionComponent {
 			Notification.addSnackbarNotificationOnReferrer(help.messages.createdQueryMessage,
 				Notification.ModeEnum.SUCCESS);
 		}
-		this.latestNotificationShown = false;
+		if (!this.queryWasDeclaredInvalid) {
+			this.latestNotificationShown = false;
+		}
 	}
 
 	// submit handler for the edit view
@@ -109,7 +117,9 @@ class CreateEventQueryView extends ConnectionComponent {
 			Notification.addSnackbarNotificationOnReferrer(help.messages.updatedQueryMessage,
 				Notification.ModeEnum.SUCCESS);
 		}
-		this.latestNotificationShown = false;
+		if (!this.queryWasDeclaredInvalid) {
+			this.latestNotificationShown = false;
+		}
 	}
 
 	setTargetPage() {
@@ -136,6 +146,7 @@ class CreateEventQueryView extends ConnectionComponent {
 			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
 				Notification.ModeEnum.ERROR);
 			this.latestNotificationShown = true;
+			this.queryWasDeclaredInvalid = true;
 		}
 	}
 
