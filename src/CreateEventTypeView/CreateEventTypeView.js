@@ -135,7 +135,7 @@ class CreateEventTypeView extends ConnectionComponent {
 									data-hintPosition="middle-right"
 									floatingLabelText={help.descriptions.eventTypeName}
 									fullWidth={true}
-									floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
+									floatingLabelStyle={{color: config.colors.text}}
 									value={this.state.eventTypeName}
 									onChange={this.handleChangeEventTypeName}
 									required={true}
@@ -144,7 +144,7 @@ class CreateEventTypeView extends ConnectionComponent {
 									data-hint={help.input.eventTypeView.timestamp}
 									data-hintPosition="middle-right"
 									floatingLabelText={help.descriptions.timestampName}
-									floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
+									floatingLabelStyle={{color: config.colors.text}}
 									fullWidth={true}
 									value={this.state.eventTypeTimestampAttribute}
 									onChange={this.handleChangeEventTypeTimestampAttribute}
@@ -157,7 +157,7 @@ class CreateEventTypeView extends ConnectionComponent {
 										data-hintPosition="middle-right"
 										id={attribute.id}
 										value={attribute.value}
-										floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
+										floatingLabelStyle={{color: config.colors.text}}
 										floatingLabelText={help.descriptions.attributeName}
 										onChange={this.onInputChange.bind(this)}
 										fullWidth={true}/>

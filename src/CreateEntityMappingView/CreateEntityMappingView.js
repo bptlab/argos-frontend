@@ -69,6 +69,8 @@ class CreateEntityMappingView extends ConnectionComponent {
 		};
 	}
 
+	// user must have selected an entity type, an event type and each mapping has to consist of an event type attribute
+	// and an entity type attribute
 	isValidInput() {
 		let isValid = true;
 		if(this.state.selectedEntityType.value === null) {
@@ -241,7 +243,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 	
 	handleMappingConditionDelete(key) {
 		let mappings = this.state.mappings;
-		if (key === 0 && this.state.mappings.length === 1) {
+		if (!key && this.state.mappings.length) {
 			mappings = CreateEntityMappingView.getDefaultMappings();
 		} else {
 			mappings.splice(key, 1);
@@ -273,6 +275,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		window.location = Utils.getParentPageURL(window.location.href, 3);
 	}
 
+	// loads attribute input fields after loading the entity and event type attributes
 	loadAttributeInputFields() {
 		const attributesFetchingIncomplete = super.render(
 			PromiseState.all(this.props.entityTypeAttributes, this.props.eventTypeAttributes));
@@ -357,7 +360,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 				</Col>
 				<Col md={6}>
 					<SelectField
-						data-hint={help.input.entityMappingView.eventTypeSelection}
+						data-hint={help.input.entityMappingView.entityTypeSelection}
 						data-hintPosition="middle-middle"
 						value={this.state.selectedEntityType.value}
 						errorText={this.state.selectedEntityType.errorMessage}

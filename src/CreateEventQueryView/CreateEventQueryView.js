@@ -36,6 +36,8 @@ class CreateEventQueryView extends ConnectionComponent {
 		this.submitNewQuery = this.submitNewQuery.bind(this);
 		this.submitUpdatedQuery = this.submitUpdatedQuery.bind(this);
 		this.getComponentBody = this.getComponentBody.bind(this);
+		this.setTargetPage = this.setTargetPage.bind(this);
+		this.abort = this.abort.bind(this);
 	}
 
 	// handles query changes in create view
@@ -72,23 +74,23 @@ class CreateEventQueryView extends ConnectionComponent {
 	}
 
 	isInvalidInput() {
-		let validationErrorOccured = false;
+		let validationErrorOccurred = false;
 		if(!this.state.queryDescription) {
 			this.setState({
 				descriptionErrorMessage: help.messages.requiredFieldMessage
 			});
-			validationErrorOccured = true;
+			validationErrorOccurred = true;
 		}
 		if(!this.state.query) {
 			this.setState({
 				queryErrorMessage: help.messages.requiredFieldMessage
 			});
-			validationErrorOccured = true;
+			validationErrorOccurred = true;
 		}
 		if(this.queryWasDeclaredInvalid) {
-			validationErrorOccured = true;
+			validationErrorOccurred = true;
 		}
-		return validationErrorOccured;
+		return validationErrorOccurred;
 	}
 
 	// submit handler for the create view
