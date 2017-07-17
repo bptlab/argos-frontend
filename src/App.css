@@ -106,3 +106,9 @@
 .showOnHover:hover {
 	opacity: 1;
 }
+
+.queryButton {
+	padding: 0 !important;
+	height: 24px !important;
+	vertical-align: middle !important;
+}
