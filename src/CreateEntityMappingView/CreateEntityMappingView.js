@@ -11,7 +11,6 @@ import Header from './../Header';
 import Notification from './../Utils/Notification';
 import help from './../config/help';
 import config from "../config/config";
-import AppStyles from "../AppStyles";
 import Utils from '../Utils/Utils.js';
 
 class CreateEntityMappingView extends ConnectionComponent {
@@ -446,7 +445,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		return (
 			<div>
 				<Header title={help.descriptions.editEntityMappingView}/>
-				<div className={AppStyles.elementMarginTop}>
+				<div className="elementMarginTop">
 					{this.renderMappingForm(initialDataLoaded, optionalActions, this.submitUpdatedMapping)}
 				</div>
 			</div>
