@@ -237,7 +237,7 @@
 }
 
 .colorWhite {
-	color: white
+	color: white !important;
 }
 
 .floatingActionButton {
