@@ -14,8 +14,6 @@ class CardGrid extends ConnectionComponent {
 		this.isCoveredByFilter = this.isCoveredByFilter.bind(this);
 	}
 
-
-
 	isCoveredByFilter(childEntity) {
 		return this.testFilter(childEntity, this.props.filterObject);
 	}

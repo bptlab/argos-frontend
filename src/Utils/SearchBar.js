@@ -5,7 +5,7 @@ import ActionDelete from "material-ui/svg-icons/action/delete";
 import config from "./../config/config";
 import help from "./../config/help";
 import {css} from "aphrodite";
-import AppStyles from "./../AppStyles";
+import "./../App.css";
 
 /**
  * @fileOverview
@@ -204,7 +204,7 @@ class SearchBar extends Component {
 	getDeleteButton() {
 		const buttonIsDisabled = this.state.filterValue === "" && this.state.filterColumn === null;
 		return (<IconButton
-			className={css(AppStyles.pAbsolute, AppStyles.r0)}
+			className="pAbsolute r0"
 			onTouchTap={this.resetFilter}
 			tooltip={help.button.deleteFilter}
 			tooltipPosition="bottom-left"
@@ -215,7 +215,7 @@ class SearchBar extends Component {
 
 	render() {
 		return (
-			<div className={css(this.props.styles, AppStyles.dFlex, AppStyles.alignItemsFlexEnd, AppStyles.w100, AppStyles.pRelative)}
+			<div className={css(this.props.styles) + "dFlex alignItemsFlexEnd w100pRelative"}
 				ref={(input) => {this.parentWrapper = input;}}>
 				<AutoComplete
 					hintText={this.getHintText()}

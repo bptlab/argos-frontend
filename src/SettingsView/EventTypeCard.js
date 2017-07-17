@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card, CardHeader, CardText } from 'material-ui/Card';
 import {List, ListItem} from 'material-ui/List';
-import {Tabs, Tab} from 'material-ui/Tabs'
+import {Tabs, Tab} from 'material-ui/Tabs';
 import EventQueryListItem from  './EventQueryListItem.js';
 import EntityMappingListItem from  './EntityMappingListItem.js';
 import config from './../config/config.js';
@@ -13,11 +13,10 @@ import IconDelete from 'material-ui/svg-icons/action/delete';
 import IconAdd from "material-ui/svg-icons/content/add";
 import ConfirmationMessage from './../Utils/ConfirmationMessage.js';
 import Notification from './../Utils/Notification';
-import Divider from 'material-ui/Divider'
-import FloatingActionButton from 'material-ui/FloatingActionButton'
-import Utils from './../Utils/Utils'
-import {css} from "aphrodite";
-import AppStyles from "./../AppStyles";
+import Divider from 'material-ui/Divider';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import Utils from './../Utils/Utils';
+import "./../App.css";
 import "./EntityMappingListItem.css";
 
 class EventTypeCard extends ConnectionComponent {
@@ -65,7 +64,7 @@ class EventTypeCard extends ConnectionComponent {
 				key="delete-button"
 				onTouchTap={() => {
 					this.confirmationMessage.handleOpen();}}
-				className={css(AppStyles.marginRightBig)}>
+				className="marginRightBig">
 				<IconDelete/>
 			</IconButton>];
 	}
@@ -110,7 +109,7 @@ class EventTypeCard extends ConnectionComponent {
 				</List>
 				<FloatingActionButton
 					backgroundColor={config.colors.primaryDark}
-					className={css(AppStyles.floatRight)}
+					className="floatRight"
 					href={Utils.getLink(`settings/eventType/${this.props.eventType.Id}/eventQuery/create`)}
 					children={<IconAdd/>}
 					title={help.button.createEventQuery}
@@ -125,7 +124,7 @@ class EventTypeCard extends ConnectionComponent {
 				label={help.descriptions.entityMappings}
 			    data-hint={help.display.settingsView.entityMappings}
 			    data-hintPosition="top-middle">
-				<div className={css(AppStyles.autoOverFlow)}>
+				<div className="autoOverFlow">
 					<List>
 						{entityMappings.length === 0 &&
 						<div className="mapping-headline"> {help.messages.noEntityMappings} </div>}
@@ -150,7 +149,7 @@ class EventTypeCard extends ConnectionComponent {
 					</List>
 					<FloatingActionButton
 						backgroundColor={config.colors.primaryDark}
-						className={css(AppStyles.floatRight, AppStyles.marginBottomSmall)}
+						className="floatRight marginBottomSmall"
 						href={Utils.getLink('settings/entityMapping/' + this.props.eventType.Id + '/create')}
 						children={<IconAdd/>}
 						title={help.button.createEntityMapping}
@@ -189,14 +188,13 @@ class EventTypeCard extends ConnectionComponent {
 						actAsExpander={true}
 						showExpandableButton={true}
 						children={this.getEventTypeHeaderButtons()}
-						className={css(AppStyles.dFlex, AppStyles.flexDirectionRow, AppStyles.justifyContentSpace)}/>
+						className="dFlex flexDirectionRow justifyContentSpace"/>
 					<CardText
 						expandable={true}>
 						<Tabs>
 							{this.getAttributesTab(attributes)}
 							{this.getEventQueriesTab(queries)}
 							{this.getEntityMappingsTab(entityMappings, attributes)}
-
 						</Tabs>
 					</CardText>
 				</Card>

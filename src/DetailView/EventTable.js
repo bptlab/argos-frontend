@@ -59,8 +59,8 @@ class EventTable extends Component {
 
 	render() {
 		return (
-			<div className={css(AppStyles.tableWrapper)}>
-			<table className={css(AppStyles.eventTable)}>
+			<div className="tableWrapper">
+			<table className="eventTable">
 				{this.composeTableHeader(this.props.eventTypeAttributes)}
 				{this.composeTableBody(this.props.events)}
 			</table>

@@ -208,7 +208,7 @@
 }
 
 .marginRightBig {
-	margin-right: 20px
+	margin-right: 20px !important;
 }
 
 .marginBottom {
@@ -272,7 +272,11 @@
 	width: 100%;
 	border-spacing: 0
 }
-.queryButton {
+
+.iconSize100 {
+	width: 100px;
+	height: 100px;
+}.queryButton {
 	padding: 0 !important;
 	height: 24px !important;
 	vertical-align: middle !important;

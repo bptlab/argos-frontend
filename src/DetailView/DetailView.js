@@ -5,7 +5,6 @@ import ConnectionComponent from "./../Utils/ConnectionComponent";
 import EntityInformation from "../Utils/EntityInformation";
 import EventDiagram from "./EventDiagram";
 import EventTable from "./EventTable";
-import AppStyles from "./../AppStyles";
 import Header from "../Header";
 import EventTabs from "./EventTabs";
 import config from "./../config/config.js";
@@ -14,9 +13,9 @@ import FilterBar from "./../Utils/FilterBar";
 import Utils from "./../Utils/Utils";
 import {Toggle} from "material-ui";
 import LoadingAnimation from "../Utils/LoadingAnimation";
-import { css } from 'aphrodite';
 import "./DetailView.css";
 import "./../App.css";
+import AppStyles from "../AppStyles";
 
 const FILTER_RENDER_TIMEOUT = 700;
 
@@ -257,7 +256,7 @@ class DetailView extends ConnectionComponent {
 				<Header
 					title={entity.Name}
 					status={entity.Status}/>
-				<Container className={css(AppStyles.containerMarginTop)}>
+				<Container className="containerMarginTop">
 					<div className="dFlex elementMarginTop">
 						<Toggle
 							data-hint={help.input.detailView.toggleChildrenEventsHelp}
@@ -288,7 +287,7 @@ class DetailView extends ConnectionComponent {
 						}}/>
 					{this.getEventTable()}
 					{moreEventsAvailable && 
-						<div style={AppStyles.contentBox} className="textAlignCenter contentBox">
+						<div className="textAlignCenter contentBox">
 							{this.state.eventChunkLoading ? 
 								<LoadingAnimation 
 									size={20} 
