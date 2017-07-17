@@ -22,7 +22,7 @@ class EventQueryListItem extends Component {
 
 	eventQueryActionButtons () {
 		return (
-			<div>
+			<div style={{width: 'auto'}}>
 				<ConfirmationMessage 
 					actionToPerform={this.deleteEventQuery}
 					ref={(input) => {this.confirmationMessage = input;}}
@@ -49,7 +49,7 @@ class EventQueryListItem extends Component {
 			<ListItem
 				primaryText={this.props.query.Description}
 				secondaryText={this.props.query.Query}
-				rightIconButton={this.eventQueryActionButtons()}
+				rightIcon={this.eventQueryActionButtons()}
 			/>
 		);
 	}
