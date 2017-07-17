@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Snackbar from 'material-ui/Snackbar';
 import IconError from "material-ui/svg-icons/alert/error-outline";
 import IconSuccess from "material-ui/svg-icons/navigation/check";
-import {css} from 'aphrodite';
-import AppStyles from "./../AppStyles";
 import config from "./../config/config"
 
 class Notification extends Component {
