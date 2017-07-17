@@ -2,9 +2,8 @@ import Header from "../Header";
 import React from "react";
 import Utils from "../Utils/Utils";
 import {Col, Container} from "react-grid-system";
-import {css} from 'aphrodite';
 import queryString from "query-string";
-import AppStyles from "../AppStyles";
+import "./../App.css";
 import AttributeDistributionDiagram from "./AttributeDistributionDiagram";
 import {Card, CardText, CardTitle} from "material-ui";
 import ConnectionComponent from "../Utils/ConnectionComponent";
@@ -52,7 +51,7 @@ class AnalyticsView extends ConnectionComponent {
 		return (
 			<div>
 				<Header title={help.descriptions.analyticsView}/>
-				<Container className={css(AppStyles.containerMarginTop)}>
+				<Container className="containerMarginTop">
 					{diagrams}
 				</Container>
 			</div>

@@ -8,7 +8,6 @@ import IconCancel from "material-ui/svg-icons/navigation/cancel";
 import IconAdd from "material-ui/svg-icons/content/add";
 import IconDelete from "material-ui/svg-icons/action/delete";
 import Header from './../Header';
-import {css} from 'aphrodite';
 import Notification from './../Utils/Notification';
 import help from './../config/help';
 import config from "../config/config";
@@ -353,7 +352,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 						errorText={this.state.selectedEventType.errorMessage}
 						onChange={this.handleEventTypeChange}
 						floatingLabelText={help.input.entityMappingView.selectEventTypeHint}
-						floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
+						floatingLabelStyle={{color: config.colors.text}}
 						fullWidth={true}>
 						{CreateEntityMappingView.getMenuItems(initialData.eventTypes)}
 					</SelectField>
@@ -366,7 +365,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 						errorText={this.state.selectedEntityType.errorMessage}
 						onChange={this.handleEntityTypeChange}
 						floatingLabelText={help.input.entityMappingView.selectEntityTypeHint}
-						floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
+						floatingLabelStyle={{color: config.colors.text}}
 						fullWidth={true}>
 						{CreateEntityMappingView.getMenuItems(initialData.entityTypes)}
 					</SelectField>
@@ -377,11 +376,11 @@ class CreateEntityMappingView extends ConnectionComponent {
 
 	static renderButtons(submitCallback) {
 		return (
-			<div className={css(AppStyles.textAlignCenter)}>
+			<div className="textAlignCenter">
 				<RaisedButton
 					label={help.descriptions.abort}
 					icon={<IconCancel/>}
-					className={css(AppStyles.marginAllSites, AppStyles.fixMarginRight)}
+					className="marginAllSites fixMarginRight"
 					secondary={true}
 					onTouchTap={CreateEntityMappingView.abort}
 				/>
@@ -389,7 +388,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 					label={help.descriptions.save}
 					icon={<IconSave/>}
 					onTouchTap={submitCallback}
-					className={css(AppStyles.marginAllSites)}
+					className="marginAllSites"
 					primary={true}
 				/>
 			</div>
@@ -402,8 +401,8 @@ class CreateEntityMappingView extends ConnectionComponent {
 				Notification.ModeEnum.ERROR);
 		}
 		return (
-			<Container className={css(AppStyles.containerMarginTop)}>
-				<Paper className={css(AppStyles.paperPadding)} zDepth={2}>
+			<Container className="containerMarginTop">
+				<Paper className="paperPadding" zDepth={2}>
 				<div>
 					{this.renderSelectTargetStatus()}
 					{this.renderSelectTypes(initialData)}
@@ -464,7 +463,7 @@ class CreateEntityMappingView extends ConnectionComponent {
 		return (
 			<div>
 				<Header title={help.descriptions.createEntityMappingView}/>
-				<div className={AppStyles.elementMarginTop}>
+				<div className="elementMarginTop">
 					{this.renderMappingForm(initialDataLoaded, optionalActions, this.submitNewMapping)}
 				</div>
 			</div>

@@ -6,8 +6,7 @@ import RaisedButton from "material-ui/RaisedButton";
 import IconSave from "material-ui/svg-icons/content/save";
 import IconCancel from "material-ui/svg-icons/navigation/cancel";
 import Header from "./../Header";
-import {css} from "aphrodite";
-import AppStyles from "./../AppStyles";
+import "./../App.css";
 import config from '../config/config.js';
 import help from "../config/help";
 import Notification from '../Utils/Notification';
@@ -126,10 +125,10 @@ class CreateEventTypeView extends ConnectionComponent {
 		return (
 			<div>
 				<Header title={help.descriptions.createEventTypeView} />
-				<Container className={css(AppStyles.containerMarginTop)}>
-					<Paper className={css(AppStyles.paperPadding)} zDepth={2}>
+				<Container className="containerMarginTop">
+					<Paper className="paperPadding" zDepth={2}>
 						<form>
-							<div className={css(AppStyles.elementMarginTop)}>
+							<div className="elementMarginTop">
 								<TextField
 									data-hint={help.input.eventTypeView.name}
 									data-hintPosition="middle-right"
@@ -149,7 +148,7 @@ class CreateEventTypeView extends ConnectionComponent {
 									value={this.state.eventTypeTimestampAttribute}
 									onChange={this.handleChangeEventTypeTimestampAttribute}
 									errorText={this.state.eventTypeTimestampAttributeErrorText}/>
-								<h3 className={css(AppStyles.subHeadline)}>{help.descriptions.attributes}:</h3>
+								<h3 className="subHeadline">{help.descriptions.attributes}:</h3>
 								{this.state.attributes.map((attribute) =>
 									<TextField
 										key={attribute.id}
@@ -164,18 +163,18 @@ class CreateEventTypeView extends ConnectionComponent {
 								)}
 							</div>
 						</form>
-						<div className={css(AppStyles.textAlignCenter)}>
+						<div className="textAlignCenter">
 							<RaisedButton
 								label={help.descriptions.abort}
 								icon={<IconCancel/>}
-								className={css(AppStyles.marginAllSites)}
+								className="marginAllSites"
 								onClick={this.abort}
 								secondary={true}/>
 							<RaisedButton
 								label={help.descriptions.save}
 								icon={<IconSave/>}
 								onClick={this.submitForm}
-								className={css(AppStyles.marginAllSites)}
+								className="marginAllSites"
 								primary={true}/>
 						</div>
 					</Paper>

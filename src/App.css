@@ -55,7 +55,7 @@
 }
 
 .rotate90 {
-	transform: rotate(90);
+	transform: rotate(90deg);
 }
 
 .w50 {
@@ -107,6 +107,171 @@
 	opacity: 1;
 }
 
+.containerMarginTop {
+	margin-top: 64px
+}
+
+.pAbsolute {
+	position: absolute
+}
+
+.pRelative {
+	position: relative
+}
+
+.dFlex {
+	display: flex;
+}
+
+.flexDirectionColumn {
+	flex-direction: column
+}
+
+.flexDirectionRow {
+	flex-direction: row;
+}
+
+.justifyContentCenter {
+	justify-content: center;
+}
+
+.justifyContentSpace {
+	justify-content: space-between;
+}
+
+.flexBasis100 {
+	flex-basis: 100%;
+}
+
+.flexGrow1 {
+	flex-grow: 1;
+}
+
+.flexWrap {
+	flex-wrap: wrap;
+}
+
+.floatRight {
+	float: right
+}
+
+.autoOverFlow {
+	overflow: auto
+}
+
+.r0 {
+	right: 0
+}
+
+.alignItemsCenter {
+	align-items: center
+}
+
+.alignItemsFlexEnd {
+	align-items: flex-end
+}
+
+.textAlignCenter {
+	text-align: center
+}
+
+.rotate90 {
+	transform: rotate(90deg)
+}
+
+.w50 {
+	width: 50%
+}
+
+.w100 {
+	width: 100%
+}
+
+.lineHeight25 {
+	line-height: 25px
+}
+
+.elementMarginTop {
+	margin-top: 30px
+}
+
+.marginAllSites {
+	margin: 30px
+}
+
+.noMargin {
+	margin: 0
+}
+
+.marginRight {
+	margin-right: 5px
+}
+
+.marginRightBig {
+	margin-right: 20px
+}
+
+.marginBottom {
+	margin-bottom: 30px
+}
+
+.marginBottomSmall {
+	margin-bottom: 5px
+}
+
+.headerBorderDetail {
+	border-bottom: 10px solid
+}
+
+.capitalize {
+	text-transform: capitalize;
+	font-weight: bold;
+}
+
+.capitalizeFirstLetter:first-letter {
+	text-transform: capitalize
+}
+
+.fontSize24 {
+	font-size: 24px
+}
+
+.colorWhite {
+	color: white
+}
+
+.floatingActionButton {
+	position: fixed;
+	right: 30px;
+	bottom: 30px
+}
+
+.positionFixedTop {
+	position: fixed;
+	top: 0
+}
+
+.paperPadding {
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-top: 84px;
+	padding-top: 20px;
+}
+
+.fixMarginRight {
+	margin-left: 25px !important
+}
+
+.tableWrapper {
+	width: 100%;
+	overflow: auto;
+	margin-bottom: 20px;
+}
+
+.eventTable {
+	width: 100%;
+	border-spacing: 0
+}
 .queryButton {
 	padding: 0 !important;
 	height: 24px !important;
