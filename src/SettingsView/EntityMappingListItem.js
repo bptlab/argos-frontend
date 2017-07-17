@@ -105,7 +105,9 @@ class EntityMappingListItem extends ConnectionComponent {
 									key={key + "EntityName"}>
 									{this.getEntityTypeAttributeName(condition.EntityTypeAttributeId)}
 								</TableRowColumn>
-								<TableRowColumn className="smallWidth" key={key + "Buttons"}></TableRowColumn>
+								<TableRowColumn
+									className="smallWidth"
+									key={key + "Buttons"} />
 							</TableRow>
 						);
 					})}

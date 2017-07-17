@@ -256,6 +256,7 @@ class Utils {
 	/**
 	 * Returns URL of parent page for a given page url.
 	 * @param url
+	 * @param numberOfSteps
 	 */
 	static getParentPageURL(url, numberOfSteps = 1) {
 		const urlSegments = url.split('/');
