@@ -73,7 +73,7 @@ class Header extends Component {
 					borderColor: Utils.getColorForStatus(this.props.status)
 				}
 			});
-			appBarStyle = "headerBorderDetail positionFixedTop" + css(statusColor.color);
+			appBarStyle = "headerBorderDetail positionFixedTop " + css(statusColor.color);
 		}
 		const notificationMessage = this.getNotificationMessage();
 
