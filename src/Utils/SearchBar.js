@@ -5,7 +5,7 @@ import ActionDelete from "material-ui/svg-icons/action/delete";
 import config from "./../config/config";
 import help from "./../config/help";
 import {css} from "aphrodite";
-import AppStyles from "./../AppStyles";
+import "./../App.css";
 
 /**
  * @fileOverview
@@ -61,9 +61,11 @@ class SearchBar extends Component {
 		this.handleUpdateInput = this.handleUpdateInput.bind(this);
 		this.handleNewRequest = this.handleNewRequest.bind(this);
 		this.resetFilter = this.resetFilter.bind(this);
+		this.itemToFocus = false;
 	}
 
 	handleUpdateInput(searchText) {
+		window.componentToFocus = this;
 		if (this.useColumnLogic) {
 			this.splitSearchText(searchText);
 		}
@@ -71,6 +73,13 @@ class SearchBar extends Component {
 			this.setState({filterValue: searchText},
 				() => this.props.onInputChange(this.getFilterObject())
 			);
+		}
+	}
+	
+	componentDidUpdate() {
+		if(window.componentToFocus === this) {
+			this.parentWrapper.querySelector('.auto-focus-component').click();
+			this.parentWrapper.querySelector('.auto-focus-component input').focus();
 		}
 	}
 
@@ -172,9 +181,9 @@ class SearchBar extends Component {
 	 */
 	getFloatingLabelText() {
 		if (this.state.filterColumn) {
-			return "Search for " + this.state.filterColumn;
+			return help.input.search.for + ": " + this.state.filterColumn;
 		}
-		return "Search";
+		return help.input.search.hint;
 	}
 
 	/**
@@ -184,18 +193,18 @@ class SearchBar extends Component {
 	 */
 	getHintText() {
 		if (this.state.filterColumn) {
-			return "Search value";
+			return help.input.search.value;
 		}
 		if (this.autoCompleteSource.length > 0) {
-			return "ColumnName: Search value";
+			return help.input.search.columnNameSearch;
 		}
-		return "Search";
+		return help.input.search.hint;
 	}
 
 	getDeleteButton() {
 		const buttonIsDisabled = this.state.filterValue === "" && this.state.filterColumn === null;
 		return (<IconButton
-			className={css(AppStyles.pAbsolute, AppStyles.r0)}
+			className="pAbsolute r0"
 			onTouchTap={this.resetFilter}
 			tooltip={help.button.deleteFilter}
 			tooltipPosition="bottom-left"
@@ -206,7 +215,8 @@ class SearchBar extends Component {
 
 	render() {
 		return (
-			<div className={css(this.props.styles, AppStyles.dFlex, AppStyles.alignItemsFlexEnd, AppStyles.w100, AppStyles.pRelative)}>
+			<div className={css(this.props.styles) + "dFlex alignItemsFlexEnd w100pRelative"}
+				ref={(input) => {this.parentWrapper = input;}}>
 				<AutoComplete
 					hintText={this.getHintText()}
 					floatingLabelText={this.getFloatingLabelText()}
@@ -217,6 +227,7 @@ class SearchBar extends Component {
 					filter={AutoComplete.caseInsensitiveFilter}
 					openOnFocus={true}
 					fullWidth={true}
+					className="auto-focus-component"
 				/>
 				{this.getDeleteButton()}
 

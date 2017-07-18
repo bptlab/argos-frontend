@@ -6,12 +6,12 @@ import IconSettings from "material-ui/svg-icons/action/settings";
 import IconArrowBack from "material-ui/svg-icons/navigation/arrow-back";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import {css, StyleSheet} from "aphrodite";
-import AppStyles from "./AppStyles";
 import Utils from "./Utils/Utils";
 import Notification from "./Utils/Notification";
 import config from "./config/config";
 import HelpButton from "./Utils/HelpButton";
 import "./Header.css";
+import "./App.css";
 
 class Header extends Component {
 	static lastNotificationTimestamp;
@@ -66,14 +66,14 @@ class Header extends Component {
 			iconElementRight = <div/>;
 		}
 
-		let appBarStyle = css(AppStyles.positionFixedTop);
+		let appBarStyle = "positionFixedTop";
 		if (this.props.status) {
 			const statusColor = StyleSheet.create({
 				color: {
 					borderColor: Utils.getColorForStatus(this.props.status)
 				}
 			});
-			appBarStyle = css(AppStyles.headerBorderDetail, statusColor.color, AppStyles.positionFixedTop);
+			appBarStyle = "headerBorderDetail positionFixedTop " + css(statusColor.color);
 		}
 		const notificationMessage = this.getNotificationMessage();
 
@@ -101,13 +101,14 @@ class Header extends Component {
 					<Route exact path="/" component={() => this.composeAppBar("grid")}/>
 					<Route path="/grid/:entityId" component={() => this.composeAppBar("grid")}/>
 					<Route path="/details/:parentId/:entityId" component={() => this.composeAppBar("details")}/>
+					<Route path="/analytics" component={() => this.composeAppBar("settings")} />
 					<Route exact path="/settings" component={() => this.composeAppBar("settings")}/>
 					<Route path="/settings/eventType/create" component={() => this.composeAppBar("settings")}/>
 					<Route path="/settings/eventType/:eventTypeId/eventQuery/create"
 					       component={() => this.composeAppBar("settings")}/>
 					<Route path="/settings/eventType/:eventTypeId/eventQuery/:eventQueryId/edit"
 					       component={() => this.composeAppBar("settings")}/>
-					<Route path="/settings/entityMapping/create" component={() => this.composeAppBar("settings")}/>
+					<Route path="/settings/entityMapping/:eventTypeId/create" component={() => this.composeAppBar("settings")}/>
 					<Route path="/settings/entityMapping/:entityMappingId"
 					       component={() => this.composeAppBar("settings")}/>
 					<Route path="*" component={() => this.composeAppBar("grid")}/>

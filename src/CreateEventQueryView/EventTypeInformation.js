@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import {List, ListItem} from "material-ui/List";
-import {css} from "aphrodite";
 import {Card, CardText, CardTitle} from "material-ui";
-import AppStyles from "../AppStyles";
+import "./../App.css";
 import FilterListIcon from 'material-ui/svg-icons/device/widgets';
+import help from "../config/help";
 
 class EventTypeInformation extends Component {
     static generateListItem(attribute, key) {
@@ -17,8 +17,8 @@ class EventTypeInformation extends Component {
     render() {
         return (
             <Card>
-                <CardTitle className={css(AppStyles.textAlignCenter, AppStyles.fontSize24)}>
-                    Available Attributes
+                <CardTitle className="textAlignCenter fontSize24">
+                    {help.descriptions.availableAttributes}
                 </CardTitle>
                 <CardText>
                     <List>

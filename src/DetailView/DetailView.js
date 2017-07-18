@@ -5,7 +5,6 @@ import ConnectionComponent from "./../Utils/ConnectionComponent";
 import EntityInformation from "../Utils/EntityInformation";
 import EventDiagram from "./EventDiagram";
 import EventTable from "./EventTable";
-import AppStyles from "./../AppStyles";
 import Header from "../Header";
 import EventTabs from "./EventTabs";
 import config from "./../config/config.js";
@@ -14,8 +13,11 @@ import FilterBar from "./../Utils/FilterBar";
 import Utils from "./../Utils/Utils";
 import {Toggle} from "material-ui";
 import LoadingAnimation from "../Utils/LoadingAnimation";
-import { css } from 'aphrodite';
 import "./DetailView.css";
+import "./../App.css";
+import AppStyles from "../AppStyles";
+
+const FILTER_RENDER_TIMEOUT = 700;
 
 class DetailView extends ConnectionComponent {
 
@@ -26,6 +28,7 @@ class DetailView extends ConnectionComponent {
 			currentEventType: null,
 			filter: [],
 			eventChunkLoading: false,
+			preventRender: false
 		};
 		this.includeEventChildren = false;
 		this.events = [];
@@ -138,11 +141,28 @@ class DetailView extends ConnectionComponent {
 			{
 				filter: filter,
 			},
-			() => this.handleEventChange(this.events)
+			() => {
+				if (this.inputTimer) {
+					window.clearInterval(this.inputTimer);
+				}
+				const thisBinding = this;
+				this.setState({
+					preventRender: true
+				});
+				this.inputTimer = window.setTimeout(
+					() => thisBinding.setState({
+						preventRender: false,
+					}),
+					FILTER_RENDER_TIMEOUT);
+				this.handleEventChange(this.events);
+			}
 		);
 	}
 
 	getEventTable() {
+		if (this.state.preventRender) {
+			return <LoadingAnimation/>;
+		}
 		if (!this.props.eventTypeAttributes || !this.props.events) {
 			return "";
 		}
@@ -153,9 +173,13 @@ class DetailView extends ConnectionComponent {
 		}
 		else if (this.props.eventTypeAttributes.value && this.props.events.value) {
 			return (
-				<EventTable
-					events={this.state.filteredEvents}
-					eventTypeAttributes={this.props.eventTypeAttributes.value}/>
+				<div>
+					<EventTable
+						currentEventType={this.state.currentEventType}
+						entityId={this.props.entity.value.Id}
+						events={this.state.filteredEvents}
+						eventTypeAttributes={this.props.eventTypeAttributes.value}/>
+				</div>
 			);
 		}
 	}
@@ -175,13 +199,21 @@ class DetailView extends ConnectionComponent {
 	}
 
 	getEventDiagram() {
+		if (this.state.preventRender) {
+			return (
+				<div className="h400 w50 dFlex justifyContentCenter flexDirectionColumn alignContentCenter">
+					<LoadingAnimation/>
+				</div>
+			);
+		}
 		if (this.state.filteredEvents.length < 1) {
-			return <div />;
+			return <div className="h400 w50"/>;
 		}
 		const eventTypeAttributesPending = this.eventTypeAttributesPending();
 		if (eventTypeAttributesPending) {
 			return eventTypeAttributesPending;
 		}
+
 		return (
 			<EventDiagram
 				events={this.state.filteredEvents}
@@ -199,7 +231,7 @@ class DetailView extends ConnectionComponent {
 		}
 		return (
 			<div
-				data-hint={help.input.eventTableFilterBar}
+				data-hint={help.input.detailView.eventTableFilterBar}
 				data-hintPosition="middle-left"
 			>
 			<FilterBar
@@ -224,12 +256,12 @@ class DetailView extends ConnectionComponent {
 				<Header
 					title={entity.Name}
 					status={entity.Status}/>
-				<Container className={css(AppStyles.containerMarginTop)}>
+				<Container className="containerMarginTop">
 					<div className="dFlex elementMarginTop">
 						<Toggle
-							data-hint={help.input.toggleChildrenEvents}
+							data-hint={help.input.detailView.toggleChildrenEventsHelp}
 							data-hintPosition="middle-left"
-							label={config.descriptions.toggleChildrenEvents}
+							label={help.input.detailView.toggleChildrenEvents}
 							defaultToggled={false}
 							thumbStyle={{
 								backgroundColor: config.colors.toggleOff,
@@ -255,12 +287,12 @@ class DetailView extends ConnectionComponent {
 						}}/>
 					{this.getEventTable()}
 					{moreEventsAvailable && 
-						<div style={AppStyles.contentBox} className="textAlignCenter contentBox">
+						<div className="textAlignCenter contentBox">
 							{this.state.eventChunkLoading ? 
 								<LoadingAnimation 
 									size={20} 
 									thickness={5} /> :
-								<span>Scroll down to view more Events.</span>}
+								<span>{help.display.scrollDown}</span>}
 						</div>}
 				</Container>
 			</div>

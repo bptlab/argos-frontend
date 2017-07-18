@@ -1,12 +1,13 @@
 {
   "name": "argos-frontend",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "dependencies": {
     "aphrodite": "^1.2.0",
     "envsub": "^3.1.0",
     "intro.js": "^2.5.0",
     "material-ui": "^0.17.3",
     "plotly.js": "^1.27.0",
+    "query-string": "^4.3.4",
     "react": "^15.5.3",
     "react-dom": "^15.5.3",
     "react-grid-system": "^2.9.0",

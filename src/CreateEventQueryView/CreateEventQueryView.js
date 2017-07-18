@@ -6,14 +6,14 @@ import {Paper, RaisedButton} from "material-ui";
 import IconSave from "material-ui/svg-icons/content/save";
 import IconCancel from "material-ui/svg-icons/navigation/cancel";
 import Header from "./../Header";
-import {css} from "aphrodite";
 import EventTypeInformation from "./EventTypeInformation";
 import EventQueryInputArea from "./EventQueryInputArea";
 import config from "../config/config";
-import AppStyles from "../AppStyles";
+import help from "../config/help";
 import Utils from "../Utils/Utils";
 import LoadingAnimation from "../Utils/LoadingAnimation";
 import Notification from "../Utils/Notification";
+import "./../App.css";
 
 class CreateEventQueryView extends ConnectionComponent {
 
@@ -27,6 +27,7 @@ class CreateEventQueryView extends ConnectionComponent {
 		};
 		this.isCreateView = typeof this.props.match.params.eventQueryId === 'undefined';
 		this.latestNotificationShown = false;
+		this.queryWasDeclaredInvalid = false;
 		this.handleCreateQueryInput = this.handleCreateQueryInput.bind(this);
 		this.handleEditQueryInput = this.handleEditQueryInput.bind(this);
 		this.isInvalidInput = this.isInvalidInput.bind(this);
@@ -34,6 +35,8 @@ class CreateEventQueryView extends ConnectionComponent {
 		this.submitNewQuery = this.submitNewQuery.bind(this);
 		this.submitUpdatedQuery = this.submitUpdatedQuery.bind(this);
 		this.getComponentBody = this.getComponentBody.bind(this);
+		this.setTargetPage = this.setTargetPage.bind(this);
+		this.abort = this.abort.bind(this);
 	}
 
 	// handles query changes in create view
@@ -42,6 +45,7 @@ class CreateEventQueryView extends ConnectionComponent {
 			query: event.target.value,
 			queryErrorMessage: ''
 		});
+		this.queryWasDeclaredInvalid = false;
 	}
 
 	// handles query changes in edit view, does a little string manipulation
@@ -58,6 +62,7 @@ class CreateEventQueryView extends ConnectionComponent {
 				query: this.props.eventQuery.value.Query
 			});
 		}
+		this.queryWasDeclaredInvalid = false;
 	}
 
 	handleDescriptionInput(event) {
@@ -68,20 +73,23 @@ class CreateEventQueryView extends ConnectionComponent {
 	}
 
 	isInvalidInput() {
-		let validationErrorOccured = false;
+		let validationErrorOccurred = false;
 		if(!this.state.queryDescription) {
 			this.setState({
-				descriptionErrorMessage: config.messages.requiredFieldMessage
+				descriptionErrorMessage: help.messages.requiredFieldMessage
 			});
-			validationErrorOccured = true;
+			validationErrorOccurred = true;
 		}
 		if(!this.state.query) {
 			this.setState({
-				queryErrorMessage: config.messages.requiredFieldMessage
+				queryErrorMessage: help.messages.requiredFieldMessage
 			});
-			validationErrorOccured = true;
+			validationErrorOccurred = true;
 		}
-		return validationErrorOccured;
+		if(this.queryWasDeclaredInvalid) {
+			validationErrorOccurred = true;
+		}
+		return validationErrorOccurred;
 	}
 
 	// submit handler for the create view
@@ -92,10 +100,12 @@ class CreateEventQueryView extends ConnectionComponent {
 				Description: this.state.queryDescription,
 				Query: this.state.query
 			});
-			Notification.addSnackbarNotificationOnReferrer(config.messages.createdQueryMessage,
+			Notification.addSnackbarNotificationOnReferrer(help.messages.createdQueryMessage,
 				Notification.ModeEnum.SUCCESS);
 		}
-		this.latestNotificationShown = false;
+		if (!this.queryWasDeclaredInvalid) {
+			this.latestNotificationShown = false;
+		}
 	}
 
 	// submit handler for the edit view
@@ -105,19 +115,29 @@ class CreateEventQueryView extends ConnectionComponent {
 				Description: this.state.queryDescription,
 				Query: this.state.query
 			});
-			Notification.addSnackbarNotificationOnReferrer(config.messages.updatedQueryMessage,
+			Notification.addSnackbarNotificationOnReferrer(help.messages.updatedQueryMessage,
 				Notification.ModeEnum.SUCCESS);
 		}
-		this.latestNotificationShown = false;
-	}
-	
-	abort() {
-		window.history.back();
+		if (!this.queryWasDeclaredInvalid) {
+			this.latestNotificationShown = false;
+		}
 	}
 
-	static handleOptionalActions(optionalActions) {
+	setTargetPage() {
+		if (this.isCreateView) {
+			window.location = Utils.getParentPageURL(window.location.href, 4);
+		} else {
+			window.location = Utils.getParentPageURL(window.location.href, 5);
+		}
+	}
+
+	abort() {
+		this.setTargetPage();
+	}
+
+	handleOptionalActions(optionalActions) {
 		if(optionalActions && optionalActions.fulfilled) {
-			window.history.back();
+			this.setTargetPage();
 			return null;
 		}
 	}
@@ -127,14 +147,15 @@ class CreateEventQueryView extends ConnectionComponent {
 			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
 				Notification.ModeEnum.ERROR);
 			this.latestNotificationShown = true;
+			this.queryWasDeclaredInvalid = true;
 		}
 	}
 
 	getAbortButton() {
 		return <RaisedButton
-			label="Abort"
+			label={help.descriptions.abort}
 			icon={<IconCancel/>}
-			className={css(AppStyles.marginAllSites)}
+			className="marginAllSites"
 			secondary={true}
 			onClick={this.abort}
 		/>;
@@ -152,9 +173,9 @@ class CreateEventQueryView extends ConnectionComponent {
 	getComponentBody(attributes, queryInputChangeHandler, submitFormHandler, optionalActions, eventQuery) {
 		this.displayOptionalErrorMessage(optionalActions);
 		return (
-			<div className={AppStyles.elementMarginTop}>
-				<Container className={css(AppStyles.containerMarginTop)}>
-					<Paper className={css(AppStyles.paperPadding)} zDepth={2}>
+			<div className="elementMarginTop">
+				<Container className="containerMarginTop">
+					<Paper className="paperPadding" zDepth={2}>
 						<Row>
 							<Col md={8}>
 								<EventQueryInputArea
@@ -171,12 +192,12 @@ class CreateEventQueryView extends ConnectionComponent {
 						</Row>
 						<Row>
 							<Col md={8}>
-								<div className={css(AppStyles.textAlignCenter)}>
+								<div className="textAlignCenter">
 									{this.getAbortButton()}
 									<RaisedButton
-										label="Save"
+										label={help.descriptions.save}
 										icon={<IconSave/>}
-										className={css(AppStyles.marginAllSites)}
+										className="marginAllSites"
 										primary={true}
 										onClick={submitFormHandler}
 									/>
@@ -198,7 +219,7 @@ class CreateEventQueryView extends ConnectionComponent {
 	// render method for the create event query view
 	renderCreateEventQuery() {
 		const optionalActions = this.props.createEventQueryResponse;
-		CreateEventQueryView.handleOptionalActions(optionalActions);
+		this.handleOptionalActions(optionalActions);
 		const allFetches = PromiseState.all([this.props.eventType, this.props.attributes]);
 		const connectionIncomplete = super.render(allFetches);
 		if (connectionIncomplete) {
@@ -208,7 +229,7 @@ class CreateEventQueryView extends ConnectionComponent {
 		const attributes = this.props.attributes.value;
 		return (
 			<div>
-				<Header title={"Create Event Query for " + eventType.Name}/>
+				<Header title={help.descriptions.createEventQueryView + " " + eventType.Name}/>
 				{this.getComponentBody(attributes, this.handleCreateQueryInput, this.submitNewQuery, optionalActions)}
 			</div>
 		);
@@ -232,7 +253,7 @@ class CreateEventQueryView extends ConnectionComponent {
 	// render method for the edit event query view
 	renderEditEventQuery() {
 		const optionalActions = this.props.editEventQueryResponse;
-		CreateEventQueryView.handleOptionalActions(optionalActions);
+		this.handleOptionalActions(optionalActions);
 		const eventQueryPending = this.eventQueryPending();
 		if (eventQueryPending) {
 			return eventQueryPending;
@@ -246,7 +267,7 @@ class CreateEventQueryView extends ConnectionComponent {
 		const attributes = this.props.attributes.value;
 		return (
 			<div>
-				<Header title={"Edit Event Query for " + eventType.Name}/>
+				<Header title={help.descriptions.editEventQueryView + " " + eventType.Name}/>
 				{this.getComponentBody(
 					attributes, this.handleEditQueryInput,
 					this.submitUpdatedQuery, optionalActions, this.props.eventQuery.value

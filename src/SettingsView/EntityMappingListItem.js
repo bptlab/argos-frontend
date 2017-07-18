@@ -3,7 +3,7 @@ import Utils from '../Utils/Utils';
 import ConnectionComponent from './../Utils/ConnectionComponent.js';
 import config from './../config/config.js';
 import help from './../config/help.js';
-import {Table, TableHeader, TableBody, TableRow, TableHeaderColumn, TableRowColumn} from 'material-ui/Table'
+import {Table, TableHeader, TableBody, TableRow, TableHeaderColumn, TableRowColumn} from 'material-ui/Table';
 import IconButton from 'material-ui/IconButton';
 import IconEdit from 'material-ui/svg-icons/editor/mode-edit';
 import IconDelete from 'material-ui/svg-icons/action/delete';
@@ -55,7 +55,7 @@ class EntityMappingListItem extends ConnectionComponent {
 				<ConfirmationMessage
 					actionToPerform={this.deleteMapping}
 					ref={(input) => {this.confirmationMessage = input;}}>
-					{config.messages.deleteEntityMappingMessage}
+					{help.messages.deleteEntityMappingMessage}
 				</ConfirmationMessage>
 				<IconButton
 					tooltip={help.button.editEntityMapping}
@@ -105,7 +105,9 @@ class EntityMappingListItem extends ConnectionComponent {
 									key={key + "EntityName"}>
 									{this.getEntityTypeAttributeName(condition.EntityTypeAttributeId)}
 								</TableRowColumn>
-								<TableRowColumn className="smallWidth" key={key + "Buttons"}></TableRowColumn>
+								<TableRowColumn
+									className="smallWidth"
+									key={key + "Buttons"} />
 							</TableRow>
 						);
 					})}

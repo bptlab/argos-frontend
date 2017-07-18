@@ -8,14 +8,17 @@ import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import config from "./../config/config.js";
 import help from "./../config/help";
 import Header from "../Header";
-import AppStyles from "../AppStyles";
-import { css } from 'aphrodite';
+import "./../App.css";
+import LoadingAnimation from "../Utils/LoadingAnimation";
+
+const FILTER_RENDER_TIMEOUT = 700;
 
 class GridView extends ConnectionComponent {
 	constructor() {
 		super();
 		this.state = {
 			filterObject: {},
+			preventRender: false,
 		};
 		this.getChildEntityTypes = this.getChildEntityTypes.bind(this);
 		this.getEntityType = this.getEntityType.bind(this);
@@ -63,7 +66,22 @@ class GridView extends ConnectionComponent {
 	handleFilterChange(filterObject) {
 		this.setState({
 			filterObject: filterObject,
-		});
+		},
+			() => {
+				if (this.inputTimer) {
+					window.clearInterval(this.inputTimer);
+				}
+				const thisBinding = this;
+				this.setState({
+					preventRender: true,
+				});
+				this.inputTimer = window.setTimeout(
+					() => thisBinding.setState({
+						preventRender: false,
+					}),
+					FILTER_RENDER_TIMEOUT);
+			}
+		);
 	}
 
 	render() {
@@ -77,7 +95,7 @@ class GridView extends ConnectionComponent {
 		return (
 			<div>
 				<Header title={this.getPageTitle(entity)} status={entity.Status}/>
-				<Container className={css(AppStyles.containerMarginTop)}>
+				<Container className="containerMarginTop">
 					<HierarchyStepper
 						hierarchy={window.hierarchy}
 						currentEntity={entity}
@@ -94,11 +112,12 @@ class GridView extends ConnectionComponent {
 						return (
 							<div key={`div-${childEntityType.Id}`}>
 								<h1>{childEntityType.Name}</h1>
-								<CardGrid
+								{this.state.preventRender && <LoadingAnimation/>}
+								{!this.state.preventRender && <CardGrid
 									filterObject={this.state.filterObject}
 									key={childEntityType.Id}
 									currentEntity={entity}
-									entityType={childEntityType}/>
+									entityType={childEntityType}/>}
 							</div>
 						);
 					})}

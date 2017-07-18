@@ -20,38 +20,6 @@ const config = {
 		error: "#B71C1C",
 		success: "#558B2F"
 	},
-	descriptions: {
-		textNumberOfEvents: "Number of events",
-		exampleQuery: "INSERT INTO ExampleType SELECT * FROM PATTERN [[2] SimpleType]",
-		queryInputFieldHint: "Esper EPL Query",
-		queryDescriptionInputFieldHint: 'Description for query',
-		addMapping: "Add Mapping Condition",
-		toggleChildrenEvents: "Show events of children?",
-		selectEntityTypeHint: "Select Entity Type",
-		selectEventTypeHint: "Select Event Type",
-		selectTargetStatusHint: "Target Status, leave empty if no status update is required",
-		selectEntityTypeAttributeHint: "Select Entity Type Attribute",
-		selectEventTypeAttributeHint: "Select Event Type Attribute"
-	},
-	messages: {
-		notFound: "Error 404. The requested page does not exist. You found a glitch in the matrix.",
-		noEventTypes: "No event types",
-		noEventQueries: "There are no event queries yet.",
-		noEntityMappings: "There are no event entity mappings yet.",
-		deleteQueryMessage: "Do you really want to delete this Query?",
-		deleteEventTypeMessage: "Do you really want to delete this EventType?",
-		deleteEntityMappingMessage: "Do you really want to delete this EntityMapping?",
-		deletedQueryMessage: "Deleted event query.",
-		deletedEventTypeMessage: "Deleted event type.",
-		deletedEntityMappingMessage: "Deleted event entity mapping.",
-		createdQueryMessage: "Submitted event query.",
-		createdEventTypeMessage: "Submitted event type.",
-		createdEntityMappingMessage: "Submitted entity mapping",
-		updatedQueryMessage: "Updated event query.",
-		updatedEventTypeMessage: "Updated event type.",
-		updatedEntityMappingMessage: "Updated entity mapping",
-		requiredFieldMessage: 'Please fill out this field'
-	},
 	statuses: [
 		{
 			name:"RUNNING",

@@ -7,8 +7,7 @@ import SearchBar from "./../Utils/SearchBar";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import IconAdd from "material-ui/svg-icons/content/add";
 import Utils from '../Utils/Utils';
-import {css} from "aphrodite";
-import AppStyles from "./../AppStyles";
+import "./../App.css";
 import Notification from "./../Utils/Notification";
 import help from './../config/help';
 import config from "./../config/config";
@@ -53,14 +52,14 @@ class SettingsView extends ConnectionComponent {
 			Notification.addSnackbarNotificationOnSelf(optionalActions.reason,
 				Notification.ModeEnum.ERROR);
 		} else if(optionalActions && optionalActions.fulfilled && optionalActions === this.props.deleteEventTypeResponse) {
-			Notification.addSnackbarNotificationOnSelf(config.messages.deletedEventTypeMessage,
+			Notification.addSnackbarNotificationOnSelf(help.messages.deletedEventTypeMessage,
 				Notification.ModeEnum.SUCCESS);
 		}
 		return (
 			<div>
-				<Header title="Event Types"/>
-				<Container className={css(AppStyles.containerMarginTop)}>
-					<SearchBar onInputChange={this.handleSearchInput} styles={AppStyles.marginBottom}/>
+				<Header title={help.descriptions.eventTypes} />
+				<Container className="containerMarginTop">
+					<SearchBar onInputChange={this.handleSearchInput} className="marginBottom" />
 					{this.props.eventTypes.value.map((eventType) => {
 						if (this.searchMatches(eventType)) {
 							return (<EventTypeCard
@@ -74,7 +73,7 @@ class SettingsView extends ConnectionComponent {
 				</Container>
 				<FloatingActionButton
 					backgroundColor={config.colors.primaryDark}
-					className={css(AppStyles.floatingActionButton)}
+					className="floatingActionButton"
 					href={Utils.getLink('/settings/eventType/create')}
 					title={help.button.createEventType}
 					children={<IconAdd />} />

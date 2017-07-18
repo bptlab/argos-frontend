@@ -5,9 +5,8 @@ import IconDelete from 'material-ui/svg-icons/action/delete';
 import Utils from '../Utils/Utils';
 import ConfirmationMessage from './../Utils/ConfirmationMessage.js'
 import {ListItem} from 'material-ui/List';
-import config from './../config/config.js';
 import help from './../config/help.js';
-
+import './../App.css';
 
 class EventQueryListItem extends Component {
 	
@@ -23,22 +22,23 @@ class EventQueryListItem extends Component {
 
 	eventQueryActionButtons () {
 		return (
-			<div>
+			<div style={{width: 'auto'}}>
 				<ConfirmationMessage 
 					actionToPerform={this.deleteEventQuery}
 					ref={(input) => {this.confirmationMessage = input;}}
-					message={config.messages.deletedQueryMessage}>
-					{config.messages.deleteQueryMessage}
+					message={help.messages.deletedQueryMessage}>
+					{help.messages.deleteQueryMessage}
 				</ConfirmationMessage>
 				<IconButton
 					tooltip={help.button.editEventQuery}
 					href={Utils.getLink(`/settings/eventType/${this.props.eventType.Id}/eventQuery/${this.props.query.Id}/edit`)}
-					className="verticalAlignTop">
+					className="queryButton">
 					<IconEdit/>
 				</IconButton>
 				<IconButton
 					tooltip={help.button.deleteEventQuery}
-					onTouchTap={() => {this.confirmationMessage.handleOpen();}}>
+					onTouchTap={() => {this.confirmationMessage.handleOpen();}}
+					className="queryButton">
 					<IconDelete/>
 				</IconButton>
 			</div>
@@ -50,7 +50,7 @@ class EventQueryListItem extends Component {
 			<ListItem
 				primaryText={this.props.query.Description}
 				secondaryText={this.props.query.Query}
-				rightIconButton={this.eventQueryActionButtons()}
+				rightIcon={this.eventQueryActionButtons()}
 			/>
 		);
 	}

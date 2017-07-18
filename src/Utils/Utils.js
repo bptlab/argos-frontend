@@ -225,6 +225,46 @@ class Utils {
 		}
 		return basename + path;
 	}
+
+	/**
+	 * Generates the distribution of attribute values from a list of events and the name of the attribute.
+	 * @param events
+	 * @param attributeName
+	 */
+	static getAttributeValueDistribution(events, attributeName) {
+		const attributeValues = [];
+		events.forEach((event) => {
+			event.Attributes.forEach((attribute) => {
+				if (attribute.Name === attributeName) {
+					attributeValues.push(attribute.Value);
+				}
+			});
+		});
+		const distribution = {};
+		attributeValues.forEach((value) => {
+			if (value in distribution) {
+				distribution[value] += 1;
+			} else {
+				distribution[value] = 1;
+			}
+		});
+		Object.keys(distribution).forEach((value) => {
+			distribution[value] /= attributeValues.length;
+		});
+		return distribution;
+	}
+	/**
+	 * Returns URL of parent page for a given page url.
+	 * @param url
+	 * @param numberOfSteps
+	 */
+	static getParentPageURL(url, numberOfSteps = 1) {
+		const urlSegments = url.split('/');
+		for (let i=0; i < numberOfSteps; i++) {
+			urlSegments.pop();
+		}
+		return urlSegments.join('/');
+	}
 }
 
 export default Utils;

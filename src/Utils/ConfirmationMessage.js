@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import help from "../config/help";
 
 class ConfirmationMessage extends Component {
 	
@@ -34,20 +35,20 @@ class ConfirmationMessage extends Component {
 	render() {
 		const actions = [
 			<FlatButton
-				label="No"
+				label={help.descriptions.abort}
 				primary={true}
 				keyboardFocused={true}
 				onTouchTap={this.handleClose}
 			/>,
 			<FlatButton
-				label="Yes"
+				label={help.descriptions.confirm}
 				primary={true}
 				onTouchTap={this.handleSubmit}
 			/>,
 		];
 		return (
 			<Dialog
-				title="Confirmation Prompt"
+				title={help.descriptions.confirmationTitle}
 				actions={actions}
 				modal={false}
 				open={this.state.visible}
