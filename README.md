@@ -1,7 +1,7 @@
 # Argos frontend
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/bptlab/argos-frontend/master/LICENSE)
-[![GitHub release](https://img.shields.io/badge/release-2.1.0-blue.svg)](https://github.com/bptlab/argos-frontend/releases/latest)
+[![GitHub release](https://img.shields.io/badge/release-2.1.1-blue.svg)](https://github.com/bptlab/argos-frontend/releases/latest)
 
 [![Quality Gate developer branch](https://bpt-lab.org/sonarqube/api/badges/gate?key=de.hpi.bpt:argos-frontend:developer "Developer Branch")](https://bpt-lab.org/sonarqube/overview?id=de.hpi.bpt%3Aargos-frontend)
 [![Build Status](https://travis-ci.org/bptlab/argos-frontend.svg?branch=master)](https://travis-ci.org/bptlab/argos-frontend "Default branch")
@@ -53,7 +53,7 @@ Wrong
 Constructor methods should be structured in this way:
 1. Call the parent constructor.
 2. Initialize the components state.
-3. Execute initilisation functions.
+3. Execute initialisation functions.
 4. Bind ```this``` to functions.
 
 
