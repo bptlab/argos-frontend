@@ -6,15 +6,14 @@ import {Paper, RaisedButton} from "material-ui";
 import IconSave from "material-ui/svg-icons/content/save";
 import IconCancel from "material-ui/svg-icons/navigation/cancel";
 import Header from "./../Header";
-import {css} from "aphrodite";
 import EventTypeInformation from "./EventTypeInformation";
 import EventQueryInputArea from "./EventQueryInputArea";
 import config from "../config/config";
 import help from "../config/help";
-import AppStyles from "../AppStyles";
 import Utils from "../Utils/Utils";
 import LoadingAnimation from "../Utils/LoadingAnimation";
 import Notification from "../Utils/Notification";
+import "./../App.css";
 
 class CreateEventQueryView extends ConnectionComponent {
 
@@ -36,6 +35,8 @@ class CreateEventQueryView extends ConnectionComponent {
 		this.submitNewQuery = this.submitNewQuery.bind(this);
 		this.submitUpdatedQuery = this.submitUpdatedQuery.bind(this);
 		this.getComponentBody = this.getComponentBody.bind(this);
+		this.setTargetPage = this.setTargetPage.bind(this);
+		this.abort = this.abort.bind(this);
 	}
 
 	// handles query changes in create view
@@ -72,23 +73,23 @@ class CreateEventQueryView extends ConnectionComponent {
 	}
 
 	isInvalidInput() {
-		let validationErrorOccured = false;
+		let validationErrorOccurred = false;
 		if(!this.state.queryDescription) {
 			this.setState({
 				descriptionErrorMessage: help.messages.requiredFieldMessage
 			});
-			validationErrorOccured = true;
+			validationErrorOccurred = true;
 		}
 		if(!this.state.query) {
 			this.setState({
 				queryErrorMessage: help.messages.requiredFieldMessage
 			});
-			validationErrorOccured = true;
+			validationErrorOccurred = true;
 		}
 		if(this.queryWasDeclaredInvalid) {
-			validationErrorOccured = true;
+			validationErrorOccurred = true;
 		}
-		return validationErrorOccured;
+		return validationErrorOccurred;
 	}
 
 	// submit handler for the create view
@@ -154,7 +155,7 @@ class CreateEventQueryView extends ConnectionComponent {
 		return <RaisedButton
 			label={help.descriptions.abort}
 			icon={<IconCancel/>}
-			className={css(AppStyles.marginAllSites)}
+			className="marginAllSites"
 			secondary={true}
 			onClick={this.abort}
 		/>;
@@ -172,9 +173,9 @@ class CreateEventQueryView extends ConnectionComponent {
 	getComponentBody(attributes, queryInputChangeHandler, submitFormHandler, optionalActions, eventQuery) {
 		this.displayOptionalErrorMessage(optionalActions);
 		return (
-			<div className={AppStyles.elementMarginTop}>
-				<Container className={css(AppStyles.containerMarginTop)}>
-					<Paper className={css(AppStyles.paperPadding)} zDepth={2}>
+			<div className="elementMarginTop">
+				<Container className="containerMarginTop">
+					<Paper className="paperPadding" zDepth={2}>
 						<Row>
 							<Col md={8}>
 								<EventQueryInputArea
@@ -191,12 +192,12 @@ class CreateEventQueryView extends ConnectionComponent {
 						</Row>
 						<Row>
 							<Col md={8}>
-								<div className={css(AppStyles.textAlignCenter)}>
+								<div className="textAlignCenter">
 									{this.getAbortButton()}
 									<RaisedButton
 										label={help.descriptions.save}
 										icon={<IconSave/>}
-										className={css(AppStyles.marginAllSites)}
+										className="marginAllSites"
 										primary={true}
 										onClick={submitFormHandler}
 									/>

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Snackbar from 'material-ui/Snackbar';
 import IconError from "material-ui/svg-icons/alert/error-outline";
 import IconSuccess from "material-ui/svg-icons/navigation/check";
-import {css} from 'aphrodite';
-import AppStyles from "./../AppStyles";
 import config from "./../config/config"
 
 class Notification extends Component {
@@ -30,9 +28,9 @@ class Notification extends Component {
 
 	getIconForMode() {
 		if(this.props.mode.color === Notification.ModeEnum.SUCCESS.color) {
-			return <IconSuccess className={css(AppStyles.marginRight, AppStyles.colorWhite)}/>;
+			return <IconSuccess className="marginRight colorWhite" />;
 		} else if (this.props.mode.color === Notification.ModeEnum.ERROR.color) {
-			return <IconError className={css(AppStyles.marginRight, AppStyles.colorWhite)}/>;
+			return <IconError className="marginRight colorWhite" />;
 		}
 	}
 
@@ -44,9 +42,9 @@ class Notification extends Component {
 			<Snackbar
 				open={this.props.open}
 				message={
-					<span className={css(AppStyles.dFlex, AppStyles.alignItemsCenter)}>
+					<span className="dFlex alignItemsCenter">
 						{this.getIconForMode()}
-						<p className={css(AppStyles.capitalizeFirstLetter, AppStyles.lineHeight25)}>
+						<p className="capitalizeFirstLetter lineHeight25">
 							{this.props.message}
 						</p>
 					</span>}

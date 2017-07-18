@@ -8,8 +8,7 @@ import ConnectionComponent from "./../Utils/ConnectionComponent.js";
 import config from "./../config/config.js";
 import help from "./../config/help";
 import Header from "../Header";
-import AppStyles from "../AppStyles";
-import { css } from 'aphrodite';
+import "./../App.css";
 import LoadingAnimation from "../Utils/LoadingAnimation";
 
 const FILTER_RENDER_TIMEOUT = 700;
@@ -96,7 +95,7 @@ class GridView extends ConnectionComponent {
 		return (
 			<div>
 				<Header title={this.getPageTitle(entity)} status={entity.Status}/>
-				<Container className={css(AppStyles.containerMarginTop)}>
+				<Container className="containerMarginTop">
 					<HierarchyStepper
 						hierarchy={window.hierarchy}
 						currentEntity={entity}

@@ -6,13 +6,14 @@ import RaisedButton from "material-ui/RaisedButton";
 import IconSave from "material-ui/svg-icons/content/save";
 import IconCancel from "material-ui/svg-icons/navigation/cancel";
 import Header from "./../Header";
-import {css} from "aphrodite";
-import AppStyles from "./../AppStyles";
+import "./../App.css";
 import config from '../config/config.js';
 import help from "../config/help";
 import Notification from '../Utils/Notification';
 import {Paper} from "material-ui";
 import Utils from '../Utils/Utils.js';
+import AppStyles from "../AppStyles";
+import {css} from "aphrodite";
 
 class CreateEventTypeView extends ConnectionComponent {
 	constructor(props) {
@@ -126,16 +127,16 @@ class CreateEventTypeView extends ConnectionComponent {
 		return (
 			<div>
 				<Header title={help.descriptions.createEventTypeView} />
-				<Container className={css(AppStyles.containerMarginTop)}>
-					<Paper className={css(AppStyles.paperPadding)} zDepth={2}>
+				<Container className="containerMarginTop">
+					<Paper className="paperPadding" zDepth={2}>
 						<form>
-							<div className={css(AppStyles.elementMarginTop)}>
+							<div className="elementMarginTop">
 								<TextField
 									data-hint={help.input.eventTypeView.name}
 									data-hintPosition="middle-right"
 									floatingLabelText={help.descriptions.eventTypeName}
 									fullWidth={true}
-									floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
+									floatingLabelStyle={{color: config.colors.text}}
 									value={this.state.eventTypeName}
 									onChange={this.handleChangeEventTypeName}
 									required={true}
@@ -144,7 +145,7 @@ class CreateEventTypeView extends ConnectionComponent {
 									data-hint={help.input.eventTypeView.timestamp}
 									data-hintPosition="middle-right"
 									floatingLabelText={help.descriptions.timestampName}
-									floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
+									floatingLabelStyle={{color: config.colors.text}}
 									fullWidth={true}
 									value={this.state.eventTypeTimestampAttribute}
 									onChange={this.handleChangeEventTypeTimestampAttribute}
@@ -157,25 +158,25 @@ class CreateEventTypeView extends ConnectionComponent {
 										data-hintPosition="middle-right"
 										id={attribute.id}
 										value={attribute.value}
-										floatingLabelStyle={{color: config.colors.primaryDarkAlphaDarker}}
+										floatingLabelStyle={{color: config.colors.text}}
 										floatingLabelText={help.descriptions.attributeName}
 										onChange={this.onInputChange.bind(this)}
 										fullWidth={true}/>
 								)}
 							</div>
 						</form>
-						<div className={css(AppStyles.textAlignCenter)}>
+						<div className="textAlignCenter">
 							<RaisedButton
 								label={help.descriptions.abort}
 								icon={<IconCancel/>}
-								className={css(AppStyles.marginAllSites)}
+								className="marginAllSites"
 								onClick={this.abort}
 								secondary={true}/>
 							<RaisedButton
 								label={help.descriptions.save}
 								icon={<IconSave/>}
 								onClick={this.submitForm}
-								className={css(AppStyles.marginAllSites)}
+								className="marginAllSites"
 								primary={true}/>
 						</div>
 					</Paper>

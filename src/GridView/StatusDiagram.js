@@ -75,13 +75,13 @@ class StatusDiagram extends Component {
 
 		const data = [];
 		statuses.forEach((status) => {
-			data.push(this.forgeDataSet(status));
+			data.push(StatusDiagram.forgeDataSet(status));
 		});
 
 		return data;
 	}
 
-	forgeDataSet(status) {
+	static forgeDataSet(status) {
 		return {
 			y: ['status'],
 			x: [status.entityCounter],
